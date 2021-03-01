@@ -95,6 +95,8 @@ namespace Back.Controllers
                 }
             }
 
+            
+
             _context.historialcorreo.Add(historialcorreo);
             await _context.SaveChangesAsync();
 
