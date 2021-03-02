@@ -1,4 +1,5 @@
 ﻿using Back.Models.Entidades;
+using Back.Models.Usuario;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,5 +16,6 @@ namespace Back.Models.DAL
         {
         }
         public DbSet<historialcorreo> historialcorreo { get; set; }
+        public DbSet<UsuarioIdentity> usuarioidentity { get; set; }
     }
 }
