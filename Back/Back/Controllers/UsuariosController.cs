@@ -31,12 +31,6 @@ namespace Back.Controllers
             _configuracionGlobal = configuracionGlobal.Value; 
         }
 
-        [HttpGet]
-
-        public string inicio()
-        {
-            return "Hola mundo";
-        }
 
         [HttpPost]
         [Route("Registro")]

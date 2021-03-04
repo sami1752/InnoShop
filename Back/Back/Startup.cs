@@ -1,5 +1,7 @@
 using Back.Models;
+using Back.Models.Abstratos;
 using Back.Models.DAL;
+using Back.Models.Servicios;
 using Back.Models.Usuario;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -53,8 +55,9 @@ namespace Back
             });
 
 
-
+            services.AddScoped<IServiciosHistorialCorreo, ServiciosHistorialCorreo>();
             services.AddDefaultIdentity<UsuarioIdentity>().AddEntityFrameworkStores<DBContext>();
+
 
             services.Configure<IdentityOptions>(options =>
             {
