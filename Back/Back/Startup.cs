@@ -1,7 +1,8 @@
-using Back.Models.Abstratos;
+using Back.Models;
 using Back.Models.DAL;
-using Back.Models.Servicios;
 using Back.Models.Usuario;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,9 +13,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Back
@@ -32,6 +35,15 @@ namespace Back
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                  "CorsPolicy",
+                  builder => builder.WithOrigins(Configuration["ConfiguracionGlobal:URLCliente"].ToString())
+                  .AllowAnyMethod()
+                  .AllowAnyHeader().AllowCredentials());
+            });
+
             services.AddDbContext<DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
 
@@ -41,7 +53,6 @@ namespace Back
             });
 
 
-            services.AddScoped<IServiciosHistorialCorreo, ServiciosHistorialCorreo>();
 
             services.AddDefaultIdentity<UsuarioIdentity>().AddEntityFrameworkStores<DBContext>();
 
@@ -56,12 +67,48 @@ namespace Back
 
             });
 
+            byte[] key = Encoding.UTF8.GetBytes(Configuration["ConfiguracionGlobal:JWT_Secret"].ToString());
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = false;
+                x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
+            services.AddAuthorization(options =>
+            {
+                var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(
+                    JwtBearerDefaults.AuthenticationScheme);
+
+                defaultAuthorizationPolicyBuilder =
+                    defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
+
+                options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
+            });
+
+            services.Configure<ConfiguracionGlobal>(Configuration.GetSection("ConfiguracionGlobal"));
+
             services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("CorsPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -77,6 +124,7 @@ namespace Back
             {
                 endpoints.MapControllers();
             });
+            app.UseAuthentication();
         }
     }
 }

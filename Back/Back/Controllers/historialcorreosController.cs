@@ -9,7 +9,6 @@ using Back.Models.DAL;
 using Back.Models.Entidades;
 using System.Net.Mail;
 using System.Net;
-using Back.Models.Abstratos;
 
 namespace Back.Controllers
 {
@@ -17,9 +16,9 @@ namespace Back.Controllers
     [ApiController]
     public class historialcorreosController : ControllerBase
     {
-        private readonly IServiciosHistorialCorreo _context;
+        private readonly DBContext _context;
 
-        public historialcorreosController(IServiciosHistorialCorreo context)
+        public historialcorreosController(DBContext context)
         {
             _context = context;
         }
@@ -28,17 +27,99 @@ namespace Back.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<historialcorreo>>> Gethistorialcorreo()
         {
-            return new ObjectResult(await _context.ObtenerHistorial());
+            return await _context.historialcorreo.ToListAsync();
         }
 
+        // GET: api/historialcorreos/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<historialcorreo>> Gethistorialcorreo(int id)
+        {
+            var historialcorreo = await _context.historialcorreo.FindAsync(id);
+
+            if (historialcorreo == null)
+            {
+                return NotFound();
+            }
+
+            return historialcorreo;
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Puthistorialcorreo(int id, historialcorreo historialcorreo)
+        {
+            if (id != historialcorreo.IdHistorial)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(historialcorreo).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!historialcorreoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
 
         // POST: api/historialcorreos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<historialcorreo>> Posthistorialcorreo(historialcorreo historialcorreo)
         {
-            await _context.AgregarHistoria(historialcorreo);
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress("sami1752sami@gmail.com", historialcorreo.NombreEvi);
+                mail.To.Add(historialcorreo.Correo);
+                mail.Subject = historialcorreo.Asunto;
+                mail.Body = $"<p>{historialcorreo.Mensaje}</p>";
+                mail.IsBodyHtml = true;
+                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.Credentials = new NetworkCredential("sami1752sami@gmail.com", "30088713311752");
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
+            }
+
+            
+
+            _context.historialcorreo.Add(historialcorreo);
+            await _context.SaveChangesAsync();
+
             return CreatedAtAction("Gethistorialcorreo", new { id = historialcorreo.IdHistorial }, historialcorreo);
+        }
+
+        // DELETE: api/historialcorreos/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Deletehistorialcorreo(int id)
+        {
+            var historialcorreo = await _context.historialcorreo.FindAsync(id);
+            if (historialcorreo == null)
+            {
+                return NotFound();
+            }
+
+            _context.historialcorreo.Remove(historialcorreo);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool historialcorreoExists(int id)
+        {
+            return _context.historialcorreo.Any(e => e.IdHistorial == id);
         }
     }
 }
