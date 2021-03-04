@@ -40,5 +40,6 @@ namespace Back.Controllers
             await _context.AgregarHistoria(historialcorreo);
             return CreatedAtAction("Gethistorialcorreo", new { id = historialcorreo.IdHistorial }, historialcorreo);
         }
+
     }
 }

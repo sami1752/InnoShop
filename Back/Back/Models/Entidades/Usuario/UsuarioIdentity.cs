@@ -18,6 +18,7 @@ namespace Back.Models.Usuario
 
         [Column(TypeName = "varchar(10)"), Required]
         public string Sexo { get; set; }
+        
         [Required]
         public int IdRol { get; set; }
 
