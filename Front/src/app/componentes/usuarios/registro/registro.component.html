@@ -1,0 +1,47 @@
+
+<section class="login-area pt-100 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="basic-login">
+                    <h3 class="text-center mb-60">Registrate aquí</h3>
+                    <form class=""  [formGroup]="this.usuarioService.formularioRegistroUsuario"   (ngSubmit)="registro()">
+                        <label for="name">Nombres <span>**</span></label>
+                        <input formControlName="Nombres" id="name" type="text" placeholder="Ingresa nombres" />
+
+                        <label for="email-id">Apellidos <span>**</span></label>
+                        <input formControlName="Apellidos"  type="text" placeholder="Ingresa Apellidos" />
+                        
+                        <label for="pass">Correo<span>**</span></label>
+                        <input  formControlName="Correo"  type="text" placeholder="Correo" />
+                        
+                        <label for="name">Tipo documento <span>**</span></label>
+                        <input formControlName="TipoDocumento" type="text" placeholder="Ingresa Tipo documento" />
+                        
+                        <label for="email-id">Numero documento <span>**</span></label>
+                        <input formControlName="NumDocumento"  type="text" placeholder="Ingresa Numero de documento" />
+                        
+                        <label for="name">Telefono <span>**</span></label>
+                        <input formControlName="Telefono"  type="text" placeholder="Ingrese telefono" />
+
+                        <label for="name">Sexo <span>**</span></label>
+                        <input formControlName="Sexo"  type="text" placeholder="Ingrese Sexo" />
+                        
+                        <label for="pass">Contraseña <span>**</span></label>
+                        <input formControlName="Contrasena"  type="password" placeholder="Ingrese Contraseña" />
+                        
+                        <label for="pass">Confirmar Contraseña<span>**</span></label>
+                        <input formControlName="ConfirmarContrasena"  type="password" placeholder="Ingrese contraseña" />
+
+                        <div class="mt-10"></div>
+                        <button type="submit"   class="os-btn w-100">Registrarse</button>
+                        <div class="or-divide"><span>O</span></div>
+                        <a href="login.html" class="os-btn os-btn-black w-100">Iniciar sesion</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

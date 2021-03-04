@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ConfiguracionService } from './servicios/configuracion.service';
+import { UsuarioService } from './servicios/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Front';
+  title = 'FrontEndInnoshop';
+
+  constructor(public configuracionService:ConfiguracionService ) { }
 }
