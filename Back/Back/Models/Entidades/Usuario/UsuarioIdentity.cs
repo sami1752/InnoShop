@@ -16,7 +16,6 @@ namespace Back.Models.Usuario
         [Column(TypeName = "varchar(40)"), Required]
         public string Apellidos { get; set; }
 
-
         [Column(TypeName = "varchar(10)"), Required]
         public string Sexo { get; set; }
         [Required]

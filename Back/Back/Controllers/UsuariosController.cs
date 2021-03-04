@@ -48,8 +48,9 @@ namespace Back.Controllers
                 TipoDocumento = usuarioModel.TipoDocumento,
                 NumDocumento = usuarioModel.NumDocumento,
                 Telefono = usuarioModel.Telefono,
-                PasswordHash = usuarioModel.Contrasena
-            };
+                PasswordHash = usuarioModel.Contrasena,
+                Direccion = usuarioModel.Direccion
+            }; 
 
             try
             {

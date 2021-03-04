@@ -17,5 +17,6 @@ namespace Back.Models.Entidades.Usuario
         public string NumDocumento { get; set; }
         public string Telefono { get; set; }
         public int Puntos { get; set; }
+        public string Direccion { get; set; }
     }
 }
