@@ -35,7 +35,7 @@ namespace Back.Controllers
         [HttpPost]
         [Route("Registro")]
 
-        public async Task<Object> registrotUsuario(UsuarioModel usuarioModel)
+        public async Task<Object> registroUsuario(UsuarioModel usuarioModel)
         {
             UsuarioIdentity usuario = new UsuarioIdentity()
             {
