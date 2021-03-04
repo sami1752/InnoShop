@@ -1,4 +1,6 @@
+using Back.Models.Abstratos;
 using Back.Models.DAL;
+using Back.Models.Servicios;
 using Back.Models.Usuario;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +41,7 @@ namespace Back
             });
 
 
+            services.AddScoped<IServiciosHistorialCorreo, ServiciosHistorialCorreo>();
 
             services.AddDefaultIdentity<UsuarioIdentity>().AddEntityFrameworkStores<DBContext>();
 

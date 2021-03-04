@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Back.Models.Abstratos
 {
-    interface IServiciosHistorialCorreo
+    public interface IServiciosHistorialCorreo
     {
        Task<IEnumerable<historialcorreo>> ObtenerHistorial();
+        Task AgregarHistoria(historialcorreo historialcorreo);
     }
 }

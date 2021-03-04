@@ -119,10 +119,6 @@
           }
         }
       }
-    }
-  },
-  "defaultProject": "Front",
-  "cli": {
-    "analytics": false
-  }
+    }},
+  "defaultProject": "Front"
 }
