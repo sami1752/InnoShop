@@ -15,20 +15,20 @@ export class UsuarioService {
 
   formularioRegistroUsuario = this.formBuilder.group({
       Nombres:["", [Validators.required,Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
-      Apellidos:["", [Validators.required, Validators.maxLength(40), Validators.pattern(this.configuracion.exRegularLetras)]],
-      Correo:["", [Validators.required, Validators.maxLength(40)]],
+      Apellidos:["", [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
+      Correo:["", [Validators.required, Validators.maxLength(50), Validators.email]],
       TipoDocumento:["", [Validators.required]],
-      NumDocumento:["", [Validators.required]],
+      NumDocumento:["", [Validators.required], Validators.maxLength(10), Validators.pattern(this.configuracion.exRegularNumeros)],
       Sexo:["",[Validators.required]],
-      Telefono:["", [Validators.required]],
-      Contrasena:["", [Validators.required]],
+      Telefono:["", [Validators.required], Validators.maxLength(10), Validators.pattern(this.configuracion.exLetrasNumeros)],
+      Contrasena:["", [Validators.required],Validators.maxLength(15)],
       ConfirmarContrasena:["", [Validators.required]]},
       {validator:this.compararContrasena.bind(this)}
   );
 
   formularioLogin = this.formBuilder.group({
-    Correo:["", [Validators.required]],
-    Contrasena:["", [Validators.required, Validators.maxLength(20)]] 
+    Correo:["", [Validators.required, Validators.maxLength(50), Validators.email]],
+    Contrasena:["", [Validators.required, Validators.maxLength(15)]] 
   }); 
 
   get nombreUsuarioLogin(){
@@ -63,6 +63,9 @@ export class UsuarioService {
 
   get telefono(){
     return this.formularioRegistroUsuario.controls["Telefono"];
+  }
+  get sexo(){
+    return this.formularioRegistroUsuario.controls["Sexo"];
   }
 
   get Contrasena(){

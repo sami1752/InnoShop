@@ -50,7 +50,7 @@ namespace Back.Controllers
                 Telefono = usuarioModel.Telefono,
                 PasswordHash = usuarioModel.Contrasena,
                 Direccion = usuarioModel.Direccion
-            }; 
+            };
 
             try
             {
