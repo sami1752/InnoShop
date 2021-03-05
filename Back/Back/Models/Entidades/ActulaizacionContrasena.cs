@@ -7,7 +7,7 @@ namespace Back.Models.Entidades
 {
     public class ActulaizacionContrasena
     {
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
+        public string Correo { get; set; }
+        public string Contrasena { get; set; }
     }
 }

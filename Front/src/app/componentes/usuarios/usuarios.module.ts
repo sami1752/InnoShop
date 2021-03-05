@@ -7,12 +7,15 @@ import {AppRoutingModule} from '../../app-routing.module';
 import{FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InicioComponent } from './inicio/inicio.component';
+import { RestablecimientoComponent } from './restablecimiento/restablecimiento.component';
+import { VerificacionComponent } from './restablecimiento/verificacion/verificacion.component';
+import { CambioContraComponent } from './cambio-contra/cambio-contra.component';
 
 
 
 
 @NgModule({
-  declarations: [RegistroComponent, LoginComponent, UsuariosComponent, InicioComponent],
+  declarations: [RegistroComponent, LoginComponent, UsuariosComponent, InicioComponent, RestablecimientoComponent, VerificacionComponent, CambioContraComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

@@ -36,24 +36,9 @@ namespace Back.Controllers
         [Route("Actualizacion")]
         public async Task<Object> PutConfiguracion(ActulaizacionContrasena usuario)
         {
-            //UsuarioIdentity usuario = new UsuarioIdentity()
-            //{
-            //    Id = usuarioModel.Id,
-            //    UserName = usuarioModel.Correo,
-            //    Nombres = usuarioModel.Nombres,
-            //    Apellidos = usuarioModel.Apellidos,
-            //    Email = usuarioModel.Correo,
-            //    Sexo = usuarioModel.Sexo,
-            //    IdRol = 2,
-            //    TipoDocumento = usuarioModel.TipoDocumento,
-            //    NumDocumento = usuarioModel.NumDocumento,
-            //    Telefono = usuarioModel.Telefono,
-            //    PasswordHash = usuarioModel.Contrasena,
-            //    Direccion = usuarioModel.Direccion           (usuarioB, usuarioB.C, usuario.PasswordHash)
-            //};
 
-            var usuarioB = await _userManager.FindByNameAsync(usuario.Email).ConfigureAwait(false);
-            usuarioB.PasswordHash = _userManager.PasswordHasher.HashPassword(usuarioB, usuario.PasswordHash);
+            var usuarioB = await _userManager.FindByNameAsync(usuario.Correo).ConfigureAwait(false);
+            usuarioB.PasswordHash = _userManager.PasswordHasher.HashPassword(usuarioB, usuario.Contrasena);
             var result = await _userManager.UpdateAsync(usuarioB).ConfigureAwait(false);
 
 
@@ -92,8 +77,6 @@ namespace Back.Controllers
 
                 throw;
             }
-
-
         }
 
         [HttpPost]
@@ -130,7 +113,6 @@ namespace Back.Controllers
         [HttpGet]
         [Route("Perfil")]
         [Authorize]
-        //GET : /api/UserProfile
         public async Task<Object> PerfilUsuario()
         {
             string usuarioId = User.Claims.First(c => c.Type == "UsuarioID").Value;
