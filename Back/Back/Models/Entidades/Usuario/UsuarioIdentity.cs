@@ -24,7 +24,7 @@ namespace Back.Models.Usuario
 
         [Column(TypeName = "varchar(25)"), Required]
         public string TipoDocumento { get; set; }
-
+        public string C { get; set; }
         [Column(TypeName = "varchar(10)"), Required]
         public string NumDocumento { get; set; }
 

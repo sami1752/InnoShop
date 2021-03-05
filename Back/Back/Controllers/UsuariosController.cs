@@ -1,4 +1,5 @@
 ﻿using Back.Models;
+using Back.Models.Entidades;
 using Back.Models.Entidades.Usuario;
 using Back.Models.Usuario;
 using Microsoft.AspNetCore.Authorization;
@@ -31,6 +32,33 @@ namespace Back.Controllers
             _configuracionGlobal = configuracionGlobal.Value;
         }
 
+        [HttpPut]
+        [Route("Actualizacion")]
+        public async Task<Object> PutConfiguracion(ActulaizacionContrasena usuario)
+        {
+            //UsuarioIdentity usuario = new UsuarioIdentity()
+            //{
+            //    Id = usuarioModel.Id,
+            //    UserName = usuarioModel.Correo,
+            //    Nombres = usuarioModel.Nombres,
+            //    Apellidos = usuarioModel.Apellidos,
+            //    Email = usuarioModel.Correo,
+            //    Sexo = usuarioModel.Sexo,
+            //    IdRol = 2,
+            //    TipoDocumento = usuarioModel.TipoDocumento,
+            //    NumDocumento = usuarioModel.NumDocumento,
+            //    Telefono = usuarioModel.Telefono,
+            //    PasswordHash = usuarioModel.Contrasena,
+            //    Direccion = usuarioModel.Direccion           (usuarioB, usuarioB.C, usuario.PasswordHash)
+            //};
+
+            var usuarioB = await _userManager.FindByNameAsync(usuario.Email).ConfigureAwait(false);
+            usuarioB.PasswordHash = _userManager.PasswordHasher.HashPassword(usuarioB, usuario.PasswordHash);
+            var result = await _userManager.UpdateAsync(usuarioB).ConfigureAwait(false);
+
+
+            return result;
+        }
 
         [HttpPost]
         [Route("Registro")]
@@ -49,6 +77,7 @@ namespace Back.Controllers
                 NumDocumento = usuarioModel.NumDocumento,
                 Telefono = usuarioModel.Telefono,
                 PasswordHash = usuarioModel.Contrasena,
+                C = usuarioModel.Contrasena,
                 Direccion = usuarioModel.Direccion
             };
 
