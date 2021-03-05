@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../modelos/usuario';
+import { Restablecimiento } from '../modelos/restablecimiento';
 import{ConfiguracionService} from './configuracion.service';
 import{HttpClient} from '@angular/common/http';
 import{FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -11,6 +12,7 @@ export class UsuarioService {
 
   constructor(private http:HttpClient, private configuracion:ConfiguracionService, private formBuilder:FormBuilder) { }
 
+  restablecimiento: Restablecimiento;
   usuario:Usuario;
 
   formularioRegistroUsuario = this.formBuilder.group({
@@ -30,6 +32,23 @@ export class UsuarioService {
     Correo:["", [Validators.required, Validators.maxLength(50), Validators.email]],
     Contrasena:["", [Validators.required, Validators.maxLength(15)]] 
   }); 
+
+  formularioRecuperacion = this.formBuilder.group({
+    Correo:["",[Validators.required]]
+  });
+
+  formularioVerificacion = this.formBuilder.group({
+    Correo: ["", [Validators.required]],
+    Codigo: ["", [Validators.required]]
+  });
+
+
+
+
+
+  get correoRecuperacion(){
+    return this.formularioRecuperacion.controls["Correo"];
+  }
 
   get nombreUsuarioLogin(){
     return this.formularioLogin.controls["Correo"];
@@ -115,6 +134,22 @@ export class UsuarioService {
     
     return this.http.get(this.configuracion.rootURL + '/Usuarios/Perfil'); 
  
+   }
+
+   restablecimientoContrasena(){
+     this.restablecimiento = this.formularioRecuperacion.value;
+     this.restablecimiento.Codigo ="000";
+     this.restablecimiento.Fecha ="000";
+
+     var resul = this.http.post(this.configuracion.rootURL + '/RestablecimientoContrasenas',this.restablecimiento);
+      return resul;
+   }
+
+
+
+   verificacionCodigo(){
+     this.restablecimiento = this.formularioVerificacion.value;
+     return this.http.post(this.configuracion.rootURL + '/RestablecimientoContrasenas/Verificacion', this.restablecimiento)
    }
 
  

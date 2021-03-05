@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\Back.csproj": {}
+    "D:\\ProyectoInnoshop\\GitProyecto\\InnoShop\\Back\\Back\\Back.csproj": {}
   },
   "projects": {
-    "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\Back.csproj": {
+    "D:\\ProyectoInnoshop\\GitProyecto\\InnoShop\\Back\\Back\\Back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\Back.csproj",
+        "projectUniqueName": "D:\\ProyectoInnoshop\\GitProyecto\\InnoShop\\Back\\Back\\Back.csproj",
         "projectName": "Back",
-        "projectPath": "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\Back.csproj",
-        "packagesPath": "C:\\Users\\sami1\\.nuget\\packages\\",
-        "outputPath": "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\obj\\",
+        "projectPath": "D:\\ProyectoInnoshop\\GitProyecto\\InnoShop\\Back\\Back\\Back.csproj",
+        "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
+        "outputPath": "D:\\ProyectoInnoshop\\GitProyecto\\InnoShop\\Back\\Back\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\sami1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],

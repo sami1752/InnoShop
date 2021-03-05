@@ -5,6 +5,8 @@ import {RegistroComponent} from './componentes/usuarios/registro/registro.compon
 import{LoginComponent} from './componentes/usuarios/login/login.component';
 import { InicioComponent } from './componentes/usuarios/inicio/inicio.component';
 import { AutorizacionRutasGuard } from './autorizaciones/autorizacion-rutas.guard';
+import { RestablecimientoComponent } from './componentes/usuarios/restablecimiento/restablecimiento.component';
+import { VerificacionComponent } from './componentes/usuarios/restablecimiento/verificacion/verificacion.component';
 
 
 const routes: Routes = [
@@ -13,6 +15,8 @@ const routes: Routes = [
     children: [
       {path:'registro',component:RegistroComponent},
       {path:'login', component:LoginComponent},
+      {path:'restablecimiento', component:RestablecimientoComponent},
+      {path:'verificacion', component:VerificacionComponent},
       {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]}
     ]
   }

@@ -92,8 +92,6 @@ namespace Back.Controllers
 
                 throw;
             }
-
-
         }
 
         [HttpPost]
@@ -130,7 +128,6 @@ namespace Back.Controllers
         [HttpGet]
         [Route("Perfil")]
         [Authorize]
-        //GET : /api/UserProfile
         public async Task<Object> PerfilUsuario()
         {
             string usuarioId = User.Claims.First(c => c.Type == "UsuarioID").Value;

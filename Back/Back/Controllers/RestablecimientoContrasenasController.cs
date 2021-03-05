@@ -35,6 +35,7 @@ namespace Back.Controllers
         // POST: api/RestablecimientoContrasenas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        
         public async Task<string> PostRestablecimientoContrasena(RestablecimientoContrasena restablecimientoContrasena)
         {
             Guid miGuid = Guid.NewGuid();
@@ -61,7 +62,7 @@ namespace Back.Controllers
 
 
         [HttpPost]
-        [Route("Verfificacion")]
+        [Route("Verificacion")]
         public async Task<bool>  RestablecimientoContrasena(VerificacionRestablecimientoContrasena verificacionRestablecimientoContrasena)
         {
             await using (_context)

@@ -29,14 +29,14 @@ namespace Back.Models.Servicios
         {
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress("sami1752sami@gmail.com", historialcorreo.NombreEvi);
+                mail.From = new MailAddress("juanjeffer1@gmail.com", historialcorreo.NombreEvi);
                 mail.To.Add(historialcorreo.Correo);
                 mail.Subject = historialcorreo.Asunto;
                 mail.Body = $"<p>{historialcorreo.Mensaje}</p>";
                 mail.IsBodyHtml = true;
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("sami1752sami@gmail.com", "30088713311752");
+                    smtp.Credentials = new NetworkCredential("juanjeffer1@gmail.com", "zurpancarda");
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }

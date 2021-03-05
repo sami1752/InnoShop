@@ -1,0 +1,20 @@
+<section class="login-area pt-100 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="basic-login">
+                    <h3 class="text-center mb-60">Restablece tu contraseña aquí</h3>
+                    <form [formGroup]="this.usuarioService.formularioRecuperacion" (ngSubmit)="this.restablecer()" >
+
+                        <label for="name">Correo electrónico <span>**</span></label>
+                        <input formControlName="Correo" id="name" type="email" placeholder="Ingrese email" />
+                        
+                        <button  type="submit" class="os-btn w-100">Enviar codigo de confirmación</button>
+                        <div class="or-divide"><span>or</span></div>
+                        <a href="" routerLink='/usuarios/login'  class="os-btn os-btn-black w-100">Atrás</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
