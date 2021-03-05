@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Back.Migrations
 {
-    public partial class Primera : Migration
+    public partial class EntidadRecuperacion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,6 +26,16 @@ namespace Back.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nombres = table.Column<string>(type: "varchar(40)", nullable: true),
+                    Apellidos = table.Column<string>(type: "varchar(40)", nullable: true),
+                    Sexo = table.Column<string>(type: "varchar(10)", nullable: true),
+                    IdRol = table.Column<int>(type: "int", nullable: true),
+                    TipoDocumento = table.Column<string>(type: "varchar(25)", nullable: true),
+                    NumDocumento = table.Column<string>(type: "varchar(10)", nullable: true),
+                    Telefono = table.Column<string>(type: "varchar(10)", nullable: true),
+                    Direccion = table.Column<string>(type: "varchar(10)", nullable: true),
+                    Puntos = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -52,11 +62,29 @@ namespace Back.Migrations
                 {
                     IdHistorial = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    correo = table.Column<int>(type: "int", nullable: false)
+                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Asunto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NombreEvi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Mensaje = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_HistorialCorreo", x => x.IdHistorial);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RestablecimientoContrasena",
+                columns: table => new
+                {
+                    IdRestablecimiento = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Codigo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RestablecimientoContrasena", x => x.IdRestablecimiento);
                 });
 
             migrationBuilder.CreateTable(
@@ -105,8 +133,8 @@ namespace Back.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -150,8 +178,8 @@ namespace Back.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -224,6 +252,9 @@ namespace Back.Migrations
 
             migrationBuilder.DropTable(
                 name: "HistorialCorreo");
+
+            migrationBuilder.DropTable(
+                name: "RestablecimientoContrasena");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

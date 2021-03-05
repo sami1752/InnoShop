@@ -56,6 +56,7 @@ namespace Back
 
 
             services.AddScoped<IServiciosHistorialCorreo, ServiciosHistorialCorreo>();
+            services.AddScoped<IServiciosRecuperacionContrasena, ServiciosRecuperacionContrasena>();
             services.AddDefaultIdentity<UsuarioIdentity>().AddEntityFrameworkStores<DBContext>();
 
 

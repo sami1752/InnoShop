@@ -28,7 +28,7 @@ namespace Back.Controllers
         {
             _userManager = userManager;
             _singInManager = singInManager;
-            _configuracionGlobal = configuracionGlobal.Value; 
+            _configuracionGlobal = configuracionGlobal.Value;
         }
 
 
@@ -56,6 +56,8 @@ namespace Back.Controllers
             {
                 var result = await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false);
                 return Ok(result);
+
+
             }
             catch (Exception)
             {
@@ -123,5 +125,6 @@ namespace Back.Controllers
             }
 
         }
+
     }
 }
