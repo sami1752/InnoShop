@@ -77,7 +77,6 @@ namespace Back.Controllers
                 NumDocumento = usuarioModel.NumDocumento,
                 Telefono = usuarioModel.Telefono,
                 PasswordHash = usuarioModel.Contrasena,
-                C = usuarioModel.Contrasena,
                 Direccion = usuarioModel.Direccion
             };
 
