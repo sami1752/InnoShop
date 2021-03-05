@@ -6,10 +6,30 @@
                         <div class="basic-login">
                             <h3 class="text-center mb-60">Inicia sesion desde aquí</h3>
                             <form [formGroup]="this.usuarioService.formularioLogin" (ngSubmit)="this.onSubmit()">
+
                                 <label for="name">Correo electrónico <span>**</span></label>
                                 <input formControlName="Correo" id="name" type="email" placeholder="Ingrese email" />
+
+                                <!--Validacion correo-->
+                                <div *ngIf="this.usuarioService.nombreUsuarioLogin.invalid && (this.usuarioService.nombreUsuarioLogin.touched || this.usuarioService.nombreUsuarioLogin.dirty)" class="text-danger mb-20 text-center">
+                                    <div *ngIf="this.usuarioService.nombreUsuarioLogin.hasError('required')">El correo es obligatorio</div>
+                                    <div *ngIf="this.usuarioService.nombreUsuarioLogin.hasError('email')">Digite un correo valido</div>
+                                    <div *ngIf="this.usuarioService.nombreUsuarioLogin.hasError('maxLength')">El correo debe contener máximo 50 caracteres</div>
+                                </div> 
+
+
                                 <label for="pass">Contraseña <span>**</span></label>
                                 <input formControlName="Contrasena" id="pass" type="password" placeholder="Ingrese contraseña" />
+
+                                <!--Validacion Contraseña-->
+                                <div *ngIf="this.usuarioService.contrasenaLogin.invalid && (this.usuarioService.contrasenaLogin.touched
+                                 || this.usuarioService.contrasenaLogin.dirty)" class="text-danger mb-20 text-center">
+
+                                    <div *ngIf="this.usuarioService.contrasenaLogin.hasError('required')">La contraseña es obligatoria</div>
+                                    <div *ngIf="this.usuarioService.contrasenaLogin.hasError('maxLength')">La contraseña debe contener máximo 15 caracteres</div>
+                                </div> 
+
+
                                 <div class="login-action mb-20 fix">
                                     <span class="log-rem f-left">
                                         <input id="remember" type="checkbox" />
@@ -19,7 +39,7 @@
                                         <a href="#">¿Olvidaste tu contraseña?</a>
                                     </span>
                                 </div>
-                                <button  type="submit" class="os-btn w-100">Iniciar sesión</button>
+                                <button [disabled]="this.usuarioService.formularioLogin.invalid" type="submit" class="os-btn w-100">Iniciar sesión</button>
                                 <div class="or-divide"><span>or</span></div>
                                 <a href="" routerLink='/usuarios/registro'  class="os-btn os-btn-black w-100">Registrar</a>
                             </form>

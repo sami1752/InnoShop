@@ -14,7 +14,7 @@ export class AutorizacionRutasGuard implements CanActivate {
       if(localStorage.getItem('token')!=null)
         return true;
         else{
-          this.router.navigate(['usuario/login']);
+          this.router.navigate(['usuarios/login']);
           return true;
         }
     }
