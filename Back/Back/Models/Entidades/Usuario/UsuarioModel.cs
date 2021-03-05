@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Back.Models.Entidades.Usuario
 {
-    public class UsuarioModel
+    public class UsuarioModel 
     {
+        public string Id { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string Correo { get; set; }

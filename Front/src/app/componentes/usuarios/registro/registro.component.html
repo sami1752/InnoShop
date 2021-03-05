@@ -1,0 +1,117 @@
+
+<section class="login-area pt-100 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="basic-login">
+                    <h3 class="text-center mb-60">Registrate aquí</h3>
+                    <form class=""  [formGroup]="this.usuarioService.formularioRegistroUsuario"   (ngSubmit)="registro()">
+
+                        <label for="name">Nombres <span>**</span></label>
+                        <input formControlName="Nombres" id="name" type="text" placeholder="Ingresa nombres" />
+
+                        <!--Validaciones Nombre-->
+                        <div *ngIf="this.usuarioService.nombres.invalid && (this.usuarioService.nombres.touched || this.usuarioService.nombres.dirty)" class="text-danger mb-20 text-center">
+                            <div *ngIf="this.usuarioService.nombres.hasError('required')">El nombre es obligatorio</div>
+                            <div *ngIf="this.usuarioService.nombres.hasError('pattern')">El nombre no debe contener numeros o caracteres especiales</div>
+                            <div *ngIf="this.usuarioService.nombres.hasError('maxLength')">El nombre de usuario debe contener máximo 30 caracteres</div>
+                        </div>
+
+                        <label for="email-id">Apellidos <span>**</span></label>
+                        <input formControlName="Apellidos"  type="text" placeholder="Ingresa Apellidos" />
+
+                        <!--Validaciones Apellidos-->
+                        <div *ngIf="this.usuarioService.apellidos.invalid && (this.usuarioService.apellidos.touched || this.usuarioService.apellidos.dirty)" class="text-danger mb-20 text-center">
+                            <div *ngIf="this.usuarioService.apellidos.hasError('required')">El apellido es obligatorio</div>
+                            <div *ngIf="this.usuarioService.apellidos.hasError('pattern')">El apellido no debe contener numeros o caracteres especiales</div>
+                            <div *ngIf="this.usuarioService.apellidos.hasError('maxLength')">El apellido de usuario debe contener máximo 30 caracteres</div>
+                        </div>  
+                        
+                        <label for="pass">Correo<span>**</span></label>
+                        <input  formControlName="Correo"  type="text" placeholder="Correo" />
+
+                        <!--Validaciones Correo-->
+                        <div *ngIf="this.usuarioService.correo.invalid && (this.usuarioService.correo.touched || this.usuarioService.correo.dirty)" class="text-danger mb-20 text-center">
+                            <div *ngIf="this.usuarioService.correo.hasError('required')">El correo es obligatorio</div>
+                            <div *ngIf="this.usuarioService.correo.hasError('email')">Digite un correo valido</div>
+                            <div *ngIf="this.usuarioService.correo.hasError('maxLength')">El correo debe contener máximo 50 caracteres</div>
+                        </div>  
+                        
+
+                        <label for="name">Tipo documento <span>**</span></label>
+                        <select class="form-control mb-3 "  formControlName="TipoDocumento">
+                            <option value="">Elige Tipo de documento</option>
+                            <option *ngFor="let doc of listaTiposDoc"  [value]="doc.Tipo" >{{doc.Tipo}}</option>
+                         </select>
+
+                        <!--Validaciones Tipo documento-->
+                         <div *ngIf="this.usuarioService.tipoDocumento.invalid && (this.usuarioService.tipoDocumento.touched || this.usuarioService.tipoDocumento.dirty)" class="text-danger mb-20 text-center">
+                            <div *ngIf="this.usuarioService.correo.hasError('required')">Elija  una opción</div>
+                        </div>  
+
+
+                        <label for="email-id">Numero documento <span>**</span></label>
+                        <input formControlName="NumDocumento"  type="text" placeholder="Ingresa Numero de documento" />
+
+                        <!--Validaciones Numero documento-->
+                        <div *ngIf="this.usuarioService.documento.invalid && (this.usuarioService.documento.touched || this.usuarioService.documento.dirty)" class="text-danger mb-20 text-center">
+                            <div *ngIf="this.usuarioService.documento.hasError('required')">El número de documento es obligatorio</div>
+                            <div *ngIf="this.usuarioService.documento.hasError('pattern')">Digite solo números</div>
+                            <div *ngIf="this.usuarioService.documento.hasError('maxLength')">El numero debe contener máximo 10 caracteres</div>
+                        </div>  
+                        
+                        <label for="name">Telefono <span>**</span></label>
+                        <input formControlName="Telefono"  type="text" placeholder="Ingrese telefono" />
+
+                        <!--Validaciones Numero telefono-->
+                        <div *ngIf="this.usuarioService.telefono.invalid && (this.usuarioService.telefono.touched || this.usuarioService.telefono.dirty)" class="text-danger mb-20 text-center">
+                            <div *ngIf="this.usuarioService.telefono.hasError('required')">El número de telefono es obligatorio</div>
+                            <div *ngIf="this.usuarioService.telefono.hasError('pattern')">Digite solo números</div>
+                            <div *ngIf="this.usuarioService.telefono.hasError('maxLength')">El número debe contener máximo 10 caracteres</div>
+                        </div> 
+
+
+                        <label for="name">Sexo <span>**</span></label>
+                        <select class="form-control mb-3 "  formControlName="Sexo">
+                            <option value="">Elige Sexo</option>
+                            <option *ngFor="let tipo of listaSexo"  [value]="tipo.Sexo" >{{tipo.Sexo}}</option>
+                         </select>
+
+                         <!--Validaciones Sexo-->
+                        <div *ngIf="this.usuarioService.sexo.invalid && (this.usuarioService.sexo.touched || this.usuarioService.sexo.dirty)" class="text-danger mb-20 text-center">
+                            <div *ngIf="this.usuarioService.sexo.hasError('required')">El número de telefono es obligatorio</div>
+                        </div> 
+
+
+                        
+                        <label for="pass">Contraseña <span>**</span></label>
+                        <input formControlName="Contrasena"  type="password" placeholder="Ingrese Contraseña" />
+
+                        <!--Validaciones Contraseña-->
+                        <div *ngIf="this.usuarioService.Contrasena.invalid && (this.usuarioService.Contrasena.touched || this.usuarioService.Contrasena.dirty)" class="text-danger mb-20 text-center">
+                            <div *ngIf="this.usuarioService.Contrasena.hasError('required')">La contraseña es obligatoria</div>
+                        </div> 
+
+                        
+                        <label for="pass">Confirmar Contraseña<span>**</span></label>
+                        <input formControlName="ConfirmarContrasena"  type="password" placeholder="Ingrese contraseña" />
+
+                        <!--Validaciones confirmar Contraseña-->
+                        <div *ngIf="this.usuarioService.ConfirmarContrasena.invalid && (this.usuarioService.ConfirmarContrasena.touched || this.usuarioService.ConfirmarContrasena.dirty)" class="text-danger mb-20 text-center">
+                            <div *ngIf="this.usuarioService.ConfirmarContrasena.hasError('required')">La contraseña de confirmación es obligatoria</div>
+                            <div *ngIf="this.usuarioService.ConfirmarContrasena.hasError('ContrasenasDiferentes')">Las contraseñas deben coincidir</div>
+                        </div> 
+
+
+                        <div class="mt-10"></div>
+                        <button type="submit"  [disabled]="this.usuarioService.formularioRegistroUsuario.invalid"    class="os-btn w-100">Registrarse</button>
+                        <div class="or-divide"><span>O</span></div>
+                        <a href="login.html" class="os-btn os-btn-black w-100">Iniciar sesión</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

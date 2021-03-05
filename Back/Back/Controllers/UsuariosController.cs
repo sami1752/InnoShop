@@ -1,4 +1,5 @@
 ﻿using Back.Models;
+using Back.Models.Entidades;
 using Back.Models.Entidades.Usuario;
 using Back.Models.Usuario;
 using Microsoft.AspNetCore.Authorization;
@@ -28,14 +29,26 @@ namespace Back.Controllers
         {
             _userManager = userManager;
             _singInManager = singInManager;
-            _configuracionGlobal = configuracionGlobal.Value; 
+            _configuracionGlobal = configuracionGlobal.Value;
         }
 
+        [HttpPut]
+        [Route("Actualizacion")]
+        public async Task<Object> PutConfiguracion(ActulaizacionContrasena usuario)
+        {
+
+            var usuarioB = await _userManager.FindByNameAsync(usuario.Correo).ConfigureAwait(false);
+            usuarioB.PasswordHash = _userManager.PasswordHasher.HashPassword(usuarioB, usuario.Contrasena);
+            var result = await _userManager.UpdateAsync(usuarioB).ConfigureAwait(false);
+
+
+            return result;
+        }
 
         [HttpPost]
         [Route("Registro")]
 
-        public async Task<Object> registrotUsuario(UsuarioModel usuarioModel)
+        public async Task<Object> registroUsuario(UsuarioModel usuarioModel)
         {
             UsuarioIdentity usuario = new UsuarioIdentity()
             {
@@ -50,20 +63,20 @@ namespace Back.Controllers
                 Telefono = usuarioModel.Telefono,
                 PasswordHash = usuarioModel.Contrasena,
                 Direccion = usuarioModel.Direccion
-            }; 
+            };
 
             try
             {
                 var result = await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false);
                 return Ok(result);
+
+
             }
             catch (Exception)
             {
 
                 throw;
             }
-
-
         }
 
         [HttpPost]
@@ -100,7 +113,6 @@ namespace Back.Controllers
         [HttpGet]
         [Route("Perfil")]
         [Authorize]
-        //GET : /api/UserProfile
         public async Task<Object> PerfilUsuario()
         {
             string usuarioId = User.Claims.First(c => c.Type == "UsuarioID").Value;
@@ -123,5 +135,6 @@ namespace Back.Controllers
             }
 
         }
+
     }
 }

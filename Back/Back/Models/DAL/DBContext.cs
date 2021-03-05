@@ -16,6 +16,7 @@ namespace Back.Models.DAL
         {
         }
         public DbSet<historialcorreo> historialcorreo { get; set; }
+        public DbSet<RestablecimientoContrasena> restablecimientoContrasenas { get; set; }
         public DbSet<UsuarioIdentity> usuarioidentity { get; set; }
     }
 }
