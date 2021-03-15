@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7tK8Uzwgs8MJm9ZyOq+lPIk3brWlFvZWmGGmxuMzbCI4doU+jMLVBj6NNvg83zmni/86L/GtsIsFAGeXv4LuiA==",
+  "dgSpecHash": "kqnxH9/WATl32lN9AOKmrii80cLyzPNPvxwmag/BoPtFQNXl6eXr2DHnPWFbWpm9waKx6R5t7YqabMS3RpA7mg==",
   "success": true,
   "projectFilePath": "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\Back.csproj",
   "expectedPackageFiles": [
@@ -72,7 +72,7 @@
     "C:\\Users\\sami1\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\5.0.2\\microsoft.visualstudio.web.codegenerators.mvc.5.0.2.nupkg.sha512",
     "C:\\Users\\sami1\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\sami1\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
-    "C:\\Microsoft\\Xamarin\\NuGet\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\sami1\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\sami1\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\sami1\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\sami1\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",

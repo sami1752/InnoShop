@@ -285,12 +285,12 @@ namespace Back.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(40)");
 
-                    b.Property<string>("C")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Direccion")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
 
                     b.Property<int>("IdRol")
                         .HasColumnType("int");

@@ -124,7 +124,7 @@ export class UsuarioService {
 
   registrarUsuario(){
     
-
+ 
     this.usuario = this.formularioRegistroUsuario.value;
     //console.log(this.usuario);
     delete this.usuario['ConfirmarContrasena'];

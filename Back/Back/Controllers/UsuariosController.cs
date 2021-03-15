@@ -1,10 +1,12 @@
 ﻿using Back.Models;
+using Back.Models.DAL;
 using Back.Models.Entidades;
 using Back.Models.Entidades.Usuario;
 using Back.Models.Usuario;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -24,12 +26,14 @@ namespace Back.Controllers
         private readonly UserManager<UsuarioIdentity> _userManager;
         private readonly SignInManager<UsuarioIdentity> _singInManager;
         private readonly ConfiguracionGlobal _configuracionGlobal;
+        private readonly DBContext _context;
 
-        public UsuariosController(SignInManager<UsuarioIdentity> singInManager, UserManager<UsuarioIdentity> userManager, IOptions<ConfiguracionGlobal> configuracionGlobal)
+        public UsuariosController(SignInManager<UsuarioIdentity> singInManager, UserManager<UsuarioIdentity> userManager, IOptions<ConfiguracionGlobal> configuracionGlobal, DBContext context)
         {
             _userManager = userManager;
             _singInManager = singInManager;
             _configuracionGlobal = configuracionGlobal.Value;
+            _context = context;
         }
 
         [HttpPut]
@@ -45,9 +49,28 @@ namespace Back.Controllers
             return result;
         }
 
+        [HttpPut]
+        [Route("ActualizacionDatos")]
+        public async Task<Object> PutUsuarios(UsuarioModel usuarior)
+        {
+            UsuarioIdentity usuario = await _userManager.FindByIdAsync(usuarior.Id).ConfigureAwait(false);
+            usuario.Apellidos = usuarior.Apellidos;
+            usuario.Direccion = usuarior.Direccion;
+            usuario.Email = usuarior.Correo;
+            usuario.Estado = usuarior.Estado;
+            usuario.IdRol = usuarior.IdRol;
+            usuario.Nombres = usuarior.Nombres;
+            usuario.NumDocumento = usuarior.NumDocumento;
+            usuario.Puntos = usuarior.Puntos;
+            usuario.Sexo = usuarior.Sexo;
+            usuario.Telefono = usuarior.Telefono;
+            usuario.TipoDocumento = usuarior.TipoDocumento;
+            usuario.UserName = usuarior.Correo;
+            return await _userManager.UpdateAsync(usuario).ConfigureAwait(false);
+        }
+
         [HttpPost]
         [Route("Registro")]
-
         public async Task<Object> registroUsuario(UsuarioModel usuarioModel)
         {
             UsuarioIdentity usuario = new UsuarioIdentity()
@@ -62,19 +85,17 @@ namespace Back.Controllers
                 NumDocumento = usuarioModel.NumDocumento,
                 Telefono = usuarioModel.Telefono,
                 PasswordHash = usuarioModel.Contrasena,
-                Direccion = usuarioModel.Direccion
+                Direccion = usuarioModel.Direccion,
+                Estado = true
             };
 
             try
             {
                 var result = await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false);
                 return Ok(result);
-
-
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -107,7 +128,6 @@ namespace Back.Controllers
             {
                 return BadRequest(new { mensaje = "Nombre de usuario o contraseña incorrecta" });
             }
-
         }
 
         [HttpGet]
@@ -122,6 +142,7 @@ namespace Back.Controllers
             {
                 return new
                 {
+                    usuario.IdRol,
                     usuario.Nombres,
                     usuario.Apellidos,
                     usuario.Email,
@@ -133,8 +154,14 @@ namespace Back.Controllers
             {
                 return BadRequest(new { mensaje = "No se encuentra el usuario" });
             }
-
         }
 
+
+        [HttpGet]
+        [Route("Usuarios")]
+        public async Task<ActionResult<IEnumerable<historialcorreo>>> Usuarios()
+        {
+            return new ObjectResult(await _context.usuarioidentity.ToListAsync());
+        }
     }
 }

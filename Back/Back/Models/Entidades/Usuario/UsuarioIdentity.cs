@@ -18,13 +18,13 @@ namespace Back.Models.Usuario
 
         [Column(TypeName = "varchar(10)"), Required]
         public string Sexo { get; set; }
-        
+
         [Required]
         public int IdRol { get; set; }
 
         [Column(TypeName = "varchar(25)"), Required]
         public string TipoDocumento { get; set; }
-        public string C { get; set; }
+
         [Column(TypeName = "varchar(10)"), Required]
         public string NumDocumento { get; set; }
 
@@ -35,5 +35,8 @@ namespace Back.Models.Usuario
         public string Direccion { get; set; }
 
         public int Puntos { get; set; }
+
+        [Required]
+        public bool Estado { get; set; }
     }
 }
