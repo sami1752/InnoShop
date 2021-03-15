@@ -24,14 +24,12 @@ namespace Back.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly UserManager<UsuarioIdentity> _userManager;
-        private readonly SignInManager<UsuarioIdentity> _singInManager;
         private readonly ConfiguracionGlobal _configuracionGlobal;
         private readonly DBContext _context;
 
-        public UsuariosController(SignInManager<UsuarioIdentity> singInManager, UserManager<UsuarioIdentity> userManager, IOptions<ConfiguracionGlobal> configuracionGlobal, DBContext context)
+        public UsuariosController( UserManager<UsuarioIdentity> userManager, IOptions<ConfiguracionGlobal> configuracionGlobal, DBContext context)
         {
             _userManager = userManager;
-            _singInManager = singInManager;
             _configuracionGlobal = configuracionGlobal.Value;
             _context = context;
         }
@@ -40,13 +38,9 @@ namespace Back.Controllers
         [Route("Actualizacion")]
         public async Task<Object> PutConfiguracion(ActulaizacionContrasena usuario)
         {
-
-            var usuarioB = await _userManager.FindByNameAsync(usuario.Correo).ConfigureAwait(false);
+            UsuarioIdentity usuarioB = await _userManager.FindByNameAsync(usuario.Correo).ConfigureAwait(false);
             usuarioB.PasswordHash = _userManager.PasswordHasher.HashPassword(usuarioB, usuario.Contrasena);
-            var result = await _userManager.UpdateAsync(usuarioB).ConfigureAwait(false);
-
-
-            return result;
+            return await _userManager.UpdateAsync(usuarioB).ConfigureAwait(false);
         }
 
         [HttpPut]
@@ -71,9 +65,9 @@ namespace Back.Controllers
 
         [HttpPost]
         [Route("Registro")]
-        public async Task<Object> registroUsuario(UsuarioModel usuarioModel)
+        public async Task<Object> RegistroUsuario(UsuarioModel usuarioModel)
         {
-            UsuarioIdentity usuario = new UsuarioIdentity()
+            UsuarioIdentity usuario = new()
             {
                 UserName = usuarioModel.Correo,
                 Nombres = usuarioModel.Nombres,
@@ -91,8 +85,7 @@ namespace Back.Controllers
 
             try
             {
-                var result = await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false);
-                return Ok(result);
+                return Ok(await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false));
             }
             catch (Exception)
             {
@@ -105,7 +98,7 @@ namespace Back.Controllers
         //POST: /api/Usuario/Login
         public async Task<IActionResult> Logueo(LoguinModel loginModel)
         {
-            var usuario = await _userManager.FindByNameAsync(loginModel.Correo).ConfigureAwait(false);
+            UsuarioIdentity usuario = await _userManager.FindByNameAsync(loginModel.Correo).ConfigureAwait(false);
             if (usuario != null && await _userManager.CheckPasswordAsync(usuario, loginModel.Contrasena).ConfigureAwait(false))
             {
                 var tokenDescriptor = new SecurityTokenDescriptor
@@ -117,12 +110,10 @@ namespace Back.Controllers
                     Expires = DateTime.UtcNow.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuracionGlobal.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
                 };
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                var token = tokenHandler.WriteToken(securityToken);
-
+                JwtSecurityTokenHandler tokenHandler = new();
+                SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                string token = tokenHandler.WriteToken(securityToken);
                 return Ok(new { token });
-
             }
             else
             {
@@ -155,7 +146,6 @@ namespace Back.Controllers
                 return BadRequest(new { mensaje = "No se encuentra el usuario" });
             }
         }
-
 
         [HttpGet]
         [Route("Usuarios")]
