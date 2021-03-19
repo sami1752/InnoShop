@@ -4,6 +4,6 @@
     {
         public string Correo { get; set; }
         public string Contrasena { get; set; }
-        public string NuevaContrasena { get; set; }
+        public string ContrasenaAntigua { get; set; }
     }
 }

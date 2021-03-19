@@ -8,7 +8,7 @@
                     <form class=""  [formGroup]="this.usuarioService.formularioCambioContrasena"   (ngSubmit)="cambio()">
 
                         
-                        <label for="pass">Ingresa El Correo Nuevamente<span>**</span></label>
+                        <label for="pass">Ingresa El Correo<span>**</span></label>
                         <input  formControlName="Correo"  type="text" placeholder="Correo" />
 
                         <!--Validaciones Correo-->
@@ -16,11 +16,21 @@
                             <div *ngIf="this.usuarioService.correo.hasError('required')">El correo es obligatorio</div>
                             <div *ngIf="this.usuarioService.correo.hasError('email')">Digite un correo valido</div>
                             <div *ngIf="this.usuarioService.correo.hasError('maxLength')">El correo debe contener máximo 50 caracteres</div>
-                        </div>  
+                        </div> 
+
+                        <label for="pass">Contraseña Actual<span>**</span></label>
+                        <input formControlName="ContrasenaAntigua"  type="password" placeholder="Ingrese Contraseña actual" />
+                        
+                        <!--Validaciones Contraseña-->
+                        <div *ngIf="this.usuarioService.Contrasena.invalid && (this.usuarioService.Contrasena.touched || this.usuarioService.Contrasena.dirty)" class="text-danger mb-20 text-center">
+                            <div *ngIf="this.usuarioService.Contrasena.hasError('required')">La contraseña es obligatoria</div>
+                        </div> 
+                        
+                        
                         
                         <label for="pass">Contraseña Nueva<span>**</span></label>
                         <input formControlName="Contrasena"  type="password" placeholder="Ingrese Contraseña" />
-
+                        
                         <!--Validaciones Contraseña-->
                         <div *ngIf="this.usuarioService.Contrasena.invalid && (this.usuarioService.Contrasena.touched || this.usuarioService.Contrasena.dirty)" class="text-danger mb-20 text-center">
                             <div *ngIf="this.usuarioService.Contrasena.hasError('required')">La contraseña es obligatoria</div>
@@ -39,7 +49,7 @@
 
                         <div class="mt-10"></div>
                         <button type="submit"  [disabled]="this.usuarioService.formularioCambioContrasena.invalid"    class="os-btn w-100">Cambiar Contraseña</button>
-                        <div class="or-divide"><span>O</span></div>
+                        <div class="or-divide"><span></span></div>
                         <a href="login.html" class="os-btn os-btn-black w-100">Iniciar sesión</a>
                     </form>
                 </div>

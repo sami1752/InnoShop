@@ -187,7 +187,7 @@ namespace Back.Controllers
             try
             {
                 UsuarioIdentity usuario = await _userManager.FindByIdAsync(restableceContra.Id);
-                IdentityResult result = await _userManager.ResetPasswordAsync(usuario, Base64UrlEncoder.Decode(restableceContra.Token), restableceContra.NuevaContrasena);
+                IdentityResult result = await _userManager.ResetPasswordAsync(usuario, Base64UrlEncoder.Decode(restableceContra.Token), restableceContra.Contrasena);
                 if (result.Succeeded)
                     return Ok(new { mensaje = "Restablecimiento de contrasena éxitoso" });
                 else
@@ -206,7 +206,7 @@ namespace Back.Controllers
             try
             {
                 UsuarioIdentity usuario = await _userManager.FindByEmailAsync(actuContrasena.Correo);
-                IdentityResult result = await _userManager.ChangePasswordAsync(usuario, actuContrasena.Contrasena, actuContrasena.NuevaContrasena);
+                IdentityResult result = await _userManager.ChangePasswordAsync(usuario, actuContrasena.Contrasena, actuContrasena.Contrasena);
                 if (result.Succeeded)
                     return Ok(new { mensaje = "Modificación de contraseña éxitosa" });
                 return BadRequest(result);

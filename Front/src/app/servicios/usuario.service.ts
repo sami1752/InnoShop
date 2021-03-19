@@ -46,25 +46,42 @@ export class UsuarioService {
     Correo:["",[Validators.required]]
   });
 
-  //Formulario de verificacion
-  formularioVerificacion = this.formBuilder.group({
-    Correo: ["", [Validators.required]],
-    Codigo: ["", [Validators.required]]
-  });
+  //Formulario de verificacion Recuperacion de cuenta
+  formularioVerificacionRecuperacionCuenta = this.formBuilder.group({
+    Token: ["",[Validators.required]],
+    Id: ["",[Validators.required]],
+    Contrasena: ["", [Validators.required]],
+    ConfirmarContrasena: ["", [Validators.required]]},
+    {validator:this.compararContrasena.bind(this)}
+    );
 
 
-  //Formulario de verificacion de contraseña
+  //Formulario de edicion de contraseña
   formularioCambioContrasena = this.formBuilder.group({
     Correo:["", [Validators.required, Validators.maxLength(50), Validators.email]],
-    Contrasena:["", [Validators.required],Validators.maxLength(15)],
+    ContrasenaAntigua:["", [Validators.required],Validators.maxLength(15)],
+    Contrasena:["",Validators.required,Validators.maxLength(15)],
     ConfirmarContrasena:["", [Validators.required]]},
     {validator:this.compararContrasena.bind(this)}
 );
 
 
+//get de verificacion de recuperacion de cuenta
+get tokenVerificacionRecuperacionDeCuenta(){
+  return this.formularioVerificacionRecuperacionCuenta.controls["Token"];
+}
+get idVerificacionRecuperacionDeCuenta(){
+  return this.formularioVerificacionRecuperacionCuenta.controls["Id"];
+}
+get contrasenaVerificacionRecuperacionDeCuenta(){
+  return this.formularioVerificacionRecuperacionCuenta.controls["Contrasena"];
+}
+get confirmarContraVerificacionRecuperacionDeCuenta(){
+  return this.formularioVerificacionRecuperacionCuenta.controls["ConfirmarContrasena"];
+}
 
 
-  
+//get de correo de recuperacion de cuenta
   get correoRecuperacion(){
     return this.formularioRecuperacion.controls["Correo"];
   }
@@ -164,27 +181,30 @@ export class UsuarioService {
  
    }
 
-   restablecimientoContrasena(){
+   enviarEmailRecuperacion(){
      this.restablecimiento = this.formularioRecuperacion.value;
-
-      return this.http.post(this.configuracion.rootURL + '/RecuperarContra',this.restablecimiento);
-      
+      var resp = this.http.post(this.configuracion.rootURL + '/Usuarios/RecuperarContra',this.restablecimiento);
+      return resp;
    }
 
 
 
-   verificacionCodigo(){
-     this.restablecimiento = this.formularioVerificacion.value;
-     return this.http.post(this.configuracion.rootURL + '/RestablecimientoContrasenas/Verificacion', this.restablecimiento)
+   verificacionRecuperacionCuenta(id:string, token:string){
+     this.restablecimiento = this.formularioVerificacionRecuperacionCuenta.value;
+     delete this.restablecimiento['ConfirmarContrasena'];
+
+     this.restablecimiento.Id = id;
+     this.restablecimiento.Token = token;
+     return this.http.put(this.configuracion.rootURL + '/Usuarios/RestablecerContrasena', this.restablecimiento)
    }
 
 
    cambioContra(){
      this.cambioContrasena = this.formularioCambioContrasena.value;
-    return this.http.put(this.configuracion.rootURL +'/Usuarios/Actualizacion',this.cambioContrasena);
+    return this.http.put(this.configuracion.rootURL +'/Usuarios/ModificarContrasena',this.cambioContrasena);
    }
 
-
+  
 
  
   }
