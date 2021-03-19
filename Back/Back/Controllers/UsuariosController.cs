@@ -172,11 +172,7 @@ namespace Back.Controllers
                 }
 
                 return Ok(new { mensaje = "Se ha enviado el link de recuperación a su correo" });
-            }
-
-            
-
-            
+            }   
         }
 
         [HttpPut]
@@ -184,7 +180,7 @@ namespace Back.Controllers
         public async Task<ActionResult> RestablecerContra(ConfirmarCorreo restableceContra)
         {
             UsuarioIdentity usuario =  await _userManager.FindByIdAsync(restableceContra.Id);
-            var result = await _userManager.ResetPasswordAsync(usuario, Base64UrlEncoder.Decode(restableceContra.Token), restableceContra.NuevaContrasena);
+            var result = await _userManager.ResetPasswordAsync(usuario, Base64UrlEncoder.Decode(restableceContra.Token), restableceContra.Contrasena);
 
             if (result.Succeeded)
             {
@@ -204,7 +200,7 @@ namespace Back.Controllers
         {
             var usuario = await _userManager.FindByEmailAsync(actuContrasena.Correo);
 
-            var result = await _userManager.ChangePasswordAsync(usuario,actuContrasena.Contrasena, actuContrasena.NuevaContrasena);
+            var result = await _userManager.ChangePasswordAsync(usuario,actuContrasena.ContrasenaAntigua, actuContrasena.Contrasena);
 
             if (result.Succeeded)
             {

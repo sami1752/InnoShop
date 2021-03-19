@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
@@ -9,27 +9,27 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 })
 export class VerificacionComponent implements OnInit {
 
-  constructor(public usuarioService:UsuarioService, private router:Router) { }
+  constructor(public usuarioService:UsuarioService, private route: ActivatedRoute, private router:Router) { }
+
+  token:string;
+  id:string;
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.id= params['id'],
+      this.token = params['token'];
+    });
   }
 
   verificacion(){
 
-    this.usuarioService.verificacionCodigo().subscribe(
+    this.usuarioService.verificacionRecuperacionCuenta(this.id,this.token).subscribe(
       (res:any)=>{
-        if(res ==true){
-          this.router.navigateByUrl('usuarios/cambio');
-        }
+        alert(res.mensaje);
+        this.router.navigateByUrl('usuarios/login');
       },
       error =>{
-        if(error.status == 400){
-          alert('Error codigo incorrecto');
-          console.log(error);
-        }
-        else {
-          console.log(error);
-        }
+        alert(error.error.mensaje);
       })
   }
 

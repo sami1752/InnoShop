@@ -17,19 +17,13 @@ export class RestablecimientoComponent implements OnInit {
 
   restablecer(){
 
-    this.usuarioService.restablecimientoContrasena().subscribe(
+    this.usuarioService.enviarEmailRecuperacion().subscribe(
       (res:any)=>{
-        if(res.status ==200){
-          alert(res);
-        }
+        alert(res.mensaje);
       },
-      error =>{
-        if(error.status == 400){
-          this.router.navigateByUrl('usuarios/verificacion');
-        }else{
-          alert("Error");
-        }
-
-      })
+      (error:any) =>{
+       alert(error.error.mensaje);
+      }
+    )
   }
 }

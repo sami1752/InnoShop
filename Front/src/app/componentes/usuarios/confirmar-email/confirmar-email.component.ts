@@ -19,6 +19,7 @@ export class ConfirmarEmailComponent implements OnInit {
       this.usuarioService.confirmarCorreo.token = params['token'];
     });
     
+    
 
     this.usuarioService.activacionCorreo().subscribe(
 
@@ -32,5 +33,6 @@ export class ConfirmarEmailComponent implements OnInit {
 
 
   }
+
 
 }

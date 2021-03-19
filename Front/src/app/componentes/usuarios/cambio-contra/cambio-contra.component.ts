@@ -21,7 +21,9 @@ export class CambioContraComponent implements OnInit {
       (res)=>{
         console.log(res);
         alert("Cambio Exitoso");
-        this.router.navigateByUrl('usuarios/login');
+
+        this.configuracion.cerrarSesion();
+        
       },
       error =>{
 

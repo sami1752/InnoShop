@@ -18,9 +18,9 @@ const routes: Routes = [
     children: [
       {path:'registro',component:RegistroComponent},
       {path:'login', component:LoginComponent},
-      {path:'restablecimiento', component:RestablecimientoComponent},
-      {path:'verificacion', component:VerificacionComponent},
-      {path:'cambio', component:CambioContraComponent},
+      {path:'restablecimientoContraseña', component:RestablecimientoComponent},
+      {path:'RestablecerContrasena', component:VerificacionComponent},
+      {path:'cambio', component:CambioContraComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]},
       {path:'confirmarEmail', component:ConfirmarEmailComponent}
     ]
