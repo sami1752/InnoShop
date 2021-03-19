@@ -8,7 +8,12 @@ import { AutorizacionRutasGuard } from './autorizaciones/autorizacion-rutas.guar
 import { RestablecimientoComponent } from './componentes/usuarios/restablecimiento/restablecimiento.component';
 import { VerificacionComponent } from './componentes/usuarios/restablecimiento/verificacion/verificacion.component';
 import { CambioContraComponent } from './componentes/usuarios/cambio-contra/cambio-contra.component';
-
+import { ModificarUsuarioComponent } from './componentes/vistasAdmin/modificarUsuario/modificar-usuario/modificar-usuario.component';
+import { ListaUsuariosComponent } from './componentes/vistasAdmin/listaUsuarios/lista-usuarios/lista-usuarios.component';
+import { RegistroUsuarioComponent } from './componentes/vistasAdmin/registroUsuario/registro-usuario/registro-usuario.component';
+import { DetalleUsuarioComponent } from './componentes/vistasAdmin/detalleUsuario/detalle-usuario/detalle-usuario.component';
+import { VistasAdminComponent } from './componentes/vistasAdmin/vistas-admin.component';
+//import { InicioadminComponent } from './componentes/vistasAdmin/inicioadmin/inicioadmin.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'usuarios/login',pathMatch:'full'},
@@ -20,6 +25,16 @@ const routes: Routes = [
       {path:'verificacion', component:VerificacionComponent},
       {path:'cambio', component:CambioContraComponent},
       {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]}
+    ]
+  },
+  {
+    path:'Admin', component:VistasAdminComponent,
+    children: [
+      {path:'registroUsuario', component:RegistroUsuarioComponent},
+     // {path:'inicioadmin',component:InicioadminComponent},
+      {path:'listarUsuarios', component:ListaUsuariosComponent},
+      {path:'detalleUsuario', component:DetalleUsuarioComponent},
+      {path:'modificarUsuario', component:ModificarUsuarioComponent},
     ]
   }
   

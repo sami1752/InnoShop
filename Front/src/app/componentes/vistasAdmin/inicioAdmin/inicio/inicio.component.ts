@@ -14,5 +14,10 @@ export class InicioComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  registro=false;
+  lista=false;
+  modificar=false;
+  detalleUsu=false;
+
 
 }
