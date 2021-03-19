@@ -223,8 +223,8 @@ namespace Back.Controllers
         {
             try
             {
-                UsuarioIdentity usuario = await _userManager.FindByNameAsync(loginModel.Correo).ConfigureAwait(false);
-                if (usuario != null && await _userManager.CheckPasswordAsync(usuario, loginModel.Contrasena).ConfigureAwait(false))
+                UsuarioIdentity usuario = await _userManager.FindByNameAsync(loginModel.Correo).ConfigureAwait(true);
+                if (usuario != null && await _userManager.CheckPasswordAsync(usuario, loginModel.Contrasena).ConfigureAwait(true))
                 {
                     if (!(await _userManager.IsEmailConfirmedAsync(usuario)))
                         return BadRequest(new { mensaje = "Cuenta sin confirmar" });
@@ -259,7 +259,7 @@ namespace Back.Controllers
             try
             {
                 string usuarioId = User.Claims.First(c => c.Type == "UsuarioID").Value;
-                UsuarioIdentity usuario = await _userManager.FindByIdAsync(usuarioId).ConfigureAwait(false);
+                UsuarioIdentity usuario = await _userManager.FindByIdAsync(usuarioId).ConfigureAwait(true);
                 if (usuario != null)
                     return new
                     {
@@ -282,5 +282,9 @@ namespace Back.Controllers
         [HttpGet]
         [Route("Usuarios")]
         public async Task<ActionResult<IEnumerable<historialcorreo>>> Usuarios() => new ObjectResult(await _context.Usuarioidentity.ToListAsync());
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<historialcorreo>>> UsuariosPorId(string id) => new ObjectResult(await _userManager.FindByIdAsync(id).ConfigureAwait(true));
+
     }
 }
