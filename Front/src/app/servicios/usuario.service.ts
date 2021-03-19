@@ -5,6 +5,7 @@ import{ConfiguracionService} from './configuracion.service';
 import{HttpClient} from '@angular/common/http';
 import{FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { CambioContra } from '../modelos/cambio-contra';
+import { ConfirmarCorreo } from '../modelos/confirmar-correo';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class UsuarioService {
   restablecimiento: Restablecimiento;
   usuario:Usuario;
   cambioContrasena:CambioContra;
+  confirmarCorreo:ConfirmarCorreo = {id : "", token : ""};
 
+  
+//Formulario de registro del usuario
   formularioRegistroUsuario = this.formBuilder.group({
       Nombres:["", [Validators.required,Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
       Apellidos:["", [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
@@ -30,20 +34,26 @@ export class UsuarioService {
       {validator:this.compararContrasena.bind(this)}
   );
 
+
+  //Formulario del logueo
   formularioLogin = this.formBuilder.group({
     Correo:["", [Validators.required, Validators.maxLength(50), Validators.email]],
     Contrasena:["", [Validators.required, Validators.maxLength(15)]] 
   }); 
 
+  //Formulario de recuperacion
   formularioRecuperacion = this.formBuilder.group({
     Correo:["",[Validators.required]]
   });
 
+  //Formulario de verificacion
   formularioVerificacion = this.formBuilder.group({
     Correo: ["", [Validators.required]],
     Codigo: ["", [Validators.required]]
   });
 
+
+  //Formulario de verificacion de contraseña
   formularioCambioContrasena = this.formBuilder.group({
     Correo:["", [Validators.required, Validators.maxLength(50), Validators.email]],
     Contrasena:["", [Validators.required],Validators.maxLength(15)],
@@ -54,11 +64,13 @@ export class UsuarioService {
 
 
 
-
+  
   get correoRecuperacion(){
     return this.formularioRecuperacion.controls["Correo"];
   }
 
+
+  // get de logueo
   get nombreUsuarioLogin(){
     return this.formularioLogin.controls["Correo"];
   }
@@ -67,7 +79,7 @@ export class UsuarioService {
     return this.formularioLogin.controls["Contrasena"];
   }
 
-
+  //get de formulario de registro
   get nombres(){
     return this.formularioRegistroUsuario.controls["Nombres"];
   }
@@ -104,6 +116,8 @@ export class UsuarioService {
     return this.formularioRegistroUsuario.controls["ConfirmarContrasena"];
   }
 
+
+
   compararContrasena(formGroup:FormGroup){
 
     const contrasena  = formGroup.get('Contrasena');
@@ -133,6 +147,11 @@ export class UsuarioService {
     
   }
 
+  activacionCorreo(){
+
+    return this.http.put(this.configuracion.rootURL + '/Usuarios/ConfirmarEmail',this.confirmarCorreo)
+  }
+
   loguin(){
     this.usuario = this.formularioLogin.value;
 
@@ -147,11 +166,9 @@ export class UsuarioService {
 
    restablecimientoContrasena(){
      this.restablecimiento = this.formularioRecuperacion.value;
-     this.restablecimiento.Codigo ="000";
-     this.restablecimiento.Fecha ="000";
 
-     var resul = this.http.post(this.configuracion.rootURL + '/RestablecimientoContrasenas',this.restablecimiento);
-      return resul;
+      return this.http.post(this.configuracion.rootURL + '/RecuperarContra',this.restablecimiento);
+      
    }
 
 
@@ -164,11 +181,7 @@ export class UsuarioService {
 
    cambioContra(){
      this.cambioContrasena = this.formularioCambioContrasena.value;
-
-     console.log(this.cambioContrasena);
-    return this.http.put(this.configuracion.rootURL +'/Usuarios/Actualizacion',
-    this.cambioContrasena);
-
+    return this.http.put(this.configuracion.rootURL +'/Usuarios/Actualizacion',this.cambioContrasena);
    }
 
  

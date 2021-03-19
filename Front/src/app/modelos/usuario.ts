@@ -9,5 +9,6 @@ export interface Usuario {
         Sexo:string,
         NumDocumento:string,
         Telefono:string,
-        Puntos:number
+        Puntos:number,
+        Estado:string
 }

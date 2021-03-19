@@ -2,9 +2,7 @@
 using Back.Models.DAL;
 using Back.Models.Entidades;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -14,36 +12,26 @@ namespace Back.Models.Servicios
     public class ServiciosHistorialCorreo : IServiciosHistorialCorreo
     {
         private readonly DBContext _context;
-        public ServiciosHistorialCorreo(DBContext context)
-        {
-            _context = context;
+        public ServiciosHistorialCorreo(DBContext context) => _context = context;
 
-        }
-
-        public async Task<IEnumerable<historialcorreo>> ObtenerHistorial()
-        {
-            return await _context.historialcorreo.ToListAsync();
-        }
+        public async Task<IEnumerable<historialcorreo>> ObtenerHistorial() => await _context.Historialcorreo.ToListAsync();
 
         public async Task AgregarHistoria(historialcorreo historialcorreo)
         {
-            using (MailMessage mail = new MailMessage())
+            using (MailMessage mail = new())
             {
-                mail.From = new MailAddress("sami1752sami@gmail.com", historialcorreo.NombreEvi);
+                mail.From = new MailAddress("innoshopcali@gmail.com", historialcorreo.NombreEvi);
                 mail.To.Add(historialcorreo.Correo);
                 mail.Subject = historialcorreo.Asunto;
                 mail.Body = $"<p>{historialcorreo.Mensaje}</p>";
                 mail.IsBodyHtml = true;
-                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-                {
-                    smtp.Credentials = new NetworkCredential("sami1752sami@gmail.com", "30088713311752");
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
-                }
+                using SmtpClient smtp = new("smtp.gmail.com", 587);
+                smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "Innova1234");
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
             }
-            _context.historialcorreo.Add(historialcorreo);
+            _context.Historialcorreo.Add(historialcorreo);
             await _context.SaveChangesAsync();
         }
-
     }
 }

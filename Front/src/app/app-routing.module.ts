@@ -13,6 +13,7 @@ import { ListaUsuariosComponent } from './componentes/vistasAdmin/listaUsuarios/
 import { RegistroUsuarioComponent } from './componentes/vistasAdmin/registroUsuario/registro-usuario/registro-usuario.component';
 import { DetalleUsuarioComponent } from './componentes/vistasAdmin/detalleUsuario/detalle-usuario/detalle-usuario.component';
 import { VistasAdminComponent } from './componentes/vistasAdmin/vistas-admin.component';
+import { ConfirmarEmailComponent } from './componentes/usuarios/confirmar-email/confirmar-email.component';
 //import { InicioadminComponent } from './componentes/vistasAdmin/inicioadmin/inicioadmin.component';
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
       {path:'restablecimiento', component:RestablecimientoComponent},
       {path:'verificacion', component:VerificacionComponent},
       {path:'cambio', component:CambioContraComponent},
-      {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]}
+      {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]},
+      {path:'confirmarEmail', component:ConfirmarEmailComponent}
     ]
   },
   {
@@ -37,7 +39,6 @@ const routes: Routes = [
       {path:'modificarUsuario', component:ModificarUsuarioComponent},
     ]
   }
-  
 ];
 
 

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Back.Models.Entidades.Usuario
+﻿namespace Back.Models.Entidades.Usuario
 {
-    public class UsuarioModel 
+    public class UsuarioModel
     {
         public string Id { get; set; }
         public string Nombres { get; set; }
