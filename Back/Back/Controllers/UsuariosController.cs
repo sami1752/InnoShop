@@ -41,135 +41,142 @@ namespace Back.Controllers
         [Route("Actualizacion")]
         public async Task<Object> PutConfiguracion(ActulaizacionContrasena usuario)
         {
-            UsuarioIdentity usuarioB = await _userManager.FindByNameAsync(usuario.Correo).ConfigureAwait(false);
-            usuarioB.PasswordHash = _userManager.PasswordHasher.HashPassword(usuarioB, usuario.Contrasena);
-            return await _userManager.UpdateAsync(usuarioB).ConfigureAwait(false);
+            try
+            {
+                UsuarioIdentity usuarioB = await _userManager.FindByNameAsync(usuario.Correo).ConfigureAwait(false);
+                usuarioB.PasswordHash = _userManager.PasswordHasher.HashPassword(usuarioB, usuario.Contrasena);
+                return await _userManager.UpdateAsync(usuarioB).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
         }
 
         [HttpPut]
         [Route("ActualizacionDatos")]
         public async Task<Object> PutUsuarios(UsuarioModel usuarior)
         {
-            UsuarioIdentity usuario = await _userManager.FindByIdAsync(usuarior.Id).ConfigureAwait(false);
-            usuario.Apellidos = usuarior.Apellidos;
-            usuario.Direccion = usuarior.Direccion;
-            usuario.Email = usuarior.Correo;
-            usuario.Estado = usuarior.Estado;
-            usuario.IdRol = usuarior.IdRol;
-            usuario.Nombres = usuarior.Nombres;
-            usuario.NumDocumento = usuarior.NumDocumento;
-            usuario.Puntos = usuarior.Puntos;
-            usuario.Sexo = usuarior.Sexo;
-            usuario.Telefono = usuarior.Telefono;
-            usuario.TipoDocumento = usuarior.TipoDocumento;
-            usuario.UserName = usuarior.Correo;
-            return await _userManager.UpdateAsync(usuario).ConfigureAwait(false);
+            try
+            {
+                UsuarioIdentity usuario = await _userManager.FindByIdAsync(usuarior.Id).ConfigureAwait(false);
+                usuario.Apellidos = usuarior.Apellidos;
+                usuario.Direccion = usuarior.Direccion;
+                usuario.Email = usuarior.Correo;
+                usuario.Estado = usuarior.Estado;
+                usuario.IdRol = usuarior.IdRol;
+                usuario.Nombres = usuarior.Nombres;
+                usuario.NumDocumento = usuarior.NumDocumento;
+                usuario.Puntos = usuarior.Puntos;
+                usuario.Sexo = usuarior.Sexo;
+                usuario.Telefono = usuarior.Telefono;
+                usuario.TipoDocumento = usuarior.TipoDocumento;
+                usuario.UserName = usuarior.Correo;
+                return await _userManager.UpdateAsync(usuario).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+
         }
 
         [HttpPost]
         [Route("Registro")]
         public async Task<Object> RegistroUsuario(UsuarioModel usuarioModel)
         {
-            UsuarioIdentity usuario = new()
-            {
-                UserName = usuarioModel.Correo,
-                Nombres = usuarioModel.Nombres,
-                Apellidos = usuarioModel.Apellidos,
-                Email = usuarioModel.Correo,
-                Sexo = usuarioModel.Sexo,
-                IdRol = 2,
-                TipoDocumento = usuarioModel.TipoDocumento,
-                NumDocumento = usuarioModel.NumDocumento,
-                Telefono = usuarioModel.Telefono,
-                PasswordHash = usuarioModel.Contrasena,
-                Direccion = usuarioModel.Direccion,
-                Estado = true
-            };
-
             try
             {
-
-                var resp = await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false);
-
+                UsuarioIdentity usuario = new()
+                {
+                    UserName = usuarioModel.Correo,
+                    Nombres = usuarioModel.Nombres,
+                    Apellidos = usuarioModel.Apellidos,
+                    Email = usuarioModel.Correo,
+                    Sexo = usuarioModel.Sexo,
+                    IdRol = 2,
+                    TipoDocumento = usuarioModel.TipoDocumento,
+                    NumDocumento = usuarioModel.NumDocumento,
+                    Telefono = usuarioModel.Telefono,
+                    PasswordHash = usuarioModel.Contrasena,
+                    Direccion = usuarioModel.Direccion,
+                    Estado = true
+                };
+                IdentityResult resp = await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false);
                 if (resp.Succeeded)
                 {
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(usuario);
-
-                    var confirmationLink = "http://localhost:4200/usuarios/confirmarEmail?id=" + usuario.Id + "&token=" + Base64UrlEncoder.Encode( token );
-                    
-                    //confirmationLink = confirmationLink.Replace("https://localhost:44385/api", "http://localhost:4200");
-
-                    using (MailMessage mail = new MailMessage())
-                    {
-                        mail.From = new MailAddress("jdtoro949@misena.edu.co", "Innova");
-                        mail.To.Add(usuario.Email);
-                        mail.Subject = "Activacion de cuenta";
-                        mail.Body = $"<h1 color='green'>ACTIVACIÓN DE CUENTA</h1>" +
-                            $"<a href='{confirmationLink}'>Clic aquí para activar su cuenta</a>";
-                        mail.IsBodyHtml = true;
-                        using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-                        {
-                            smtp.Credentials = new NetworkCredential("jdtoro949@misena.edu.co", "1238938648");
-                            smtp.EnableSsl = true;
-                            smtp.Send(mail);
-                        }
-                    }
+                    string token = await _userManager.GenerateEmailConfirmationTokenAsync(usuario);
+                    string confirmationLink = "http://localhost:4200/usuarios/confirmarEmail?id=" + usuario.Id + "&token=" + Base64UrlEncoder.Encode(token);
+                    using MailMessage mail = new();
+                    mail.From = new MailAddress("innoshopcali@gmail.com", "Innova");
+                    mail.To.Add(usuario.Email);
+                    mail.Subject = "Activacion de cuenta";
+                    mail.Body = $"<h1 color='green'>ACTIVACIÓN DE CUENTA</h1>" +
+                        $"<a href='{confirmationLink}'>Clic aquí para activar su cuenta</a>";
+                    mail.IsBodyHtml = true;
+                    using SmtpClient smtp = new("smtp.gmail.com", 587);
+                    smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "Innova1234");
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
                 }
-
                 return Ok(resp);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
-            }
+                return e;
+            }     
         }
 
         [HttpPut]
         [Route("ConfirmarEmail")]
-        public async Task<IActionResult> ConfirmarEmail(ConfirmarCorreo confirmarCorreo)
+        public async Task<Object> ConfirmarEmail(ConfirmarCorreo confirmarCorreo)
         {
-            var usuario = await _userManager.FindByIdAsync(confirmarCorreo.id);
-           
-            var result = await _userManager.ConfirmEmailAsync(usuario, Base64UrlEncoder.Decode(confirmarCorreo.token));
+            try
+            {
+                UsuarioIdentity usuario = await _userManager.FindByIdAsync(confirmarCorreo.Id);
+                IdentityResult result = await _userManager.ConfirmEmailAsync(usuario, Base64UrlEncoder.Decode(confirmarCorreo.Token));
                 return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+
         }
-
-
 
         [HttpPost]
         [Route("Logueo")]
         //POST: /api/Usuario/Login
-        public async Task<IActionResult> Logueo(LoguinModel loginModel)
+        public async Task<Object> Logueo(LoguinModel loginModel)
         {
-            UsuarioIdentity usuario = await _userManager.FindByNameAsync(loginModel.Correo).ConfigureAwait(false);
-
-            
-            if (usuario != null && await _userManager.CheckPasswordAsync(usuario, loginModel.Contrasena).ConfigureAwait(false))
+            try
             {
-                if (!(await _userManager.IsEmailConfirmedAsync(usuario)))
+                UsuarioIdentity usuario = await _userManager.FindByNameAsync(loginModel.Correo).ConfigureAwait(false);
+                if (usuario != null && await _userManager.CheckPasswordAsync(usuario, loginModel.Contrasena).ConfigureAwait(false))
                 {
-
-                    return BadRequest(new { mensaje = "Cuenta sin confirmar" });
-
-                }
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]
+                    if (!(await _userManager.IsEmailConfirmedAsync(usuario)))
+                        return BadRequest(new { mensaje = "Cuenta sin confirmar" });
+                    SecurityTokenDescriptor tokenDescriptor = new()
                     {
+                        Subject = new ClaimsIdentity(new Claim[]
+                        {
                         new Claim("UsuarioID", usuario.Id.ToString())
-                    }),
-                    Expires = DateTime.UtcNow.AddDays(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuracionGlobal.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
-                };
-                JwtSecurityTokenHandler tokenHandler = new();
-                SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                string token = tokenHandler.WriteToken(securityToken);
-                return Ok(new { token });
+                        }),
+                        Expires = DateTime.UtcNow.AddDays(1),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuracionGlobal.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    JwtSecurityTokenHandler tokenHandler = new();
+                    SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    string token = tokenHandler.WriteToken(securityToken);
+                    return Ok(new { token });
+                }
+                else
+                    return BadRequest(new { mensaje = "Nombre de usuario o contraseña incorrecta" });
             }
-            else
+            catch (Exception e)
             {
-                return BadRequest(new { mensaje = "Nombre de usuario o contraseña incorrecta" });
-            }
+                return e;
+            }         
         }
 
         [HttpGet]
@@ -177,32 +184,31 @@ namespace Back.Controllers
         [Authorize]
         public async Task<Object> PerfilUsuario()
         {
-            string usuarioId = User.Claims.First(c => c.Type == "UsuarioID").Value;
-            var usuario = await _userManager.FindByIdAsync(usuarioId).ConfigureAwait(false);
-
-            if (usuario != null)
+            try
             {
-                return new
-                {
-                    usuario.IdRol,
-                    usuario.Nombres,
-                    usuario.Apellidos,
-                    usuario.Email,
-                    usuario.Direccion,
-                    usuario.Telefono
-                };
+                string usuarioId = User.Claims.First(c => c.Type == "UsuarioID").Value;
+                UsuarioIdentity usuario = await _userManager.FindByIdAsync(usuarioId).ConfigureAwait(false);
+                if (usuario != null)
+                    return new
+                    {
+                        usuario.IdRol,
+                        usuario.Nombres,
+                        usuario.Apellidos,
+                        usuario.Email,
+                        usuario.Direccion,
+                        usuario.Telefono
+                    };
+                else
+                    return BadRequest(new { mensaje = "No se encuentra el usuario" });
             }
-            else
+            catch (Exception e)
             {
-                return BadRequest(new { mensaje = "No se encuentra el usuario" });
-            }
+                return e;
+            }         
         }
 
         [HttpGet]
         [Route("Usuarios")]
-        public async Task<ActionResult<IEnumerable<historialcorreo>>> Usuarios()
-        {
-            return new ObjectResult(await _context.usuarioidentity.ToListAsync());
-        }
+        public async Task<ActionResult<IEnumerable<historialcorreo>>> Usuarios() =>new ObjectResult(await _context.Usuarioidentity.ToListAsync());
     }
 }
