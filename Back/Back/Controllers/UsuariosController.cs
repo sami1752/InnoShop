@@ -39,7 +39,7 @@ namespace Back.Controllers
 
         [HttpPut]
         [Route("Actualizacion")]
-        public async Task<Object> PutConfiguracion(ActulaizacionContrasena usuario)
+        public async Task<Object> PutConfiguracion(ActualizacionContrasena usuario)
         {
             try
             {
@@ -124,7 +124,7 @@ namespace Back.Controllers
             catch (Exception e)
             {
                 return e;
-            }     
+            }
         }
 
         [HttpPut]
@@ -141,12 +141,84 @@ namespace Back.Controllers
             {
                 return e;
             }
+        }
 
+        [HttpPost]
+        [Route("RecuperarContra")]
+        public async Task<Object> RecuperacionContrasena(UsuarioModel usuarioCorreo)
+        {
+            try
+            {
+                UsuarioIdentity usuario = await _userManager.FindByEmailAsync(usuarioCorreo.Correo);
+
+                if (usuario == null)
+                    return BadRequest(new { mensaje = "El correo no se encuentra registrado" });
+                else
+                {
+                    string token = await _userManager.GeneratePasswordResetTokenAsync(usuario);
+                    string restablecimientoLink = "http://localhost:4200/usuarios/RestablecerContrasena?id=" + usuario.Id + "&token="
+                        + Base64UrlEncoder.Encode(token);
+                    using (MailMessage mail = new())
+                    {
+                        mail.From = new MailAddress("innoshopcali@gmail.com", "Innova");
+                        mail.To.Add(usuario.Email);
+                        mail.Subject = "Recuperación contraseña de cuenta";
+                        mail.Body = $"<h1 color='green'>RECUPERACIÓN CONTRASEÑA DE CUENTA</h1>" +
+                            $"<a href='{restablecimientoLink}'>Clic aquí para crear nueva contraseña</a>";
+                        mail.IsBodyHtml = true;
+                        using SmtpClient smtp = new("smtp.gmail.com", 587);
+                        smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "Innova1234");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                    return Ok(new { mensaje = "Se ha enviado el link de recuperación a su correo" });
+                }
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+        }
+
+        [HttpPut]
+        [Route("RestablecerContrasena")]
+        public async Task<Object> RestablecerContra(ConfirmarCorreo restableceContra)
+        {
+            try
+            {
+                UsuarioIdentity usuario = await _userManager.FindByIdAsync(restableceContra.Id);
+                IdentityResult result = await _userManager.ResetPasswordAsync(usuario, Base64UrlEncoder.Decode(restableceContra.Token), restableceContra.NuevaContrasena);
+                if (result.Succeeded)
+                    return Ok(new { mensaje = "Restablecimiento de contrasena éxitoso" });
+                else
+                    return BadRequest(new { mensaje = "Error de restablecimiento de contraseña" });
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+        }
+
+        [HttpPut]
+        [Route("ModificarContrasena")]
+        public async Task<Object> EditarContrasena(ActualizacionContrasena actuContrasena)
+        {
+            try
+            {
+                UsuarioIdentity usuario = await _userManager.FindByEmailAsync(actuContrasena.Correo);
+                IdentityResult result = await _userManager.ChangePasswordAsync(usuario, actuContrasena.Contrasena, actuContrasena.NuevaContrasena);
+                if (result.Succeeded)
+                    return Ok(new { mensaje = "Modificación de contraseña éxitosa" });
+                return BadRequest(result);
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
         }
 
         [HttpPost]
         [Route("Logueo")]
-        //POST: /api/Usuario/Login
         public async Task<Object> Logueo(LoguinModel loginModel)
         {
             try
@@ -176,7 +248,7 @@ namespace Back.Controllers
             catch (Exception e)
             {
                 return e;
-            }         
+            }
         }
 
         [HttpGet]
@@ -204,11 +276,11 @@ namespace Back.Controllers
             catch (Exception e)
             {
                 return e;
-            }         
+            }
         }
 
         [HttpGet]
         [Route("Usuarios")]
-        public async Task<ActionResult<IEnumerable<historialcorreo>>> Usuarios() =>new ObjectResult(await _context.Usuarioidentity.ToListAsync());
+        public async Task<ActionResult<IEnumerable<historialcorreo>>> Usuarios() => new ObjectResult(await _context.Usuarioidentity.ToListAsync());
     }
 }
