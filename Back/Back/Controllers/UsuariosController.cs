@@ -39,7 +39,7 @@ namespace Back.Controllers
 
         [HttpPut]
         [Route("Actualizacion")]
-        public async Task<Object> PutConfiguracion(ActulaizacionContrasena usuario)
+        public async Task<Object> PutConfiguracion(ActualizacionContrasena usuario)
         {
             UsuarioIdentity usuarioB = await _userManager.FindByNameAsync(usuario.Correo).ConfigureAwait(false);
             usuarioB.PasswordHash = _userManager.PasswordHasher.HashPassword(usuarioB, usuario.Contrasena);
@@ -50,6 +50,7 @@ namespace Back.Controllers
         [Route("ActualizacionDatos")]
         public async Task<Object> PutUsuarios(UsuarioModel usuarior)
         {
+            
             UsuarioIdentity usuario = await _userManager.FindByIdAsync(usuarior.Id).ConfigureAwait(false);
             usuario.Apellidos = usuarior.Apellidos;
             usuario.Direccion = usuarior.Direccion;
@@ -93,6 +94,7 @@ namespace Back.Controllers
 
                 if (resp.Succeeded)
                 {
+                    
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(usuario);
 
                     var confirmationLink = "http://localhost:4200/usuarios/confirmarEmail?id=" + usuario.Id + "&token=" + Base64UrlEncoder.Encode( token );
@@ -128,12 +130,90 @@ namespace Back.Controllers
         [Route("ConfirmarEmail")]
         public async Task<IActionResult> ConfirmarEmail(ConfirmarCorreo confirmarCorreo)
         {
-            var usuario = await _userManager.FindByIdAsync(confirmarCorreo.id);
+            var usuario = await _userManager.FindByIdAsync(confirmarCorreo.Id);
            
-            var result = await _userManager.ConfirmEmailAsync(usuario, Base64UrlEncoder.Decode(confirmarCorreo.token));
+            var result = await _userManager.ConfirmEmailAsync(usuario, Base64UrlEncoder.Decode(confirmarCorreo.Token));
                 return Ok(result);
         }
 
+
+        [HttpPost]
+        [Route("RecuperarContra")]
+        public async Task<IActionResult> RecuperacionContrasena(UsuarioModel usuarioCorreo)
+        {
+
+            UsuarioIdentity usuario = await _userManager.FindByEmailAsync(usuarioCorreo.Correo);
+
+            if (usuario ==null)
+            {
+                return BadRequest(new { mensaje = "El correo no se encuentra registrado" });
+            }
+            else
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(usuario);
+                
+                string restablecimientoLink = "http://localhost:4200/usuarios/RestablecerContrasena?id=" + usuario.Id + "&token="
+                    + Base64UrlEncoder.Encode(token);
+
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("jdtoro949@misena.edu.co", "Innova");
+                    mail.To.Add(usuario.Email);
+                    mail.Subject = "Recuperación contraseña de cuenta";
+                    mail.Body = $"<h1 color='green'>RECUPERACIÓN CONTRASEÑA DE CUENTA</h1>" +
+                        $"<a href='{restablecimientoLink}'>Clic aquí para crear nueva contraseña</a>";
+                    mail.IsBodyHtml = true;
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new NetworkCredential("jdtoro949@misena.edu.co", "1238938648");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                }
+
+                return Ok(new { mensaje = "Se ha enviado el link de recuperación a su correo" });
+            }
+
+            
+
+            
+        }
+
+        [HttpPut]
+        [Route("RestablecerContrasena")]
+        public async Task<ActionResult> RestablecerContra(ConfirmarCorreo restableceContra)
+        {
+            UsuarioIdentity usuario =  await _userManager.FindByIdAsync(restableceContra.Id);
+            var result = await _userManager.ResetPasswordAsync(usuario, Base64UrlEncoder.Decode(restableceContra.Token), restableceContra.NuevaContrasena);
+
+            if (result.Succeeded)
+            {
+                return Ok( new { mensaje = "Restablecimiento de contrasena éxitoso" });
+            }
+            else
+            {
+                return BadRequest(new { mensaje = "Error de restablecimiento de contraseña" });
+            }
+
+            
+        }
+
+        [HttpPut]
+        [Route("ModificarContrasena")]
+        public async Task<IActionResult> editarContrasena(ActualizacionContrasena actuContrasena)
+        {
+            var usuario = await _userManager.FindByEmailAsync(actuContrasena.Correo);
+
+            var result = await _userManager.ChangePasswordAsync(usuario,actuContrasena.Contrasena, actuContrasena.NuevaContrasena);
+
+            if (result.Succeeded)
+            {
+                return Ok(new { mensaje ="Modificación de contraseña éxitosa" });
+            }
+
+            return BadRequest(result); 
+            
+        }
 
 
         [HttpPost]

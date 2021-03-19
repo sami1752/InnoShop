@@ -9,8 +9,7 @@ import { RestablecimientoComponent } from './componentes/usuarios/restablecimien
 import { VerificacionComponent } from './componentes/usuarios/restablecimiento/verificacion/verificacion.component';
 import { CambioContraComponent } from './componentes/usuarios/cambio-contra/cambio-contra.component';
 import { ConfirmarEmailComponent } from './componentes/usuarios/confirmar-email/confirmar-email.component';
-import { VistasAdminComponent } from './componentes/vistas-admin/vistas-admin.component';
-import { InicioAdminComponent } from './componentes/vistas-admin/inicio-admin/inicio-admin.component';
+
 
 
 const routes: Routes = [
@@ -24,12 +23,6 @@ const routes: Routes = [
       {path:'cambio', component:CambioContraComponent},
       {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]},
       {path:'confirmarEmail', component:ConfirmarEmailComponent}
-    ]
-  },
-
-  {path:'admin', component:VistasAdminComponent,
-    children : [
-      {path:'inicio', component:InicioAdminComponent}
     ]
   }
   

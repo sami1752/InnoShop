@@ -166,11 +166,9 @@ export class UsuarioService {
 
    restablecimientoContrasena(){
      this.restablecimiento = this.formularioRecuperacion.value;
-     this.restablecimiento.Codigo ="000";
-     this.restablecimiento.Fecha ="000";
 
-     var resul = this.http.post(this.configuracion.rootURL + '/RestablecimientoContrasenas',this.restablecimiento);
-      return resul;
+      return this.http.post(this.configuracion.rootURL + '/RecuperarContra',this.restablecimiento);
+      
    }
 
 

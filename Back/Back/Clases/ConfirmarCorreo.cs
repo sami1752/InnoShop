@@ -7,7 +7,9 @@ namespace Back.Clases
 {
     public class ConfirmarCorreo
     {
-        public string id { get; set; }
-        public string token { get; set; }
+        public string Id { get; set; }
+        public string Token { get; set; }
+
+        public string NuevaContrasena { get; set; }
     }
 }
