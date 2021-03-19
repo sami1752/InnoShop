@@ -14,7 +14,7 @@ import { RegistroUsuarioComponent } from './componentes/vistasAdmin/registroUsua
 import { DetalleUsuarioComponent } from './componentes/vistasAdmin/detalleUsuario/detalle-usuario/detalle-usuario.component';
 import { VistasAdminComponent } from './componentes/vistasAdmin/vistas-admin.component';
 import { ConfirmarEmailComponent } from './componentes/usuarios/confirmar-email/confirmar-email.component';
-//import { InicioadminComponent } from './componentes/vistasAdmin/inicioadmin/inicioadmin.component';
+import { InicioadminComponent } from './componentes/vistasAdmin/inicioadmin/inicioadmin.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'usuarios/login',pathMatch:'full'},
@@ -33,7 +33,7 @@ const routes: Routes = [
     path:'Admin', component:VistasAdminComponent,
     children: [
       {path:'registroUsuario', component:RegistroUsuarioComponent},
-     // {path:'inicioadmin',component:InicioadminComponent},
+      {path:'inicioadmin',component:InicioadminComponent},
       {path:'listarUsuarios', component:ListaUsuariosComponent},
       {path:'detalleUsuario', component:DetalleUsuarioComponent},
       {path:'modificarUsuario', component:ModificarUsuarioComponent},

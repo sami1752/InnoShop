@@ -159,7 +159,7 @@ export class UsuarioService {
   }
 
   obtenerPerfil(){
-    
+    console.log("hola")
     return this.http.get(this.configuracion.rootURL + '/Usuarios/Perfil'); 
  
    }
@@ -183,6 +183,8 @@ export class UsuarioService {
      this.cambioContrasena = this.formularioCambioContrasena.value;
     return this.http.put(this.configuracion.rootURL +'/Usuarios/Actualizacion',this.cambioContrasena);
    }
+
+
 
  
   }

@@ -4,7 +4,6 @@ import{UsuariosModule}from './componentes/usuarios/usuarios.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InicioComponent } from './app/vistasAdmin/inicio/inicio/inicio.component';
 import { ModificarUsuarioComponent } from './componentes/vistasAdmin/modificarUsuario/modificar-usuario/modificar-usuario.component';
 import { ListaUsuariosComponent } from './componentes/vistasAdmin/listaUsuarios/lista-usuarios/lista-usuarios.component';
 import { RegistroUsuarioComponent } from './componentes/vistasAdmin/registroUsuario/registro-usuario/registro-usuario.component';
@@ -17,7 +16,6 @@ import { InicioadminComponent } from './componentes/vistasAdmin/inicioadmin/inic
 @NgModule({
   declarations: [
     AppComponent,
-    InicioComponent,
     ModificarUsuarioComponent,
     ListaUsuariosComponent,
     RegistroUsuarioComponent,

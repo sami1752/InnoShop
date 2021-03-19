@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
       (res:any)=>{
         localStorage.setItem('token', res.token);
         this.router.navigateByUrl('usuarios/inicio');
+        console.log(res.token)
+        
       },
       (error:any) =>{
         if(error.status == 400){
