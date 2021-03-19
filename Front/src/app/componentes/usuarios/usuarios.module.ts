@@ -10,12 +10,13 @@ import { InicioComponent } from './inicio/inicio.component';
 import { RestablecimientoComponent } from './restablecimiento/restablecimiento.component';
 import { VerificacionComponent } from './restablecimiento/verificacion/verificacion.component';
 import { CambioContraComponent } from './cambio-contra/cambio-contra.component';
+import { ConfirmarEmailComponent } from './confirmar-email/confirmar-email.component';
 
 
 
 
 @NgModule({
-  declarations: [RegistroComponent, LoginComponent, UsuariosComponent, InicioComponent, RestablecimientoComponent, VerificacionComponent, CambioContraComponent],
+  declarations: [RegistroComponent, LoginComponent, UsuariosComponent, InicioComponent, RestablecimientoComponent, VerificacionComponent, CambioContraComponent, ConfirmarEmailComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

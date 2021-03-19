@@ -8,6 +8,9 @@ import { AutorizacionRutasGuard } from './autorizaciones/autorizacion-rutas.guar
 import { RestablecimientoComponent } from './componentes/usuarios/restablecimiento/restablecimiento.component';
 import { VerificacionComponent } from './componentes/usuarios/restablecimiento/verificacion/verificacion.component';
 import { CambioContraComponent } from './componentes/usuarios/cambio-contra/cambio-contra.component';
+import { ConfirmarEmailComponent } from './componentes/usuarios/confirmar-email/confirmar-email.component';
+import { VistasAdminComponent } from './componentes/vistas-admin/vistas-admin.component';
+import { InicioAdminComponent } from './componentes/vistas-admin/inicio-admin/inicio-admin.component';
 
 
 const routes: Routes = [
@@ -19,7 +22,14 @@ const routes: Routes = [
       {path:'restablecimiento', component:RestablecimientoComponent},
       {path:'verificacion', component:VerificacionComponent},
       {path:'cambio', component:CambioContraComponent},
-      {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]}
+      {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]},
+      {path:'confirmarEmail', component:ConfirmarEmailComponent}
+    ]
+  },
+
+  {path:'admin', component:VistasAdminComponent,
+    children : [
+      {path:'inicio', component:InicioAdminComponent}
     ]
   }
   

@@ -25,13 +25,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.token);
         this.router.navigateByUrl('usuarios/inicio');
       },
-      error =>{
+      (error:any) =>{
         if(error.status == 400){
-          alert('Nombre de usuario o contraseña incorrectos');
-        }else{
-          console.log(error);
+          alert(error.error.mensaje);
         }
-
       }
     )
   }

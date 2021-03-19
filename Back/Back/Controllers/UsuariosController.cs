@@ -1,4 +1,5 @@
-﻿using Back.Models;
+﻿using Back.Clases;
+using Back.Models;
 using Back.Models.DAL;
 using Back.Models.Entidades;
 using Back.Models.Entidades.Usuario;
@@ -13,6 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,14 +27,12 @@ namespace Back.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly UserManager<UsuarioIdentity> _userManager;
-        private readonly SignInManager<UsuarioIdentity> _singInManager;
         private readonly ConfiguracionGlobal _configuracionGlobal;
         private readonly DBContext _context;
 
-        public UsuariosController(SignInManager<UsuarioIdentity> singInManager, UserManager<UsuarioIdentity> userManager, IOptions<ConfiguracionGlobal> configuracionGlobal, DBContext context)
+        public UsuariosController(UserManager<UsuarioIdentity> userManager, IOptions<ConfiguracionGlobal> configuracionGlobal, DBContext context)
         {
             _userManager = userManager;
-            _singInManager = singInManager;
             _configuracionGlobal = configuracionGlobal.Value;
             _context = context;
         }
@@ -40,13 +41,9 @@ namespace Back.Controllers
         [Route("Actualizacion")]
         public async Task<Object> PutConfiguracion(ActulaizacionContrasena usuario)
         {
-
-            var usuarioB = await _userManager.FindByNameAsync(usuario.Correo).ConfigureAwait(false);
+            UsuarioIdentity usuarioB = await _userManager.FindByNameAsync(usuario.Correo).ConfigureAwait(false);
             usuarioB.PasswordHash = _userManager.PasswordHasher.HashPassword(usuarioB, usuario.Contrasena);
-            var result = await _userManager.UpdateAsync(usuarioB).ConfigureAwait(false);
-
-
-            return result;
+            return await _userManager.UpdateAsync(usuarioB).ConfigureAwait(false);
         }
 
         [HttpPut]
@@ -71,9 +68,9 @@ namespace Back.Controllers
 
         [HttpPost]
         [Route("Registro")]
-        public async Task<Object> registroUsuario(UsuarioModel usuarioModel)
+        public async Task<Object> RegistroUsuario(UsuarioModel usuarioModel)
         {
-            UsuarioIdentity usuario = new UsuarioIdentity()
+            UsuarioIdentity usuario = new()
             {
                 UserName = usuarioModel.Correo,
                 Nombres = usuarioModel.Nombres,
@@ -91,8 +88,35 @@ namespace Back.Controllers
 
             try
             {
-                var result = await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false);
-                return Ok(result);
+
+                var resp = await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false);
+
+                if (resp.Succeeded)
+                {
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(usuario);
+
+                    var confirmationLink = "http://localhost:4200/usuarios/confirmarEmail?id=" + usuario.Id + "&token=" + Base64UrlEncoder.Encode( token );
+                    
+                    //confirmationLink = confirmationLink.Replace("https://localhost:44385/api", "http://localhost:4200");
+
+                    using (MailMessage mail = new MailMessage())
+                    {
+                        mail.From = new MailAddress("jdtoro949@misena.edu.co", "Innova");
+                        mail.To.Add(usuario.Email);
+                        mail.Subject = "Activacion de cuenta";
+                        mail.Body = $"<h1 color='green'>ACTIVACIÓN DE CUENTA</h1>" +
+                            $"<a href='{confirmationLink}'>Clic aquí para activar su cuenta</a>";
+                        mail.IsBodyHtml = true;
+                        using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                        {
+                            smtp.Credentials = new NetworkCredential("jdtoro949@misena.edu.co", "1238938648");
+                            smtp.EnableSsl = true;
+                            smtp.Send(mail);
+                        }
+                    }
+                }
+
+                return Ok(resp);
             }
             catch (Exception)
             {
@@ -100,14 +124,34 @@ namespace Back.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("ConfirmarEmail")]
+        public async Task<IActionResult> ConfirmarEmail(ConfirmarCorreo confirmarCorreo)
+        {
+            var usuario = await _userManager.FindByIdAsync(confirmarCorreo.id);
+           
+            var result = await _userManager.ConfirmEmailAsync(usuario, Base64UrlEncoder.Decode(confirmarCorreo.token));
+                return Ok(result);
+        }
+
+
+
         [HttpPost]
         [Route("Logueo")]
         //POST: /api/Usuario/Login
         public async Task<IActionResult> Logueo(LoguinModel loginModel)
         {
-            var usuario = await _userManager.FindByNameAsync(loginModel.Correo).ConfigureAwait(false);
+            UsuarioIdentity usuario = await _userManager.FindByNameAsync(loginModel.Correo).ConfigureAwait(false);
+
+            
             if (usuario != null && await _userManager.CheckPasswordAsync(usuario, loginModel.Contrasena).ConfigureAwait(false))
             {
+                if (!(await _userManager.IsEmailConfirmedAsync(usuario)))
+                {
+
+                    return BadRequest(new { mensaje = "Cuenta sin confirmar" });
+
+                }
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
@@ -117,12 +161,10 @@ namespace Back.Controllers
                     Expires = DateTime.UtcNow.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuracionGlobal.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
                 };
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                var token = tokenHandler.WriteToken(securityToken);
-
+                JwtSecurityTokenHandler tokenHandler = new();
+                SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                string token = tokenHandler.WriteToken(securityToken);
                 return Ok(new { token });
-
             }
             else
             {
@@ -155,7 +197,6 @@ namespace Back.Controllers
                 return BadRequest(new { mensaje = "No se encuentra el usuario" });
             }
         }
-
 
         [HttpGet]
         [Route("Usuarios")]
