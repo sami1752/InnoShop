@@ -14,6 +14,11 @@ export class UsuarioService {
 
   constructor(private http:HttpClient, private configuracion:ConfiguracionService, private formBuilder:FormBuilder) { }
 
+  
+
+  listaUsuarios:Usuario[];
+
+
   restablecimiento: Restablecimiento;
   usuario:Usuario;
   cambioContrasena:CambioContra;
@@ -205,6 +210,19 @@ get confirmarContraVerificacionRecuperacionDeCuenta(){
    }
 
   
+   listarUsuarios(){
+    this.http.get(this.configuracion.rootURL + '/Usuarios/ListaUsuarios')
+    .toPromise()
+    .then(res=> this.listaUsuarios = res as  Usuario[])
+  }
+
+  eliminarUsuario(id){
+    this.usuario.Id = id;
+    return this.http.delete(this.configuracion.rootURL + '/Usuarios/ActualizacionDatos' + this.usuario);
+  }
+
+
+
 
  
   }

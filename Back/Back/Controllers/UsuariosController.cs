@@ -279,8 +279,9 @@ namespace Back.Controllers
             }
         }
 
+
         [HttpGet]
-        [Route("Usuarios")]
-        public async Task<ActionResult<IEnumerable<historialcorreo>>> Usuarios() => new ObjectResult(await _context.Usuarioidentity.ToListAsync());
+        [Route("ListaUsuarios")]
+        public async Task<ActionResult<IEnumerable<UsuarioIdentity>>> Usuarios() => new ObjectResult(await _context.Usuarioidentity.ToListAsync());
     }
 }

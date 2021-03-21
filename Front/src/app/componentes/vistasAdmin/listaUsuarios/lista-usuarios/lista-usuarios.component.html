@@ -1,1 +1,27 @@
-<p>lista-usuarios works!</p>
+
+
+<button class="btn btn-success mb-10 mt-100">Agregar nuevo</button>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Telefono</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let usuario of usuarioService.listaUsuarios">
+            <td (click)="llenarFormularioCliente(usuario)">{{usuario.Nombres}}</td>
+            <td (click)="llenarFormularioCliente(usuario)">{{usuario.Email}}</td>
+            <td (click)="llenarFormularioCliente(usuario)">{{usuario.Direccion}}</td>
+            <td (click)="llenarFormularioCliente(usuario)">{{usuario.Telefono}}</td>
+            <td><i (click)="eliminarCliente(usuario.Id)" class="fa fa-trash fa-lg - text-danger"></i></td>
+            <!--<td><i (click)="DetalleCliente(usuario.Id); gestionclienteservicio.DesplegarDetalle=!gestionclienteservicio.DesplegarDetalle" class="fa fa-eye" aria-hidden="true"></i></td>-->
+        </tr>
+    </tbody>
+</table>
+
+    
