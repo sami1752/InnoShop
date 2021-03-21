@@ -181,7 +181,7 @@ get confirmarContraVerificacionRecuperacionDeCuenta(){
   }
 
   obtenerPerfil(){
-    console.log("hola")
+    alert("hola")
     return this.http.get(this.configuracion.rootURL + '/Usuarios/Perfil'); 
  
    }
