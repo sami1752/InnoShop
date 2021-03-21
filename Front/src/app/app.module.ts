@@ -10,6 +10,10 @@ import { RegistroUsuarioComponent } from './componentes/vistasAdmin/registroUsua
 import { DetalleUsuarioComponent } from './componentes/vistasAdmin/detalleUsuario/detalle-usuario/detalle-usuario.component';
 import { VistasAdminComponent } from './componentes/vistasAdmin/vistas-admin.component';
 import { InicioadminComponent } from './componentes/vistasAdmin/inicioadmin/inicioadmin.component';
+import { UsuarioService } from './servicios/usuario.service';
+import { ConfiguracionService } from './servicios/configuracion.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './autorizaciones/auth.interceptor';
 
 
 
@@ -34,7 +38,11 @@ import { InicioadminComponent } from './componentes/vistasAdmin/inicioadmin/inic
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [UsuarioService, ConfiguracionService,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:AuthInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
