@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {UsuariosComponent} from './componentes/usuarios/usuarios.component';
-import {RegistroComponent} from './componentes/usuarios/registro/registro.component';
-import{LoginComponent} from './componentes/usuarios/login/login.component';
-import { InicioComponent } from './componentes/usuarios/inicio/inicio.component';
-import { AutorizacionRutasGuard } from './autorizaciones/autorizacion-rutas.guard';
-import { RestablecimientoComponent } from './componentes/usuarios/restablecimiento/restablecimiento.component';
-import { VerificacionComponent } from './componentes/usuarios/restablecimiento/verificacion/verificacion.component';
-import { CambioContraComponent } from './componentes/usuarios/cambio-contra/cambio-contra.component';
-import { ModificarUsuarioComponent } from './componentes/vistasAdmin/modificarUsuario/modificar-usuario/modificar-usuario.component';
-import { ListaUsuariosComponent } from './componentes/vistasAdmin/listaUsuarios/lista-usuarios/lista-usuarios.component';
-import { RegistroUsuarioComponent } from './componentes/vistasAdmin/registroUsuario/registro-usuario/registro-usuario.component';
-import { DetalleUsuarioComponent } from './componentes/vistasAdmin/detalleUsuario/detalle-usuario/detalle-usuario.component';
-import { VistasAdminComponent } from './componentes/vistasAdmin/vistas-admin.component';
-import { ConfirmarEmailComponent } from './componentes/usuarios/confirmar-email/confirmar-email.component';
-import { InicioadminComponent } from './componentes/vistasAdmin/inicioadmin/inicioadmin.component';
+import {UsuariosComponent} from './components/usuarios/usuarios.component';
+import {RegistroComponent} from './components/usuarios/registro/registro.component';
+import {LoginComponent} from './components/usuarios/login/login.component';
+import { InicioComponent } from './components/usuarios/inicio/inicio.component';
+import { AutorizacionRutasGuard } from './auth/autorizacion-rutas.guard';
+import { RestablecimientoComponent } from './components/usuarios/restablecimiento/restablecimiento.component';
+import { VerificacionComponent } from './components/usuarios/restablecimiento/verificacion/verificacion.component';
+import { CambioContraComponent } from './components/usuarios/cambio-contra/cambio-contra.component';
+import { ModificarUsuarioComponent } from './components/admin/usuarios/modificar-usuario/modificar-usuario.component';
+import { ListaUsuariosComponent } from './components/admin/usuarios/lista-usuarios/lista-usuarios.component';
+import { RegistroUsuarioComponent } from './components/admin/usuarios/registro-usuario/registro-usuario.component';
+import { DetalleUsuarioComponent } from './components/admin/usuarios/detalle-usuario/detalle-usuario.component';
+import { VistasAdminComponent } from './components/admin/vistas-admin.component';
+import { ConfirmarEmailComponent } from './components/usuarios/confirmar-email/confirmar-email.component';
+import { InicioadminComponent } from './components/admin/inicioadmin/inicioadmin.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'usuarios/login',pathMatch:'full'},
@@ -32,11 +32,12 @@ const routes: Routes = [
   {
     path:'Admin', component:VistasAdminComponent,
     children: [
-      {path:'registroUsuario', component:RegistroUsuarioComponent},
-      {path:'inicioadmin',component:InicioadminComponent},
-      {path:'listarUsuarios', component:ListaUsuariosComponent},
-      {path:'detalleUsuario', component:DetalleUsuarioComponent},
-      {path:'modificarUsuario', component:ModificarUsuarioComponent},
+      {path:'registroUsuario', component:RegistroUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'inicioadmin',component:InicioadminComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'listarUsuarios', component:ListaUsuariosComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'detalleUsuario', component:DetalleUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'modificarUsuario', component:ModificarUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
+    
     ]
   }
 ];
