@@ -32,7 +32,7 @@ namespace Back.Controllers
                 historialcorreo historialcorreo = new()
                 {
                     Asunto = "Codigo de recuperacion de Cuenta InnoShop",
-                    Correo = restablecimientoContrasena.Correo,
+                    Email = restablecimientoContrasena.Email,
                     Mensaje = token,
                     NombreEvi = "Innova"
                 };
@@ -58,7 +58,7 @@ namespace Back.Controllers
                 await using (_context)
                 {
                     List<RestablecimientoContrasena> RestablecimientoContrasena = (from restablecimiento in _context.RestablecimientoContrasenas
-                                                                                   where restablecimiento.Correo == verificacionRestablecimientoContrasena.Correo
+                                                                                   where restablecimiento.Email == verificacionRestablecimientoContrasena.Email
                                                                                    orderby restablecimiento.IdRestablecimiento descending
                                                                                    select new RestablecimientoContrasena
                                                                                    {

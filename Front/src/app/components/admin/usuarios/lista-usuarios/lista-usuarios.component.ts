@@ -15,10 +15,10 @@ export class ListaUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioService.listarUsuarios();
-    console.log(this.usuarioService.listaUsuarios[0])
   }
   llenarFormularioUsuario(usuario:Usuario){
-    this.usuarioService.formularioRegistroUsuario.patchValue(usuario);
+    this.usuarioService.formularioRegistroUsuarioAdmin.patchValue(usuario);
+    this.usuarioService.boton = "Guardar"
   }
 
   eliminarUsuario(usuario:Usuario){
@@ -31,9 +31,7 @@ export class ListaUsuariosComponent implements OnInit {
         err=>{
           alert(err.code);
         }
-      );            
+      );
     } 
-    
   }
-
 }

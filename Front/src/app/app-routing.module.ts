@@ -8,13 +8,13 @@ import { AutorizacionRutasGuard } from './auth/autorizacion-rutas.guard';
 import { RestablecimientoComponent } from './components/usuarios/restablecimiento/restablecimiento.component';
 import { VerificacionComponent } from './components/usuarios/restablecimiento/verificacion/verificacion.component';
 import { CambioContraComponent } from './components/usuarios/cambio-contra/cambio-contra.component';
-import { ModificarUsuarioComponent } from './components/admin/usuarios/modificar-usuario/modificar-usuario.component';
 import { ListaUsuariosComponent } from './components/admin/usuarios/lista-usuarios/lista-usuarios.component';
 import { RegistroUsuarioComponent } from './components/admin/usuarios/registro-usuario/registro-usuario.component';
-import { DetalleUsuarioComponent } from './components/admin/usuarios/detalle-usuario/detalle-usuario.component';
 import { VistasAdminComponent } from './components/admin/vistas-admin.component';
 import { ConfirmarEmailComponent } from './components/usuarios/confirmar-email/confirmar-email.component';
 import { InicioadminComponent } from './components/admin/inicioadmin/inicioadmin.component';
+import { GestionUsuarioComponent } from './components/admin/usuarios/gestion-usuario/gestion-usuario.component';
+
 
 const routes: Routes = [
   {path:'', redirectTo:'usuarios/login',pathMatch:'full'},
@@ -35,17 +35,10 @@ const routes: Routes = [
       {path:'registroUsuario', component:RegistroUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'inicioadmin',component:InicioadminComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'listarUsuarios', component:ListaUsuariosComponent},
-      {path:'detalleUsuario', component:DetalleUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
-      {path:'modificarUsuario', component:ModificarUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
-    
+      {path:'Usuarios', component:GestionUsuarioComponent},
     ]
   }
 ];
-
-
-
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

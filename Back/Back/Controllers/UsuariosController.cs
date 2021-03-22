@@ -43,7 +43,7 @@ namespace Back.Controllers
         {
             try
             {
-                UsuarioIdentity usuarioB = await _userManager.FindByNameAsync(usuario.Correo).ConfigureAwait(false);
+                UsuarioIdentity usuarioB = await _userManager.FindByNameAsync(usuario.Email).ConfigureAwait(false);
                 usuarioB.PasswordHash = _userManager.PasswordHasher.HashPassword(usuarioB, usuario.Contrasena);
                 return await _userManager.UpdateAsync(usuarioB).ConfigureAwait(false);
             }
@@ -62,7 +62,7 @@ namespace Back.Controllers
                 UsuarioIdentity usuario = await _userManager.FindByIdAsync(usuarior.Id).ConfigureAwait(false);
                 usuario.Apellidos = usuarior.Apellidos;
                 usuario.Direccion = usuarior.Direccion;
-                //usuario.Email = usuarior.Correo;
+                usuario.Email = usuarior.Email;
                 usuario.Estado = usuarior.Estado;
                 usuario.IdRol = usuarior.IdRol;
                 usuario.Nombres = usuarior.Nombres;
@@ -71,7 +71,7 @@ namespace Back.Controllers
                 usuario.Sexo = usuarior.Sexo;
                 usuario.Telefono = usuarior.Telefono;
                 usuario.TipoDocumento = usuarior.TipoDocumento;
-                //usuario.UserName = usuarior.Correo;
+                usuario.UserName = usuarior.Email;
                 return await _userManager.UpdateAsync(usuario).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -89,12 +89,12 @@ namespace Back.Controllers
             {
                 UsuarioIdentity usuario = new()
                 {
-                    UserName = usuarioModel.Correo,
+                    UserName = usuarioModel.Email,
                     Nombres = usuarioModel.Nombres,
                     Apellidos = usuarioModel.Apellidos,
-                    Email = usuarioModel.Correo,
+                    Email = usuarioModel.Email,
                     Sexo = usuarioModel.Sexo,
-                    IdRol = 2,
+                    IdRol = usuarioModel.IdRol,
                     TipoDocumento = usuarioModel.TipoDocumento,
                     NumDocumento = usuarioModel.NumDocumento,
                     Telefono = usuarioModel.Telefono,
@@ -149,7 +149,7 @@ namespace Back.Controllers
         {
             try
             {
-                UsuarioIdentity usuario = await _userManager.FindByEmailAsync(usuarioCorreo.Correo);
+                UsuarioIdentity usuario = await _userManager.FindByEmailAsync(usuarioCorreo.Email);
 
                 if (usuario == null)
                     return BadRequest(new { mensaje = "El correo no se encuentra registrado" });
@@ -205,7 +205,7 @@ namespace Back.Controllers
         {
             try
             {
-                UsuarioIdentity usuario = await _userManager.FindByEmailAsync(actuContrasena.Correo);
+                UsuarioIdentity usuario = await _userManager.FindByEmailAsync(actuContrasena.Email);
                 IdentityResult result = await _userManager.ChangePasswordAsync(usuario, actuContrasena.Contrasena, actuContrasena.Contrasena);
                 if (result.Succeeded)
                     return Ok(new { mensaje = "Modificación de contraseña éxitosa" });
@@ -223,7 +223,7 @@ namespace Back.Controllers
         {
             try
             {
-                UsuarioIdentity usuario = await _userManager.FindByNameAsync(loginModel.Correo).ConfigureAwait(true);
+                UsuarioIdentity usuario = await _userManager.FindByNameAsync(loginModel.Email).ConfigureAwait(true);
                 if (usuario != null && await _userManager.CheckPasswordAsync(usuario, loginModel.Contrasena).ConfigureAwait(true))
                 {
                     if (!(await _userManager.IsEmailConfirmedAsync(usuario)))

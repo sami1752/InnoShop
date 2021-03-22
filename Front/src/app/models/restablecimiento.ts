@@ -1,5 +1,5 @@
 export interface Restablecimiento {
-    Correo:String,
+    Email:String,
     Token:string,
     Id:string,
     Contrasena:string

@@ -8,15 +8,15 @@
 
 
             <label for="pass">Ingresa El Correo<span>**</span></label>
-            <input formControlName="Correo" type="text" placeholder="Correo" />
+            <input formControlName="Email" type="text" placeholder="Email" />
 
             <!--Validaciones Correo-->
             <div
-              *ngIf="this.usuarioService.correo.invalid && (this.usuarioService.correo.touched || this.usuarioService.correo.dirty)"
+              *ngIf="this.usuarioService.email.invalid && (this.usuarioService.email.touched || this.usuarioService.email.dirty)"
               class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.correo.hasError('required')">El correo es obligatorio</div>
-              <div *ngIf="this.usuarioService.correo.hasError('email')">Digite un correo valido</div>
-              <div *ngIf="this.usuarioService.correo.hasError('maxLength')">El correo debe contener máximo 50 caracteres
+              <div *ngIf="this.usuarioService.email.hasError('required')">El correo es obligatorio</div>
+              <div *ngIf="this.usuarioService.email.hasError('email')">Digite un correo valido</div>
+              <div *ngIf="this.usuarioService.email.hasError('maxLength')">El correo debe contener máximo 50 caracteres
               </div>
             </div>
 
@@ -25,9 +25,9 @@
 
             <!--Validaciones Contraseña-->
             <div
-              *ngIf="this.usuarioService.Contrasena.invalid && (this.usuarioService.Contrasena.touched || this.usuarioService.Contrasena.dirty)"
+              *ngIf="this.usuarioService.contrasena.invalid && (this.usuarioService.contrasena.touched || this.usuarioService.contrasena.dirty)"
               class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.Contrasena.hasError('required')">La contraseña es obligatoria</div>
+              <div *ngIf="this.usuarioService.contrasena.hasError('required')">La contraseña es obligatoria</div>
             </div>
 
 
@@ -37,9 +37,9 @@
 
             <!--Validaciones Contraseña-->
             <div
-              *ngIf="this.usuarioService.Contrasena.invalid && (this.usuarioService.Contrasena.touched || this.usuarioService.Contrasena.dirty)"
+              *ngIf="this.usuarioService.contrasena.invalid && (this.usuarioService.contrasena.touched || this.usuarioService.contrasena.dirty)"
               class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.Contrasena.hasError('required')">La contraseña es obligatoria</div>
+              <div *ngIf="this.usuarioService.contrasena.hasError('required')">La contraseña es obligatoria</div>
             </div>
 
 

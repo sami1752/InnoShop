@@ -1,7 +1,3 @@
-
-
-<button class="btn btn-success mb-10 mt-100">Agregar nuevo</button>
-
 <table class="table table-hover">
     <thead>
         <tr>
@@ -14,14 +10,12 @@
     <tbody>
 
         <tr *ngFor="let usuario of usuarioService.listaUsuarios">
-            <td (click)="llenarFormularioCliente(usuario)">{{usuario.Nombres}}</td>
-            <td (click)="llenarFormularioCliente(usuario)">{{usuario.Email}}</td>
-            <td (click)="llenarFormularioCliente(usuario)">{{usuario.Direccion}}</td>
-            <td (click)="llenarFormularioCliente(usuario)">{{usuario.Telefono}}</td>
+            <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Nombres}}</td>
+            <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Email}}</td>
+            <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Direccion}}</td>
+            <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Telefono}}</td>
             <td><i (click)="eliminarUsuario(usuario)" class="fa fa-trash fa-lg - text-danger"></i></td>
             <!--<td><i (click)="DetalleCliente(usuario.Id); gestionclienteservicio.DesplegarDetalle=!gestionclienteservicio.DesplegarDetalle" class="fa fa-eye" aria-hidden="true"></i></td>-->
         </tr>
     </tbody>
 </table>
-
-    

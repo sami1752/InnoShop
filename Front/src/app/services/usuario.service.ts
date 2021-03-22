@@ -30,6 +30,8 @@ import {
 })
 export class UsuarioService {
   constructor(private http: HttpClient, private configuracion: ConfiguracionService, private formBuilder: FormBuilder) {}
+  uca : boolean
+  boton = "Registrar"
   listaUsuarios: Usuario[];
   restablecimiento: Restablecimiento;
   usuario: Usuario;
@@ -40,27 +42,41 @@ export class UsuarioService {
   };
 
   formularioRegistroUsuario = this.formBuilder.group({
+    Id: [""],
     Nombres: ["", [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
     Apellidos: ["", [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
-    Correo: ["", [Validators.required, Validators.maxLength(50), Validators.email]],
+    Email: ["", [Validators.required, Validators.maxLength(50), Validators.email]],
     TipoDocumento: ["", [Validators.required]],
-    NumDocumento: ["", [Validators.required], Validators.maxLength(10), Validators.pattern(this.configuracion.exRegularNumeros)],
+    NumDocumento: ["", [Validators.required,Validators.maxLength(10), Validators.pattern(this.configuracion.exRegularNumeros)]],
     Sexo: ["", [Validators.required]],
-    Telefono: ["", [Validators.required], Validators.maxLength(10), Validators.pattern(this.configuracion.exLetrasNumeros)],
-    Contrasena: ["", [Validators.required], Validators.maxLength(15)],
+    Telefono: ["", [Validators.required,Validators.pattern(this.configuracion.exRegularNumeros)]],
+    Contrasena: ["", [Validators.required,Validators.maxLength(15)]],
+    Direccion: ["", [Validators.required,Validators.maxLength(50)]],
     ConfirmarContrasena: ["", [Validators.required]],
     IdRol: ["", [Validators.required]]
   }, {
     validator: this.compararContrasena.bind(this)
   });
+  formularioRegistroUsuarioAdmin = this.formBuilder.group({
+    Id: [""],
+    Nombres: ["", [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Apellidos: ["", [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Email: ["", [Validators.required, Validators.maxLength(50), Validators.email]],
+    TipoDocumento: ["", [Validators.required]],
+    NumDocumento: ["", [Validators.required,Validators.maxLength(10), Validators.pattern(this.configuracion.exRegularNumeros)]],
+    Sexo: ["", [Validators.required]],
+    Telefono: ["", [Validators.required,Validators.pattern(this.configuracion.exRegularNumeros)]],
+    Direccion: ["", [Validators.required,Validators.maxLength(50)]],
+    IdRol: ["", [Validators.required]]
+  });
 
   formularioLogin = this.formBuilder.group({
-    Correo: ["", [Validators.required, Validators.maxLength(50), Validators.email]],
+    Email: ["", [Validators.required, Validators.maxLength(50), Validators.email]],
     Contrasena: ["", [Validators.required, Validators.maxLength(15)]]
   });
 
   formularioRecuperacion = this.formBuilder.group({
-    Correo: ["", [Validators.required]]
+    Email: ["", [Validators.required]]
   });
 
   formularioVerificacionRecuperacionCuenta = this.formBuilder.group({
@@ -73,7 +89,7 @@ export class UsuarioService {
   });
 
   formularioCambioContrasena = this.formBuilder.group({
-    Correo: ["", [Validators.required, Validators.maxLength(50), Validators.email]],
+    Email: ["", [Validators.required, Validators.maxLength(50), Validators.email]],
     ContrasenaAntigua: ["", [Validators.required], Validators.maxLength(15)],
     Contrasena: ["", Validators.required, Validators.maxLength(15)],
     ConfirmarContrasena: ["", [Validators.required]]
@@ -97,12 +113,12 @@ export class UsuarioService {
     return this.formularioVerificacionRecuperacionCuenta.controls["ConfirmarContrasena"];
   }
 
-  get correoRecuperacion() {
-    return this.formularioRecuperacion.controls["Correo"];
+  get emailRecuperacion() {
+    return this.formularioRecuperacion.controls["Email"];
   }
 
   get nombreUsuarioLogin() {
-    return this.formularioLogin.controls["Correo"];
+    return this.formularioLogin.controls["Email"];
   }
 
   get contrasenaLogin() {
@@ -117,8 +133,8 @@ export class UsuarioService {
     return this.formularioRegistroUsuario.controls["Apellidos"];
   }
 
-  get correo() {
-    return this.formularioRegistroUsuario.controls["Correo"];
+  get email() {
+    return this.formularioRegistroUsuario.controls["Email"];
   }
 
   get tipoDocumento() {
@@ -139,12 +155,50 @@ export class UsuarioService {
     return this.formularioRegistroUsuario.controls["IdRol"];
   }
 
-  get Contrasena() {
+  get contrasena() {
     return this.formularioRegistroUsuario.controls["Contrasena"];
+  }
+
+  get direccion() {
+    return this.formularioRegistroUsuario.controls["Direccion"];
   }
 
   get ConfirmarContrasena() {
     return this.formularioRegistroUsuario.controls["ConfirmarContrasena"];
+  }
+
+  get direccionAdmin() {
+    return this.formularioRegistroUsuarioAdmin.controls["Direccion"];
+  }
+
+  get nombresAdmin() {
+    return this.formularioRegistroUsuarioAdmin.controls["Nombres"];
+  }
+
+  get apellidosAdmin() {
+    return this.formularioRegistroUsuarioAdmin.controls["Apellidos"];
+  }
+
+  get emailAdmin() {
+    return this.formularioRegistroUsuarioAdmin.controls["Email"];
+  }
+
+  get tipoDocumentoAdmin() {
+    return this.formularioRegistroUsuarioAdmin.controls["TipoDocumento"];
+  }
+
+  get documentoAdmin() {
+    return this.formularioRegistroUsuarioAdmin.controls["NumDocumento"];
+  }
+
+  get telefonoAdmin() {
+    return this.formularioRegistroUsuarioAdmin.controls["Telefono"];
+  }
+  get sexoAdmin() {
+    return this.formularioRegistroUsuarioAdmin.controls["Sexo"];
+  }
+  get idrolAdmin() {
+    return this.formularioRegistroUsuarioAdmin.controls["IdRol"];
   }
 
   compararContrasena(formGroup: FormGroup) {
@@ -162,8 +216,8 @@ export class UsuarioService {
   registrarUsuario() {
     this.usuario = this.formularioRegistroUsuario.value;
     delete this.usuario['ConfirmarContrasena'];
-    //this.configuracion.router.navigateByUrl('Admin/inicioadmin');
-    console.log(this.usuario)
+    if(this.uca)
+      this.usuario.Contrasena = this.usuario.NumDocumento
     return this.http.post(this.configuracion.rootURL + '/Usuarios/Registro', this.usuario)
   }
 
@@ -186,7 +240,9 @@ export class UsuarioService {
     return resp;
   }
 
-
+  actualizacionUsuario(){
+    return this.http.put(this.configuracion.rootURL + '/Usuarios/ActualizacionDatos', this.usuario)
+  }
 
   verificacionRecuperacionCuenta(id: string, token: string) {
     this.restablecimiento = this.formularioVerificacionRecuperacionCuenta.value;

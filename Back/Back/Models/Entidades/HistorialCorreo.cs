@@ -9,7 +9,7 @@ namespace Back.Models.Entidades
         [Key]
         public int IdHistorial { get; set; }
         [Required]
-        public string Correo { get; set; }
+        public string Email { get; set; }
         [Required]
         public string Asunto { get; set; }
         [Required]

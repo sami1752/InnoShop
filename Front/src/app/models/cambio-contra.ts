@@ -1,5 +1,5 @@
 export interface CambioContra {
-    Correo:String,
+    Email:String,
     Contrasena:String,
     ContrasenaAntigua:string
 }

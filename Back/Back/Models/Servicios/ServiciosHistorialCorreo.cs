@@ -21,7 +21,7 @@ namespace Back.Models.Servicios
             using (MailMessage mail = new())
             {
                 mail.From = new MailAddress("innoshopcali@gmail.com", historialcorreo.NombreEvi);
-                mail.To.Add(historialcorreo.Correo);
+                mail.To.Add(historialcorreo.Email);
                 mail.Subject = historialcorreo.Asunto;
                 mail.Body = $"<p>{historialcorreo.Mensaje}</p>";
                 mail.IsBodyHtml = true;

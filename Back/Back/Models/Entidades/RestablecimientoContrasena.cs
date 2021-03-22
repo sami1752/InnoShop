@@ -9,7 +9,7 @@ namespace Back.Models.Entidades
         [Key]
         public int IdRestablecimiento { get; set; }
         [Required]
-        public string Correo { get; set; }
+        public string Email { get; set; }
         [Required]
         public string Fecha { get; set; }
         [Required]
