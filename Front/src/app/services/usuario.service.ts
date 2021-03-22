@@ -207,8 +207,8 @@ export class UsuarioService {
       .then(res => this.listaUsuarios = res as Usuario[])
   }
 
-  eliminarUsuario(id) {
-    this.usuario.Id = id;
-    return this.http.delete(this.configuracion.rootURL + '/Usuarios/ActualizacionDatos' + this.usuario);
+  eliminarUsuario(usuario:Usuario) {
+    usuario.Estado=!usuario.Estado;
+    return this.http.put(this.configuracion.rootURL + '/Usuarios/ActualizacionDatos',  usuario);
   }
 }

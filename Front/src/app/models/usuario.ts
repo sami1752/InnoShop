@@ -10,5 +10,5 @@ export interface Usuario {
         NumDocumento:string,
         Telefono:string,
         Puntos:number,
-        Estado:string
+        Estado:boolean
 }

@@ -62,7 +62,7 @@ namespace Back.Controllers
                 UsuarioIdentity usuario = await _userManager.FindByIdAsync(usuarior.Id).ConfigureAwait(false);
                 usuario.Apellidos = usuarior.Apellidos;
                 usuario.Direccion = usuarior.Direccion;
-                usuario.Email = usuarior.Correo;
+                //usuario.Email = usuarior.Correo;
                 usuario.Estado = usuarior.Estado;
                 usuario.IdRol = usuarior.IdRol;
                 usuario.Nombres = usuarior.Nombres;
@@ -71,7 +71,7 @@ namespace Back.Controllers
                 usuario.Sexo = usuarior.Sexo;
                 usuario.Telefono = usuarior.Telefono;
                 usuario.TipoDocumento = usuarior.TipoDocumento;
-                usuario.UserName = usuarior.Correo;
+                //usuario.UserName = usuarior.Correo;
                 return await _userManager.UpdateAsync(usuario).ConfigureAwait(false);
             }
             catch (Exception e)

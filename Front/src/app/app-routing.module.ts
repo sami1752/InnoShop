@@ -34,7 +34,7 @@ const routes: Routes = [
     children: [
       {path:'registroUsuario', component:RegistroUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'inicioadmin',component:InicioadminComponent, canActivate:[AutorizacionRutasGuard]},
-      {path:'listarUsuarios', component:ListaUsuariosComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'listarUsuarios', component:ListaUsuariosComponent},
       {path:'detalleUsuario', component:DetalleUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'modificarUsuario', component:ModificarUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
     

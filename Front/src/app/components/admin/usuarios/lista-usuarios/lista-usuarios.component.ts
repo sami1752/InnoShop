@@ -15,9 +15,25 @@ export class ListaUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioService.listarUsuarios();
+    console.log(this.usuarioService.listaUsuarios[0])
   }
   llenarFormularioUsuario(usuario:Usuario){
     this.usuarioService.formularioRegistroUsuario.patchValue(usuario);
+  }
+
+  eliminarUsuario(usuario:Usuario){
+    if (confirm("¿Estás seguro de desactivar el usuario?")) {
+      this.usuarioService.eliminarUsuario(usuario).subscribe(
+        res=>{
+          this.usuarioService.listarUsuarios();
+          console.log(res);
+        },
+        err=>{
+          alert(err.code);
+        }
+      );            
+    } 
+    
   }
 
 }
