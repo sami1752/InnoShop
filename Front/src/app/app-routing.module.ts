@@ -14,6 +14,7 @@ import { VistasAdminComponent } from './components/admin/vistas-admin.component'
 import { ConfirmarEmailComponent } from './components/usuarios/confirmar-email/confirmar-email.component';
 import { InicioadminComponent } from './components/admin/inicioadmin/inicioadmin.component';
 import { GestionUsuarioComponent } from './components/admin/usuarios/gestion-usuario/gestion-usuario.component';
+import { ModificarDatosComponent } from './components/usuarios/modificar-datos/modificar-datos.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
       {path:'RestablecerContrasena', component:VerificacionComponent},
       {path:'cambio', component:CambioContraComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]},
-      {path:'confirmarEmail', component:ConfirmarEmailComponent}
+      {path:'confirmarEmail', component:ConfirmarEmailComponent},
+      {path:'editarDatosCuenta', component:ModificarDatosComponent}
     ]
   },
   {

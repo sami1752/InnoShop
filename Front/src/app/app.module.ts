@@ -13,6 +13,8 @@ import { ConfiguracionService } from './services/configuracion.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { GestionUsuarioComponent } from './components/admin/usuarios/gestion-usuario/gestion-usuario.component';
+import {DetalleUsuarioComponent} from './components/admin/usuarios/detalle-usuario/detalle-usuario.component';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { GestionUsuarioComponent } from './components/admin/usuarios/gestion-usu
     VistasAdminComponent,
     InicioadminComponent,
     GestionUsuarioComponent,
+    DetalleUsuarioComponent
   ],
   imports: [
     BrowserModule,

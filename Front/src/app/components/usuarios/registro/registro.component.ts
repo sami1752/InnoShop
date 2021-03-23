@@ -20,27 +20,7 @@ export class RegistroComponent implements OnInit {
   constructor(public usuarioService: UsuarioService, public configuracion: ConfiguracionService) {}
   sw: number;
   ngOnInit(): void {}
-  listaTiposDoc = [{
-      Tipo: "Cédula de ciudadania"
-    },
-    {
-      Tipo: "Tarjeta de identidad"
-    },
-    {
-      Tipo: "Cédula de extranjerÍa"
-    }
-  ];
-
-  listaSexo = [{
-      Sexo: "Masculino"
-    },
-    {
-      Sexo: "Femenino"
-    },
-    {
-      Sexo: "Prefiero no decirlo"
-    }
-  ];
+  
 
   registro() {
     this.sw = 0;

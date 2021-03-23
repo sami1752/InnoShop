@@ -25,13 +25,27 @@ import {
   ConfirmarCorreo
 } from '../models/confirmar-correo';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
   constructor(private http: HttpClient, private configuracion: ConfiguracionService, private formBuilder: FormBuilder) {}
-  uca : boolean
-  boton = "Registrar"
+
+  desplegarDetalle=false;
+  detalleUsuario;
+  perfilUsuario;
+
+  listaTiposDoc = [{Tipo: "Cédula de ciudadania"},
+  {Tipo: "Tarjeta de identidad"},
+  {Tipo: "Cédula de extranjerÍa"}];
+
+  listaSexo = [{Sexo: "Masculino"},
+  {Sexo: "Femenino"},
+  {Sexo: "Prefiero no decirlo"}];
+
+  uca : boolean;
+  boton = "Registrar";
   listaUsuarios: Usuario[];
   restablecimiento: Restablecimiento;
   usuario: Usuario;
@@ -57,7 +71,24 @@ export class UsuarioService {
   }, {
     validator: this.compararContrasena.bind(this)
   });
+
+
+
+
   formularioRegistroUsuarioAdmin = this.formBuilder.group({
+    Id: [""],
+    Nombres: ["", [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Apellidos: ["", [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Email: ["", [Validators.required, Validators.maxLength(50), Validators.email]],
+    TipoDocumento: ["", [Validators.required]],
+    NumDocumento: ["", [Validators.required,Validators.maxLength(10), Validators.pattern(this.configuracion.exRegularNumeros)]],
+    Sexo: ["", [Validators.required]],
+    Telefono: ["", [Validators.required,Validators.pattern(this.configuracion.exRegularNumeros)]],
+    Direccion: ["", [Validators.required,Validators.maxLength(50)]],
+    IdRol: ["", [Validators.required]]
+  });
+
+  formularioRegistroEdicionDatos = this.formBuilder.group({
     Id: [""],
     Nombres: ["", [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
     Apellidos: ["", [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
@@ -201,6 +232,42 @@ export class UsuarioService {
     return this.formularioRegistroUsuarioAdmin.controls["IdRol"];
   }
 
+
+
+  get direccionEditCuenta() {
+    return this.formularioRegistroEdicionDatos.controls["Direccion"];
+  }
+
+  get nombresEditCuenta() {
+    return this.formularioRegistroEdicionDatos.controls["Nombres"];
+  }
+
+  get apellidosEditCuenta() {
+    return this.formularioRegistroEdicionDatos.controls["Apellidos"];
+  }
+
+  get emailEditCuenta() {
+    return this.formularioRegistroEdicionDatos.controls["Email"];
+  }
+
+  get tipoDocumentoEditCuenta() {
+    return this.formularioRegistroEdicionDatos.controls["TipoDocumento"];
+  }
+
+  get documentoEditCuenta() {
+    return this.formularioRegistroEdicionDatos.controls["NumDocumento"];
+  }
+
+  get telefonoEditCuenta() {
+    return this.formularioRegistroEdicionDatos.controls["Telefono"];
+  }
+  get sexoEditCuenta() {
+    return this.formularioRegistroEdicionDatos.controls["Sexo"];
+  }
+  get idrolEditCuenta() {
+    return this.formularioRegistroEdicionDatos.controls["IdRol"];
+  }
+
   compararContrasena(formGroup: FormGroup) {
     const contrasena = formGroup.get('Contrasena');
     const confirmarContrasena = formGroup.get('ConfirmarContrasena');
@@ -231,6 +298,7 @@ export class UsuarioService {
   }
 
   obtenerPerfil() {
+    
     return this.http.get(this.configuracion.rootURL + '/Usuarios/Perfil');
   }
 
@@ -241,6 +309,8 @@ export class UsuarioService {
   }
 
   actualizacionUsuario(){
+    this.usuario = this.formularioRegistroEdicionDatos.value;
+    this.usuario.Estado=true;
     return this.http.put(this.configuracion.rootURL + '/Usuarios/ActualizacionDatos', this.usuario)
   }
 
@@ -264,7 +334,18 @@ export class UsuarioService {
   }
 
   eliminarUsuario(usuario:Usuario) {
-    usuario.Estado=!usuario.Estado;
+    usuario.Estado=false;
     return this.http.put(this.configuracion.rootURL + '/Usuarios/ActualizacionDatos',  usuario);
   }
+
+  buscarUsuarioId(id){
+   return this.http.get(this.configuracion.rootURL + '/Usuarios/' + id)
+/*.toPromise().then(res=>this.detalleUsuario = res);
+   console.log(this.detalleUsuario) */
+  }
+  buscarUsuarioIdDetalle(id){
+    return this.http.get(this.configuracion.rootURL + '/Usuarios/' + id)
+ .toPromise().then(res=>this.detalleUsuario = res as usuario);
+   }
+
 }

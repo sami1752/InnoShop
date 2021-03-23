@@ -263,6 +263,7 @@ namespace Back.Controllers
                 if (usuario != null)
                     return new
                     {
+                        usuario.Id,
                         usuario.IdRol,
                         usuario.Nombres,
                         usuario.Apellidos,
@@ -285,7 +286,7 @@ namespace Back.Controllers
         public async Task<ActionResult<IEnumerable<UsuarioIdentity>>> Usuarios() => new ObjectResult(await _context.Usuarioidentity.ToListAsync());
         
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<UsuarioIdentity>>> UsuariosPorId(string id) => new ObjectResult(await _userManager.FindByIdAsync(id).ConfigureAwait(true));
+        public async Task<ActionResult<IEnumerable<UsuarioIdentity>>> UsuariosPorId(string id) =>new ObjectResult(await _userManager.FindByIdAsync(id).ConfigureAwait(true));
 
 
     }

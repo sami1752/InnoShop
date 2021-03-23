@@ -51,7 +51,7 @@
             <label for="name">Tipo documento <span>**</span></label>
             <select class="form-control mb-3 " formControlName="TipoDocumento">
               <option value="">Elige Tipo de documento</option>
-              <option *ngFor="let doc of listaTiposDoc" [value]="doc.Tipo">{{doc.Tipo}}</option>
+              <option *ngFor="let doc of this.usuarioService.listaTiposDoc" [value]="doc.Tipo">{{doc.Tipo}}</option>
             </select>
 
             <!--Validaciones Tipo documento-->
@@ -93,7 +93,7 @@
             <label for="name">Sexo <span>**</span></label>
             <select class="form-control mb-3 " formControlName="Sexo">
               <option value="">Elige Sexo</option>
-              <option *ngFor="let tipo of listaSexo" [value]="tipo.Sexo">{{tipo.Sexo}}</option>
+              <option *ngFor="let tipo of this.usuarioService.listaSexo" [value]="tipo.Sexo">{{tipo.Sexo}}</option>
             </select>
 
             <!--Validaciones Sexo-->

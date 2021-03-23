@@ -7,15 +7,15 @@
             <th scope="col">Telefono</th>
         </tr>
     </thead>
-    <tbody>
-
-        <tr *ngFor="let usuario of usuarioService.listaUsuarios">
+    <tbody *ngFor="let usuario of usuarioService.listaUsuarios">
+        <tr *ngIf="usuario.Estado">
             <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Nombres}}</td>
             <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Email}}</td>
             <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Direccion}}</td>
             <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Telefono}}</td>
             <td><i (click)="eliminarUsuario(usuario)" class="fa fa-trash fa-lg - text-danger"></i></td>
-            <!--<td><i (click)="DetalleCliente(usuario.Id); gestionclienteservicio.DesplegarDetalle=!gestionclienteservicio.DesplegarDetalle" class="fa fa-eye" aria-hidden="true"></i></td>-->
+            <td><i (click)="detalleUsuario(usuario.Id); this.usuarioService.desplegarDetalle =!this.usuarioService.desplegarDetalle"
+                 class="fa fa-eye" aria-hidden="true"></i></td>
         </tr>
     </tbody>
 </table>

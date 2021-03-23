@@ -2,7 +2,7 @@ export interface Usuario {
         Id:string,
         Nombres:String,
         Apellidos:string,
-        Email:string,
+        Correo:string,
         Contrasena:string,
         IdRol:number,
         TipoDocumento:string,
@@ -12,6 +12,7 @@ export interface Usuario {
         Telefono:string,
         Puntos:number,
         Estado:boolean,
+        Email:string
         /* AccessFailedCount: number,
         ConcurrencyStamp:string,
         EmailConfirmed:boolean,

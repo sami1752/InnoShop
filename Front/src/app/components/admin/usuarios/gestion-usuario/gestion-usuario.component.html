@@ -8,4 +8,7 @@
       <app-lista-usuarios></app-lista-usuarios>
     </div>
   </div>
+  <div *ngIf="this.usuarioService.desplegarDetalle">
+    <app-detalle-usuario></app-detalle-usuario>
+  </div>
 </div>

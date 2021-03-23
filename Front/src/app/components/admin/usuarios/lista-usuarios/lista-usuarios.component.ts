@@ -34,4 +34,8 @@ export class ListaUsuariosComponent implements OnInit {
       );
     } 
   }
+
+  detalleUsuario(id){
+    this.usuarioService.buscarUsuarioIdDetalle(id);
+  }
 }
