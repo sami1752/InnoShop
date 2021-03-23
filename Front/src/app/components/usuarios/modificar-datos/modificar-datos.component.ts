@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
+import { ConfiguracionService } from 'src/app/services/configuracion.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ModificarDatosComponent implements OnInit {
 
-  constructor(public usuarioService:UsuarioService, private router:Router) { }
+  constructor(public usuarioService:UsuarioService, private router:Router, public configuracionService: ConfiguracionService) { }
 
   //perfilUsuario;
   usuario:Usuario;
@@ -73,7 +74,7 @@ export class ModificarDatosComponent implements OnInit {
             (res:any)=>{
               {
                 alert("cliente eliminado con éxito");
-                this.router.navigateByUrl("usuarios/login");
+                this.configuracionService.cerrarSesion()
               }
             },
             err=>{

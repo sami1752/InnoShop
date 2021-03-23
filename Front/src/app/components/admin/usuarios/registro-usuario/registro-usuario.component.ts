@@ -50,18 +50,18 @@ export class RegistroUsuarioComponent implements OnInit {
   ];
   registro() {
     this.usuarioService.uca = true;
-    this.usuarioService.registrarUsuario().subscribe(
+    this.usuarioService.registrarUsuarioAdmin().subscribe(
       (respuesta: any) => {
         alert(respuesta)
         if (respuesta.Succeeded) {
           this.usuarioService.formularioRegistroUsuarioAdmin.reset();
           alert("Registro Exitoso")
+          this.usuarioService.listarUsuarios();
         } else
           respuesta.Errors.forEach(element => {
             switch (element.Code) {
               case 'DuplicateUserName':
                 alert("Email Existente en la base de datos");
-                this.usuarioService.listarUsuarios();
                 break;
               default:
                 alert("error");
@@ -72,7 +72,7 @@ export class RegistroUsuarioComponent implements OnInit {
   }
 
   actualizacion() {
-    this.usuarioService.actualizacionUsuario().subscribe(
+    this.usuarioService.actualizacionUsuarioAdmin().subscribe(
       (respuesta: any) => {
         if (respuesta.Succeeded) {
           this.usuarioService.formularioRegistroUsuarioAdmin.reset();
@@ -95,8 +95,9 @@ export class RegistroUsuarioComponent implements OnInit {
   onSubmit() {
     this.usuarioService.usuario = this.usuarioService.formularioRegistroUsuarioAdmin.value;
     if (this.usuarioService.usuario.Id == null ||
-      this.usuarioService.usuario.Id == "")
+      this.usuarioService.usuario.Id == ""){
       this.registro();
+      console.log(this.usuarioService.usuario)}
     else
       this.actualizacion();
   }

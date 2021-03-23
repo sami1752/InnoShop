@@ -269,7 +269,8 @@ namespace Back.Controllers
                         usuario.Apellidos,
                         usuario.Email,
                         usuario.Direccion,
-                        usuario.Telefono
+                        usuario.Telefono,
+                        usuario.Estado
                     };
                 else
                     return BadRequest(new { mensaje = "No se encuentra el usuario" });

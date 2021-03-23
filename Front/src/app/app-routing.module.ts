@@ -28,16 +28,14 @@ const routes: Routes = [
       {path:'cambio', component:CambioContraComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]},
       {path:'confirmarEmail', component:ConfirmarEmailComponent},
-      {path:'editarDatosCuenta', component:ModificarDatosComponent}
+      {path:'editarDatosCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]}
     ]
   },
   {
     path:'Admin', component:VistasAdminComponent,
     children: [
-      {path:'registroUsuario', component:RegistroUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'inicioadmin',component:InicioadminComponent, canActivate:[AutorizacionRutasGuard]},
-      {path:'listarUsuarios', component:ListaUsuariosComponent},
-      {path:'Usuarios', component:GestionUsuarioComponent},
+      {path:'Usuarios', component:GestionUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
     ]
   }
 ];

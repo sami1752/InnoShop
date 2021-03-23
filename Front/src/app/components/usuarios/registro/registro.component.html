@@ -16,7 +16,7 @@
               <div *ngIf="this.usuarioService.nombres.hasError('required')">El nombre es obligatorio</div>
               <div *ngIf="this.usuarioService.nombres.hasError('pattern')">El nombre no debe contener numeros o
                 caracteres especiales</div>
-              <div *ngIf="this.usuarioService.nombres.hasError('maxLength')">El nombre de usuario debe contener máximo
+              <div *ngIf="this.usuarioService.nombres.hasError('maxlength')">El nombre de usuario debe contener máximo
                 30 caracteres</div>
             </div>
 
@@ -30,7 +30,7 @@
               <div *ngIf="this.usuarioService.apellidos.hasError('required')">El apellido es obligatorio</div>
               <div *ngIf="this.usuarioService.apellidos.hasError('pattern')">El apellido no debe contener numeros o
                 caracteres especiales</div>
-              <div *ngIf="this.usuarioService.apellidos.hasError('maxLength')">El apellido de usuario debe contener
+              <div *ngIf="this.usuarioService.apellidos.hasError('maxlength')">El apellido de usuario debe contener
                 máximo 30 caracteres</div>
             </div>
 
@@ -43,7 +43,7 @@
               class="text-danger mb-20 text-center">
               <div *ngIf="this.usuarioService.email.hasError('required')">El correo es obligatorio</div>
               <div *ngIf="this.usuarioService.email.hasError('email')">Digite un correo valido</div>
-              <div *ngIf="this.usuarioService.email.hasError('maxLength')">El correo debe contener máximo 50 caracteres
+              <div *ngIf="this.usuarioService.email.hasError('maxlength')">El correo debe contener máximo 50 caracteres
               </div>
             </div>
 
@@ -72,7 +72,7 @@
               <div *ngIf="this.usuarioService.documento.hasError('required')">El número de documento es obligatorio
               </div>
               <div *ngIf="this.usuarioService.documento.hasError('pattern')">Digite solo números</div>
-              <div *ngIf="this.usuarioService.documento.hasError('maxLength')">El numero debe contener máximo 10
+              <div *ngIf="this.usuarioService.documento.hasError('maxlength')">El numero debe contener máximo 10
                 caracteres</div>
             </div>
 
@@ -85,7 +85,7 @@
               class="text-danger mb-20 text-center">
               <div *ngIf="this.usuarioService.telefono.hasError('required')">El número de telefono es obligatorio</div>
               <div *ngIf="this.usuarioService.telefono.hasError('pattern')">Digite solo números</div>
-              <div *ngIf="this.usuarioService.telefono.hasError('maxLength')">El número debe contener máximo 10
+              <div *ngIf="this.usuarioService.telefono.hasError('maxlength')">El número debe contener máximo 10
                 caracteres</div>
             </div>
 
@@ -103,25 +103,14 @@
               <div *ngIf="this.usuarioService.sexo.hasError('required')">El número de telefono es obligatorio</div>
             </div>
 
-            <label for="Rol">Rol <span>**</span></label>
-            <select class="form-control mb-3 " formControlName="IdRol">
-              <option value="">Elige Rol</option>
-              <option value=2>Cliente</option>
-            </select>
-
-            <div
-              *ngIf="this.usuarioService.idrol.invalid && (this.usuarioService.idrol.touched || this.usuarioService.idrol.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.idrol.hasError('required')">El rol es obligatorio</div>
-            </div>
-
-
             <label for="pass">Direccion <span>**</span></label>
             <input formControlName="Direccion" type="text" placeholder="Ingrese Direccion" />
             <div
               *ngIf="this.usuarioService.direccion.invalid && (this.usuarioService.direccion.touched || this.usuarioService.direccion.dirty)"
               class="text-danger mb-20 text-center">
               <div *ngIf="this.usuarioService.direccion.hasError('required')">La Direccion es obligatoria</div>
+              <div *ngIf="this.usuarioService.direccion.hasError('maxlength')">La Direccion debe contener máximo 50
+                caracteres</div>
             </div>
 
 
@@ -133,6 +122,8 @@
               *ngIf="this.usuarioService.contrasena.invalid && (this.usuarioService.contrasena.touched || this.usuarioService.contrasena.dirty)"
               class="text-danger mb-20 text-center">
               <div *ngIf="this.usuarioService.contrasena.hasError('required')">La contraseña es obligatoria</div>
+              <div *ngIf="this.usuarioService.contrasena.hasError('maxlength')">La contraseña debe contener máximo 15
+                caracteres</div>
             </div>
 
 

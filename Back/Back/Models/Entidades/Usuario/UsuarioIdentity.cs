@@ -20,7 +20,7 @@ namespace Back.Models.Usuario
         public string NumDocumento { get; set; }
         [Column(TypeName = "varchar(10)"), Required]
         public string Telefono { get; set; }
-        [Column(TypeName = "varchar(10)"), Required]
+        [Column(TypeName = "varchar(50)"), Required]
         public string Direccion { get; set; }
         public int Puntos { get; set; }
         [Required]
