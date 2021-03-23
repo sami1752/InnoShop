@@ -6,16 +6,17 @@
     .menulateral {
         /*box-shadow: 60px 16px grey;*/
         box-shadow: 0px 0px 10px rgb(36, 36, 36);
+        height: 100%;
     }
     
     .nav-pills .nav-link.active,
     .show>.nav-pills .nav-link {
-        background-color: rgba(133, 133, 133, 0.404) !important;
+        background-color: rgba(133, 133, 133, 0.212) !important;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         letter-spacing: 1px;
     }
 </style>
-<aside class="main-sidebar menulateral" style="position:absolute; margin: -0.61%; background-color:#0B0A0F;">
+<aside class="main-sidebar menulateral" style="position:absolute;  width:23%; background-color:#0B0A0F;">
 
     <!-- Brand Logo -->
     <a href="" class="brand-link text-light" align="center">
@@ -26,73 +27,73 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image ">
-                <img src="../assets/dist/img/user1-128x128.jpg " class=" img-circle elevation-2 " alt="User Image">
+
             </div>
 
             <div class="info" style="font-weight: lighter; font-size: 15px; position: relative; left:3%; letter-spacing: 2px;">
-                <a href="# " class="d-block text-light ">
+                <a class="d-block text-light" (click)="cambioDatosP()">
                     <b>{{this.perfilUsuario.Nombres}}</b>
                 </a>
             </div>
         </div>
+        <button class="btn-danger btn-block" (click)="configuracionService.cerrarSesion()">Cerrar Sesion</button>
 
-        <nav class="mt-2">
+        <nav class="mt-4">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
-                 <button class="btn-danger" (click)="configuracionService.cerrarSesion()">Cerrar Sesion</button>
-                 <li class="nav-item has-treeview menu-open">
+                <li class="nav-item has-treeview menu-open">
                     <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-store"></i>
-                        <p> Tienda </p>
+                        <i class="fas fa-store"><p>Tienda</p></i>
+
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-user-circle"></i>
+                <li class="nav-item has-treeview menu-open mt-1">
+                    <a class="nav-link active" (click)="GestionUsuario()">
+                        <i class="nav-icon fas fa-user-circle "></i>
                         <p>
                             Usuarios
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="right fas fa-angle-left "></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                    <ul class="nav nav-treeview ">
+                        <li class="nav-item ">
+                            <a class="nav-link ">
                                 <p>Registro de usuario</p>
                             </a>
                         </li>
 
                     </ul>
                 </li>
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-box-open"></i>
+                <li class=" nav-item has-treeview menu-open ">
+                    <a href="# " class="nav-link active ">
+                        <i class="nav-icon fas fa-box-open "></i>
                         <p>
                             Productos
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="right fas fa-angle-left "></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" (click)="registro=!registro">
+                    <ul class="nav nav-treeview ">
+                        <li class="nav-item ">
+                            <a href="# " class="nav-link ">
                                 <p>Registro de producto</p>
                             </a>
                         </li>
 
                     </ul>
                 </li>
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-bell"></i>
+                <li class="nav-item has-treeview menu-open ">
+                    <a href="# " class="nav-link active ">
+                        <i class="nav-icon fas fa-bell "></i>
                         <p>
                             S.personalizadas
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="right fas fa-angle-left "></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                    <ul class="nav nav-treeview ">
+                        <li class="nav-item ">
+                            <a href="# " class="nav-link ">
                                 <p>Respuestas</p>
                             </a>
                         </li>
@@ -106,22 +107,27 @@
     </div>
     <!-- /.sidebar -->
 </aside>
-
-<script src="../assets/plugins/jquery/jquery.min.js"></script>
+<div *ngIf="Usuarios">
+    <app-gestion-usuario></app-gestion-usuario>
+</div>
+<div *ngIf="datos" style="margin-left: 15%;">
+    <app-modificar-datos></app-modificar-datos>
+</div>
+<script src="../assets/plugins/jquery/jquery.min.js "></script>
 <!-- Bootstrap -->
-<script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js "></script>
 <!-- overlayScrollbars -->
-<script src="../assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="../assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js "></script>
 <!-- AdminLTE App -->
-<script src="../assets/dist/js/adminlte.js"></script>
+<script src="../assets/dist/js/adminlte.js "></script>
 <!-- OPTIONAL SCRIPTS -->
-<script src="../assets/dist/js/demo.js"></script>
-<script src="../assets/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="../assets/plugins/raphael/raphael.min.js"></script>
-<script src="../assets/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="../assets/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<script src="../assets/dist/js/demo.js "></script>
+<script src="../assets/plugins/jquery-mousewheel/jquery.mousewheel.js "></script>
+<script src="../assets/plugins/raphael/raphael.min.js "></script>
+<script src="../assets/plugins/jquery-mapael/jquery.mapael.min.js "></script>
+<script src="../assets/plugins/jquery-mapael/maps/usa_states.min.js "></script>
 <!-- ChartJS -->
-<script src="../assets/plugins/chart.js/Chart.min.js"></script>
+<script src="../assets/plugins/chart.js/Chart.min.js "></script>
 
 <!-- PAGE SCRIPTS -->
-<script src="../assets/dist/js/pages/dashboard2.js"></script>
+<script src="../assets/dist/js/pages/dashboard2.js "></script>

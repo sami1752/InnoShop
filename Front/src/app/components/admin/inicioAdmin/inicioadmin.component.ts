@@ -40,8 +40,18 @@ export class InicioadminComponent implements OnInit {
       }
     );
   }
-  registro = false;
-  lista = false;
-  modificar = false;
-  detalleUsu = false;
+ Usuarios=false;
+datos=false;
+
+
+  GestionUsuario(){
+    this.Usuarios=true;
+    this.datos=false;
+    
+  }
+  cambioDatosP(){
+    this.Usuarios=false;
+    this.datos=true;
+  }
+
 }

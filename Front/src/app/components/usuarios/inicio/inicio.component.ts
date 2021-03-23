@@ -37,4 +37,9 @@ export class InicioComponent implements OnInit {
       }
     );
   }
+
+  Micuenta= false
+  CambioMicuenta(){
+    this.Micuenta = !this.Micuenta
+  }
 }

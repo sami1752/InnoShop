@@ -26,6 +26,6 @@ import { ModificarDatosComponent } from './modificar-datos/modificar-datos.compo
     HttpClientModule
 
   ],
-  exports:[UsuariosComponent]
+  exports:[UsuariosComponent, ModificarDatosComponent]
 })
 export class UsuariosModule { }
