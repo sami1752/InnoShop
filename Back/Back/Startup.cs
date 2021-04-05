@@ -42,6 +42,10 @@ namespace Back
                 options.JsonSerializerOptions.DictionaryKeyPolicy = null;
             });
             services.AddScoped<IServiciosHistorialCorreo, ServiciosHistorialCorreo>();
+            services.AddScoped<IserviciosProductos, ServiciosProductos>();
+
+
+
             services.AddDefaultIdentity<UsuarioIdentity>().AddEntityFrameworkStores<DBContext>();
             services.Configure<IdentityOptions>(options =>
             {
@@ -91,6 +95,7 @@ namespace Back
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
+            //app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

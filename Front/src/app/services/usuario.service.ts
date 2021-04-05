@@ -345,7 +345,7 @@ export class UsuarioService {
   }
   buscarUsuarioIdDetalle(id){
     return this.http.get(this.configuracion.rootURL + '/Usuarios/' + id)
- .toPromise().then(res=>this.detalleUsuario = res as usuario);
+ .toPromise().then(res=>this.detalleUsuario = res as Usuario);
    }
 
 }
