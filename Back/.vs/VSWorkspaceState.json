@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Back",
-    "\\Back\\bin\\Debug",
-    "\\Back\\Controllers",
-    "\\Back\\Models\\Entidades"
+    "\\Back\\Controllers"
   ],
-  "SelectedNode": "\\Back.sln",
+  "SelectedNode": "\\Back\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

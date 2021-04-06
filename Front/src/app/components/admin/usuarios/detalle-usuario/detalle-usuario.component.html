@@ -1,64 +1,125 @@
+<section class="col-lg-8 connectedSortable" style="float: right; margin-top: -30%; ">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <i class="fas fa-info text-warning"></i> Información del usuario
+            </h2>
+            <div style="float: right;">
+                <i class="fas fa-certificate text-success"></i>
+                <label for="" class="p-1">Puntos</label> {{this.UsuarioService.detalleUsuario.Puntos}}
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tab-content p-0">
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-dot-circle text-secondary"></i>
+                        <label for=" " class="p-1 ">  Nombres:  </label> {{this.UsuarioService.detalleUsuario.Nombres}}
+                    </div>
+                    <div class=" col ">
+                        <i class="fas fa-dot-circle text-secondary"></i>
+                        <label for=" " class="p-1 ">  Apellidos:  </label> {{this.UsuarioService.detalleUsuario.Apellidos}}
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col ">
+                        <i class="fas fa-at text-secondary "></i>
+                        <label for=" " class="p-1 ">Correo:  </label> {{this.UsuarioService.detalleUsuario.Email}}
+                    </div>
+                    <div class="col ">
+                        <i class="fas fa-id-card text-secondary "></i>
+                        <label for=" " class="p-1 ">  Tipo documento:  </label> {{this.UsuarioService.detalleUsuario.TipoDocumento}}
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col ">
+                        <i class="fas fa-hashtag text-secondary "></i>
+                        <label for=" " class="p-1 ">  Documento:  </label> {{this.UsuarioService.detalleUsuario.NumDocumento}}
+                    </div>
+                    <div class="col ">
+                        <i class="fas fa-map-marker-alt text-secondary "></i>
+                        <label for=" " class="p-1 ">  Dirección:  </label> {{this.UsuarioService.detalleUsuario.Direccion}}
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col ">
+                        <i class="fas fa-phone-alt text-secondary "></i>
+                        <label for=" " class="p-1 ">  Teléfono:  </label> {{this.UsuarioService.detalleUsuario.Telefono}}
+                    </div>
+                    <div class="col ">
+                        <i class="fas fa-venus-mars text-secondary "></i>
+                        <label for=" " class="p-1 ">Sexo:  </label> {{this.UsuarioService.detalleUsuario.Sexo}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div class="col-12">
+<!--
+<div class="col-12 ">
 
-    <h3>Detalle Usuario</h3>
 
-    <dl class="row mx-auto">
-        <dt class="col-sm-2">
+    <dl class="row mx-auto ">
+        <dt class="col-sm-2 ">
             Nombres
         </dt>
-        <dd class="col-sm-10">
-            {{this.UsuarioService.detalleUsuario.Nombres}}
+        <dd class="col-sm-10 ">
+            
+            <div>
+                
+            </div>{{this.UsuarioService.detalleUsuario.Nombres}}
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2 ">
             Apellidos
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10 ">
             {{this.UsuarioService.detalleUsuario.Apellidos}}
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2 ">
             Correo
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10 ">
             {{this.UsuarioService.detalleUsuario.Email}}
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2 ">
             Tipo documento
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10 ">
             {{this.UsuarioService.detalleUsuario.TipoDocumento}}
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2 ">
             Documento
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10 ">
             {{this.UsuarioService.detalleUsuario.NumDocumento}}
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2 ">
             Sexo
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10 ">
             {{this.UsuarioService.detalleUsuario.Sexo}}
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2 ">
             Dirección
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10 ">
             {{this.UsuarioService.detalleUsuario.Direccion}}
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2 ">
             Telefono
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10 ">
             {{this.UsuarioService.detalleUsuario.Telefono}}
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2 ">
             Puntos
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10 ">
             {{this.UsuarioService.detalleUsuario.Puntos}}
         </dd>
     </dl>
 
- 
+
 </div>
+-->
