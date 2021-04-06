@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- Font Awesome -->
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 <style>
@@ -18,94 +18,93 @@
 </style>
 <aside class="main-sidebar menulateral" style="position:absolute;  width:23%; background-color:#0B0A0F;">
 
-    <!-- Brand Logo -->
-    <a href="" class="brand-link text-light" align="center">
-        <span class="brand-text font-weight-light info" style="letter-spacing: 10px;  font-family: Arial, Helvetica, sans-serif;"> <b>INNOVA</b></span>
-    </a>
-    <!-- Sidebar -->
-    <div class="sidebar mt-3 ">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image ">
+   
+<a href="" class="brand-link text-light" align="center">
+    <span class="brand-text font-weight-light info" style="letter-spacing: 10px;  font-family: Arial, Helvetica, sans-serif;"> <b>INNOVA</b></span>
+</a>
 
-            </div>
+<div class="sidebar mt-3 ">
+    
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image ">
 
-            <div class="info" style="font-weight: lighter; font-size: 15px; position: relative; left:3%; letter-spacing: 2px;">
-                <a class="d-block text-light" (click)="cambioDatosP()">
-                    <b>{{this.perfilUsuario.Nombres}}</b>
-                </a>
-            </div>
-        </div>
-        <button class="btn-danger btn-block" (click)="configuracionService.cerrarSesion()">Cerrar Sesion</button>
-
-        <nav class="mt-4">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="fas fa-store"><p>Tienda</p></i>
-
-                    </a>
-                </li>
-
-                <li class="nav-item has-treeview menu-open mt-1">
-                    <a class="nav-link active" (click)="GestionUsuario()">
-                        <i class="nav-icon fas fa-user-circle "></i>
-                        <p>
-                            Usuarios
-                            <i class="right fas fa-angle-left "></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview ">
-                        <li class="nav-item ">
-                            <a class="nav-link ">
-                                <p>Registro de usuario</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li class=" nav-item has-treeview menu-open ">
-                    <a href="# " class="nav-link active ">
-                        <i class="nav-icon fas fa-box-open "></i>
-                        <p>
-                            Productos
-                            <i class="right fas fa-angle-left "></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview ">
-                        <li class="nav-item ">
-                            <a href="# " class="nav-link ">
-                                <p>Registro de producto</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview menu-open ">
-                    <a href="# " class="nav-link active ">
-                        <i class="nav-icon fas fa-bell "></i>
-                        <p>
-                            S.personalizadas
-                            <i class="right fas fa-angle-left "></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview ">
-                        <li class="nav-item ">
-                            <a href="# " class="nav-link ">
-                                <p>Respuestas</p>
-                            </a>
-                        </li>
-                    </ul>
-
-                </li>
-            </ul>
-        </nav>
-
-        <!-- /.sidebar-menu-->
     </div>
-    <!-- /.sidebar -->
+
+    <div class="info" style="font-weight: lighter; font-size: 15px; position: relative; left:3%; letter-spacing: 2px;">
+        <a class="d-block text-light" (click)="cambioDatosP()">
+            <b>{{this.perfilUsuario.Nombres}}</b>
+        </a>
+    </div>
+</div>
+<button class="btn-danger btn-block" (click)="configuracionService.cerrarSesion()">Cerrar Sesion</button>
+
+<nav class="mt-4">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        
+<li class="nav-item has-treeview menu-open">
+    <a href="#" class="nav-link active">
+        <i class="fas fa-store"><p>Tienda</p></i>
+
+    </a>
+</li>
+
+<li class="nav-item has-treeview menu-open mt-1">
+    <a class="nav-link active" (click)="GestionUsuario()">
+        <i class="nav-icon fas fa-user-circle "></i>
+        <p>
+            Usuarios
+            <i class="right fas fa-angle-left "></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview ">
+        <li class="nav-item ">
+            <a class="nav-link ">
+                <p>Registro de usuario</p>
+            </a>
+        </li>
+
+    </ul>
+</li>
+<li class=" nav-item has-treeview menu-open ">
+    <a href="# " class="nav-link active ">
+        <i class="nav-icon fas fa-box-open "></i>
+        <p>
+            Productos
+            <i class="right fas fa-angle-left "></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview ">
+        <li class="nav-item ">
+            <a href="# " class="nav-link ">
+                <p>Registro de producto</p>
+            </a>
+        </li>
+
+    </ul>
+</li>
+<li class="nav-item has-treeview menu-open ">
+    <a href="# " class="nav-link active ">
+        <i class="nav-icon fas fa-bell "></i>
+        <p>
+            S.personalizadas
+            <i class="right fas fa-angle-left "></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview ">
+        <li class="nav-item ">
+            <a href="# " class="nav-link ">
+                <p>Respuestas</p>
+            </a>
+        </li>
+    </ul>
+
+</li>
+</ul>
+</nav>
+
+
+</div>
+
 </aside>
 <div *ngIf="Usuarios">
     <app-gestion-usuario></app-gestion-usuario>
@@ -114,20 +113,301 @@
     <app-modificar-datos></app-modificar-datos>
 </div>
 <script src="../assets/plugins/jquery/jquery.min.js "></script>
-<!-- Bootstrap -->
+<!-- Bootstrap
 <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js "></script>
-<!-- overlayScrollbars -->
+<!-- overlayScrollbars 
 <script src="../assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js "></script>
-<!-- AdminLTE App -->
+<!-- AdminLTE App 
 <script src="../assets/dist/js/adminlte.js "></script>
-<!-- OPTIONAL SCRIPTS -->
+<!-- OPTIONAL SCRIPTS 
 <script src="../assets/dist/js/demo.js "></script>
 <script src="../assets/plugins/jquery-mousewheel/jquery.mousewheel.js "></script>
 <script src="../assets/plugins/raphael/raphael.min.js "></script>
 <script src="../assets/plugins/jquery-mapael/jquery.mapael.min.js "></script>
 <script src="../assets/plugins/jquery-mapael/maps/usa_states.min.js "></script>
-<!-- ChartJS -->
+<!-- ChartJS
 <script src="../assets/plugins/chart.js/Chart.min.js "></script>
 
-<!-- PAGE SCRIPTS -->
-<script src="../assets/dist/js/pages/dashboard2.js "></script>
+<!-- PAGE SCRIPTS 
+<script src="../assets/dist/js/pages/dashboard2.js "></script> -->
+
+<div class="contcarga">
+    <div class="loader"></div>
+</div>
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Tienda</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Acerca de nosotros</a>
+            </li>
+        </ul>
+
+
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="index3.html" class="brand-link" style="text-align: center;">
+            <!--<img src="assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">!-->
+            <span class="brand-text font-weight-light">INNOVA</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="assets/img/images.png" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info" style="text-align: center;">
+                    <a href="#" class="d-block">{{this.perfilUsuario.Nombres}}</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-users" (click)="GestionUsuario()"></i>
+                            <p>
+                                Usuarios
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="pages/mailbox/mailbox.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Inbox</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/mailbox/compose.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Compose</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/mailbox/read-mail.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Read</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-box-open"></i>
+                            <p>
+                                Productos
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="pages/examples/invoice.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Invoice</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/profile.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Profile</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/e_commerce.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>E-commerce</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/projects.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Projects</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/project_add.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Project Add</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/project_edit.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Project Edit</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/project_detail.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Project Detail</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/contacts.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Contacts</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-plus-square"></i>
+                            <p>
+                                Solicitudes
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="pages/examples/login.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Login</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/register.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Register</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/forgot-password.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Forgot Password</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/recover-password.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Recover Password</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/lockscreen.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Lockscreen</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/legacy-user-menu.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Legacy User Menu</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/language-menu.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Language Menu</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/404.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Error 404</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/500.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Error 500</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/pace.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Pace</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/examples/blank.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Blank Page</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="starter.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Starter Page</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">REPORTES</li>
+                    <li class="nav-item">
+                        <a href="https://adminlte.io/docs/3.0" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>Ventas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://adminlte.io/docs/3.0" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>Solicitudes</p>
+                        </a>
+                    </li>
+                    <li class="nav-header">OTROS</li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-dharmachakra"></i>
+                            <p>Ruleta</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tools"></i>
+                            <p>
+                                Montajes
+
+                            </p>
+                        </a>
+
+                    </li>
+
+
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <strong>Innova &nbsp;</strong> <i class="fas fa-map-marker-alt"></i> Cali,valle del cauca.
+        <div class="float-right d-none d-sm-inline-block">
+            <i class="fab fa-instagram"></i>&nbsp;<b> <a href="https://www.instagram.com/innovartevitrinas.cali/">Innovartevitrinas.cali</a> </b>
+        </div>
+    </footer>
+</div>
+<router-outlet>
+
+</router-outlet>
