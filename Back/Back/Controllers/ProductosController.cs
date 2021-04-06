@@ -79,21 +79,72 @@ namespace Back.Controllers
                 }         
         }
 
-
         [HttpPut]
         [Route("Editar")]
         public async Task<Object> Editarproducto(Producto producto)
         {
+          try
+                {
+                    await _context.EditarProducto(producto);
+                    return Ok(new { mensaje = "Registro exitoso" });
+                //Producto producto = new Producto()
+                //{
+                //    Nombre = Rproducto.Nombre,
+                //    Estado = Rproducto.Estado,
+                //    Ancho = Rproducto.Ancho,
+                //    Largo = Rproducto.Largo,
+                //    Fondo = Rproducto.Fondo,
+                //    TipoPuerta = Rproducto.TipoPuerta,
+                //    Descripcion = Rproducto.Descripcion,
+                //    Ruedas = Rproducto.Ruedas,
+                //    IdUsuario = Rproducto.IdUsuario,
+                //    Puntos = Rproducto.Puntos,
+                //    IdCategoria = Rproducto.IdCategoria,
+                //    GarantiaMeses = Rproducto.GarantiaMeses
+                //};
+
+                //producto = await _context.EditarProducto(producto);
+
+                //if (Rproducto.Precio!=0)
+                //{
+                //    PrecioProducto precioP = new PrecioProducto()
+                //    {
+                //        Precio = Rproducto.Precio,
+                //        FechaInicio = DateTime.Now,
+                //        IdProducto = producto.IdProducto,
+                //        IdUsuario = producto.IdUsuario
+                //    };
+                //   PrecioProducto precioRespuesta=  await _context.AgregarPrecioProducto(precioP);
+                //   await _context.EditarFechaPrecio(precioRespuesta.IdPrecioProducto - 1);
+                //}
+
+
+            }
+                catch (Exception e)
+                {
+
+                    return e.Message;
+                }         
+        }
+
+        [HttpPost]
+        [Route("AgregarPrecio")]
+        public async Task<Object>AgregarPrecio(PrecioProducto precio)
+        {
             try
             {
-                await _context.EditarProducto(producto);
-                return Ok(new { mensaje = "edición exitosa" });
+                await _context.AgregarPrecioProducto(precio);
+                return Ok(new { mensaje = "Registro exitoso" });
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return e.Message;
+
+                throw;
             }
+            
         }
+
+        
 
 
         [HttpGet]

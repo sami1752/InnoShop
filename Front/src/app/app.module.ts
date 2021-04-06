@@ -34,7 +34,6 @@ import { ListaProductosComponent } from './components/admin/productos/lista-prod
     DetalleProductosComponent,
     RegistroEditarProductosComponent,
     ListaProductosComponent,
-
   ],
   imports: [
     BrowserModule,

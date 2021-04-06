@@ -18,12 +18,13 @@ namespace Back.Models.Abstratos
         Task<List<DetalleMaterialNombres>> ListarMaterialesProducto(int idProducto);
         Task<Producto> AgregarProducto(Producto producto);
         Task<Producto> BuscarProductoPorId(int id);
-        Task EditarProducto(Producto producto);
+        Task<Producto> EditarProducto(Producto producto);
         Task<DetalleProducto> DetalleProducto(int id);
 
         Task AgregarImagen(FileImagenProducto archivoImagen);
         Task AgregarDetalleMaterialProducto(DetalleMaterial detalleMaterial);
-        Task AgregarPrecioProducto(PrecioProducto precioProducto);
+        Task<PrecioProducto> AgregarPrecioProducto(PrecioProducto precioProducto);
+        Task EditarFechaPrecio(int id);
         Task<ActionResult<IEnumerable<Iva>>> listarIva();
         Task AgregarIva(Iva iva);
 
