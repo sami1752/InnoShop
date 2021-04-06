@@ -1,8 +1,22 @@
 
+<table class="table table-hover col-2">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Precio</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let precio of productoService.listaPrecios">
+        <tr>
+            <td >{{precio.IdPrecioProducto}}</td>
+            <td >{{precio.Precio}}</td>
+        </tr>
+    </tbody>
+</table>
+
 <div class="col-12">
 
     <h3>Detalle Producto</h3>
-
     <dl class="row mx-auto">
         <dt class="col-sm-2">
             Id
@@ -95,6 +109,5 @@
             {{this.productoService.detalleProducto.NombreCategoria}}
         </dd>
     </dl>
-
- 
 </div>
+

@@ -34,5 +34,6 @@ export class ListaProductosComponent implements OnInit {
   }
   detalleProducto(id){
     this.productoService.buscarProductoIdDetalle(id);
+    this.productoService.listarPrecios(id);
   }
 }
