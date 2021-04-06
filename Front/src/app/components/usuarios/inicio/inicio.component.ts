@@ -20,6 +20,26 @@ import {
 })
 export class InicioComponent implements OnInit {
   constructor(public configuracionService: ConfiguracionService, private router: Router, private usuarioService: UsuarioService) {}
+  perfilUsuario: PerfilUsuario
   ngOnInit(): void {
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+        this.perfilUsuario = < PerfilUsuario > res;
+        this.perfilUsuario = < PerfilUsuario > res;
+        if (this.perfilUsuario.IdRol == 1)
+          this.router.navigate(['/Admin/inicioadmin']);
+        if(!this.perfilUsuario.Estado){
+          alert("Usuario Inactivo")
+          this.configuracionService.cerrarSesion()}
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  Micuenta= false
+  CambioMicuenta(){
+    this.Micuenta = !this.Micuenta
   }
 }

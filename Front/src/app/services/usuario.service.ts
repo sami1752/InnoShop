@@ -66,8 +66,7 @@ export class UsuarioService {
     Telefono: ["", [Validators.required,Validators.pattern(this.configuracion.exRegularNumeros)]],
     Contrasena: ["", [Validators.required,Validators.maxLength(15)]],
     Direccion: ["", [Validators.required,Validators.maxLength(50)]],
-    ConfirmarContrasena: ["", [Validators.required]],
-    IdRol: ["", [Validators.required]]
+    ConfirmarContrasena: ["", [Validators.required]]
   }, {
     validator: this.compararContrasena.bind(this)
   });
@@ -285,6 +284,17 @@ export class UsuarioService {
     delete this.usuario['ConfirmarContrasena'];
     if(this.uca)
       this.usuario.Contrasena = this.usuario.NumDocumento
+    if(this.usuario.IdRol == 0 || this.usuario.IdRol == null)
+      this.usuario.IdRol = 2
+    return this.http.post(this.configuracion.rootURL + '/Usuarios/Registro', this.usuario)
+  }
+  registrarUsuarioAdmin() {
+    this.usuario = this.formularioRegistroUsuarioAdmin.value;
+    delete this.usuario['ConfirmarContrasena'];
+    if(this.uca)
+      this.usuario.Contrasena = this.usuario.NumDocumento
+    if(this.usuario.IdRol == 0 || this.usuario.IdRol == null)
+      this.usuario.IdRol = 2
     return this.http.post(this.configuracion.rootURL + '/Usuarios/Registro', this.usuario)
   }
 
@@ -310,6 +320,11 @@ export class UsuarioService {
 
   actualizacionUsuario(){
     this.usuario = this.formularioRegistroEdicionDatos.value;
+    this.usuario.Estado=true;
+    return this.http.put(this.configuracion.rootURL + '/Usuarios/ActualizacionDatos', this.usuario)
+  }
+
+  actualizacionUsuarioAdmin(){
     this.usuario.Estado=true;
     return this.http.put(this.configuracion.rootURL + '/Usuarios/ActualizacionDatos', this.usuario)
   }

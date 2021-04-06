@@ -15,18 +15,6 @@ export class AutorizacionRutasGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
       if(localStorage.getItem('token')!=null){
-        this.usuarioService.obtenerPerfil().subscribe(
-          res=> {
-            this.perfilUsuario = <PerfilUsuario> res;
-            if(this.perfilUsuario.IdRol == 1)
-              this.router.navigate(['/Admin/inicioadmin']);
-            else
-            this.router.navigate(['/usuarios/inicio']);
-          },
-          err=>{
-            console.log(err);
-          }
-        );
         return true;
     }else{
           this.router.navigate(['usuarios/login']);
