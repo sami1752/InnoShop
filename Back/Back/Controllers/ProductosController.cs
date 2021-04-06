@@ -30,6 +30,13 @@ namespace Back.Controllers
         [Route("Categorias")]
         public async Task<ActionResult<IEnumerable<Categoria>>> GetCategoria() => await _context.listarCategorias();
 
+        [HttpGet]
+        [Route("ProductosPorCategoria/{idCategoria}")]
+        public async Task<ActionResult<IEnumerable< DetalleProducto>>> listaProductosPorCategoria(int idCategoria)
+        {
+            return await _context.ListarProductosPorCategoria(idCategoria);
+        }
+        
         [HttpPost]
         [Route("Registro")]
         public async Task<Object> RegistroProducto(DetalleProducto Rproducto)
@@ -72,20 +79,7 @@ namespace Back.Controllers
                 }         
         }
 
-        [HttpGet]
-        [Route("Detalle/{id}")]
-        public async Task<DetalleProducto> DetalleProducto(int id)
-        {
-            try
-            {
-                return await _context.DetalleProducto(id);
-            }
-            catch (Exception)
-            {
 
-                throw;
-            }
-        }
         [HttpPut]
         [Route("Editar")]
         public async Task<Object> Editarproducto(Producto producto)
@@ -100,6 +94,32 @@ namespace Back.Controllers
                 return e.Message;
             }
         }
+
+
+        [HttpGet]
+        [Route("ProductoPorId/{idProducto}")]
+        public async Task<Producto> ProductoPorId(int idProducto)
+        {
+            return await _context.BuscarProductoPorId(idProducto);
+        }
+
+
+
+        [HttpGet]
+        [Route("Detalle/{id}")]
+        public async Task<DetalleProducto> DetalleProducto(int id)
+        {
+            try
+            {
+                return await _context.DetalleProducto(id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
 
         
@@ -149,5 +169,61 @@ namespace Back.Controllers
                 throw;
             }
         }
+
+        [HttpGet]
+        [Route("ListaDetalleMateriales/{idProducto}")]
+        public async Task<ActionResult<IEnumerable<DetalleMaterialNombres>>> listaDetalleMateriales(int idProducto)
+        {
+            return await _context.ListarMaterialesProducto(idProducto);
+        }
+
+        [HttpPost]
+        [Route("AgregarDetalleMaterial")]
+        public async Task<Object> AgregarDetalleMaterial(DetalleMaterial detalleMaterial)
+        {
+            try
+            {
+                await _context.AgregarDetalleMaterialProducto(detalleMaterial);
+                return Ok(new { mensaje = "Registro exitoso"});
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
+
+
+        [HttpGet]
+        [Route("ListarIva")]
+        public async Task<ActionResult<IEnumerable<Iva>>> listarIva() => await _context.listarIva();
+
+        [HttpPut]
+        [Route("AgregarIva")]
+        public async Task<Object> AgregarIva(Iva iva)
+        {
+            try
+            {
+                await _context.AgregarIva(iva);
+                return Ok(new { mensaje = "Iva agregado exitosamente" });
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+            }
+        }
+
+        [HttpGet]
+        [Route("listaPrecioProducto/{idProducto}")]
+        public async Task<ActionResult<IEnumerable<PrecioProducto>>> ListaPrecioProducto(int idProducto)
+        {
+            return await _context.ListaPrecioProducto(idProducto);
+        }
+            
+
+
+        
     }
 }

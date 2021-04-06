@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace Back.Models.Entidades.Productos
 {
-    public class Imagen
+    public class Iva
     {
         [Key]
-        public int IdImagen { get; set; }
-        [Column(TypeName ="varchar(200)"), Required]
-        public string RutaImagen { get; set; }
-
-        public int IdProducto { get; set; }
+        public int IdIva { get; set; }
+        [Required]
+        public float Porcentaje { get; set; }
+        [Required]
+        public DateTime FechaInicio { get; set; }
+        public DateTime FechaFin { get; set; }
         [Column(TypeName = "varchar(50)"), Required]
         public string IdUsuario { get; set; }
     }
