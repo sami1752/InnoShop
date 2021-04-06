@@ -18,6 +18,9 @@ import { GestionProductosComponent } from './components/admin/productos/gestion-
 import { DetalleProductosComponent } from './components/admin/productos/detalle-productos/detalle-productos.component';
 import { RegistroEditarProductosComponent } from './components/admin/productos/registro-editar-productos/registro-editar-productos.component';
 import { ListaProductosComponent } from './components/admin/productos/lista-productos/lista-productos.component';
+import { GestionIvaComponent } from './components/admin/productos/iva/gestion-iva/gestion-iva.component';
+import { RegistrarIvaComponent } from './components/admin/productos/iva/registrar-iva/registrar-iva.component';
+import { ListarIvaComponent } from './components/admin/productos/iva/listar-iva/listar-iva.component';
 
 
 
@@ -34,6 +37,9 @@ import { ListaProductosComponent } from './components/admin/productos/lista-prod
     DetalleProductosComponent,
     RegistroEditarProductosComponent,
     ListaProductosComponent,
+    GestionIvaComponent,
+    RegistrarIvaComponent,
+    ListarIvaComponent,
 
   ],
   imports: [

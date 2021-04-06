@@ -8,6 +8,7 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { Categoria } from '../models/categoria';
+import { Iva } from '../models/iva';
 import {
   Producto
 } from '../models/producto';
@@ -26,6 +27,8 @@ export class ProductoService {
   producto: Producto
   listaProductos: Producto[];
   listaCategorias: Categoria[];
+  listaIVA : Iva[]
+  iva : Iva
   detalleProducto: Producto
   desplegarDetalle=false;
   formularioRegistroProductos = this.formBuilder.group({
@@ -44,6 +47,14 @@ export class ProductoService {
     NombreCategoria: [""],
     GarantiaMeses: [],
     Precio:[]
+  });
+
+  formularioRegistroIVA = this.formBuilder.group({
+    IdIva: [],
+    Porcentaje: [],
+    FechaInicio: [],
+    FechaFin: [],
+    IdUsuario: [],
   });
 
   get Id() {
@@ -98,6 +109,16 @@ export class ProductoService {
     console.log(this.producto)
     return this.http.post(this.configuracion.rootURL + '/Productos/Registro', this.producto)
   }
+  fecha = new Date();
+  tiempoTranscurrido = Date.now();
+  hoy = new Date(this.tiempoTranscurrido);
+  registrarIVA() {
+    this.iva.FechaInicio = this.hoy.toISOString(); 
+    this.iva.FechaFin = "1111-11-11"
+    this.iva.IdIva = 0
+    console.log(this.iva)
+    return this.http.put(this.configuracion.rootURL + '/Productos/AgregarIva', this.iva)
+  }
 
   actualizacionProducto() {
     this.producto = this.formularioRegistroProductos.value;
@@ -110,6 +131,13 @@ export class ProductoService {
     this.http.get(this.configuracion.rootURL + '/Productos')
       .toPromise()
       .then(res => this.listaProductos = res as Producto[])
+  }
+
+  listarIva() {
+    
+    this.http.get(this.configuracion.rootURL + '/Productos/ListarIva')
+      .toPromise()
+      .then(res => this.listaIVA = res as Iva[])
   }
 
   listarCategorias() {

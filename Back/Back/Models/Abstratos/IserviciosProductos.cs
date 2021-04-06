@@ -27,6 +27,8 @@ namespace Back.Models.Abstratos
         Task<ActionResult<IEnumerable<Iva>>> listarIva();
         Task AgregarIva(Iva iva);
 
+        Task ModificarIva(DateTime nueva);
+
 
     }
 }
