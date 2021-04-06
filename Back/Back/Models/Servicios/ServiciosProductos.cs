@@ -71,30 +71,29 @@ namespace Back.Models.Servicios
             await using (_context)
             {
                 List<DetalleProducto> listaProductosPorCategoria = (from producto in _context.Productos
-                                                                    join categoria in _context.Categorias
-                                                                    on producto.IdCategoria equals categoria.IdCategoria
-                                                                    join precioProducto in _context.PrecioProductos
-                                                                    on producto.IdProducto equals precioProducto.IdProducto
-
+                                                               join categoria in _context.Categorias
+                                                               on producto.IdCategoria equals categoria.IdCategoria
+                                                               /*join precioProducto in _context.PrecioProductos
+                                                               on producto.IdProducto equals precioProducto.IdProducto*/
                                                                     where producto.IdCategoria == idCategoria
-                                                                    select new DetalleProducto
-                                                                    {
-                                                                        IdProducto = producto.IdProducto,
-                                                                        Nombre = producto.Nombre,
-                                                                        Estado = producto.Estado,
-                                                                        Ancho = producto.Ancho,
-                                                                        Largo = producto.Largo,
-                                                                        Fondo = producto.Fondo,
-                                                                        TipoPuerta = producto.TipoPuerta,
-                                                                        Descripcion = producto.Descripcion,
-                                                                        Ruedas = producto.Ruedas,
-                                                                        IdUsuario = producto.IdUsuario,
-                                                                        IdCategoria = producto.IdCategoria,
-                                                                        Puntos = producto.Puntos,
-                                                                        NombreCategoria = categoria.Nombre,
-                                                                        GarantiaMeses = producto.GarantiaMeses,
-                                                                        Precio = precioProducto.Precio
-                                                                    }).ToList();
+                                                               select new DetalleProducto
+                                                               {
+                                                                   IdProducto = producto.IdProducto,
+                                                                   Nombre = producto.Nombre,
+                                                                   Estado = producto.Estado,
+                                                                   Ancho = producto.Ancho,
+                                                                   Largo = producto.Largo,
+                                                                   Fondo = producto.Fondo,
+                                                                   TipoPuerta = producto.TipoPuerta,
+                                                                   Descripcion = producto.Descripcion,
+                                                                   Ruedas = producto.Ruedas,
+                                                                   IdUsuario = producto.IdUsuario,
+                                                                   IdCategoria = producto.IdCategoria,
+                                                                   Puntos = producto.Puntos,
+                                                                   NombreCategoria = categoria.Nombre,
+                                                                   GarantiaMeses = producto.GarantiaMeses,
+                                                                   //Precio = precioProducto.Precio
+                                                               }).ToList();
                 return listaProductosPorCategoria;
             }
         }
@@ -117,10 +116,19 @@ namespace Back.Models.Servicios
         public async Task<Producto> BuscarProductoPorId(int id) => await _context.Productos.FindAsync(id);
 
 
-        public async Task EditarProducto(Producto producto)
+        public async Task<Producto> EditarProducto(Producto producto)
         {
             _context.Productos.Update(producto);
             await _context.SaveChangesAsync();
+            return producto;
+        }
+
+        public async Task EditarFechaPrecio(int id)
+        {
+
+            PrecioProducto precioD = await _context.PrecioProductos.FindAsync(id);
+            precioD.FechaFin = DateTime.Now;
+            _context.PrecioProductos.Update(precioD);
         }
 
         public async Task AgregarImagen(FileImagenProducto archivoImagen)
@@ -169,11 +177,14 @@ namespace Back.Models.Servicios
             }
         }
 
-        public async Task AgregarPrecioProducto(PrecioProducto precioProducto)
+        public async Task<PrecioProducto> AgregarPrecioProducto(PrecioProducto precioProducto)
         {
             _context.PrecioProductos.Add(precioProducto);
-            await _context.SaveChangesAsync();
+             await _context.SaveChangesAsync();
+            return precioProducto;
         }
+
+
 
         public async Task<DetalleProducto> DetalleProducto(int id)
         {

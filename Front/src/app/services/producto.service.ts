@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { Categoria } from '../models/categoria';
 import { Iva } from '../models/iva';
+import { Precio } from '../models/precio';
 import {
   Producto
 } from '../models/producto';
@@ -24,6 +25,8 @@ import { UsuarioService } from './usuario.service';
 export class ProductoService {
 
   constructor(public usuarioService:UsuarioService ,private http: HttpClient, private configuracion: ConfiguracionService, private formBuilder: FormBuilder) {}
+  precio:Precio;
+  listaPrecios:Precio[];
   producto: Producto
   listaProductos: Producto[];
   listaCategorias: Categoria[];
@@ -105,7 +108,7 @@ export class ProductoService {
     else
     this.producto.Ruedas = false
     this.producto.IdProducto = 0
-    this.producto.Precio = 0
+    //this.producto.Precio = 0
     console.log(this.producto)
     return this.http.post(this.configuracion.rootURL + '/Productos/Registro', this.producto)
   }
@@ -156,5 +159,16 @@ export class ProductoService {
     return this.http.get(this.configuracion.rootURL + '/Productos/Detalle/' + id)
       .toPromise().then(res => this.detalleProducto = res as Producto);
   }
+
+  registroPrecio(){
+    return this.http.post(this.configuracion.rootURL + '/Productos/AgregarPrecio', this.precio)
+  }
+  
+  listarPrecios(idProducto){
+    this.http.get(this.configuracion.rootURL + '/Productos/listaPrecioProducto/'+idProducto)
+    .toPromise()
+    .then(res => this.listaPrecios = res as Precio[])
+  }
+
 
 }
