@@ -1,24 +1,42 @@
-
-<!-- 
-
-    <div class="contcarga">
-        <div class="loader"></div>
-    </div> -->
-    <br>
-    
-    <div class="div1">
-        <div class="row" style="margin-left: 25%;">
-            <div class="col-md-4">
-                <app-registro-editar-productos></app-registro-editar-productos>
+<section class="content">
+    <div class="content-wrapper">
+        <br>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <section class="col-lg-5 connectedSortable">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i class="fas fa-folder-plus"></i> Registro
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content p-0">
+                                    <app-registro-editar-productos></app-registro-editar-productos>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="col-lg-7 connectedSortable">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i class="fas fa-boxes"></i> Productos
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content p-0">
+                                    <app-lista-productos></app-lista-productos>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
-            <div class="cold-md-5" style="width: 50%; margin-left: 5%;">
-                
-    <app-lista-productos></app-lista-productos>
+            <div *ngIf="this.productoService.desplegarDetalle">
+                <app-detalle-productos></app-detalle-productos>
             </div>
-        </div>
+        </section>
     </div>
-    <div>
-        <div *ngIf="this.productoService.desplegarDetalle" style="margin-left: 25%;">
-            <app-detalle-productos></app-detalle-productos>
-        </div>
-    </div>
+</section>

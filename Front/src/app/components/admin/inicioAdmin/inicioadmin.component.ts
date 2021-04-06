@@ -41,17 +41,26 @@ export class InicioadminComponent implements OnInit {
     );
   }
  Usuarios=false;
+ Productos=false;
 datos=false;
 
 
   GestionUsuario(){
     this.Usuarios=true;
+    this.Productos=false;
     this.datos=false;
     
   }
   cambioDatosP(){
-    this.Usuarios=false;
     this.datos=true;
+    this.Usuarios=false;
+    this.Productos=false;
+  }
+  GestionProductos(){
+    this.Productos=true;
+    this.Usuarios=false;
+    this.datos=false;
+    
   }
 
 }

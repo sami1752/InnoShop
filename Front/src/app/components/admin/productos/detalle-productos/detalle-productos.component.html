@@ -1,100 +1,91 @@
-
-<div class="col-12">
-
-    <h3>Detalle Producto</h3>
-
-    <dl class="row mx-auto">
-        <dt class="col-sm-2">
-            Id
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.IdProducto}}
-        </dd>
-        <dt class="col-sm-2">
-            Nombre
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.Nombre}}
-        </dd>
-        <dt class="col-sm-2">
-            Estado
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.Estado}}
-        </dd>
-        <dt class="col-sm-2">
-            Ancho
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.Ancho}}
-        </dd>
-        <dt class="col-sm-2">
-            Largo
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.Largo}}
-        </dd>
-        <dt class="col-sm-2">
-            Fondo
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.Fondo}}
-        </dd>
-        <dt class="col-sm-2">
-            TipoPuerta
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.TipoPuerta}}
-        </dd>
-        <dt class="col-sm-2">
-            Descripcion
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.Descripcion}}
-        </dd>
-        <dt class="col-sm-2">
-            Ruedas
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.Ruedas}}
-        </dd>
-        <dt class="col-sm-2">
-            IdUsuario
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.IdUsuario}}
-        </dd>
-        <dt class="col-sm-2">
-            Puntos
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.Puntos}}
-        </dd>
-        <dt class="col-sm-2">
-            IdCategoria
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.IdCategoria}}
-        </dd>
-        <dt class="col-sm-2">
-            GarantiaMeses
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.GarantiaMeses}}
-        </dd>
-        <dt class="col-sm-2">
-            Precio
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.Precio}}
-        </dd>
-        <dt class="col-sm-2">
-            NombreCategoria
-        </dt>
-        <dd class="col-sm-10">
-            {{this.productoService.detalleProducto.NombreCategoria}}
-        </dd>
-    </dl>
-
- 
-</div>
+<section class="col-lg-7 connectedSortable" style="float: right; position: relative; margin-block: -45%;">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <i class="fas fa-info text-warning"></i> Información del Producto
+            </h2>
+        </div>
+        <div class="card-body">
+            <div class="tab-content p-0">
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Id:  </label> {{this.productoService.detalleProducto.IdProducto}}
+                    </div>
+                    <div class="col">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Estado:  </label> {{this.productoService.detalleProducto.Estado}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Nombre:  </label> {{this.productoService.detalleProducto.Nombre}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">Largo:  </label> {{this.productoService.detalleProducto.Largo}}
+                    </div>
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Ancho:  </label> {{this.productoService.detalleProducto.Ancho}}
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Fondo:  </label> {{this.productoService.detalleProducto.Fondo}}
+                    </div>
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Tipo puerta:  </label> {{this.productoService.detalleProducto.TipoPuerta}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Descripción:  </label> {{this.productoService.detalleProducto.Descripcion}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Ruedas:  </label> {{this.productoService.detalleProducto.Ruedas}}
+                    </div>
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Puntos:  </label> {{this.productoService.detalleProducto.Puntos}}
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Id usuario:  </label>{{this.productoService.detalleProducto.IdUsuario}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Id Categoria:  </label> {{this.productoService.detalleProducto.IdCategoria}}
+                    </div>
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Categoria:  </label>{{this.productoService.detalleProducto.NombreCategoria}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Meses de garantía:  </label> {{this.productoService.detalleProducto.GarantiaMeses}}
+                    </div>
+                    <div class="col ">
+                        <i class="fas fa-dot-circle text-primary"></i>
+                        <label for=" " class="p-1 ">  Precio:  </label>{{this.productoService.detalleProducto.Precio}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
