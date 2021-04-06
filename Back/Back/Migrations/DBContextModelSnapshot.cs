@@ -19,7 +19,7 @@ namespace Back.Migrations
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Back.Models.Entidades.Productos.Categorias", b =>
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Categoria", b =>
                 {
                     b.Property<int>("IdCategoria")
                         .ValueGeneratedOnAdd()
@@ -29,8 +29,9 @@ namespace Back.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -41,7 +42,7 @@ namespace Back.Migrations
                     b.ToTable("Categorias");
                 });
 
-            modelBuilder.Entity("Back.Models.Entidades.Productos.DetalleMateriales", b =>
+            modelBuilder.Entity("Back.Models.Entidades.Productos.DetalleMaterial", b =>
                 {
                     b.Property<int>("IdDetalleMaterial")
                         .ValueGeneratedOnAdd()
@@ -54,15 +55,16 @@ namespace Back.Migrations
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("IdDetalleMaterial");
 
                     b.ToTable("DetalleMateriales");
                 });
 
-            modelBuilder.Entity("Back.Models.Entidades.Productos.Imagenes", b =>
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Imagen", b =>
                 {
                     b.Property<int>("IdImagen")
                         .ValueGeneratedOnAdd()
@@ -72,8 +74,9 @@ namespace Back.Migrations
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("RutaImagen")
                         .IsRequired()
@@ -84,7 +87,32 @@ namespace Back.Migrations
                     b.ToTable("Imagenes");
                 });
 
-            modelBuilder.Entity("Back.Models.Entidades.Productos.Materiales", b =>
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Iva", b =>
+                {
+                    b.Property<int>("IdIva")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaFin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<float>("Porcentaje")
+                        .HasColumnType("real");
+
+                    b.HasKey("IdIva");
+
+                    b.ToTable("Iva");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Material", b =>
                 {
                     b.Property<int>("IdMaterial")
                         .ValueGeneratedOnAdd()
@@ -97,8 +125,8 @@ namespace Back.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
+                    b.Property<string>("IdUsuario")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -109,7 +137,7 @@ namespace Back.Migrations
                     b.ToTable("Materiales");
                 });
 
-            modelBuilder.Entity("Back.Models.Entidades.Productos.PrecioProductos", b =>
+            modelBuilder.Entity("Back.Models.Entidades.Productos.PrecioProducto", b =>
                 {
                     b.Property<int>("IdPrecioProducto")
                         .ValueGeneratedOnAdd()
@@ -125,8 +153,9 @@ namespace Back.Migrations
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<float>("Precio")
                         .HasColumnType("real");
@@ -136,7 +165,7 @@ namespace Back.Migrations
                     b.ToTable("PrecioProductos");
                 });
 
-            modelBuilder.Entity("Back.Models.Entidades.Productos.Productos", b =>
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Producto", b =>
                 {
                     b.Property<int>("IdProducto")
                         .ValueGeneratedOnAdd()
@@ -161,8 +190,9 @@ namespace Back.Migrations
                     b.Property<int>("IdCategoria")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<float>("Largo")
                         .HasColumnType("real");

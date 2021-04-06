@@ -15,6 +15,7 @@ namespace Back.Models.Entidades.Productos
         [Column(TypeName ="varchar(20)"), Required]
         public string Nombre { get; set; }
         public DateTime Fecha { get; set; }
-        public int IdUsuario { get; set; }
+        [Column(TypeName = "varchar(50)"), Required]
+        public string IdUsuario { get; set; }
     }
 }

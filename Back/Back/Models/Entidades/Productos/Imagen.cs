@@ -15,6 +15,7 @@ namespace Back.Models.Entidades.Productos
         public string RutaImagen { get; set; }
 
         public int IdProducto { get; set; }
-        public int IdUsuario { get; set; }
+        [Column(TypeName = "varchar(50)"), Required]
+        public string IdUsuario { get; set; }
     }
 }

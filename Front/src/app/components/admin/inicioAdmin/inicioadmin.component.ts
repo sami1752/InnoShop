@@ -41,6 +41,7 @@ export class InicioadminComponent implements OnInit {
     );
   }
  Usuarios=false;
+ Productos=false;
 datos=false;
 
 
@@ -52,6 +53,12 @@ datos=false;
   cambioDatosP(){
     this.Usuarios=false;
     this.datos=true;
+  }
+  GestionProductos(){
+    this.Productos=true;
+    this.Usuarios=false;
+    this.datos=false;
+    
   }
 
 }

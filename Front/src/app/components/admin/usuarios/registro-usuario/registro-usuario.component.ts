@@ -23,7 +23,7 @@ import {
 export class RegistroUsuarioComponent implements OnInit {
 
   constructor(private router: Router, public usuarioService: UsuarioService, public configuracion: ConfiguracionService) {}
-  /*  sw: number */
+
 
   ngOnInit(): void {}
   
