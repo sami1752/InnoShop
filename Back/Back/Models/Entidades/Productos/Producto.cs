@@ -11,7 +11,6 @@ namespace Back.Models.Entidades.Productos
     public class Producto
     {
         [Key]
-
         public int IdProducto { get; set; }
 
         [Column(TypeName = "varchar(60)"), Required]
@@ -32,6 +31,7 @@ namespace Back.Models.Entidades.Productos
         public string Descripcion { get; set; }
 
         public bool Ruedas { get; set; }
+        [Column(TypeName = "varchar(50)"), Required]
         public string IdUsuario { get; set; }
 
         public int Puntos { get; set; }

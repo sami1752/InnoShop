@@ -21,6 +21,7 @@ namespace Back.Models.DAL
         public DbSet<DetalleMaterial> DetalleMateriales { get; set; }
         public DbSet<Imagen> Imagenes { get; set; }
         public DbSet<PrecioProducto> PrecioProductos { get; set; }
+        public DbSet<Iva> Iva { get; set; }
 
     }
 }
