@@ -1,0 +1,18 @@
+<br>
+
+<div class="div1">
+    <div class="row" style="margin-left: 25%;">
+        <div class="col-md-4">
+            <app-registro-editar-productos></app-registro-editar-productos>
+        </div>
+        <div class="cold-md-5" style="width: 50%; margin-left: 5%;">
+
+            <app-lista-productos></app-lista-productos>
+        </div>
+    </div>
+</div>
+<div>
+    <div *ngIf="this.productoService.desplegarDetalle" style="margin-left: 25%;">
+        <app-detalle-productos></app-detalle-productos>
+    </div>
+</div>
