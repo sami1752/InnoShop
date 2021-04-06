@@ -3,8 +3,11 @@
         <tr>
             <th scope="col">Nombre</th>
             <th scope="col">Email</th>
-            <th scope="col">Direccion</th>
-            <th scope="col">Telefono</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+
         </tr>
     </thead>
     <tbody *ngFor="let usuario of usuarioService.listaUsuarios">
@@ -14,8 +17,7 @@
             <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Direccion}}</td>
             <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Telefono}}</td>
             <td><i (click)="eliminarUsuario(usuario)" class="fa fa-trash fa-lg - text-danger"></i></td>
-            <td><i (click)="detalleUsuario(usuario.Id); this.usuarioService.desplegarDetalle =!this.usuarioService.desplegarDetalle"
-                 class="fa fa-eye" aria-hidden="true"></i></td>
+            <td><i (click)="detalleUsuario(usuario.Id); this.usuarioService.desplegarDetalle =!this.usuarioService.desplegarDetalle" class="fa fa-eye" aria-hidden="true"></i></td>
         </tr>
     </tbody>
 </table>
