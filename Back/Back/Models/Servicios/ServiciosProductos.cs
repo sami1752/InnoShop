@@ -25,18 +25,60 @@ namespace Back.Models.Servicios
 
 
 
-        public async Task<ActionResult<IEnumerable<Producto>>> listarProductos() => await _context.Productos.ToListAsync();
+        public async Task<ActionResult<IEnumerable<DetalleProducto>>> listarProductos()
+        {
+            await using (_context)
+            {
+                List<DetalleProducto> ListaProductos = (from producto in _context.Productos
+                                                        join categoria in _context.Categorias
+                                                        on producto.IdCategoria equals categoria.IdCategoria
+                                                        /*join precioProducto in _context.PrecioProductos
+                                                        on producto.IdProducto equals precioProducto.IdProducto*/
+                                                        
+                                                      
+                                                        select new DetalleProducto
+                                                        {
+                                                            IdProducto = producto.IdProducto,
+                                                            Nombre = producto.Nombre,
+                                                            Estado = producto.Estado,
+                                                            Ancho = producto.Ancho,
+                                                            Largo = producto.Largo,
+                                                            Fondo = producto.Fondo,
+                                                            TipoPuerta = producto.TipoPuerta,
+                                                            Descripcion = producto.Descripcion,
+                                                            Ruedas = producto.Ruedas,
+                                                            IdUsuario = producto.IdUsuario,
+                                                            IdCategoria = producto.IdCategoria,
+                                                            Puntos = producto.Puntos,
+                                                            NombreCategoria = categoria.Nombre,
+                                                            GarantiaMeses = producto.GarantiaMeses,
+                                                            //Precio = precioProducto.Precio
+                                                        }).ToList();
+                return ListaProductos;
+            }
+        }
         public async Task<ActionResult<IEnumerable<Imagen>>> ListaImagenesProducto(int id)
         {
             return await _context.Imagenes.Where(x => x.IdProducto == id).ToListAsync();
         }
         public async Task<ActionResult<IEnumerable<Categoria>>> listarCategorias() => await _context.Categorias.ToListAsync();
 
-        public async Task AgregarProducto(Producto producto)
+        public async Task<Producto> AgregarProducto(Producto producto)
         {
-            var res = _context.Productos.Add(producto);
+            _context.Productos.Add(producto);
+            await _context.SaveChangesAsync();
+
+            return producto;
+        }
+
+        public async Task AgregarPrecio(PrecioProducto precio)
+        {
+            _context.PrecioProductos.Add(precio);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Producto> BuscarProductoPorId(int id) => await _context.Productos.FindAsync(id);
+
 
         public async Task EditarProducto(Producto producto)
         {
@@ -57,6 +99,55 @@ namespace Back.Models.Servicios
             };
             await _context.Imagenes.AddAsync(imagen);
             await _context.SaveChangesAsync();
+        }
+
+
+        public async Task AgregarDetalleMaterialProducto(DetalleMaterial detalleMaterial)
+        {
+            _context.DetalleMateriales.Add(detalleMaterial);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AgregarPrecioProducto(PrecioProducto precioProducto)
+        {
+            _context.PrecioProductos.Add(precioProducto);
+             await _context.SaveChangesAsync();
+
+           
+        }
+
+        public async Task<DetalleProducto> DetalleProducto(int id)
+        {
+            await using (_context)
+            {
+                List<DetalleProducto> detalleProducto = ( from producto in _context.Productos
+                                       join categoria in _context.Categorias
+                                       on producto.IdCategoria equals categoria.IdCategoria
+                                       join precioProducto in _context.PrecioProductos
+                                       on producto.IdProducto equals precioProducto.IdProducto
+                                       where producto.IdProducto == id 
+
+                                       select new DetalleProducto
+                                       {
+                                           IdProducto = producto.IdProducto,
+                                           Nombre = producto.Nombre,
+                                           Estado = producto.Estado,
+                                           Ancho = producto.Ancho,
+                                           Largo = producto.Largo,
+                                           Fondo = producto.Fondo,
+                                           TipoPuerta = producto.TipoPuerta,
+                                           Descripcion = producto.Descripcion,
+                                           Ruedas = producto.Ruedas,
+                                           IdUsuario = producto.IdUsuario,
+                                           Puntos = producto.Puntos,
+                                           NombreCategoria = categoria.Nombre,
+                                           GarantiaMeses = producto.GarantiaMeses,
+                                           Precio = precioProducto.Precio
+                                       }).ToList();
+                return detalleProducto[detalleProducto.Count()-1];
+            }
+
+            
         }
 
        

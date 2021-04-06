@@ -24,7 +24,7 @@ namespace Back.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Producto>>> GetProductos() =>  await _context.listarProductos();
+        public async Task<ActionResult<IEnumerable<DetalleProducto>>> GetProductos() =>  await _context.listarProductos();
         
         [HttpGet]
         [Route("Categorias")]
@@ -32,22 +32,60 @@ namespace Back.Controllers
 
         [HttpPost]
         [Route("Registro")]
-        public async Task<Object> RegistroProducto(Producto producto)
+        public async Task<Object> RegistroProducto(DetalleProducto Rproducto)
         {
                 try
                 {
-                    await _context.AgregarProducto(producto);
-                    
+                    Producto producto = new Producto()
+                    {
+                        Nombre = Rproducto.Nombre,
+                        Estado = Rproducto.Estado,
+                        Ancho = Rproducto.Ancho,
+                        Largo = Rproducto.Largo,
+                        Fondo = Rproducto.Fondo,
+                        TipoPuerta = Rproducto.TipoPuerta,
+                        Descripcion = Rproducto.Descripcion,
+                        Ruedas = Rproducto.Ruedas,
+                        IdUsuario = Rproducto.IdUsuario,
+                        Puntos = Rproducto.Puntos,
+                        IdCategoria = Rproducto.IdCategoria,
+                        GarantiaMeses = Rproducto.GarantiaMeses
+                    };
+
+                    producto = await _context.AgregarProducto(producto);
+
+                    PrecioProducto precioP = new PrecioProducto()
+                    {
+                        Precio = Rproducto.Precio,
+                        FechaInicio = DateTime.Now,
+                        IdProducto = producto.IdProducto,
+                        IdUsuario = producto.IdUsuario
+                    };
+                    await _context.AgregarPrecioProducto(precioP);
+
                     return Ok(new { mensaje = "Registro exitoso" });
                 }
                 catch (Exception e)
                 {
 
                     return e.Message;
-                }
-            
+                }         
         }
 
+        [HttpGet]
+        [Route("Detalle/{id}")]
+        public async Task<DetalleProducto> DetalleProducto(int id)
+        {
+            try
+            {
+                return await _context.DetalleProducto(id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         [HttpPut]
         [Route("Editar")]
         public async Task<Object> Editarproducto(Producto producto)
@@ -59,7 +97,6 @@ namespace Back.Controllers
             }
             catch (Exception e)
             {
-
                 return e.Message;
             }
         }
