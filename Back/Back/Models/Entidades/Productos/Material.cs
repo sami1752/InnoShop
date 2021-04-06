@@ -15,6 +15,6 @@ namespace Back.Models.Entidades.Productos
         public string Nombre{ get; set; }
         public string Descripcion { get; set; }
         public DateTime Fecha { get; set; }
-        public int IdUsuario  { get; set; }
+        public string IdUsuario  { get; set; }
     }
 }

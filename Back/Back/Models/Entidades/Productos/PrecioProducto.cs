@@ -18,6 +18,6 @@ namespace Back.Models.Entidades.Productos
         [Required]
         public int IdProducto { get; set; }
         [Required]
-        public int IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
     }
 }

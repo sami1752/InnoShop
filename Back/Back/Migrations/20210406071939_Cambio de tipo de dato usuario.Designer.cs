@@ -4,14 +4,16 @@ using Back.Models.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Back.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20210406071939_Cambio de tipo de dato usuario")]
+    partial class Cambiodetipodedatousuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,8 +31,8 @@ namespace Back.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("IdUsuario")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -54,8 +56,8 @@ namespace Back.Migrations
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<string>("IdUsuario")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
 
                     b.HasKey("IdDetalleMaterial");
 
@@ -72,8 +74,8 @@ namespace Back.Migrations
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<string>("IdUsuario")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
 
                     b.Property<string>("RutaImagen")
                         .IsRequired()
@@ -97,8 +99,8 @@ namespace Back.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("IdUsuario")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

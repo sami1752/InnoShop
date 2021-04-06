@@ -12,6 +12,6 @@ namespace Back.Models.Entidades.Productos
         public int IdDetalleMaterial { get; set; }
         public int IdProducto { get; set; }
         public int IdMaterial { get; set; }
-        public int IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
     }
 }

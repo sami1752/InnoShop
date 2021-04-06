@@ -1,8 +1,8 @@
 <form class="" [formGroup]="this.usuarioService.formularioRegistroUsuarioAdmin" (ngSubmit)="onSubmit()">
-  
+
   <input type="hidden" formControlName="Id">
   <label for="name">Nombres <span>**</span></label>
-  <input formControlName="Nombres" id="name" type="text" placeholder="Ingresa nombres" class="form-control "/>
+  <input formControlName="Nombres" id="name" type="text" placeholder="Ingresa nombres" class="form-control " />
   <!--Validaciones Nombre-->
   <div
     *ngIf="this.usuarioService.nombresAdmin.invalid && (this.usuarioService.nombresAdmin.touched || this.usuarioService.nombresAdmin.dirty)"
@@ -26,7 +26,7 @@
       máximo 30 caracteres</div>
   </div>
   <label for="pass">Correo<span>**</span></label>
-  <input formControlName="Email" type="email" placeholder="Email" class="form-control "/>
+  <input formControlName="Email" type="email" placeholder="Email" class="form-control " />
   <!--Validaciones Correo-->
   <div
     *ngIf="this.usuarioService.emailAdmin.invalid && (this.usuarioService.emailAdmin.touched || this.usuarioService.emailAdmin.dirty)"
@@ -60,7 +60,7 @@
       caracteres</div>
   </div>
   <label for="name">Telefono <span>**</span></label>
-  <input formControlName="Telefono" type="text" placeholder="Ingrese telefono" class="form-control "/>
+  <input formControlName="Telefono" type="text" placeholder="Ingrese telefono" class="form-control " />
   <!--Validaciones Numero telefono-->
   <div
     *ngIf="this.usuarioService.telefonoAdmin.invalid && (this.usuarioService.telefonoAdmin.touched || this.usuarioService.telefonoAdmin.dirty)"
@@ -76,7 +76,8 @@
     <option *ngFor="let tipo of listaSexo" [value]="tipo.Sexo">{{tipo.Sexo}}</option>
   </select>
   <!--Validaciones Sexo-->
-  <div *ngIf="this.usuarioService.sexoAdmin.invalid && (this.usuarioService.sexoAdmin.touched || this.usuarioService.sexoAdmin.dirty)"
+  <div
+    *ngIf="this.usuarioService.sexoAdmin.invalid && (this.usuarioService.sexoAdmin.touched || this.usuarioService.sexoAdmin.dirty)"
     class="text-danger mb-20 text-center">
     <div *ngIf="this.usuarioService.sexoAdmin.hasError('required')">El sexo es obligatorio</div>
   </div>
@@ -94,7 +95,7 @@
 
 
   <label for="pass">Direccion <span>**</span></label>
-  <input formControlName="Direccion" type="text"  class="form-control "  placeholder="Ingrese Direccion" />
+  <input formControlName="Direccion" type="text" class="form-control " placeholder="Ingrese Direccion" />
   <div
     *ngIf="this.usuarioService.direccionAdmin.invalid && (this.usuarioService.direccionAdmin.touched || this.usuarioService.direccionAdmin.dirty)"
     class="text-danger mb-20 text-center">
@@ -106,6 +107,7 @@
   <div class="mt-10"></div>
   <button type="submit" [disabled]="this.usuarioService.formularioRegistroUsuarioAdmin.invalid"
     class="os-btn w-50">{{usuarioService.boton}}</button>
-    <button type="button" class="os-btn w-50" (click)="this.usuarioService.formularioRegistroUsuarioAdmin.reset();">Limpiar</button>
+  <button type="button" class="os-btn w-50"
+    (click)="this.usuarioService.formularioRegistroUsuarioAdmin.reset();">Limpiar</button>
   <div class="or-divide"><span></span></div>
 </form>

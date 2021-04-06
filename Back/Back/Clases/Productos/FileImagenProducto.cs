@@ -12,6 +12,6 @@ namespace Back.Clases.Productos
         public string RutaImagen { get; set; }
 
         public int IdProducto { get; set; }
-        public int IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
     }
 }

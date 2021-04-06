@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import{UsuariosModule}from './components/usuarios/usuarios.module';
+import {UsuariosModule}from './components/usuarios/usuarios.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +14,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { GestionUsuarioComponent } from './components/admin/usuarios/gestion-usuario/gestion-usuario.component';
 import {DetalleUsuarioComponent} from './components/admin/usuarios/detalle-usuario/detalle-usuario.component';
+import { GestionProductosComponent } from './components/admin/productos/gestion-productos/gestion-productos.component';
+import { DetalleProductosComponent } from './components/admin/productos/detalle-productos/detalle-productos.component';
+import { RegistroEditarProductosComponent } from './components/admin/productos/registro-editar-productos/registro-editar-productos.component';
+import { ListaProductosComponent } from './components/admin/productos/lista-productos/lista-productos.component';
+
 
 
 @NgModule({
@@ -24,7 +29,12 @@ import {DetalleUsuarioComponent} from './components/admin/usuarios/detalle-usuar
     VistasAdminComponent,
     InicioadminComponent,
     GestionUsuarioComponent,
-    DetalleUsuarioComponent
+    DetalleUsuarioComponent,
+    GestionProductosComponent,
+    DetalleProductosComponent,
+    RegistroEditarProductosComponent,
+    ListaProductosComponent,
+
   ],
   imports: [
     BrowserModule,
