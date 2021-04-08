@@ -1,0 +1,16 @@
+<form class="" [formGroup]="this.productoService.formularioRegistroPrecio" (ngSubmit)="registro()">
+
+    <label for="Porcentaje">Precio <span>**</span></label>
+    <input formControlName="Precio" type="number" id="Precio" placeholder="Ingresa el Precio" class="form-control "/>
+    <input type="hidden" formControlName="IdProducto" id="IdProducto">
+    
+    <div class="mt-10"></div>
+  
+    <button type="submit" [disabled]="this.productoService.formularioRegistroPrecio.invalid"
+      class="os-btn w-50">Guardar</button>
+  
+    <button type="button" class="os-btn w-50"
+      (click)="this.productoService.formularioRegistroPrecio.reset(); this.productoService.FormularioPrecio=false">Limpiar</button>
+
+    <div class="or-divide"><span></span></div>
+  </form>

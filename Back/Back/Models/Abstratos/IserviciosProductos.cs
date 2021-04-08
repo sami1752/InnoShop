@@ -30,6 +30,8 @@ namespace Back.Models.Abstratos
 
         Task ModificarIva(DateTime nueva);
 
+        Task ModificaPrecio(DateTime nueva, int Id);
+
 
     }
 }

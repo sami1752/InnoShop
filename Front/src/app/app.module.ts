@@ -21,6 +21,7 @@ import { ListaProductosComponent } from './components/admin/productos/lista-prod
 import { GestionIvaComponent } from './components/admin/productos/iva/gestion-iva/gestion-iva.component';
 import { RegistrarIvaComponent } from './components/admin/productos/iva/registrar-iva/registrar-iva.component';
 import { ListarIvaComponent } from './components/admin/productos/iva/listar-iva/listar-iva.component';
+import { RegistrarPrecioComponent } from './components/admin/productos/registrar-precio/registrar-precio.component';
 
 
 
@@ -40,6 +41,7 @@ import { ListarIvaComponent } from './components/admin/productos/iva/listar-iva/
     GestionIvaComponent,
     RegistrarIvaComponent,
     ListarIvaComponent,
+    RegistrarPrecioComponent,
 
   ],
   imports: [

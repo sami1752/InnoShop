@@ -32,7 +32,10 @@ export class ProductoService {
   listaCategorias: Categoria[];
   listaIVA : Iva[]
   iva : Iva
+  CampoPrecio : boolean = true
+  FormularioPrecio : boolean = false
   detalleProducto: Producto
+  IdProducto : number
   desplegarDetalle=false;
   formularioRegistroProductos = this.formBuilder.group({
     IdProducto: [],
@@ -60,63 +63,83 @@ export class ProductoService {
     IdUsuario: [],
   });
 
+  formularioRegistroPrecio = this.formBuilder.group({
+    IdPrecioProducto: [],
+    Precio: [],
+    FechaInicio: [],
+    FechaFin: [],
+    IdUsuario: [],
+    IdProducto: []
+  });
+
   get Id() {
     return this.formularioRegistroProductos.controls["Id"];
   }
+
   get Nombre() {
     return this.formularioRegistroProductos.controls["Nombre"];
   }
+
   get Estado() {
     return this.formularioRegistroProductos.controls["Estado"];
   }
+
   get Ancho() {
     return this.formularioRegistroProductos.controls["Ancho"];
   }
+
   get Largo() {
     return this.formularioRegistroProductos.controls["Largo"];
   }
+
   get Fondo() {
     return this.formularioRegistroProductos.controls["Fondo"];
   }
+
   get TipoPuerta() {
     return this.formularioRegistroProductos.controls["TipoPuerta"];
   }
+
   get Descripcion() {
     return this.formularioRegistroProductos.controls["Descripcion"];
   }
+
   get Ruedas() {
     return this.formularioRegistroProductos.controls["Ruedas"];
   }
+
   get IdUsuario() {
     return this.formularioRegistroProductos.controls["IdUsuario"];
   }
+
   get Puntos() {
     return this.formularioRegistroProductos.controls["Puntos"];
   }
+
   get IdCategoria() {
     return this.formularioRegistroProductos.controls["IdCategoria"];
   }
+
   get GarantiaMeses() {
     return this.formularioRegistroProductos.controls["GarantiaMeses"];
   }
 
   registrarProducto() {
-
     this.producto.Estado = true;
     if(this.producto.Ruedas)
     this.producto.Ruedas = true
     else
     this.producto.Ruedas = false
     this.producto.IdProducto = 0
-    //this.producto.Precio = 0
-    console.log(this.producto)
     return this.http.post(this.configuracion.rootURL + '/Productos/Registro', this.producto)
   }
+
   fecha = new Date();
   tiempoTranscurrido = Date.now();
   hoy = new Date(this.tiempoTranscurrido);
+
   registrarIVA() {
-    this.iva.FechaInicio = this.hoy.toISOString(); 
+    this.iva.FechaInicio = this.hoy.toISOString();
     this.iva.FechaFin = "1111-11-11"
     this.iva.IdIva = 0
     console.log(this.iva)
@@ -130,21 +153,18 @@ export class ProductoService {
   }
 
   listarProducto() {
-    
     this.http.get(this.configuracion.rootURL + '/Productos')
       .toPromise()
       .then(res => this.listaProductos = res as Producto[])
   }
 
   listarIva() {
-    
     this.http.get(this.configuracion.rootURL + '/Productos/ListarIva')
       .toPromise()
       .then(res => this.listaIVA = res as Iva[])
   }
 
   listarCategorias() {
-    
     this.http.get(this.configuracion.rootURL + '/Productos/Categorias')
       .toPromise()
       .then(res => this.listaCategorias = res as Categoria[])
@@ -161,9 +181,13 @@ export class ProductoService {
   }
 
   registroPrecio(){
+    this.precio.IdProducto = this.detalleProducto.IdProducto
+    this.precio.FechaInicio = this.hoy.toISOString();
+    this.precio.FechaFin = "1111-11-11"
+    this.precio.IdPrecioProducto = 0
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarPrecio', this.precio)
   }
-  
+
   listarPrecios(idProducto){
     this.http.get(this.configuracion.rootURL + '/Productos/listaPrecioProducto/'+idProducto)
     .toPromise()

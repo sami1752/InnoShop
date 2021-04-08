@@ -74,8 +74,7 @@ namespace Back.Controllers
                 }
                 catch (Exception e)
                 {
-
-                    return e.Message;
+                   return e.Message;
                 }         
         }
 
@@ -86,7 +85,7 @@ namespace Back.Controllers
           try
                 {
                     await _context.EditarProducto(producto);
-                    return Ok(new { mensaje = "Registro exitoso" });
+                    return Ok(new { mensaje = "Actializacion exitosa" });
                 //Producto producto = new Producto()
                 //{
                 //    Nombre = Rproducto.Nombre,
@@ -133,6 +132,7 @@ namespace Back.Controllers
         {
             try
             {
+                await _context.ModificaPrecio(precio.FechaInicio, precio.IdProducto);
                 await _context.AgregarPrecioProducto(precio);
                 return Ok(new { mensaje = "Registro exitoso" });
             }

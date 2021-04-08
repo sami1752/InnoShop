@@ -33,10 +33,6 @@ namespace Back.Models.Servicios
                 List<DetalleProducto> ListaProductos = (from producto in _context.Productos
                                                         join categoria in _context.Categorias
                                                         on producto.IdCategoria equals categoria.IdCategoria
-                                                        join precioProducto in _context.PrecioProductos
-                                                        on producto.IdProducto equals precioProducto.IdProducto
-
-
                                                         select new DetalleProducto
                                                         {
                                                             IdProducto = producto.IdProducto,
@@ -53,7 +49,6 @@ namespace Back.Models.Servicios
                                                             Puntos = producto.Puntos,
                                                             NombreCategoria = categoria.Nombre,
                                                             GarantiaMeses = producto.GarantiaMeses,
-                                                            Precio = precioProducto.Precio
                                                         }).ToList();
                 return ListaProductos;
             }
@@ -247,7 +242,25 @@ namespace Back.Models.Servicios
         }
 
 
+        public async Task ModificaPrecio(DateTime nueva, int Id)
+        {
+            List<PrecioProducto> Precio = (from preciol in _context.PrecioProductos
+                                           where preciol.IdProducto == Id
+                             orderby preciol.IdPrecioProducto descending
+                             select new PrecioProducto
+                             {
+                                 IdPrecioProducto = preciol.IdPrecioProducto,
+                                 FechaFin = preciol.FechaFin,
+                                 FechaInicio = preciol.FechaInicio,
+                                 IdUsuario = preciol.IdUsuario,
+                                 Precio = preciol.Precio,
+                                 IdProducto = preciol.IdProducto
 
+                             }).ToList();
+            Precio[0].FechaFin = nueva;
+            _context.PrecioProductos.Update(Precio[0]);
+            await _context.SaveChangesAsync();
+        }
 
     }
 }

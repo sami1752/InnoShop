@@ -17,14 +17,16 @@ export class ListaProductosComponent implements OnInit {
     this.productoService.listarCategorias();
   }
   llenarFormularioProducto(producto:Producto){
+    this.productoService.CampoPrecio = false
     this.productoService.formularioRegistroProductos.patchValue(producto);
+    
   }
   eliminarProducto(producto:Producto){
     if (confirm("¿Estás seguro de desactivar el Producto?")) {
       this.productoService.eliminarProducto(producto).subscribe(
         res=>{
           this.productoService.listarProducto();
-          console.log(res);
+          alert(res);
         },
         err=>{
           alert(err.code);
@@ -35,5 +37,11 @@ export class ListaProductosComponent implements OnInit {
   detalleProducto(id){
     this.productoService.buscarProductoIdDetalle(id);
     this.productoService.listarPrecios(id);
+    
   }
+
+  tomarIdProducto(id){
+    this.productoService.precio.IdProducto = id
+  }
+
 }

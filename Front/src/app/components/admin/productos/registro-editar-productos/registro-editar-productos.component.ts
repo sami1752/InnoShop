@@ -89,6 +89,7 @@ export class RegistroEditarProductosComponent implements OnInit {
       (respuesta: any) => {
           this.productoService.formularioRegistroProductos.reset();
           alert("Actualizacion Exitosa")
+          this.productoService.CampoPrecio = true;
           this.productoService.listarProducto();
       }, error => {
         alert(error)
