@@ -11,7 +11,6 @@ namespace Back.Clases.Productos
     {
         public IFormFile Imagen { get; set; }
         public string RutaImagen { get; set; }
-
         public int IdProducto { get; set; }
         public string IdUsuario { get; set; }
     }

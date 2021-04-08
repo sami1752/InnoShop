@@ -128,6 +128,7 @@ namespace Back.Models.Servicios
 
         public async Task AgregarImagen(FileImagenProducto archivoImagen)
         {
+            
             string rutaImagen = System.IO.Path.Combine(_environment.ContentRootPath, "Imagenes", archivoImagen.Imagen.FileName);
             await archivoImagen.Imagen.CopyToAsync(new System.IO.FileStream(rutaImagen, System.IO.FileMode.Create));
 

@@ -1,0 +1,31 @@
+<section class="col-lg-7 connectedSortable">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">
+        <i class="fas fa-boxes"></i> Imagen
+      </h2>
+      <button type="button" class="os-btn w-50"
+        (click)="this.productoService.FormularioImagen = !this.productoService.FormularioImagen ">Agregar</button>
+    </div>
+    <div class="card-body">
+      <div class="tab-content p-0">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">RutaImagen</th>
+              <th scope="col">IdUsuario</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let imagen of productoService.listaImagenes">
+            <tr>
+              <td>{{imagen.IdImagen}}</td>
+              <td>{{imagen.RutaImagen}}</td>
+              <td>{{imagen.IdUsuario}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

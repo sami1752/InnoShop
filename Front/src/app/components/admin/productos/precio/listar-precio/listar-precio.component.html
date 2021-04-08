@@ -1,0 +1,35 @@
+<section class="col-lg-7 connectedSortable">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <i class="fas fa-boxes"></i> Precios
+            </h2>
+            <button type="button" class="os-btn w-50"
+            (click)="this.productoService.FormularioPrecio = !this.productoService.FormularioPrecio ">Agregar</button>
+        </div>
+        <div class="card-body">
+            <div class="tab-content p-0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">FechaInicio</th>
+                            <th scope="col">FechaFin</th>
+                            <th scope="col">IdUsuario</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let precio of productoService.listaPrecios">
+                        <tr>
+                            <td>{{precio.IdPrecioProducto}}</td>
+                            <td>{{precio.Precio}}</td>
+                            <td>{{precio.FechaInicio}}</td>
+                            <td>{{precio.FechaFin}}</td>
+                            <td>{{precio.IdUsuario}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

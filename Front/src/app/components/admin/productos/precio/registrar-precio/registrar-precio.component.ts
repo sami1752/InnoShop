@@ -15,7 +15,6 @@ export class RegistrarPrecioComponent implements OnInit {
   constructor(public usuarioService: UsuarioService, private router: Router, public productoService: ProductoService, public configuracion: ConfiguracionService) { }
 
   ngOnInit(): void {
-    alert( this.productoService.detalleProducto.IdProducto)
     this.productoService.formularioRegistroPrecio.patchValue(this.productoService.precio);
   }
 
@@ -42,5 +41,4 @@ export class RegistrarPrecioComponent implements OnInit {
       }
     );
   }
-
 }

@@ -1,13 +1,16 @@
 import {
-  HttpClient
+  HttpClient, HttpHeaders
 } from '@angular/common/http';
+import { identifierModuleUrl } from '@angular/compiler';
 import {
   Injectable
 } from '@angular/core';
 import {
   FormBuilder
 } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Categoria } from '../models/categoria';
+import { Imagen } from '../models/imagen';
 import { Iva } from '../models/iva';
 import { Precio } from '../models/precio';
 import {
@@ -26,14 +29,18 @@ export class ProductoService {
 
   constructor(public usuarioService:UsuarioService ,private http: HttpClient, private configuracion: ConfiguracionService, private formBuilder: FormBuilder) {}
   precio:Precio;
+  imagenFile
   listaPrecios:Precio[];
+  listaImagenes:Imagen[]
   producto: Producto
   listaProductos: Producto[];
   listaCategorias: Categoria[];
   listaIVA : Iva[]
   iva : Iva
+  imagen : Imagen
   CampoPrecio : boolean = true
   FormularioPrecio : boolean = false
+  FormularioImagen : boolean = false
   detalleProducto: Producto
   IdProducto : number
   desplegarDetalle=false;
@@ -68,6 +75,14 @@ export class ProductoService {
     Precio: [],
     FechaInicio: [],
     FechaFin: [],
+    IdUsuario: [],
+    IdProducto: []
+  });
+
+  formularioRegistroImagen = this.formBuilder.group({
+    IdImagen: [],
+    RutaImagen: [],
+    Imagen: [],
     IdUsuario: [],
     IdProducto: []
   });
@@ -142,7 +157,6 @@ export class ProductoService {
     this.iva.FechaInicio = this.hoy.toISOString();
     this.iva.FechaFin = "1111-11-11"
     this.iva.IdIva = 0
-    console.log(this.iva)
     return this.http.put(this.configuracion.rootURL + '/Productos/AgregarIva', this.iva)
   }
 
@@ -187,6 +201,26 @@ export class ProductoService {
     this.precio.IdPrecioProducto = 0
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarPrecio', this.precio)
   }
+  registroImagen(): Observable<any>{
+    this.imagen.IdProducto = this.detalleProducto.IdProducto
+    this.imagen.IdImagen = 0
+    this.imagen.Imagen = this.imagenFile
+    this.formularioRegistroImagen.patchValue(this.imagen);
+    const formData = new FormData();
+    formData.append('Imagen', this.formularioRegistroImagen.get('Imagen').value);
+    formData.append('IdProducto', this.formularioRegistroImagen.get('IdProducto').value);
+    formData.append('IdUsuario', this.formularioRegistroImagen.get('IdUsuario').value);
+    console.log(this.formularioRegistroImagen.value)
+    console.log(formData)
+    var headers = new HttpHeaders().set("Content-Type","application/json")
+    return this.http.post<any>(this.configuracion.rootURL + '/Productos/Imagen/', formData)
+  }
+
+  listarImagen(id){
+    this.http.get(this.configuracion.rootURL + '/Productos/ListaImagenes/'+id)
+    .toPromise()
+    .then(res => console.log(this.listaImagenes = res as Imagen[]))
+  }
 
   listarPrecios(idProducto){
     this.http.get(this.configuracion.rootURL + '/Productos/listaPrecioProducto/'+idProducto)
@@ -194,5 +228,10 @@ export class ProductoService {
     .then(res => this.listaPrecios = res as Precio[])
   }
 
+  fileEvent(fileInput: Event){
+    this.imagenFile = (<HTMLInputElement>fileInput.target).files[0];
+    console.log((<HTMLInputElement>fileInput.target).files[0])
+    console.log(this.imagenFile)
 
+  }
 }
