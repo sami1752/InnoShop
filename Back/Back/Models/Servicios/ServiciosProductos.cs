@@ -66,29 +66,29 @@ namespace Back.Models.Servicios
             await using (_context)
             {
                 List<DetalleProducto> listaProductosPorCategoria = (from producto in _context.Productos
-                                                               join categoria in _context.Categorias
-                                                               on producto.IdCategoria equals categoria.IdCategoria
-                                                               /*join precioProducto in _context.PrecioProductos
-                                                               on producto.IdProducto equals precioProducto.IdProducto*/
+                                                                    join categoria in _context.Categorias
+                                                                    on producto.IdCategoria equals categoria.IdCategoria
+                                                                    /*join precioProducto in _context.PrecioProductos
+                                                                    on producto.IdProducto equals precioProducto.IdProducto*/
                                                                     where producto.IdCategoria == idCategoria
-                                                               select new DetalleProducto
-                                                               {
-                                                                   IdProducto = producto.IdProducto,
-                                                                   Nombre = producto.Nombre,
-                                                                   Estado = producto.Estado,
-                                                                   Ancho = producto.Ancho,
-                                                                   Largo = producto.Largo,
-                                                                   Fondo = producto.Fondo,
-                                                                   TipoPuerta = producto.TipoPuerta,
-                                                                   Descripcion = producto.Descripcion,
-                                                                   Ruedas = producto.Ruedas,
-                                                                   IdUsuario = producto.IdUsuario,
-                                                                   IdCategoria = producto.IdCategoria,
-                                                                   Puntos = producto.Puntos,
-                                                                   NombreCategoria = categoria.Nombre,
-                                                                   GarantiaMeses = producto.GarantiaMeses,
-                                                                   //Precio = precioProducto.Precio
-                                                               }).ToList();
+                                                                    select new DetalleProducto
+                                                                    {
+                                                                        IdProducto = producto.IdProducto,
+                                                                        Nombre = producto.Nombre,
+                                                                        Estado = producto.Estado,
+                                                                        Ancho = producto.Ancho,
+                                                                        Largo = producto.Largo,
+                                                                        Fondo = producto.Fondo,
+                                                                        TipoPuerta = producto.TipoPuerta,
+                                                                        Descripcion = producto.Descripcion,
+                                                                        Ruedas = producto.Ruedas,
+                                                                        IdUsuario = producto.IdUsuario,
+                                                                        IdCategoria = producto.IdCategoria,
+                                                                        Puntos = producto.Puntos,
+                                                                        NombreCategoria = categoria.Nombre,
+                                                                        GarantiaMeses = producto.GarantiaMeses,
+                                                                        //Precio = precioProducto.Precio
+                                                                    }).ToList();
                 return listaProductosPorCategoria;
             }
         }
@@ -149,6 +149,13 @@ namespace Back.Models.Servicios
             await _context.SaveChangesAsync();
         }
 
+        public async Task EliminarDetalleMaterial(int id)
+        {
+            DetalleMaterial detalleMaterial = await _context.DetalleMateriales.FindAsync(id);
+            _context.DetalleMateriales.Remove(detalleMaterial);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<List<DetalleMaterialNombres>> ListarMaterialesProducto(int idProducto)
         {
             await using (_context)
@@ -176,7 +183,7 @@ namespace Back.Models.Servicios
         public async Task<PrecioProducto> AgregarPrecioProducto(PrecioProducto precioProducto)
         {
             _context.PrecioProductos.Add(precioProducto);
-             await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return precioProducto;
         }
 
@@ -247,21 +254,24 @@ namespace Back.Models.Servicios
         {
             List<PrecioProducto> Precio = (from preciol in _context.PrecioProductos
                                            where preciol.IdProducto == Id
-                             orderby preciol.IdPrecioProducto descending
-                             select new PrecioProducto
-                             {
-                                 IdPrecioProducto = preciol.IdPrecioProducto,
-                                 FechaFin = preciol.FechaFin,
-                                 FechaInicio = preciol.FechaInicio,
-                                 IdUsuario = preciol.IdUsuario,
-                                 Precio = preciol.Precio,
-                                 IdProducto = preciol.IdProducto
+                                           orderby preciol.IdPrecioProducto descending
+                                           select new PrecioProducto
+                                           {
+                                               IdPrecioProducto = preciol.IdPrecioProducto,
+                                               FechaFin = preciol.FechaFin,
+                                               FechaInicio = preciol.FechaInicio,
+                                               IdUsuario = preciol.IdUsuario,
+                                               Precio = preciol.Precio,
+                                               IdProducto = preciol.IdProducto
 
-                             }).ToList();
+                                           }).ToList();
             Precio[0].FechaFin = nueva;
             _context.PrecioProductos.Update(Precio[0]);
             await _context.SaveChangesAsync();
         }
 
+        public async Task<ActionResult<IEnumerable<Material>>> ListaMatriales()  => await _context.Materiales.ToListAsync();
     }
+
 }
+

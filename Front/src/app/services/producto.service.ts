@@ -11,7 +11,10 @@ import {
 import { Observable } from 'rxjs';
 import { Categoria } from '../models/categoria';
 import { Imagen } from '../models/imagen';
+import { DetalleMaterial } from '../models/detalle-material';
+import { DetalleMaterialProducto } from '../models/detalle-material-producto';
 import { Iva } from '../models/iva';
+import { Material } from '../models/material';
 import { Precio } from '../models/precio';
 import {
   Producto
@@ -28,6 +31,12 @@ import { UsuarioService } from './usuario.service';
 export class ProductoService {
 
   constructor(public usuarioService:UsuarioService ,private http: HttpClient, private configuracion: ConfiguracionService, private formBuilder: FormBuilder) {}
+  
+  
+  idProducto1: number=0;
+  DetalleMaterial:DetalleMaterial;
+  listaMateriales:Material[];
+  ListaDetalleMateriales:DetalleMaterialProducto[];
   precio:Precio;
   imagenFile
   listaPrecios:Precio[];
@@ -44,6 +53,9 @@ export class ProductoService {
   detalleProducto: Producto
   IdProducto : number
   desplegarDetalle=false;
+  desplegarDetalleMateriales=false;
+  tablaDetalleMateriales =false;
+
   formularioRegistroProductos = this.formBuilder.group({
     IdProducto: [],
     Nombre: [""],
@@ -86,6 +98,12 @@ export class ProductoService {
     IdUsuario: [],
     IdProducto: []
   });
+  formularioRegistroDetalleMaterial = this.formBuilder.group({
+    IdMaterial: []
+  });
+  get idMaterial(){
+    return this.formularioRegistroDetalleMaterial.controls["IdMaterial"]
+  }
 
   get Id() {
     return this.formularioRegistroProductos.controls["Id"];
@@ -145,7 +163,7 @@ export class ProductoService {
     this.producto.Ruedas = true
     else
     this.producto.Ruedas = false
-    this.producto.IdProducto = 0
+    this.producto.IdProducto = 0;
     return this.http.post(this.configuracion.rootURL + '/Productos/Registro', this.producto)
   }
 
@@ -232,6 +250,27 @@ export class ProductoService {
     this.imagenFile = (<HTMLInputElement>fileInput.target).files[0];
     console.log((<HTMLInputElement>fileInput.target).files[0])
     console.log(this.imagenFile)
+  }
+  listarMateriales(){
+    this.http.get(this.configuracion.rootURL + '/Productos/ListaMateriales')
+    .toPromise()
+    .then(res => this.listaMateriales = res as Material[])
+  }
+
+  RegistrarDetalleMaterial(){
+    this.DetalleMaterial.IdProducto =this.idProducto1;
+    return this.http.post(this.configuracion.rootURL + '/Productos/AgregarDetalleMaterial', this.DetalleMaterial)
+  }
+
+  ListarDetalleMaterial(idProducto){
+    this.http.get(this.configuracion.rootURL + '/Productos/ListaDetalleMateriales/'+idProducto)
+    .toPromise()
+    .then(res => this.ListaDetalleMateriales = res as DetalleMaterialProducto[]);
+  }
+
+  EliminarDetalleMaterial(id){
+    return this.http.delete(this.configuracion.rootURL + '/Productos/EliminarMaterial/'+id);
+  }
 
   }
-}
+

@@ -25,7 +25,8 @@ import { RegistrarPrecioComponent } from './components/admin/productos/precio/re
 import { ListarImagenComponent } from './components/admin/productos/imagen/listar-imagen/listar-imagen.component';
 import { RegistrarImagenComponent } from './components/admin/productos/imagen/registrar-imagen/registrar-imagen.component';
 import { ListarPrecioComponent } from './components/admin/productos/precio/listar-precio/listar-precio.component';
-
+import { RegistroDetalleMaterialComponent } from './components/admin/productos/registro-detalle-material/registro-detalle-material.component';
+import { ListarDetalleMaterialComponent } from './components/admin/productos/listar-detalle-material/listar-detalle-material.component';
 
 
 
@@ -50,6 +51,8 @@ import { ListarPrecioComponent } from './components/admin/productos/precio/lista
     RegistrarImagenComponent,
     ListarPrecioComponent,
 
+    RegistroDetalleMaterialComponent,
+    ListarDetalleMaterialComponent,
 
   ],
   imports: [

@@ -19,7 +19,10 @@ export class ListaProductosComponent implements OnInit {
   llenarFormularioProducto(producto:Producto){
     this.productoService.CampoPrecio = false
     this.productoService.formularioRegistroProductos.patchValue(producto);
-    
+    this.productoService.desplegarDetalleMateriales =true;
+    this.productoService.tablaDetalleMateriales =true;
+    this.productoService.idProducto1 = producto.IdProducto;
+    this.productoService.ListarDetalleMaterial(producto.IdProducto);
   }
   eliminarProducto(producto:Producto){
     if (confirm("¿Estás seguro de desactivar el Producto?")) {
@@ -39,6 +42,7 @@ export class ListaProductosComponent implements OnInit {
     this.productoService.listarPrecios(id);
     this.productoService.listarImagen(id);
     
+    this.productoService.ListarDetalleMaterial(id);
   }
 
   tomarIdProducto(id){

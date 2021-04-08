@@ -10,6 +10,7 @@ export class DetalleProductosComponent implements OnInit {
 
   constructor(public productoService:ProductoService) { }
   ngOnInit(): void {
+    this.productoService.ListarDetalleMaterial(this.productoService.detalleProducto.IdProducto);
   }
 
 }
