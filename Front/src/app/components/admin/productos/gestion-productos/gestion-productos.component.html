@@ -15,9 +15,7 @@
                                 <div class="tab-content p-0">
                                     <app-lista-productos></app-lista-productos>
                                 </div>
-                                <div *ngIf="this.productoService.FormularioImagen">
-                                    <app-registrar-imagen></app-registrar-imagen>
-                                </div>
+
                             </div>
                         </div>
                     </section>
@@ -33,9 +31,6 @@
                                 <div class="tab-content p-0">
                                     <app-registro-editar-productos></app-registro-editar-productos>
                                 </div>
-                                <div *ngIf="this.productoService.FormularioPrecio">
-                                    <app-registrar-precio></app-registrar-precio>
-                                </div>
 
                             </div>
                         </div>
@@ -45,6 +40,9 @@
             <div *ngIf="this.productoService.desplegarDetalle" style="margin-top: -45%;">
                 <app-detalle-productos></app-detalle-productos>
             </div>
+
+
+
         </section>
     </div>
 </section>

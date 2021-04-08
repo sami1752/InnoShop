@@ -7,6 +7,10 @@
         </div>
         <div class="card-body">
             <div class="tab-content p-0">
+                <div *ngIf="this.productoService.FormularioPrecio">
+                    <app-registrar-precio></app-registrar-precio>
+                </div>
+
                 <table class="table table-hover">
                     <thead>
                         <tr>
