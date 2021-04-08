@@ -27,7 +27,9 @@ export class RegistroEditarProductosComponent implements OnInit {
 
   constructor(public usuarioService: UsuarioService, private router: Router, public productoService: ProductoService, public configuracion: ConfiguracionService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.productoService.listarCategorias();
+  }
 
   listaTiposPuerta = [{
       Tipo: "Bisagra"
@@ -68,8 +70,9 @@ export class RegistroEditarProductosComponent implements OnInit {
         this.productoService.producto.IdUsuario = (res as Usuario).Id;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
-            alert(respuesta.mensaje)
-            console.log(respuesta.mensaje);
+            alert("Registro exitoso");
+            this.productoService.desplegarDetalleMateriales=true;
+            this.productoService.idProducto1 = respuesta.mensaje;
             this.productoService.formularioRegistroProductos.reset();
             this.productoService.listarProducto();
           }, error => {
@@ -83,6 +86,7 @@ export class RegistroEditarProductosComponent implements OnInit {
     );
   }
 
+
   actualizacion() {
 
     this.productoService.actualizacionProducto().subscribe(
@@ -91,6 +95,7 @@ export class RegistroEditarProductosComponent implements OnInit {
           alert("Actualizacion Exitosa")
           this.productoService.CampoPrecio = true;
           this.productoService.listarProducto();
+          this.productoService.ListarDetalleMaterial(this.productoService.producto.IdProducto);
       }, error => {
         alert(error)
         console.log(error);

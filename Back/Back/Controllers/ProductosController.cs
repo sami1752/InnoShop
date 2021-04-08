@@ -36,6 +36,8 @@ namespace Back.Controllers
         {
             return await _context.ListarProductosPorCategoria(idCategoria);
         }
+
+
         
         [HttpPost]
         [Route("Registro")]
@@ -70,7 +72,7 @@ namespace Back.Controllers
                     };
                     await _context.AgregarPrecioProducto(precioP);
 
-                    return Ok(new { mensaje = "Registro exitoso" });
+                    return Ok(new { mensaje = producto.IdProducto });
                 }
                 catch (Exception e)
                 {
@@ -222,6 +224,12 @@ namespace Back.Controllers
         }
 
         [HttpGet]
+        [Route("ListaMateriales")]
+        public async Task<ActionResult<IEnumerable<Material>>> listaMateriales()
+        {
+            return await _context.ListaMatriales();
+        }
+        [HttpGet]
         [Route("ListaDetalleMateriales/{idProducto}")]
         public async Task<ActionResult<IEnumerable<DetalleMaterialNombres>>> listaDetalleMateriales(int idProducto)
         {
@@ -243,6 +251,22 @@ namespace Back.Controllers
                 throw;
             }
             
+        }
+
+        [HttpDelete]
+        [Route("EliminarMaterial/{idDetalle}")]
+        public async Task<Object> EliminarMaterial (int idDetalle)
+        {
+            try
+            {
+               await _context.EliminarDetalleMaterial(idDetalle);
+                return Ok(new { mensaje = "Eliminación Exitosa" });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 
