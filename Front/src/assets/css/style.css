@@ -5061,6 +5061,7 @@ html .ui-button.ui-state-disabled:active {
     }
 }
 
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css");
 .footer__social ul li a {
     color: #b4b3b3;
 }
