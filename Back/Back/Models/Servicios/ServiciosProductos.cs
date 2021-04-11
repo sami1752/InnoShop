@@ -156,6 +156,13 @@ namespace Back.Models.Servicios
             await _context.SaveChangesAsync();
         }
 
+        public async Task EliminarImagen(int id)
+        {
+            Imagen Imagen = await _context.Imagenes.FindAsync(id);
+            _context.Imagenes.Remove(Imagen);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<List<DetalleMaterialNombres>> ListarMaterialesProducto(int idProducto)
         {
             await using (_context)

@@ -16,121 +16,81 @@ namespace Back.Controllers
     public class ProductosController : ControllerBase
     {
         private IserviciosProductos _context;
-        
 
-        public ProductosController(IserviciosProductos context)
-        {
-            _context = context;
-        }
+        public ProductosController(IserviciosProductos context) => _context = context;
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DetalleProducto>>> GetProductos() =>  await _context.listarProductos();
-        
+        public async Task<ActionResult<IEnumerable<DetalleProducto>>> GetProductos() => await _context.listarProductos();
+
         [HttpGet]
         [Route("Categorias")]
         public async Task<ActionResult<IEnumerable<Categoria>>> GetCategoria() => await _context.listarCategorias();
 
         [HttpGet]
         [Route("ProductosPorCategoria/{idCategoria}")]
-        public async Task<ActionResult<IEnumerable< DetalleProducto>>> listaProductosPorCategoria(int idCategoria)
-        {
-            return await _context.ListarProductosPorCategoria(idCategoria);
-        }
+        public async Task<ActionResult<IEnumerable<DetalleProducto>>> listaProductosPorCategoria(int idCategoria) =>
+            await _context.ListarProductosPorCategoria(idCategoria);
 
 
-        
         [HttpPost]
         [Route("Registro")]
         public async Task<Object> RegistroProducto(DetalleProducto Rproducto)
         {
-                try
+            try
+            {
+                Producto producto = new Producto()
                 {
-                    Producto producto = new Producto()
-                    {
-                        Nombre = Rproducto.Nombre,
-                        Estado = Rproducto.Estado,
-                        Ancho = Rproducto.Ancho,
-                        Largo = Rproducto.Largo,
-                        Fondo = Rproducto.Fondo,
-                        TipoPuerta = Rproducto.TipoPuerta,
-                        Descripcion = Rproducto.Descripcion,
-                        Ruedas = Rproducto.Ruedas,
-                        IdUsuario = Rproducto.IdUsuario,
-                        Puntos = Rproducto.Puntos,
-                        IdCategoria = Rproducto.IdCategoria,
-                        GarantiaMeses = Rproducto.GarantiaMeses
-                    };
+                    Nombre = Rproducto.Nombre,
+                    Estado = Rproducto.Estado,
+                    Ancho = Rproducto.Ancho,
+                    Largo = Rproducto.Largo,
+                    Fondo = Rproducto.Fondo,
+                    TipoPuerta = Rproducto.TipoPuerta,
+                    Descripcion = Rproducto.Descripcion,
+                    Ruedas = Rproducto.Ruedas,
+                    IdUsuario = Rproducto.IdUsuario,
+                    Puntos = Rproducto.Puntos,
+                    IdCategoria = Rproducto.IdCategoria,
+                    GarantiaMeses = Rproducto.GarantiaMeses
+                };
 
-                    producto = await _context.AgregarProducto(producto);
+                producto = await _context.AgregarProducto(producto);
 
-                    PrecioProducto precioP = new PrecioProducto()
-                    {
-                        Precio = Rproducto.Precio,
-                        FechaInicio = DateTime.Now,
-                        IdProducto = producto.IdProducto,
-                        IdUsuario = producto.IdUsuario
-                    };
-                    await _context.AgregarPrecioProducto(precioP);
-
-                    return Ok(new { mensaje = producto.IdProducto });
-                }
-                catch (Exception e)
+                PrecioProducto precioP = new PrecioProducto()
                 {
-                   return e.Message;
-                }         
+                    Precio = Rproducto.Precio,
+                    FechaInicio = DateTime.Now,
+                    IdProducto = producto.IdProducto,
+                    IdUsuario = producto.IdUsuario
+                };
+                await _context.AgregarPrecioProducto(precioP);
+
+                return Ok(new { mensaje = producto.IdProducto });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPut]
         [Route("Editar")]
         public async Task<Object> Editarproducto(Producto producto)
         {
-          try
-                {
-                    await _context.EditarProducto(producto);
-                    return Ok(new { mensaje = "Actializacion exitosa" });
-                //Producto producto = new Producto()
-                //{
-                //    Nombre = Rproducto.Nombre,
-                //    Estado = Rproducto.Estado,
-                //    Ancho = Rproducto.Ancho,
-                //    Largo = Rproducto.Largo,
-                //    Fondo = Rproducto.Fondo,
-                //    TipoPuerta = Rproducto.TipoPuerta,
-                //    Descripcion = Rproducto.Descripcion,
-                //    Ruedas = Rproducto.Ruedas,
-                //    IdUsuario = Rproducto.IdUsuario,
-                //    Puntos = Rproducto.Puntos,
-                //    IdCategoria = Rproducto.IdCategoria,
-                //    GarantiaMeses = Rproducto.GarantiaMeses
-                //};
-
-                //producto = await _context.EditarProducto(producto);
-
-                //if (Rproducto.Precio!=0)
-                //{
-                //    PrecioProducto precioP = new PrecioProducto()
-                //    {
-                //        Precio = Rproducto.Precio,
-                //        FechaInicio = DateTime.Now,
-                //        IdProducto = producto.IdProducto,
-                //        IdUsuario = producto.IdUsuario
-                //    };
-                //   PrecioProducto precioRespuesta=  await _context.AgregarPrecioProducto(precioP);
-                //   await _context.EditarFechaPrecio(precioRespuesta.IdPrecioProducto - 1);
-                //}
-
-
+            try
+            {
+                await _context.EditarProducto(producto);
+                return Ok(new { mensaje = "Actializacion exitosa" });
             }
-                catch (Exception e)
-                {
-
-                    return e.Message;
-                }         
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
         [Route("AgregarPrecio")]
-        public async Task<Object>AgregarPrecio(PrecioProducto precio)
+        public async Task<Object> AgregarPrecio(PrecioProducto precio)
         {
             try
             {
@@ -140,22 +100,14 @@ namespace Back.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
-            
         }
-
-        
-
 
         [HttpGet]
         [Route("ProductoPorId/{idProducto}")]
-        public async Task<Producto> ProductoPorId(int idProducto)
-        {
-            return await _context.BuscarProductoPorId(idProducto);
-        }
-
+        public async Task<Producto> ProductoPorId(int idProducto) =>
+            await _context.BuscarProductoPorId(idProducto);
 
 
         [HttpGet]
@@ -168,14 +120,9 @@ namespace Back.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
-
-
-
-        
 
         [HttpPost]
         [Route("Imagen")]
@@ -183,58 +130,47 @@ namespace Back.Controllers
         {
             try
             {
-                if (imagen.Imagen!=null)
+                if (imagen.Imagen != null)
                 {
                     await _context.AgregarImagen(imagen);
                     return Ok(new { mensaje = "exito" });
                 }
-                else
-                {
-                    return BadRequest(new { mensaje = "No se detecto archivo" });
-                }
-                
+                else return BadRequest(new { mensaje = "No se detecto archivo" });
             }
             catch (Exception e)
             {
                 return e.Message;
             }
-
         }
 
-       [HttpGet]
-       [Route("ListaImagenes/{id}")]
-       public async Task<ActionResult<IEnumerable<Imagen>>> GetImagenes(int id)
+        [HttpGet]
+        [Route("ListaImagenes/{id}")]
+        public async Task<ActionResult<IEnumerable<Imagen>>> GetImagenes(int id)
         {
             try
             {
                 if (id != 0)
-                {
                     return await _context.ListaImagenesProducto(id);
-                }
                 else
-                {
                     return BadRequest(new { mensaje = "error al listar las imagenes" });
-                }
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
         [HttpGet]
         [Route("ListaMateriales")]
-        public async Task<ActionResult<IEnumerable<Material>>> listaMateriales()
-        {
-            return await _context.ListaMatriales();
-        }
+        public async Task<ActionResult<IEnumerable<Material>>> listaMateriales() => 
+             await _context.ListaMatriales();
+        
+
         [HttpGet]
         [Route("ListaDetalleMateriales/{idProducto}")]
-        public async Task<ActionResult<IEnumerable<DetalleMaterialNombres>>> listaDetalleMateriales(int idProducto)
-        {
-            return await _context.ListarMaterialesProducto(idProducto);
-        }
+        public async Task<ActionResult<IEnumerable<DetalleMaterialNombres>>> listaDetalleMateriales(int idProducto) =>
+             await _context.ListarMaterialesProducto(idProducto);
+        
 
         [HttpPost]
         [Route("AgregarDetalleMaterial")]
@@ -243,32 +179,43 @@ namespace Back.Controllers
             try
             {
                 await _context.AgregarDetalleMaterialProducto(detalleMaterial);
-                return Ok(new { mensaje = "Registro exitoso"});
+                return Ok(new { mensaje = "Registro exitoso" });
             }
             catch (Exception)
             {
-
                 throw;
             }
-            
         }
 
         [HttpDelete]
-        [Route("EliminarMaterial/{idDetalle}")]
-        public async Task<Object> EliminarMaterial (int idDetalle)
+        [Route("EliminarImagen/{idImagen}")]
+        public async Task<Object> EliminarImagen(int idImagen)
         {
             try
             {
-               await _context.EliminarDetalleMaterial(idDetalle);
+                await _context.EliminarImagen(idImagen);
                 return Ok(new { mensaje = "Eliminación Exitosa" });
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
+        [HttpDelete]
+        [Route("EliminarMaterial/{idDetalle}")]
+        public async Task<Object> EliminarMaterial(int idDetalle)
+        {
+            try
+            {
+                await _context.EliminarDetalleMaterial(idDetalle);
+                return Ok(new { mensaje = "Eliminación Exitosa" });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         [HttpGet]
         [Route("ListarIva")]
@@ -293,13 +240,8 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("listaPrecioProducto/{idProducto}")]
-        public async Task<ActionResult<IEnumerable<PrecioProducto>>> ListaPrecioProducto(int idProducto)
-        {
-            return await _context.ListaPrecioProducto(idProducto);
-        }
-            
-
-
+        public async Task<ActionResult<IEnumerable<PrecioProducto>>> ListaPrecioProducto(int idProducto) =>
+             await _context.ListaPrecioProducto(idProducto);
         
     }
 }
