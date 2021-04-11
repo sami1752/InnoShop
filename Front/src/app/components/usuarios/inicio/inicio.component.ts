@@ -19,9 +19,11 @@ import {
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-  constructor(public configuracionService: ConfiguracionService, private router: Router, private usuarioService: UsuarioService) {}
+  constructor(public configuracionService: ConfiguracionService, private router: Router, public usuarioService: UsuarioService) {}
   perfilUsuario: PerfilUsuario
   ngOnInit(): void {
+    if (localStorage.getItem('token') != null) {
+      this.usuarioService.inicioSesion = true}
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
         this.perfilUsuario = < PerfilUsuario > res;

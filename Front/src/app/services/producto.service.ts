@@ -1,60 +1,83 @@
 import {
-  HttpClient, HttpHeaders
+  HttpClient,
+  HttpHeaders
 } from '@angular/common/http';
-import { identifierModuleUrl } from '@angular/compiler';
+import {
+  identifierModuleUrl
+} from '@angular/compiler';
 import {
   Injectable
 } from '@angular/core';
 import {
   FormBuilder
 } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Categoria } from '../models/categoria';
-import { Imagen } from '../models/imagen';
-import { DetalleMaterial } from '../models/detalle-material';
-import { DetalleMaterialProducto } from '../models/detalle-material-producto';
-import { Iva } from '../models/iva';
-import { Material } from '../models/material';
-import { Precio } from '../models/precio';
+import {
+  Observable
+} from 'rxjs';
+import {
+  Categoria
+} from '../models/categoria';
+import {
+  Imagen
+} from '../models/imagen';
+import {
+  DetalleMaterial
+} from '../models/detalle-material';
+import {
+  DetalleMaterialProducto
+} from '../models/detalle-material-producto';
+import {
+  Iva
+} from '../models/iva';
+import {
+  Material
+} from '../models/material';
+import {
+  Precio
+} from '../models/precio';
 import {
   Producto
 } from '../models/producto';
-import { Usuario } from '../models/usuario';
+import {
+  Usuario
+} from '../models/usuario';
 import {
   ConfiguracionService
 } from './configuracion.service';
-import { UsuarioService } from './usuario.service';
+import {
+  UsuarioService
+} from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
 
-  constructor(public usuarioService:UsuarioService ,private http: HttpClient, private configuracion: ConfiguracionService, private formBuilder: FormBuilder) {}
-  
-  
-  idProducto1: number=0;
-  DetalleMaterial:DetalleMaterial;
-  listaMateriales:Material[];
-  ListaDetalleMateriales:DetalleMaterialProducto[];
-  precio:Precio;
+  constructor(public usuarioService: UsuarioService, private http: HttpClient, private configuracion: ConfiguracionService, private formBuilder: FormBuilder) {}
+
+
+  idProducto1: number = 0;
+  DetalleMaterial: DetalleMaterial;
+  listaMateriales: Material[];
+  ListaDetalleMateriales: DetalleMaterialProducto[];
+  precio: Precio;
   imagenFile
-  listaPrecios:Precio[];
-  listaImagenes:Imagen[]
+  listaPrecios: Precio[];
+  listaImagenes: Imagen[]
   producto: Producto
   listaProductos: Producto[];
   listaCategorias: Categoria[];
-  listaIVA : Iva[]
-  iva : Iva
-  imagen : Imagen
-  CampoPrecio : boolean = true
-  FormularioPrecio : boolean = false
-  FormularioImagen : boolean = false
+  listaIVA: Iva[]
+  iva: Iva
+  imagen: Imagen
+  CampoPrecio: boolean = true
+  FormularioPrecio: boolean = false
+  FormularioImagen: boolean = false
   detalleProducto: Producto
-  IdProducto : number
-  desplegarDetalle=false;
-  desplegarDetalleMateriales=false;
-  tablaDetalleMateriales =false;
+  IdProducto: number
+  desplegarDetalle = false;
+  desplegarDetalleMateriales = false;
+  tablaDetalleMateriales = false;
 
   formularioRegistroProductos = this.formBuilder.group({
     IdProducto: [],
@@ -71,7 +94,7 @@ export class ProductoService {
     IdCategoria: [],
     NombreCategoria: [""],
     GarantiaMeses: [],
-    Precio:[]
+    Precio: []
   });
 
   formularioRegistroIVA = this.formBuilder.group({
@@ -101,7 +124,7 @@ export class ProductoService {
   formularioRegistroDetalleMaterial = this.formBuilder.group({
     IdMaterial: []
   });
-  get idMaterial(){
+  get idMaterial() {
     return this.formularioRegistroDetalleMaterial.controls["IdMaterial"]
   }
 
@@ -159,10 +182,10 @@ export class ProductoService {
 
   registrarProducto() {
     this.producto.Estado = true;
-    if(this.producto.Ruedas)
-    this.producto.Ruedas = true
+    if (this.producto.Ruedas)
+      this.producto.Ruedas = true
     else
-    this.producto.Ruedas = false
+      this.producto.Ruedas = false
     this.producto.IdProducto = 0;
     return this.http.post(this.configuracion.rootURL + '/Productos/Registro', this.producto)
   }
@@ -195,6 +218,11 @@ export class ProductoService {
       .toPromise()
       .then(res => this.listaIVA = res as Iva[])
   }
+  listarImagenes() {
+    this.http.get(this.configuracion.rootURL + '/Productos/ListarImagenes')
+      .toPromise()
+      .then(res => this.listaImagenes = res as Imagen[])
+  }
 
   listarCategorias() {
     this.http.get(this.configuracion.rootURL + '/Productos/Categorias')
@@ -212,14 +240,14 @@ export class ProductoService {
       .toPromise().then(res => this.detalleProducto = res as Producto);
   }
 
-  registroPrecio(){
+  registroPrecio() {
     this.precio.IdProducto = this.detalleProducto.IdProducto
     this.precio.FechaInicio = this.hoy.toISOString();
     this.precio.FechaFin = "1111-11-11"
     this.precio.IdPrecioProducto = 0
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarPrecio', this.precio)
   }
-  registroImagen(): Observable<any>{
+  registroImagen(): Observable < any > {
     this.imagen.IdProducto = this.detalleProducto.IdProducto
     this.imagen.IdImagen = 0
     this.imagen.Imagen = this.imagenFile
@@ -230,47 +258,50 @@ export class ProductoService {
     formData.append('IdUsuario', this.formularioRegistroImagen.get('IdUsuario').value);
     console.log(this.formularioRegistroImagen.value)
     console.log(formData)
-    var headers = new HttpHeaders().set("Content-Type","application/json")
-    return this.http.post<any>(this.configuracion.rootURL + '/Productos/Imagen/', formData)
+    var headers = new HttpHeaders().set("Content-Type", "application/json")
+    return this.http.post < any > (this.configuracion.rootURL + '/Productos/Imagen/', formData)
   }
 
-  listarImagen(id){
-    this.http.get(this.configuracion.rootURL + '/Productos/ListaImagenes/'+id)
-    .toPromise()
-    .then(res => console.log(this.listaImagenes = res as Imagen[]))
+  listarImagen(id) {
+    this.http.get(this.configuracion.rootURL + '/Productos/ListaImagenes/' + id)
+      .toPromise()
+      .then(res => console.log(this.listaImagenes = res as Imagen[]))
   }
 
-  listarPrecios(idProducto){
-    this.http.get(this.configuracion.rootURL + '/Productos/listaPrecioProducto/'+idProducto)
-    .toPromise()
-    .then(res => this.listaPrecios = res as Precio[])
+  listarPrecios(idProducto) {
+    this.http.get(this.configuracion.rootURL + '/Productos/listaPrecioProducto/' + idProducto)
+      .toPromise()
+      .then(res => this.listaPrecios = res as Precio[])
   }
 
-  fileEvent(fileInput: Event){
-    this.imagenFile = (<HTMLInputElement>fileInput.target).files[0];
-    console.log((<HTMLInputElement>fileInput.target).files[0])
+  fileEvent(fileInput: Event) {
+    this.imagenFile = ( < HTMLInputElement > fileInput.target).files[0];
+    console.log(( < HTMLInputElement > fileInput.target).files[0])
     console.log(this.imagenFile)
   }
-  listarMateriales(){
+  listarMateriales() {
     this.http.get(this.configuracion.rootURL + '/Productos/ListaMateriales')
-    .toPromise()
-    .then(res => this.listaMateriales = res as Material[])
+      .toPromise()
+      .then(res => this.listaMateriales = res as Material[])
   }
 
-  RegistrarDetalleMaterial(){
-    this.DetalleMaterial.IdProducto =this.idProducto1;
+  RegistrarDetalleMaterial() {
+    this.DetalleMaterial.IdProducto = this.idProducto1;
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarDetalleMaterial', this.DetalleMaterial)
   }
 
-  ListarDetalleMaterial(idProducto){
-    this.http.get(this.configuracion.rootURL + '/Productos/ListaDetalleMateriales/'+idProducto)
-    .toPromise()
-    .then(res => this.ListaDetalleMateriales = res as DetalleMaterialProducto[]);
+  ListarDetalleMaterial(idProducto) {
+    this.http.get(this.configuracion.rootURL + '/Productos/ListaDetalleMateriales/' + idProducto)
+      .toPromise()
+      .then(res => this.ListaDetalleMateriales = res as DetalleMaterialProducto[]);
   }
 
-  EliminarDetalleMaterial(id){
-    return this.http.delete(this.configuracion.rootURL + '/Productos/EliminarMaterial/'+id);
+  EliminarDetalleMaterial(id) {
+    return this.http.delete(this.configuracion.rootURL + '/Productos/EliminarMaterial/' + id);
   }
 
+  EliminarImagen(id) {
+    return this.http.delete(this.configuracion.rootURL + '/Productos/EliminarImagen/' + id);
   }
 
+}

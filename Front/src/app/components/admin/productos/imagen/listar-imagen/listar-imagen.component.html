@@ -17,6 +17,7 @@
                             <th scope="col">Id</th>
                             <th scope="col">Ruta Imagen</th>
                             <th scope="col">Id Usuario</th>
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -25,6 +26,7 @@
                             <td>{{imagen.IdImagen}}</td>
                             <td>{{imagen.RutaImagen}}</td>
                             <td>{{imagen.IdUsuario}}</td>
+                            <td><i (click)="eliminarImagen(imagen)" class="bi bi-trash text-danger"></i></td>
                         </tr>
                     </tbody>
                 </table>

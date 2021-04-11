@@ -28,8 +28,6 @@ import { ListarPrecioComponent } from './components/admin/productos/precio/lista
 import { RegistroDetalleMaterialComponent } from './components/admin/productos/registro-detalle-material/registro-detalle-material.component';
 import { ListarDetalleMaterialComponent } from './components/admin/productos/listar-detalle-material/listar-detalle-material.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +48,6 @@ import { ListarDetalleMaterialComponent } from './components/admin/productos/lis
     ListarImagenComponent,
     RegistrarImagenComponent,
     ListarPrecioComponent,
-
     RegistroDetalleMaterialComponent,
     ListarDetalleMaterialComponent,
 
