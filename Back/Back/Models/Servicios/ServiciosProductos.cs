@@ -15,7 +15,7 @@ namespace Back.Models.Servicios
     public class ServiciosProductos : IserviciosProductos
     {
         private readonly DBContext _context;
-        private IWebHostEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
 
         public ServiciosProductos(DBContext context, IWebHostEnvironment environment)
         {

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Back.Models.Abstratos;
+using Back.Models.Entidades.Solicitudes;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,36 +14,88 @@ namespace Back.Controllers
     [ApiController]
     public class SolicitudesController : ControllerBase
     {
-        // GET: api/<SolicitudesController>
+        private readonly IServiciosSolicitudes _context;
+
+        public SolicitudesController(IServiciosSolicitudes context) => _context = context;
+
         [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        [Route("CarritoDeCompras")]
+        public async Task<ActionResult<IEnumerable<CarritoDeCompras>>> ObtenerCarritoDeCompras() =>
+            await _context.ListarCarritoDeCompras();
 
-        // GET api/<SolicitudesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        [HttpGet]
+        [Route("CarritoDeCompras/{idCarritoDeCompras}")]
+        public async Task<ActionResult<CarritoDeCompras>> BuscarCarritoDeComprasPorId(int idCarritoDeCompras) =>
+            await _context.BuscarCarritoDeComprasPorId(idCarritoDeCompras);
 
-        // POST api/<SolicitudesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("CarritoDeCompras")]
+        public async Task<Object> RegistroCarritoDeCompras(CarritoDeCompras carritoDeCompras)
         {
+            try
+            {
+                carritoDeCompras = await _context.AgregarCarritoDeCompras(carritoDeCompras);
+                return Ok(new { mensaje = carritoDeCompras });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
-        // PUT api/<SolicitudesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("CarritoDeCompras")]
+        public async Task<Object> EditarCarritoDeCompras(CarritoDeCompras carritoDeCompras)
         {
+            try
+            {
+                await _context.EditarCarritoDeCompras(carritoDeCompras);
+                return Ok(new { mensaje = "Actializacion exitosa" });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
-        // DELETE api/<SolicitudesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet]
+        [Route("DetalleCarritoDeCompras")]
+        public async Task<ActionResult<IEnumerable<DetalleCarritoDeCompras>>> ObtenerDetalleCarritoDeCompras() =>
+            await _context.ListarDetalleCarritoDeCompras();
+
+        [HttpGet]
+        [Route("DetalleCarritoDeCompras/{idDetalleCarritoDeCompras}")]
+        public async Task<ActionResult<DetalleCarritoDeCompras>> BuscarDetalleCarritoDeComprasPorId(int idDetalleCarritoDeCompras) =>
+            await _context.BuscarDetalleCarritoDeComprasPorId(idDetalleCarritoDeCompras);
+
+        [HttpPost]
+        [Route("DetalleCarritoDeCompras")]
+        public async Task<Object> RegistroDetalleCarritoDeCompras(DetalleCarritoDeCompras DetalleCarritoDeCompras)
         {
+            try
+            {
+                DetalleCarritoDeCompras = await _context.AgregarDetalleCarritoDeCompras(DetalleCarritoDeCompras);
+                return Ok(new { mensaje = DetalleCarritoDeCompras });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        [HttpPut]
+        [Route("DetalleCarritoDeCompras")]
+        public async Task<Object> EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras DetalleCarritoDeCompras)
+        {
+            try
+            {
+                await _context.EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras);
+                return Ok(new { mensaje = "Actializacion exitosa" });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }
