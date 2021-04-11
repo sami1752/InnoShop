@@ -57,10 +57,9 @@ namespace Back.Models.Servicios
         }
 
         public async Task<ActionResult<IEnumerable<Imagen>>> ListarImagenes() => await _context.Imagenes.ToListAsync();
-        public async Task<ActionResult<IEnumerable<Imagen>>> ListaImagenesProducto(int id)
-        {
-            return await _context.Imagenes.Where(x => x.IdProducto == id).ToListAsync();
-        }
+        public async Task<ActionResult<IEnumerable<Imagen>>> ListaImagenesProducto(int id) =>
+             await _context.Imagenes.Where(x => x.IdProducto == id).ToListAsync();
+        
         public async Task<ActionResult<IEnumerable<Categoria>>> listarCategorias() => await _context.Categorias.ToListAsync();
 
         public async Task<ActionResult<IEnumerable<DetalleProducto>>> ListarProductosPorCategoria(int idCategoria)
