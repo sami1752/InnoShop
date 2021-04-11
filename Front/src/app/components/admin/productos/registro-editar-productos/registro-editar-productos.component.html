@@ -56,6 +56,13 @@
     <div class="mt-10"></div>
   </div>
 
+  <div *ngIf="this.productoService.CampoStock">
+    <label for="Stock">Cantidad Producto<span>**</span></label>
+    <input formControlName="CantidadStock" type="number" id="CantidadStock" placeholder="Ingrese cantidad de producto"
+      class="form-control " />
+    <div class="mt-10"></div>
+  </div>
+
   <br>
   <label for="IdCategoria"> Categoria <span>**</span></label>
   <select class="form-control" formControlName="IdCategoria">

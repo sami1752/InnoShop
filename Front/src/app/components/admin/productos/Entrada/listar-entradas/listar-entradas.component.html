@@ -1,0 +1,22 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Producto</th>
+            <th scope="col">IdProducto</th>
+            <th scope="col">Nombre usuario</th>
+            <th scope="col">Fecha</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let entrada of this.productoService.listaEntradas">
+        <tr>
+            <td (click)="llenarFormularioProducto(entrada)">{{entrada.IdEntrada}}</td>
+            <td (click)="llenarFormularioProducto(entrada)">{{entrada.Cantidad}}</td>
+            <td (click)="llenarFormularioProducto(entrada)">{{entrada.NombreProducto}}</td>
+            <td (click)="llenarFormularioProducto(entrada)">{{entrada.IdProducto}}</td>
+            <td (click)="llenarFormularioProducto(entrada)">{{entrada.NombreUsuario}}</td>
+            <td (click)="llenarFormularioProducto(entrada)">{{entrada.Fecha}}</td>
+        </tr>
+    </tbody>
+</table>

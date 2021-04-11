@@ -43,7 +43,8 @@ export class InicioadminComponent implements OnInit {
  Usuarios=false;
  Productos=false;
 datos=false;
-iva = false
+iva = false;
+entradas = false;
 
 
   GestionUsuario(){
@@ -51,27 +52,36 @@ iva = false
     this.Productos=false;
     this.datos=false;
     this.iva = false
+    this.entradas = false;
     
   }
   cambioDatosP(){
     this.datos=true;
     this.Usuarios=false;
     this.Productos=false;
-    this.iva = false
+    this.iva = false;
+    this.entradas = false;
   }
   GestionProductos(){
     this.Productos=true;
     this.Usuarios=false;
     this.datos=false;
     this.iva = false
-    
+    this.entradas = false;
   }
   GestionIVA(){
     this.Productos=false;
     this.Usuarios=false;
     this.datos=false;
-    this.iva = true
-    
+    this.iva = true;
+    this.entradas = false;
+  }
+  GestionEntradas(){
+    this.Productos=false;
+    this.Usuarios=false;
+    this.datos=false;
+    this.iva = false;
+    this.entradas = true;
   }
 
 }

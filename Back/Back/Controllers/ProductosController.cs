@@ -72,6 +72,15 @@ namespace Back.Controllers
                     };
                     await _context.AgregarPrecioProducto(precioP);
 
+                    Entrada entrada = new Entrada()
+                    {
+                        IdProducto = producto.IdProducto,
+                        Cantidad = Rproducto.CantidadStock,
+                        IdUsuario = Rproducto.IdUsuario,
+                        Fecha = DateTime.Now
+                    };
+                    await _context.AgregarEntrada(entrada);
+
                     return Ok(new { mensaje = producto.IdProducto });
                 }
                 catch (Exception e)
@@ -297,9 +306,30 @@ namespace Back.Controllers
         {
             return await _context.ListaPrecioProducto(idProducto);
         }
-            
+
+        [HttpGet]
+        [Route("listarEntradas")]
+        public async Task<ActionResult<IEnumerable<DetalleEntrada>>> ListaEntradas()
+        {
+            return await _context.ListarEntradas();
+        }
+
+        [HttpPost]
+        [Route("AgregarEntrada")]
+        public async Task<Object> AgregarEntradaProducto(Entrada entrada)
+        {
+            try
+            {
+                await _context.AgregarEntrada(entrada);
+                return Ok(new { mensaje = "Entrada agregada exitosamente" });
+            }
+            catch (Exception e)
+            {  
+                return e.Message;
+            }
+        }
 
 
-        
+
     }
 }

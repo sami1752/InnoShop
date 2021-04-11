@@ -13,5 +13,6 @@ export interface Producto {
     IdCategoria : number,
     GarantiaMeses: number,
     Precio: number,
-    NombreCategoria:string
+    NombreCategoria:string,
+    CantidadStock:number
 }

@@ -24,6 +24,8 @@ import {
   ConfiguracionService
 } from './configuracion.service';
 import { UsuarioService } from './usuario.service';
+import { Entrada } from '../models/entrada';
+import { DetalleEntrada } from '../models/detalle-entrada';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +36,8 @@ export class ProductoService {
   
   
   idProducto1: number=0;
+  entrada:Entrada;
+  listaEntradas:DetalleEntrada[];
   DetalleMaterial:DetalleMaterial;
   listaMateriales:Material[];
   ListaDetalleMateriales:DetalleMaterialProducto[];
@@ -47,7 +51,8 @@ export class ProductoService {
   listaIVA : Iva[]
   iva : Iva
   imagen : Imagen
-  CampoPrecio : boolean = true
+  CampoPrecio : boolean = true;
+  CampoStock : boolean = true;
   FormularioPrecio : boolean = false
   FormularioImagen : boolean = false
   detalleProducto: Producto
@@ -71,7 +76,8 @@ export class ProductoService {
     IdCategoria: [],
     NombreCategoria: [""],
     GarantiaMeses: [],
-    Precio:[]
+    Precio:[],
+    CantidadStock:[]
   });
 
   formularioRegistroIVA = this.formBuilder.group({
@@ -80,6 +86,14 @@ export class ProductoService {
     FechaInicio: [],
     FechaFin: [],
     IdUsuario: [],
+  });
+
+  formularioRegistroEntrada = this.formBuilder.group({
+    IdEntrada:[],
+    IdProducto: [],
+    Cantidad: [],
+    IdUsuario: [],
+    NombreProducto: [""]
   });
 
   formularioRegistroPrecio = this.formBuilder.group({
@@ -272,5 +286,14 @@ export class ProductoService {
     return this.http.delete(this.configuracion.rootURL + '/Productos/EliminarMaterial/'+id);
   }
 
+  RegistroEntrada(){
+    this.entrada.IdEntrada =0;
+    return this.http.post(this.configuracion.rootURL + '/Productos/AgregarEntrada', this.entrada)
   }
 
+  listarEntradas(){
+    this.http.get(this.configuracion.rootURL + '/Productos/listarEntradas')
+    .toPromise()
+    .then(res => this.listaEntradas = res as DetalleEntrada[])
+  }
+}

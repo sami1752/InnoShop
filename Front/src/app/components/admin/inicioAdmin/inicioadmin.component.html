@@ -26,7 +26,7 @@
                     <img src="assets/img/images.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info" style="text-align: center;">
-                    <a class="d-block" (click)="cambioDatosP()">{{this.perfilUsuario.Nombres}}</a>
+                   <a class="d-block" (click)="cambioDatosP()">{{this.perfilUsuario.Nombres}}</a>
                 </div>
             </div>
             <nav class="mt-2">
@@ -47,6 +47,12 @@
                         <a class="nav-link" (click)="GestionIVA()">
                             <i class="nav-icon fas fa-percent"></i>
                             <p>IVA </p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a class="nav-link" (click)="GestionEntradas()">
+                            <i class="nav-icon fas fa-percent"></i>
+                            <p>Entradas</p>
                         </a>
                     </li>
                     <li class="nav-item has-treeview">
@@ -116,6 +122,9 @@
     <div *ngIf="iva">
         <app-gestion-iva></app-gestion-iva>
         <!-- <app-gestion-iva></app-gestion-iva> -->
+    </div>
+    <div *ngIf="entradas">
+        <app-gestion-entradas></app-gestion-entradas>
     </div>
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->

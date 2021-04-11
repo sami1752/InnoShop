@@ -21,7 +21,7 @@ namespace Back.Clases.Productos
         public int Puntos { get; set; }
         public int IdCategoria { get; set; }
         public int GarantiaMeses { get; set; }
-
+        public int CantidadStock { get; set; }
         public float Precio { get; set; }
 
     }

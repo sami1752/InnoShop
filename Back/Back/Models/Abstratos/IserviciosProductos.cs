@@ -30,10 +30,10 @@ namespace Back.Models.Abstratos
         Task EditarFechaPrecio(int id);
         Task<ActionResult<IEnumerable<Iva>>> listarIva();
         Task AgregarIva(Iva iva);
-
         Task ModificarIva(DateTime nueva);
-
         Task ModificaPrecio(DateTime nueva, int Id);
+        Task<ActionResult<IEnumerable<DetalleEntrada>>> ListarEntradas();
+        Task AgregarEntrada(Entrada entrada);
 
 
     }

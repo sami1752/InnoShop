@@ -27,6 +27,9 @@ import { RegistrarImagenComponent } from './components/admin/productos/imagen/re
 import { ListarPrecioComponent } from './components/admin/productos/precio/listar-precio/listar-precio.component';
 import { RegistroDetalleMaterialComponent } from './components/admin/productos/registro-detalle-material/registro-detalle-material.component';
 import { ListarDetalleMaterialComponent } from './components/admin/productos/listar-detalle-material/listar-detalle-material.component';
+import { ListarEntradasComponent } from './components/admin/productos/Entrada/listar-entradas/listar-entradas.component';
+import { RegistrarEntradaComponent } from './components/admin/productos/Entrada/registrar-entrada/registrar-entrada.component';
+import { GestionEnradasComponent } from './components/admin/productos/Entrada/gestion-entradas/gestion-entradas.component';
 
 
 
@@ -53,6 +56,9 @@ import { ListarDetalleMaterialComponent } from './components/admin/productos/lis
 
     RegistroDetalleMaterialComponent,
     ListarDetalleMaterialComponent,
+    ListarEntradasComponent,
+    RegistrarEntradaComponent,
+    GestionEnradasComponent,
 
   ],
   imports: [
