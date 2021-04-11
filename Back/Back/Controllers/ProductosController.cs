@@ -161,6 +161,10 @@ namespace Back.Controllers
         }
 
         [HttpGet]
+        [Route("ListarImagenes")]
+        public async Task<ActionResult<IEnumerable<Imagen>>> GetImagen() => await _context.ListarImagenes();
+
+        [HttpGet]
         [Route("ListaMateriales")]
         public async Task<ActionResult<IEnumerable<Material>>> listaMateriales() => 
              await _context.ListaMatriales();

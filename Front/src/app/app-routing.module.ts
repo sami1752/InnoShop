@@ -18,7 +18,7 @@ import { ModificarDatosComponent } from './components/usuarios/modificar-datos/m
 
 
 const routes: Routes = [
-  {path:'', redirectTo:'usuarios/login',pathMatch:'full'},
+  {path:'', redirectTo:'usuarios/inicio',pathMatch:'full'},
   {path:'usuarios', component:UsuariosComponent,
     children: [
       {path:'registro',component:RegistroComponent},
@@ -26,7 +26,7 @@ const routes: Routes = [
       {path:'restablecimientoContraseña', component:RestablecimientoComponent},
       {path:'RestablecerContrasena', component:VerificacionComponent},
       {path:'cambio', component:CambioContraComponent, canActivate:[AutorizacionRutasGuard]},
-      {path:'inicio', component:InicioComponent,  canActivate:[AutorizacionRutasGuard]},
+      {path:'inicio', component:InicioComponent},
       {path:'confirmarEmail', component:ConfirmarEmailComponent},
       {path:'editarDatosCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]}
     ]

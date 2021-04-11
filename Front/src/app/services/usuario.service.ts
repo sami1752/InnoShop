@@ -31,7 +31,7 @@ import {
 })
 export class UsuarioService {
   constructor(private http: HttpClient, private configuracion: ConfiguracionService, private formBuilder: FormBuilder) {}
-
+  inicioSesion = false;
   desplegarDetalle=false;
   detalleUsuario;
   perfilUsuario;

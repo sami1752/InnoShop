@@ -1,0 +1,28 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Garantía</th>
+            <th scope="col">Imagen</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let producto of productoService.listaProductos">
+        <tr *ngIf="producto.Estado">
+            <td>{{producto.IdProducto}}</td>
+            <td >{{producto.Nombre}}</td>
+            <td >{{producto.NombreCategoria}}</td>
+            <td >{{producto.GarantiaMeses}} Meses</td>
+            <td>
+                <table>
+                    <tbody>
+                        <tr *ngFor="let imagen of productoService.listaImagenes">
+                            <td *ngIf="imagen.IdProducto == producto.IdProducto">{{imagen.RutaImagen}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

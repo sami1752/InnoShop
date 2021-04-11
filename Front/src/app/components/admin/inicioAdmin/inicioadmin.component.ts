@@ -21,7 +21,7 @@ import {
   styleUrls: ['./inicioadmin.component.css']
 })
 export class InicioadminComponent implements OnInit {
-  constructor(private router: Router, private usuarioService: UsuarioService, public configuracionService: ConfiguracionService) {}
+  constructor(private router: Router, public usuarioService: UsuarioService, public configuracionService: ConfiguracionService) {}
   perfilUsuario: PerfilUsuario
   ngOnInit() {
     this.usuarioService.obtenerPerfil().subscribe(

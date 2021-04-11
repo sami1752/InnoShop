@@ -12,6 +12,7 @@ namespace Back.Models.Abstratos
     {
         Task<ActionResult<IEnumerable<DetalleProducto>>> listarProductos();
         Task<ActionResult<IEnumerable<Categoria>>> listarCategorias();
+        Task<ActionResult<IEnumerable<Imagen>>> ListarImagenes();
         Task<ActionResult<IEnumerable<Imagen>>> ListaImagenesProducto(int id);
         Task<ActionResult<IEnumerable<DetalleProducto>>> ListarProductosPorCategoria(int idCategoria);
         Task<ActionResult<IEnumerable<PrecioProducto>>> ListaPrecioProducto(int idProducto);

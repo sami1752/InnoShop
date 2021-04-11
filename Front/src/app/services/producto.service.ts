@@ -218,6 +218,11 @@ export class ProductoService {
       .toPromise()
       .then(res => this.listaIVA = res as Iva[])
   }
+  listarImagenes() {
+    this.http.get(this.configuracion.rootURL + '/Productos/ListarImagenes')
+      .toPromise()
+      .then(res => this.listaImagenes = res as Imagen[])
+  }
 
   listarCategorias() {
     this.http.get(this.configuracion.rootURL + '/Productos/Categorias')
