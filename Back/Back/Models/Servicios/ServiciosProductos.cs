@@ -15,7 +15,7 @@ namespace Back.Models.Servicios
     public class ServiciosProductos : IserviciosProductos
     {
         private readonly DBContext _context;
-        private IWebHostEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
 
         public ServiciosProductos(DBContext context, IWebHostEnvironment environment)
         {
@@ -55,6 +55,8 @@ namespace Back.Models.Servicios
 
 
         }
+
+        public async Task<ActionResult<IEnumerable<Imagen>>> ListarImagenes() => await _context.Imagenes.ToListAsync();
         public async Task<ActionResult<IEnumerable<Imagen>>> ListaImagenesProducto(int id)
         {
             return await _context.Imagenes.Where(x => x.IdProducto == id).ToListAsync();
@@ -153,6 +155,13 @@ namespace Back.Models.Servicios
         {
             DetalleMaterial detalleMaterial = await _context.DetalleMateriales.FindAsync(id);
             _context.DetalleMateriales.Remove(detalleMaterial);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EliminarImagen(int id)
+        {
+            Imagen Imagen = await _context.Imagenes.FindAsync(id);
+            _context.Imagenes.Remove(Imagen);
             await _context.SaveChangesAsync();
         }
 

@@ -12,12 +12,13 @@ import { VerificacionComponent } from './restablecimiento/verificacion/verificac
 import { CambioContraComponent } from './cambio-contra/cambio-contra.component';
 import { ConfirmarEmailComponent } from './confirmar-email/confirmar-email.component';
 import { ModificarDatosComponent } from './modificar-datos/modificar-datos.component';
+import { ProductosComponent } from './productos/productos.component';
 
 
 
 
 @NgModule({
-  declarations: [RegistroComponent, LoginComponent, UsuariosComponent, InicioComponent, RestablecimientoComponent, VerificacionComponent, CambioContraComponent, ConfirmarEmailComponent, ModificarDatosComponent],
+  declarations: [RegistroComponent, LoginComponent, UsuariosComponent, InicioComponent, RestablecimientoComponent, VerificacionComponent, CambioContraComponent, ConfirmarEmailComponent, ModificarDatosComponent, ProductosComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

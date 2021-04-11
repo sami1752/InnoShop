@@ -15,8 +15,6 @@ export class ListarDetalleMaterialComponent implements OnInit {
   }
 
   eliminarMaterial(detalle:DetalleMaterialProducto){
-   
-
     if (confirm("¿Estás seguro de eliminar el material?")) {
       this.productoService.EliminarDetalleMaterial(detalle.IdDetalleMaterial).subscribe(
         res=>{
@@ -25,7 +23,7 @@ export class ListarDetalleMaterialComponent implements OnInit {
         err=>{
           console.log(err);
         }
-      );            
+      );
     }
   }
 

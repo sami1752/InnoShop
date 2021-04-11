@@ -41,11 +41,9 @@ namespace Back
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
                 options.JsonSerializerOptions.DictionaryKeyPolicy = null;
             });
-            services.AddScoped<IServiciosHistorialCorreo, ServiciosHistorialCorreo>();
+
             services.AddScoped<IserviciosProductos, ServiciosProductos>();
-
-
-
+            services.AddScoped<IServiciosSolicitudes, ServiciosSolicitudes>();
             services.AddDefaultIdentity<UsuarioIdentity>().AddEntityFrameworkStores<DBContext>();
             services.Configure<IdentityOptions>(options =>
             {
@@ -91,12 +89,9 @@ namespace Back
             app.UseCors("CorsPolicy");
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
-
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
-            //app.UseStaticFiles();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -31,8 +31,6 @@ import { ListarEntradasComponent } from './components/admin/productos/Entrada/li
 import { RegistrarEntradaComponent } from './components/admin/productos/Entrada/registrar-entrada/registrar-entrada.component';
 import { GestionEnradasComponent } from './components/admin/productos/Entrada/gestion-entradas/gestion-entradas.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +51,6 @@ import { GestionEnradasComponent } from './components/admin/productos/Entrada/ge
     ListarImagenComponent,
     RegistrarImagenComponent,
     ListarPrecioComponent,
-
     RegistroDetalleMaterialComponent,
     ListarDetalleMaterialComponent,
     ListarEntradasComponent,

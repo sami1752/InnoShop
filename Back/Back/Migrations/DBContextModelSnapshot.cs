@@ -240,56 +240,51 @@ namespace Back.Migrations
                     b.ToTable("Productos");
                 });
 
-            modelBuilder.Entity("Back.Models.Entidades.RestablecimientoContrasena", b =>
+            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.CarritoDeCompras", b =>
                 {
-                    b.Property<int>("IdRestablecimiento")
+                    b.Property<int>("IdCarritoDeCompras")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Codigo")
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IdUsuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("Valor")
+                        .HasColumnType("real");
 
-                    b.Property<string>("Fecha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("IdCarritoDeCompras");
 
-                    b.HasKey("IdRestablecimiento");
-
-                    b.ToTable("RestablecimientoContrasena");
+                    b.ToTable("CarritoDeCompras");
                 });
 
-            modelBuilder.Entity("Back.Models.Entidades.historialcorreo", b =>
+            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.DetalleCarritoDeCompras", b =>
                 {
-                    b.Property<int>("IdHistorial")
+                    b.Property<int>("IdDetalleCarritoDeCompras")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Asunto")
+                    b.Property<int>("IdCarritoDeCompras")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdProducto")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdUsuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("IdDetalleCarritoDeCompras");
 
-                    b.Property<string>("Mensaje")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NombreEvi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdHistorial");
-
-                    b.ToTable("HistorialCorreo");
+                    b.ToTable("DetalleCarritoDeCompras");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
