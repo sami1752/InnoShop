@@ -229,5 +229,36 @@ namespace Back.Models.Servicios
         public async Task<ActionResult<IEnumerable<PrecioMontajes>>> ListaPrecioMontajes(int id) =>
             await _context.PrecioMontajes.Where(x => x.IdMontaje == id).ToListAsync();
 
+        public async Task<RespuestasSolicitudesPersonalizadas> AgregarRespuestasSolicitudesPersonalizadas
+            (RespuestasSolicitudesPersonalizadas RespuestasSolicitudesPersonalizadas)
+        {
+            _context.RespuestasSolicitudesPersonalizadas.Add(RespuestasSolicitudesPersonalizadas);
+            await _context.SaveChangesAsync();
+            return RespuestasSolicitudesPersonalizadas;
+        }
+
+        public async Task<ActionResult<IEnumerable<RespuestasSolicitudesPersonalizadas>>> 
+            ListarRespuestasSolicitudesPersonalizadas() => 
+            await _context.RespuestasSolicitudesPersonalizadas.ToListAsync();
+
+        public async Task<ActionResult<IEnumerable<SolicitudPersonalizada>>> ListarSolicitudPersonalizada() => 
+            await _context.SolicitudPersonalizada.ToListAsync();
+
+        public async Task<SolicitudPersonalizada> BuscarSolicitudPersonalizada(int id) => 
+            await _context.SolicitudPersonalizada.FindAsync(id);
+
+        public async Task<SolicitudPersonalizada> AgregarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada)
+        {
+            _context.SolicitudPersonalizada.Add(SolicitudPersonalizada);
+            await _context.SaveChangesAsync();
+            return SolicitudPersonalizada;
+        }
+
+        public async Task<SolicitudPersonalizada> EditarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada)
+        {
+            _context.SolicitudPersonalizada.Update(SolicitudPersonalizada);
+            await _context.SaveChangesAsync();
+            return SolicitudPersonalizada;
+        }
     }
 }
