@@ -1,4 +1,5 @@
-﻿using Back.Models.Abstratos;
+﻿using Back.Clases.Solicitudes.CarritoDeCompras;
+using Back.Models.Abstratos;
 using Back.Models.Entidades.Solicitudes;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -55,13 +56,13 @@ namespace Back.Controllers
             catch (Exception e)
             {
                 return e.Message;
-            }
+            }   
         }
 
         [HttpGet]
-        [Route("DetalleCarritoDeCompras")]
-        public async Task<ActionResult<IEnumerable<DetalleCarritoDeCompras>>> ObtenerDetalleCarritoDeCompras() =>
-            await _context.ListarDetalleCarritoDeCompras();
+        [Route("ListaDetalleCarritoDeCompras/{IdUsuario}")]
+        public async Task<ActionResult<IEnumerable<DetalleCarritoDeComprasProducto>>> ObtenerDetalleCarritoDeCompras(string IdUsuario) =>
+            await _context.ListarDetalleCarritoDeCompras(IdUsuario);
 
         [HttpGet]
         [Route("DetalleCarritoDeCompras/{idDetalleCarritoDeCompras}")]
@@ -94,6 +95,45 @@ namespace Back.Controllers
             }
             catch (Exception e)
             {
+                return e.Message;
+            }
+        }
+
+        [HttpGet]
+        [Route("ExisteCarrito/{idUsuario}")]
+        public async Task<Object> ExisteCarrito(string idUsuario)
+        {
+            try
+            {
+                var carrito = await _context.ExisteCarritoUsuarioPorId(idUsuario);
+
+                if (carrito.Count()==0)
+                {
+                    return Ok(new { mensaje = 0 });
+                }
+                else
+                {   
+                     return Ok( new { mensaje = carrito[0].IdCarritoDeCompras});
+                } 
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        [HttpDelete]
+        [Route("EliminarDetalle/{idDetalle}")]
+        public async Task<Object> EliminarDetalleCarrito(int idDetalle)
+        {
+            try
+            {
+               await  _context.EliminarDetalleCarrito(idDetalle);
+                return Ok(new { mensaje = "Eliminacion exitosa" });
+            }
+            catch (Exception e)
+            {
+
                 return e.Message;
             }
         }

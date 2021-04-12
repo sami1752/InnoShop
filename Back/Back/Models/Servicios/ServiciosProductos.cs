@@ -99,7 +99,10 @@ namespace Back.Models.Servicios
         {
             return await _context.PrecioProductos.Where(x => x.IdProducto == idProducto).ToListAsync();
         }
-
+        public async Task<ActionResult<IEnumerable<PrecioProducto>>> ListaTodosPreciosProducto()
+        {
+            return await _context.PrecioProductos.ToListAsync();
+        }
 
         public async Task<Producto> AgregarProducto(Producto producto)
         {

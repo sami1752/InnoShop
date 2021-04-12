@@ -302,6 +302,8 @@ export class ProductoService {
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarDetalleMaterial', this.DetalleMaterial)
   }
 
+  
+
   ListarDetalleMaterial(idProducto) {
     this.http.get(this.configuracion.rootURL + '/Productos/ListaDetalleMateriales/' + idProducto)
       .toPromise()
@@ -322,6 +324,13 @@ export class ProductoService {
     .toPromise()
     .then(res => this.listaEntradas = res as DetalleEntrada[])
   }
+
+  listarTodosPrecios(){
+    this.http.get(this.configuracion.rootURL + '/Productos/listaPrecioProductos')
+    .toPromise()
+    .then(res => this.listaPrecios = res as Precio[])
+  }
+
   EliminarImagen(id) {
     return this.http.delete(this.configuracion.rootURL + '/Productos/EliminarImagen/' + id);
   }

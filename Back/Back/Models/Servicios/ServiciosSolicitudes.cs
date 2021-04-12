@@ -1,4 +1,5 @@
-﻿using Back.Models.Abstratos;
+﻿using Back.Clases.Solicitudes.CarritoDeCompras;
+using Back.Models.Abstratos;
 using Back.Models.DAL;
 using Back.Models.Entidades.Solicitudes;
 using Microsoft.AspNetCore.Mvc;
@@ -16,12 +17,14 @@ namespace Back.Models.Servicios
 
         public ServiciosSolicitudes(DBContext context) => _context = context;
 
-        public async Task<ActionResult<IEnumerable<CarritoDeCompras>>> ListarCarritoDeCompras() => await _context.CarritoDeCompras.ToListAsync();
+        public async Task<ActionResult<IEnumerable<CarritoDeCompras>>> ListarCarritoDeCompras() => await _context.CarritoDeCompras.ToListAsync(); 
+        //public async Task<ActionResult<IEnumerable<>>
 
         public async Task<CarritoDeCompras> BuscarCarritoDeComprasPorId(int id) => await _context.CarritoDeCompras.FindAsync(id);
 
         public async Task<CarritoDeCompras> AgregarCarritoDeCompras(CarritoDeCompras carritoDeCompras)
         {
+            carritoDeCompras.Fecha = DateTime.Now;
             _context.CarritoDeCompras.Add(carritoDeCompras);
             await _context.SaveChangesAsync();
             return carritoDeCompras;
@@ -34,12 +37,34 @@ namespace Back.Models.Servicios
             return carritoDeCompras;
         }
 
-        public async Task<ActionResult<IEnumerable<DetalleCarritoDeCompras>>> ListarDetalleCarritoDeCompras() => await _context.DetalleCarritoDeCompras.ToListAsync();
+        public async Task<ActionResult<IEnumerable<DetalleCarritoDeComprasProducto>>> ListarDetalleCarritoDeCompras(string idUsuario)
+        {
+            await using (_context)
+            {
+                List<DetalleCarritoDeComprasProducto> listaDetalleCarrito = (from productos in _context.Productos
+                                                                             join detalleCarrito in _context.DetalleCarritoDeCompras
+                                                                             on productos.IdProducto equals detalleCarrito.IdProducto
+                                                                             where detalleCarrito.IdUsuario == idUsuario
+
+                                                                             select new DetalleCarritoDeComprasProducto()
+                                                                             {
+                                                                               IdDetalleCarritoDeCompras = detalleCarrito.IdDetalleCarritoDeCompras,
+                                                                               IdCarritoDeCompras=detalleCarrito.IdCarritoDeCompras,
+                                                                               IdProducto = detalleCarrito.IdProducto,
+                                                                               NombreProducto = productos.Nombre,
+                                                                               IdUsuario = detalleCarrito.IdUsuario,
+                                                                               Cantidad = detalleCarrito.Cantidad
+                                                                             }).ToList();
+                return listaDetalleCarrito;
+            }
+        }
+        
 
         public async Task<DetalleCarritoDeCompras> BuscarDetalleCarritoDeComprasPorId(int id) => await _context.DetalleCarritoDeCompras.FindAsync(id);
 
         public async Task<DetalleCarritoDeCompras> AgregarDetalleCarritoDeCompras(DetalleCarritoDeCompras detalleCarritoDeCompras)
         {
+
             _context.DetalleCarritoDeCompras.Add(detalleCarritoDeCompras);
             await _context.SaveChangesAsync();
             return detalleCarritoDeCompras;
@@ -50,6 +75,24 @@ namespace Back.Models.Servicios
             _context.DetalleCarritoDeCompras.Update(detalleCarritoDeCompras);
             await _context.SaveChangesAsync();
             return detalleCarritoDeCompras;
+        }
+
+        public async Task<List<CarritoDeCompras>> ExisteCarritoUsuarioPorId(string id)
+        {
+            await using (_context)
+            {
+                List<CarritoDeCompras>  carritoAsociado = (from carrito in _context.CarritoDeCompras
+                                                          where carrito.IdUsuario == id && carrito.Estado ==false
+                                                          select carrito).ToList();
+                return carritoAsociado;
+            }
+
+        }
+        public async Task EliminarDetalleCarrito(int idDetalle)
+        {
+           var detalle= await _context.DetalleCarritoDeCompras.FindAsync(idDetalle);
+            _context.DetalleCarritoDeCompras.Remove(detalle);
+            await _context.SaveChangesAsync();
         }
     }
 }
