@@ -1,4 +1,6 @@
-﻿using Back.Models.Entidades.Solicitudes;
+﻿using Back.Clases.Solicitudes.CarritoDeCompras;
+using Back.Models.Entidades.Productos;
+using Back.Models.Entidades.Solicitudes;
 using Back.Models.Entidades.Solicitudes.Personalizadas;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,7 +16,8 @@ namespace Back.Models.Abstratos
         Task<CarritoDeCompras> BuscarCarritoDeComprasPorId(int id);
         Task<CarritoDeCompras> AgregarCarritoDeCompras(CarritoDeCompras carritoDeCompras);
         Task<CarritoDeCompras> EditarCarritoDeCompras(CarritoDeCompras carritoDeCompras);
-        Task<ActionResult<IEnumerable<DetalleCarritoDeCompras>>> ListarDetalleCarritoDeCompras();
+        Task<PrecioProducto> PrecioDelProducto(int idProducto);
+        Task<ActionResult<IEnumerable<DetalleCarritoDeComprasProducto>>> ListarDetalleCarritoDeCompras(string idUsuario);
         Task<DetalleCarritoDeCompras> BuscarDetalleCarritoDeComprasPorId(int id);
         Task<DetalleCarritoDeCompras> AgregarDetalleCarritoDeCompras(DetalleCarritoDeCompras detalleCarritoDeCompras);
         Task<DetalleCarritoDeCompras> EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras detalleCarritoDeCompras);
@@ -89,5 +92,7 @@ namespace Back.Models.Abstratos
         Task<SolicitudPersonalizada> EditarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada);
 
 
+        Task<List<CarritoDeCompras>> ExisteCarritoUsuarioPorId(string id);
+        Task EliminarDetalleCarrito(int idDetalle);
     }
 }

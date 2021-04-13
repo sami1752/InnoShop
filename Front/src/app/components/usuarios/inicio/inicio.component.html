@@ -13,7 +13,10 @@
                             <nav>
                                 <ul>
 
-                                    <li class=""><a href="index-3.html">Tienda</a>
+                                    <li class=""><a [routerLink]="['/usuarios/Productos']" >Tienda</a>
+
+                                    </li>
+                                    <li class=""><a [routerLink]="['/usuarios/carrito']" >Carrito</a>
 
                                     </li>
                                     <li class="has-dropdown"><a href="blog.html">Pedidos</a>
@@ -32,10 +35,10 @@
                                     </li>
                                     <li><a href="Micuenta.html">Ruleta</a></li>
                                     <li>
-                                        <a *ngIf="usuarioService.inicioSesion" (click)="CambioMicuenta()">Mi cuenta</a>
                                         <a *ngIf="!usuarioService.inicioSesion" href="usuarios/login">Iniciar sesion</a>
                                     </li>
-
+                                    <a *ngIf="usuarioService.inicioSesion" [routerLink]="['/usuarios/MiCuenta']">Mi cuenta</a>
+                                    
                                     <li><a href="contact.html ">Contacto</a></li>
                                     <li *ngIf="usuarioService.inicioSesion"><button class="btn-danger " (click)="configuracionService.cerrarSesion() ">Cerrar Sesion</button>
                                     </li>
@@ -271,15 +274,3 @@
 
     </div>
 </section>
-
-
-
-<div *ngIf="Micuenta">
-    <app-modificar-datos></app-modificar-datos>
-</div>
-
-
-<app-productos></app-productos>
-
-
-<router-outlet></router-outlet>

@@ -257,6 +257,13 @@ namespace Back.Controllers
         {
             return await _context.ListaPrecioProducto(idProducto);
         }
+        [HttpGet]
+        [Route("listaPrecioProductos")]
+        public async Task<ActionResult<IEnumerable<PrecioProducto>>> ListaPrecioTodosProducto()
+        {
+            return await _context.ListaTodosPreciosProducto();
+        }
+
 
         [HttpGet]
         [Route("listarEntradas")]

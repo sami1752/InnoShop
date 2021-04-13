@@ -98,7 +98,10 @@ namespace Back.Models.Servicios
         {
             return await _context.PrecioProductos.Where(x => x.IdProducto == idProducto).ToListAsync();
         }
-
+        public async Task<ActionResult<IEnumerable<PrecioProducto>>> ListaTodosPreciosProducto()
+        {
+            return await _context.PrecioProductos.ToListAsync();
+        }
 
         public async Task<Producto> AgregarProducto(Producto producto)
         {
@@ -129,14 +132,12 @@ namespace Back.Models.Servicios
 
         public async Task AgregarImagen(FileImagenProducto archivoImagen)
         {
-
-            string fecha = DateTime.Now.ToString();
-            fecha = string.Join("", fecha.Split('/',':'));
-            await archivoImagen.Imagen.CopyToAsync(new System.IO.FileStream("..//..//Front//src//assets//img/Imagenes/"+ fecha + archivoImagen.Imagen.FileName, System.IO.FileMode.Create));
+            string nombreimagen = string.Join("", DateTime.Now.ToString().Split('/', ':')) + archivoImagen.Imagen.FileName;
+            await archivoImagen.Imagen.CopyToAsync(new System.IO.FileStream("..//..//Front//src//assets//img/Imagenes/" + nombreimagen, System.IO.FileMode.Create));
 
             Imagen imagen = new()
             {
-                RutaImagen = fecha + archivoImagen.Imagen.FileName,
+                RutaImagen = nombreimagen,
                 IdProducto = archivoImagen.IdProducto,
                 IdUsuario = archivoImagen.IdUsuario
             };

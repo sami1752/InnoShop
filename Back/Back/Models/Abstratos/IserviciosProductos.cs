@@ -34,6 +34,7 @@ namespace Back.Models.Abstratos
         Task ModificaPrecio(DateTime nueva, int Id);
         Task<ActionResult<IEnumerable<DetalleEntrada>>> ListarEntradas();
         Task AgregarEntrada(Entrada entrada);
+        Task<ActionResult<IEnumerable<PrecioProducto>>> ListaTodosPreciosProducto();
 
 
     }

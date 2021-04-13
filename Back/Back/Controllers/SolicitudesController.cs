@@ -1,4 +1,6 @@
-﻿using Back.Models.Abstratos;
+﻿using Back.Clases.Solicitudes.CarritoDeCompras;
+using Back.Models.Abstratos;
+using Back.Models.Entidades.Productos;
 using Back.Models.Entidades.Solicitudes;
 using Back.Models.Entidades.Solicitudes.Personalizadas;
 using Microsoft.AspNetCore.Mvc;
@@ -60,9 +62,9 @@ namespace Back.Controllers
         }
 
         [HttpGet]
-        [Route("DetalleCarritoDeCompras")]
-        public async Task<ActionResult<IEnumerable<DetalleCarritoDeCompras>>> ObtenerDetalleCarritoDeCompras() =>
-            await _context.ListarDetalleCarritoDeCompras();
+        [Route("ListaDetalleCarritoDeCompras/{IdUsuario}")]
+        public async Task<ActionResult<IEnumerable<DetalleCarritoDeComprasProducto>>> ObtenerDetalleCarritoDeCompras(string IdUsuario) =>
+            await _context.ListarDetalleCarritoDeCompras(IdUsuario);
 
         [HttpGet]
         [Route("DetalleCarritoDeCompras/{idDetalleCarritoDeCompras}")]
@@ -76,6 +78,11 @@ namespace Back.Controllers
         {
             try
             {
+                CarritoDeCompras carrito =  await _context.BuscarCarritoDeComprasPorId(DetalleCarritoDeCompras.IdCarritoDeCompras);
+                PrecioProducto precioP = await _context.PrecioDelProducto(DetalleCarritoDeCompras.IdProducto);
+                carrito.Valor += precioP.Precio * DetalleCarritoDeCompras.Cantidad;
+                await _context.EditarCarritoDeCompras(carrito);
+
                 DetalleCarritoDeCompras = await _context.AgregarDetalleCarritoDeCompras(DetalleCarritoDeCompras);
                 return Ok(new { mensaje = DetalleCarritoDeCompras });
             }
@@ -91,7 +98,16 @@ namespace Back.Controllers
         {
             try
             {
+                //var cant = DetalleCarritoDeCompras.Cantidad;
+               
+                CarritoDeCompras carrito = await _context.BuscarCarritoDeComprasPorId(DetalleCarritoDeCompras.IdCarritoDeCompras);
+                PrecioProducto precioP = await _context.PrecioDelProducto(DetalleCarritoDeCompras.IdProducto);
+                //DetalleCarritoDeCompras detalleAnterior = await _context.BuscarDetalleCarritoDeComprasPorId(DetalleCarritoDeCompras.IdDetalleCarritoDeCompras);
+                //carrito.Valor -= detalleAnterior.Cantidad * precioP.Precio;
                 await _context.EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras);
+                carrito.Valor += precioP.Precio * DetalleCarritoDeCompras.Cantidad;
+                //await _context.EditarCarritoDeCompras(carrito);
+                                
                 return Ok(new { mensaje = "Actializacion exitosa" });
             }
             catch (Exception e)
@@ -428,6 +444,50 @@ namespace Back.Controllers
             {
                 PrecioMontajes = await _context.AgregarPrecioMontajes(PrecioMontajes);
                 return Ok(new { mensaje = PrecioMontajes });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        [HttpGet]
+        [Route("ExisteCarrito/{idUsuario}")]
+        public async Task<Object> ExisteCarrito(string idUsuario)
+        {
+            try
+            {
+                var carrito = await _context.ExisteCarritoUsuarioPorId(idUsuario);
+
+                if (carrito.Count() == 0)
+                {
+                    return Ok(new { mensaje = 0 });
+                }
+                else
+                {
+                    return Ok(new { mensaje = carrito[0].IdCarritoDeCompras });
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        [HttpDelete]
+        [Route("EliminarDetalle/{idDetalle}")]
+        public async Task<Object> EliminarDetalleCarrito(int idDetalle)
+        {
+            try
+            {
+                DetalleCarritoDeCompras DetalleCarritoDeCompras = await _context.BuscarDetalleCarritoDeComprasPorId(idDetalle);
+                CarritoDeCompras carrito = await _context.BuscarCarritoDeComprasPorId(DetalleCarritoDeCompras.IdCarritoDeCompras);
+                PrecioProducto precioP = await _context.PrecioDelProducto(DetalleCarritoDeCompras.IdProducto);
+                carrito.Valor -= precioP.Precio * DetalleCarritoDeCompras.Cantidad;
+                await _context.EditarCarritoDeCompras(carrito);
+
+                await _context.EliminarDetalleCarrito(idDetalle);
+                return Ok(new { mensaje = "Eliminacion exitosa" });
             }
             catch (Exception e)
             {
