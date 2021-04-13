@@ -11,25 +11,49 @@
                 <div *ngIf="this.productoService.FormularioImagen">
                     <app-registrar-imagen></app-registrar-imagen>
                 </div>
-                <table class="table table-hover">
+                <div style="width: 30%; " align="center">
+                    <owl-carousel-o [options]="customOptions">
+
+                        <ng-template carouselSlide *ngFor="let imagen of productoService.listaImagenes">
+                            <img src="assets/img/Imagenes/{{imagen.RutaImagen}}">
+                            <caption><i (click)="eliminarImagen(imagen)" class="bi bi-trash text-danger "></i></caption>
+                        </ng-template>
+                    </owl-carousel-o>
+
+                </div>
+
+                <!--      <div class="container ">holaaa
+                        <owl-carousel [options]="homeSlider " [carouselClasses]="[ 'owl-theme', 'customClassName'] ">
+                        <div class="item ">
+                            <img src="https://www.vitrimagen.com/wp-content/uploads/2019/10/Vitrinas-ferreteria-medellin-9.jpg ">
+                        </div>
+                        <div class="item ">
+                            <img src="https:///via.placeholder.com/1920x800 ">
+                        </div>
+                    </owl-carousel>
+                </div>
+                
+                <table class="table table-hover ">
                     <thead>
                         <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Ruta Imagen</th>
-                            <th scope="col">Id Usuario</th>
+                            <th scope="col ">Id</th>
+                            <th scope="col ">Ruta Imagen</th>
+                            <th scope="col ">Id Usuario</th>
                             <th></th>
                         </tr>
                     </thead>
 
-                    <tbody *ngFor="let imagen of productoService.listaImagenes">
+                    <tbody *ngFor="let imagen of productoService.listaImagenes ">
                         <tr>
                             <td>{{imagen.IdImagen}}</td>
-                            <td>  <img src="assets/img/Imagenes/{{imagen.RutaImagen}}" ></td>
+                            <td> <img src="assets/img/Imagenes/{{imagen.RutaImagen}} "></td>
                             <td>{{imagen.IdUsuario}}</td>
-                            <td><i (click)="eliminarImagen(imagen)" class="bi bi-trash text-danger"></i></td>
+                            <td><i (click)="eliminarImagen(imagen) " class="bi bi-trash text-danger "></i></td>
                         </tr>
                     </tbody>
                 </table>
+-->
+
 
             </div>
         </div>

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { Imagen } from 'src/app/models/imagen';
 import { ProductoService } from 'src/app/services/producto.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import{OwlModule} from 'ngx-owl-carousel';
 
 @Component({
   selector: 'app-listar-imagen',
@@ -25,6 +27,31 @@ export class ListarImagenComponent implements OnInit {
         }
       );
     }
+  }
+  homeSlider={items: 1, dots:true, nav: true};
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 1
+      }
+    },
+    nav: true
   }
 
 }

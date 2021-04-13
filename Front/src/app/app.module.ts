@@ -30,6 +30,8 @@ import { ListarDetalleMaterialComponent } from './components/admin/productos/lis
 import { ListarEntradasComponent } from './components/admin/productos/Entrada/listar-entradas/listar-entradas.component';
 import { RegistrarEntradaComponent } from './components/admin/productos/Entrada/registrar-entrada/registrar-entrada.component';
 import { GestionEnradasComponent } from './components/admin/productos/Entrada/gestion-entradas/gestion-entradas.component';
+import{OwlModule} from 'ngx-owl-carousel';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -56,14 +58,17 @@ import { GestionEnradasComponent } from './components/admin/productos/Entrada/ge
     ListarEntradasComponent,
     RegistrarEntradaComponent,
     GestionEnradasComponent,
-
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     UsuariosModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OwlModule,
+    CarouselModule
+
   ],
   providers: [UsuarioService, ConfiguracionService,{
     provide:HTTP_INTERCEPTORS,

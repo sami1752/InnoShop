@@ -29,7 +29,11 @@
                             "src/assets/docs/assets/css/adminlte.css",
                             "node_modules/admin-lte/plugins/fontawesome-free/css/all.css",
                             "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.css",
-                            "node_modules/admin-lte/dist/css/adminlte.css"
+                            "node_modules/admin-lte/dist/css/adminlte.css",
+                            "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
+                            "node_modules/owl.carousel/dist/assets/owl.theme.default.min.css",
+                            "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+                            "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
                         ],
                         "scripts": [
                             "node_modules/admin-lte/plugins/jquery/jquery.js",
@@ -41,7 +45,8 @@
                             "node_modules/admin-lte/plugins/raphael/raphael.js",
                             "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.js",
                             "node_modules/admin-lte/plugins/chart.js/Chart.js",
-                            "node_modules/admin-lte/dist/js/pages/dashboard2.js"
+                            "node_modules/admin-lte/dist/js/pages/dashboard2.js",
+                            "node_modules/owl.carousel/dist/owl.carousel.min.js"
                         ]
                     },
                     "configurations": {
