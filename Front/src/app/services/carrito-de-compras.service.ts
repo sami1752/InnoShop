@@ -33,8 +33,8 @@ export class CarritoDeComprasService {
       return this.http.post(this.configuracion.rootURL+'/Solicitudes/DetalleCarritoDeCompras',this.detalleCarritoDeCompras);
     }
 
-    editarDetalleCarrito(detalleCarrito){
-      return this.http.put(this.configuracion.rootURL+'/Solicitudes/DetalleCarritoDeCompras',detalleCarrito);
+    editarDetalleCarrito(detalleCarrito, cant){
+      return this.http.put(this.configuracion.rootURL+'/Solicitudes/DetalleCarritoDeCompras/'+cant,detalleCarrito);
     }
 
     existeCarritoUsuario(idUsuario){
@@ -49,8 +49,14 @@ export class CarritoDeComprasService {
     eliminarDetalleCarrito(idDetalle){
       return this.http.delete(this.configuracion.rootURL+'/Solicitudes/EliminarDetalle/'+idDetalle);
     }
-    actualizarDetalleCarrito(detalle){
-      return this.http.put(this.configuracion.rootURL+'/Solicitudes/DetalleCarritoDeCompras',detalle);
+
+    CantidadDetalleAnterior(idDetalle){
+      return this.http.get(this.configuracion.rootURL+'/Solicitudes/DetalleCarritoCantidadAnterior/'+idDetalle);
+    }
+
+    CarritoDeComprasUsuario(idUsuario){
+      this.http.get(this.configuracion.rootURL+'/Solicitudes/CarritoDeComprasUsuario/'+idUsuario).toPromise().
+      then(res => this.carritoDeCompras = res as CarritoDeCompras);
     }
 
 
