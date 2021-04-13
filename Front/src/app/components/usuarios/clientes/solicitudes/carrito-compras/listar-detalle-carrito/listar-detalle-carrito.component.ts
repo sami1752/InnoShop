@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DetalleCarritoDeCompras } from 'src/app/models/detalle-carrito-de-compras';
 import { PerfilUsuario } from 'src/app/models/perfil-usuario';
 import { Usuario } from 'src/app/models/usuario';
 import { CarritoDeComprasService } from 'src/app/services/carrito-de-compras.service';
@@ -15,17 +16,15 @@ export class ListarDetalleCarritoComponent implements OnInit {
   constructor(public carritoDeComprasService:CarritoDeComprasService, public productoService:ProductoService, public usuarioService:UsuarioService) { }
 
   perfilUsuario;
-  restar:boolean = false;
-  sumar:boolean = false;
-  cantidad:number;
   ngOnInit(): void {
     //this.productoService.listarImagenes()
     this.productoService.listarTodosPrecios();
 
     this.usuarioService.obtenerPerfil().subscribe(
-      res => {
+      (res:any) => {
         this.perfilUsuario =  res;
-        this.carritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id)
+        this.carritoDeComprasService.listarDetalleCarrito(res.Id);
+        this.carritoDeComprasService.CarritoDeComprasUsuario(res.Id);
       },
       err => {
         console.log(err);
@@ -37,8 +36,8 @@ export class ListarDetalleCarritoComponent implements OnInit {
     if(confirm("¿Está seguro de eliminar producto del carrito?")){
       this.carritoDeComprasService.eliminarDetalleCarrito(detalle.IdDetalleCarritoDeCompras).subscribe(
         (res:any)=>{
-          alert(res.mensaje);
           this.carritoDeComprasService.listarDetalleCarrito(detalle.IdUsuario);
+          this.carritoDeComprasService.CarritoDeComprasUsuario(detalle.IdUsuario);
         },
         err=>{
           alert("error");
@@ -47,17 +46,24 @@ export class ListarDetalleCarritoComponent implements OnInit {
     }
   }
 
-  editarDetalleCarrito(detalle){
+  editarDetalleCarrito(detalle:DetalleCarritoDeCompras){
     if(detalle.Cantidad==null || detalle.Cantidad<=0)
       this.carritoDeComprasService.listarDetalleCarrito(detalle.IdUsuario);
     else
-    this.carritoDeComprasService.editarDetalleCarrito(detalle).subscribe(
+    this.carritoDeComprasService.CantidadDetalleAnterior(detalle.IdDetalleCarritoDeCompras).subscribe(
       res=>{
-        alert("Edicion exitosa")
+        this.carritoDeComprasService.editarDetalleCarrito(detalle, res).subscribe(
+          res=>{
+            this.carritoDeComprasService.CarritoDeComprasUsuario(detalle.IdUsuario);
+            alert("Edicion exitosa")
+          },err=>{
+            alert("error")
+          } 
+        )
       },err=>{
-        alert("error")
-      } 
-    )
+        alert("error con id detalle anterior")
+      }
+    );
   }
 
 }

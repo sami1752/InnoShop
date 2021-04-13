@@ -13,6 +13,7 @@ namespace Back.Models.Abstratos
     public interface IServiciosSolicitudes
     {
         Task<ActionResult<IEnumerable<CarritoDeCompras>>> ListarCarritoDeCompras();
+        Task<CarritoDeCompras> BuscarCarritoDeComprasPorIdUsuario(string id);
         Task<CarritoDeCompras> BuscarCarritoDeComprasPorId(int id);
         Task<CarritoDeCompras> AgregarCarritoDeCompras(CarritoDeCompras carritoDeCompras);
         Task<CarritoDeCompras> EditarCarritoDeCompras(CarritoDeCompras carritoDeCompras);
@@ -20,7 +21,8 @@ namespace Back.Models.Abstratos
         Task<ActionResult<IEnumerable<DetalleCarritoDeComprasProducto>>> ListarDetalleCarritoDeCompras(string idUsuario);
         Task<DetalleCarritoDeCompras> BuscarDetalleCarritoDeComprasPorId(int id);
         Task<DetalleCarritoDeCompras> AgregarDetalleCarritoDeCompras(DetalleCarritoDeCompras detalleCarritoDeCompras);
-        Task<DetalleCarritoDeCompras> EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras detalleCarritoDeCompras);
+        Task EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras detalleCarritoDeCompras);
+        Task<int> CantidadDetalleCarritoAnterior(int IdDetalleCarritoDeCompras);
 
 //--------
         Task<DetalleEstadosMontajes> AgregarDetalleEstadosMontajes(DetalleEstadosMontajes DetalleEstadosMontajes);

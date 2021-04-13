@@ -1,30 +1,48 @@
-<script src="https://kit.fontawesome.com/0fdc86d591.js" crossorigin="anonymous"></script>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Producto</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Subtotal</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let detalle of carritoDeComprasService.listaDetalleCarritoCompras">
-        <tr>
-            <td>{{detalle.IdDetalleCarritoDeCompras}}</td>
-            <td >
-                <input min=1  (change)="editarDetalleCarrito(detalle)"
-                  [(ngModel)]="detalle.Cantidad"  type="number" [value]="detalle.Cantidad">
-            </td>
-            <td >{{detalle.NombreProducto}}</td>
-            <ng-container *ngFor="let precio of productoService.listaPrecios"> 
-                <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio}}</td>
-                <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio * detalle.Cantidad}}</td>
-            </ng-container> 
-            <td ></td>
-            <td> <button (click)="eliminarDetalle(detalle)" class="btn-danger p-1">eliminar</button> </td>
-        </tr>
-    </tbody>
-</table>
+
+
+<div class="row" > 
+    
+    <div class="card col-4 ml-4 mr-4">
+        <div class="card-header center">
+          Total en carrito
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Subtotal: {{this.carritoDeComprasService.carritoDeCompras.Valor}}</h5>
+          <p class="card-text"></p>
+          <a href="#" class="btn btn-primary">Finalizar Compra</a>
+        </div>
+      </div>
+    <div class="col-6"> 
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let detalle of carritoDeComprasService.listaDetalleCarritoCompras">
+                <tr>
+                    <td>{{detalle.IdDetalleCarritoDeCompras}}</td>
+                    <td >
+                        <input min=1  (change)="editarDetalleCarrito(detalle)"
+                          [(ngModel)]="detalle.Cantidad"  type="number" [value]="detalle.Cantidad">
+                    </td>
+                    <td >{{detalle.NombreProducto}}</td>
+                    <ng-container *ngFor="let precio of productoService.listaPrecios"> 
+                        <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio}}</td>
+                        <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio * detalle.Cantidad}}</td>
+                    </ng-container> 
+                    <td ></td>
+                    <td> <button (click)="eliminarDetalle(detalle)" class="btn-danger p-1">eliminar</button> </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    
+</div>
 

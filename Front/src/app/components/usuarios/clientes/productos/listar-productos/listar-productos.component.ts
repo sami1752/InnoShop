@@ -41,7 +41,6 @@ export class ListarProductosComponent implements OnInit {
                     this.CarritoDeComprasService.agregarCarritoDeCompras().subscribe( 
                       (respuesta: any) => {
                         this.carritoRespuesta = (respuesta.mensaje as CarritoDeCompras);
-                        alert(this.carritoRespuesta.IdUsuario);
                         this.CarritoDeComprasService.detalleCarritoDeCompras.IdUsuario = this.carritoRespuesta.IdUsuario;
                         this.CarritoDeComprasService.detalleCarritoDeCompras.IdCarritoDeCompras = this.carritoRespuesta.IdCarritoDeCompras;
                         this.CarritoDeComprasService.agregarDetalleCarrito(idProducto).subscribe(

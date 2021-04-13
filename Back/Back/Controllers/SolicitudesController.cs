@@ -27,9 +27,9 @@ namespace Back.Controllers
             await _context.ListarCarritoDeCompras();
 
         [HttpGet]
-        [Route("CarritoDeCompras/{idCarritoDeCompras}")]
-        public async Task<ActionResult<CarritoDeCompras>> BuscarCarritoDeComprasPorId(int idCarritoDeCompras) =>
-            await _context.BuscarCarritoDeComprasPorId(idCarritoDeCompras);
+        [Route("CarritoDeComprasUsuario/{idUsuario}")]
+        public async Task<CarritoDeCompras> BuscarCarritoDeComprasPorId(string idUsuario) =>
+            await _context.BuscarCarritoDeComprasPorIdUsuario(idUsuario);
 
         [HttpPost]
         [Route("CarritoDeCompras")]
@@ -93,21 +93,19 @@ namespace Back.Controllers
         }
 
         [HttpPut]
-        [Route("DetalleCarritoDeCompras")]
-        public async Task<Object> EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras DetalleCarritoDeCompras)
+        [Route("DetalleCarritoDeCompras/{cantAnterior}")]
+        public async Task<Object> EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras DetalleCarritoDeCompras, int cantAnterior)
         {
             try
             {
-                //var cant = DetalleCarritoDeCompras.Cantidad;
-               
+                await _context.EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras);
                 CarritoDeCompras carrito = await _context.BuscarCarritoDeComprasPorId(DetalleCarritoDeCompras.IdCarritoDeCompras);
                 PrecioProducto precioP = await _context.PrecioDelProducto(DetalleCarritoDeCompras.IdProducto);
-                //DetalleCarritoDeCompras detalleAnterior = await _context.BuscarDetalleCarritoDeComprasPorId(DetalleCarritoDeCompras.IdDetalleCarritoDeCompras);
-                //carrito.Valor -= detalleAnterior.Cantidad * precioP.Precio;
-                await _context.EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras);
-                carrito.Valor += precioP.Precio * DetalleCarritoDeCompras.Cantidad;
-                //await _context.EditarCarritoDeCompras(carrito);
-                                
+
+                carrito.Valor += (precioP.Precio * DetalleCarritoDeCompras.Cantidad) -(cantAnterior* precioP.Precio);
+                await _context.EditarCarritoDeCompras(carrito);
+                
+
                 return Ok(new { mensaje = "Actializacion exitosa" });
             }
             catch (Exception e)
@@ -115,7 +113,21 @@ namespace Back.Controllers
                 return e.Message;
             }
         }
+        [HttpGet]
+        [Route("DetalleCarritoCantidadAnterior/{id}")]
+        public async Task<Object> DetalleCarritoCantidadAnterior(int id)
+        {
+            try
+            {
+               int cantidad= await _context.CantidadDetalleCarritoAnterior(id);
+                return Ok(cantidad);
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+        }
 
 
         [HttpGet]
