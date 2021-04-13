@@ -181,4 +181,27 @@ export class SolicitudesPersonalizadasService {
       this.DetallesMaterialesSolicitudesPersonalizadas)
   }
 
+
+
+  EliminarDetallesProductosMontajes(id) {
+    return this.http.delete(this.configuracion.rootURL + '/Solicitudes/DetallesProductosMontajes/' + id);
+  }
+
+  ListarDetallesProductosMontajes() {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/DetallesProductosMontajes')
+      .toPromise()
+      .then(res => this.listaDetallesProductosMontajes = res as DetallesProductosMontajes[])
+  }
+
+  ListaDetallesProductosMontajes(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/DetallesProductosMontajes/'+id)
+      .toPromise()
+      .then(res => this.listaDetallesProductosMontajes = res as DetallesProductosMontajes[])
+  }
+
+  AgregarDetallesProductosMontajes() {
+    return this.http.post( this.configuracion.rootURL + '/Solicitudes/DetallesProductosMontajes/',
+      this.DetallesProductosMontajes)
+  }
+
 }
