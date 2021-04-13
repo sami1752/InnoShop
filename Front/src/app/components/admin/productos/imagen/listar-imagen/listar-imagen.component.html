@@ -24,7 +24,7 @@
                     <tbody *ngFor="let imagen of productoService.listaImagenes">
                         <tr>
                             <td>{{imagen.IdImagen}}</td>
-                            <td>{{imagen.RutaImagen}}</td>
+                            <td>  <img src="assets/img/Imagenes/{{imagen.RutaImagen}}" ></td>
                             <td>{{imagen.IdUsuario}}</td>
                             <td><i (click)="eliminarImagen(imagen)" class="bi bi-trash text-danger"></i></td>
                         </tr>

@@ -43,7 +43,6 @@ export class RegistrarImagenComponent implements OnInit {
             this.productoService.formularioRegistroImagen.reset();
             this.productoService.FormularioImagen = false
             this.productoService.listarImagen(this.productoService.imagen.IdProducto);
-            this.productoService.buscarProductoIdDetalle(this.productoService.imagen.IdProducto)
           }, error => {
             alert(error)
             console.log(error);

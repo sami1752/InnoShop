@@ -129,13 +129,14 @@ namespace Back.Models.Servicios
 
         public async Task AgregarImagen(FileImagenProducto archivoImagen)
         {
-            
-            string rutaImagen = System.IO.Path.Combine(_environment.ContentRootPath, "Imagenes", archivoImagen.Imagen.FileName);
-            await archivoImagen.Imagen.CopyToAsync(new System.IO.FileStream(rutaImagen, System.IO.FileMode.Create));
+
+            string fecha = DateTime.Now.ToString();
+            fecha = string.Join("", fecha.Split('/',':'));
+            await archivoImagen.Imagen.CopyToAsync(new System.IO.FileStream("..//..//Front//src//assets//img/Imagenes/"+ fecha + archivoImagen.Imagen.FileName, System.IO.FileMode.Create));
 
             Imagen imagen = new()
             {
-                RutaImagen = rutaImagen,
+                RutaImagen = fecha + archivoImagen.Imagen.FileName,
                 IdProducto = archivoImagen.IdProducto,
                 IdUsuario = archivoImagen.IdUsuario
             };

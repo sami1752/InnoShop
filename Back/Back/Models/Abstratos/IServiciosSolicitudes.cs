@@ -44,18 +44,11 @@ namespace Back.Models.Abstratos
         Task<ActionResult<IEnumerable<DetalleProductosSolicitud>>> ListaDetalleProductosSolicitud(int id);
         Task EliminarDetalleProductosSolicitud(int id);
        
-
-
-        
         Task<DetallesMaterialesMontajes> AgregarDetallesMaterialesMontajes
                     (DetallesMaterialesMontajes DetallesMaterialesMontajes);
         Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>> ListarDetallesMaterialesMontajes();
         Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>> ListaDetallesMaterialesMontajes(int id);
         Task EliminarDetallesMaterialesMontajes(int id);
-        
-        
-        
-
 
         Task<DetallesMaterialesSolicitudesPersonalizadas> AgregarDetallesMaterialesSolicitudesPersonalizadas
                     (DetallesMaterialesSolicitudesPersonalizadas DetallesMaterialesSolicitudesPersonalizadas);
@@ -64,26 +57,18 @@ namespace Back.Models.Abstratos
         Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
                     ListaDetallesMaterialesSolicitudesPersonalizadas(int id);
         Task EliminarDetallesMaterialesSolicitudesPersonalizadas(int id);
-        
-        
-        
-        
+
         Task<DetallesProductosMontajes> AgregarDetallesProductosMontajes
                     (DetallesProductosMontajes DetallesProductosMontajes);
         Task<ActionResult<IEnumerable<DetallesProductosMontajes>>> ListarDetallesProductosMontajes();
         Task<ActionResult<IEnumerable<DetallesProductosMontajes>>> ListaDetallesProductosMontajes(int id);
         Task EliminarDetallesProductosMontajes(int id);
-        
-        
-
 
         Task<ActionResult<IEnumerable<Montajes>>> ListarMontajes();
         Task<Montajes> BuscarMontajes(int id);
         Task<Montajes> AgregarMontajes(Montajes Montajes);
         Task<Montajes> EditarMontajes(Montajes Montajes);
-        
-        
-        
+   
         Task<PrecioMontajes> AgregarPrecioMontajes(PrecioMontajes PrecioMontajes);
         Task<ActionResult<IEnumerable<PrecioMontajes>>> ListarPrecioMontajes();
         Task<ActionResult<IEnumerable<PrecioMontajes>>> ListaPrecioMontajes(int id);

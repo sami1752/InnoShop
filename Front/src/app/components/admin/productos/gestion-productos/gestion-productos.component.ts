@@ -14,17 +14,17 @@ export class GestionProductosComponent implements OnInit {
   constructor(private router: Router, public usuarioService:UsuarioService, public productoService : ProductoService) { }
   perfilUsuario: PerfilUsuario
   ngOnInit(): void {
-    this.usuarioService.obtenerPerfil().subscribe(
-      res => {
-        this.perfilUsuario = < PerfilUsuario > res;
-        this.perfilUsuario = < PerfilUsuario > res;
-        if (this.perfilUsuario.IdRol == 2)
-          this.router.navigate(['/usuarios/inicio']);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    // this.usuarioService.obtenerPerfil().subscribe(
+    //   res => {
+    //     this.perfilUsuario = < PerfilUsuario > res;
+    //     this.perfilUsuario = < PerfilUsuario > res;
+    //     if (this.perfilUsuario.IdRol == 2)
+    //       this.router.navigate(['/usuarios/inicio']);
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // );
   }
 
 }
