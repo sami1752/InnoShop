@@ -49,6 +49,9 @@ export class CarritoDeComprasService {
     eliminarDetalleCarrito(idDetalle){
       return this.http.delete(this.configuracion.rootURL+'/Solicitudes/EliminarDetalle/'+idDetalle);
     }
+    actualizarDetalleCarrito(detalle){
+      return this.http.put(this.configuracion.rootURL+'/Solicitudes/DetalleCarritoDeCompras',detalle);
+    }
 
 
 }

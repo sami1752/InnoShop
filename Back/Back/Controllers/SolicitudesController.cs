@@ -1,5 +1,6 @@
 ﻿using Back.Clases.Solicitudes.CarritoDeCompras;
 using Back.Models.Abstratos;
+using Back.Models.Entidades.Productos;
 using Back.Models.Entidades.Solicitudes;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -56,7 +57,7 @@ namespace Back.Controllers
             catch (Exception e)
             {
                 return e.Message;
-            }   
+            }
         }
 
         [HttpGet]
@@ -75,6 +76,11 @@ namespace Back.Controllers
         {
             try
             {
+                CarritoDeCompras carrito =  await _context.BuscarCarritoDeComprasPorId(DetalleCarritoDeCompras.IdCarritoDeCompras);
+                PrecioProducto precioP = await _context.PrecioDelProducto(DetalleCarritoDeCompras.IdProducto);
+                carrito.Valor += precioP.Precio * DetalleCarritoDeCompras.Cantidad;
+                await _context.EditarCarritoDeCompras(carrito);
+
                 DetalleCarritoDeCompras = await _context.AgregarDetalleCarritoDeCompras(DetalleCarritoDeCompras);
                 return Ok(new { mensaje = DetalleCarritoDeCompras });
             }
@@ -90,7 +96,16 @@ namespace Back.Controllers
         {
             try
             {
+                //var cant = DetalleCarritoDeCompras.Cantidad;
+               
+                CarritoDeCompras carrito = await _context.BuscarCarritoDeComprasPorId(DetalleCarritoDeCompras.IdCarritoDeCompras);
+                PrecioProducto precioP = await _context.PrecioDelProducto(DetalleCarritoDeCompras.IdProducto);
+                //DetalleCarritoDeCompras detalleAnterior = await _context.BuscarDetalleCarritoDeComprasPorId(DetalleCarritoDeCompras.IdDetalleCarritoDeCompras);
+                //carrito.Valor -= detalleAnterior.Cantidad * precioP.Precio;
                 await _context.EditarDetalleCarritoDeCompras(DetalleCarritoDeCompras);
+                carrito.Valor += precioP.Precio * DetalleCarritoDeCompras.Cantidad;
+                //await _context.EditarCarritoDeCompras(carrito);
+                                
                 return Ok(new { mensaje = "Actializacion exitosa" });
             }
             catch (Exception e)
@@ -107,14 +122,14 @@ namespace Back.Controllers
             {
                 var carrito = await _context.ExisteCarritoUsuarioPorId(idUsuario);
 
-                if (carrito.Count()==0)
+                if (carrito.Count() == 0)
                 {
                     return Ok(new { mensaje = 0 });
                 }
                 else
-                {   
-                     return Ok( new { mensaje = carrito[0].IdCarritoDeCompras});
-                } 
+                {
+                    return Ok(new { mensaje = carrito[0].IdCarritoDeCompras });
+                }
             }
             catch (Exception e)
             {
@@ -128,14 +143,21 @@ namespace Back.Controllers
         {
             try
             {
-               await  _context.EliminarDetalleCarrito(idDetalle);
+                DetalleCarritoDeCompras DetalleCarritoDeCompras = await _context.BuscarDetalleCarritoDeComprasPorId(idDetalle);
+                CarritoDeCompras carrito = await _context.BuscarCarritoDeComprasPorId(DetalleCarritoDeCompras.IdCarritoDeCompras);
+                PrecioProducto precioP = await _context.PrecioDelProducto(DetalleCarritoDeCompras.IdProducto);
+                carrito.Valor -= precioP.Precio * DetalleCarritoDeCompras.Cantidad;
+                await _context.EditarCarritoDeCompras(carrito);
+
+                await _context.EliminarDetalleCarrito(idDetalle);
                 return Ok(new { mensaje = "Eliminacion exitosa" });
             }
             catch (Exception e)
             {
-
                 return e.Message;
             }
         }
+
+
     }
 }

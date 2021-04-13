@@ -1,4 +1,5 @@
 ﻿using Back.Clases.Solicitudes.CarritoDeCompras;
+using Back.Models.Entidades.Productos;
 using Back.Models.Entidades.Solicitudes;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +15,7 @@ namespace Back.Models.Abstratos
         Task<CarritoDeCompras> BuscarCarritoDeComprasPorId(int id);
         Task<CarritoDeCompras> AgregarCarritoDeCompras(CarritoDeCompras carritoDeCompras);
         Task<CarritoDeCompras> EditarCarritoDeCompras(CarritoDeCompras carritoDeCompras);
+        Task<PrecioProducto> PrecioDelProducto(int idProducto);
         Task<ActionResult<IEnumerable<DetalleCarritoDeComprasProducto>>> ListarDetalleCarritoDeCompras(string idUsuario);
         Task<DetalleCarritoDeCompras> BuscarDetalleCarritoDeComprasPorId(int id);
         Task<DetalleCarritoDeCompras> AgregarDetalleCarritoDeCompras(DetalleCarritoDeCompras detalleCarritoDeCompras);

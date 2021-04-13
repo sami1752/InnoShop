@@ -1,6 +1,7 @@
 ﻿using Back.Clases.Solicitudes.CarritoDeCompras;
 using Back.Models.Abstratos;
 using Back.Models.DAL;
+using Back.Models.Entidades.Productos;
 using Back.Models.Entidades.Solicitudes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,6 @@ namespace Back.Models.Servicios
         public ServiciosSolicitudes(DBContext context) => _context = context;
 
         public async Task<ActionResult<IEnumerable<CarritoDeCompras>>> ListarCarritoDeCompras() => await _context.CarritoDeCompras.ToListAsync(); 
-        //public async Task<ActionResult<IEnumerable<>>
 
         public async Task<CarritoDeCompras> BuscarCarritoDeComprasPorId(int id) => await _context.CarritoDeCompras.FindAsync(id);
 
@@ -93,6 +93,12 @@ namespace Back.Models.Servicios
            var detalle= await _context.DetalleCarritoDeCompras.FindAsync(idDetalle);
             _context.DetalleCarritoDeCompras.Remove(detalle);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<PrecioProducto> PrecioDelProducto(int idProducto)
+        {
+            var listaPrecios =  await _context.PrecioProductos.Where(x => x.IdProducto == idProducto).ToListAsync();
+            return listaPrecios[listaPrecios.Count()-1];
         }
     }
 }

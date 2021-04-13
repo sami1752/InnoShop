@@ -7,16 +7,21 @@
             <th scope="col">Cantidad</th>
             <th scope="col">Producto</th>
             <th scope="col">Precio</th>
+            <th scope="col">Subtotal</th>
         </tr>
     </thead>
     <tbody *ngFor="let detalle of carritoDeComprasService.listaDetalleCarritoCompras">
         <tr>
             <td>{{detalle.IdDetalleCarritoDeCompras}}</td>
-            <td ><input type="number"  [value]="detalle.Cantidad"></td>
+            <td >
+                <input min=1  (change)="editarDetalleCarrito(detalle)"
+                  [(ngModel)]="detalle.Cantidad"  type="number" [value]="detalle.Cantidad">
+            </td>
             <td >{{detalle.NombreProducto}}</td>
-            <div *ngFor="let precio of productoService.listaPrecios"> 
+            <ng-container *ngFor="let precio of productoService.listaPrecios"> 
                 <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio}}</td>
-            </div>
+                <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio * detalle.Cantidad}}</td>
+            </ng-container> 
             <td ></td>
             <td> <button (click)="eliminarDetalle(detalle)" class="btn-danger p-1">eliminar</button> </td>
         </tr>

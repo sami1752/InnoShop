@@ -17,6 +17,7 @@ export class ListarDetalleCarritoComponent implements OnInit {
   perfilUsuario;
   restar:boolean = false;
   sumar:boolean = false;
+  cantidad:number;
   ngOnInit(): void {
     //this.productoService.listarImagenes()
     this.productoService.listarTodosPrecios();
@@ -47,9 +48,12 @@ export class ListarDetalleCarritoComponent implements OnInit {
   }
 
   editarDetalleCarrito(detalle){
+    if(detalle.Cantidad==null || detalle.Cantidad<=0)
+      this.carritoDeComprasService.listarDetalleCarrito(detalle.IdUsuario);
+    else
     this.carritoDeComprasService.editarDetalleCarrito(detalle).subscribe(
       res=>{
-        alert("Edicion exitosa");
+        alert("Edicion exitosa")
       },err=>{
         alert("error")
       } 
