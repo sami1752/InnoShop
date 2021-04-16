@@ -247,4 +247,40 @@ export class SolicitudesPersonalizadasService {
       this.PrecioMontajes)
   }
 
+
+
+  ListaRespuestasSolicitudesPersonalizadas(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/RespuestasSolicitudesPersonalizadas/'+id)
+      .toPromise()
+      .then(res => this.listaRespuestasSolicitudesPersonalizadas = res as RespuestasSolicitudesPersonalizadas[])
+  }
+
+  AgregarRespuestasSolicitudesPersonalizadas() {
+    return this.http.post( this.configuracion.rootURL + '/Solicitudes/RespuestasSolicitudesPersonalizadas/',
+      this.RespuestasSolicitudesPersonalizadas)
+  }
+
+
+
+  ListarSolicitudPersonalizada() {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada')
+      .toPromise()
+      .then(res => this.listaSolicitudPersonalizada = res as SolicitudPersonalizada[])
+  }
+
+  BuscarSolicitudPersonalizada(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada/'+id)
+      .toPromise()
+      .then(res => this.SolicitudPersonalizada = res as SolicitudPersonalizada)
+  }
+
+  AgregarSolicitudPersonalizada() {
+    return this.http.post( this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada/',
+      this.SolicitudPersonalizada)
+  }
+
+  EditarSolicitudPersonalizada() {
+    return this.http.put(this.configuracion.rootURL + '/Productos/SolicitudPersonalizada', this.SolicitudPersonalizada)
+  }
+
 }
