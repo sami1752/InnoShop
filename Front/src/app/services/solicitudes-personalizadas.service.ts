@@ -204,4 +204,47 @@ export class SolicitudesPersonalizadasService {
       this.DetallesProductosMontajes)
   }
 
+
+
+  ListarMontajes() {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/Montajes')
+      .toPromise()
+      .then(res => this.listaMontajes = res as Montajes[])
+  }
+
+  BuscarMontajes(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/Montajes/'+id)
+      .toPromise()
+      .then(res => this.Montajes = res as Montajes)
+  }
+
+  AgregarMontajes() {
+    return this.http.post( this.configuracion.rootURL + '/Solicitudes/Montajes/',
+      this.Montajes)
+  }
+
+  EditarMontajes() {
+    return this.http.put(this.configuracion.rootURL + '/Productos/Montajes', this.Montajes)
+  }
+
+
+
+
+  ListarPrecioMontajes() {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/PrecioMontajes')
+      .toPromise()
+      .then(res => this.listaPrecioMontajes = res as PrecioMontajes[])
+  }
+
+  ListaPrecioMontajes(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/PrecioMontajes/'+id)
+      .toPromise()
+      .then(res => this.listaPrecioMontajes = res as PrecioMontajes[])
+  }
+
+  AgregarPrecioMontajes() {
+    return this.http.post( this.configuracion.rootURL + '/Solicitudes/PrecioMontajes/',
+      this.PrecioMontajes)
+  }
+
 }
