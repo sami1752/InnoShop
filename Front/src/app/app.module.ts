@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {UsuariosModule}from './components/usuarios/usuarios.module';
+import { ClientesModule } from './components/usuarios/clientes/clientes.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,13 +58,13 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ListarDetalleMaterialComponent,
     ListarEntradasComponent,
     RegistrarEntradaComponent,
-    GestionEnradasComponent,
-    
+    GestionEnradasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     UsuariosModule,
+    ClientesModule,
     FormsModule,
     ReactiveFormsModule,
     OwlModule,

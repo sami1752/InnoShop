@@ -6,6 +6,7 @@
             <th scope="col">Categoría</th>
             <th scope="col">Garantía</th>
             <th scope="col">Imagen</th>
+            <th scope="col">Precio</th>
         </tr>
     </thead>
     <tbody *ngFor="let producto of productoService.listaProductos">
@@ -23,6 +24,13 @@
                     </tbody>
                 </table>
             </td>
+            <div *ngFor="let precio of productoService.listaPrecios"> 
+                <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==producto.IdProducto">
+                    {{precio.Precio}}
+                </td>
+            </div>
+            <td> <button  (click)="agregarCarrito(producto.IdProducto)" class="btn-success">Agregar a carrito</button> </td>
         </tr>
     </tbody>
 </table>
+

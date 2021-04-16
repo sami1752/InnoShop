@@ -15,6 +15,8 @@ import { ConfirmarEmailComponent } from './components/usuarios/confirmar-email/c
 import { InicioadminComponent } from './components/admin/inicioadmin/inicioadmin.component';
 import { GestionUsuarioComponent } from './components/admin/usuarios/gestion-usuario/gestion-usuario.component';
 import { ModificarDatosComponent } from './components/usuarios/modificar-datos/modificar-datos.component';
+import { ListarProductosComponent } from './components/usuarios/clientes/productos/listar-productos/listar-productos.component';
+import { ListarDetalleCarritoComponent } from './components/usuarios/clientes/solicitudes/carrito-compras/listar-detalle-carrito/listar-detalle-carrito.component';
 
 
 const routes: Routes = [
@@ -26,9 +28,12 @@ const routes: Routes = [
       {path:'restablecimientoContraseña', component:RestablecimientoComponent},
       {path:'RestablecerContrasena', component:VerificacionComponent},
       {path:'cambio', component:CambioContraComponent, canActivate:[AutorizacionRutasGuard]},
-      {path:'inicio', component:InicioComponent},
+      {path:'inicio', component:ListarProductosComponent},
       {path:'confirmarEmail', component:ConfirmarEmailComponent},
-      {path:'editarDatosCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]}
+      {path:'editarDatosCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'MiCuenta', component:ModificarDatosComponent},
+      {path:'Productos', component:ListarProductosComponent},
+      {path:'carrito', component:ListarDetalleCarritoComponent, canActivate:[AutorizacionRutasGuard]}
     ]
   },
   {

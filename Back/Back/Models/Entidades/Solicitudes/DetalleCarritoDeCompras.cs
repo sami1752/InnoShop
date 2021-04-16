@@ -18,9 +18,10 @@ namespace Back.Models.Entidades.Solicitudes
 
         [Required]
         public int IdProducto { get; set; }
-
         [Required]
         public int IdCarritoDeCompras { get; set; }
+        [Required]
+        public int Cantidad { get; set; }
 
     }
 }
