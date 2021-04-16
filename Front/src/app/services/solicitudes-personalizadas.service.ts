@@ -47,6 +47,18 @@ export class SolicitudesPersonalizadasService {
   SolicitudPersonalizada:SolicitudPersonalizada;
   listaSolicitudPersonalizada:SolicitudPersonalizada[];
 
+  formularioRegistroSolicitudPersonalizada = this.formBuilder.group({
+    IdSolicitudPersonalizada: [],
+    IdUsuario: [],
+    IdCategoria: [],
+    Ancho: [],
+    Fondo: [],
+    Alto: [],
+    Fecha: [],
+    Descripcion: [],
+    ValorTotal: []
+  });
+
   ListarDetalleEstadosMontajes() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes')
       .toPromise()
@@ -63,11 +75,6 @@ export class SolicitudesPersonalizadasService {
     return this.http.post(
       this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes/',this.DetalleEstadosMontajes)
   }
-
-
-
-
-
 
   ListarDetalleEstadosProductosPersoanlizados() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/DetalleEstadosProductosPersoanlizados')
@@ -86,10 +93,6 @@ export class SolicitudesPersonalizadasService {
       this.DetalleEstadosProductosPersoanlizados)
   }
 
-
-
-
-
   ListarDetalleEstadosSolicitudPersonalizada() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/DetalleEstadosSolicitudPersonalizada')
       .toPromise()
@@ -106,9 +109,6 @@ export class SolicitudesPersonalizadasService {
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/DetalleEstadosSolicitudPersonalizada/',
       this.DetalleEstadosSolicitudPersonalizada)
   }
-
-
-
 
   EliminarDetalleProductosSolicitud(id) {
     return this.http.delete(this.configuracion.rootURL + '/Solicitudes/DetalleProductosSolicitud/' + id);
@@ -131,10 +131,6 @@ export class SolicitudesPersonalizadasService {
       this.DetalleProductosSolicitud)
   }
 
-
-
-
-
   EliminarDetallesMaterialesMontajes(id) {
     return this.http.delete(this.configuracion.rootURL + '/Solicitudes/DetallesMaterialesMontajes/' + id);
   }
@@ -155,10 +151,6 @@ export class SolicitudesPersonalizadasService {
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/DetallesMaterialesMontajes/',
       this.DetallesMaterialesMontajes)
   }
-
-
-
-
 
   EliminarDetallesMaterialesSolicitudesPersonalizadas(id) {
     return this.http.delete(this.configuracion.rootURL + '/Solicitudes/DetallesMaterialesSolicitudesPersonalizadas/' + id);
@@ -181,8 +173,6 @@ export class SolicitudesPersonalizadasService {
       this.DetallesMaterialesSolicitudesPersonalizadas)
   }
 
-
-
   EliminarDetallesProductosMontajes(id) {
     return this.http.delete(this.configuracion.rootURL + '/Solicitudes/DetallesProductosMontajes/' + id);
   }
@@ -203,8 +193,6 @@ export class SolicitudesPersonalizadasService {
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/DetallesProductosMontajes/',
       this.DetallesProductosMontajes)
   }
-
-
 
   ListarMontajes() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/Montajes')
@@ -227,9 +215,6 @@ export class SolicitudesPersonalizadasService {
     return this.http.put(this.configuracion.rootURL + '/Productos/Montajes', this.Montajes)
   }
 
-
-
-
   ListarPrecioMontajes() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/PrecioMontajes')
       .toPromise()
@@ -247,8 +232,6 @@ export class SolicitudesPersonalizadasService {
       this.PrecioMontajes)
   }
 
-
-
   ListaRespuestasSolicitudesPersonalizadas(id) {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/RespuestasSolicitudesPersonalizadas/'+id)
       .toPromise()
@@ -259,8 +242,6 @@ export class SolicitudesPersonalizadasService {
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/RespuestasSolicitudesPersonalizadas/',
       this.RespuestasSolicitudesPersonalizadas)
   }
-
-
 
   ListarSolicitudPersonalizada() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada')

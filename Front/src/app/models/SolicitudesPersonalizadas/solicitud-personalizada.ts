@@ -1,6 +1,6 @@
 export interface SolicitudPersonalizada {
     IdSolicitudPersonalizada : number
-    IdUsuario : number
+    IdUsuario : string
     IdCategoria : number
     Ancho: number
     Fondo : number
