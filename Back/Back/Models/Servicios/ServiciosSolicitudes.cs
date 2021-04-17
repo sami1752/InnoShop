@@ -1,4 +1,5 @@
 ﻿using Back.Clases.Solicitudes.CarritoDeCompras;
+using Back.Clases.Solicitudes.Perzonalizada;
 using Back.Models.Abstratos;
 using Back.Models.DAL;
 using Back.Models.Entidades.Productos;
@@ -27,12 +28,12 @@ namespace Back.Models.Servicios
             await using (_context)
             {
                 List<CarritoDeCompras> Carrito = (from carrito in _context.CarritoDeCompras
-                                            where carrito.IdUsuario == id && carrito.Estado == false
-                                            select carrito).ToList();
+                                                  where carrito.IdUsuario == id && carrito.Estado == false
+                                                  select carrito).ToList();
                 return Carrito[0];
             }
         }
-        public async Task<CarritoDeCompras>BuscarCarritoDeComprasPorId(int id)=> await _context.CarritoDeCompras.FindAsync(id);
+        public async Task<CarritoDeCompras> BuscarCarritoDeComprasPorId(int id) => await _context.CarritoDeCompras.FindAsync(id);
 
         public async Task<CarritoDeCompras> AgregarCarritoDeCompras(CarritoDeCompras carritoDeCompras)
         {
@@ -63,17 +64,17 @@ namespace Back.Models.Servicios
 
                                                                              select new DetalleCarritoDeComprasProducto()
                                                                              {
-                                                                               IdDetalleCarritoDeCompras = detalleCarrito.IdDetalleCarritoDeCompras,
-                                                                               IdCarritoDeCompras=detalleCarrito.IdCarritoDeCompras,
-                                                                               IdProducto = detalleCarrito.IdProducto,
-                                                                               NombreProducto = productos.Nombre,
-                                                                               IdUsuario = detalleCarrito.IdUsuario,
-                                                                               Cantidad = detalleCarrito.Cantidad
+                                                                                 IdDetalleCarritoDeCompras = detalleCarrito.IdDetalleCarritoDeCompras,
+                                                                                 IdCarritoDeCompras = detalleCarrito.IdCarritoDeCompras,
+                                                                                 IdProducto = detalleCarrito.IdProducto,
+                                                                                 NombreProducto = productos.Nombre,
+                                                                                 IdUsuario = detalleCarrito.IdUsuario,
+                                                                                 Cantidad = detalleCarrito.Cantidad
                                                                              }).ToList();
                 return listaDetalleCarrito;
             }
         }
-        
+
 
         public async Task<DetalleCarritoDeCompras> BuscarDetalleCarritoDeComprasPorId(int id) =>
             await _context.DetalleCarritoDeCompras.FindAsync(id);
@@ -182,12 +183,12 @@ namespace Back.Models.Servicios
         public async Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>> ListarDetallesMaterialesMontajes() =>
             await _context.DetallesMaterialesMontajes.ToListAsync();
 
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>>ListaDetallesMaterialesMontajes(int id)=>
+        public async Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>> ListaDetallesMaterialesMontajes(int id) =>
             await _context.DetallesMaterialesMontajes.Where(x => x.IdDetallesMaterialesMontajes == id).ToListAsync();
 
         public async Task EliminarDetallesMaterialesMontajes(int id)
         {
-            DetallesMaterialesMontajes DetallesMaterialesMontajes = 
+            DetallesMaterialesMontajes DetallesMaterialesMontajes =
                 await _context.DetallesMaterialesMontajes.FindAsync(id);
             _context.DetallesMaterialesMontajes.Remove(DetallesMaterialesMontajes);
             await _context.SaveChangesAsync();
@@ -201,13 +202,13 @@ namespace Back.Models.Servicios
             return DetallesMaterialesSolicitudesPersonalizadas;
         }
 
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>> 
+        public async Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
             ListarDetallesMaterialesSolicitudesPersonalizadas() =>
             await _context.DetallesMaterialesSolicitudesPersonalizadas.ToListAsync();
 
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>> 
+        public async Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
             ListaDetallesMaterialesSolicitudesPersonalizadas(int id) =>
-            await _context.DetallesMaterialesSolicitudesPersonalizadas.Where(x => 
+            await _context.DetallesMaterialesSolicitudesPersonalizadas.Where(x =>
             x.IdDetallesMaterialesSolicitudesPersonalizadas == id).ToListAsync();
 
         public async Task EliminarDetallesMaterialesSolicitudesPersonalizadas(int id)
@@ -240,24 +241,26 @@ namespace Back.Models.Servicios
         }
 
         public async Task<ActionResult<IEnumerable<Montajes>>> ListarMontajes() => await _context.Montajes.ToListAsync();
+        public async Task<ActionResult<IEnumerable<Montajes>>> ListarMisMontajes(string id) =>
+            await _context.Montajes.Where(x => x.IdUsuario == id).ToListAsync();
 
         public async Task<Montajes> BuscarMontajes(int id) => await _context.Montajes.FindAsync(id);
 
-        public async Task<Montajes> AgregarMontajes (Montajes Montajes)
+        public async Task<Montajes> AgregarMontajes(Montajes Montajes)
         {
             _context.Montajes.Add(Montajes);
             await _context.SaveChangesAsync();
             return Montajes;
         }
 
-        public async Task<Montajes> EditarMontajes (Montajes Montajes)
+        public async Task<Montajes> EditarMontajes(Montajes Montajes)
         {
             _context.Montajes.Update(Montajes);
             await _context.SaveChangesAsync();
             return Montajes;
         }
 
-        public async Task<PrecioMontajes> AgregarPrecioMontajes (PrecioMontajes PrecioMontajes)
+        public async Task<PrecioMontajes> AgregarPrecioMontajes(PrecioMontajes PrecioMontajes)
         {
             _context.PrecioMontajes.Add(PrecioMontajes);
             await _context.SaveChangesAsync();
@@ -280,19 +283,90 @@ namespace Back.Models.Servicios
 
         public async Task<ActionResult<IEnumerable<RespuestasSolicitudesPersonalizadas>>>
             ListaRespuestasSolicitudesPersonalizadas(int id) =>
-            await _context.RespuestasSolicitudesPersonalizadas.Where(x => 
+            await _context.RespuestasSolicitudesPersonalizadas.Where(x =>
             x.IdRespuestaSolicitudesPersonalizadas == id).ToListAsync();
 
-        public async Task<ActionResult<IEnumerable<SolicitudPersonalizada>>> ListarSolicitudPersonalizada() => 
-            await _context.SolicitudPersonalizada.ToListAsync();
+        public async Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarSolicitudPersonalizada() {
+            var DetalleestadosSolicitudes = (from detalle in _context.DetalleEstadosSolicitudPersonalizada
+                                             where detalle.FechaFin == new DateTime()
+                                             select new DetalleEstadosSolicitudPersonalizada { 
+                                             FechaFin= detalle.FechaFin,
+                                             FechaInicio= detalle.FechaInicio,
+                                             IdDetalleEstadoSolicitudPersonalizada = detalle.IdDetalleEstadoSolicitudPersonalizada,
+                                             IdEstado=detalle.IdEstado,
+                                             IdSolicitudPersonalizada =detalle.IdSolicitudPersonalizada,
+                                             IdUsuario =detalle.IdUsuario
+                                             });
+            var solicitudes = _context.SolicitudPersonalizada;
+            var estados = _context.Estados;
+            return await (from solicitud in solicitudes
+                          join detalle in DetalleestadosSolicitudes
+                          on solicitud.IdSolicitudPersonalizada equals detalle.IdSolicitudPersonalizada
+                          join estado in estados
+                          on detalle.IdEstado equals estado.IdEstado
+                          select new SolicitudPersonalizadaDetalle
+                          {
+                              Alto = solicitud.Alto,
+                              Ancho = solicitud.Ancho,
+                              Descripcion = solicitud.Descripcion,
+                              Estado = estado.Estado,
+                              Fecha = solicitud.Fecha,
+                              Fondo = solicitud.Fondo,
+                              IdSolicitudPersonalizada = solicitud.IdSolicitudPersonalizada,
+                              IdUsuario = solicitud.IdUsuario,
+                              ValorTotal = solicitud.ValorTotal
+                          }).ToListAsync(); ;
+        }
 
-        public async Task<SolicitudPersonalizada> BuscarSolicitudPersonalizada(int id) => 
+        public async Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarMisSolicitudPersonalizada(string id) {
+            var DetalleestadosSolicitudes = (from detalle in _context.DetalleEstadosSolicitudPersonalizada
+                                             where detalle.FechaFin == new DateTime()
+                                             select new DetalleEstadosSolicitudPersonalizada
+                                             {
+                                                 FechaFin = detalle.FechaFin,
+                                                 FechaInicio = detalle.FechaInicio,
+                                                 IdDetalleEstadoSolicitudPersonalizada = detalle.IdDetalleEstadoSolicitudPersonalizada,
+                                                 IdEstado = detalle.IdEstado,
+                                                 IdSolicitudPersonalizada = detalle.IdSolicitudPersonalizada,
+                                                 IdUsuario = detalle.IdUsuario
+                                             });
+            var solicitudes = _context.SolicitudPersonalizada;
+            var estados = _context.Estados;
+            return await (from solicitud in solicitudes
+                          join detalle in DetalleestadosSolicitudes
+                          on solicitud.IdSolicitudPersonalizada equals detalle.IdSolicitudPersonalizada
+                          join estado in estados
+                          on detalle.IdEstado equals estado.IdEstado
+                          where solicitud.IdUsuario == id
+                          select new SolicitudPersonalizadaDetalle
+                          {
+                              Alto = solicitud.Alto,
+                              Ancho = solicitud.Ancho,
+                              Descripcion = solicitud.Descripcion,
+                              Estado = estado.Estado,
+                              Fecha = solicitud.Fecha,
+                              Fondo = solicitud.Fondo,
+                              IdSolicitudPersonalizada = solicitud.IdSolicitudPersonalizada,
+                              IdUsuario = solicitud.IdUsuario,
+                              ValorTotal = solicitud.ValorTotal
+                          }).ToListAsync(); ;
+        }
+
+        public async Task<SolicitudPersonalizada> BuscarSolicitudPersonalizada(int id) =>
             await _context.SolicitudPersonalizada.FindAsync(id);
 
         public async Task<SolicitudPersonalizada> AgregarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada)
         {
             _context.SolicitudPersonalizada.Add(SolicitudPersonalizada);
             await _context.SaveChangesAsync();
+            await AgregarDetalleEstadosSolicitudPersonalizada(new DetalleEstadosSolicitudPersonalizada
+            {
+                IdUsuario = SolicitudPersonalizada.IdUsuario,
+                IdSolicitudPersonalizada = SolicitudPersonalizada.IdSolicitudPersonalizada,
+                FechaFin = new DateTime(),
+                FechaInicio = DateTime.Now,
+                IdEstado = 1
+            });
             return SolicitudPersonalizada;
         }
 
@@ -307,8 +381,8 @@ namespace Back.Models.Servicios
         {
             await using (_context)
             {
-                List<CarritoDeCompras>  carritoAsociado = (from carrito in _context.CarritoDeCompras
-                                                          where carrito.IdUsuario == id && carrito.Estado ==false
+                List<CarritoDeCompras> carritoAsociado = (from carrito in _context.CarritoDeCompras
+                                                          where carrito.IdUsuario == id && carrito.Estado == false
                                                           select carrito).ToList();
                 return carritoAsociado;
             }
@@ -316,15 +390,15 @@ namespace Back.Models.Servicios
         }
         public async Task EliminarDetalleCarrito(int idDetalle)
         {
-           var detalle= await _context.DetalleCarritoDeCompras.FindAsync(idDetalle);
+            var detalle = await _context.DetalleCarritoDeCompras.FindAsync(idDetalle);
             _context.DetalleCarritoDeCompras.Remove(detalle);
             await _context.SaveChangesAsync();
         }
 
         public async Task<PrecioProducto> PrecioDelProducto(int idProducto)
         {
-            var listaPrecios =  await _context.PrecioProductos.Where(x => x.IdProducto == idProducto).ToListAsync();
-            return listaPrecios[listaPrecios.Count()-1];
+            var listaPrecios = await _context.PrecioProductos.Where(x => x.IdProducto == idProducto).ToListAsync();
+            return listaPrecios[listaPrecios.Count() - 1];
         }
     }
 }

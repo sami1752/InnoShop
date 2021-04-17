@@ -1,6 +1,6 @@
 export interface Montajes {
     IdMontaje  : number
-    IdUsuario  : number
+    IdUsuario  : string
     Direccion : string
     Ancho : number
     Fondo : number

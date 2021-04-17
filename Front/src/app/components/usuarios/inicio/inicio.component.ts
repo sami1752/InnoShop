@@ -5,7 +5,10 @@ import {
 import {
   Router
 } from '@angular/router';
-import { PerfilUsuario } from 'src/app/models/perfil-usuario';
+import {
+  PerfilUsuario
+} from 'src/app/models/perfil-usuario';
+import { Usuario } from 'src/app/models/usuario';
 import {
   ConfiguracionService
 } from 'src/app/services/configuracion.service';
@@ -23,25 +26,14 @@ export class InicioComponent implements OnInit {
   perfilUsuario: PerfilUsuario
   ngOnInit(): void {
     if (localStorage.getItem('token') != null) {
-      this.usuarioService.inicioSesion = true}
-    this.usuarioService.obtenerPerfil().subscribe(
-      res => {
-        this.perfilUsuario = < PerfilUsuario > res;
-        this.perfilUsuario = < PerfilUsuario > res;
-        if (this.perfilUsuario.IdRol == 1)
-          this.router.navigate(['/Admin/inicioadmin']);
-        if(!this.perfilUsuario.Estado){
-          alert("Usuario Inactivo")
-          this.configuracionService.cerrarSesion()}
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      this.usuarioService.inicioSesion = true
+    } else {
+      this.usuarioService.inicioSesion = false
+    }
   }
 
-  Micuenta= false
-  CambioMicuenta(){
+  Micuenta = false
+  CambioMicuenta() {
     this.Micuenta = !this.Micuenta
   }
 }

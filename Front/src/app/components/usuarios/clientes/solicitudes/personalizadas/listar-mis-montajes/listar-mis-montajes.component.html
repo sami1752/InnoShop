@@ -1,0 +1,20 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Valor Total</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let solicitud of this.solicitudesPersonalizadasService.listaMontajes">
+        <tr>
+            <td >{{solicitud.IdMontaje}}</td>
+            <td >{{solicitud.Fecha}}</td>
+            <td >{{solicitud.Descripcion}}</td>
+            <td >{{solicitud.Direccion}}</td>
+            <td >{{solicitud.ValorTotal}}</td>
+        </tr>
+    </tbody>
+</table>

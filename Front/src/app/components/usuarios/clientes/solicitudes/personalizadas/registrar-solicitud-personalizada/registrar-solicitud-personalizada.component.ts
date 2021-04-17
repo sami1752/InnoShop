@@ -23,6 +23,7 @@ export class RegistrarSolicitudPErsonalizadaComponent implements OnInit {
         this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdUsuario = (res as Usuario).Id;
         this.solicitudesPersonalizadasService.AgregarSolicitudPersonalizada().subscribe(
           (respuesta: any) => {
+            this.solicitudesPersonalizadasService.formularioRegistroSolicitudPersonalizada.reset();
             alert("Exito")
           }, error => {
             alert(error)

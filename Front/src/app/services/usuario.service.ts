@@ -34,7 +34,7 @@ export class UsuarioService {
   inicioSesion = false;
   desplegarDetalle=false;
   detalleUsuario;
-  perfilUsuario;
+  perfilUsuario : Usuario;
 
   listaTiposDoc = [{Tipo: "Cédula de ciudadania"},
   {Tipo: "Tarjeta de identidad"},
@@ -338,7 +338,6 @@ export class UsuarioService {
   }
 
   cambioContra() {
-    this.cambioContrasena = this.formularioCambioContrasena.value;
     return this.http.put(this.configuracion.rootURL + '/Usuarios/ModificarContrasena', this.cambioContrasena);
   }
 

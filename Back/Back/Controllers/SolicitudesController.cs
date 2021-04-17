@@ -1,4 +1,5 @@
 ﻿using Back.Clases.Solicitudes.CarritoDeCompras;
+using Back.Clases.Solicitudes.Perzonalizada;
 using Back.Models.Abstratos;
 using Back.Models.Entidades.Productos;
 using Back.Models.Entidades.Solicitudes;
@@ -409,6 +410,12 @@ namespace Back.Controllers
         [Route("Montajes")]
         public async Task<ActionResult<IEnumerable<Montajes>>> ListarMontajes() => await _context.ListarMontajes();
 
+
+        [HttpGet]
+        [Route("MisMontajes/{id}")]
+        public async Task<ActionResult<IEnumerable<Montajes>>> ListarMisMontajes(string id) =>
+            await _context.ListarMisMontajes(id);
+
         [HttpGet]
         [Route("Montajes/{Montajes}")]
         public async Task<ActionResult<Montajes>> BuscarMontajes(int Montajes)=>await _context.BuscarMontajes(Montajes);
@@ -496,8 +503,13 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("SolicitudPersonalizada")]
-        public async Task<ActionResult<IEnumerable<SolicitudPersonalizada>>> ListarSolicitudPersonalizada() => 
+        public async Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarSolicitudPersonalizada() => 
             await _context.ListarSolicitudPersonalizada();
+
+        [HttpGet]
+        [Route("MisSolicitudPersonalizada/{id}")]
+        public async Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarMisSolicitudPersonalizada(string id) =>
+            await _context.ListarMisSolicitudPersonalizada(id);
 
         [HttpGet]
         [Route("SolicitudPersonalizada/{SolicitudPersonalizada}")]

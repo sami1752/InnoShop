@@ -20,6 +20,11 @@ import { ListarDetalleCarritoComponent } from './components/usuarios/clientes/so
 import { DetalleProductoClienteComponent } from './components/usuarios/clientes/productos/detalle-producto-cliente/detalle-producto-cliente.component';
 import { ListaProductosComponent } from './components/admin/productos/lista-productos/lista-productos.component';
 import { RegistrarSolicitudPErsonalizadaComponent } from './components/usuarios/clientes/solicitudes/personalizadas/registrar-solicitud-personalizada/registrar-solicitud-personalizada.component';
+import { GestionProductosComponent } from './components/admin/productos/gestion-productos/gestion-productos.component';
+import { GestionIvaComponent } from './components/admin/productos/iva/gestion-iva/gestion-iva.component';
+import { ListarMisSolicitudesPersonalizadasComponent } from './components/usuarios/clientes/solicitudes/personalizadas/listar-mis-solicitudes-personalizadas/listar-mis-solicitudes-personalizadas.component';
+import { RegistrarMontajesComponent } from './components/usuarios/clientes/solicitudes/personalizadas/registrar-montajes/registrar-montajes.component';
+import { ListarMisMontajesComponent } from './components/usuarios/clientes/solicitudes/personalizadas/listar-mis-montajes/listar-mis-montajes.component';
 
 
 const routes: Routes = [
@@ -30,14 +35,10 @@ const routes: Routes = [
       {path:'login', component:LoginComponent},
       {path:'restablecimientoContraseña', component:RestablecimientoComponent},
       {path:'RestablecerContrasena', component:VerificacionComponent},
-      {path:'cambio', component:CambioContraComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'cambiarMiContraseña', component:CambioContraComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'inicio', component:ListarProductosComponent},
       {path:'confirmarEmail', component:ConfirmarEmailComponent},
-      {path:'editarDatosCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]},
-      {path:'MiCuenta', component:ModificarDatosComponent},
-      {path:'Productos', component:ListarProductosComponent},
-      {path:'Solicitud', component:RegistrarSolicitudPErsonalizadaComponent},
-      {path:'carrito', component:ListarDetalleCarritoComponent, canActivate:[AutorizacionRutasGuard]}
+      {path:'MiCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]},
     ]
   },
 
@@ -51,16 +52,23 @@ const routes: Routes = [
 
   {path:'solicitudes', component:UsuariosComponent,
     children: [
-      {path:'carrito',component:ListarDetalleCarritoComponent},
+      {path:'carrito',component:ListarDetalleCarritoComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'Solicitud', component:RegistrarSolicitudPErsonalizadaComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'MisSolicitudes', component:ListarMisSolicitudesPersonalizadasComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'Montajes', component:RegistrarMontajesComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'MisMontajes', component:ListarMisMontajesComponent, canActivate:[AutorizacionRutasGuard]}
   ]
   },
 
 
   {
-    path:'Admin', component:VistasAdminComponent,
+    path:'Admin', component:InicioadminComponent,
     children: [
       {path:'inicioadmin',component:InicioadminComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'Usuarios', component:GestionUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'Productos', component:GestionProductosComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'Iva', component:GestionIvaComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'MiCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]},
     ]
   }
 ];

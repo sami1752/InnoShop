@@ -1,8 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
-import { ConfiguracionService } from 'src/app/services/configuracion.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  Router
+} from '@angular/router';
+import {
+  Usuario
+} from 'src/app/models/usuario';
+import {
+  ConfiguracionService
+} from 'src/app/services/configuracion.service';
+import {
+  UsuarioService
+} from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-modificar-datos',
@@ -11,39 +22,34 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ModificarDatosComponent implements OnInit {
 
-  constructor(public usuarioService:UsuarioService, private router:Router, public configuracionService: ConfiguracionService) { }
+  constructor(public usuarioService: UsuarioService, private router: Router, public configuracionService: ConfiguracionService) {}
 
   //perfilUsuario;
-  usuario:Usuario;
+  usuario: Usuario;
 
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
-      res=> {
-        
-        this.usuarioService.perfilUsuario = res;
-        
+      res => {
+        this.usuarioService.perfilUsuario = < Usuario >  res;
         this.usuarioService.buscarUsuarioId(this.usuarioService.perfilUsuario.Id).subscribe(
-          respuesta=>{
-            this.usuarioService.formularioRegistroEdicionDatos.patchValue(<Usuario>respuesta);
+          respuesta => {
+            this.usuarioService.formularioRegistroEdicionDatos.patchValue( < Usuario > respuesta);
           },
-          Error=>{
+          Error => {
             alert("Error")
           }
         );
-        //console.log(this.usuarioService.detalleUsuario)
-        // this.usuarioService.formularioRegistroEdicionDatos.patchValue(this.usuarioService.detalleUsuario);
-
       },
-      err=>{
+      err => {
         console.log(err);
         alert("error");
       }
-    );  
+    );
   }
 
-  
 
-  modificarDatosCuenta(){
+
+  modificarDatosCuenta() {
     this.usuarioService.actualizacionUsuario().subscribe(
       (respuesta: any) => {
         if (respuesta.Succeeded) {
@@ -63,34 +69,34 @@ export class ModificarDatosComponent implements OnInit {
       });
   }
 
-  eliminarCuenta(){
+  eliminarCuenta() {
 
     this.usuarioService.obtenerPerfil().subscribe(
-      (res:any)=>{
+      (res: any) => {
         this.usuario = res;
 
-        if(confirm("Esta seguro de desactivar su cuenta")){
+        if (confirm("Esta seguro de desactivar su cuenta")) {
           this.usuarioService.eliminarUsuario(this.usuario).subscribe(
-            (res:any)=>{
+            (res: any) => {
               {
                 alert("cliente eliminado con éxito");
                 this.configuracionService.cerrarSesion()
               }
             },
-            err=>{
+            err => {
               alert("error");
             }
           );
-          }
-    },
-      err=>{
+        }
+      },
+      err => {
         alert("error");
       }
     );
-    
-    }
-          
-  
-      
+
+  }
+
+
+
 
 }

@@ -4,6 +4,7 @@ import { CarritoDeCompras } from 'src/app/models/carrito-de-compras';
 import { PerfilUsuario } from 'src/app/models/perfil-usuario';
 import { Usuario } from 'src/app/models/usuario';
 import { CarritoDeComprasService } from 'src/app/services/carrito-de-compras.service';
+import { ConfiguracionService } from 'src/app/services/configuracion.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -14,18 +15,32 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ListarProductosComponent implements OnInit {
 
-  constructor(public router:Router,public productoService:ProductoService,public  usuarioService:UsuarioService, public CarritoDeComprasService:CarritoDeComprasService) { }
+  constructor(public router:Router,public productoService:ProductoService,
+    public usuarioService:UsuarioService, public CarritoDeComprasService:CarritoDeComprasService,
+    public configuracionService:ConfiguracionService) { }
 
   subtotal:number;
 
 
   ngOnInit(): void {
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+        this.usuarioService.perfilUsuario = < Usuario >  res;
+        if(this.usuarioService.perfilUsuario.IdRol == 1){
+          this.router.navigate(['Admin/inicioadmin']);
+        }
+      },
+      err => {
+        console.log(err);
+        alert("error");
+      }
+    );
     this.productoService.listarProducto()
     this.productoService.listarImagenes()
     this.productoService.listarTodosPrecios()
     this.CarritoDeComprasService.listarTodosDetalleCarrito()
   }
-  
+
   carritoRespuesta;
   perfilUsuario;
   CarritoExiste;

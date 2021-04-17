@@ -11,6 +11,7 @@ import {
 import {
   Router
 } from '@angular/router';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-cambio-contra',
@@ -22,15 +23,24 @@ export class CambioContraComponent implements OnInit {
   ngOnInit(): void {}
 
   cambio() {
-    this.usuarioService.cambioContra().subscribe(
-      (res) => {
-        console.log(res);
-        alert("Cambio Exitoso");
-        this.configuracion.cerrarSesion();
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+        this.usuarioService.cambioContrasena = this.usuarioService.formularioCambioContrasena.value;
+        this.usuarioService.cambioContrasena.Email = (res as Usuario).Email;
+        this.usuarioService.cambioContra().subscribe(
+          (res) => {
+            console.log(res);
+            alert("Cambio Exitoso");
+            this.configuracion.cerrarSesion();
+          },
+          error => {
+            alert("Error");
+          }
+        )
       },
-      error => {
-        alert("Error");
+      err => {
+        console.log(err);
       }
-    )
+    );
   }
 }

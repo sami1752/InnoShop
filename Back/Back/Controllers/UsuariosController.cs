@@ -206,7 +206,7 @@ namespace Back.Controllers
             try
             {
                 UsuarioIdentity usuario = await _userManager.FindByEmailAsync(actuContrasena.Email);
-                IdentityResult result = await _userManager.ChangePasswordAsync(usuario, actuContrasena.Contrasena, actuContrasena.Contrasena);
+                IdentityResult result = await _userManager.ChangePasswordAsync(usuario, actuContrasena.ContrasenaAntigua, actuContrasena.Contrasena);
                 if (result.Succeeded)
                     return Ok(new { mensaje = "Modificación de contraseña éxitosa" });
                 return BadRequest(result);

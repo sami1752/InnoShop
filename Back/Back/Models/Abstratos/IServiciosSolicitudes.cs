@@ -1,4 +1,5 @@
 ﻿using Back.Clases.Solicitudes.CarritoDeCompras;
+using Back.Clases.Solicitudes.Perzonalizada;
 using Back.Models.Entidades.Productos;
 using Back.Models.Entidades.Solicitudes;
 using Back.Models.Entidades.Solicitudes.Personalizadas;
@@ -71,6 +72,7 @@ namespace Back.Models.Abstratos
         Task EliminarDetallesProductosMontajes(int id);
 
         Task<ActionResult<IEnumerable<Montajes>>> ListarMontajes();
+        Task<ActionResult<IEnumerable<Montajes>>> ListarMisMontajes(string id);
         Task<Montajes> BuscarMontajes(int id);
         Task<Montajes> AgregarMontajes(Montajes Montajes);
         Task<Montajes> EditarMontajes(Montajes Montajes);
@@ -89,7 +91,8 @@ namespace Back.Models.Abstratos
        
         
         
-        Task<ActionResult<IEnumerable<SolicitudPersonalizada>>> ListarSolicitudPersonalizada();
+        Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarSolicitudPersonalizada();
+        Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarMisSolicitudPersonalizada(string id);
         Task<SolicitudPersonalizada> BuscarSolicitudPersonalizada(int id);    
         Task<SolicitudPersonalizada> AgregarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada);
         Task<SolicitudPersonalizada> EditarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada);

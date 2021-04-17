@@ -17,6 +17,8 @@ export class ConfiguracionService {
   public readonly exRegularPassword:any = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$";
   public readonly exLetrasNumeros: any = "^[0-9a-zA-Z]+$";
 
+  inicioSecionAdmin : boolean
+
 
   cerrarSesion(){
     localStorage.removeItem('token');

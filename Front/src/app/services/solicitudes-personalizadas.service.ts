@@ -62,6 +62,18 @@ export class SolicitudesPersonalizadasService {
     ValorTotal: []
   });
 
+  formularioRegistroMontaje = this.formBuilder.group({
+    IdMontaje: [],
+    IdUsuario: [],
+    Ancho: [],
+    Fondo: [],
+    Alto: [],
+    Fecha: [],
+    Descripcion: [],
+    ValorTotal: [],
+    Direccion: []
+  });
+
   ListarDetalleEstadosMontajes() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes')
       .toPromise()
@@ -203,6 +215,12 @@ export class SolicitudesPersonalizadasService {
       .then(res => this.listaMontajes = res as Montajes[])
   }
 
+  ListarMisMontajes(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/MisMontajes/'+id)
+      .toPromise()
+      .then(res => this.listaMontajes = res as Montajes[])
+  }
+
   BuscarMontajes(id) {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/Montajes/'+id)
       .toPromise()
@@ -210,6 +228,9 @@ export class SolicitudesPersonalizadasService {
   }
 
   AgregarMontajes() {
+    this.Montajes.Fecha = this.hoy.toISOString();
+    this.Montajes.ValorTotal = 0
+    this.Montajes.IdMontaje = 0
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/Montajes/',
       this.Montajes)
   }
@@ -248,6 +269,11 @@ export class SolicitudesPersonalizadasService {
 
   ListarSolicitudPersonalizada() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada')
+      .toPromise()
+      .then(res => this.listaSolicitudPersonalizada = res as SolicitudPersonalizada[])
+  }
+  ListarMisSolicitudPersonalizada(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/MisSolicitudPersonalizada/'+id)
       .toPromise()
       .then(res => this.listaSolicitudPersonalizada = res as SolicitudPersonalizada[])
   }

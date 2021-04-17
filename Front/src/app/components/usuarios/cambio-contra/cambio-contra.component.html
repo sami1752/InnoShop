@@ -5,47 +5,24 @@
         <div class="basic-login">
           <h3 class="text-center mb-60">Cambio De Contraseña</h3>
           <form class="" [formGroup]="this.usuarioService.formularioCambioContrasena" (ngSubmit)="cambio()">
-
-
-            <label for="pass">Ingresa El Correo<span>**</span></label>
-            <input formControlName="Email" type="text" placeholder="Email" />
-
-            <!--Validaciones Correo-->
-            <div
-              *ngIf="this.usuarioService.email.invalid && (this.usuarioService.email.touched || this.usuarioService.email.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.email.hasError('required')">El correo es obligatorio</div>
-              <div *ngIf="this.usuarioService.email.hasError('email')">Digite un correo valido</div>
-              <div *ngIf="this.usuarioService.email.hasError('maxLength')">El correo debe contener máximo 50 caracteres
-              </div>
-            </div>
-
             <label for="pass">Contraseña Actual<span>**</span></label>
             <input formControlName="ContrasenaAntigua" type="password" placeholder="Ingrese Contraseña actual" />
-
             <!--Validaciones Contraseña-->
             <div
               *ngIf="this.usuarioService.contrasena.invalid && (this.usuarioService.contrasena.touched || this.usuarioService.contrasena.dirty)"
               class="text-danger mb-20 text-center">
               <div *ngIf="this.usuarioService.contrasena.hasError('required')">La contraseña es obligatoria</div>
             </div>
-
-
-
             <label for="pass">Contraseña Nueva<span>**</span></label>
             <input formControlName="Contrasena" type="password" placeholder="Ingrese Contraseña" />
-
             <!--Validaciones Contraseña-->
             <div
               *ngIf="this.usuarioService.contrasena.invalid && (this.usuarioService.contrasena.touched || this.usuarioService.contrasena.dirty)"
               class="text-danger mb-20 text-center">
               <div *ngIf="this.usuarioService.contrasena.hasError('required')">La contraseña es obligatoria</div>
             </div>
-
-
             <label for="pass">Confirmar Contraseña<span>**</span></label>
             <input formControlName="ConfirmarContrasena" type="password" placeholder="Ingrese contraseña" />
-
             <!--Validaciones confirmar Contraseña-->
             <div
               *ngIf="this.usuarioService.ConfirmarContrasena.invalid && (this.usuarioService.ConfirmarContrasena.touched || this.usuarioService.ConfirmarContrasena.dirty)"
@@ -55,13 +32,10 @@
               <div *ngIf="this.usuarioService.ConfirmarContrasena.hasError('ContrasenasDiferentes')">Las contraseñas
                 deben coincidir</div>
             </div>
-
-
             <div class="mt-10"></div>
             <button type="submit" [disabled]="this.usuarioService.formularioCambioContrasena.invalid"
               class="os-btn w-100">Cambiar Contraseña</button>
             <div class="or-divide"><span></span></div>
-            <a href="login.html" class="os-btn os-btn-black w-100">Iniciar sesión</a>
           </form>
         </div>
       </div>

@@ -8,4 +8,5 @@ export interface SolicitudPersonalizada {
     Descripcion: string
     ValorTotal: number
     Usuario : string
+    Estado : string
 }

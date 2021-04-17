@@ -71,7 +71,7 @@
               <div
                 *ngIf="this.usuarioService.documentoEditCuenta.invalid && (this.usuarioService.documentoEditCuenta.touched || this.usuarioService.documentoEditCuenta.dirty)"
                 class="text-danger mb-20 text-center">
-                <div *ngIf="this.usuarioServiceEditCuenta.documento.hasError('required')">El número de documento es obligatorio
+                <div *ngIf="this.usuarioService.documentoEditCuenta.hasError('required')">El número de documento es obligatorio
                 </div>
                 <div *ngIf="this.usuarioService.documentoEditCuenta.hasError('pattern')">Digite solo números</div>
                 <div *ngIf="this.usuarioService.documentoEditCuenta.hasError('maxLength')">El numero debe contener máximo 10
@@ -118,6 +118,7 @@
   
   
               <div class="mt-10"></div>
+              <a type="button" class="os-btn w-100" href="cambiarMiContraseña">Cambiar Contraseña</a>
               <button type="submit" [disabled]="this.usuarioService.formularioRegistroEdicionDatos.invalid"
                 class="os-btn w-100">Editar datos</button>
               <div class="or-divide"><span></span></div>
