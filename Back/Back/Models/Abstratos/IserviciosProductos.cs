@@ -32,7 +32,7 @@ namespace Back.Models.Abstratos
         Task AgregarIva(Iva iva);
         Task ModificarIva(DateTime nueva);
         Task ModificaPrecio(DateTime nueva, int Id);
-        Task<ActionResult<IEnumerable<DetalleEntrada>>> ListarEntradas();
+        Task<ActionResult<IEnumerable<Entrada>>> ListarEntradasPorProducto(int idProducto);
         Task AgregarEntrada(Entrada entrada);
         Task<ActionResult<IEnumerable<PrecioProducto>>> ListaTodosPreciosProducto();
 

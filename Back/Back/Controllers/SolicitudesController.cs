@@ -62,6 +62,12 @@ namespace Back.Controllers
         }
 
         [HttpGet]
+        [Route("ListaTodosDetalleCarritoDeCompras")]
+        public async Task<ActionResult<IEnumerable<DetalleCarritoDeCompras>>> ListaDetalleCarritoComprasTodos() =>
+           await _context.ListarTodosDetalleCarritoDeCompras();
+
+
+        [HttpGet]
         [Route("ListaDetalleCarritoDeCompras/{IdUsuario}")]
         public async Task<ActionResult<IEnumerable<DetalleCarritoDeComprasProducto>>> ObtenerDetalleCarritoDeCompras(string IdUsuario) =>
             await _context.ListarDetalleCarritoDeCompras(IdUsuario);

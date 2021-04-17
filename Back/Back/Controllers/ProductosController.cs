@@ -61,7 +61,8 @@ namespace Back.Controllers
                     Precio = Rproducto.Precio,
                     FechaInicio = DateTime.Now,
                     IdProducto = producto.IdProducto,
-                    IdUsuario = producto.IdUsuario
+                    IdUsuario = producto.IdUsuario,
+                    //FechaFin = new DateTime(0000, 0, 0, 0, 0, 0)
                 };
                 await _context.AgregarPrecioProducto(precioP);
 
@@ -266,10 +267,10 @@ namespace Back.Controllers
 
 
         [HttpGet]
-        [Route("listarEntradas")]
-        public async Task<ActionResult<IEnumerable<DetalleEntrada>>> ListaEntradas()
+        [Route("listarEntradas/{idProducto}")]
+        public async Task<ActionResult<IEnumerable<Entrada>>> ListaEntradas(int idProducto)
         {
-            return await _context.ListarEntradas();
+            return await _context.ListarEntradasPorProducto( idProducto);
         }
 
         [HttpPost]

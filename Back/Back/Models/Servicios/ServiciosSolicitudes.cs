@@ -49,6 +49,9 @@ namespace Back.Models.Servicios
             return carritoDeCompras;
         }
 
+        public async Task<ActionResult<IEnumerable<DetalleCarritoDeCompras>>> ListarTodosDetalleCarritoDeCompras() =>
+            await _context.DetalleCarritoDeCompras.ToListAsync();
+
         public async Task<ActionResult<IEnumerable<DetalleCarritoDeComprasProducto>>> ListarDetalleCarritoDeCompras(string idUsuario)
         {
             await using (_context)

@@ -1,8 +1,8 @@
 
 
 
-<div class="row" > 
-    
+<div class="row" *ngIf="this.carritoDeComprasService.carritoDeCompras.IdCarritoDeCompras
+&& this.carritoDeComprasService.listaDetalleCarritoCompras.length>0; else carritoVacio"> 
     <div class="card col-4 ml-4 mr-4">
         <div class="card-header center">
           Total en carrito
@@ -28,7 +28,7 @@
                 <tr>
                     <td>{{detalle.IdDetalleCarritoDeCompras}}</td>
                     <td >
-                        <input min=1  (change)="editarDetalleCarrito(detalle)"
+                        <input   (change)="editarDetalleCarrito(detalle)"
                           [(ngModel)]="detalle.Cantidad"  type="number" [value]="detalle.Cantidad">
                     </td>
                     <td >{{detalle.NombreProducto}}</td>
@@ -42,7 +42,14 @@
             </tbody>
         </table>
         
-    </div>
-    
+    </div> 
 </div>
+<ng-template #carritoVacio>
+    <div class="card text-center">
+        <div class="card-body">
+          <p class="card-text">Carrito de compras vacío</p>
+          <a [routerLink]="['/productos/inicio/']"   class="btn btn-primary">Ir a tienda</a>
+        </div>
+      </div>
+</ng-template>
 

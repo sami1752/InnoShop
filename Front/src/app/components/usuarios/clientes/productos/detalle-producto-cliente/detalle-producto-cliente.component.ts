@@ -1,31 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CarritoDeCompras } from 'src/app/models/carrito-de-compras';
-import { PerfilUsuario } from 'src/app/models/perfil-usuario';
-import { Usuario } from 'src/app/models/usuario';
-import { CarritoDeComprasService } from 'src/app/services/carrito-de-compras.service';
 import { ProductoService } from 'src/app/services/producto.service';
+import { ActivatedRoute, Params,Router } from '@angular/router';
+import { CarritoDeComprasService } from 'src/app/services/carrito-de-compras.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
-
+import { Usuario } from 'src/app/models/usuario';
+import { CarritoDeCompras } from 'src/app/models/carrito-de-compras';
 @Component({
-  selector: 'app-listar-productos',
-  templateUrl: './listar-productos.component.html',
-  styleUrls: ['./listar-productos.component.css']
+  selector: 'app-detalle-producto-cliente',
+  templateUrl: './detalle-producto-cliente.component.html',
+  styleUrls: ['./detalle-producto-cliente.component.css']
 })
-export class ListarProductosComponent implements OnInit {
+export class DetalleProductoClienteComponent implements OnInit {
 
-  constructor(public router:Router,public productoService:ProductoService,public  usuarioService:UsuarioService, public CarritoDeComprasService:CarritoDeComprasService) { }
+  constructor(public CarritoDeComprasService:CarritoDeComprasService,public usuarioService:UsuarioService,
+     public productoService:ProductoService,private router:Router, private rutaActiva: ActivatedRoute) { }
 
-  subtotal:number;
-
-
+  id:number = this.rutaActiva.snapshot.params.IdProducto;
   ngOnInit(): void {
-    this.productoService.listarProducto()
-    this.productoService.listarImagenes()
-    this.productoService.listarTodosPrecios()
-    this.CarritoDeComprasService.listarTodosDetalleCarrito()
+    this.productoService.buscarProductoIdDetalle(this.id)
+    this.productoService.ListarDetalleMaterial(this.id)
+    this.productoService.listarImagen(this.id)
   }
-  
+
   carritoRespuesta;
   perfilUsuario;
   CarritoExiste;
@@ -85,4 +81,5 @@ export class ListarProductosComponent implements OnInit {
       this.router.navigate(['usuarios/login']);
     } 
   }
+
 }

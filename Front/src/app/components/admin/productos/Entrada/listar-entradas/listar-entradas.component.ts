@@ -13,10 +13,7 @@ export class ListarEntradasComponent implements OnInit {
   constructor(public productoService:ProductoService) { }
 
   ngOnInit(): void {
-    this.productoService.listarEntradas();
-  }
-  llenarFormularioProducto(entrada:Entrada){
-    this.productoService.formularioRegistroEntrada.patchValue(entrada);
+    this.productoService.listarEntradas(this.productoService.detalleProducto.IdProducto);
   }
 
 }

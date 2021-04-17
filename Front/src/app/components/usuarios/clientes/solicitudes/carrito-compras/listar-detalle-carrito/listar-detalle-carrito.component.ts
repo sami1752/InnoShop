@@ -23,8 +23,8 @@ export class ListarDetalleCarritoComponent implements OnInit {
     this.usuarioService.obtenerPerfil().subscribe(
       (res:any) => {
         this.perfilUsuario =  res;
-        this.carritoDeComprasService.listarDetalleCarrito(res.Id);
         this.carritoDeComprasService.CarritoDeComprasUsuario(res.Id);
+        this.carritoDeComprasService.listarDetalleCarrito(res.Id);
       },
       err => {
         console.log(err);
@@ -55,7 +55,6 @@ export class ListarDetalleCarritoComponent implements OnInit {
         this.carritoDeComprasService.editarDetalleCarrito(detalle, res).subscribe(
           res=>{
             this.carritoDeComprasService.CarritoDeComprasUsuario(detalle.IdUsuario);
-            alert("Edicion exitosa")
           },err=>{
             alert("error")
           } 

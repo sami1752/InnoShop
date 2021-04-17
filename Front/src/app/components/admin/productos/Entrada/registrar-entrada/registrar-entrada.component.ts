@@ -20,20 +20,19 @@ export class RegistrarEntradaComponent implements OnInit {
       res => {
         this.productoService.entrada = this.productoService.formularioRegistroEntrada.value;
         this.productoService.entrada.IdUsuario = (res as Usuario).Id;
-        if(this.productoService.entrada.IdEntrada==null || this.productoService.entrada.IdEntrada==0){
-          alert("Seleccione el producto para agregar stock")
-        }else{
+        this.productoService.entrada.IdProducto = this.productoService.detalleProducto.IdProducto;
+
           this.productoService.RegistroEntrada().subscribe(
             (respuesta: any) => {
               alert(respuesta.mensaje)
               this.productoService.formularioRegistroEntrada.reset();
-              this.productoService.listarEntradas();
+              this.productoService.formularioEntrada =false;
+              this.productoService.listarEntradas(this.productoService.entrada.IdProducto);
             }, error => {
-              alert(error)
+              alert("error")
               console.log(error);
             });
-        }
-      },
+        },
       err => {
         console.log(err);
       }

@@ -30,7 +30,6 @@ import { RegistroDetalleMaterialComponent } from './components/admin/productos/r
 import { ListarDetalleMaterialComponent } from './components/admin/productos/listar-detalle-material/listar-detalle-material.component';
 import { ListarEntradasComponent } from './components/admin/productos/Entrada/listar-entradas/listar-entradas.component';
 import { RegistrarEntradaComponent } from './components/admin/productos/Entrada/registrar-entrada/registrar-entrada.component';
-import { GestionEnradasComponent } from './components/admin/productos/Entrada/gestion-entradas/gestion-entradas.component';
 import{OwlModule} from 'ngx-owl-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
@@ -57,8 +56,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     RegistroDetalleMaterialComponent,
     ListarDetalleMaterialComponent,
     ListarEntradasComponent,
-    RegistrarEntradaComponent,
-    GestionEnradasComponent
+    RegistrarEntradaComponent
   ],
   imports: [
     BrowserModule,

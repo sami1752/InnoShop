@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody *ngFor="let producto of productoService.listaProductos">
-        <tr *ngIf="producto.Estado">
+        <tr  *ngIf="producto.Estado">
             <td>{{producto.IdProducto}}</td>
             <td >{{producto.Nombre}}</td>
             <td >{{producto.NombreCategoria}}</td>
@@ -24,12 +24,14 @@
                     </tbody>
                 </table>
             </td>
-            <div *ngFor="let precio of productoService.listaPrecios"> 
+            <ng-container *ngFor="let precio of productoService.listaPrecios"> 
                 <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==producto.IdProducto">
                     {{precio.Precio}}
                 </td>
-            </div>
-            <td> <button  (click)="agregarCarrito(producto.IdProducto)" class="btn-success">Agregar a carrito</button> </td>
+            </ng-container>
+                <td ><i (click)="agregarCarrito(producto.IdProducto)" class="fas fa-shopping-cart fa-2x"></i> </td>                  
+                    <!--<a class="btn-primary p-2" [routerLink]="['/solicitudes/carrito']">Ir a carrito</a>--> 
+            <td><a [routerLink]="['/productos/detalleProducto',producto.IdProducto]"  > <i  class="fas fa-info fa-2x"></i></a></td>
         </tr>
     </tbody>
 </table>

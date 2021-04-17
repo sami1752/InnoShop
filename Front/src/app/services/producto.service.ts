@@ -58,7 +58,7 @@ export class ProductoService {
   
   idProducto1: number=0;
   entrada:Entrada;
-  listaEntradas:DetalleEntrada[];
+  listaEntradas:Entrada[];
   DetalleMaterial:DetalleMaterial;
   listaMateriales:Material[];
   ListaDetalleMateriales:DetalleMaterialProducto[];
@@ -66,6 +66,7 @@ export class ProductoService {
   imagenFile
   listaPrecios: Precio[];
   listaImagenes: Imagen[]
+  listaImagenesProducto : Imagen[]
   producto: Producto
   listaProductos: Producto[];
   listaCategorias: Categoria[];
@@ -75,6 +76,7 @@ export class ProductoService {
   CampoPrecio : boolean = true;
   CampoStock : boolean = true;
   FormularioPrecio : boolean = false
+  formularioEntrada: boolean=false;
   FormularioImagen : boolean = false
   detalleProducto: Producto
   IdProducto: number
@@ -110,11 +112,7 @@ export class ProductoService {
   });
 
   formularioRegistroEntrada = this.formBuilder.group({
-    IdEntrada:[],
-    IdProducto: [],
     Cantidad: [],
-    IdUsuario: [],
-    NombreProducto: [""]
   });
 
   formularioRegistroPrecio = this.formBuilder.group({
@@ -255,7 +253,7 @@ export class ProductoService {
   registroPrecio() {
     this.precio.IdProducto = this.detalleProducto.IdProducto
     this.precio.FechaInicio = this.hoy.toISOString();
-    this.precio.FechaFin = "1111-11-11"
+    this.precio.FechaFin = "0001-01-01"
     this.precio.IdPrecioProducto = 0
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarPrecio', this.precio)
   }
@@ -277,7 +275,7 @@ export class ProductoService {
   listarImagen(id) {
     this.http.get(this.configuracion.rootURL + '/Productos/ListaImagenes/' + id)
       .toPromise()
-      .then(res => this.listaImagenes = res as Imagen[])
+      .then(res => this.listaImagenesProducto = res as Imagen[])
   }
 
   listarPrecios(idProducto) {
@@ -316,13 +314,14 @@ export class ProductoService {
 
   RegistroEntrada(){
     this.entrada.IdEntrada =0;
+    this.entrada.Fecha = '1111-11-11';
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarEntrada', this.entrada)
   }
 
-  listarEntradas(){
-    this.http.get(this.configuracion.rootURL + '/Productos/listarEntradas')
+  listarEntradas(idProducto){
+    this.http.get(this.configuracion.rootURL + '/Productos/listarEntradas/'+idProducto)
     .toPromise()
-    .then(res => this.listaEntradas = res as DetalleEntrada[])
+    .then(res => this.listaEntradas = res as Entrada[])
   }
 
   listarTodosPrecios(){

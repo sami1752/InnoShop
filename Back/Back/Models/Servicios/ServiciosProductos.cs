@@ -282,29 +282,9 @@ namespace Back.Models.Servicios
 
         public async Task<ActionResult<IEnumerable<Material>>> ListaMatriales()  => await _context.Materiales.ToListAsync();
 
-        public async Task<ActionResult<IEnumerable<DetalleEntrada>>> ListarEntradas()
+        public async Task<ActionResult<IEnumerable<Entrada>>> ListarEntradasPorProducto(int idProducto)
         {
-            await using (_context)
-            {
-                List<DetalleEntrada> detalleEntrada = (from producto in _context.Productos
-                                                         join entrada in _context.Entradas
-                                                         on producto.IdProducto equals entrada.IdProducto
-                                                         join Usuario in _context.Usuarioidentity
-                                                         on entrada.IdUsuario equals Usuario.Id
-                                               
-
-                                                         select new DetalleEntrada
-                                                         {
-                                                             IdEntrada = entrada.IdEntrada,
-                                                             IdProducto = entrada.IdProducto,
-                                                             Fecha = entrada.Fecha,
-                                                             IdUsuario = entrada.IdUsuario,
-                                                             NombreProducto = producto.Nombre,
-                                                             NombreUsuario = Usuario.Nombres,
-                                                             Cantidad = entrada.Cantidad
-                                                         }).ToList();
-                return detalleEntrada;
-            }
+            return  await _context.Entradas.Where(x => x.IdProducto == idProducto).ToListAsync();
         }
         public async Task AgregarEntrada(Entrada entrada)
         {

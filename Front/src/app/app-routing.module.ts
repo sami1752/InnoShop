@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {UsuariosComponent} from './components/usuarios/usuarios.component';
 import {RegistroComponent} from './components/usuarios/registro/registro.component';
@@ -17,6 +17,8 @@ import { GestionUsuarioComponent } from './components/admin/usuarios/gestion-usu
 import { ModificarDatosComponent } from './components/usuarios/modificar-datos/modificar-datos.component';
 import { ListarProductosComponent } from './components/usuarios/clientes/productos/listar-productos/listar-productos.component';
 import { ListarDetalleCarritoComponent } from './components/usuarios/clientes/solicitudes/carrito-compras/listar-detalle-carrito/listar-detalle-carrito.component';
+import { DetalleProductoClienteComponent } from './components/usuarios/clientes/productos/detalle-producto-cliente/detalle-producto-cliente.component';
+import { ListaProductosComponent } from './components/admin/productos/lista-productos/lista-productos.component';
 
 
 const routes: Routes = [
@@ -32,10 +34,24 @@ const routes: Routes = [
       {path:'confirmarEmail', component:ConfirmarEmailComponent},
       {path:'editarDatosCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'MiCuenta', component:ModificarDatosComponent},
-      {path:'Productos', component:ListarProductosComponent},
-      {path:'carrito', component:ListarDetalleCarritoComponent, canActivate:[AutorizacionRutasGuard]}
     ]
   },
+
+  {
+    path:'productos', component:UsuariosComponent,
+    children: [
+      {path:'inicio',component:ListarProductosComponent},
+      {path:'detalleProducto/:IdProducto', component: DetalleProductoClienteComponent}
+    ]
+  },
+
+  {path:'solicitudes', component:UsuariosComponent,
+    children: [
+      {path:'carrito',component:ListarDetalleCarritoComponent},
+  ]
+  },
+
+
   {
     path:'Admin', component:VistasAdminComponent,
     children: [
