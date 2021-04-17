@@ -47,6 +47,18 @@ export class SolicitudesPersonalizadasService {
   SolicitudPersonalizada:SolicitudPersonalizada;
   listaSolicitudPersonalizada:SolicitudPersonalizada[];
 
+  formularioRegistroSolicitudPersonalizada = this.formBuilder.group({
+    IdSolicitudPersonalizada: [],
+    IdUsuario: [],
+    IdCategoria: [],
+    Ancho: [],
+    Fondo: [],
+    Alto: [],
+    Fecha: [],
+    Descripcion: [],
+    ValorTotal: []
+  });
+
   ListarDetalleEstadosMontajes() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes')
       .toPromise()
@@ -63,11 +75,6 @@ export class SolicitudesPersonalizadasService {
     return this.http.post(
       this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes/',this.DetalleEstadosMontajes)
   }
-
-
-
-
-
 
   ListarDetalleEstadosProductosPersoanlizados() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/DetalleEstadosProductosPersoanlizados')
@@ -86,10 +93,6 @@ export class SolicitudesPersonalizadasService {
       this.DetalleEstadosProductosPersoanlizados)
   }
 
-
-
-
-
   ListarDetalleEstadosSolicitudPersonalizada() {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/DetalleEstadosSolicitudPersonalizada')
       .toPromise()
@@ -106,9 +109,6 @@ export class SolicitudesPersonalizadasService {
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/DetalleEstadosSolicitudPersonalizada/',
       this.DetalleEstadosSolicitudPersonalizada)
   }
-
-
-
 
   EliminarDetalleProductosSolicitud(id) {
     return this.http.delete(this.configuracion.rootURL + '/Solicitudes/DetalleProductosSolicitud/' + id);
@@ -131,10 +131,6 @@ export class SolicitudesPersonalizadasService {
       this.DetalleProductosSolicitud)
   }
 
-
-
-
-
   EliminarDetallesMaterialesMontajes(id) {
     return this.http.delete(this.configuracion.rootURL + '/Solicitudes/DetallesMaterialesMontajes/' + id);
   }
@@ -155,10 +151,6 @@ export class SolicitudesPersonalizadasService {
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/DetallesMaterialesMontajes/',
       this.DetallesMaterialesMontajes)
   }
-
-
-
-
 
   EliminarDetallesMaterialesSolicitudesPersonalizadas(id) {
     return this.http.delete(this.configuracion.rootURL + '/Solicitudes/DetallesMaterialesSolicitudesPersonalizadas/' + id);
@@ -181,8 +173,6 @@ export class SolicitudesPersonalizadasService {
       this.DetallesMaterialesSolicitudesPersonalizadas)
   }
 
-
-
   EliminarDetallesProductosMontajes(id) {
     return this.http.delete(this.configuracion.rootURL + '/Solicitudes/DetallesProductosMontajes/' + id);
   }
@@ -202,6 +192,76 @@ export class SolicitudesPersonalizadasService {
   AgregarDetallesProductosMontajes() {
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/DetallesProductosMontajes/',
       this.DetallesProductosMontajes)
+  }
+
+  ListarMontajes() {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/Montajes')
+      .toPromise()
+      .then(res => this.listaMontajes = res as Montajes[])
+  }
+
+  BuscarMontajes(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/Montajes/'+id)
+      .toPromise()
+      .then(res => this.Montajes = res as Montajes)
+  }
+
+  AgregarMontajes() {
+    return this.http.post( this.configuracion.rootURL + '/Solicitudes/Montajes/',
+      this.Montajes)
+  }
+
+  EditarMontajes() {
+    return this.http.put(this.configuracion.rootURL + '/Productos/Montajes', this.Montajes)
+  }
+
+  ListarPrecioMontajes() {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/PrecioMontajes')
+      .toPromise()
+      .then(res => this.listaPrecioMontajes = res as PrecioMontajes[])
+  }
+
+  ListaPrecioMontajes(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/PrecioMontajes/'+id)
+      .toPromise()
+      .then(res => this.listaPrecioMontajes = res as PrecioMontajes[])
+  }
+
+  AgregarPrecioMontajes() {
+    return this.http.post( this.configuracion.rootURL + '/Solicitudes/PrecioMontajes/',
+      this.PrecioMontajes)
+  }
+
+  ListaRespuestasSolicitudesPersonalizadas(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/RespuestasSolicitudesPersonalizadas/'+id)
+      .toPromise()
+      .then(res => this.listaRespuestasSolicitudesPersonalizadas = res as RespuestasSolicitudesPersonalizadas[])
+  }
+
+  AgregarRespuestasSolicitudesPersonalizadas() {
+    return this.http.post( this.configuracion.rootURL + '/Solicitudes/RespuestasSolicitudesPersonalizadas/',
+      this.RespuestasSolicitudesPersonalizadas)
+  }
+
+  ListarSolicitudPersonalizada() {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada')
+      .toPromise()
+      .then(res => this.listaSolicitudPersonalizada = res as SolicitudPersonalizada[])
+  }
+
+  BuscarSolicitudPersonalizada(id) {
+    this.http.get(this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada/'+id)
+      .toPromise()
+      .then(res => this.SolicitudPersonalizada = res as SolicitudPersonalizada)
+  }
+
+  AgregarSolicitudPersonalizada() {
+    return this.http.post( this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada/',
+      this.SolicitudPersonalizada)
+  }
+
+  EditarSolicitudPersonalizada() {
+    return this.http.put(this.configuracion.rootURL + '/Productos/SolicitudPersonalizada', this.SolicitudPersonalizada)
   }
 
 }

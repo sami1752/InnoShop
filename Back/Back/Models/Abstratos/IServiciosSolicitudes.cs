@@ -85,7 +85,7 @@ namespace Back.Models.Abstratos
         Task<RespuestasSolicitudesPersonalizadas> AgregarRespuestasSolicitudesPersonalizadas
                     (RespuestasSolicitudesPersonalizadas RespuestasSolicitudesPersonalizadas);
         Task<ActionResult<IEnumerable<RespuestasSolicitudesPersonalizadas>>>
-                    ListarRespuestasSolicitudesPersonalizadas();
+                    ListaRespuestasSolicitudesPersonalizadas(int id);
        
         
         

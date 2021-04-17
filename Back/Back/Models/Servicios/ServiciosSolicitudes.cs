@@ -278,9 +278,10 @@ namespace Back.Models.Servicios
             return RespuestasSolicitudesPersonalizadas;
         }
 
-        public async Task<ActionResult<IEnumerable<RespuestasSolicitudesPersonalizadas>>> 
-            ListarRespuestasSolicitudesPersonalizadas() => 
-            await _context.RespuestasSolicitudesPersonalizadas.ToListAsync();
+        public async Task<ActionResult<IEnumerable<RespuestasSolicitudesPersonalizadas>>>
+            ListaRespuestasSolicitudesPersonalizadas(int id) =>
+            await _context.RespuestasSolicitudesPersonalizadas.Where(x => 
+            x.IdRespuestaSolicitudesPersonalizadas == id).ToListAsync();
 
         public async Task<ActionResult<IEnumerable<SolicitudPersonalizada>>> ListarSolicitudPersonalizada() => 
             await _context.SolicitudPersonalizada.ToListAsync();

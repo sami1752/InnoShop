@@ -470,6 +470,71 @@ namespace Back.Controllers
         }
 
         [HttpGet]
+        [Route("RespuestasSolicitudesPersonalizadas/{RespuestasSolicitudesPersonalizadas}")]
+        public async Task<ActionResult<IEnumerable<RespuestasSolicitudesPersonalizadas>>> 
+            ListaRespuestasSolicitudesPersonalizadas(int RespuestasSolicitudesPersonalizadas) =>
+            await _context.ListaRespuestasSolicitudesPersonalizadas(RespuestasSolicitudesPersonalizadas);
+
+        [HttpPost]
+        [Route("RespuestasSolicitudesPersonalizadas")]
+        public async Task<Object> AgregarRespuestasSolicitudesPersonalizadas
+            (RespuestasSolicitudesPersonalizadas RespuestasSolicitudesPersonalizadas)
+        {
+            try
+            {
+                RespuestasSolicitudesPersonalizadas = 
+                    await _context.AgregarRespuestasSolicitudesPersonalizadas(RespuestasSolicitudesPersonalizadas);
+                return Ok(new { mensaje = RespuestasSolicitudesPersonalizadas });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+
+
+        [HttpGet]
+        [Route("SolicitudPersonalizada")]
+        public async Task<ActionResult<IEnumerable<SolicitudPersonalizada>>> ListarSolicitudPersonalizada() => 
+            await _context.ListarSolicitudPersonalizada();
+
+        [HttpGet]
+        [Route("SolicitudPersonalizada/{SolicitudPersonalizada}")]
+        public async Task<ActionResult<SolicitudPersonalizada>> BuscarSolicitudPersonalizada(int SolicitudPersonalizada) => 
+            await _context.BuscarSolicitudPersonalizada(SolicitudPersonalizada);
+
+        [HttpPost]
+        [Route("SolicitudPersonalizada")]
+        public async Task<Object> AgregarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada)
+        {
+            try
+            {
+                SolicitudPersonalizada = await _context.AgregarSolicitudPersonalizada(SolicitudPersonalizada);
+                return Ok(new { mensaje = SolicitudPersonalizada });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        [HttpPut]
+        [Route("SolicitudPersonalizada")]
+        public async Task<Object> EditarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada)
+        {
+            try
+            {
+                await _context.EditarSolicitudPersonalizada(SolicitudPersonalizada);
+                return Ok(new { mensaje = "Actializacion exitosa" });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        [HttpGet]
         [Route("ExisteCarrito/{idUsuario}")]
         public async Task<Object> ExisteCarrito(string idUsuario)
         {
