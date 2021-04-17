@@ -17,9 +17,6 @@ namespace Back.Models.Entidades.Solicitudes.Personalizadas
         public string IdUsuario { get; set; }
 
         [Required]
-        public int IdCategoria { get; set; }
-
-        [Required]
         public float Ancho { get; set; }
 
         [Required]

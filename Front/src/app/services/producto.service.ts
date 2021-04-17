@@ -210,6 +210,7 @@ export class ProductoService {
     this.iva.FechaInicio = this.hoy.toISOString();
     this.iva.FechaFin = "1111-11-11"
     this.iva.IdIva = 0
+    console.log(this.iva)
     return this.http.put(this.configuracion.rootURL + '/Productos/AgregarIva', this.iva)
   }
 

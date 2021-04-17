@@ -21,7 +21,8 @@ import { UsuarioService } from './usuario.service';
 })
 export class SolicitudesPersonalizadasService {
 
-  constructor(public usuarioService:UsuarioService ,private http: HttpClient, private configuracion: ConfiguracionService, private formBuilder: FormBuilder) {}
+  constructor(public usuarioService:UsuarioService ,private http: HttpClient,
+    private configuracion: ConfiguracionService, private formBuilder: FormBuilder) {}
   DetalleEstadosMontajes:DetalleEstadosMontajes;
   listaDetalleEstadosMontajes:DetalleEstadosMontajes[];
   DetalleEstadosProductosPersoanlizados:DetalleEstadosProductosPersoanlizados;
@@ -46,11 +47,13 @@ export class SolicitudesPersonalizadasService {
   listaRespuestasSolicitudesPersonalizadas:RespuestasSolicitudesPersonalizadas[];
   SolicitudPersonalizada:SolicitudPersonalizada;
   listaSolicitudPersonalizada:SolicitudPersonalizada[];
+  fecha = new Date();
+  tiempoTranscurrido = Date.now();
+  hoy = new Date(this.tiempoTranscurrido);
 
   formularioRegistroSolicitudPersonalizada = this.formBuilder.group({
     IdSolicitudPersonalizada: [],
     IdUsuario: [],
-    IdCategoria: [],
     Ancho: [],
     Fondo: [],
     Alto: [],
@@ -256,6 +259,10 @@ export class SolicitudesPersonalizadasService {
   }
 
   AgregarSolicitudPersonalizada() {
+    this.SolicitudPersonalizada.Fecha = this.hoy.toISOString();
+    this.SolicitudPersonalizada.ValorTotal = 0
+    this.SolicitudPersonalizada.IdSolicitudPersonalizada = 0
+    console.log(this.SolicitudPersonalizada)
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada/',
       this.SolicitudPersonalizada)
   }

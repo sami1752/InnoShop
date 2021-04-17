@@ -17,24 +17,23 @@ export class RegistroDetalleMaterialComponent implements OnInit {
   }
 
   registrarDetalle(){
-   
-      this.usuarioService.obtenerPerfil().subscribe(
-        res => {
-          this.productoService.DetalleMaterial = this.productoService.formularioRegistroDetalleMaterial.value;
-          this.productoService.DetalleMaterial.IdUsuario = (res as Usuario).Id;
-          this.productoService.RegistrarDetalleMaterial().subscribe(
-            (respuesta: any) => {
-              this.productoService.ListarDetalleMaterial(this.productoService.DetalleMaterial.IdProducto);
-              this.productoService.tablaDetalleMateriales=true;
-            }, error => {
-              alert(error)
-              console.log(error);
-            });
-        },
-        err => {
-          console.log(err);
-        }
-      );
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+        this.productoService.DetalleMaterial = this.productoService.formularioRegistroDetalleMaterial.value;
+        this.productoService.DetalleMaterial.IdUsuario = (res as Usuario).Id;
+        this.productoService.RegistrarDetalleMaterial().subscribe(
+          (respuesta: any) => {
+            this.productoService.ListarDetalleMaterial(this.productoService.DetalleMaterial.IdProducto);
+            this.productoService.tablaDetalleMateriales=true;
+          }, error => {
+            alert(error)
+            console.log(error);
+          });
+      },
+      err => {
+        console.log(err);
       }
+    );
+  }
 
 }
