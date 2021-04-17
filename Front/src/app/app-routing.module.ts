@@ -19,6 +19,7 @@ import { ListarProductosComponent } from './components/usuarios/clientes/product
 import { ListarDetalleCarritoComponent } from './components/usuarios/clientes/solicitudes/carrito-compras/listar-detalle-carrito/listar-detalle-carrito.component';
 import { DetalleProductoClienteComponent } from './components/usuarios/clientes/productos/detalle-producto-cliente/detalle-producto-cliente.component';
 import { ListaProductosComponent } from './components/admin/productos/lista-productos/lista-productos.component';
+import { RegistrarSolicitudPErsonalizadaComponent } from './components/usuarios/clientes/solicitudes/personalizadas/registrar-solicitud-personalizada/registrar-solicitud-personalizada.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,9 @@ const routes: Routes = [
       {path:'confirmarEmail', component:ConfirmarEmailComponent},
       {path:'editarDatosCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'MiCuenta', component:ModificarDatosComponent},
+      {path:'Productos', component:ListarProductosComponent},
+      {path:'Solicitud', component:RegistrarSolicitudPErsonalizadaComponent},
+      {path:'carrito', component:ListarDetalleCarritoComponent, canActivate:[AutorizacionRutasGuard]}
     ]
   },
 
