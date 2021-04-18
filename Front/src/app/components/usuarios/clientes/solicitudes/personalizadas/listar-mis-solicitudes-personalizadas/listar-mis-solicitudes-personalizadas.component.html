@@ -5,6 +5,7 @@
             <th scope="col">Fecha</th>
             <th scope="col">Estado</th>
             <th scope="col">Valor Total</th>
+            <th></th>
         </tr>
     </thead>
     <tbody *ngFor="let solicitud of this.solicitudesPersonalizadasService.listaSolicitudPersonalizada">
@@ -13,6 +14,7 @@
             <td >{{solicitud.Fecha}}</td>
             <td >{{solicitud.Estado}}</td>
             <td >{{solicitud.ValorTotal}}</td>
+            <td><a [routerLink]="['/solicitudes/Solicitud',solicitud.IdSolicitudPersonalizada]">Editar</a></td>
         </tr>
     </tbody>
 </table>

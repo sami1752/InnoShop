@@ -53,7 +53,7 @@ const routes: Routes = [
   {path:'solicitudes', component:UsuariosComponent,
     children: [
       {path:'carrito',component:ListarDetalleCarritoComponent, canActivate:[AutorizacionRutasGuard]},
-      {path:'Solicitud', component:RegistrarSolicitudPErsonalizadaComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'Solicitud/:IdSolicitud', component:RegistrarSolicitudPErsonalizadaComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'MisSolicitudes', component:ListarMisSolicitudesPersonalizadasComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'Montajes', component:RegistrarMontajesComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'MisMontajes', component:ListarMisMontajesComponent, canActivate:[AutorizacionRutasGuard]}

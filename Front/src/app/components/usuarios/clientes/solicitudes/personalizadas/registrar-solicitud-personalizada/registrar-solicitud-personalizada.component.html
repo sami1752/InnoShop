@@ -1,6 +1,7 @@
 <form class="" [formGroup]="this.solicitudesPersonalizadasService.formularioRegistroSolicitudPersonalizada"
-  (ngSubmit)="registrar()">
+  (ngSubmit)="onSubmit()">
   <label for="Ancho">Ancho<span>**</span></label>
+  <input formControlName="IdSolicitudPersonalizada" type="hidden" id="IdSolicitudPersonalizada"/>
   <input formControlName="Ancho" type="number" step="0.01" id="Ancho" placeholder="Ancho" class="form-control"/>
   <label for="Fondo">Fondo<span>**</span></label>
   <input formControlName="Fondo" type="number" step="0.01" id="Fondo" placeholder="Fondo" class="form-control"/>

@@ -374,8 +374,37 @@ namespace Back.Models.Servicios
         {
             _context.SolicitudPersonalizada.Update(SolicitudPersonalizada);
             await _context.SaveChangesAsync();
+            await ModificarEstado(DateTime.Now, SolicitudPersonalizada.IdSolicitudPersonalizada);
+            await AgregarDetalleEstadosSolicitudPersonalizada(new DetalleEstadosSolicitudPersonalizada
+            {
+                IdUsuario = SolicitudPersonalizada.IdUsuario,
+                IdSolicitudPersonalizada = SolicitudPersonalizada.IdSolicitudPersonalizada,
+                FechaFin = new DateTime(),
+                FechaInicio = DateTime.Now,
+                IdEstado = 9
+            });
             return SolicitudPersonalizada;
         }
+
+        public async Task ModificarEstado(DateTime nueva, int id)
+        {
+            var estados = (from Estado in _context.DetalleEstadosSolicitudPersonalizada
+                             orderby Estado.IdDetalleEstadoSolicitudPersonalizada descending
+                             where Estado.IdSolicitudPersonalizada == id
+                             select new DetalleEstadosSolicitudPersonalizada
+                             {
+                                 IdDetalleEstadoSolicitudPersonalizada = Estado.IdDetalleEstadoSolicitudPersonalizada,
+                                 FechaFin = Estado.FechaFin,
+                                 FechaInicio = Estado.FechaInicio,
+                                 IdUsuario = Estado.IdUsuario,
+                                 IdSolicitudPersonalizada = Estado.IdSolicitudPersonalizada,
+                                 IdEstado= Estado.IdEstado
+                             }).ToList();
+            estados[0].FechaFin = nueva;
+            _context.DetalleEstadosSolicitudPersonalizada.Update(estados[0]);
+            await _context.SaveChangesAsync();
+        }
+
 
         public async Task<List<CarritoDeCompras>> ExisteCarritoUsuarioPorId(string id)
         {

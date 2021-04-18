@@ -236,7 +236,7 @@ export class SolicitudesPersonalizadasService {
   }
 
   EditarMontajes() {
-    return this.http.put(this.configuracion.rootURL + '/Productos/Montajes', this.Montajes)
+    return this.http.put(this.configuracion.rootURL + '/Solicitudes/Montajes', this.Montajes)
   }
 
   ListarPrecioMontajes() {
@@ -281,7 +281,9 @@ export class SolicitudesPersonalizadasService {
   BuscarSolicitudPersonalizada(id) {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada/'+id)
       .toPromise()
-      .then(res => this.SolicitudPersonalizada = res as SolicitudPersonalizada)
+      .then(res =>{ this.SolicitudPersonalizada = res as SolicitudPersonalizada
+        this.formularioRegistroSolicitudPersonalizada.patchValue(this.SolicitudPersonalizada)
+      })
   }
 
   AgregarSolicitudPersonalizada() {
@@ -294,7 +296,7 @@ export class SolicitudesPersonalizadasService {
   }
 
   EditarSolicitudPersonalizada() {
-    return this.http.put(this.configuracion.rootURL + '/Productos/SolicitudPersonalizada', this.SolicitudPersonalizada)
+    return this.http.put(this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada', this.SolicitudPersonalizada)
   }
 
 }
