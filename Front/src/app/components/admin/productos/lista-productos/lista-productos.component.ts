@@ -40,8 +40,8 @@ export class ListaProductosComponent implements OnInit {
   detalleProducto(id){
     this.productoService.buscarProductoIdDetalle(id);
     this.productoService.listarPrecios(id);
+    alert(id)
     this.productoService.listarImagen(id);
-    
     this.productoService.ListarDetalleMaterial(id);
   }
 

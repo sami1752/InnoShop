@@ -69,8 +69,6 @@ namespace Back.Models.Servicios
                 List<DetalleProducto> listaProductosPorCategoria = (from producto in _context.Productos
                                                                     join categoria in _context.Categorias
                                                                     on producto.IdCategoria equals categoria.IdCategoria
-                                                                    /*join precioProducto in _context.PrecioProductos
-                                                                    on producto.IdProducto equals precioProducto.IdProducto*/
                                                                     where producto.IdCategoria == idCategoria
                                                                     select new DetalleProducto
                                                                     {

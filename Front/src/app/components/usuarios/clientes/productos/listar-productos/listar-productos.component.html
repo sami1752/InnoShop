@@ -29,8 +29,7 @@
                     {{precio.Precio}}
                 </td>
             </ng-container>
-                <td ><i (click)="agregarCarrito(producto.IdProducto)" class="fas fa-shopping-cart fa-2x"></i> </td>                  
-                    <!--<a class="btn-primary p-2" [routerLink]="['/solicitudes/carrito']">Ir a carrito</a>--> 
+                <td ><i (click)="agregarCarrito(producto.IdProducto)" class="fas fa-shopping-cart fa-2x"></i> </td>
             <td><a [routerLink]="['/productos/detalleProducto',producto.IdProducto]"  > <i  class="fas fa-info fa-2x"></i></a></td>
         </tr>
     </tbody>

@@ -276,7 +276,9 @@ export class ProductoService {
   listarImagen(id) {
     this.http.get(this.configuracion.rootURL + '/Productos/ListaImagenes/' + id)
       .toPromise()
-      .then(res => this.listaImagenesProducto = res as Imagen[])
+      .then(res => {this.listaImagenesProducto = res as Imagen[]
+      console.log(this.listaImagenesProducto)
+      })
   }
 
   listarPrecios(idProducto) {
