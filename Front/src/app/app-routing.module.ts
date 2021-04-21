@@ -25,6 +25,7 @@ import { GestionIvaComponent } from './components/admin/productos/iva/gestion-iv
 import { ListarMisSolicitudesPersonalizadasComponent } from './components/usuarios/clientes/solicitudes/personalizadas/listar-mis-solicitudes-personalizadas/listar-mis-solicitudes-personalizadas.component';
 import { RegistrarMontajesComponent } from './components/usuarios/clientes/solicitudes/personalizadas/registrar-montajes/registrar-montajes.component';
 import { ListarMisMontajesComponent } from './components/usuarios/clientes/solicitudes/personalizadas/listar-mis-montajes/listar-mis-montajes.component';
+import { FinalizarCompraComponent } from './components/usuarios/clientes/solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
 
 
 const routes: Routes = [
@@ -56,7 +57,9 @@ const routes: Routes = [
       {path:'Solicitud/:IdSolicitud', component:RegistrarSolicitudPErsonalizadaComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'MisSolicitudes', component:ListarMisSolicitudesPersonalizadasComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'Montajes', component:RegistrarMontajesComponent, canActivate:[AutorizacionRutasGuard]},
-      {path:'MisMontajes', component:ListarMisMontajesComponent, canActivate:[AutorizacionRutasGuard]}
+      {path:'MisMontajes', component:ListarMisMontajesComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'carrito',component:ListarDetalleCarritoComponent},
+      {path:'finalizarCompra',component:FinalizarCompraComponent},
   ]
   },
 

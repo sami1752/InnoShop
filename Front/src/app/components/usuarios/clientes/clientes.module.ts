@@ -11,6 +11,7 @@ import { DetalleProductoClienteComponent } from './productos/detalle-producto-cl
 import { ListarMisSolicitudesPersonalizadasComponent } from './solicitudes/personalizadas/listar-mis-solicitudes-personalizadas/listar-mis-solicitudes-personalizadas.component';
 import { ListarMisMontajesComponent } from './solicitudes/personalizadas/listar-mis-montajes/listar-mis-montajes.component';
 import { RegistrarMontajesComponent } from './solicitudes/personalizadas/registrar-montajes/registrar-montajes.component';
+import { FinalizarCompraComponent } from './solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
 
 
 
@@ -23,7 +24,8 @@ import { RegistrarMontajesComponent } from './solicitudes/personalizadas/registr
     DetalleProductoClienteComponent,
     ListarMisSolicitudesPersonalizadasComponent,
     ListarMisMontajesComponent,
-    RegistrarMontajesComponent
+    RegistrarMontajesComponent,
+    FinalizarCompraComponent
   ],
   imports: [
     CommonModule,

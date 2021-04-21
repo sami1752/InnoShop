@@ -10,11 +10,11 @@
         </tr>
     </thead>
     <tbody *ngFor="let producto of productoService.listaProductos">
-        <tr  *ngIf="producto.Estado">
+        <tr *ngIf="producto.Estado">
             <td>{{producto.IdProducto}}</td>
-            <td >{{producto.Nombre}}</td>
-            <td >{{producto.NombreCategoria}}</td>
-            <td >{{producto.GarantiaMeses}} Meses</td>
+            <td>{{producto.Nombre}}</td>
+            <td>{{producto.NombreCategoria}}</td>
+            <td>{{producto.GarantiaMeses}} Meses</td>
             <td>
                 <table>
                     <tbody>
@@ -24,15 +24,22 @@
                     </tbody>
                 </table>
             </td>
-            <ng-container *ngFor="let precio of productoService.listaPrecios"> 
+            <ng-container *ngFor="let precio of productoService.listaPrecios">
                 <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==producto.IdProducto">
                     {{precio.Precio}}
                 </td>
             </ng-container>
-                <td ><i (click)="agregarCarrito(producto.IdProducto)" class="fas fa-shopping-cart fa-2x"></i> </td>                  
-                    <!--<a class="btn-primary p-2" [routerLink]="['/solicitudes/carrito']">Ir a carrito</a>--> 
-            <td><a [routerLink]="['/productos/detalleProducto',producto.IdProducto]"  > <i  class="fas fa-info fa-2x"></i></a></td>
+
+            <ng-container *ngFor="let item of CarritoDeComprasService.listaDetalleCarritoCompras">
+                <td *ngIf="item.IdProducto==producto.IdProducto">
+                    <a class="btn-primary p-2" [routerLink]="['/solicitudes/carrito']">Ir a carrito({{item.Cantidad}})</a>
+                </td>
+            </ng-container>
+            <td>
+                <a class="btn-success p-2" (click)="agregarCarrito(producto.IdProducto)">Agregar</a>
+            </td>
+
+            <td><a [routerLink]="['/productos/detalleProducto',producto.IdProducto]"><i class="fas fa-info fa-2x"></i></a></td>
         </tr>
     </tbody>
 </table>
-

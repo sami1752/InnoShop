@@ -77,9 +77,12 @@
                         <div class="col ">
                              <button (click)="agregarCarrito(this.productoService.detalleProducto.IdProducto)" class="btn-primary p-3">Agregar a carrito</button>
                         </div>
+                        <ng-container *ngFor="let item of CarritoDeComprasService.listaDetalleCarritoCompras" >
+                            <div class="mt-20" *ngIf="item.IdProducto==this.productoService.detalleProducto.IdProducto">
+                                <a class="btn-primary p-3" [routerLink]="['/solicitudes/carrito']">Ir a carrito({{item.Cantidad}})</a>
+                            </div>
+                        </ng-container>
                     </div>
-                    
-                    
                 </div>
                 <div></div>
             </div>
