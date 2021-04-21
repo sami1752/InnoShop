@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProyectoInnoshop\\GitProyecto\\InnoShop\\Back\\Back\\Back.csproj": {}
+    "C:\\Users\\USUARIO\\Desktop\\Otros\\Proyecto Innoshop\\Innoshop\\InnoShop\\Back\\Back\\Back.csproj": {}
   },
   "projects": {
-    "D:\\ProyectoInnoshop\\GitProyecto\\InnoShop\\Back\\Back\\Back.csproj": {
+    "C:\\Users\\USUARIO\\Desktop\\Otros\\Proyecto Innoshop\\Innoshop\\InnoShop\\Back\\Back\\Back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProyectoInnoshop\\GitProyecto\\InnoShop\\Back\\Back\\Back.csproj",
+        "projectUniqueName": "C:\\Users\\USUARIO\\Desktop\\Otros\\Proyecto Innoshop\\Innoshop\\InnoShop\\Back\\Back\\Back.csproj",
         "projectName": "Back",
-        "projectPath": "D:\\ProyectoInnoshop\\GitProyecto\\InnoShop\\Back\\Back\\Back.csproj",
-        "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-        "outputPath": "D:\\ProyectoInnoshop\\GitProyecto\\InnoShop\\Back\\Back\\obj\\",
+        "projectPath": "C:\\Users\\USUARIO\\Desktop\\Otros\\Proyecto Innoshop\\Innoshop\\InnoShop\\Back\\Back\\Back.csproj",
+        "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\USUARIO\\Desktop\\Otros\\Proyecto Innoshop\\Innoshop\\InnoShop\\Back\\Back\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "D:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
