@@ -10,7 +10,7 @@
         <div class="card-body">
           <h5 class="card-title">Subtotal: {{this.carritoDeComprasService.carritoDeCompras.Valor}}</h5>
           <p class="card-text"></p>
-          <a href="#" class="btn btn-primary">Finalizar Compra</a>
+          <a [routerLink]="['/solicitudes/finalizarCompra']" routerLinkActive="router-link-active"  class="btn btn-primary">Finalizar Compra</a>
         </div>
       </div>
     <div class="col-6"> 
@@ -29,9 +29,11 @@
                     <td>{{detalle.IdDetalleCarritoDeCompras}}</td>
                     <td >
                         <input   (change)="editarDetalleCarrito(detalle)"
-                          [(ngModel)]="detalle.Cantidad"  type="number" [value]="detalle.Cantidad">
+                          [(ngModel)]="detalle.Cantidad"  type="number">
                     </td>
-                    <td >{{detalle.NombreProducto}}</td>
+                    <td >{{detalle.NombreProducto}} 
+                       <a [routerLink]="['/productos/detalleProducto',detalle.IdProducto]"><i class="fas fa-info fa-2x"></i></a>
+                      </td>
                     <ng-container *ngFor="let precio of productoService.listaPrecios"> 
                         <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio}}</td>
                         <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio * detalle.Cantidad}}</td>

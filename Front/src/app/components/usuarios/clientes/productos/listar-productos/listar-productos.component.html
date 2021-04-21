@@ -29,9 +29,17 @@
                     {{precio.Precio}}
                 </td>
             </ng-container>
-                <td ><i (click)="agregarCarrito(producto.IdProducto)" class="fas fa-shopping-cart fa-2x"></i> </td>                  
-                    <!--<a class="btn-primary p-2" [routerLink]="['/solicitudes/carrito']">Ir a carrito</a>--> 
-            <td><a [routerLink]="['/productos/detalleProducto',producto.IdProducto]"  > <i  class="fas fa-info fa-2x"></i></a></td>
+
+            <ng-container *ngFor="let item of CarritoDeComprasService.listaDetalleCarritoCompras" >
+                <td *ngIf="item.IdProducto==producto.IdProducto">
+                    <a class="btn-primary p-2" [routerLink]="['/solicitudes/carrito']">Ir a carrito({{item.Cantidad}})</a>
+                </td>
+            </ng-container>
+            <td >
+                <a class="btn-success p-2" (click)="agregarCarrito(producto.IdProducto)" >Agregar</a>
+            </td>
+                          
+            <td><a [routerLink]="['/productos/detalleProducto',producto.IdProducto]"><i class="fas fa-info fa-2x"></i></a></td>
         </tr>
     </tbody>
 </table>

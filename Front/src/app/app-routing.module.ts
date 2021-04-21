@@ -20,6 +20,7 @@ import { ListarDetalleCarritoComponent } from './components/usuarios/clientes/so
 import { DetalleProductoClienteComponent } from './components/usuarios/clientes/productos/detalle-producto-cliente/detalle-producto-cliente.component';
 import { ListaProductosComponent } from './components/admin/productos/lista-productos/lista-productos.component';
 import { RegistrarSolicitudPErsonalizadaComponent } from './components/usuarios/clientes/solicitudes/personalizadas/registrar-solicitud-personalizada/registrar-solicitud-personalizada.component';
+import { FinalizarCompraComponent } from './components/usuarios/clientes/solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
 
 
 const routes: Routes = [
@@ -35,9 +36,7 @@ const routes: Routes = [
       {path:'confirmarEmail', component:ConfirmarEmailComponent},
       {path:'editarDatosCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'MiCuenta', component:ModificarDatosComponent},
-      {path:'Productos', component:ListarProductosComponent},
       {path:'Solicitud', component:RegistrarSolicitudPErsonalizadaComponent},
-      {path:'carrito', component:ListarDetalleCarritoComponent, canActivate:[AutorizacionRutasGuard]}
     ]
   },
 
@@ -52,6 +51,7 @@ const routes: Routes = [
   {path:'solicitudes', component:UsuariosComponent,
     children: [
       {path:'carrito',component:ListarDetalleCarritoComponent},
+      {path:'finalizarCompra',component:FinalizarCompraComponent},
   ]
   },
 

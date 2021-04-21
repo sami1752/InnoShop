@@ -49,8 +49,7 @@ namespace Back.Models.Servicios
             return carritoDeCompras;
         }
 
-        public async Task<ActionResult<IEnumerable<DetalleCarritoDeCompras>>> ListarTodosDetalleCarritoDeCompras() =>
-            await _context.DetalleCarritoDeCompras.ToListAsync();
+
 
         public async Task<ActionResult<IEnumerable<DetalleCarritoDeComprasProducto>>> ListarDetalleCarritoDeCompras(string idUsuario)
         {
@@ -59,7 +58,9 @@ namespace Back.Models.Servicios
                 List<DetalleCarritoDeComprasProducto> listaDetalleCarrito = (from productos in _context.Productos
                                                                              join detalleCarrito in _context.DetalleCarritoDeCompras
                                                                              on productos.IdProducto equals detalleCarrito.IdProducto
-                                                                             where detalleCarrito.IdUsuario == idUsuario
+                                                                             join carrito in _context.CarritoDeCompras 
+                                                                             on detalleCarrito.IdCarritoDeCompras equals carrito.IdCarritoDeCompras
+                                                                             where carrito.IdUsuario == idUsuario && carrito.Estado ==false
 
                                                                              select new DetalleCarritoDeComprasProducto()
                                                                              {

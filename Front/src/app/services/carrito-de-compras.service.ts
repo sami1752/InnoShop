@@ -19,7 +19,6 @@ export class CarritoDeComprasService {
     detalleCarritoDeCompras:DetalleCarritoDeCompras = {IdDetalleCarritoDeCompras:0,IdCarritoDeCompras : 0,IdUsuario: "",IdProducto: 0, Cantidad:1, NombreProducto:""}
     carritoExistente:number =0;
     listaDetalleCarritoCompras:DetalleCarritoDeCompras[];
-    listaTodosDetalleCarritoCompras:DetalleCarritoDeCompras[];
 
     agregarCarritoDeCompras(){
       this.carritoDeCompras.Estado =false;
@@ -30,7 +29,6 @@ export class CarritoDeComprasService {
     agregarDetalleCarrito(idProducto){
       this.detalleCarritoDeCompras.Cantidad =1;
       this.detalleCarritoDeCompras.IdProducto=idProducto;
-      console.log(this.detalleCarritoDeCompras)
       return this.http.post(this.configuracion.rootURL+'/Solicitudes/DetalleCarritoDeCompras',this.detalleCarritoDeCompras);
     }
 
@@ -41,10 +39,7 @@ export class CarritoDeComprasService {
     existeCarritoUsuario(idUsuario){
       return this.http.get(this.configuracion.rootURL+'/Solicitudes/ExisteCarrito/'+idUsuario);
     }
-    listarTodosDetalleCarrito(){
-      this.http.get(this.configuracion.rootURL+'/Solicitudes/ListaTodosDetalleCarritoDeCompras').toPromise()
-      .then(res => this.listaTodosDetalleCarritoCompras = res as DetalleCarritoDeCompras[])
-    }
+
 
     listarDetalleCarrito(idUsuario){
       this.http.get(this.configuracion.rootURL+'/Solicitudes/ListaDetalleCarritoDeCompras/'+idUsuario).toPromise()
@@ -63,6 +58,4 @@ export class CarritoDeComprasService {
       this.http.get(this.configuracion.rootURL+'/Solicitudes/CarritoDeComprasUsuario/'+idUsuario).toPromise().
       then(res => this.carritoDeCompras = res as CarritoDeCompras);
     }
-
-
 }

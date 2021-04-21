@@ -18,7 +18,6 @@ namespace Back.Models.Abstratos
         Task<CarritoDeCompras> AgregarCarritoDeCompras(CarritoDeCompras carritoDeCompras);
         Task<CarritoDeCompras> EditarCarritoDeCompras(CarritoDeCompras carritoDeCompras);
         Task<PrecioProducto> PrecioDelProducto(int idProducto);
-        Task<ActionResult<IEnumerable<DetalleCarritoDeCompras>>> ListarTodosDetalleCarritoDeCompras();
         Task<ActionResult<IEnumerable<DetalleCarritoDeComprasProducto>>> ListarDetalleCarritoDeCompras(string idUsuario);
         Task<DetalleCarritoDeCompras> BuscarDetalleCarritoDeComprasPorId(int id);
         Task<DetalleCarritoDeCompras> AgregarDetalleCarritoDeCompras(DetalleCarritoDeCompras detalleCarritoDeCompras);
