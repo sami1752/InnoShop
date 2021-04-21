@@ -20,8 +20,13 @@ export class DetalleProductoClienteComponent implements OnInit {
     this.productoService.buscarProductoIdDetalle(this.id)
     this.productoService.ListarDetalleMaterial(this.id)
     this.productoService.listarImagen(this.id)
+    this.usuarioService.obtenerPerfil().subscribe(
+      (res:any)=>{
+        this.CarritoDeComprasService.listarDetalleCarrito(res.Id);
+      },
+      err=>{});
   }
-
+  detalleExiste=false;
   carritoRespuesta;
   perfilUsuario;
   CarritoExiste;
@@ -56,16 +61,40 @@ export class DetalleProductoClienteComponent implements OnInit {
                       });
 
                   }else{
-                      this.CarritoDeComprasService.detalleCarritoDeCompras.IdCarritoDeCompras = this.CarritoExiste;
-                      this.CarritoDeComprasService.agregarDetalleCarrito(idProducto).subscribe(
-                      res=>{
-                        alert("Se agrego producto a carrito existente");
-                      },
-                      err=>{
-                        alert("error detalle solito");
-                        console.log(err);
+                      this.CarritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id)
+                      this.CarritoDeComprasService.listaDetalleCarritoCompras.forEach(element => {
+                        if(element.IdProducto==idProducto){
+                          this.detalleExiste=true;
+                          this.CarritoDeComprasService.CantidadDetalleAnterior(element.IdDetalleCarritoDeCompras).subscribe(
+                            res=>{
+                              element.Cantidad++;
+                              this.CarritoDeComprasService.editarDetalleCarrito(element, res).subscribe(
+                                res=>{
+                                  this.CarritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id)
+                                  alert("Se sumo producto al carrito con exito")
+                                },err=>{}
+                              )
+                            },
+                            err=>{
+                              alert("error al buscar cantidad anterior") 
+                            }
+                          )
+                        }
+                      });
+                      if(!this.detalleExiste){
+                        this.CarritoDeComprasService.detalleCarritoDeCompras.IdCarritoDeCompras = this.CarritoExiste;
+                          this.CarritoDeComprasService.agregarDetalleCarrito(idProducto).subscribe(
+                          res=>{
+                            
+                            alert("Se agrego producto a carrito existente");
+                          },
+                          err=>{
+                            alert("error detalle solito");
+                            console.log(err);
+                          }
+                        )}
                       }
-                    )}
+                      
 
                     },err=>{
                       alert("error en carro existe");
@@ -81,5 +110,4 @@ export class DetalleProductoClienteComponent implements OnInit {
       this.router.navigate(['usuarios/login']);
     } 
   }
-
 }
