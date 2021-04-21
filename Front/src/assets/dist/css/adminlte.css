@@ -12182,6 +12182,11 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
     color: rgba(0, 0, 0, 0.6);
 }
 
+.centrado {
+    display: flex;
+    justify-content: center;
+}
+
 .navbar-light .form-control-navbar::placeholder {
     color: rgba(0, 0, 0, 0.6);
 }
@@ -14642,6 +14647,11 @@ body.text-sm .control-sidebar {
 
 .navbar-white {
     background-color: #fff;
+}
+
+.navbar-white2 {
+    background-color: #fff;
+    text-align: center;
 }
 
 .navbar-gray {
@@ -33953,6 +33963,18 @@ a.text-muted:hover {
 .dark-mode .link-dark {
     color: #ced4da;
 }
+
+
+/*# sourceMappingURL=adminlte.css.map */
+
+
+/*# sourceMappingURL=adminlte.css.map */
+
+
+/*# sourceMappingURL=adminlte.css.map */
+
+
+/*# sourceMappingURL=adminlte.css.map */
 
 
 /*# sourceMappingURL=adminlte.css.map */
