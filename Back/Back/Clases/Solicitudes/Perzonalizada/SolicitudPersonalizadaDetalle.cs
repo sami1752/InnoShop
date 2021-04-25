@@ -16,5 +16,6 @@ namespace Back.Clases.Solicitudes.Perzonalizada
         public string Descripcion { get; set; }
         public float ValorTotal { get; set; }
         public string Estado { get; set; }
+        public string Usuario { get; set; }
     }
 }

@@ -59,9 +59,9 @@ namespace Back.Models.Servicios
                 List<DetalleCarritoDeComprasProducto> listaDetalleCarrito = (from productos in _context.Productos
                                                                              join detalleCarrito in _context.DetalleCarritoDeCompras
                                                                              on productos.IdProducto equals detalleCarrito.IdProducto
-                                                                             join carrito in _context.CarritoDeCompras 
+                                                                             join carrito in _context.CarritoDeCompras
                                                                              on detalleCarrito.IdCarritoDeCompras equals carrito.IdCarritoDeCompras
-                                                                             where carrito.IdUsuario == idUsuario && carrito.Estado ==false
+                                                                             where carrito.IdUsuario == idUsuario && carrito.Estado == false
 
                                                                              select new DetalleCarritoDeComprasProducto()
                                                                              {
@@ -287,16 +287,18 @@ namespace Back.Models.Servicios
             await _context.RespuestasSolicitudesPersonalizadas.Where(x =>
             x.IdRespuestaSolicitudesPersonalizadas == id).ToListAsync();
 
-        public async Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarSolicitudPersonalizada() {
+        public async Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarSolicitudPersonalizada()
+        {
             var DetalleestadosSolicitudes = (from detalle in _context.DetalleEstadosSolicitudPersonalizada
                                              where detalle.FechaFin == new DateTime()
-                                             select new DetalleEstadosSolicitudPersonalizada { 
-                                             FechaFin= detalle.FechaFin,
-                                             FechaInicio= detalle.FechaInicio,
-                                             IdDetalleEstadoSolicitudPersonalizada = detalle.IdDetalleEstadoSolicitudPersonalizada,
-                                             IdEstado=detalle.IdEstado,
-                                             IdSolicitudPersonalizada =detalle.IdSolicitudPersonalizada,
-                                             IdUsuario =detalle.IdUsuario
+                                             select new DetalleEstadosSolicitudPersonalizada
+                                             {
+                                                 FechaFin = detalle.FechaFin,
+                                                 FechaInicio = detalle.FechaInicio,
+                                                 IdDetalleEstadoSolicitudPersonalizada = detalle.IdDetalleEstadoSolicitudPersonalizada,
+                                                 IdEstado = detalle.IdEstado,
+                                                 IdSolicitudPersonalizada = detalle.IdSolicitudPersonalizada,
+                                                 IdUsuario = detalle.IdUsuario
                                              });
             var solicitudes = _context.SolicitudPersonalizada;
             var estados = _context.Estados;
@@ -319,7 +321,8 @@ namespace Back.Models.Servicios
                           }).ToListAsync(); ;
         }
 
-        public async Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarMisSolicitudPersonalizada(string id) {
+        public async Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarMisSolicitudPersonalizada(string id)
+        {
             var DetalleestadosSolicitudes = (from detalle in _context.DetalleEstadosSolicitudPersonalizada
                                              where detalle.FechaFin == new DateTime()
                                              select new DetalleEstadosSolicitudPersonalizada
@@ -350,11 +353,49 @@ namespace Back.Models.Servicios
                               IdSolicitudPersonalizada = solicitud.IdSolicitudPersonalizada,
                               IdUsuario = solicitud.IdUsuario,
                               ValorTotal = solicitud.ValorTotal
-                          }).ToListAsync(); ;
+                          }).ToListAsync();
         }
 
-        public async Task<SolicitudPersonalizada> BuscarSolicitudPersonalizada(int id) =>
-            await _context.SolicitudPersonalizada.FindAsync(id);
+        public SolicitudPersonalizadaDetalle BuscarSolicitudPersonalizada(int id)
+        {
+            var DetalleestadosSolicitudes = (from detalle in _context.DetalleEstadosSolicitudPersonalizada
+                                             where detalle.FechaFin == new DateTime()
+                                             select new DetalleEstadosSolicitudPersonalizada
+                                             {
+                                                 FechaFin = detalle.FechaFin,
+                                                 FechaInicio = detalle.FechaInicio,
+                                                 IdDetalleEstadoSolicitudPersonalizada = detalle.IdDetalleEstadoSolicitudPersonalizada,
+                                                 IdEstado = detalle.IdEstado,
+                                                 IdSolicitudPersonalizada = detalle.IdSolicitudPersonalizada,
+                                                 IdUsuario = detalle.IdUsuario
+                                             });
+            var solicitudes = _context.SolicitudPersonalizada;
+            var estados = _context.Estados;
+            var usuarios = _context.Usuarioidentity;
+
+            return (from solicitud in solicitudes
+                    join detalle in DetalleestadosSolicitudes
+                    on solicitud.IdSolicitudPersonalizada equals detalle.IdSolicitudPersonalizada
+                    join estado in estados
+                    on detalle.IdEstado equals estado.IdEstado
+                    join usuario in usuarios
+                    on detalle.IdUsuario equals usuario.Id
+                    where solicitud.IdSolicitudPersonalizada == id
+                    select new SolicitudPersonalizadaDetalle
+                    {
+                        Alto = solicitud.Alto,
+                        Ancho = solicitud.Ancho,
+                        Descripcion = solicitud.Descripcion,
+                        Estado = estado.Estado,
+                        Fecha = solicitud.Fecha,
+                        Fondo = solicitud.Fondo,
+                        IdSolicitudPersonalizada = solicitud.IdSolicitudPersonalizada,
+                        IdUsuario = solicitud.IdUsuario,
+                        ValorTotal = solicitud.ValorTotal,
+                        Usuario = usuario.Nombres + " " + usuario.Apellidos
+                    }).ToList()[0];
+        }
+
 
         public async Task<SolicitudPersonalizada> AgregarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada)
         {
@@ -390,17 +431,17 @@ namespace Back.Models.Servicios
         public async Task ModificarEstado(DateTime nueva, int id)
         {
             var estados = (from Estado in _context.DetalleEstadosSolicitudPersonalizada
-                             orderby Estado.IdDetalleEstadoSolicitudPersonalizada descending
-                             where Estado.IdSolicitudPersonalizada == id
-                             select new DetalleEstadosSolicitudPersonalizada
-                             {
-                                 IdDetalleEstadoSolicitudPersonalizada = Estado.IdDetalleEstadoSolicitudPersonalizada,
-                                 FechaFin = Estado.FechaFin,
-                                 FechaInicio = Estado.FechaInicio,
-                                 IdUsuario = Estado.IdUsuario,
-                                 IdSolicitudPersonalizada = Estado.IdSolicitudPersonalizada,
-                                 IdEstado= Estado.IdEstado
-                             }).ToList();
+                           orderby Estado.IdDetalleEstadoSolicitudPersonalizada descending
+                           where Estado.IdSolicitudPersonalizada == id
+                           select new DetalleEstadosSolicitudPersonalizada
+                           {
+                               IdDetalleEstadoSolicitudPersonalizada = Estado.IdDetalleEstadoSolicitudPersonalizada,
+                               FechaFin = Estado.FechaFin,
+                               FechaInicio = Estado.FechaInicio,
+                               IdUsuario = Estado.IdUsuario,
+                               IdSolicitudPersonalizada = Estado.IdSolicitudPersonalizada,
+                               IdEstado = Estado.IdEstado
+                           }).ToList();
             estados[0].FechaFin = nueva;
             _context.DetalleEstadosSolicitudPersonalizada.Update(estados[0]);
             await _context.SaveChangesAsync();

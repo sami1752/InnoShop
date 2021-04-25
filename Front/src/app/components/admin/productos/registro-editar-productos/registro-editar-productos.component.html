@@ -64,11 +64,9 @@
   </div>
 
   <br>
-  <label for="IdCategoria"> Categoria <span>**</span></label>
-  <select class="form-control" formControlName="IdCategoria">
-    <option value="" selected>Elige la categoria</option>
-    <option *ngFor="let doc of this.productoService.listaCategorias" [value]=doc.IdCategoria>{{doc.Nombre}}</option>
-  </select>
+
+<input type="hidden" formControlName="IdCategoria" >
+
   <div class="mt-10"></div>
   <button type="submit" [disabled]="this.productoService.formularioRegistroProductos.invalid"
     class="os-btn w-50">Guardar</button>

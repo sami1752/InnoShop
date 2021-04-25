@@ -8,17 +8,17 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="card-title">
-                                    <i class="fas fa-boxes text-secondary"></i> Productos
+                                    <i class="fas fa-boxes text-secondary"></i> Solicitudes
                                 </h2>
                             </div>
                             <div class="card-body">
                                 <div class="tab-content p-0">
-                                    <app-lista-productos></app-lista-productos>
+                                    <app-listar-solicitudes-personalizadas></app-listar-solicitudes-personalizadas>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <section class="col-lg-5 connectedSortable">
+                    <!-- <section class="col-lg-5 connectedSortable">
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="card-title">
@@ -31,12 +31,12 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </section> -->
                 </div>
             </div>
-            <div *ngIf="this.productoService.desplegarDetalle" style="margin-top: -45%;">
+            <!-- <div *ngIf="this.productoService.desplegarDetalle" style="margin-top: -45%;">
                 <app-detalle-productos></app-detalle-productos>
-            </div>
+            </div> -->
         </section>
     </div>
 </section>

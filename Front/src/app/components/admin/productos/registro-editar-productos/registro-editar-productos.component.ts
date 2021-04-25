@@ -67,7 +67,8 @@ export class RegistroEditarProductosComponent implements OnInit {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
         this.productoService.producto = this.productoService.formularioRegistroProductos.value;
-        this.productoService.producto.IdUsuario = (res as Usuario).Id;
+        this.productoService.producto.IdUsuario = (res as Usuario).Id
+        this.productoService.producto.IdCategoria = 2;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
             alert("Registro exitoso");

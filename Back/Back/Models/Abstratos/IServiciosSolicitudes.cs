@@ -92,7 +92,7 @@ namespace Back.Models.Abstratos
         
         Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarSolicitudPersonalizada();
         Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarMisSolicitudPersonalizada(string id);
-        Task<SolicitudPersonalizada> BuscarSolicitudPersonalizada(int id);    
+        SolicitudPersonalizadaDetalle BuscarSolicitudPersonalizada(int id);    
         Task<SolicitudPersonalizada> AgregarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada);
         Task<SolicitudPersonalizada> EditarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada);
 

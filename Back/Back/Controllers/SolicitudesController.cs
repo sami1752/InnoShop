@@ -507,8 +507,8 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("SolicitudPersonalizada/{SolicitudPersonalizada}")]
-        public async Task<ActionResult<SolicitudPersonalizada>> BuscarSolicitudPersonalizada(int SolicitudPersonalizada) => 
-            await _context.BuscarSolicitudPersonalizada(SolicitudPersonalizada);
+        public ActionResult<SolicitudPersonalizadaDetalle> BuscarSolicitudPersonalizada(int SolicitudPersonalizada) =>
+             _context.BuscarSolicitudPersonalizada(SolicitudPersonalizada);
 
         [HttpPost]
         [Route("SolicitudPersonalizada")]
