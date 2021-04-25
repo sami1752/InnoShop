@@ -28,7 +28,6 @@ export class RegistroEditarProductosComponent implements OnInit {
   constructor(public usuarioService: UsuarioService, private router: Router, public productoService: ProductoService, public configuracion: ConfiguracionService) {}
 
   ngOnInit(): void {
-    this.productoService.listarCategorias();
   }
 
   listaTiposPuerta = [{

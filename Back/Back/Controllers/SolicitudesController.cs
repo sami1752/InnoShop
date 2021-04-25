@@ -210,7 +210,7 @@ namespace Back.Controllers
             try
             {
                 DetalleEstadosSolicitudPersonalizada =
-                    await _context.AgregarDetalleEstadosSolicitudPersonalizada(DetalleEstadosSolicitudPersonalizada);
+                    await _context.AgregarDetalleEstadosSolicitudPersonalizada(DetalleEstadosSolicitudPersonalizada, false);
                 return Ok(new { mensaje = DetalleEstadosSolicitudPersonalizada });
             }
             catch (Exception e)
@@ -577,6 +577,23 @@ namespace Back.Controllers
 
                 await _context.EliminarDetalleCarrito(idDetalle);
                 return Ok(new { mensaje = "Eliminacion exitosa" });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+
+
+        [HttpPost]
+        [Route("Estados")]
+        public async Task<Object> AgregarEstados (Estados Estados)
+        {
+            try
+            {
+                Estados = await _context.AgregarEstado(Estados);
+                return Ok(new { mensaje = Estados });
             }
             catch (Exception e)
             {

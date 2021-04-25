@@ -50,6 +50,8 @@ export class SolicitudesPersonalizadasService {
   fecha = new Date();
   tiempoTranscurrido = Date.now();
   hoy = new Date(this.tiempoTranscurrido);
+  SolicitudRechazada = true
+  SolicitudCortizando= false
 
   formularioRegistroSolicitudPersonalizada = this.formBuilder.group({
     IdSolicitudPersonalizada: [],
@@ -72,6 +74,15 @@ export class SolicitudesPersonalizadasService {
     Descripcion: [],
     ValorTotal: [],
     Direccion: []
+  });
+
+  formularioDetalleEstadoSolicitudPerzonalizada = this.formBuilder.group({
+    IdDetalleEstadoSolicitudPersonalizada: [],
+    IdUsuario: [],
+    IdEstado: [],
+    FechaInicio: [],
+    FechaFin: [],
+    IdSolicitudPersonalizada: []
   });
 
   ListarDetalleEstadosMontajes() {
@@ -121,6 +132,9 @@ export class SolicitudesPersonalizadasService {
   }
 
   AgregarDetalleEstadosSolicitudPersonalizada() {
+    this.DetalleEstadosSolicitudPersonalizada.FechaInicio = this.hoy.toISOString();
+    this.DetalleEstadosSolicitudPersonalizada.FechaFin = "0001-01-01"
+    this.DetalleEstadosSolicitudPersonalizada.IdDetalleEstadoSolicitudPersonalizada = 0
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/DetalleEstadosSolicitudPersonalizada/',
       this.DetalleEstadosSolicitudPersonalizada)
   }
@@ -255,6 +269,10 @@ export class SolicitudesPersonalizadasService {
     return this.http.post( this.configuracion.rootURL + '/Solicitudes/PrecioMontajes/',
       this.PrecioMontajes)
   }
+  AgregarEstados() {
+    return this.http.post( this.configuracion.rootURL + '/Solicitudes/Estados/',
+      this.Estados)
+  }
 
   ListaRespuestasSolicitudesPersonalizadas(id) {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/RespuestasSolicitudesPersonalizadas/'+id)
@@ -282,6 +300,11 @@ export class SolicitudesPersonalizadasService {
     this.http.get(this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada/'+id)
       .toPromise()
       .then(res =>{ this.SolicitudPersonalizada = res as SolicitudPersonalizada
+        if(this.SolicitudPersonalizada.Estado == "Rechazada")
+          this.SolicitudRechazada = false
+        if(this.SolicitudPersonalizada.Estado == "En proceso de cotizacion")
+          this.SolicitudCortizando= true
+          
         this.formularioRegistroSolicitudPersonalizada.patchValue(this.SolicitudPersonalizada)
       })
   }

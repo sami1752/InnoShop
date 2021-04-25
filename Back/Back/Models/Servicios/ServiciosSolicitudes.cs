@@ -136,8 +136,10 @@ namespace Back.Models.Servicios
             x.IdDetalleEstadosProductosPersoanlizados == id).ToListAsync();
 
         public async Task<DetalleEstadosSolicitudPersonalizada> AgregarDetalleEstadosSolicitudPersonalizada
-            (DetalleEstadosSolicitudPersonalizada DetalleEstadosSolicitudPersonalizada)
+            (DetalleEstadosSolicitudPersonalizada DetalleEstadosSolicitudPersonalizada, bool nueva)
         {
+            if(!nueva)
+            await ModificarEstado(DateTime.Now, DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada);
             _context.DetalleEstadosSolicitudPersonalizada.Add(DetalleEstadosSolicitudPersonalizada);
             await _context.SaveChangesAsync();
             return DetalleEstadosSolicitudPersonalizada;
@@ -408,7 +410,7 @@ namespace Back.Models.Servicios
                 FechaFin = new DateTime(),
                 FechaInicio = DateTime.Now,
                 IdEstado = 1
-            });
+            }, true);
             return SolicitudPersonalizada;
         }
 
@@ -416,7 +418,6 @@ namespace Back.Models.Servicios
         {
             _context.SolicitudPersonalizada.Update(SolicitudPersonalizada);
             await _context.SaveChangesAsync();
-            await ModificarEstado(DateTime.Now, SolicitudPersonalizada.IdSolicitudPersonalizada);
             await AgregarDetalleEstadosSolicitudPersonalizada(new DetalleEstadosSolicitudPersonalizada
             {
                 IdUsuario = SolicitudPersonalizada.IdUsuario,
@@ -424,7 +425,7 @@ namespace Back.Models.Servicios
                 FechaFin = new DateTime(),
                 FechaInicio = DateTime.Now,
                 IdEstado = 9
-            });
+            },false);
             return SolicitudPersonalizada;
         }
 
@@ -470,6 +471,13 @@ namespace Back.Models.Servicios
         {
             var listaPrecios = await _context.PrecioProductos.Where(x => x.IdProducto == idProducto).ToListAsync();
             return listaPrecios[listaPrecios.Count() - 1];
+        }
+
+        public async Task<Estados> AgregarEstado (Estados Estados)
+        {
+            _context.Estados.Add(Estados);
+            await _context.SaveChangesAsync();
+            return Estados;
         }
     }
 }
