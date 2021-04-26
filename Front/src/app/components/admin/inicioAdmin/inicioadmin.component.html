@@ -14,122 +14,124 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Acerca de nosotros</a>
             </li>
+
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- Navbar Search -->
+            <button (click)="configuracionService.cerrarSesion()" class="nav-link"> <i class="bi bi-power"></i> Cerrar Sesion</button>
         </ul>
     </nav>
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <a href="index3.html" class="brand-link" style="text-align: center;">
-            <span class="brand-text font-weight-light">INNOVA</span>
+    <aside class="main-sidebar sidebar-dark-primary elevation-4 ">
+        <a href="index3.html " class="brand-link " style="text-align: center; ">
+
+            <span class="brand-text font-weight-light "> INNOVA</span>
         </a>
-        <div class="sidebar">
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="assets/img/images.png" class="img-circle elevation-2" alt="User Image">
+        <div class="sidebar ">
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
+                <div class="image ">
+                    <img src="assets/img/images.png " class="img-circle elevation-2 " alt="User Image ">
                 </div>
-                <div class="info" style="text-align: center;">
-                    <a class="d-block" href="/Admin/MiCuenta">{{this.perfilUsuario.Nombres}}</a>
+                <div class="info " style="text-align: center; ">
+                    <a class="d-block " href="/Admin/MiCuenta ">{{this.perfilUsuario.Nombres}}</a>
                 </div>
             </div>
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <li class="nav-item has-treeview">
-                        <a class="nav-link"  href="/Admin/Usuarios">
-                            <i class="nav-icon fa fa-users"></i>
+            <nav class="mt-2 ">
+                <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview " role="menu " data-accordion="false ">
+                    <li class="nav-item has-treeview ">
+                        <a class="nav-link " href="/Admin/Usuarios ">
+                            <i class="nav-icon fa fa-users "></i>
                             <p>Usuarios</p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a class="nav-link" href="/Admin/Productos">
-                            <i class="nav-icon fas fa-box-open"></i>
+                    <li class="nav-item has-treeview ">
+                        <a class="nav-link " href="/Admin/Productos ">
+                            <i class="nav-icon fas fa-box-open "></i>
                             <p>Productos </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a class="nav-link" href="/Admin/Iva">
-                            <i class="nav-icon fas fa-percent"></i>
+                    <li class="nav-item has-treeview ">
+                        <a class="nav-link " href="/Admin/Iva ">
+                            <i class="nav-icon fas fa-percent "></i>
                             <p>IVA </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a class="nav-link">
-                            <i class="nav-icon far fa-plus-square"></i>
+                    <li class="nav-item has-treeview ">
+                        <a class="nav-link ">
+                            <i class="nav-icon far fa-plus-square "></i>
                             <p>
                                 Solicitudes
-                                <i class="fas fa-angle-left right"></i>
+                                <i class="fas fa-angle-left right "></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="pages/examples/login.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                        <ul class="nav nav-treeview ">
+                            <li class="nav-item ">
+                                <a href="pages/examples/login.html " class="nav-link ">
+                                    <i class="far fa-circle nav-icon "></i>
                                     <p>Respuestas</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="pages/examples/register.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                            <li class="nav-item ">
+                                <a href="pages/examples/register.html " class="nav-link ">
+                                    <i class="far fa-circle nav-icon "></i>
                                     <p>otros</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-header">REPORTES</li>
-                    <li class="nav-item">
-                        <a href="https://adminlte.io/docs/3.0" class="nav-link">
-                            <i class="nav-icon fas fa-file"></i>
+                    <li class="nav-header ">REPORTES</li>
+                    <li class="nav-item ">
+                        <a href="https://adminlte.io/docs/3.0 " class="nav-link ">
+                            <i class="nav-icon fas fa-file "></i>
                             <p>Ventas</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="https://adminlte.io/docs/3.0" class="nav-link">
-                            <i class="nav-icon fas fa-file"></i>
+                    <li class="nav-item ">
+                        <a href="https://adminlte.io/docs/3.0 " class="nav-link ">
+                            <i class="nav-icon fas fa-file "></i>
                             <p>Solicitudes</p>
                         </a>
                     </li>
-                    <li class="nav-header">OTROS</li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-dharmachakra"></i>
+                    <li class="nav-header ">OTROS</li>
+                    <li class="nav-item ">
+                        <a href="# " class="nav-link ">
+                            <i class="nav-icon fas fa-dharmachakra "></i>
                             <p>Ruleta</p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-tools"></i>
+                    <li class="nav-item has-treeview ">
+                        <a href="# " class="nav-link ">
+                            <i class="nav-icon fas fa-tools "></i>
                             <p>Montajes</p>
                         </a>
-                    </li>
-
-                    <li *ngIf="usuarioService.inicioSesion">
-                        <button class="btn-danger " (click)="configuracionService.cerrarSesion() ">Cerrar Sesion</button>
                     </li>
 
                 </ul>
             </nav>
         </div>
     </aside>
-    <!-- <div *ngIf="Usuarios">
+    <!-- <div *ngIf="Usuarios ">
         <app-gestion-usuario></app-gestion-usuario>
     </div>
-    <div *ngIf="datos" style="margin-left: 15%;">
+    <div *ngIf="datos " style="margin-left: 15%; ">
         <app-modificar-datos></app-modificar-datos>
     </div>
-    <div *ngIf="Productos">
+    <div *ngIf="Productos ">
         <app-gestion-productos></app-gestion-productos>
     </div>
-    <div *ngIf="iva">
+    <div *ngIf="iva ">
         <app-gestion-iva></app-gestion-iva>
     </div> -->
     <router-outlet></router-outlet>
-    <aside class="control-sidebar control-sidebar-dark">
+    <aside class="control-sidebar control-sidebar-dark ">
         <!-- Control sidebar content goes here -->
     </aside>
-    <footer class="main-footer">
-        <strong>Innova &nbsp;</strong> <i class="fas fa-map-marker-alt"></i> Cali,valle del cauca.
-        <div class="float-right d-none d-sm-inline-block">
-            <i class="fab fa-instagram"></i>&nbsp;<b> <a
-          href="https://www.instagram.com/innovartevitrinas.cali/">Innovartevitrinas.cali</a> </b>
+    <footer class="main-footer ">
+        <strong>Innova &nbsp;</strong> <i class="fas fa-map-marker-alt "></i> Cali,valle del cauca.
+        <div class="float-right d-none d-sm-inline-block ">
+            <i class="fab fa-instagram "></i>&nbsp;<b> <a
+          href="https://www.instagram.com/innovartevitrinas.cali/ ">Innovartevitrinas.cali</a> </b>
         </div>
-        <aside class="control-sidebar control-sidebar-dark">
+        <aside class="control-sidebar control-sidebar-dark ">
             <!-- Control sidebar content goes here -->
         </aside>
 

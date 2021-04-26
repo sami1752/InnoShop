@@ -8,6 +8,7 @@ import { CarritoDeComprasService } from 'src/app/services/carrito-de-compras.ser
 import { ConfiguracionService } from 'src/app/services/configuracion.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+declare var $;
 
 @Component({
   selector: 'app-listar-productos',
