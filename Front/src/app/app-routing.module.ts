@@ -21,6 +21,8 @@ import { DetalleProductoClienteComponent } from './components/usuarios/clientes/
 import { ListaProductosComponent } from './components/admin/productos/lista-productos/lista-productos.component';
 import { RegistrarSolicitudPErsonalizadaComponent } from './components/usuarios/clientes/solicitudes/personalizadas/registrar-solicitud-personalizada/registrar-solicitud-personalizada.component';
 import { FinalizarCompraComponent } from './components/usuarios/clientes/solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
+import { RuletaDescuentosComponent } from './components/usuarios/clientes/descuentos/ruleta-descuentos/ruleta-descuentos.component';
+import { GestionRuletaComponent } from './components/admin/descuentos/gestion-ruleta/gestion-ruleta.component';
 
 
 const routes: Routes = [
@@ -55,12 +57,17 @@ const routes: Routes = [
   ]
   },
 
+  {path:'descuentos', component:UsuariosComponent,
+    children: [
+      {path:'ruleta',component:RuletaDescuentosComponent},
+    ]
+  },
 
-  {
-    path:'Admin', component:VistasAdminComponent,
+  {path:'Admin', component:VistasAdminComponent,
     children: [
       {path:'inicioadmin',component:InicioadminComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'Usuarios', component:GestionUsuarioComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'descuentos', component:GestionRuletaComponent, canActivate:[AutorizacionRutasGuard]}
     ]
   }
 ];

@@ -9,6 +9,7 @@ import { PersonalizadasComponent } from './solicitudes/personalizadas/personaliz
 import { RegistrarSolicitudPErsonalizadaComponent } from './solicitudes/personalizadas/registrar-solicitud-personalizada/registrar-solicitud-personalizada.component';
 import { DetalleProductoClienteComponent } from './productos/detalle-producto-cliente/detalle-producto-cliente.component';
 import { FinalizarCompraComponent } from './solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
+import { RuletaDescuentosComponent } from './descuentos/ruleta-descuentos/ruleta-descuentos.component';
 
 
 
@@ -19,7 +20,8 @@ import { FinalizarCompraComponent } from './solicitudes/carrito-compras/finaliza
     PersonalizadasComponent,
     RegistrarSolicitudPErsonalizadaComponent,
     DetalleProductoClienteComponent,
-    FinalizarCompraComponent
+    FinalizarCompraComponent,
+    RuletaDescuentosComponent
   ],
   imports: [
     CommonModule,
