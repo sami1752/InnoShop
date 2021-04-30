@@ -35,6 +35,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ListarPorcentajesComponent } from './components/admin/descuentos/listar-porcentajes/listar-porcentajes.component';
 import { GestionRuletaComponent } from './components/admin/descuentos/gestion-ruleta/gestion-ruleta.component';
 import { RegistrarPorcentajeComponent } from './components/admin/descuentos/registrar-porcentaje/registrar-porcentaje.component';
+import { ListarValorRuletaComponent } from './components/admin/descuentos/listar-valor-ruleta/listar-valor-ruleta.component';
+import { RegistrarValorRuletaComponent } from './components/admin/descuentos/registrar-valor-ruleta/registrar-valor-ruleta.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { RegistrarPorcentajeComponent } from './components/admin/descuentos/regi
     RegistrarEntradaComponent,
     ListarPorcentajesComponent,
     GestionRuletaComponent,
-    RegistrarPorcentajeComponent
+    RegistrarPorcentajeComponent,
+    ListarValorRuletaComponent,
+    RegistrarValorRuletaComponent
   ],
   imports: [
     BrowserModule,

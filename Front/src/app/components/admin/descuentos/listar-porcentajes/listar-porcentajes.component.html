@@ -18,6 +18,7 @@
                             <th scope="col">Id </th>
                             <th scope="col">Porcentaje</th>
                             <th scope="col">Estado</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody *ngFor="let porcentaje of descuentosService.listaPorcentajes">
@@ -25,6 +26,7 @@
                             <td>{{porcentaje.IdPorcentajeRuleta}}</td>
                             <td>{{porcentaje.Porcentaje}}</td>
                             <td>{{porcentaje.Estado ? 'activo' : 'inactivo'}}</td>
+                            <td><button (click)="editarPorcentaje(porcentaje)" class="btn-info">Activar/Descativar</button></td>
                         </tr>
                     </tbody>
                 </table>

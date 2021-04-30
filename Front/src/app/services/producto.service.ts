@@ -315,7 +315,7 @@ export class ProductoService {
 
   RegistroEntrada(){
     this.entrada.IdEntrada =0;
-    this.entrada.Fecha = '1111-11-11';
+    this.entrada.Fecha = "0001-01-01";
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarEntrada', this.entrada)
   }
 

@@ -19,7 +19,7 @@ namespace Back.Models.Servicios
         {
             _context = context;
         }
-        public async Task<ActionResult<IEnumerable<ValorRuleta>>> ListarValoresRuleta() =>
+        public async Task<IEnumerable<ValorRuleta>> ListarValoresRuleta() =>
                 await _context.ValorRuleta.ToListAsync();
 
         public async Task<ActionResult<IEnumerable<PorcentajesRuleta>>> ListarPorcentajesRuleta() =>

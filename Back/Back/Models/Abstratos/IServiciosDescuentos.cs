@@ -11,7 +11,7 @@ namespace Back.Models.Abstratos
     public interface IServiciosDescuentos
     {
         Task<ActionResult<IEnumerable<DetalleDescuentos>>> ListarDescuentos(string IdUsuario);
-        Task<ActionResult<IEnumerable<ValorRuleta>>> ListarValoresRuleta();
+        Task<IEnumerable<ValorRuleta>> ListarValoresRuleta();
         Task<ActionResult<IEnumerable<PorcentajesRuleta>>> ListarPorcentajesRuleta();
         Task<ValorRuleta> ObtenerValorRuletaActual();
         Task RegistrarCuponDescuento(Descuentos descuento);

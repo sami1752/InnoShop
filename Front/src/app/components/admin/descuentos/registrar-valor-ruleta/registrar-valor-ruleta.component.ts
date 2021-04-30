@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { PerfilUsuario } from 'src/app/models/perfil-usuario';
 import { DescuentosService } from 'src/app/services/descuentos.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-registrar-porcentaje',
-  templateUrl: './registrar-porcentaje.component.html',
-  styleUrls: ['./registrar-porcentaje.component.css']
+  selector: 'app-registrar-valor-ruleta',
+  templateUrl: './registrar-valor-ruleta.component.html',
+  styleUrls: ['./registrar-valor-ruleta.component.css']
 })
-export class RegistrarPorcentajeComponent implements OnInit {
+export class RegistrarValorRuletaComponent implements OnInit {
 
   constructor(public descuentosService:DescuentosService, public usuarioService:UsuarioService) { }
 
@@ -16,13 +15,14 @@ export class RegistrarPorcentajeComponent implements OnInit {
   }
 
   registro(){
-
     this.usuarioService.obtenerPerfil().subscribe(
-      (resp:PerfilUsuario)=>{
-        this.descuentosService.idUsuario=resp.Id
-        this.descuentosService.RegistrarPorcentaje().subscribe(
+      (resp:any)=>{
+        this.descuentosService.idUsuario = resp.Id
+        this.descuentosService.RegistrarValorRuleta().subscribe(
           (res:any)=>{
-            this.descuentosService.ListarPorcentajeDescuentos()
+            alert(res.mensaje)
+            this.descuentosService.listarValoresRuleta()
+            this.descuentosService.ValorRuletaActual()
           },err=>{
             alert("error")
           }

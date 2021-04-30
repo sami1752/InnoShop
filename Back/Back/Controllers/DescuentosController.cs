@@ -28,7 +28,7 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("ValoresRuleta")]
-        public async Task<ActionResult<IEnumerable<ValorRuleta>>> ListarValoresRuleta() =>
+        public async Task<IEnumerable<ValorRuleta>> ListarValoresRuleta() =>
             await _context.ListarValoresRuleta();
 
         [HttpGet]
@@ -58,9 +58,17 @@ namespace Back.Controllers
         {
             try
             {
-                valorRuleta.FechaFin = new DateTime(); 
-                await _context.EditarValorRuleta(valorRuleta.FechaInicio);
-                await _context.AgregarPuntuacionNueva(valorRuleta);
+                IEnumerable<ValorRuleta> list  = await _context.ListarValoresRuleta();
+                if (list.Count() == 0)
+                {
+                    await _context.AgregarPuntuacionNueva(valorRuleta);
+                }
+                else
+                {
+                    await _context.EditarValorRuleta(valorRuleta.FechaInicio);
+                    await _context.AgregarPuntuacionNueva(valorRuleta);
+                }
+                
                 return Ok(new { mensaje = "Puntaje nuevo agregado con éxito" });
             }
             catch (Exception e)
