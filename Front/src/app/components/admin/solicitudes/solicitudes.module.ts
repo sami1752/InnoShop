@@ -6,6 +6,7 @@ import { DetalleSolicitudPersonalizadaComponent } from './SolicitudesPersonaliza
 import { RegistrarEditarProductoSolicitudPerzonalizadaComponent } from './SolicitudesPersonalizadas/registrar-editar-producto-solicitud-perzonalizada/registrar-editar-producto-solicitud-perzonalizada.component';
 import {AppRoutingModule} from '../../../app-routing.module';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {ListarDetalleProductoSolicitudComponent} from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/listar-detalle-producto-solicitud/listar-detalle-producto-solicitud.component'
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
     ListarSolicitudesPersonalizadasComponent,
     GestionSolicitudPersonalizadaComponent,
     DetalleSolicitudPersonalizadaComponent,
-    RegistrarEditarProductoSolicitudPerzonalizadaComponent
+    RegistrarEditarProductoSolicitudPerzonalizadaComponent,
+    ListarDetalleProductoSolicitudComponent
   ],
   imports: [
     CommonModule,
