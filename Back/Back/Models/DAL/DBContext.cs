@@ -1,4 +1,5 @@
 ﻿using Back.Models.Entidades;
+using Back.Models.Entidades.Descuentos;
 using Back.Models.Entidades.Productos;
 using Back.Models.Entidades.Solicitudes;
 using Back.Models.Entidades.Solicitudes.Personalizadas;
@@ -36,6 +37,9 @@ namespace Back.Models.DAL
         public DbSet<PrecioMontajes> PrecioMontajes { get; set; }
         public DbSet<RespuestasSolicitudesPersonalizadas> RespuestasSolicitudesPersonalizadas { get; set; }
         public DbSet<SolicitudPersonalizada> SolicitudPersonalizada { get; set; }
+        public DbSet<PorcentajesRuleta> PorcentajesRuleta { get; set; }
+        public DbSet<ValorRuleta> ValorRuleta { get; set; }
+        public DbSet<Descuentos> Descuentos { get; set; }
 
     }
 }

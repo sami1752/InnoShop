@@ -12,6 +12,7 @@ import { ListarMisSolicitudesPersonalizadasComponent } from './solicitudes/perso
 import { ListarMisMontajesComponent } from './solicitudes/personalizadas/listar-mis-montajes/listar-mis-montajes.component';
 import { RegistrarMontajesComponent } from './solicitudes/personalizadas/registrar-montajes/registrar-montajes.component';
 import { FinalizarCompraComponent } from './solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
+import { RuletaDescuentosComponent } from './descuentos/ruleta-descuentos/ruleta-descuentos.component';
 
 
 
@@ -25,7 +26,8 @@ import { FinalizarCompraComponent } from './solicitudes/carrito-compras/finaliza
     ListarMisSolicitudesPersonalizadasComponent,
     ListarMisMontajesComponent,
     RegistrarMontajesComponent,
-    FinalizarCompraComponent
+    FinalizarCompraComponent,
+    RuletaDescuentosComponent
   ],
   imports: [
     CommonModule,

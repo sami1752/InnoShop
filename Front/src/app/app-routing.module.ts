@@ -29,6 +29,8 @@ import { FinalizarCompraComponent } from './components/usuarios/clientes/solicit
 import { ListarSolicitudesPersonalizadasComponent } from './components/admin/solicitudes/SolicitudesPersonalizadas/listar-solicitudes-personalizadas/listar-solicitudes-personalizadas.component';
 import { GestionSolicitudPersonalizadaComponent } from './components/admin/solicitudes/SolicitudesPersonalizadas/gestion-solicitud-personalizada/gestion-solicitud-personalizada.component';
 import { DetalleSolicitudPersonalizadaComponent } from './components/admin/solicitudes/SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-solicitud-personalizada.component';
+import { RuletaDescuentosComponent } from './components/usuarios/clientes/descuentos/ruleta-descuentos/ruleta-descuentos.component';
+import { GestionRuletaComponent } from './components/admin/descuentos/gestion-ruleta/gestion-ruleta.component';
 
 
 const routes: Routes = [
@@ -66,6 +68,11 @@ const routes: Routes = [
   ]
   },
 
+  {path:'descuentos', component:UsuariosComponent,
+    children: [
+      {path:'ruleta',component:RuletaDescuentosComponent},
+    ]
+  },
 
   {
     path:'Admin', component:InicioadminComponent,
@@ -78,6 +85,7 @@ const routes: Routes = [
       {path:'solicitudes',component:GestionSolicitudPersonalizadaComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'montajes',component:FinalizarCompraComponent},
       {path:'detalleSP/:IdSolicitud',component:DetalleSolicitudPersonalizadaComponent},
+      {path:'descuentos', component:GestionRuletaComponent, canActivate:[AutorizacionRutasGuard]}
     ]
   }
 ];
