@@ -73,8 +73,6 @@ import { SolicitudesModule} from './components/admin/solicitudes/solicitudes.mod
     SolicitudesModule
 
   ],
-  exports:[ListarEntradasComponent, ListarDetalleMaterialComponent,ListarImagenComponent, ListarPrecioComponent ],
-
   providers: [UsuarioService, ConfiguracionService,{
     provide:HTTP_INTERCEPTORS,
     useClass:AuthInterceptor,
