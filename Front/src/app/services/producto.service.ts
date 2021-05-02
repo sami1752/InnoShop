@@ -250,6 +250,10 @@ export class ProductoService {
     return this.http.get(this.configuracion.rootURL + '/Productos/Detalle/' + id)
       .toPromise().then(res => this.detalleProducto = res as Producto);
   }
+  buscarProducto(id) {
+    return this.http.get(this.configuracion.rootURL + '/Productos/Buscar/' + id)
+      
+  }
 
   registroPrecio() {
     this.precio.IdProducto = this.detalleProducto.IdProducto
@@ -317,7 +321,7 @@ export class ProductoService {
 
   RegistroEntrada(){
     this.entrada.IdEntrada =0;
-    this.entrada.Fecha = '1111-11-11';
+    this.entrada.Fecha = "0001-01-01";
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarEntrada', this.entrada)
   }
 

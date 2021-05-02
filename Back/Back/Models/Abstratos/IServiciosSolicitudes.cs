@@ -38,7 +38,7 @@ namespace Back.Models.Abstratos
                     ListaDetalleEstadosProductosPersoanlizados(int id);
 
         Task<DetalleEstadosSolicitudPersonalizada> AgregarDetalleEstadosSolicitudPersonalizada
-                    (DetalleEstadosSolicitudPersonalizada DetalleEstadosSolicitudPersonalizada);
+                    (DetalleEstadosSolicitudPersonalizada DetalleEstadosSolicitudPersonalizada, bool nueva);
         Task<ActionResult<IEnumerable<DetalleEstadosSolicitudPersonalizada>>>
                     ListarDetalleEstadosSolicitudPersonalizada();
         Task<ActionResult<IEnumerable<DetalleEstadosSolicitudPersonalizada>>>
@@ -92,12 +92,13 @@ namespace Back.Models.Abstratos
         
         Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarSolicitudPersonalizada();
         Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarMisSolicitudPersonalizada(string id);
-        Task<SolicitudPersonalizada> BuscarSolicitudPersonalizada(int id);    
+        SolicitudPersonalizadaDetalle BuscarSolicitudPersonalizada(int id);    
         Task<SolicitudPersonalizada> AgregarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada);
         Task<SolicitudPersonalizada> EditarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada);
 
 
         Task<List<CarritoDeCompras>> ExisteCarritoUsuarioPorId(string id);
         Task EliminarDetalleCarrito(int idDetalle);
+        Task<Estados> AgregarEstado(Estados Estados);
     }
 }

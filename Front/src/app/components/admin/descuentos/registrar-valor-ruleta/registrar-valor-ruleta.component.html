@@ -1,0 +1,9 @@
+<form class="" [formGroup]="this.descuentosService.formRegistroValorDeRuleta" (ngSubmit)="registro()">
+    <div class="input-group mb-3">
+        <input type="hidden" formControlName="IdUsuario" id="">
+        <input formControlName="ValorDeRuleta" type="number" id="ValorDeRuleta" placeholder="Ingresa el nuevo valor de ruleta" class="form-control " />
+        <button type="submit" [disabled]="this.descuentosService.formRegistroValorDeRuleta.invalid" class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
+        <button type="button" (click)="this.descuentosService.formRegistroValorDeRuleta.reset(); 
+        this.descuentosService.formValorRuleta=false" class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button>
+    </div>
+</form>

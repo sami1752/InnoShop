@@ -1,0 +1,95 @@
+<section class="content">
+  <div class="content-wrapper">
+    <br>
+    <section class="content">
+      <section class="content">
+        <section class="col-lg-7 connectedSortable">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <i class="bi bi-info-circle-fill text-primary"></i> Información de la solicitud
+              </h2>
+            </div>
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <div class="row">
+                  <div class="col">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label for=" " class="p-1 "> Id Solicitud: </label>
+                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}
+                  </div>
+                  <div class="col">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label for=" " class="p-1 "> Usuario: </label>
+                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Usuario}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class=" col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label for=" " class="p-1 "> Fecha: </label>
+                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fecha}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label for=" " class="p-1 ">Alto: </label>
+                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Alto}}
+                  </div>
+                  <div class="col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label for=" " class="p-1 "> Ancho: </label>
+                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Ancho}}
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label for=" " class="p-1 "> Fondo: </label>
+                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fondo}}
+                  </div>
+                  <div class="col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label for=" " class="p-1 "> Estado: </label>
+                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label for=" " class="p-1 "> Descripción: </label>
+                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Descripcion}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label for=" " class="p-1 "> Valor Total: </label>
+                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
+                  </div>
+
+                  <div class="col " *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando">
+                    <button *ngIf="this.solicitudesPersonalizadasService.SolicitudRechazada" class="btn btn-primary"
+                      (click)="cotizar()">Cotizar</button>
+                  </div>
+
+                  <div class="col"  *ngIf="this.solicitudesPersonalizadasService.SolicitudCortizando">
+                    <button *ngIf="this.solicitudesPersonalizadasService.SolicitudRechazada"
+                      class="btn btn-success" >Terminar Cotizacion</button>
+                  </div>
+                  <div class="col">
+                    <button *ngIf="this.solicitudesPersonalizadasService.SolicitudRechazada" class="btn btn-danger"
+                      (click)="cancelar()">Rechazar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+    <app-registrar-editar-producto-solicitud-perzonalizada></app-registrar-editar-producto-solicitud-perzonalizada>
+    <app-listar-detalle-producto-solicitud></app-listar-detalle-producto-solicitud>
+  </div>
+</section>

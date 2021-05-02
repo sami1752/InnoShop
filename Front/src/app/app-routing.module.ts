@@ -26,6 +26,11 @@ import { ListarMisSolicitudesPersonalizadasComponent } from './components/usuari
 import { RegistrarMontajesComponent } from './components/usuarios/clientes/solicitudes/personalizadas/registrar-montajes/registrar-montajes.component';
 import { ListarMisMontajesComponent } from './components/usuarios/clientes/solicitudes/personalizadas/listar-mis-montajes/listar-mis-montajes.component';
 import { FinalizarCompraComponent } from './components/usuarios/clientes/solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
+import { ListarSolicitudesPersonalizadasComponent } from './components/admin/solicitudes/SolicitudesPersonalizadas/listar-solicitudes-personalizadas/listar-solicitudes-personalizadas.component';
+import { GestionSolicitudPersonalizadaComponent } from './components/admin/solicitudes/SolicitudesPersonalizadas/gestion-solicitud-personalizada/gestion-solicitud-personalizada.component';
+import { DetalleSolicitudPersonalizadaComponent } from './components/admin/solicitudes/SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-solicitud-personalizada.component';
+import { RuletaDescuentosComponent } from './components/usuarios/clientes/descuentos/ruleta-descuentos/ruleta-descuentos.component';
+import { GestionRuletaComponent } from './components/admin/descuentos/gestion-ruleta/gestion-ruleta.component';
 
 
 const routes: Routes = [
@@ -63,6 +68,11 @@ const routes: Routes = [
   ]
   },
 
+  {path:'descuentos', component:UsuariosComponent,
+    children: [
+      {path:'ruleta',component:RuletaDescuentosComponent},
+    ]
+  },
 
   {
     path:'Admin', component:InicioadminComponent,
@@ -72,6 +82,10 @@ const routes: Routes = [
       {path:'Productos', component:GestionProductosComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'Iva', component:GestionIvaComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'MiCuenta', component:ModificarDatosComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'solicitudes',component:GestionSolicitudPersonalizadaComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'montajes',component:FinalizarCompraComponent},
+      {path:'detalleSP/:IdSolicitud',component:DetalleSolicitudPersonalizadaComponent},
+      {path:'descuentos', component:GestionRuletaComponent, canActivate:[AutorizacionRutasGuard]}
     ]
   }
 ];

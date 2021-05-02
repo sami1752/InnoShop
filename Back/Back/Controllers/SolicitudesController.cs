@@ -210,7 +210,7 @@ namespace Back.Controllers
             try
             {
                 DetalleEstadosSolicitudPersonalizada =
-                    await _context.AgregarDetalleEstadosSolicitudPersonalizada(DetalleEstadosSolicitudPersonalizada);
+                    await _context.AgregarDetalleEstadosSolicitudPersonalizada(DetalleEstadosSolicitudPersonalizada, false);
                 return Ok(new { mensaje = DetalleEstadosSolicitudPersonalizada });
             }
             catch (Exception e)
@@ -267,7 +267,7 @@ namespace Back.Controllers
 
 
         [HttpDelete]
-        [Route("DetalleProductosSolicitud/{DetalleProductosSolicitud}")]
+        [Route("DetallesMaterialesMontajes/{DetallesMaterialesMontajes}")]
         public async Task<Object> EliminarDetallesMaterialesMontajes(int DetallesMaterialesMontajes)
         {
             try
@@ -507,8 +507,8 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("SolicitudPersonalizada/{SolicitudPersonalizada}")]
-        public async Task<ActionResult<SolicitudPersonalizada>> BuscarSolicitudPersonalizada(int SolicitudPersonalizada) => 
-            await _context.BuscarSolicitudPersonalizada(SolicitudPersonalizada);
+        public ActionResult<SolicitudPersonalizadaDetalle> BuscarSolicitudPersonalizada(int SolicitudPersonalizada) =>
+             _context.BuscarSolicitudPersonalizada(SolicitudPersonalizada);
 
         [HttpPost]
         [Route("SolicitudPersonalizada")]
@@ -577,6 +577,23 @@ namespace Back.Controllers
 
                 await _context.EliminarDetalleCarrito(idDetalle);
                 return Ok(new { mensaje = "Eliminacion exitosa" });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+
+
+        [HttpPost]
+        [Route("Estados")]
+        public async Task<Object> AgregarEstados (Estados Estados)
+        {
+            try
+            {
+                Estados = await _context.AgregarEstado(Estados);
+                return Ok(new { mensaje = Estados });
             }
             catch (Exception e)
             {

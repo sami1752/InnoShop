@@ -23,6 +23,7 @@
     "admin-lte": "^3.0.5",
     "bootstrap": "^4.6.0",
     "jquery": "^3.5.1",
+    "jscs": "^3.0.7",
     "ngx-owl-carousel": "^2.0.7",
     "ngx-owl-carousel-o": "^5.0.0",
     "ngx-toastr": "^13.2.0",

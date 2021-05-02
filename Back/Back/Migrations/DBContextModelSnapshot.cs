@@ -19,6 +19,87 @@ namespace Back.Migrations
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Back.Models.Entidades.Descuentos.Descuentos", b =>
+                {
+                    b.Property<int>("IdDescuento")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaVencimiento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdPorcentajeRuleta")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdValorRuleta")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdDescuento");
+
+                    b.ToTable("Descuentos");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Descuentos.PorcentajesRuleta", b =>
+                {
+                    b.Property<int>("IdPorcentajeRuleta")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Porcentaje")
+                        .HasColumnType("real");
+
+                    b.HasKey("IdPorcentajeRuleta");
+
+                    b.ToTable("PorcentajesRuleta");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Descuentos.ValorRuleta", b =>
+                {
+                    b.Property<int>("IdValorRuleta")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaFin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ValorDeRuleta")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdValorRuleta");
+
+                    b.ToTable("ValorRuleta");
+                });
+
             modelBuilder.Entity("Back.Models.Entidades.Productos.Categoria", b =>
                 {
                     b.Property<int>("IdCategoria")
@@ -127,7 +208,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Porcentaje")
                         .HasColumnType("real");
