@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from 'src/app/models/producto';
+import { DetalleProductosSolicitud } from 'src/app/models/SolicitudesPersonalizadas/detalle-productos-solicitud';
 import { ProductoService } from 'src/app/services/producto.service';
 import { SolicitudesPersonalizadasService } from 'src/app/services/solicitudes-personalizadas.service';
 
@@ -13,27 +14,32 @@ export class ListarDetalleProductoSolicitudComponent implements OnInit {
 
   constructor( private rutaActiva: ActivatedRoute, public solicitudesPersonalizadasService :SolicitudesPersonalizadasService, private router:Router, public productoService:ProductoService) { }
   id:number = this.rutaActiva.snapshot.params.IdSolicitud;
+
   ngOnInit(): void {
     this.solicitudesPersonalizadasService.ListaDetalleProductosSolicitud(this.id);
   }
 
-  llenarFormularioDertalleProducto(producto:Producto){
-    this.productoService.CampoPrecio = false
-    this.productoService.formularioRegistroProductos.patchValue(producto);
-    this.productoService.desplegarDetalleMateriales =true;
-    this.productoService.tablaDetalleMateriales =true;
-    this.productoService.idProducto1 = producto.IdProducto;
-    this.productoService.ListarDetalleMaterial(producto.IdProducto);
+  llenarFormularioProducto(id:number){
+    this.productoService.buscarProducto(id).subscribe(res =>{
+       this.productoService.producto = res as Producto
+       this.productoService.CampoPrecio = false
+       this.productoService.formularioRegistroProductos.patchValue(this.productoService.producto);
+       this.productoService.desplegarDetalleMateriales =true;
+       this.productoService.tablaDetalleMateriales =true;
+       this.productoService.idProducto1 = this.productoService.producto.IdProducto;
+       this.productoService.ListarDetalleMaterial(this.productoService.producto.IdProducto);
+    })
   }
-  eliminarProducto(producto:Producto){
-    if (confirm("¿Estás seguro de desactivar el Producto?")) {
-      this.solicitudesPersonalizadasService.EliminarDetalleProductosSolicitud(producto.IdProducto).subscribe(
+
+
+  eliminarProducto(id){
+    if (confirm("¿Estás seguro de eliminar el Producto?")) {
+      this.solicitudesPersonalizadasService.EliminarDetalleProductosSolicitud(id).subscribe(
         res=>{
-          this.productoService.listarProducto();
-          alert(res);
+          alert("Exito");
         },
         err=>{
-          alert(err.code);
+          alert("Error");
         }
       );
     }

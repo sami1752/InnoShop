@@ -20,6 +20,10 @@ namespace Back.Controllers
         public ProductosController(IserviciosProductos context) => _context = context;
 
         [HttpGet]
+        [Route("Buscar/{Producto}")]
+        public async Task<ActionResult<Producto>> BuscarMontajes(int Producto) => await _context.BuscarProducto(Producto);
+
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<DetalleProducto>>> GetProductos() => await _context.listarProductos();
 
         [HttpGet]

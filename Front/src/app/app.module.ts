@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {UsuariosModule}from './components/usuarios/usuarios.module';
+import { UsuariosModule}from './components/usuarios/usuarios.module';
 import { ClientesModule } from './components/usuarios/clientes/clientes.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,7 @@ import { ConfiguracionService } from './services/configuracion.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { GestionUsuarioComponent } from './components/admin/usuarios/gestion-usuario/gestion-usuario.component';
-import {DetalleUsuarioComponent} from './components/admin/usuarios/detalle-usuario/detalle-usuario.component';
+import { DetalleUsuarioComponent} from './components/admin/usuarios/detalle-usuario/detalle-usuario.component';
 import { GestionProductosComponent } from './components/admin/productos/gestion-productos/gestion-productos.component';
 import { DetalleProductosComponent } from './components/admin/productos/detalle-productos/detalle-productos.component';
 import { RegistroEditarProductosComponent } from './components/admin/productos/registro-editar-productos/registro-editar-productos.component';
@@ -30,9 +30,9 @@ import { RegistroDetalleMaterialComponent } from './components/admin/productos/r
 import { ListarDetalleMaterialComponent } from './components/admin/productos/listar-detalle-material/listar-detalle-material.component';
 import { ListarEntradasComponent } from './components/admin/productos/Entrada/listar-entradas/listar-entradas.component';
 import { RegistrarEntradaComponent } from './components/admin/productos/Entrada/registrar-entrada/registrar-entrada.component';
-import{OwlModule} from 'ngx-owl-carousel';
+import { OwlModule } from 'ngx-owl-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import {SolicitudesModule} from './components/admin/solicitudes/solicitudes.module'
+import { SolicitudesModule} from './components/admin/solicitudes/solicitudes.module'
 
 
 @NgModule({
@@ -73,6 +73,8 @@ import {SolicitudesModule} from './components/admin/solicitudes/solicitudes.modu
     SolicitudesModule
 
   ],
+  exports:[ListarEntradasComponent, ListarDetalleMaterialComponent,ListarImagenComponent, ListarPrecioComponent ],
+
   providers: [UsuarioService, ConfiguracionService,{
     provide:HTTP_INTERCEPTORS,
     useClass:AuthInterceptor,

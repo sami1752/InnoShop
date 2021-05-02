@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { ConfiguracionService } from 'src/app/services/configuracion.service';
 import { ProductoService } from 'src/app/services/producto.service';
@@ -21,9 +21,11 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
     public usuarioService: UsuarioService,
     private router: Router,
     public productoService: ProductoService,
-    public configuracion: ConfiguracionService
+    public configuracion: ConfiguracionService,
+    private rutaActiva: ActivatedRoute
   ) {}
-
+  id:number = this.rutaActiva.snapshot.params.IdSolicitud;
+  idProductoRegistrado : number
   ngOnInit(): void {}
 
   listaTiposPuerta = [
@@ -57,16 +59,21 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
             alert('Registro exitoso');
-            alert(respuesta.mensaje);
+            this.productoService.formularioRegistroProductos.reset();
+            this.solicitudesPersonalizadasService.DetalleProductosSolicitud = this.solicitudesPersonalizadasService.formularioDetalleProductoSolicitudPerzonalizada.value
+            this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdDetalleProductosSolicitud = 0
+            this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdProducto = respuesta.mensaje
+            this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdSolicitudPersonalizada = this.id
+            this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdUsuario = (res as Usuario).Id;
             this.solicitudesPersonalizadasService.AgregarDetalleProductosSolicitud().subscribe(
-              (respuesta)=>{
-
+              (r)=>{
+                this.solicitudesPersonalizadasService.ListaDetalleProductosSolicitud(this.id);
+                alert("Registro Detalle Exitoso")
               },
-              (err) => {
-                
+              (e)=>{
+                alert("Registro Detalle Fallido")
               }
             )
-            this.productoService.formularioRegistroProductos.reset();
           },
           (error) => {
             alert(error);

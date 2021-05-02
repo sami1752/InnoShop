@@ -23,7 +23,7 @@ namespace Back.Models.Servicios
             _environment = environment;
         }
 
-
+        public async Task<Producto> BuscarProducto(int id) => await _context.Productos.FindAsync(id);
 
         public async Task<ActionResult<IEnumerable<DetalleProducto>>> listarProductos()
         {

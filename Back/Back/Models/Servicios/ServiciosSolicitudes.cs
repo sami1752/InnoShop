@@ -166,7 +166,7 @@ namespace Back.Models.Servicios
             await _context.DetalleProductosSolicitud.ToListAsync();
 
         public async Task<ActionResult<IEnumerable<DetalleProductosSolicitud>>> ListaDetalleProductosSolicitud(int id) =>
-            await _context.DetalleProductosSolicitud.Where(x => x.IdDetalleProductosSolicitud == id).ToListAsync();
+            await _context.DetalleProductosSolicitud.Where(x => x.IdSolicitudPersonalizada == id).ToListAsync();
 
         public async Task EliminarDetalleProductosSolicitud(int id)
         {

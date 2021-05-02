@@ -267,7 +267,7 @@ namespace Back.Controllers
 
 
         [HttpDelete]
-        [Route("DetalleProductosSolicitud/{DetalleProductosSolicitud}")]
+        [Route("DetallesMaterialesMontajes/{DetallesMaterialesMontajes}")]
         public async Task<Object> EliminarDetallesMaterialesMontajes(int DetallesMaterialesMontajes)
         {
             try

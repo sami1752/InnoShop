@@ -88,6 +88,13 @@ export class SolicitudesPersonalizadasService {
     IdSolicitudPersonalizada: [],
   });
 
+  formularioDetalleProductoSolicitudPerzonalizada = this.formBuilder.group({
+    IdDetalleProductosSolicitud: [],
+    IdUsuario: [],
+    IdSolicitudPersonalizada: [],
+    IdProducto: [],
+  });
+
   ListarDetalleEstadosMontajes() {
     this.http
       .get(this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes')
@@ -220,12 +227,12 @@ export class SolicitudesPersonalizadasService {
       .toPromise()
       .then((res) => {
         this.listaDetalleProductosSolicitud = res as DetalleProductosSolicitud[];
-        console.log("hols")
         console.log(this.listaDetalleProductosSolicitud)
       });
   }
 
   AgregarDetalleProductosSolicitud() {
+
     return this.http.post(
       this.configuracion.rootURL + '/Solicitudes/DetalleProductosSolicitud/',
       this.DetalleProductosSolicitud
