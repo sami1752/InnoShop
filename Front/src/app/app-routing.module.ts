@@ -31,6 +31,7 @@ import { GestionSolicitudPersonalizadaComponent } from './components/admin/solic
 import { DetalleSolicitudPersonalizadaComponent } from './components/admin/solicitudes/SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-solicitud-personalizada.component';
 import { RuletaDescuentosComponent } from './components/usuarios/clientes/descuentos/ruleta-descuentos/ruleta-descuentos.component';
 import { GestionRuletaComponent } from './components/admin/descuentos/gestion-ruleta/gestion-ruleta.component';
+import { GestionVentasComponent } from './components/admin/ventas/gestion-ventas/gestion-ventas.component';
 
 
 const routes: Routes = [
@@ -85,7 +86,8 @@ const routes: Routes = [
       {path:'solicitudes',component:GestionSolicitudPersonalizadaComponent, canActivate:[AutorizacionRutasGuard]},
       {path:'montajes',component:FinalizarCompraComponent},
       {path:'detalleSP/:IdSolicitud',component:DetalleSolicitudPersonalizadaComponent},
-      {path:'descuentos', component:GestionRuletaComponent, canActivate:[AutorizacionRutasGuard]}
+      {path:'descuentos', component:GestionRuletaComponent, canActivate:[AutorizacionRutasGuard]},
+      {path:'ventas',component:GestionVentasComponent,canActivate:[AutorizacionRutasGuard]}
     ]
   }
 ];

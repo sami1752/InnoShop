@@ -31,12 +31,14 @@ export class RuletaDescuentosComponent implements OnInit {
 
   RegistrarCupon(){
     if(localStorage.getItem('token')!=null){
-      if(this.perfilUsuario.Puntos>=30)
+      if(this.perfilUsuario.Puntos>=this.descuentosService.valorRuleta.ValorDeRuleta)
       {
         this.descuentosService.descuento.IdUsuario = this.perfilUsuario.Id
         this.descuentosService.RegistrarCuponDescuento().subscribe(
-          res=>{
-            alert(res)
+          (res:any)=>{
+            alert(res.mensaje)
+            this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id)
+            this.perfilUsuario.Puntos -= this.descuentosService.valorRuleta.ValorDeRuleta
           },err=>{
             alert("error al registrar cupon")
           }

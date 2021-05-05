@@ -14,8 +14,7 @@ import {ListarDetalleProductoSolicitudComponent} from './SolicitudesPersonalizad
     GestionSolicitudPersonalizadaComponent,
     DetalleSolicitudPersonalizadaComponent,
     RegistrarEditarProductoSolicitudPerzonalizadaComponent,
-    ListarDetalleProductoSolicitudComponent,
-
+    ListarDetalleProductoSolicitudComponent
   ],
   imports: [
     CommonModule,

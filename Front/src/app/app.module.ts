@@ -33,11 +33,9 @@ import { RegistrarEntradaComponent } from './components/admin/productos/Entrada/
 import { OwlModule } from 'ngx-owl-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SolicitudesModule} from './components/admin/solicitudes/solicitudes.module'
-import { ListarPorcentajesComponent } from './components/admin/descuentos/listar-porcentajes/listar-porcentajes.component';
-import { GestionRuletaComponent } from './components/admin/descuentos/gestion-ruleta/gestion-ruleta.component';
-import { RegistrarPorcentajeComponent } from './components/admin/descuentos/registrar-porcentaje/registrar-porcentaje.component';
-import { ListarValorRuletaComponent } from './components/admin/descuentos/listar-valor-ruleta/listar-valor-ruleta.component';
-import { RegistrarValorRuletaComponent } from './components/admin/descuentos/registrar-valor-ruleta/registrar-valor-ruleta.component';
+import{DescuentosModule}from './components/admin/descuentos/descuentos.module'
+import{VentasModule}from './components/admin/ventas/ventas.module'
+
 
 @NgModule({
   declarations: [
@@ -62,12 +60,7 @@ import { RegistrarValorRuletaComponent } from './components/admin/descuentos/reg
     RegistroDetalleMaterialComponent,
     ListarDetalleMaterialComponent,
     ListarEntradasComponent,
-    RegistrarEntradaComponent,
-    ListarPorcentajesComponent,
-    GestionRuletaComponent,
-    RegistrarPorcentajeComponent,
-    ListarValorRuletaComponent,
-    RegistrarValorRuletaComponent
+    RegistrarEntradaComponent
   ],
   imports: [
     BrowserModule,
@@ -78,8 +71,9 @@ import { RegistrarValorRuletaComponent } from './components/admin/descuentos/reg
     ReactiveFormsModule,
     OwlModule,
     CarouselModule,
-    SolicitudesModule
-
+    SolicitudesModule,
+    DescuentosModule,
+    VentasModule
   ],
   providers: [UsuarioService, ConfiguracionService,{
     provide:HTTP_INTERCEPTORS,
