@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DetalleEstadosSolicitudPersonalizada } from 'src/app/models/SolicitudesPersonalizadas/detalle-estados-solicitud-personalizada';
 import { Estados } from 'src/app/models/SolicitudesPersonalizadas/estados';
 import { Usuario } from 'src/app/models/usuario';
+import { ProductoService } from 'src/app/services/producto.service';
 import { SolicitudesPersonalizadasService } from 'src/app/services/solicitudes-personalizadas.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -13,8 +14,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class DetalleSolicitudPersonalizadaComponent implements OnInit {
 
-  constructor(public solicitudesPersonalizadasService :SolicitudesPersonalizadasService, 
-    public usuarioService : UsuarioService, private rutaActiva: ActivatedRoute) { }
+  constructor(public solicitudesPersonalizadasService :SolicitudesPersonalizadasService,
+    public usuarioService : UsuarioService, private rutaActiva: ActivatedRoute,
+    public productoService : ProductoService) { }
     id:number = this.rutaActiva.snapshot.params.IdSolicitud;
     
   ngOnInit(): void {

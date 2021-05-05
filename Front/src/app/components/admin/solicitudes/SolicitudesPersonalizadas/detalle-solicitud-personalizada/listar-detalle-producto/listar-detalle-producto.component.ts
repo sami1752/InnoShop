@@ -6,11 +6,11 @@ import { ProductoService } from 'src/app/services/producto.service';
 import { SolicitudesPersonalizadasService } from 'src/app/services/solicitudes-personalizadas.service';
 
 @Component({
-  selector: 'app-listar-detalle-producto-solicitud',
-  templateUrl: './listar-detalle-producto-solicitud.component.html',
-  styleUrls: ['./listar-detalle-producto-solicitud.component.css']
+  selector: 'app-listar-detalle-producto',
+  templateUrl: './listar-detalle-producto.component.html',
+  styleUrls: ['./listar-detalle-producto.component.css']
 })
-export class ListarDetalleProductoSolicitudComponent implements OnInit {
+export class ListarDetalleProductoComponent implements OnInit {
 
   constructor( private rutaActiva: ActivatedRoute, public solicitudesPersonalizadasService :SolicitudesPersonalizadasService, private router:Router, public productoService:ProductoService) { }
   id:number = this.rutaActiva.snapshot.params.IdSolicitud;
@@ -50,6 +50,7 @@ export class ListarDetalleProductoSolicitudComponent implements OnInit {
     alert(id)
     this.productoService.listarImagen(id);
     this.productoService.ListarDetalleMaterial(id);
+    this.productoService.listarEntradas(id);
   }
 
   tomarIdProducto(id){
