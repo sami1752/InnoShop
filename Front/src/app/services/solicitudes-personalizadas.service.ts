@@ -486,25 +486,21 @@ export class SolicitudesPersonalizadasService {
       .then((res) => {
         this.SolicitudPersonalizada = res as SolicitudPersonalizada;
         if (this.SolicitudPersonalizada.Estado == 'Rechazada'){
-          alert("Rechazada")
           this.SolicitudCortizando = false;
           this.SolicitudCortizado = false;
           this.SolicitudEnviada = false;
           this.SolicitudRechazada = true;}
         if (this.SolicitudPersonalizada.Estado == 'En proceso de cotizacion'){
-          alert("En proceso de cotizacion")
           this.SolicitudCortizado = false;
           this.SolicitudEnviada = false;
           this.SolicitudRechazada = false;
           this.SolicitudCortizando = true;}
         if (this.SolicitudPersonalizada.Estado == 'Cotizada'){
-          alert("Cotizada")
           this.SolicitudCortizando = false;
           this.SolicitudEnviada = false;
           this.SolicitudRechazada = true;
           this.SolicitudCortizado = false;}
           if (this.SolicitudPersonalizada.Estado == 'Modificada' || this.SolicitudPersonalizada.Estado == 'Enviada'){
-            alert("Modificada o Enviada")
             this.SolicitudCortizando = false;
             this.SolicitudRechazada = false;
             this.SolicitudEnviada = true;

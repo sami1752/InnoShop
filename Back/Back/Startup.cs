@@ -45,6 +45,7 @@ namespace Back
             services.AddScoped<IserviciosProductos, ServiciosProductos>();
             services.AddScoped<IServiciosSolicitudes, ServiciosSolicitudes>();
             services.AddScoped<IServiciosDescuentos, ServiciosDescuentos>();
+            services.AddScoped<IServiciosVentas, ServiciosVentas>();
 
             services.AddDefaultIdentity<UsuarioIdentity>().AddEntityFrameworkStores<DBContext>();
             services.Configure<IdentityOptions>(options =>

@@ -39,6 +39,9 @@ import { RegistrarPorcentajeComponent } from './components/admin/descuentos/regi
 import { ListarValorRuletaComponent } from './components/admin/descuentos/listar-valor-ruleta/listar-valor-ruleta.component';
 import { RegistrarValorRuletaComponent } from './components/admin/descuentos/registrar-valor-ruleta/registrar-valor-ruleta.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import{DescuentosModule}from './components/admin/descuentos/descuentos.module'
+import{VentasModule}from './components/admin/ventas/ventas.module'
+
 
 @NgModule({
   declarations: [
@@ -63,12 +66,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegistroDetalleMaterialComponent,
     ListarDetalleMaterialComponent,
     ListarEntradasComponent,
-    RegistrarEntradaComponent,
-    ListarPorcentajesComponent,
-    GestionRuletaComponent,
-    RegistrarPorcentajeComponent,
-    ListarValorRuletaComponent,
-    RegistrarValorRuletaComponent
+    RegistrarEntradaComponent
   ],
   imports: [
     BrowserModule,
@@ -80,8 +78,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     OwlModule,
     CarouselModule,
     SolicitudesModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    DescuentosModule,
+    VentasModule
   ],
   providers: [UsuarioService, ConfiguracionService,{
     provide:HTTP_INTERCEPTORS,
