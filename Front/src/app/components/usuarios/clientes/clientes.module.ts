@@ -12,7 +12,7 @@ import { ListarMisSolicitudesPersonalizadasComponent } from './solicitudes/perso
 import { ListarMisMontajesComponent } from './solicitudes/personalizadas/listar-mis-montajes/listar-mis-montajes.component';
 import { RegistrarMontajesComponent } from './solicitudes/personalizadas/registrar-montajes/registrar-montajes.component';
 import { FinalizarCompraComponent } from './solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -26,13 +26,15 @@ import { FinalizarCompraComponent } from './solicitudes/carrito-compras/finaliza
     ListarMisMontajesComponent,
     RegistrarMontajesComponent,
     FinalizarCompraComponent
+    
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule
   ],
   exports: []
 })

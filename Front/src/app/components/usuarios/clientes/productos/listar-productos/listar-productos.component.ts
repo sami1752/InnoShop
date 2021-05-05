@@ -139,4 +139,5 @@ export class ListarProductosComponent implements OnInit {
       this.router.navigate(['usuarios/login']);
     }
   }
+  
 }

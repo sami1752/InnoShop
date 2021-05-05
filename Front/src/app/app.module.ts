@@ -32,6 +32,7 @@ import { ListarEntradasComponent } from './components/admin/productos/Entrada/li
 import { RegistrarEntradaComponent } from './components/admin/productos/Entrada/registrar-entrada/registrar-entrada.component';
 import{OwlModule} from 'ngx-owl-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     FormsModule,
     ReactiveFormsModule,
     OwlModule,
-    CarouselModule
+    CarouselModule,
+    BrowserAnimationsModule
 
   ],
   providers: [UsuarioService, ConfiguracionService,{

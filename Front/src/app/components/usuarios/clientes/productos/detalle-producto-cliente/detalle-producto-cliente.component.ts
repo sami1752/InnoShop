@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,NgModule, OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/services/producto.service';
 import { ActivatedRoute, Params,Router } from '@angular/router';
 import { CarritoDeComprasService } from 'src/app/services/carrito-de-compras.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario';
 import { CarritoDeCompras } from 'src/app/models/carrito-de-compras';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import{OwlModule} from 'ngx-owl-carousel';
+import { Imagen } from 'src/app/models/imagen';
 @Component({
   selector: 'app-detalle-producto-cliente',
   templateUrl: './detalle-producto-cliente.component.html',
@@ -110,4 +113,30 @@ export class DetalleProductoClienteComponent implements OnInit {
       this.router.navigate(['usuarios/login']);
     } 
   }
+  homeSlider={items: 1, dots:true, nav: true};
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 1
+      }
+    },
+    nav: true
+  }
+
 }
