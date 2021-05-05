@@ -24,6 +24,7 @@
                             "src/assets"
                         ],
                         "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
                             "src/styles.css",
                             "src/assets/dist/css/adminlte.css",
                             "src/assets/docs/assets/css/adminlte.css",
@@ -33,7 +34,8 @@
                             "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
                             "node_modules/owl.carousel/dist/assets/owl.theme.default.min.css",
                             "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
-                            "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
+                            "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+                            "node_modules/datatables.net-dt/css/jquery.dataTables.css"
                         ],
                         "scripts": [
                             "node_modules/admin-lte/plugins/jquery/jquery.js",
@@ -46,7 +48,9 @@
                             "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.js",
                             "node_modules/admin-lte/plugins/chart.js/Chart.js",
                             "node_modules/admin-lte/dist/js/pages/dashboard2.js",
-                            "node_modules/owl.carousel/dist/owl.carousel.min.js"
+                            "node_modules/owl.carousel/dist/owl.carousel.min.js",
+                            "node_modules/datatables.net/js/jquery.dataTables.js",
+                            "node_modules/jquery/dist/jquery.js"
                         ]
                     },
                     "configurations": {
@@ -106,6 +110,7 @@
                             "src/assets"
                         ],
                         "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
                             "src/styles.css"
                         ],
                         "scripts": []

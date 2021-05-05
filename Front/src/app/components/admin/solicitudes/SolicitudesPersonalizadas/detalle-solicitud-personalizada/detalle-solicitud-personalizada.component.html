@@ -70,14 +70,15 @@
                   </div>
 
                   <div class="col "
-                    *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudCortizado && !this.solicitudesPersonalizadasService.SolicitudRechazada">
+                    *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudCortizado && 
+                    !this.solicitudesPersonalizadasService.SolicitudRechazada && this.solicitudesPersonalizadasService.SolicitudEnviada">
                     <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
                   </div>
-                  <div class="col" *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando">
+                  <div class="col" *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudEnviada">
                     <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
                   </div>
                   <div class="col"
-                    *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizado && !this.solicitudesPersonalizadasService.SolicitudRechazada">
+                    *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizado && !this.solicitudesPersonalizadasService.SolicitudRechazada && !this.solicitudesPersonalizadasService.SolicitudEnviada">
                     <button class="btn btn-success" (click)="TerminarCotizacion()">Terminar Cotizacion</button>
                   </div>
                   <div class="col" *ngIf="!this.solicitudesPersonalizadasService.SolicitudRechazada">

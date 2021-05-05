@@ -1,27 +1,27 @@
 <section class="col-lg-15 connectedSortable">
-  <div class="card">
-    <div class="card-header">
-      <h2 class="card-title">
-        <i class="bi bi-images"></i> Imagen
-      </h2>
-      <button type="button" class="btn" style="float: right;"
-        (click)="this.productoService.FormularioImagen = !this.productoService.FormularioImagen "><i
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <i class="bi bi-images"></i> Imagen
+            </h2>
+            <button type="button" class="btn" style="float: right;" (click)="this.productoService.FormularioImagen = !this.productoService.FormularioImagen "><i
           class="bi bi-cloud-plus"></i> Agregar</button>
-    </div>
-    <div class="card-body">
-      <div class="tab-content p-0">
-        <div *ngIf="this.productoService.FormularioImagen">
-          <app-registrar-imagen></app-registrar-imagen>
         </div>
-        <div style="width: 30%; " align="center">
-          <owl-carousel-o [options]="customOptions">
-            <ng-template carouselSlide *ngFor="let imagen of productoService.listaImagenesProducto">
-              <img src="assets/img/Imagenes/{{imagen.RutaImagen}}">
-              <caption><i (click)="eliminarImagen(imagen)" class="bi bi-trash text-danger "></i></caption>
-            </ng-template>
-          </owl-carousel-o>
+        <div class="card-body" align="center">
+            <div class="tab-content p-0">
+                <div *ngIf="this.productoService.FormularioImagen">
+                    <app-registrar-imagen></app-registrar-imagen>
+                </div>
+                <div style="width: 30%;" align="center">
+                    <owl-carousel-o [options]="customOptions ">
+                        <ng-template carouselSlide *ngFor="let imagen of productoService.listaImagenesProducto ">
+                            <img src="assets/img/Imagenes/{{imagen.RutaImagen}} ">
+                            <!-- <caption><i (click)="eliminarImagen(imagen) " class="bi bi-trash text-danger "></i></caption> -->
+                            <button class="btn btn-sm btn-block btn-outline-light text-danger" style="font-family: monospace;" (click)="eliminarImagen(imagen) "><i class="bi bi-x-circle-fill"></i> Eliminar</button>
+                        </ng-template>
+                    </owl-carousel-o>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>

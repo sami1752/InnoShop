@@ -38,6 +38,7 @@ import { GestionRuletaComponent } from './components/admin/descuentos/gestion-ru
 import { RegistrarPorcentajeComponent } from './components/admin/descuentos/registrar-porcentaje/registrar-porcentaje.component';
 import { ListarValorRuletaComponent } from './components/admin/descuentos/listar-valor-ruleta/listar-valor-ruleta.component';
 import { RegistrarValorRuletaComponent } from './components/admin/descuentos/registrar-valor-ruleta/registrar-valor-ruleta.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { RegistrarValorRuletaComponent } from './components/admin/descuentos/reg
     ReactiveFormsModule,
     OwlModule,
     CarouselModule,
-    SolicitudesModule
+    SolicitudesModule,
+    BrowserAnimationsModule
 
   ],
   providers: [UsuarioService, ConfiguracionService,{

@@ -15,6 +15,7 @@ import { FinalizarCompraComponent } from './solicitudes/carrito-compras/finaliza
 import { RuletaDescuentosComponent } from './descuentos/ruleta-descuentos/ruleta-descuentos.component';
 import { DetalleSPComponent } from './solicitudes/personalizadas/detalle-sp/detalle-sp.component';
 
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { DetalleSPComponent } from './solicitudes/personalizadas/detalle-sp/deta
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule
   ],
   exports: []
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -11,6 +11,7 @@ export class UsuariosComponent implements OnInit {
   constructor(public usuarioService:UsuarioService) { }
 
   ngOnInit(): void {
+   
   }
 
 }
