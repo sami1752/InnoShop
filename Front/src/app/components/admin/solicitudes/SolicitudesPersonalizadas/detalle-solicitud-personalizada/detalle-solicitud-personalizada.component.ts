@@ -54,6 +54,28 @@ export class DetalleSolicitudPersonalizadaComponent implements OnInit {
           this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada = this.id
           this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
           (respuesta: any) => {
+            
+            this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id)
+          }, error => {
+            alert(error)
+            console.log(error);
+          });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  TerminarCotizacion() {
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+          this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada = this.solicitudesPersonalizadasService.formularioDetalleEstadoSolicitudPerzonalizada.value;
+          this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdUsuario = (res as Usuario).Id
+          this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdEstado = 2
+          this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada = this.id
+          this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
+          (respuesta: any) => {
             this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id)
           }, error => {
             alert(error)

@@ -3,7 +3,10 @@
         <div class="card-header">
             <h2 class="card-title"><i class="bi bi-tags-fill text-primary"></i> Precios
             </h2>
-            <button type="button" style="float: right;" class="btn" (click)="this.productoService.FormularioPrecio = !this.productoService.FormularioPrecio "><i class="bi bi-folder-plus"></i> Agregar</button>
+            <button type="button" style="float: right;" class="btn"
+                (click)="this.productoService.FormularioPrecio = !this.productoService.FormularioPrecio "
+                *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizado && !this.solicitudesPersonalizadasService.SolicitudRechazada"><i
+                    class="bi bi-folder-plus"></i> Agregar</button>
         </div>
         <div class="card-body">
             <div class="tab-content p-0">
