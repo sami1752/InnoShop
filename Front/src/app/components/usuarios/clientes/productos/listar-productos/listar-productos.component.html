@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<!-- <table class="table table-hover">
     <thead>
         <tr>
             <th scope="col">Id</th>
@@ -44,4 +44,164 @@
             </tr>
         </div>
     </tbody>
-</table>
+</table> -->
+
+<div class="py-3">
+    <h1 style="font-size: 17px; color: #757575; text-align: center; font-weight: 500;">BIENVENIDO</h1>
+    <div>
+        <p style="color: rgb(119, 119, 119); text-align: center;">Somos Innova, nos alegra que estes aquí, ofrecemos productos de calidad y a excelente precio. ¡Compruébalo tu mismo!</p>
+    </div>
+</div>
+
+<section class="shop__area pt-2 pb-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div style="margin-left: 2%; margin-right:1% ;">
+                <div class="shop__sidebar">
+                    <div class="sidebar__widget-title mb-30">
+                        <!-- <h3 style="color: #2C4F61;"> <i class="bi bi-funnel-fill"></i>Filtro</h3> -->
+                    </div>
+
+                    <div class="sidebar__widget mb-55">
+                        <div class="sidebar__widget-title mb-30">
+                            <h3>
+                                <i class="bi bi-dot "></i> Precio</h3>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" disabled>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                      Más bajo a Más alto
+                                    </label>
+                            </div>
+                            <div class="form-check" style="padding-top:50px ;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" disabled>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                  Más alto a Más bajo
+                                </label>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="sidebar__widget mb-60">
+                        <div class="sidebar__widget-title mb-20">
+                            <h3><i class="bi bi-dot "></i>Categoría</h3>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" disabled>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                      Categoría 1
+                                    </label>
+                            </div>
+                            <div class="form-check" style="padding-top:40px ;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" disabled>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                  Categoría 2
+                                </label>
+                            </div>
+                            <div class="form-check" style="padding-top:40px ;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" disabled>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                      Categoría 3
+                                    </label>
+                            </div>
+                            <div class="form-check" style="padding-top:40px ;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" disabled>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Categoría 4
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="sidebar__widget mb-60">
+                        <div class="sidebar__widget-title mb-20">
+                            <h3><i class="bi bi-dot "></i>Material</h3>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" disabled>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                     Material 1
+                                    </label>
+                            </div>
+                            <div class="form-check" style="padding-top:40px ;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" disabled>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Material 2
+                                </label>
+                            </div>
+                            <div class="form-check" style="padding-top:40px ;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" disabled>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Material 3
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-10  col-md-10" style="width: 100%;">
+                <div class="shop__content-area">
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
+                            <div class="row custom-row-10" *ngFor="let producto of productoService.listaProductos">
+                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 custom-col-10" *ngFor="let imagen of productoService.listaImagenes">
+                                    <div class="product__wrapper mb-60" *ngIf="imagen.IdProducto == producto.IdProducto" style="background-color: rgba(255, 255, 255, 0.856); ">
+                                        <div class="product__thumb">
+                                            <a [routerLink]="['/productos/detalleProducto',producto.IdProducto]" class="w-img">
+                                                <img src="assets/img/Imagenes/{{imagen.RutaImagen}}" alt="Imagen" style="width: 250px; height: 250px;">
+                                            </a>
+
+                                            <div class="product__action transition-3">
+                                                <a [routerLink]="['/productos/detalleProducto',producto.IdProducto]" data-toggle="tooltip" data-placement="top" title="Detalle">
+                                                    <i class="bi bi-info-circle"></i>
+                                                </a>
+                                                <a [routerLink]="['/productos/detalleProducto',producto.IdProducto]" data-toggle="tooltip" data-placement="top" title="Comprar">
+                                                    <i class="bi bi-bag"></i>
+                                                </a>
+                                                <!-- Button trigger modal -->
+                                                <a data-toggle="modal" data-target="#productModalId" title="Ir al carrito" [routerLink]="['/solicitudes/carrito']">
+                                                    <ng-container *ngFor="let item of CarritoDeComprasService.listaDetalleCarritoCompras">
+                                                        ({{item.Cantidad}})
+                                                    </ng-container>
+                                                </a>
+
+
+                                            </div>
+                                            <hr>
+                                            <div>
+                                                <div style="text-transform: uppercase;  margin-left: 5px; ">
+                                                    <p style=" text-transform: uppercase; font-size: 17px;" style="margin:-2.2% 0; ">{{producto.Nombre}}</p>
+                                                </div>
+                                                <div *ngFor="let precio of productoService.listaPrecios">
+                                                    <span style=" font-size: 20px; color:rgb(182, 0, 0); margin-left: 5px;" *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==producto.IdProducto"> $ {{precio.Precio}} COP</span>
+                                                </div>
+                                                <div class="product__price transition-3 " style="margin-left: 5px; ">
+                                                    <p style=" margin:-3.2% 0"> {{producto.NombreCategoria}}<i class="bi bi-dot "></i> Unidad a ${{producto.Precio}} </p>
+                                                </div>
+                                            </div>
+                                            <div style="margin-left: 5px; ">
+                                                <div class=" product__content p-relative " style=" margin:-3.0% 0">
+                                                    <div class="add-cart transition-3 ">
+                                                        <!-- <button class="btn-sm" (click)="agregarCarrito(producto.IdProducto)"><i class="bi bi-cart-plus-fill " ></i> Agregar al carrito  <ng-container *ngFor="let item of CarritoDeComprasService.listaDetalleCarritoCompras">
+                                                            ({{item.Cantidad}})
+                                                            </ng-container></button> -->
+
+                                                        <a class="btn" (click)="agregarCarrito(producto.IdProducto)"><i class="bi bi-cart-plus-fill " ></i> Agregar al carrito  <ng-container *ngFor="let item of CarritoDeComprasService.listaDetalleCarritoCompras">
+                                                            ({{item.Cantidad}})
+                                                            </ng-container></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

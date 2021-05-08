@@ -1,10 +1,41 @@
 
-
-<div class="row">
-    <app-listar-porcentajes class="col-3"></app-listar-porcentajes>
-    <div class="col-6">
-        <h1 class="text-center">SUPONGAMOS QUE AQUÍ ESTÁ LA RULETA</h1>
+<section class="content">
+    <div class="content-wrapper">
+        <br>
+        <section class="content">
+            <div class="container-fluid">
+                
+                <div class="row">
+                    <section class="col-lg-5 connectedSortable">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i class="fas fa-boxes text-secondary"></i> Porcentajes
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content p-0">
+                                    <app-listar-porcentajes class="col-3"></app-listar-porcentajes>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="col-lg-5 connectedSortable">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i class="fas fa-boxes text-secondary"></i> Valor de ruleta
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content p-0">
+                                    <app-listar-valor-ruleta class="col-3"></app-listar-valor-ruleta>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
     </div>
-    <app-listar-valor-ruleta class="col-3"></app-listar-valor-ruleta>
-</div>
-
+</section>

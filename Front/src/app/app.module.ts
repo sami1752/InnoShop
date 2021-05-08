@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { UsuariosModule}from './components/usuarios/usuarios.module';
+import { UsuariosModule} from './components/usuarios/usuarios.module';
 import { ClientesModule } from './components/usuarios/clientes/clientes.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,12 +32,16 @@ import { ListarEntradasComponent } from './components/admin/productos/Entrada/li
 import { RegistrarEntradaComponent } from './components/admin/productos/Entrada/registrar-entrada/registrar-entrada.component';
 import { OwlModule } from 'ngx-owl-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { SolicitudesModule} from './components/admin/solicitudes/solicitudes.module'
+import { SolicitudesModule} from './components/admin/solicitudes/solicitudes.module';
 import { ListarPorcentajesComponent } from './components/admin/descuentos/listar-porcentajes/listar-porcentajes.component';
 import { GestionRuletaComponent } from './components/admin/descuentos/gestion-ruleta/gestion-ruleta.component';
 import { RegistrarPorcentajeComponent } from './components/admin/descuentos/registrar-porcentaje/registrar-porcentaje.component';
 import { ListarValorRuletaComponent } from './components/admin/descuentos/listar-valor-ruleta/listar-valor-ruleta.component';
 import { RegistrarValorRuletaComponent } from './components/admin/descuentos/registrar-valor-ruleta/registrar-valor-ruleta.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DescuentosModule} from './components/admin/descuentos/descuentos.module';
+import {VentasModule} from './components/admin/ventas/ventas.module';
+
 
 @NgModule({
   declarations: [
@@ -62,12 +66,7 @@ import { RegistrarValorRuletaComponent } from './components/admin/descuentos/reg
     RegistroDetalleMaterialComponent,
     ListarDetalleMaterialComponent,
     ListarEntradasComponent,
-    RegistrarEntradaComponent,
-    ListarPorcentajesComponent,
-    GestionRuletaComponent,
-    RegistrarPorcentajeComponent,
-    ListarValorRuletaComponent,
-    RegistrarValorRuletaComponent
+    RegistrarEntradaComponent
   ],
   imports: [
     BrowserModule,
@@ -78,13 +77,15 @@ import { RegistrarValorRuletaComponent } from './components/admin/descuentos/reg
     ReactiveFormsModule,
     OwlModule,
     CarouselModule,
-    SolicitudesModule
-
+    SolicitudesModule,
+    BrowserAnimationsModule,
+    DescuentosModule,
+    VentasModule
   ],
-  providers: [UsuarioService, ConfiguracionService,{
-    provide:HTTP_INTERCEPTORS,
-    useClass:AuthInterceptor,
-    multi:true
+  providers: [UsuarioService, ConfiguracionService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
   }],
   bootstrap: [AppComponent]
 })

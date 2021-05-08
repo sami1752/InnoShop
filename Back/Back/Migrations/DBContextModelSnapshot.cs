@@ -691,6 +691,112 @@ namespace Back.Migrations
                     b.ToTable("SolicitudPersonalizada");
                 });
 
+            modelBuilder.Entity("Back.Models.Entidades.Ventas.DetalleVentaMontajes", b =>
+                {
+                    b.Property<int>("IdDetalleVentaMontaje")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdMontaje")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdVenta")
+                        .HasColumnType("int");
+
+                    b.Property<float>("SubTotal")
+                        .HasColumnType("real");
+
+                    b.HasKey("IdDetalleVentaMontaje");
+
+                    b.ToTable("DetalleVentaMontajes");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Ventas.DetalleVentaProductos", b =>
+                {
+                    b.Property<int>("IdDetalleVentaProducto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdProducto")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdVenta")
+                        .HasColumnType("int");
+
+                    b.Property<float>("SubTotal")
+                        .HasColumnType("real");
+
+                    b.HasKey("IdDetalleVentaProducto");
+
+                    b.ToTable("DetalleVentaProductos");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Ventas.DetalleVentaSolicitudes", b =>
+                {
+                    b.Property<int>("IdDetalleVentaSolicitud")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdSolicitudPersonalizada")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdVenta")
+                        .HasColumnType("int");
+
+                    b.Property<float>("SubTotal")
+                        .HasColumnType("real");
+
+                    b.HasKey("IdDetalleVentaSolicitud");
+
+                    b.ToTable("DetalleVentaSolicitudes");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Ventas.Ventas", b =>
+                {
+                    b.Property<int>("IdVenta")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdDescuento")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdIva")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("SubTotal")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TotalIva")
+                        .HasColumnType("real");
+
+                    b.HasKey("IdVenta");
+
+                    b.ToTable("Ventas");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")

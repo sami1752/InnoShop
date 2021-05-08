@@ -69,19 +69,22 @@
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
                   </div>
 
-                  <div class="col " *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando">
-                    <button *ngIf="this.solicitudesPersonalizadasService.SolicitudRechazada" class="btn btn-primary"
-                      (click)="cotizar()">Cotizar</button>
+                  <div class="col "
+                    *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudCortizado && 
+                    !this.solicitudesPersonalizadasService.SolicitudRechazada && this.solicitudesPersonalizadasService.SolicitudEnviada">
+                    <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
+                  </div>
+                  <div class="col" *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudEnviada">
+                    <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
+                  </div>
+                  <div class="col"
+                    *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizado && !this.solicitudesPersonalizadasService.SolicitudRechazada && !this.solicitudesPersonalizadasService.SolicitudEnviada">
+                    <button class="btn btn-success" (click)="TerminarCotizacion()">Terminar Cotizacion</button>
+                  </div>
+                  <div class="col" *ngIf="!this.solicitudesPersonalizadasService.SolicitudRechazada">
+                    <button class="btn btn-danger" (click)="cancelar()">Rechazar</button>
                   </div>
 
-                  <div class="col"  *ngIf="this.solicitudesPersonalizadasService.SolicitudCortizando">
-                    <button *ngIf="this.solicitudesPersonalizadasService.SolicitudRechazada"
-                      class="btn btn-success" >Terminar Cotizacion</button>
-                  </div>
-                  <div class="col">
-                    <button *ngIf="this.solicitudesPersonalizadasService.SolicitudRechazada" class="btn btn-danger"
-                      (click)="cancelar()">Rechazar</button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -90,6 +93,9 @@
       </section>
     </section>
     <app-registrar-editar-producto-solicitud-perzonalizada></app-registrar-editar-producto-solicitud-perzonalizada>
-    <app-listar-detalle-producto-solicitud></app-listar-detalle-producto-solicitud>
+    <app-listar-detalle-producto></app-listar-detalle-producto>
+    <div *ngIf="this.productoService.desplegarDetalle">
+      <app-detalle-producto-detalle></app-detalle-producto-detalle>
+    </div>
   </div>
 </section>

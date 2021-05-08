@@ -3,6 +3,7 @@ using Back.Models.Entidades.Descuentos;
 using Back.Models.Entidades.Productos;
 using Back.Models.Entidades.Solicitudes;
 using Back.Models.Entidades.Solicitudes.Personalizadas;
+using Back.Models.Entidades.Ventas;
 using Back.Models.Usuario;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +41,11 @@ namespace Back.Models.DAL
         public DbSet<PorcentajesRuleta> PorcentajesRuleta { get; set; }
         public DbSet<ValorRuleta> ValorRuleta { get; set; }
         public DbSet<Descuentos> Descuentos { get; set; }
+        public DbSet<DetalleVentaMontajes> DetalleVentaMontajes { get; set; }
+        public DbSet<DetalleVentaProductos> DetalleVentaProductos { get; set; }
+        public DbSet<DetalleVentaSolicitudes> DetalleVentaSolicitudes { get; set; }
+        public DbSet<Ventas> Ventas { get; set; }
+
 
     }
 }

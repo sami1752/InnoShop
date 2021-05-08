@@ -13,7 +13,9 @@ import { ListarMisMontajesComponent } from './solicitudes/personalizadas/listar-
 import { RegistrarMontajesComponent } from './solicitudes/personalizadas/registrar-montajes/registrar-montajes.component';
 import { FinalizarCompraComponent } from './solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
 import { RuletaDescuentosComponent } from './descuentos/ruleta-descuentos/ruleta-descuentos.component';
+import { DetalleSPComponent } from './solicitudes/personalizadas/detalle-sp/detalle-sp.component';
 
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -27,14 +29,16 @@ import { RuletaDescuentosComponent } from './descuentos/ruleta-descuentos/ruleta
     ListarMisMontajesComponent,
     RegistrarMontajesComponent,
     FinalizarCompraComponent,
-    RuletaDescuentosComponent
+    RuletaDescuentosComponent,
+    DetalleSPComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule
   ],
   exports: []
 })

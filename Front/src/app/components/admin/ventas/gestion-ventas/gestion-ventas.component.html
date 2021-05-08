@@ -1,0 +1,42 @@
+<section class="content">
+    <div class="content-wrapper">
+        <br>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <section class="col-lg-7 connectedSortable">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i class="fas fa-boxes text-secondary"></i> Ventas
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content p-0">
+                                    <app-listar-ventas></app-listar-ventas>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="col-lg-5 connectedSortable">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i class="bi bi-file-earmark-plus-fill text-secondary"></i> Registro
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content p-0">
+                                    <app-registrar-detalle-venta></app-registrar-detalle-venta>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!--<div *ngIf="this.productoService.desplegarDetalle" style="margin-top: -45%;">
+                <app-detalle-productos></app-detalle-productos>
+            </div>-->
+        </section>
+    </div>
+</section>

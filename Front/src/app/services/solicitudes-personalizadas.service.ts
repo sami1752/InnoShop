@@ -53,8 +53,10 @@ export class SolicitudesPersonalizadasService {
   fecha = new Date();
   tiempoTranscurrido = Date.now();
   hoy = new Date(this.tiempoTranscurrido);
-  SolicitudRechazada = true;
+  SolicitudRechazada = false;
   SolicitudCortizando = false;
+  SolicitudCortizado = false;
+  SolicitudEnviada = false;
 
   formularioRegistroSolicitudPersonalizada = this.formBuilder.group({
     IdSolicitudPersonalizada: [],
@@ -475,6 +477,7 @@ export class SolicitudesPersonalizadasService {
   }
 
   BuscarSolicitudPersonalizada(id) {
+    
     this.http
       .get(
         this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada/' + id
@@ -482,12 +485,27 @@ export class SolicitudesPersonalizadasService {
       .toPromise()
       .then((res) => {
         this.SolicitudPersonalizada = res as SolicitudPersonalizada;
-        if (this.SolicitudPersonalizada.Estado == 'Rechazada')
+        if (this.SolicitudPersonalizada.Estado == 'Rechazada'){
+          this.SolicitudCortizando = false;
+          this.SolicitudCortizado = false;
+          this.SolicitudEnviada = false;
+          this.SolicitudRechazada = true;}
+        if (this.SolicitudPersonalizada.Estado == 'En proceso de cotizacion'){
+          this.SolicitudCortizado = false;
+          this.SolicitudEnviada = false;
           this.SolicitudRechazada = false;
-        if (this.SolicitudPersonalizada.Estado == 'En proceso de cotizacion')
-          this.SolicitudCortizando = true;
-
-        this.formularioRegistroSolicitudPersonalizada.patchValue(
+          this.SolicitudCortizando = true;}
+        if (this.SolicitudPersonalizada.Estado == 'Cotizada'){
+          this.SolicitudCortizando = false;
+          this.SolicitudEnviada = false;
+          this.SolicitudRechazada = true;
+          this.SolicitudCortizado = false;}
+          if (this.SolicitudPersonalizada.Estado == 'Modificada' || this.SolicitudPersonalizada.Estado == 'Enviada'){
+            this.SolicitudCortizando = false;
+            this.SolicitudRechazada = false;
+            this.SolicitudEnviada = true;
+            this.SolicitudCortizado = false;}
+          this.formularioRegistroSolicitudPersonalizada.patchValue(
           this.SolicitudPersonalizada
         );
       });

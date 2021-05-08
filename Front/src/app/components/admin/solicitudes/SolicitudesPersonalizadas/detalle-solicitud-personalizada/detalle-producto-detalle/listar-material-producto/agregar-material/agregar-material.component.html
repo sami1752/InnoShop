@@ -1,0 +1,15 @@
+<form  class="" [formGroup]="this.productoService.formularioRegistroDetalleMaterial" (ngSubmit)="registrarDetalle()">
+    <label for="Porcentaje">Materiales <span>**</span></label>
+      <select class="form-control" formControlName="IdMaterial">
+        <option value=0 selected>Elige el Material</option>
+        <option *ngFor="let material of this.productoService.listaMateriales"
+         [value]=material.IdMaterial>{{material.Nombre}}</option>
+      </select>
+      <button type="submit" class="os-btn w-50" >Agregar</button>
+      <button type="button" class="os-btn w-50"
+      (click)="this.productoService.desplegarDetalleMateriales = false">Terminar</button>
+  </form>
+  <br>
+  <div *ngIf="this.productoService.tablaDetalleMateriales && this.productoService.ListaDetalleMateriales.length"> 
+    <app-listar-material-producto></app-listar-material-producto>
+  </div>
