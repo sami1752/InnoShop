@@ -5,7 +5,7 @@ import { GestionSolicitudPersonalizadaComponent } from './SolicitudesPersonaliza
 import { DetalleSolicitudPersonalizadaComponent } from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-solicitud-personalizada.component';
 import { RegistrarEditarProductoSolicitudPerzonalizadaComponent } from './SolicitudesPersonalizadas/registrar-editar-producto-solicitud-perzonalizada/registrar-editar-producto-solicitud-perzonalizada.component';
 import {AppRoutingModule} from '../../../app-routing.module';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ListarDetalleProductoComponent} from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/listar-detalle-producto/listar-detalle-producto.component';
 import { DetalleProductoDetalleComponent } from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-producto-detalle/detalle-producto-detalle.component';
 import { ListarPrecioProductoComponent } from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-producto-detalle/listar-precio-producto/listar-precio-producto.component';
@@ -38,6 +38,6 @@ import { AgregarPrecioComponent } from './SolicitudesPersonalizadas/detalle-soli
     ReactiveFormsModule,
 
   ],
-  exports:[ListarSolicitudesPersonalizadasComponent, GestionSolicitudPersonalizadaComponent]
+  exports: [ListarSolicitudesPersonalizadasComponent, GestionSolicitudPersonalizadaComponent]
 })
 export class SolicitudesModule { }
