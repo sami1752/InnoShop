@@ -3,6 +3,6 @@ export interface DetalleVentasProducto {
     Cantidad:number,
     SubTotal:number,
     IdVenta:number,
-    IdProducto:number
-
+    IdProducto:number,
+    NombreProducto:string
 }

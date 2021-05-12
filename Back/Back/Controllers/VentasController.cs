@@ -22,8 +22,12 @@ namespace Back.Controllers
         public async Task<ActionResult<IEnumerable<DetalleVenta>>> ListarVentas() => await _context.ListarVentas();
         [HttpGet]
         [Route("detalleVentaProductos/{idVenta}")]
-        public async Task<ActionResult<IEnumerable<DetalleVentaProductos>>> ListaDetalleVentaProductos(int idVenta)
+        public async Task<ActionResult<IEnumerable<DetalleVentaProductoInfo>>> ListaDetalleVentaProductos(int idVenta)
             => await _context.ListarDetalleVentaProductos(idVenta);
+
+        [HttpGet("{idVenta}")]
+        public async Task<DetalleVenta> DetalleVenta(int idVenta)
+            => await _context.DetalleVenta(idVenta);
 
         [HttpPost]
         public async Task<Object> AgregarVenta(Ventas venta)
@@ -60,6 +64,10 @@ namespace Back.Controllers
         public async Task<Iva> ObtenerIva()
           => await _context.ObtenerIvaActual();
 
+        [HttpGet]
+        [Route("PrecioProducto/{idProducto}")]
+        public async Task<PrecioProducto> PrecioProd(int idProducto)
+          => await _context.ObtenerPrecioProducto(idProducto);
 
     }
 }

@@ -7,6 +7,7 @@ import {AppRoutingModule} from '../../../app-routing.module';
 import{FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GestionVentasComponent } from './gestion-ventas/gestion-ventas.component';
+import { DetalleVentaProductoComponent } from './detalle-venta-producto/detalle-venta-producto.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { GestionVentasComponent } from './gestion-ventas/gestion-ventas.componen
     ListarVentasComponent,
     RegistrarVentaComponent,
     RegistrarDetalleVentaComponent,
-    GestionVentasComponent
+    GestionVentasComponent,
+    DetalleVentaProductoComponent
   ],
   imports: [
     CommonModule,
