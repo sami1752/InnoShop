@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/models/usuario';
-import { SolicitudesPersonalizadasService } from 'src/app/services/solicitudes-personalizadas.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import {Component, OnInit} from '@angular/core';
+import {Usuario} from 'src/app/models/usuario';
+import {SolicitudesPersonalizadasService} from 'src/app/services/solicitudes-personalizadas.service';
+import {UsuarioService} from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-registrar-montajes',
@@ -11,23 +11,24 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class RegistrarMontajesComponent implements OnInit {
 
   constructor(public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
-    public usuarioService:UsuarioService) { }
+              public usuarioService: UsuarioService) {
+  }
 
   ngOnInit(): void {
   }
 
-  registrar(){
+  registrar(): void  {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
         this.solicitudesPersonalizadasService.Montajes =
-        this.solicitudesPersonalizadasService.formularioRegistroMontaje.value;
+          this.solicitudesPersonalizadasService.formularioRegistroMontaje.value;
         this.solicitudesPersonalizadasService.Montajes.IdUsuario = (res as Usuario).Id;
         this.solicitudesPersonalizadasService.AgregarMontajes().subscribe(
           (respuesta: any) => {
             this.solicitudesPersonalizadasService.formularioRegistroMontaje.reset();
-            alert("Exito")
+            alert('Exito');
           }, error => {
-            alert(error)
+            alert(error);
             console.log(error);
           });
       },

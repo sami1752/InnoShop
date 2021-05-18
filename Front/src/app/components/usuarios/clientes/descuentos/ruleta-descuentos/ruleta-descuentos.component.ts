@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { PerfilUsuario } from 'src/app/models/perfil-usuario';
-import { DescuentosService } from 'src/app/services/descuentos.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import {Component, OnInit} from '@angular/core';
+import {PerfilUsuario} from 'src/app/models/perfil-usuario';
+import {DescuentosService} from 'src/app/services/descuentos.service';
+import {UsuarioService} from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-ruleta-descuentos',
@@ -10,44 +10,46 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class RuletaDescuentosComponent implements OnInit {
 
-  constructor(public descuentosService:DescuentosService, public usuarioService:UsuarioService) { }
-
-  perfilUsuario: PerfilUsuario = null;
-  tablaCupones:boolean=false;
-
-  ngOnInit(): void {
-      if(localStorage.getItem('token')!=null){
-        this.usuarioService.obtenerPerfil().subscribe(
-          (res:any)=>{
-            this.perfilUsuario = <PerfilUsuario> res;
-            this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id)
-          });
-      }
-     
-      
-      this.descuentosService.ListarPorcentajeDescuentos();
-      this.descuentosService.ValorRuletaActual();
+  constructor(public descuentosService: DescuentosService, public usuarioService: UsuarioService) {
   }
 
-  RegistrarCupon(){
-    if(localStorage.getItem('token')!=null){
-      if(this.perfilUsuario.Puntos>=this.descuentosService.valorRuleta.ValorDeRuleta)
-      {
-        this.descuentosService.descuento.IdUsuario = this.perfilUsuario.Id
+  perfilUsuario: PerfilUsuario = null;
+  tablaCupones = false;
+
+  ngOnInit(): void {
+    if (localStorage.getItem('token') != null) {
+      this.usuarioService.obtenerPerfil().subscribe(
+        (res: any) => {
+          this.perfilUsuario = (res as PerfilUsuario);
+          this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id);
+        });
+    }
+
+
+    this.descuentosService.ListarPorcentajeDescuentos();
+    this.descuentosService.ValorRuletaActual();
+  }
+
+  RegistrarCupon(): void {
+    if (localStorage.getItem('token') != null) {
+      if (this.perfilUsuario.Puntos >= this.descuentosService.valorRuleta.ValorDeRuleta) {
+        this.descuentosService.descuento.IdUsuario = this.perfilUsuario.Id;
         this.descuentosService.RegistrarCuponDescuento().subscribe(
-          (res:any)=>{
-            alert(res.mensaje)
-            this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id)
-            this.perfilUsuario.Puntos -= this.descuentosService.valorRuleta.ValorDeRuleta
-          },err=>{
-            alert("error al registrar cupon")
+          (res: any) => {
+            alert(res.mensaje);
+            this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id);
+            this.perfilUsuario.Puntos -= this.descuentosService.valorRuleta.ValorDeRuleta;
+          }, err => {
+            alert('error al registrar cupon');
           }
-        )
-      }else{
-        alert("No tiene los puntos necesarios para jugar")
+        );
+      } else {
+        alert('No tiene los puntos necesarios para jugar');
       }
-    }else alert("Inicie Sesión para poder adquirir descuento")
-   
+    } else {
+      alert('Inicie Sesión para poder adquirir descuento');
+    }
+
   }
 
 }

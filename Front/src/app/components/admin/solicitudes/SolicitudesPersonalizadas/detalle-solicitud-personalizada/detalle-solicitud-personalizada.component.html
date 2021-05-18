@@ -15,70 +15,71 @@
                 <div class="row">
                   <div class="col">
                     <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label for=" " class="p-1 "> Id Solicitud: </label>
+                    <label class="p-1 "> Id Solicitud: </label>
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}
                   </div>
                   <div class="col">
                     <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label for=" " class="p-1 "> Usuario: </label>
+                    <label class="p-1 "> Usuario: </label>
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Usuario}}
                   </div>
                 </div>
                 <div class="row">
                   <div class=" col ">
                     <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label for=" " class="p-1 "> Fecha: </label>
+                    <label class="p-1 "> Fecha: </label>
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fecha}}
                   </div>
                 </div>
                 <div class="row">
                   <div class="col ">
                     <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label for=" " class="p-1 ">Alto: </label>
+                    <label class="p-1 ">Alto: </label>
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Alto}}
                   </div>
                   <div class="col ">
                     <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label for=" " class="p-1 "> Ancho: </label>
+                    <label class="p-1 "> Ancho: </label>
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Ancho}}
                   </div>
                 </div>
                 <div class="row ">
                   <div class="col">
                     <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label for=" " class="p-1 "> Fondo: </label>
+                    <label class="p-1 "> Fondo: </label>
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fondo}}
                   </div>
                   <div class="col ">
                     <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label for=" " class="p-1 "> Estado: </label>
+                    <label class="p-1 "> Estado: </label>
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado}}
                   </div>
                 </div>
                 <div class="row">
                   <div class="col ">
                     <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label for=" " class="p-1 "> Descripción: </label>
+                    <label class="p-1 "> Descripción: </label>
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Descripcion}}
                   </div>
                 </div>
                 <div class="row">
                   <div class="col ">
                     <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label for=" " class="p-1 "> Valor Total: </label>
+                    <label class="p-1 "> Valor Total: </label>
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
                   </div>
 
                   <div class="col "
-                    *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudCortizado && 
+                       *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudCortizado &&
                     !this.solicitudesPersonalizadasService.SolicitudRechazada && this.solicitudesPersonalizadasService.SolicitudEnviada">
                     <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
                   </div>
-                  <div class="col" *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudEnviada">
+                  <div class="col"
+                       *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudEnviada">
                     <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
                   </div>
                   <div class="col"
-                    *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizado && !this.solicitudesPersonalizadasService.SolicitudRechazada && !this.solicitudesPersonalizadasService.SolicitudEnviada">
+                       *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizado && !this.solicitudesPersonalizadasService.SolicitudRechazada && !this.solicitudesPersonalizadasService.SolicitudEnviada">
                     <button class="btn btn-success" (click)="TerminarCotizacion()">Terminar Cotizacion</button>
                   </div>
                   <div class="col" *ngIf="!this.solicitudesPersonalizadasService.SolicitudRechazada">

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/models/usuario';
-import { SolicitudesPersonalizadasService } from 'src/app/services/solicitudes-personalizadas.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import {Component, OnInit} from '@angular/core';
+import {Usuario} from 'src/app/models/usuario';
+import {SolicitudesPersonalizadasService} from 'src/app/services/solicitudes-personalizadas.service';
+import {UsuarioService} from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-listar-mis-solicitudes-personalizadas',
@@ -10,14 +10,15 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ListarMisSolicitudesPersonalizadasComponent implements OnInit {
 
-  constructor(public solicitudesPersonalizadasService :SolicitudesPersonalizadasService, 
-    public usuarioService : UsuarioService) { }
+  constructor(public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
+              public usuarioService: UsuarioService) {
+  }
 
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
         this.solicitudesPersonalizadasService.ListarMisSolicitudPersonalizada((res as Usuario).Id);
-        console.log(this.solicitudesPersonalizadasService.listaSolicitudPersonalizada)
+        console.log(this.solicitudesPersonalizadasService.listaSolicitudPersonalizada);
       },
       err => {
         console.log(err);

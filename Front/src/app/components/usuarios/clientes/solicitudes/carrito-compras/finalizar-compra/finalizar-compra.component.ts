@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { CarritoDeComprasService } from 'src/app/services/carrito-de-compras.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import {Component, OnInit} from '@angular/core';
+import {CarritoDeComprasService} from 'src/app/services/carrito-de-compras.service';
+import {UsuarioService} from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-finalizar-compra',
@@ -9,14 +9,16 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class FinalizarCompraComponent implements OnInit {
 
-  constructor(public carritoDeComprasService:CarritoDeComprasService, public usuarioService:UsuarioService) { }
+  constructor(public carritoDeComprasService: CarritoDeComprasService, public usuarioService: UsuarioService) {
+  }
 
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
-      (res:any)=>{
-        this.carritoDeComprasService.CarritoDeComprasUsuario(res.Id)
-      },err=>{}
-    )
+      (res: any) => {
+        this.carritoDeComprasService.CarritoDeComprasUsuario(res.Id);
+      }, err => {
+      }
+    );
   }
 
 }

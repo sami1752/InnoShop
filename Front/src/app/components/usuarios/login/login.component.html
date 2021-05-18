@@ -8,7 +8,7 @@
           <form [formGroup]="this.usuarioService.formularioLogin" (ngSubmit)="this.onSubmit()">
 
             <label for="name">Correo electrónico <span>**</span></label>
-            <input formControlName="Email" id="name" type="email" placeholder="Ingrese email" />
+            <input formControlName="Email" id="name" type="email" placeholder="Ingrese email"/>
 
             <!--Validacion correo-->
             <div
@@ -17,12 +17,13 @@
               <div *ngIf="this.usuarioService.nombreUsuarioLogin.hasError('required')">El correo es obligatorio</div>
               <div *ngIf="this.usuarioService.nombreUsuarioLogin.hasError('email')">Digite un correo valido</div>
               <div *ngIf="this.usuarioService.nombreUsuarioLogin.hasError('maxLength')">El correo debe contener máximo
-                50 caracteres</div>
+                50 caracteres
+              </div>
             </div>
 
 
             <label for="pass">Contraseña <span>**</span></label>
-            <input formControlName="Contrasena" id="pass" type="password" placeholder="Ingrese contraseña" />
+            <input formControlName="Contrasena" id="pass" type="password" placeholder="Ingrese contraseña"/>
 
             <!--Validacion Contraseña-->
             <div *ngIf="this.usuarioService.contrasenaLogin.invalid && (this.usuarioService.contrasenaLogin.touched
@@ -30,13 +31,14 @@
 
               <div *ngIf="this.usuarioService.contrasenaLogin.hasError('required')">La contraseña es obligatoria</div>
               <div *ngIf="this.usuarioService.contrasenaLogin.hasError('maxLength')">La contraseña debe contener máximo
-                15 caracteres</div>
+                15 caracteres
+              </div>
             </div>
 
 
             <div class="login-action mb-20 fix">
               <span class="log-rem f-left">
-                <input id="remember" type="checkbox" />
+                <input id="remember" type="checkbox"/>
                 <label for="remember">¡Recuérdame!</label>
               </span>
               <span class="forgot-login f-right">
@@ -44,7 +46,8 @@
               </span>
             </div>
             <button [disabled]="this.usuarioService.formularioLogin.invalid" type="submit" class="os-btn w-100">Iniciar
-              sesión</button>
+              sesión
+            </button>
             <div class="or-divide"><span></span></div>
             <a href="" routerLink='/usuarios/registro' class="os-btn os-btn-black w-100">Registrar</a>
           </form>

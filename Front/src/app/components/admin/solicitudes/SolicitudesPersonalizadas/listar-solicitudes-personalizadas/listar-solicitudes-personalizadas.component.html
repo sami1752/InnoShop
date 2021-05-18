@@ -1,22 +1,22 @@
 <table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Usuario</th>
-            <th scope="col">Valor Total</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let solicitud of this.solicitudesPersonalizadasService.listaSolicitudPersonalizada">
-        <tr>
-            <td >{{solicitud.IdSolicitudPersonalizada}}</td>
-            <td >{{solicitud.Fecha}}</td>
-            <td >{{solicitud.Estado}}</td>
-            <td >{{solicitud.IdUsuario}}</td>
-            <td >{{solicitud.ValorTotal}}</td>
-            <td><a href="Admin/detalleSP/{{solicitud.IdSolicitudPersonalizada}}">Ver</a></td>
-        </tr>
-    </tbody>
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Usuario</th>
+    <th scope="col">Valor Total</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let solicitud of this.solicitudesPersonalizadasService.listaSolicitudPersonalizada">
+  <tr>
+    <td>{{solicitud.IdSolicitudPersonalizada}}</td>
+    <td>{{solicitud.Fecha}}</td>
+    <td>{{solicitud.Estado}}</td>
+    <td>{{solicitud.IdUsuario}}</td>
+    <td>{{solicitud.ValorTotal}}</td>
+    <td><a href="Admin/detalleSP/{{solicitud.IdSolicitudPersonalizada}}">Ver</a></td>
+  </tr>
+  </tbody>
 </table>

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { VentasService } from 'src/app/services/ventas.service';
+import {Component, OnInit} from '@angular/core';
+import {VentasService} from 'src/app/services/ventas.service';
 
 @Component({
   selector: 'app-listar-ventas',
@@ -8,7 +8,8 @@ import { VentasService } from 'src/app/services/ventas.service';
 })
 export class ListarVentasComponent implements OnInit {
 
-  constructor(public ventasService:VentasService) { }
+  constructor(public ventasService: VentasService) {
+  }
 
   ngOnInit(): void {
     this.ventasService.ListarVentas();

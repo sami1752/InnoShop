@@ -1,23 +1,25 @@
 <h3 *ngIf="perfilUsuario!=null" class="text-center">Puntos: {{perfilUsuario.Puntos}}</h3>
 <h3 class="text-center">Puntos mínimos para participar: {{this.descuentosService.valorRuleta.ValorDeRuleta}}</h3>
-<div class="text-center"> <button (click)="RegistrarCupon()" class="btn-success p-2">Girar ruleta inexistente</button> </div>
+<div class="text-center">
+  <button (click)="RegistrarCupon()" class="btn-success p-2">Girar ruleta inexistente</button>
+</div>
 
 <div *ngIf="this.descuentosService.listaCuponesClientes != undefined" class="">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">% descuento</th>
-                <th scope="col">Fecha vencimiento</th>
-                <th scope="col">Estado</th>
-            </tr>
-        </thead>
-        <tbody *ngFor="let descuento of descuentosService.listaCuponesClientes">
-            <tr>
-                <td>{{descuento.PorcentajeDescuento}}</td>
-                <td>{{descuento.FechaVencimiento}}</td>
-                <td>{{descuento.Estado ? 'activo' : 'vencido o usado'}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">% descuento</th>
+      <th scope="col">Fecha vencimiento</th>
+      <th scope="col">Estado</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let descuento of descuentosService.listaCuponesClientes">
+    <tr>
+      <td>{{descuento.PorcentajeDescuento}}</td>
+      <td>{{descuento.FechaVencimiento}}</td>
+      <td>{{descuento.Estado ? 'activo' : 'vencido o usado'}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 

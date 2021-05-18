@@ -1,28 +1,16 @@
 export interface Usuario {
-        Id:string,
-        Nombres:String,
-        Apellidos:string,
-        Correo:string,
-        Contrasena:string,
-        IdRol:number,
-        TipoDocumento:string,
-        Sexo:string,
-        Direccion:string,
-        NumDocumento:string,
-        Telefono:string,
-        Puntos:number,
-        Estado:boolean,
-        Email:string
-        /* AccessFailedCount: number,
-        ConcurrencyStamp:string,
-        EmailConfirmed:boolean,
-        LockoutEnabled:boolean,
-        LockoutEnd: any,
-        NormalizedEmail:string,
-        NormalizedUserName:string,
-        PhoneNumber: any,
-        PhoneNumberConfirmed:boolean,
-        SecurityStamp:string,
-        TwoFactorEnabled:boolean,
-        UserName:string, */
+  Id: string;
+  Nombres: string;
+  Apellidos: string;
+  Correo: string;
+  Contrasena: string;
+  IdRol: number;
+  TipoDocumento: string;
+  Sexo: string;
+  Direccion: string;
+  NumDocumento: string;
+  Telefono: string;
+  Puntos: number;
+  Estado: boolean;
+  Email: string;
 }

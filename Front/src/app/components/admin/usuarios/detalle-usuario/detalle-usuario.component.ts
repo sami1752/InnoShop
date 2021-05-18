@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import {Component, OnInit} from '@angular/core';
+import {UsuarioService} from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-detalle-usuario',
@@ -8,10 +8,11 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class DetalleUsuarioComponent implements OnInit {
 
-  constructor(public UsuarioService:UsuarioService) { }
+  constructor(public usuarioService: UsuarioService) {
+  }
 
   ngOnInit(): void {
   }
-  
+
 
 }

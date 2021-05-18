@@ -25,26 +25,28 @@ import {
 })
 export class RegistrarImagenComponent implements OnInit {
 
-  constructor(public usuarioService: UsuarioService, private router: Router, public productoService: ProductoService, public configuracion: ConfiguracionService) {}
+  constructor(public usuarioService: UsuarioService, private router: Router,
+              public productoService: ProductoService, public configuracion: ConfiguracionService) {
+  }
 
   ngOnInit(): void {
     this.productoService.formularioRegistroImagen.patchValue(this.productoService.imagen);
   }
 
-  registro() {
+  registro(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
         this.productoService.imagen = this.productoService.formularioRegistroImagen.value;
         this.productoService.imagen.IdUsuario = (res as Usuario).Id;
         this.productoService.registroImagen().subscribe(
           (respuesta: any) => {
-            alert(respuesta.mensaje)
+            alert(respuesta.mensaje);
             console.log(respuesta.mensaje);
             this.productoService.formularioRegistroImagen.reset();
-            this.productoService.FormularioImagen = false
+            this.productoService.FormularioImagen = false;
             this.productoService.listarImagen(this.productoService.imagen.IdProducto);
           }, error => {
-            alert(error)
+            alert(error);
             console.log(error);
           });
       },
@@ -53,5 +55,4 @@ export class RegistrarImagenComponent implements OnInit {
       }
     );
   }
- 
 }

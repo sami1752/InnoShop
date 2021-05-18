@@ -1,7 +1,7 @@
 export interface CarritoDeCompras {
-    IdCarritoDeCompras:number,
-    IdUsuario:string,
-    Fecha:any,
-    Estado:boolean,
-    Valor: number
+  IdCarritoDeCompras: number;
+  IdUsuario: string;
+  Fecha: any;
+  Estado: boolean;
+  Valor: number;
 }

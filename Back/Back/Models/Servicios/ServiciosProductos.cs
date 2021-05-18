@@ -206,8 +206,9 @@ namespace Back.Models.Servicios
                                                          on producto.IdCategoria equals categoria.IdCategoria
                                                          join precioProducto in _context.PrecioProductos
                                                          on producto.IdProducto equals precioProducto.IdProducto
+                                                         join usuario in _context.Usuarioidentity
+                                                         on producto.IdUsuario equals usuario.Id
                                                          where producto.IdProducto == id
-
                                                          select new DetalleProducto
                                                          {
                                                              IdProducto = producto.IdProducto,
@@ -223,7 +224,11 @@ namespace Back.Models.Servicios
                                                              Puntos = producto.Puntos,
                                                              NombreCategoria = categoria.Nombre,
                                                              GarantiaMeses = producto.GarantiaMeses,
-                                                             Precio = precioProducto.Precio
+                                                             Precio = precioProducto.Precio,
+                                                             Usuario = usuario.Nombres + " " + usuario.Apellidos,
+                                                             CantidadStock = (from entrada in _context.Entradas 
+                                                                              where entrada.IdProducto == id
+                                                                              select entrada.Cantidad).Sum()                                                     
                                                          }).ToList();
                 return detalleProducto[detalleProducto.Count() - 1];
             }

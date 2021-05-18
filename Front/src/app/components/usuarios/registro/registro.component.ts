@@ -17,31 +17,36 @@ import {
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(public usuarioService: UsuarioService, public configuracion: ConfiguracionService) {}
-  sw: number;
-  ngOnInit(): void {}
-  
+  constructor(public usuarioService: UsuarioService, public configuracion: ConfiguracionService) {
+  }
 
-  registro() {
+  sw: number;
+
+  ngOnInit(): void {
+  }
+
+
+  registro(): void {
     this.sw = 0;
     this.usuarioService.registrarUsuario().subscribe(
       (respuesta: any) => {
         if (respuesta.Succeeded) {
           this.usuarioService.formularioRegistroUsuario.reset();
-          alert("Registro exitoso")
+          alert('Registro exitoso');
           this.sw = 1;
-        } else
+        } else {
           respuesta.Errors.forEach(element => {
             switch (element.Code) {
               case 'DuplicateUserName':
-                alert("Correo Existente en la base de datos");
+                alert('Correo Existente en la base de datos');
                 this.sw = 1;
                 break;
               default:
-                alert("error");
+                alert('error');
                 break;
             }
-          })
+          });
+        }
       });
   }
 }

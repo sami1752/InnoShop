@@ -683,9 +683,6 @@ namespace Back.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("ValorTotal")
-                        .HasColumnType("real");
-
                     b.HasKey("IdSolicitudPersonalizada");
 
                     b.ToTable("SolicitudPersonalizada");

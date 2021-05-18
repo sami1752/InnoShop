@@ -18,6 +18,7 @@ namespace Back.Clases.Productos
         public string Descripcion { get; set; }
         public bool Ruedas { get; set; }
         public string IdUsuario { get; set; }
+        public string Usuario { get; set; }
         public int Puntos { get; set; }
         public int IdCategoria { get; set; }
         public int GarantiaMeses { get; set; }

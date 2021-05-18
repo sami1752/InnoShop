@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
-import { SolicitudesPersonalizadasService } from 'src/app/services/solicitudes-personalizadas.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Usuario} from 'src/app/models/usuario';
+import {SolicitudesPersonalizadasService} from 'src/app/services/solicitudes-personalizadas.service';
+import {UsuarioService} from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-registrar-solicitud-personalizada',
@@ -15,20 +15,25 @@ export class RegistrarSolicitudPErsonalizadaComponent implements OnInit {
     public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
     public usuarioService: UsuarioService,
     private rutaActiva: ActivatedRoute
-  ) {}
+  ) {
+  }
+
   id: number = this.rutaActiva.snapshot.params.IdSolicitud;
+
   ngOnInit(): void {
     if (this.id != 0) {
+      alert('Hola');
       this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(
         this.id
       );
     }
   }
 
-  registrar() {
+  registrar(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       (res) => {
-        this.solicitudesPersonalizadasService.SolicitudPersonalizada = this.solicitudesPersonalizadasService.formularioRegistroSolicitudPersonalizada.value;
+        this.solicitudesPersonalizadasService.SolicitudPersonalizada =
+          this.solicitudesPersonalizadasService.formularioRegistroSolicitudPersonalizada.value;
         this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdUsuario = (res as Usuario).Id;
         this.solicitudesPersonalizadasService
           .AgregarSolicitudPersonalizada()
@@ -49,7 +54,7 @@ export class RegistrarSolicitudPErsonalizadaComponent implements OnInit {
     );
   }
 
-  actualizacion() {
+  actualizacion(): void {
     this.solicitudesPersonalizadasService
       .EditarSolicitudPersonalizada()
       .subscribe(
@@ -64,13 +69,14 @@ export class RegistrarSolicitudPErsonalizadaComponent implements OnInit {
       );
   }
 
-  onSubmit() {
-    this.solicitudesPersonalizadasService.SolicitudPersonalizada = this.solicitudesPersonalizadasService.formularioRegistroSolicitudPersonalizada.value;
+  onSubmit(): void {
+    this.solicitudesPersonalizadasService.SolicitudPersonalizada =
+      this.solicitudesPersonalizadasService.formularioRegistroSolicitudPersonalizada.value;
     if (
       this.solicitudesPersonalizadasService.SolicitudPersonalizada
         .IdSolicitudPersonalizada == null ||
       this.solicitudesPersonalizadasService.SolicitudPersonalizada
-        .IdSolicitudPersonalizada == 0
+        .IdSolicitudPersonalizada === 0
     ) {
       alert('R');
       this.registrar();

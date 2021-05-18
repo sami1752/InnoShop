@@ -1,42 +1,42 @@
 <section class="content">
-    <div class="content-wrapper">
-        <br>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <section class="col-lg-4 connectedSortable">
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">
-                                    <i class="bi bi-file-earmark-plus-fill text-secondary"></i> Registro
-                                </h2>
-                            </div>
-                            <div class="card-body">
-                                <div class="tab-content p-0">
-                                    <app-registro-usuario></app-registro-usuario>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="col-lg-8 connectedSortable">
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">
-                                    <i class="bi bi-person-lines-fill text-secondary"></i> Usuarios
-                                </h2>
-                            </div>
-                            <div class="card-body">
-                                <div class="tab-content p-0">
-                                    <app-lista-usuarios></app-lista-usuarios>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+  <div class="content-wrapper">
+    <br>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <section class="col-lg-4 connectedSortable">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">
+                  <i class="bi bi-file-earmark-plus-fill text-secondary"></i> Registro
+                </h2>
+              </div>
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <app-registro-usuario></app-registro-usuario>
                 </div>
+              </div>
             </div>
-            <div *ngIf="this.usuarioService.desplegarDetalle">
-                <app-detalle-usuario></app-detalle-usuario>
+          </section>
+          <section class="col-lg-8 connectedSortable">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">
+                  <i class="bi bi-person-lines-fill text-secondary"></i> Usuarios
+                </h2>
+              </div>
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <app-lista-usuarios></app-lista-usuarios>
+                </div>
+              </div>
             </div>
-        </section>
-    </div>
+          </section>
+        </div>
+      </div>
+      <div *ngIf="this.usuarioService.desplegarDetalle">
+        <app-detalle-usuario></app-detalle-usuario>
+      </div>
+    </section>
+  </div>
 </section>

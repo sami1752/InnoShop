@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DescuentosService } from 'src/app/services/descuentos.service';
+import {Component, OnInit} from '@angular/core';
+import {DescuentosService} from 'src/app/services/descuentos.service';
 
 @Component({
   selector: 'app-listar-valor-ruleta',
@@ -8,10 +8,11 @@ import { DescuentosService } from 'src/app/services/descuentos.service';
 })
 export class ListarValorRuletaComponent implements OnInit {
 
-  constructor(public descuentosService:DescuentosService) { }
+  constructor(public descuentosService: DescuentosService) {
+  }
 
   ngOnInit(): void {
-    this.descuentosService.listarValoresRuleta()
+    this.descuentosService.listarValoresRuleta();
   }
 
 }

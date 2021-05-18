@@ -22,83 +22,88 @@ import {
 })
 export class RegistroUsuarioComponent implements OnInit {
 
-  constructor(private router: Router, public usuarioService: UsuarioService, public configuracion: ConfiguracionService) {}
+  constructor(private router: Router, public usuarioService: UsuarioService, public configuracion: ConfiguracionService) {
+  }
 
-
-  ngOnInit(): void {}
-  
   listaTiposDoc = [{
-      Tipo: "Cédula de ciudadania"
+    Tipo: 'Cédula de ciudadania'
+  },
+    {
+      Tipo: 'Tarjeta de identidad'
     },
     {
-      Tipo: "Tarjeta de identidad"
-    },
-    {
-      Tipo: "Cédula de extranjerÍa"
+      Tipo: 'Cédula de extranjerÍa'
     }
   ];
 
   listaSexo = [{
-      Sexo: "Masculino"
+    Sexo: 'Masculino'
+  },
+    {
+      Sexo: 'Femenino'
     },
     {
-      Sexo: "Femenino"
-    },
-    {
-      Sexo: "Prefiero no decirlo"
+      Sexo: 'Prefiero no decirlo'
     }
   ];
-  registro() {
+
+  ngOnInit(): void {
+  }
+
+  registro(): void {
     this.usuarioService.uca = true;
     this.usuarioService.registrarUsuarioAdmin().subscribe(
       (respuesta: any) => {
-        alert(respuesta)
+        alert(respuesta);
         if (respuesta.Succeeded) {
           this.usuarioService.formularioRegistroUsuarioAdmin.reset();
-          alert("Registro Exitoso")
+          alert('Registro Exitoso');
           this.usuarioService.listarUsuarios();
-        } else
+        } else {
           respuesta.Errors.forEach(element => {
             switch (element.Code) {
               case 'DuplicateUserName':
-                alert("Email Existente en la base de datos");
+                alert('Email Existente en la base de datos');
                 break;
               default:
-                alert("error");
+                alert('error');
                 break;
             }
-          })
+          });
+        }
       });
   }
 
-  actualizacion() {
+  actualizacion(): void {
     this.usuarioService.actualizacionUsuarioAdmin().subscribe(
       (respuesta: any) => {
         if (respuesta.Succeeded) {
           this.usuarioService.formularioRegistroUsuarioAdmin.reset();
-          alert("Actualizacion Exitosa")
+          alert('Actualizacion Exitosa');
           this.usuarioService.listarUsuarios();
-        } else
+        } else {
           respuesta.Errors.forEach(element => {
             switch (element.Code) {
               case 'DuplicateUserName':
-                alert("Email Existente en la base de datos");
+                alert('Email Existente en la base de datos');
                 break;
               default:
-                alert("error");
+                alert('error');
                 break;
             }
-          })
+          });
+        }
       });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.usuarioService.usuario = this.usuarioService.formularioRegistroUsuarioAdmin.value;
     if (this.usuarioService.usuario.Id == null ||
-      this.usuarioService.usuario.Id == ""){
+      this.usuarioService.usuario.Id === '') {
       this.registro();
-      console.log(this.usuarioService.usuario)}
-    else
+      console.log(this.usuarioService.usuario);
+    } else {
       this.actualizacion();
+    }
   }
 }

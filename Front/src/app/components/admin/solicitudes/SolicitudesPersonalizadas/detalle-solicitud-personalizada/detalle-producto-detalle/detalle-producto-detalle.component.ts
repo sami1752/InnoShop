@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductoService } from 'src/app/services/producto.service';
+import {Component, OnInit} from '@angular/core';
+import {ProductoService} from 'src/app/services/producto.service';
 
 @Component({
   selector: 'app-detalle-producto-detalle',
@@ -8,8 +8,9 @@ import { ProductoService } from 'src/app/services/producto.service';
 })
 export class DetalleProductoDetalleComponent implements OnInit {
 
-  constructor(public productoService:ProductoService) { }
-  
+  constructor(public productoService: ProductoService) {
+  }
+
   ngOnInit(): void {
     this.productoService.ListarDetalleMaterial(this.productoService.detalleProducto.IdProducto);
   }

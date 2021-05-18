@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DetalleMaterialProducto } from 'src/app/models/detalle-material-producto';
-import { ProductoService } from 'src/app/services/producto.service';
+import {Component, OnInit} from '@angular/core';
+import {DetalleMaterialProducto} from 'src/app/models/detalle-material-producto';
+import {ProductoService} from 'src/app/services/producto.service';
 
 @Component({
   selector: 'app-listar-detalle-material',
@@ -9,18 +9,19 @@ import { ProductoService } from 'src/app/services/producto.service';
 })
 export class ListarDetalleMaterialComponent implements OnInit {
 
-  constructor(public productoService: ProductoService) { }
+  constructor(public productoService: ProductoService) {
+  }
 
   ngOnInit(): void {
   }
 
-  eliminarMaterial(detalle:DetalleMaterialProducto){
-    if (confirm("¿Estás seguro de eliminar el material?")) {
+  eliminarMaterial(detalle: DetalleMaterialProducto): void {
+    if (confirm('¿Estás seguro de eliminar el material?')) {
       this.productoService.EliminarDetalleMaterial(detalle.IdDetalleMaterial).subscribe(
-        res=>{
+        res => {
           this.productoService.ListarDetalleMaterial(detalle.IdProducto);
         },
-        err=>{
+        err => {
           console.log(err);
         }
       );

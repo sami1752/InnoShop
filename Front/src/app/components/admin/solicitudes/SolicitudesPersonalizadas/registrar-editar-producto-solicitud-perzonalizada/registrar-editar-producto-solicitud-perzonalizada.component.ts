@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
-import { ConfiguracionService } from 'src/app/services/configuracion.service';
-import { ProductoService } from 'src/app/services/producto.service';
-import { SolicitudesPersonalizadasService } from 'src/app/services/solicitudes-personalizadas.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Usuario} from 'src/app/models/usuario';
+import {ConfiguracionService} from 'src/app/services/configuracion.service';
+import {ProductoService} from 'src/app/services/producto.service';
+import {SolicitudesPersonalizadasService} from 'src/app/services/solicitudes-personalizadas.service';
+import {UsuarioService} from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-registrar-editar-producto-solicitud-perzonalizada',
@@ -23,11 +23,11 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
     public productoService: ProductoService,
     public configuracion: ConfiguracionService,
     private rutaActiva: ActivatedRoute
-  ) {}
-  id:number = this.rutaActiva.snapshot.params.IdSolicitud;
-  idProductoRegistrado : number
-  ngOnInit(): void {}
+  ) {
+  }
 
+  id: number = this.rutaActiva.snapshot.params.IdSolicitud;
+  idProductoRegistrado: number;
   listaTiposPuerta = [
     {
       Tipo: 'Bisagra',
@@ -50,7 +50,11 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
       boo: false,
     },
   ];
-  registro() {
+
+  ngOnInit(): void {
+  }
+
+  registro(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       (res) => {
         this.productoService.producto = this.productoService.formularioRegistroProductos.value;
@@ -60,20 +64,22 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
           (respuesta: any) => {
             alert('Registro exitoso');
             this.productoService.formularioRegistroProductos.reset();
-            this.solicitudesPersonalizadasService.DetalleProductosSolicitud = this.solicitudesPersonalizadasService.formularioDetalleProductoSolicitudPerzonalizada.value
-            this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdDetalleProductosSolicitud = 0
-            this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdProducto = respuesta.mensaje
-            this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdSolicitudPersonalizada = this.id
+            this.solicitudesPersonalizadasService.DetalleProductosSolicitud =
+              this.solicitudesPersonalizadasService.formularioDetalleProductoSolicitudPerzonalizada.value;
+            this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdDetalleProductosSolicitud = 0;
+            this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdProducto = respuesta.mensaje;
+            this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdSolicitudPersonalizada = this.id;
             this.solicitudesPersonalizadasService.DetalleProductosSolicitud.IdUsuario = (res as Usuario).Id;
             this.solicitudesPersonalizadasService.AgregarDetalleProductosSolicitud().subscribe(
-              (r)=>{
+              (r) => {
                 this.solicitudesPersonalizadasService.ListaDetalleProductosSolicitud(this.id);
-                alert("Registro Detalle Exitoso")
+                alert('Registro Detalle Exitoso');
+                this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
               },
-              (e)=>{
-                alert("Registro Detalle Fallido")
+              (e) => {
+                alert('Registro Detalle Fallido');
               }
-            )
+            );
           },
           (error) => {
             alert(error);
@@ -87,7 +93,7 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
     );
   }
 
-  actualizacion() {
+  actualizacion(): void {
     this.productoService.actualizacionProducto().subscribe(
       (respuesta: any) => {
         this.productoService.formularioRegistroProductos.reset();
@@ -105,14 +111,16 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
     );
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.productoService.producto = this.productoService.formularioRegistroProductos.value;
     if (
       this.productoService.producto.IdProducto == null ||
-      this.productoService.producto.IdProducto == 0
+      this.productoService.producto.IdProducto === 0
     ) {
       this.registro();
       console.log(this.productoService.producto);
-    } else this.actualizacion();
+    } else {
+      this.actualizacion();
+    }
   }
 }

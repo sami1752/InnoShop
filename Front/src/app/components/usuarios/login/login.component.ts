@@ -16,25 +16,27 @@ import {
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public usuarioService: UsuarioService, private router: Router) {}
-
-  ngOnInit(): void {
-    if (localStorage.getItem('token') != null)
-      this.router.navigateByUrl('usuarios/inicio');
+  constructor(public usuarioService: UsuarioService, private router: Router) {
   }
 
-  onSubmit() {
+  ngOnInit(): void {
+    if (localStorage.getItem('token') != null) {
+      this.router.navigateByUrl('usuarios/inicio');
+    }
+  }
+
+  onSubmit(): void {
     this.usuarioService.loguin().subscribe(
       (res: any) => {
         localStorage.setItem('token', res.token);
         this.router.navigateByUrl('productos/inicio');
-        console.log(res.token)
+        console.log(res.token);
       },
       (error: any) => {
-        if (error.status == 400) {
+        if (error.status === 400) {
           alert(error.error.mensaje);
         }
       }
-    )
+    );
   }
 }

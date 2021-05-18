@@ -17,21 +17,24 @@ import {
   styleUrls: ['./confirmar-email.component.css']
 })
 export class ConfirmarEmailComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private usuarioService: UsuarioService) {}
+  constructor(private route: ActivatedRoute, private usuarioService: UsuarioService) {
+  }
+
   respuesta: string;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.usuarioService.confirmarCorreo.id = params['id'],
-        this.usuarioService.confirmarCorreo.token = params['token'];
+      this.usuarioService.confirmarCorreo.id = params.id,
+        this.usuarioService.confirmarCorreo.token = params.token;
     });
 
     this.usuarioService.activacionCorreo().subscribe(
       (resp: any) => {
-        if (resp.Succeeded)
-          this.respuesta = "Su cuenta se ha activado con éxito";
-        else
-          this.respuesta = "Error de activación"
+        if (resp.Succeeded) {
+          this.respuesta = 'Su cuenta se ha activado con éxito';
+        } else {
+          this.respuesta = 'Error de activación';
+        }
       });
   }
 }

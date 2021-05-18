@@ -1,20 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { DetalleEstadosMontajes } from '../models/SolicitudesPersonalizadas/detalle-estados-montajes';
-import { DetalleEstadosProductosPersoanlizados } from '../models/SolicitudesPersonalizadas/detalle-estados-productos-persoanlizados';
-import { DetalleEstadosSolicitudPersonalizada } from '../models/SolicitudesPersonalizadas/detalle-estados-solicitud-personalizada';
-import { DetalleProductosSolicitud } from '../models/SolicitudesPersonalizadas/detalle-productos-solicitud';
-import { DetallesMaterialesMontajes } from '../models/SolicitudesPersonalizadas/detalles-materiales-montajes';
-import { DetallesMaterialesSolicitudesPersonalizadas } from '../models/SolicitudesPersonalizadas/detalles-materiales-solicitudes-personalizadas';
-import { DetallesProductosMontajes } from '../models/SolicitudesPersonalizadas/detalles-productos-montajes';
-import { Estados } from '../models/SolicitudesPersonalizadas/estados';
-import { Montajes } from '../models/SolicitudesPersonalizadas/montajes';
-import { PrecioMontajes } from '../models/SolicitudesPersonalizadas/precio-montajes';
-import { RespuestasSolicitudesPersonalizadas } from '../models/SolicitudesPersonalizadas/respuestas-solicitudes-personalizadas';
-import { SolicitudPersonalizada } from '../models/SolicitudesPersonalizadas/solicitud-personalizada';
-import { ConfiguracionService } from './configuracion.service';
-import { UsuarioService } from './usuario.service';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {DetalleEstadosMontajes} from '../models/SolicitudesPersonalizadas/detalle-estados-montajes';
+import {DetalleEstadosProductosPersoanlizados} from '../models/SolicitudesPersonalizadas/detalle-estados-productos-persoanlizados';
+import {DetalleEstadosSolicitudPersonalizada} from '../models/SolicitudesPersonalizadas/detalle-estados-solicitud-personalizada';
+import {DetalleProductosSolicitud} from '../models/SolicitudesPersonalizadas/detalle-productos-solicitud';
+import {DetallesMaterialesMontajes} from '../models/SolicitudesPersonalizadas/detalles-materiales-montajes';
+import {DetallesMaterialesSolicitudesPersonalizadas} from '../models/SolicitudesPersonalizadas/detalles-materiales-solicitudes-personalizadas';
+import {DetallesProductosMontajes} from '../models/SolicitudesPersonalizadas/detalles-productos-montajes';
+import {Estados} from '../models/SolicitudesPersonalizadas/estados';
+import {Montajes} from '../models/SolicitudesPersonalizadas/montajes';
+import {PrecioMontajes} from '../models/SolicitudesPersonalizadas/precio-montajes';
+import {RespuestasSolicitudesPersonalizadas} from '../models/SolicitudesPersonalizadas/respuestas-solicitudes-personalizadas';
+import {SolicitudPersonalizada} from '../models/SolicitudesPersonalizadas/solicitud-personalizada';
+import {ConfiguracionService} from './configuracion.service';
+import {UsuarioService} from './usuario.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,9 @@ export class SolicitudesPersonalizadasService {
     private http: HttpClient,
     private configuracion: ConfiguracionService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+  }
+
   DetalleEstadosMontajes: DetalleEstadosMontajes;
   listaDetalleEstadosMontajes: DetalleEstadosMontajes[];
   DetalleEstadosProductosPersoanlizados: DetalleEstadosProductosPersoanlizados;
@@ -97,7 +99,7 @@ export class SolicitudesPersonalizadasService {
     IdProducto: [],
   });
 
-  ListarDetalleEstadosMontajes() {
+  ListarDetalleEstadosMontajes(): void {
     this.http
       .get(this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes')
       .toPromise()
@@ -107,7 +109,7 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  ListaDetalleEstadosMontajes(id) {
+  ListaDetalleEstadosMontajes(id): void {
     this.http
       .get(
         this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes/' + id
@@ -119,18 +121,18 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  AgregarDetalleEstadosMontajes() {
+  AgregarDetalleEstadosMontajes(): any {
     return this.http.post(
       this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes/',
       this.DetalleEstadosMontajes
     );
   }
 
-  ListarDetalleEstadosProductosPersoanlizados() {
+  ListarDetalleEstadosProductosPersoanlizados(): void {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/DetalleEstadosProductosPersoanlizados'
+        '/Solicitudes/DetalleEstadosProductosPersoanlizados'
       )
       .toPromise()
       .then(
@@ -139,12 +141,12 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  ListaDetalleEstadosProductosPersoanlizados(id) {
+  ListaDetalleEstadosProductosPersoanlizados(id): void {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/DetalleEstadosProductosPersoanlizados/' +
-          id
+        '/Solicitudes/DetalleEstadosProductosPersoanlizados/' +
+        id
       )
       .toPromise()
       .then(
@@ -153,19 +155,19 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  AgregarDetalleEstadosProductosPersoanlizados() {
+  AgregarDetalleEstadosProductosPersoanlizados(): any {
     return this.http.post(
       this.configuracion.rootURL +
-        '/Solicitudes/DetalleEstadosProductosPersoanlizados/',
+      '/Solicitudes/DetalleEstadosProductosPersoanlizados/',
       this.DetalleEstadosProductosPersoanlizados
     );
   }
 
-  ListarDetalleEstadosSolicitudPersonalizada() {
+  ListarDetalleEstadosSolicitudPersonalizada(): void {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/DetalleEstadosSolicitudPersonalizada'
+        '/Solicitudes/DetalleEstadosSolicitudPersonalizada'
       )
       .toPromise()
       .then(
@@ -174,12 +176,12 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  ListaDetalleEstadosSolicitudPersonalizada(id) {
+  ListaDetalleEstadosSolicitudPersonalizada(id): void {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/DetalleEstadosSolicitudPersonalizada/' +
-          id
+        '/Solicitudes/DetalleEstadosSolicitudPersonalizada/' +
+        id
       )
       .toPromise()
       .then(
@@ -188,26 +190,26 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  AgregarDetalleEstadosSolicitudPersonalizada() {
+  AgregarDetalleEstadosSolicitudPersonalizada(): any {
     this.DetalleEstadosSolicitudPersonalizada.FechaInicio = this.hoy.toISOString();
     this.DetalleEstadosSolicitudPersonalizada.FechaFin = '0001-01-01';
     this.DetalleEstadosSolicitudPersonalizada.IdDetalleEstadoSolicitudPersonalizada = 0;
     return this.http.post(
       this.configuracion.rootURL +
-        '/Solicitudes/DetalleEstadosSolicitudPersonalizada/',
+      '/Solicitudes/DetalleEstadosSolicitudPersonalizada/',
       this.DetalleEstadosSolicitudPersonalizada
     );
   }
 
-  EliminarDetalleProductosSolicitud(id) {
+  EliminarDetalleProductosSolicitud(id): any {
     return this.http.delete(
       this.configuracion.rootURL +
-        '/Solicitudes/DetalleProductosSolicitud/' +
-        id
+      '/Solicitudes/DetalleProductosSolicitud/' +
+      id
     );
   }
 
-  ListarDetalleProductosSolicitud() {
+  ListarDetalleProductosSolicitud(): void {
     this.http
       .get(
         this.configuracion.rootURL + '/Solicitudes/DetalleProductosSolicitud'
@@ -219,21 +221,21 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  ListaDetalleProductosSolicitud(id) {
+  ListaDetalleProductosSolicitud(id): void {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/DetalleProductosSolicitud/' +
-          id
+        '/Solicitudes/DetalleProductosSolicitud/' +
+        id
       )
       .toPromise()
       .then((res) => {
         this.listaDetalleProductosSolicitud = res as DetalleProductosSolicitud[];
-        console.log(this.listaDetalleProductosSolicitud)
+        console.log(this.listaDetalleProductosSolicitud);
       });
   }
 
-  AgregarDetalleProductosSolicitud() {
+  AgregarDetalleProductosSolicitud(): any {
 
     return this.http.post(
       this.configuracion.rootURL + '/Solicitudes/DetalleProductosSolicitud/',
@@ -241,15 +243,15 @@ export class SolicitudesPersonalizadasService {
     );
   }
 
-  EliminarDetallesMaterialesMontajes(id) {
+  EliminarDetallesMaterialesMontajes(id): any {
     return this.http.delete(
       this.configuracion.rootURL +
-        '/Solicitudes/DetallesMaterialesMontajes/' +
-        id
+      '/Solicitudes/DetallesMaterialesMontajes/' +
+      id
     );
   }
 
-  ListarDetallesMaterialesMontajes() {
+  ListarDetallesMaterialesMontajes(): void {
     this.http
       .get(
         this.configuracion.rootURL + '/Solicitudes/DetallesMaterialesMontajes'
@@ -261,12 +263,12 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  ListaDetallesMaterialesMontajes(id) {
+  ListaDetallesMaterialesMontajes(id): void {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/DetallesMaterialesMontajes/' +
-          id
+        '/Solicitudes/DetallesMaterialesMontajes/' +
+        id
       )
       .toPromise()
       .then(
@@ -275,26 +277,26 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  AgregarDetallesMaterialesMontajes() {
+  AgregarDetallesMaterialesMontajes(): any {
     return this.http.post(
       this.configuracion.rootURL + '/Solicitudes/DetallesMaterialesMontajes/',
       this.DetallesMaterialesMontajes
     );
   }
 
-  EliminarDetallesMaterialesSolicitudesPersonalizadas(id) {
+  EliminarDetallesMaterialesSolicitudesPersonalizadas(id): any {
     return this.http.delete(
       this.configuracion.rootURL +
-        '/Solicitudes/DetallesMaterialesSolicitudesPersonalizadas/' +
-        id
+      '/Solicitudes/DetallesMaterialesSolicitudesPersonalizadas/' +
+      id
     );
   }
 
-  ListarDetallesMaterialesSolicitudesPersonalizadas() {
+  ListarDetallesMaterialesSolicitudesPersonalizadas(): void {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/DetallesMaterialesSolicitudesPersonalizadas'
+        '/Solicitudes/DetallesMaterialesSolicitudesPersonalizadas'
       )
       .toPromise()
       .then(
@@ -303,12 +305,12 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  ListaDetallesMaterialesSolicitudesPersonalizadas(id) {
+  ListaDetallesMaterialesSolicitudesPersonalizadas(id): void {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/DetallesMaterialesSolicitudesPersonalizadas/' +
-          id
+        '/Solicitudes/DetallesMaterialesSolicitudesPersonalizadas/' +
+        id
       )
       .toPromise()
       .then(
@@ -317,23 +319,23 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  AgregarDetallesMaterialesSolicitudesPersonalizadas() {
+  AgregarDetallesMaterialesSolicitudesPersonalizadas(): any {
     return this.http.post(
       this.configuracion.rootURL +
-        '/Solicitudes/DetallesMaterialesSolicitudesPersonalizadas/',
+      '/Solicitudes/DetallesMaterialesSolicitudesPersonalizadas/',
       this.DetallesMaterialesSolicitudesPersonalizadas
     );
   }
 
-  EliminarDetallesProductosMontajes(id) {
+  EliminarDetallesProductosMontajes(id): any {
     return this.http.delete(
       this.configuracion.rootURL +
-        '/Solicitudes/DetallesProductosMontajes/' +
-        id
+      '/Solicitudes/DetallesProductosMontajes/' +
+      id
     );
   }
 
-  ListarDetallesProductosMontajes() {
+  ListarDetallesProductosMontajes(): void {
     this.http
       .get(
         this.configuracion.rootURL + '/Solicitudes/DetallesProductosMontajes'
@@ -345,12 +347,12 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  ListaDetallesProductosMontajes(id) {
+  ListaDetallesProductosMontajes(id): void {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/DetallesProductosMontajes/' +
-          id
+        '/Solicitudes/DetallesProductosMontajes/' +
+        id
       )
       .toPromise()
       .then(
@@ -359,35 +361,35 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  AgregarDetallesProductosMontajes() {
+  AgregarDetallesProductosMontajes(): any {
     return this.http.post(
       this.configuracion.rootURL + '/Solicitudes/DetallesProductosMontajes/',
       this.DetallesProductosMontajes
     );
   }
 
-  ListarMontajes() {
+  ListarMontajes(): void {
     this.http
       .get(this.configuracion.rootURL + '/Solicitudes/Montajes')
       .toPromise()
       .then((res) => (this.listaMontajes = res as Montajes[]));
   }
 
-  ListarMisMontajes(id) {
+  ListarMisMontajes(id): void {
     this.http
       .get(this.configuracion.rootURL + '/Solicitudes/MisMontajes/' + id)
       .toPromise()
       .then((res) => (this.listaMontajes = res as Montajes[]));
   }
 
-  BuscarMontajes(id) {
+  BuscarMontajes(id): void {
     this.http
       .get(this.configuracion.rootURL + '/Solicitudes/Montajes/' + id)
       .toPromise()
       .then((res) => (this.Montajes = res as Montajes));
   }
 
-  AgregarMontajes() {
+  AgregarMontajes(): any {
     this.Montajes.Fecha = this.hoy.toISOString();
     this.Montajes.ValorTotal = 0;
     this.Montajes.IdMontaje = 0;
@@ -397,46 +399,47 @@ export class SolicitudesPersonalizadasService {
     );
   }
 
-  EditarMontajes() {
+  EditarMontajes(): any {
     return this.http.put(
       this.configuracion.rootURL + '/Solicitudes/Montajes',
       this.Montajes
     );
   }
 
-  ListarPrecioMontajes() {
+  ListarPrecioMontajes(): void {
     this.http
       .get(this.configuracion.rootURL + '/Solicitudes/PrecioMontajes')
       .toPromise()
       .then((res) => (this.listaPrecioMontajes = res as PrecioMontajes[]));
   }
 
-  ListaPrecioMontajes(id) {
+  ListaPrecioMontajes(id): void {
     this.http
       .get(this.configuracion.rootURL + '/Solicitudes/PrecioMontajes/' + id)
       .toPromise()
       .then((res) => (this.listaPrecioMontajes = res as PrecioMontajes[]));
   }
 
-  AgregarPrecioMontajes() {
+  AgregarPrecioMontajes(): any {
     return this.http.post(
       this.configuracion.rootURL + '/Solicitudes/PrecioMontajes/',
       this.PrecioMontajes
     );
   }
-  AgregarEstados() {
+
+  AgregarEstados(): any {
     return this.http.post(
       this.configuracion.rootURL + '/Solicitudes/Estados/',
       this.Estados
     );
   }
 
-  ListaRespuestasSolicitudesPersonalizadas(id) {
+  ListaRespuestasSolicitudesPersonalizadas(id): void {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/RespuestasSolicitudesPersonalizadas/' +
-          id
+        '/Solicitudes/RespuestasSolicitudesPersonalizadas/' +
+        id
       )
       .toPromise()
       .then(
@@ -445,15 +448,15 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  AgregarRespuestasSolicitudesPersonalizadas() {
+  AgregarRespuestasSolicitudesPersonalizadas(): any {
     return this.http.post(
       this.configuracion.rootURL +
-        '/Solicitudes/RespuestasSolicitudesPersonalizadas/',
+      '/Solicitudes/RespuestasSolicitudesPersonalizadas/',
       this.RespuestasSolicitudesPersonalizadas
     );
   }
 
-  ListarSolicitudPersonalizada() {
+  ListarSolicitudPersonalizada(): any {
     this.http
       .get(this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada')
       .toPromise()
@@ -462,12 +465,13 @@ export class SolicitudesPersonalizadasService {
           (this.listaSolicitudPersonalizada = res as SolicitudPersonalizada[])
       );
   }
-  ListarMisSolicitudPersonalizada(id) {
+
+  ListarMisSolicitudPersonalizada(id): any {
     this.http
       .get(
         this.configuracion.rootURL +
-          '/Solicitudes/MisSolicitudPersonalizada/' +
-          id
+        '/Solicitudes/MisSolicitudPersonalizada/' +
+        id
       )
       .toPromise()
       .then(
@@ -476,8 +480,8 @@ export class SolicitudesPersonalizadasService {
       );
   }
 
-  BuscarSolicitudPersonalizada(id) {
-    
+  BuscarSolicitudPersonalizada(id): any {
+
     this.http
       .get(
         this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada/' + id
@@ -485,35 +489,44 @@ export class SolicitudesPersonalizadasService {
       .toPromise()
       .then((res) => {
         this.SolicitudPersonalizada = res as SolicitudPersonalizada;
-        if (this.SolicitudPersonalizada.Estado == 'Rechazada'){
+        if (this.SolicitudPersonalizada.Estado === 'Rechazada') {
+          // alert('Rechazada');
           this.SolicitudCortizando = false;
           this.SolicitudCortizado = false;
           this.SolicitudEnviada = false;
-          this.SolicitudRechazada = true;}
-        if (this.SolicitudPersonalizada.Estado == 'En proceso de cotizacion'){
+          this.SolicitudRechazada = true;
+        }
+        if (this.SolicitudPersonalizada.Estado === 'En proceso de cotizacion') {
+          // alert('En proceso de cotizacion');
           this.SolicitudCortizado = false;
           this.SolicitudEnviada = false;
           this.SolicitudRechazada = false;
-          this.SolicitudCortizando = true;}
-        if (this.SolicitudPersonalizada.Estado == 'Cotizada'){
+          this.SolicitudCortizando = true;
+        }
+        if (this.SolicitudPersonalizada.Estado === 'Cotizada') {
+          // alert('Cotizada');
           this.SolicitudCortizando = false;
           this.SolicitudEnviada = false;
-          this.SolicitudRechazada = true;
-          this.SolicitudCortizado = false;}
-          if (this.SolicitudPersonalizada.Estado == 'Modificada' || this.SolicitudPersonalizada.Estado == 'Enviada'){
-            this.SolicitudCortizando = false;
-            this.SolicitudRechazada = false;
-            this.SolicitudEnviada = true;
-            this.SolicitudCortizado = false;}
-          this.formularioRegistroSolicitudPersonalizada.patchValue(
+          this.SolicitudRechazada = false;
+          this.SolicitudCortizado = true;
+        }
+        if (this.SolicitudPersonalizada.Estado === 'Modificada' ||
+          this.SolicitudPersonalizada.Estado === 'Enviada' ||
+          this.SolicitudPersonalizada.Estado === 'Devuelta') {
+          // alert('Modificada o Enviada o Devuelta');
+          this.SolicitudCortizando = false;
+          this.SolicitudRechazada = false;
+          this.SolicitudEnviada = true;
+          this.SolicitudCortizado = false;
+        }
+        this.formularioRegistroSolicitudPersonalizada.patchValue(
           this.SolicitudPersonalizada
         );
       });
   }
 
-  AgregarSolicitudPersonalizada() {
+  AgregarSolicitudPersonalizada(): any {
     this.SolicitudPersonalizada.Fecha = this.hoy.toISOString();
-    this.SolicitudPersonalizada.ValorTotal = 0;
     this.SolicitudPersonalizada.IdSolicitudPersonalizada = 0;
     console.log(this.SolicitudPersonalizada);
     return this.http.post(
@@ -522,7 +535,7 @@ export class SolicitudesPersonalizadasService {
     );
   }
 
-  EditarSolicitudPersonalizada() {
+  EditarSolicitudPersonalizada(): any {
     return this.http.put(
       this.configuracion.rootURL + '/Solicitudes/SolicitudPersonalizada',
       this.SolicitudPersonalizada

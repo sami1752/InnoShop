@@ -11,7 +11,7 @@ import {
 import {
   Router
 } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
+import {Usuario} from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-cambio-contra',
@@ -19,24 +19,27 @@ import { Usuario } from 'src/app/models/usuario';
   styleUrls: ['./cambio-contra.component.css']
 })
 export class CambioContraComponent implements OnInit {
-  constructor(public usuarioService: UsuarioService, public configuracion: ConfiguracionService, private router: Router) {}
-  ngOnInit(): void {}
+  constructor(public usuarioService: UsuarioService, public configuracion: ConfiguracionService, private router: Router) {
+  }
 
-  cambio() {
+  ngOnInit(): void {
+  }
+
+  cambio(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
         this.usuarioService.cambioContrasena = this.usuarioService.formularioCambioContrasena.value;
         this.usuarioService.cambioContrasena.Email = (res as Usuario).Email;
         this.usuarioService.cambioContra().subscribe(
-          (res) => {
+          (resp) => {
             console.log(res);
-            alert("Cambio Exitoso");
+            alert('Cambio Exitoso');
             this.configuracion.cerrarSesion();
           },
           error => {
-            alert("Error");
+            alert('Error');
           }
-        )
+        );
       },
       err => {
         console.log(err);

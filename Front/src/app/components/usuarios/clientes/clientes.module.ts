@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {AppRoutingModule} from '../../../app-routing.module';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListarProductosComponent } from './productos/listar-productos/listar-productos.component';
 import { ListarDetalleCarritoComponent } from './solicitudes/carrito-compras/listar-detalle-carrito/listar-detalle-carrito.component';
@@ -16,6 +16,8 @@ import { RuletaDescuentosComponent } from './descuentos/ruleta-descuentos/ruleta
 import { DetalleSPComponent } from './solicitudes/personalizadas/detalle-sp/detalle-sp.component';
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ListarDetalleProductoComponent } from './solicitudes/personalizadas/detalle-sp/listar-detalle-producto/listar-detalle-producto.component';
+import { DetalleDelProductoDelDetalleComponent } from './solicitudes/personalizadas/detalle-sp/listar-detalle-producto/detalle-del-producto-del-detalle/detalle-del-producto-del-detalle.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     RegistrarMontajesComponent,
     FinalizarCompraComponent,
     RuletaDescuentosComponent,
-    DetalleSPComponent
+    DetalleSPComponent,
+    ListarDetalleProductoComponent,
+    DetalleDelProductoDelDetalleComponent
   ],
   imports: [
     CommonModule,

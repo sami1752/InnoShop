@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ConfiguracionService } from 'src/app/services/configuracion.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ConfiguracionService} from 'src/app/services/configuracion.service';
+import {UsuarioService} from 'src/app/services/usuario.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-restablecimiento',
@@ -10,20 +10,21 @@ import { Router } from '@angular/router';
 })
 export class RestablecimientoComponent implements OnInit {
 
-  constructor(public usuarioService:UsuarioService, public configuracion:ConfiguracionService, private router:Router) { }
+  constructor(public usuarioService: UsuarioService, public configuracion: ConfiguracionService, private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
-  restablecer(){
+  restablecer(): void {
 
     this.usuarioService.enviarEmailRecuperacion().subscribe(
-      (res:any)=>{
+      (res: any) => {
         alert(res.mensaje);
       },
-      (error:any) =>{
-       alert(error.error.mensaje);
+      (error: any) => {
+        alert(error.error.mensaje);
       }
-    )
+    );
   }
 }
