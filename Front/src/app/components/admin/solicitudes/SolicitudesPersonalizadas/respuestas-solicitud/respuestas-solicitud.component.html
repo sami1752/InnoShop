@@ -1,0 +1,24 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<form class="" [formGroup]="this.solicitudesPersonalizadasService.formularioRegistroRespuesta" (ngSubmit)="resgistrarRespuesta()">
+  <label for="Respuesta"><span></span></label>
+  <input formControlName="Respuesta" id="Respuesta" type="text" placeholder="Ingresa la respuestas"
+         class="form-control"/>
+  <div *ngFor="let respuesta of solicitudesPersonalizadasService.listaRespuestasSolicitudesPersonalizadas">
+    <label class="p-1 "> {{respuesta.Fecha}} </label>
+    <label class="p-1 "> {{respuesta.Usuario}} </label>
+    <label class="p-1 "> {{respuesta.Respuesta}} </label>
+    <label class="p-1 "> ------------------------------------------ </label>
+  </div>
+  <button type="submit" [disabled]="this.solicitudesPersonalizadasService.formularioRegistroRespuesta.invalid"
+          class="os-btn w-50">Enviar
+  </button>
+</form>
+
+
+

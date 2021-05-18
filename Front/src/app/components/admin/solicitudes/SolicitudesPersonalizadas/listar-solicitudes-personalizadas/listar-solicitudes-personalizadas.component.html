@@ -7,6 +7,8 @@
     <th scope="col">Usuario</th>
     <th scope="col">Valor Total</th>
     <th></th>
+    <th></th>
+    <th></th>
   </tr>
   </thead>
   <tbody *ngFor="let solicitud of this.solicitudesPersonalizadasService.listaSolicitudPersonalizada">
@@ -17,6 +19,8 @@
     <td>{{solicitud.IdUsuario}}</td>
     <td>{{solicitud.ValorTotal}}</td>
     <td><a href="Admin/detalleSP/{{solicitud.IdSolicitudPersonalizada}}">Ver</a></td>
+    <td><a href="Admin/editarSP/{{solicitud.IdSolicitudPersonalizada}}">Editar</a></td>
+    <td><a href="Admin/respuestasSP/{{solicitud.IdSolicitudPersonalizada}}">Respuestas</a></td>
   </tr>
   </tbody>
 </table>

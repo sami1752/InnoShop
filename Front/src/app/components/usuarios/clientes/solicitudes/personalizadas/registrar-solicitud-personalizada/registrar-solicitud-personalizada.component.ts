@@ -21,8 +21,8 @@ export class RegistrarSolicitudPErsonalizadaComponent implements OnInit {
   id: number = this.rutaActiva.snapshot.params.IdSolicitud;
 
   ngOnInit(): void {
+    // tslint:disable-next-line:triple-equals
     if (this.id != 0) {
-      alert('Hola');
       this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(
         this.id
       );
@@ -78,10 +78,8 @@ export class RegistrarSolicitudPErsonalizadaComponent implements OnInit {
       this.solicitudesPersonalizadasService.SolicitudPersonalizada
         .IdSolicitudPersonalizada === 0
     ) {
-      alert('R');
       this.registrar();
     } else {
-      alert('A');
       this.actualizacion();
     }
   }

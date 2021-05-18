@@ -34,6 +34,8 @@ import {GestionRuletaComponent} from './components/admin/descuentos/gestion-rule
 import {GestionVentasComponent} from './components/admin/ventas/gestion-ventas/gestion-ventas.component';
 import {ListarDetalleProductoComponent} from './components/usuarios/clientes/solicitudes/personalizadas/detalle-sp/listar-detalle-producto/listar-detalle-producto.component';
 import {DetalleSPComponent} from './components/usuarios/clientes/solicitudes/personalizadas/detalle-sp/detalle-sp.component';
+import {EditarSolicitudComponent} from './components/admin/solicitudes/SolicitudesPersonalizadas/editar-solicitud/editar-solicitud.component';
+import {RespuestasSolicitudComponent} from './components/admin/solicitudes/SolicitudesPersonalizadas/respuestas-solicitud/respuestas-solicitud.component';
 
 
 const routes: Routes = [
@@ -93,7 +95,9 @@ const routes: Routes = [
       {path: 'montajes', component: FinalizarCompraComponent},
       {path: 'detalleSP/:IdSolicitud', component: DetalleSolicitudPersonalizadaComponent},
       {path: 'descuentos', component: GestionRuletaComponent, canActivate: [AutorizacionRutasGuard]},
-      {path: 'ventas', component: GestionVentasComponent, canActivate: [AutorizacionRutasGuard]}
+      {path: 'ventas', component: GestionVentasComponent, canActivate: [AutorizacionRutasGuard]},
+      {path: 'editarSP/:IdSolicitud', component: EditarSolicitudComponent},
+      {path: 'respuestasSP/:IdSolicitud', component: RespuestasSolicitudComponent}
     ]
   }
 ];

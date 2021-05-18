@@ -1,6 +1,6 @@
 export interface RespuestasSolicitudesPersonalizadas {
   IdRespuestaSolicitudesPersonalizadas: number;
-  IdUsuario: number;
+  IdUsuario: string;
   IdSolicitudPersonalizada: number;
   Respuesta: string;
   Fecha: any;

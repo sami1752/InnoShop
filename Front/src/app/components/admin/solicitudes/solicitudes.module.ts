@@ -15,6 +15,7 @@ import {AgregarEntradaPSComponent} from './SolicitudesPersonalizadas/detalle-sol
 import {AgregarMaterialComponent} from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-producto-detalle/listar-material-producto/agregar-material/agregar-material.component';
 import {AgregarPrecioComponent} from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-producto-detalle/listar-precio-producto/agregar-precio/agregar-precio.component';
 import { EditarSolicitudComponent } from './SolicitudesPersonalizadas/editar-solicitud/editar-solicitud.component';
+import { RespuestasSolicitudComponent } from './SolicitudesPersonalizadas/respuestas-solicitud/respuestas-solicitud.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { EditarSolicitudComponent } from './SolicitudesPersonalizadas/editar-sol
     AgregarMaterialComponent,
     AgregarPrecioComponent,
     EditarSolicitudComponent,
+    RespuestasSolicitudComponent,
 
   ],
   imports: [

@@ -70,6 +70,14 @@ export class SolicitudesPersonalizadasService {
     Descripcion: [],
     ValorTotal: [],
   });
+  formularioRegistroRespuesta = this.formBuilder.group({
+    IdRespuestaSolicitudesPersonalizadas: [],
+    IdUsuario: [],
+    IdSolicitudPersonalizada: [],
+    Respuesta: [],
+    Fecha: [],
+    Usuario: []
+  });
 
   formularioRegistroMontaje = this.formBuilder.group({
     IdMontaje: [],
@@ -449,6 +457,10 @@ export class SolicitudesPersonalizadasService {
   }
 
   AgregarRespuestasSolicitudesPersonalizadas(): any {
+
+    this.RespuestasSolicitudesPersonalizadas.Fecha = this.hoy.toISOString();
+    this.RespuestasSolicitudesPersonalizadas.IdRespuestaSolicitudesPersonalizadas = 0;
+    console.log(this.RespuestasSolicitudesPersonalizadas);
     return this.http.post(
       this.configuracion.rootURL +
       '/Solicitudes/RespuestasSolicitudesPersonalizadas/',

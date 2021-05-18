@@ -472,9 +472,10 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("RespuestasSolicitudesPersonalizadas/{RespuestasSolicitudesPersonalizadas}")]
-        public async Task<ActionResult<IEnumerable<RespuestasSolicitudesPersonalizadas>>> 
+        public async Task<ActionResult<IEnumerable<DetalleRespuestasSolicitudP>>> 
             ListaRespuestasSolicitudesPersonalizadas(int RespuestasSolicitudesPersonalizadas) =>
             await _context.ListaRespuestasSolicitudesPersonalizadas(RespuestasSolicitudesPersonalizadas);
+
 
         [HttpPost]
         [Route("RespuestasSolicitudesPersonalizadas")]

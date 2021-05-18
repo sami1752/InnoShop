@@ -285,124 +285,141 @@ namespace Back.Models.Servicios
             return RespuestasSolicitudesPersonalizadas;
         }
 
-        public async Task<ActionResult<IEnumerable<RespuestasSolicitudesPersonalizadas>>>
-            ListaRespuestasSolicitudesPersonalizadas(int id) =>
-            await _context.RespuestasSolicitudesPersonalizadas.Where(x =>
-            x.IdRespuestaSolicitudesPersonalizadas == id).ToListAsync();
+        public async Task<ActionResult<IEnumerable<DetalleRespuestasSolicitudP>>>
+            ListaRespuestasSolicitudesPersonalizadas(int id)
+        {
+
+            return await (from respuestas in _context.RespuestasSolicitudesPersonalizadas
+                          join usuario in _context.Usuarioidentity
+                          on respuestas.IdUsuario equals usuario.Id
+                          where respuestas.IdSolicitudPersonalizada == id
+                          select new DetalleRespuestasSolicitudP
+                          {
+                              IdSolicitudPersonalizada = respuestas.IdSolicitudPersonalizada,
+                              Fecha = respuestas.Fecha,
+                              IdRespuestaSolicitudesPersonalizadas = respuestas.IdRespuestaSolicitudesPersonalizadas,
+                              IdUsuario = respuestas.IdUsuario,
+                              Respuesta = respuestas.Respuesta,
+                              Usuario = usuario.Nombres + " " + usuario.Apellidos
+                          }).ToListAsync();
+        }
+
 
         public async Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarSolicitudPersonalizada()
         {
-
-            return (from solicitud in _context.SolicitudPersonalizada.AsEnumerable()
-                    join detalle in (from detalle in _context.DetalleEstadosSolicitudPersonalizada
-                                     where detalle.FechaFin == new DateTime()
-                                     select new DetalleEstadosSolicitudPersonalizada
-                                     {
-                                         FechaFin = detalle.FechaFin,
-                                         FechaInicio = detalle.FechaInicio,
-                                         IdDetalleEstadoSolicitudPersonalizada = detalle.IdDetalleEstadoSolicitudPersonalizada,
-                                         IdEstado = detalle.IdEstado,
-                                         IdSolicitudPersonalizada = detalle.IdSolicitudPersonalizada,
-                                         IdUsuario = detalle.IdUsuario
-                                     }).AsEnumerable()
-                        on solicitud.IdSolicitudPersonalizada equals detalle.IdSolicitudPersonalizada
-                    join estado in _context.Estados.AsEnumerable()
-                    on detalle.IdEstado equals estado.IdEstado
-                    select new SolicitudPersonalizadaDetalle
-                    {
-                        Alto = solicitud.Alto,
-                        Ancho = solicitud.Ancho,
-                        Descripcion = solicitud.Descripcion,
-                        Estado = estado.Estado,
-                        Fecha = solicitud.Fecha,
-                        Fondo = solicitud.Fondo,
-                        IdSolicitudPersonalizada = solicitud.IdSolicitudPersonalizada,
-                        IdUsuario = solicitud.IdUsuario,
-                        ValorTotal = (from valor in (from detalle in _context.DetalleProductosSolicitud
-                                                     join producto in (from producto in _context.Productos
-                                                                       join precioProducto in _context.PrecioProductos
-                                                                       on producto.IdProducto equals precioProducto.IdProducto
-                                                                       where precioProducto.FechaFin == new DateTime()
-                                                                       select new DetalleProducto
-                                                                       {
-                                                                           IdProducto = producto.IdProducto,
-                                                                           Precio = precioProducto.Precio,
-                                                                           CantidadStock = (from entrada in _context.Entradas
-                                                                                            where entrada.IdProducto == producto.IdProducto
-                                                                                            select entrada.Cantidad).Sum()
-                                                                       })
-                                                     on detalle.IdProducto equals producto.IdProducto
-                                                     select new DeTalleProductoSolicitudVT
-                                                     {
-                                                         IdProducto = producto.IdProducto,
-                                                         CantidadStock = producto.CantidadStock,
-                                                         Precio = producto.Precio,
-                                                         IdSolicitud = detalle.IdSolicitudPersonalizada,
-                                                         Vt = producto.CantidadStock * producto.Precio
-                                                     }).AsEnumerable()
-                                      where valor.IdSolicitud == solicitud.IdSolicitudPersonalizada
-                                      select valor.Vt).Sum()
-                    }).ToList();
+            await using (_context)
+            {
+                return (from solicitud in _context.SolicitudPersonalizada.AsEnumerable()
+                        join detalle in (from detalle in _context.DetalleEstadosSolicitudPersonalizada
+                                         where detalle.FechaFin == new DateTime()
+                                         select new DetalleEstadosSolicitudPersonalizada
+                                         {
+                                             FechaFin = detalle.FechaFin,
+                                             FechaInicio = detalle.FechaInicio,
+                                             IdDetalleEstadoSolicitudPersonalizada = detalle.IdDetalleEstadoSolicitudPersonalizada,
+                                             IdEstado = detalle.IdEstado,
+                                             IdSolicitudPersonalizada = detalle.IdSolicitudPersonalizada,
+                                             IdUsuario = detalle.IdUsuario
+                                         }).AsEnumerable()
+                            on solicitud.IdSolicitudPersonalizada equals detalle.IdSolicitudPersonalizada
+                        join estado in _context.Estados.AsEnumerable()
+                        on detalle.IdEstado equals estado.IdEstado
+                        select new SolicitudPersonalizadaDetalle
+                        {
+                            Alto = solicitud.Alto,
+                            Ancho = solicitud.Ancho,
+                            Descripcion = solicitud.Descripcion,
+                            Estado = estado.Estado,
+                            Fecha = solicitud.Fecha,
+                            Fondo = solicitud.Fondo,
+                            IdSolicitudPersonalizada = solicitud.IdSolicitudPersonalizada,
+                            IdUsuario = solicitud.IdUsuario,
+                            ValorTotal = (from valor in (from detalle in _context.DetalleProductosSolicitud
+                                                         join producto in (from producto in _context.Productos
+                                                                           join precioProducto in _context.PrecioProductos
+                                                                           on producto.IdProducto equals precioProducto.IdProducto
+                                                                           where precioProducto.FechaFin == new DateTime()
+                                                                           select new DetalleProducto
+                                                                           {
+                                                                               IdProducto = producto.IdProducto,
+                                                                               Precio = precioProducto.Precio,
+                                                                               CantidadStock = (from entrada in _context.Entradas
+                                                                                                where entrada.IdProducto == producto.IdProducto
+                                                                                                select entrada.Cantidad).Sum()
+                                                                           })
+                                                         on detalle.IdProducto equals producto.IdProducto
+                                                         select new DeTalleProductoSolicitudVT
+                                                         {
+                                                             IdProducto = producto.IdProducto,
+                                                             CantidadStock = producto.CantidadStock,
+                                                             Precio = producto.Precio,
+                                                             IdSolicitud = detalle.IdSolicitudPersonalizada,
+                                                             Vt = producto.CantidadStock * producto.Precio
+                                                         }).AsEnumerable()
+                                          where valor.IdSolicitud == solicitud.IdSolicitudPersonalizada
+                                          select valor.Vt).Sum()
+                        }).ToList();
+            }
         }
 
         public async Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarMisSolicitudPersonalizada(string id)
         {
-            return (from solicitud in (from solicitud in _context.SolicitudPersonalizada.AsEnumerable()
-                                       join detalle in (from detalle in _context.DetalleEstadosSolicitudPersonalizada
-                                                        where detalle.FechaFin == new DateTime()
-                                                        select new DetalleEstadosSolicitudPersonalizada
-                                                        {
-                                                            FechaFin = detalle.FechaFin,
-                                                            FechaInicio = detalle.FechaInicio,
-                                                            IdDetalleEstadoSolicitudPersonalizada = detalle.IdDetalleEstadoSolicitudPersonalizada,
-                                                            IdEstado = detalle.IdEstado,
-                                                            IdSolicitudPersonalizada = detalle.IdSolicitudPersonalizada,
-                                                            IdUsuario = detalle.IdUsuario
-                                                        }).AsEnumerable()
-                                           on solicitud.IdSolicitudPersonalizada equals detalle.IdSolicitudPersonalizada
-                                       join estado in _context.Estados.AsEnumerable()
-                                       on detalle.IdEstado equals estado.IdEstado
-                                       select new SolicitudPersonalizadaDetalle
-                                       {
-                                           Alto = solicitud.Alto,
-                                           Ancho = solicitud.Ancho,
-                                           Descripcion = solicitud.Descripcion,
-                                           Estado = estado.Estado,
-                                           Fecha = solicitud.Fecha,
-                                           Fondo = solicitud.Fondo,
-                                           IdSolicitudPersonalizada = solicitud.IdSolicitudPersonalizada,
-                                           IdUsuario = solicitud.IdUsuario,
-                                           ValorTotal = (from valor in (from detalle in _context.DetalleProductosSolicitud
-                                                                        join producto in (from producto in _context.Productos
-                                                                                          join precioProducto in _context.PrecioProductos
-                                                                                          on producto.IdProducto equals precioProducto.IdProducto
-                                                                                          where precioProducto.FechaFin == new DateTime()
-                                                                                          select new DetalleProducto
-                                                                                          {
-                                                                                              IdProducto = producto.IdProducto,
-                                                                                              Precio = precioProducto.Precio,
-                                                                                              CantidadStock = (from entrada in _context.Entradas
-                                                                                                               where entrada.IdProducto == producto.IdProducto
-                                                                                                               select entrada.Cantidad).Sum()
-                                                                                          })
-                                                                        on detalle.IdProducto equals producto.IdProducto
-                                                                        select new DeTalleProductoSolicitudVT
-                                                                        {
-                                                                            IdProducto = producto.IdProducto,
-                                                                            CantidadStock = producto.CantidadStock,
-                                                                            Precio = producto.Precio,
-                                                                            IdSolicitud = detalle.IdSolicitudPersonalizada,
-                                                                            Vt = producto.CantidadStock * producto.Precio
-                                                                        }).AsEnumerable()
-                                                         where valor.IdSolicitud == solicitud.IdSolicitudPersonalizada
-                                                         select valor.Vt).Sum()
-                                       }).ToList()
-                    where solicitud.IdUsuario == id
-                    select solicitud).ToList();
+            await using (_context)
+            {
+                return (from solicitud in (from solicitud in _context.SolicitudPersonalizada.AsEnumerable()
+                                           join detalle in (from detalle in _context.DetalleEstadosSolicitudPersonalizada
+                                                            where detalle.FechaFin == new DateTime()
+                                                            select new DetalleEstadosSolicitudPersonalizada
+                                                            {
+                                                                FechaFin = detalle.FechaFin,
+                                                                FechaInicio = detalle.FechaInicio,
+                                                                IdDetalleEstadoSolicitudPersonalizada = detalle.IdDetalleEstadoSolicitudPersonalizada,
+                                                                IdEstado = detalle.IdEstado,
+                                                                IdSolicitudPersonalizada = detalle.IdSolicitudPersonalizada,
+                                                                IdUsuario = detalle.IdUsuario
+                                                            }).AsEnumerable()
+                                               on solicitud.IdSolicitudPersonalizada equals detalle.IdSolicitudPersonalizada
+                                           join estado in _context.Estados.AsEnumerable()
+                                           on detalle.IdEstado equals estado.IdEstado
+                                           select new SolicitudPersonalizadaDetalle
+                                           {
+                                               Alto = solicitud.Alto,
+                                               Ancho = solicitud.Ancho,
+                                               Descripcion = solicitud.Descripcion,
+                                               Estado = estado.Estado,
+                                               Fecha = solicitud.Fecha,
+                                               Fondo = solicitud.Fondo,
+                                               IdSolicitudPersonalizada = solicitud.IdSolicitudPersonalizada,
+                                               IdUsuario = solicitud.IdUsuario,
+                                               ValorTotal = (from valor in (from detalle in _context.DetalleProductosSolicitud
+                                                                            join producto in (from producto in _context.Productos
+                                                                                              join precioProducto in _context.PrecioProductos
+                                                                                              on producto.IdProducto equals precioProducto.IdProducto
+                                                                                              where precioProducto.FechaFin == new DateTime()
+                                                                                              select new DetalleProducto
+                                                                                              {
+                                                                                                  IdProducto = producto.IdProducto,
+                                                                                                  Precio = precioProducto.Precio,
+                                                                                                  CantidadStock = (from entrada in _context.Entradas
+                                                                                                                   where entrada.IdProducto == producto.IdProducto
+                                                                                                                   select entrada.Cantidad).Sum()
+                                                                                              })
+                                                                            on detalle.IdProducto equals producto.IdProducto
+                                                                            select new DeTalleProductoSolicitudVT
+                                                                            {
+                                                                                IdProducto = producto.IdProducto,
+                                                                                CantidadStock = producto.CantidadStock,
+                                                                                Precio = producto.Precio,
+                                                                                IdSolicitud = detalle.IdSolicitudPersonalizada,
+                                                                                Vt = producto.CantidadStock * producto.Precio
+                                                                            }).AsEnumerable()
+                                                             where valor.IdSolicitud == solicitud.IdSolicitudPersonalizada
+                                                             select valor.Vt).Sum()
+                                           }).ToList()
+                        where solicitud.IdUsuario == id
+                        select solicitud).ToList();
 
-
-
-
+            }
         }
 
         public SolicitudPersonalizadaDetalle BuscarSolicitudPersonalizada(int id)
@@ -422,11 +439,14 @@ namespace Back.Models.Servicios
                                            on solicitud.IdSolicitudPersonalizada equals detalle.IdSolicitudPersonalizada
                                        join estado in _context.Estados.AsEnumerable()
                                        on detalle.IdEstado equals estado.IdEstado
+                                       join usuario in _context.Usuarioidentity
+                                       on solicitud.IdUsuario equals usuario.Id
                                        select new SolicitudPersonalizadaDetalle
                                        {
                                            Alto = solicitud.Alto,
                                            Ancho = solicitud.Ancho,
                                            Descripcion = solicitud.Descripcion,
+                                           Usuario = usuario.Nombres + " " + usuario.Apellidos,
                                            Estado = estado.Estado,
                                            Fecha = solicitud.Fecha,
                                            Fondo = solicitud.Fondo,
