@@ -37,6 +37,7 @@ namespace Back.Models.DAL
         public DbSet<Montajes> Montajes { get; set; }
         public DbSet<PrecioMontajes> PrecioMontajes { get; set; }
         public DbSet<RespuestasSolicitudesPersonalizadas> RespuestasSolicitudesPersonalizadas { get; set; }
+        public DbSet<RespuestasMontajes> RespuestasMontajes { get; set; }
         public DbSet<SolicitudPersonalizada> SolicitudPersonalizada { get; set; }
         public DbSet<PorcentajesRuleta> PorcentajesRuleta { get; set; }
         public DbSet<ValorRuleta> ValorRuleta { get; set; }

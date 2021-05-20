@@ -39,6 +39,7 @@ export class RegistrarSolicitudPErsonalizadaComponent implements OnInit {
           .AgregarSolicitudPersonalizada()
           .subscribe(
             (respuesta: any) => {
+              this.solicitudesPersonalizadasService.formularioRegistroSolicitudPersonalizada.reset();
               this.router.navigate(['solicitudes/MisSolicitudes']);
               alert('Exito');
             },

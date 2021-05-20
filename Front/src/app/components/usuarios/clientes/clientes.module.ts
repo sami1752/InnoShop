@@ -18,6 +18,7 @@ import { DetalleSPComponent } from './solicitudes/personalizadas/detalle-sp/deta
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ListarDetalleProductoComponent } from './solicitudes/personalizadas/detalle-sp/listar-detalle-producto/listar-detalle-producto.component';
 import { DetalleDelProductoDelDetalleComponent } from './solicitudes/personalizadas/detalle-sp/listar-detalle-producto/detalle-del-producto-del-detalle/detalle-del-producto-del-detalle.component';
+import { DetalleMComponent } from './solicitudes/personalizadas/detalle-m/detalle-m.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { DetalleDelProductoDelDetalleComponent } from './solicitudes/personaliza
     RuletaDescuentosComponent,
     DetalleSPComponent,
     ListarDetalleProductoComponent,
-    DetalleDelProductoDelDetalleComponent
+    DetalleDelProductoDelDetalleComponent,
+    DetalleMComponent
   ],
   imports: [
     CommonModule,

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Usuario} from 'src/app/models/usuario';
 import {SolicitudesPersonalizadasService} from 'src/app/services/solicitudes-personalizadas.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-listar-mis-montajes',
@@ -11,8 +12,10 @@ import {UsuarioService} from 'src/app/services/usuario.service';
 export class ListarMisMontajesComponent implements OnInit {
 
   constructor(public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
-              public usuarioService: UsuarioService) {
+              public usuarioService: UsuarioService,
+              private rutaActiva: ActivatedRoute) {
   }
+  id: number = this.rutaActiva.snapshot.params.IdMontaje;
 
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(

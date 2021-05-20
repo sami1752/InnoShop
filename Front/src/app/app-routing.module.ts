@@ -36,6 +36,11 @@ import {ListarDetalleProductoComponent} from './components/usuarios/clientes/sol
 import {DetalleSPComponent} from './components/usuarios/clientes/solicitudes/personalizadas/detalle-sp/detalle-sp.component';
 import {EditarSolicitudComponent} from './components/admin/solicitudes/SolicitudesPersonalizadas/editar-solicitud/editar-solicitud.component';
 import {RespuestasSolicitudComponent} from './components/admin/solicitudes/SolicitudesPersonalizadas/respuestas-solicitud/respuestas-solicitud.component';
+import {DetalleMComponent} from './components/usuarios/clientes/solicitudes/personalizadas/detalle-m/detalle-m.component';
+import {RespuestaMontajeComponent} from './components/admin/solicitudes/Montajes/respuesta-montaje/respuesta-montaje.component';
+import {EditarMontajeComponent} from './components/admin/solicitudes/Montajes/editar-montaje/editar-montaje.component';
+import {GestionMontajeComponent} from './components/admin/solicitudes/Montajes/gestion-montaje/gestion-montaje.component';
+import {DetalleMontajeComponent} from './components/admin/solicitudes/Montajes/detalle-montaje/detalle-montaje.component';
 
 
 const routes: Routes = [
@@ -68,11 +73,14 @@ const routes: Routes = [
       {path: 'carrito', component: ListarDetalleCarritoComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'Solicitud/:IdSolicitud', component: RegistrarSolicitudPErsonalizadaComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'MisSolicitudes', component: ListarMisSolicitudesPersonalizadasComponent, canActivate: [AutorizacionRutasGuard]},
-      {path: 'Montajes', component: RegistrarMontajesComponent, canActivate: [AutorizacionRutasGuard]},
+      {path: 'Montajes/:IdMontaje', component: RegistrarMontajesComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'MisMontajes', component: ListarMisMontajesComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'carrito', component: ListarDetalleCarritoComponent},
       {path: 'finalizarCompra', component: FinalizarCompraComponent},
       {path: 'detalleSP/:IdSolicitud', component: DetalleSPComponent, canActivate: [AutorizacionRutasGuard]},
+      {path: 'respuestasSP/:IdSolicitud', component: RespuestasSolicitudComponent},
+      {path: 'detalleM/:IdMontaje', component: DetalleMComponent, canActivate: [AutorizacionRutasGuard]},
+      {path: 'respuestasM/:IdMontaje', component: RespuestaMontajeComponent}
     ]
   },
 
@@ -92,12 +100,15 @@ const routes: Routes = [
       {path: 'Iva', component: GestionIvaComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'MiCuenta', component: ModificarDatosComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'solicitudes', component: GestionSolicitudPersonalizadaComponent, canActivate: [AutorizacionRutasGuard]},
-      {path: 'montajes', component: FinalizarCompraComponent},
+      {path: 'montajes', component: GestionMontajeComponent},
       {path: 'detalleSP/:IdSolicitud', component: DetalleSolicitudPersonalizadaComponent},
       {path: 'descuentos', component: GestionRuletaComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'ventas', component: GestionVentasComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'editarSP/:IdSolicitud', component: EditarSolicitudComponent},
-      {path: 'respuestasSP/:IdSolicitud', component: RespuestasSolicitudComponent}
+      {path: 'respuestasSP/:IdSolicitud', component: RespuestasSolicitudComponent},
+      {path: 'editarM/:IdMontaje', component: EditarMontajeComponent},
+      {path: 'respuestasM/:IdMontaje', component: RespuestaMontajeComponent},
+      {path: 'detalleM/:IdMontaje', component: DetalleMontajeComponent},
     ]
   }
 ];

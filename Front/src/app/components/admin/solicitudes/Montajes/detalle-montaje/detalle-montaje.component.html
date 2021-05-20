@@ -1,0 +1,112 @@
+<section class="content">
+  <div class="content-wrapper">
+    <br>
+    <section class="content">
+      <section class="content">
+        <section class="col-lg-7 connectedSortable">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <i class="bi bi-info-circle-fill text-primary"></i> Información del montaje
+              </h2>
+            </div>
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <div class="row">
+                  <div class="col">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label class="p-1 "> Id Montaje: </label>
+                    {{this.solicitudesPersonalizadasService.Montajes.IdMontaje}}
+                  </div>
+                  <div class="col">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label class="p-1 "> Usuario: </label>
+                    {{this.solicitudesPersonalizadasService.Montajes.Usuario}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class=" col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label class="p-1 "> Fecha: </label>
+                    {{this.solicitudesPersonalizadasService.Montajes.Fecha}}
+                  </div>
+                  <div class=" col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label class="p-1 "> Direccion: </label>
+                    {{this.solicitudesPersonalizadasService.Montajes.Direccion}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label class="p-1 ">Alto: </label>
+                    {{this.solicitudesPersonalizadasService.Montajes.Alto}}
+                  </div>
+                  <div class="col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label class="p-1 "> Ancho: </label>
+                    {{this.solicitudesPersonalizadasService.Montajes.Ancho}}
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label class="p-1 "> Fondo: </label>
+                    {{this.solicitudesPersonalizadasService.Montajes.Fondo}}
+                  </div>
+                  <div class="col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label class="p-1 "> Estado: </label>
+                    {{this.solicitudesPersonalizadasService.Montajes.Estado}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label class="p-1 "> Descripción: </label>
+                    {{this.solicitudesPersonalizadasService.Montajes.Descripcion}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col ">
+                    <i class="bi bi-arrow-right-short text-primary"></i>
+                    <label class="p-1 "> Valor Total: </label>
+                    {{this.solicitudesPersonalizadasService.Montajes.ValorTotal}}
+                  </div>
+
+                  <div class="col "
+                       *ngIf="(this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada')&&
+                       (this.solicitudesPersonalizadasService.Montajes.Estado == 'Enviada' ||
+                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Modificada')">
+                    <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
+                  </div>
+                  <div class="col"
+                       *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada' &&
+                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Rechazada'">
+                    <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
+                  </div>
+                  <div class="col"
+                       *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada' &&
+                       this.solicitudesPersonalizadasService.Montajes.Estado == 'En proceso de cotizacion'">
+                    <button class="btn btn-success" (click)="TerminarCotizacion()">Terminar Cotizacion</button>
+                  </div>
+                  <div class="col"
+                       *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada' &&
+                       this.solicitudesPersonalizadasService.Montajes.Estado != 'Rechazada' &&
+                       this.solicitudesPersonalizadasService.Montajes.Estado != 'Cancelada'">
+                    <button class="btn btn-danger" (click)="cancelar()">Rechazar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+    <app-registrar-editar-producto-montaje></app-registrar-editar-producto-montaje>
+    <app-listar-detalle-producto-m></app-listar-detalle-producto-m>
+    <div *ngIf="this.productoService.desplegarDetalle">
+      <app-detalle-producto-detalle-m></app-detalle-producto-detalle-m>
+    </div>
+  </div>
+</section>

@@ -88,6 +88,14 @@
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'">
                     <a [routerLink]="['/solicitudes/Solicitud',this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada]">Editar</a>
                   </div>
+                  <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'">
+                    <a *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado !=
+                    'Rechazada' && this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado !=
+                    'Cancelada'" href="solicitudes/respuestasSP/{{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}">
+                      Respuestas</a>
+                  </div>
+
                   <!--                  <div class="col" >-->
                   <!--                    <button class="btn btn-danger">Pagar</button>-->
                   <!--                  </div>-->

@@ -1,6 +1,6 @@
 export interface DetalleEstadosMontajes {
   IdDetalleEstadosMontajes: number;
-  IdUsuario: number;
+  IdUsuario: string;
   IdEstado: number;
   FechaInicio: any;
   FechaFin: any;

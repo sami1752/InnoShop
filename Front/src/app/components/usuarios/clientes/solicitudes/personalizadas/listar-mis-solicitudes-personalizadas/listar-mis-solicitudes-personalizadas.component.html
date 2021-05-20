@@ -8,8 +8,6 @@
     <th></th>
     <th></th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
   </thead>
   <tbody *ngFor="let solicitud of this.solicitudesPersonalizadasService.listaSolicitudPersonalizada">
@@ -21,11 +19,8 @@
     <td><a [routerLink]="['/solicitudes/Solicitud',solicitud.IdSolicitudPersonalizada]"
            *ngIf="solicitud.Estado == 'Enviada'|| solicitud.Estado == 'Modificada'">Editar</a></td>
     <td><a [routerLink]="['/solicitudes/detalleSP',solicitud.IdSolicitudPersonalizada]">Ver</a></td>
-    <td *ngIf="solicitud.Estado == 'Cotizada'"><button class="btn btn-link">Aceptar</button></td>
-    <td *ngIf="solicitud.Estado == 'Cotizada'"><button class="btn btn-link" >Rechazar</button></td>
-    <td *ngIf="solicitud.Estado == 'Cotizada'"><button class="btn btn-link" >Devolver</button></td>
-    <td *ngIf="solicitud.Estado == 'En proceso de cotizacion' || solicitud.Estado == 'Devuelta'|| solicitud.Estado == 'Enviada'|| solicitud.Estado == 'Modificada'">
-      <button class="btn btn-link" >Cancelar</button></td>
+    <td *ngIf="solicitud.Estado != 'Rechazada' && solicitud.Estado != 'Cancelada'"><a href="solicitudes/respuestasSP/{{solicitud.IdSolicitudPersonalizada}}">Respuestas</a></td>
+
   </tr>
   </tbody>
 </table>

@@ -9,5 +9,6 @@ export interface Montajes {
   Descripcion: string;
   ValorTotal: number;
   Usuario: string;
+  Estado: string;
 
 }

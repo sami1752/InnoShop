@@ -16,6 +16,7 @@ import {UsuarioService} from 'src/app/services/usuario.service';
 })
 export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
   implements OnInit {
+
   constructor(
     public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
     public usuarioService: UsuarioService,

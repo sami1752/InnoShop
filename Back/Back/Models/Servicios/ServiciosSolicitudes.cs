@@ -105,12 +105,16 @@ namespace Back.Models.Servicios
 
         //--------
         public async Task<DetalleEstadosMontajes> AgregarDetalleEstadosMontajes
-            (DetalleEstadosMontajes DetalleEstadosMontajes)
+            (DetalleEstadosMontajes DetalleEstadosMontajes, bool nueva)
         {
+            if (!nueva)
+                await ModificarEstadoM(DateTime.Now, DetalleEstadosMontajes.IdMontaje);
             _context.DetalleEstadosMontajes.Add(DetalleEstadosMontajes);
             await _context.SaveChangesAsync();
             return DetalleEstadosMontajes;
         }
+
+
 
         public async Task<ActionResult<IEnumerable<DetalleEstadosMontajes>>> ListarDetalleEstadosMontajes() =>
             await _context.DetalleEstadosMontajes.ToListAsync();
@@ -235,7 +239,8 @@ namespace Back.Models.Servicios
             await _context.DetallesProductosMontajes.ToListAsync();
 
         public async Task<ActionResult<IEnumerable<DetallesProductosMontajes>>> ListaDetallesProductosMontajes(int id) =>
-            await _context.DetallesProductosMontajes.Where(x => x.IdDetallesProductosMontajes == id).ToListAsync();
+            await _context.DetallesProductosMontajes.Where(x => x.IdMontaje == id).ToListAsync();
+
 
         public async Task EliminarDetallesProductosMontajes(int id)
         {
@@ -244,16 +249,206 @@ namespace Back.Models.Servicios
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ActionResult<IEnumerable<Montajes>>> ListarMontajes() => await _context.Montajes.ToListAsync();
-        public async Task<ActionResult<IEnumerable<Montajes>>> ListarMisMontajes(string id) =>
-            await _context.Montajes.Where(x => x.IdUsuario == id).ToListAsync();
+        public async Task<ActionResult<IEnumerable<MontajeDetalle>>> ListarMontajes() {
 
-        public async Task<Montajes> BuscarMontajes(int id) => await _context.Montajes.FindAsync(id);
+            await using (_context)
+            {
+                return (from montaje in _context.Montajes.AsEnumerable()
+                        join detalle in (from detalle in _context.DetalleEstadosMontajes
+                                         where detalle.FechaFin == new DateTime()
+                                         select new DetalleEstadosMontajes
+                                         {
+                                             
+                                             FechaFin = detalle.FechaFin,
+                                             FechaInicio = detalle.FechaInicio,
+                                             IdDetalleEstadosMontajes = detalle.IdDetalleEstadosMontajes,
+                                             IdEstado = detalle.IdEstado,
+                                             IdMontaje = detalle.IdMontaje,
+                                             IdUsuario = detalle.IdUsuario
+                                         }).AsEnumerable()
+                            on montaje.IdMontaje equals detalle.IdMontaje
+                        join estado in _context.Estados.AsEnumerable()
+                        on detalle.IdEstado equals estado.IdEstado
+                        select new MontajeDetalle
+                        {
+                            Alto = montaje.Alto,
+                            Ancho = montaje.Ancho,
+                            Descripcion = montaje.Descripcion,
+                            Estado = estado.Estado,
+                            Fecha = montaje.Fecha,
+                            Fondo = montaje.Fondo,
+                            IdMontaje = montaje.IdMontaje,
+                            IdUsuario = montaje.IdUsuario,
+                            Direccion = montaje.Direccion,
+                            ValorTotal = (from valor in (from detalle in _context.DetallesProductosMontajes
+                                                         join producto in (from producto in _context.Productos
+                                                                           join precioProducto in _context.PrecioProductos
+                                                                           on producto.IdProducto equals precioProducto.IdProducto
+                                                                           where precioProducto.FechaFin == new DateTime()
+                                                                           select new DetalleProducto
+                                                                           {
+                                                                               IdProducto = producto.IdProducto,
+                                                                               Precio = precioProducto.Precio,
+                                                                               CantidadStock = (from entrada in _context.Entradas
+                                                                                                where entrada.IdProducto == producto.IdProducto
+                                                                                                select entrada.Cantidad).Sum()
+                                                                           })
+                                                         on detalle.IdProducto equals producto.IdProducto
+                                                         select new DeTalleProductoMontajeVT
+                                                         {
+                                                             IdProducto = producto.IdProducto,
+                                                             CantidadStock = producto.CantidadStock,
+                                                             Precio = producto.Precio,
+                                                             IdMontaje = detalle.IdMontaje,
+                                                             Vt = producto.CantidadStock * producto.Precio
+                                                         }).AsEnumerable()
+                                          where valor.IdMontaje == montaje.IdMontaje
+                                          select valor.Vt).Sum()
+                        }).ToList();
+            }
+        }
+
+        public async Task<ActionResult<IEnumerable<MontajeDetalle>>> ListarMisMontajes(string id)
+        {
+
+            await using (_context)
+            {
+                return (from montaje in (from montaje in _context.Montajes.AsEnumerable()
+                                  join detalle in (from detalle in _context.DetalleEstadosMontajes
+                                                   where detalle.FechaFin == new DateTime()
+                                                   select new DetalleEstadosMontajes
+                                                   {
+
+                                                       FechaFin = detalle.FechaFin,
+                                                       FechaInicio = detalle.FechaInicio,
+                                                       IdDetalleEstadosMontajes = detalle.IdDetalleEstadosMontajes,
+                                                       IdEstado = detalle.IdEstado,
+                                                       IdMontaje = detalle.IdMontaje,
+                                                       IdUsuario = detalle.IdUsuario
+                                                   }).AsEnumerable()
+                                      on montaje.IdMontaje equals detalle.IdMontaje
+                                  join estado in _context.Estados.AsEnumerable()
+                                  on detalle.IdEstado equals estado.IdEstado
+                                  select new MontajeDetalle
+                                  {
+                                      Alto = montaje.Alto,
+                                      Ancho = montaje.Ancho,
+                                      Descripcion = montaje.Descripcion,
+                                      Estado = estado.Estado,
+                                      Fecha = montaje.Fecha,
+                                      Fondo = montaje.Fondo,
+                                      IdMontaje = montaje.IdMontaje,
+                                      IdUsuario = montaje.IdUsuario,
+                                      Direccion = montaje.Direccion,
+                                      ValorTotal = (from valor in (from detalle in _context.DetallesProductosMontajes
+                                                                   join producto in (from producto in _context.Productos
+                                                                                     join precioProducto in _context.PrecioProductos
+                                                                                     on producto.IdProducto equals precioProducto.IdProducto
+                                                                                     where precioProducto.FechaFin == new DateTime()
+                                                                                     select new DetalleProducto
+                                                                                     {
+                                                                                         IdProducto = producto.IdProducto,
+                                                                                         Precio = precioProducto.Precio,
+                                                                                         CantidadStock = (from entrada in _context.Entradas
+                                                                                                          where entrada.IdProducto == producto.IdProducto
+                                                                                                          select entrada.Cantidad).Sum()
+                                                                                     })
+                                                                   on detalle.IdProducto equals producto.IdProducto
+                                                                   select new DeTalleProductoMontajeVT
+                                                                   {
+                                                                       IdProducto = producto.IdProducto,
+                                                                       CantidadStock = producto.CantidadStock,
+                                                                       Precio = producto.Precio,
+                                                                       IdMontaje = detalle.IdMontaje,
+                                                                       Vt = producto.CantidadStock * producto.Precio
+                                                                   }).AsEnumerable()
+                                                    where valor.IdMontaje == montaje.IdMontaje
+                                                    select valor.Vt).Sum()
+                                  }).ToList()
+                 where montaje.IdUsuario == id
+                 select montaje).ToList();
+
+                 
+            }
+        }
+
+        public async Task<MontajeDetalle> BuscarMontajes(int id) {
+            await using (_context)
+            {
+                return (from montaje in (from montaje in _context.Montajes.AsEnumerable()
+                                         join detalle in (from detalle in _context.DetalleEstadosMontajes
+                                                          where detalle.FechaFin == new DateTime()
+                                                          select new DetalleEstadosMontajes
+                                                          {
+
+                                                              FechaFin = detalle.FechaFin,
+                                                              FechaInicio = detalle.FechaInicio,
+                                                              IdDetalleEstadosMontajes = detalle.IdDetalleEstadosMontajes,
+                                                              IdEstado = detalle.IdEstado,
+                                                              IdMontaje = detalle.IdMontaje,
+                                                              IdUsuario = detalle.IdUsuario
+                                                          }).AsEnumerable()
+                                             on montaje.IdMontaje equals detalle.IdMontaje
+                                         join estado in _context.Estados.AsEnumerable()
+                                         on detalle.IdEstado equals estado.IdEstado
+                                         join usuario in _context.Usuarioidentity
+                                         on montaje.IdUsuario equals usuario.Id
+                                         select new MontajeDetalle
+                                         {
+                                             Alto = montaje.Alto,
+                                             Ancho = montaje.Ancho,
+                                             Descripcion = montaje.Descripcion,
+                                             Estado = estado.Estado,
+                                             Fecha = montaje.Fecha,
+                                             Fondo = montaje.Fondo,
+                                             IdMontaje = montaje.IdMontaje,
+                                             IdUsuario = montaje.IdUsuario,
+                                             Direccion = montaje.Direccion,
+                                             Usuario= usuario.Nombres + " " + usuario.Apellidos,
+                                             ValorTotal = (from valor in (from detalle in _context.DetallesProductosMontajes
+                                                                          join producto in (from producto in _context.Productos
+                                                                                            join precioProducto in _context.PrecioProductos
+                                                                                            on producto.IdProducto equals precioProducto.IdProducto
+                                                                                            where precioProducto.FechaFin == new DateTime()
+                                                                                            select new DetalleProducto
+                                                                                            {
+                                                                                                IdProducto = producto.IdProducto,
+                                                                                                Precio = precioProducto.Precio,
+                                                                                                CantidadStock = (from entrada in _context.Entradas
+                                                                                                                 where entrada.IdProducto == producto.IdProducto
+                                                                                                                 select entrada.Cantidad).Sum()
+                                                                                            })
+                                                                          on detalle.IdProducto equals producto.IdProducto
+                                                                          select new DeTalleProductoMontajeVT
+                                                                          {
+                                                                              IdProducto = producto.IdProducto,
+                                                                              CantidadStock = producto.CantidadStock,
+                                                                              Precio = producto.Precio,
+                                                                              IdMontaje = detalle.IdMontaje,
+                                                                              Vt = producto.CantidadStock * producto.Precio
+                                                                          }).AsEnumerable()
+                                                           where valor.IdMontaje == montaje.IdMontaje
+                                                           select valor.Vt).Sum()
+                                         }).ToList()
+                        where montaje.IdMontaje == id
+                        select montaje).ToList()[0];
+
+
+            }
+        }
 
         public async Task<Montajes> AgregarMontajes(Montajes Montajes)
         {
             _context.Montajes.Add(Montajes);
             await _context.SaveChangesAsync();
+            await AgregarDetalleEstadosMontajes(new DetalleEstadosMontajes
+            {
+                IdUsuario = Montajes.IdUsuario,
+                IdMontaje = Montajes.IdMontaje,
+                FechaFin = new DateTime(),
+                FechaInicio = DateTime.Now,
+                IdEstado = 1
+            }, true);
             return Montajes;
         }
 
@@ -261,6 +456,14 @@ namespace Back.Models.Servicios
         {
             _context.Montajes.Update(Montajes);
             await _context.SaveChangesAsync();
+            await AgregarDetalleEstadosMontajes(new DetalleEstadosMontajes
+            {
+                IdUsuario = Montajes.IdUsuario,
+                IdMontaje = Montajes.IdMontaje,
+                FechaFin = new DateTime(),
+                FechaInicio = DateTime.Now,
+                IdEstado = 9
+            }, false);
             return Montajes;
         }
 
@@ -298,6 +501,33 @@ namespace Back.Models.Servicios
                               IdSolicitudPersonalizada = respuestas.IdSolicitudPersonalizada,
                               Fecha = respuestas.Fecha,
                               IdRespuestaSolicitudesPersonalizadas = respuestas.IdRespuestaSolicitudesPersonalizadas,
+                              IdUsuario = respuestas.IdUsuario,
+                              Respuesta = respuestas.Respuesta,
+                              Usuario = usuario.Nombres + " " + usuario.Apellidos
+                          }).ToListAsync();
+        }
+
+        public async Task<RespuestasMontajes> AgregarRespuestasMontajes
+            (RespuestasMontajes RespuestasMontajes)
+        {
+            _context.RespuestasMontajes.Add(RespuestasMontajes);
+            await _context.SaveChangesAsync();
+            return RespuestasMontajes;
+        }
+
+        public async Task<ActionResult<IEnumerable<DetalleRespuestasM>>>
+            ListaRespuestasMontajes(int id)
+        {
+
+            return await (from respuestas in _context.RespuestasMontajes
+                          join usuario in _context.Usuarioidentity
+                          on respuestas.IdUsuario equals usuario.Id
+                          where respuestas.IdMontaje == id
+                          select new DetalleRespuestasM
+                          {
+                              IdMontaje = respuestas.IdMontaje,
+                              Fecha = respuestas.Fecha,
+                              IdRespuestaMontajes = respuestas.IdRespuestaMontajes,
                               IdUsuario = respuestas.IdUsuario,
                               Respuesta = respuestas.Respuesta,
                               Usuario = usuario.Nombres + " " + usuario.Apellidos
@@ -531,6 +761,24 @@ namespace Back.Models.Servicios
             await _context.SaveChangesAsync();
         }
 
+        public async Task ModificarEstadoM(DateTime nueva, int id)
+        {
+            var estados = (from Estado in _context.DetalleEstadosMontajes
+                           orderby Estado.IdDetalleEstadosMontajes descending
+                           where Estado.IdMontaje == id
+                           select new DetalleEstadosMontajes
+                           {
+                               IdDetalleEstadosMontajes= Estado.IdDetalleEstadosMontajes,
+                               FechaFin = Estado.FechaFin,
+                               FechaInicio = Estado.FechaInicio,
+                               IdUsuario = Estado.IdUsuario,
+                               IdMontaje = Estado.IdMontaje,
+                               IdEstado = Estado.IdEstado
+                           }).ToList();
+            estados[0].FechaFin = nueva;
+            _context.DetalleEstadosMontajes.Update(estados[0]);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task<List<CarritoDeCompras>> ExisteCarritoUsuarioPorId(string id)
         {

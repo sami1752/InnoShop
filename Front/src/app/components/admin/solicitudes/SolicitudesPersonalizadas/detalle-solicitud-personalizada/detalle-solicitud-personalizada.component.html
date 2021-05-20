@@ -68,24 +68,28 @@
                     <label class="p-1 "> Valor Total: </label>
                     {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
                   </div>
-
                   <div class="col "
-                       *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudCortizado &&
-                    !this.solicitudesPersonalizadasService.SolicitudRechazada && this.solicitudesPersonalizadasService.SolicitudEnviada">
+                       *ngIf="(this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada')&&
+                       (this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada' ||
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada')">
                     <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
                   </div>
                   <div class="col"
-                       *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizando && !this.solicitudesPersonalizadasService.SolicitudEnviada">
+                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Rechazada'">
                     <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
                   </div>
                   <div class="col"
-                       *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizado && !this.solicitudesPersonalizadasService.SolicitudRechazada && !this.solicitudesPersonalizadasService.SolicitudEnviada">
+                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de cotizacion'">
                     <button class="btn btn-success" (click)="TerminarCotizacion()">Terminar Cotizacion</button>
                   </div>
-                  <div class="col" *ngIf="!this.solicitudesPersonalizadasService.SolicitudRechazada">
+                  <div class="col"
+                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Rechazada' &&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Cancelada'">
                     <button class="btn btn-danger" (click)="cancelar()">Rechazar</button>
                   </div>
-
                 </div>
               </div>
             </div>

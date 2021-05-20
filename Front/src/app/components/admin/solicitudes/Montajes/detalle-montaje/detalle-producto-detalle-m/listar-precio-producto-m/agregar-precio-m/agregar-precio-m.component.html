@@ -1,0 +1,8 @@
+<form class="" [formGroup]="this.productoService.formularioRegistroPrecio" (ngSubmit)="registro()">
+  <div class="input-group mb-3">
+    <input formControlName="Precio" type="number" id="Precio" placeholder="Ingresa el Precio" class="form-control " />
+    <input type="hidden" formControlName="IdProducto" id="IdProducto">
+    <button type="submit" [disabled]="this.productoService.formularioRegistroPrecio.invalid" class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
+    <button type="button" (click)="this.productoService.formularioRegistroPrecio.reset(); this.productoService.FormularioPrecio=false" class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button>
+  </div>
+</form>

@@ -15,6 +15,7 @@ import {RespuestasSolicitudesPersonalizadas} from '../models/SolicitudesPersonal
 import {SolicitudPersonalizada} from '../models/SolicitudesPersonalizadas/solicitud-personalizada';
 import {ConfiguracionService} from './configuracion.service';
 import {UsuarioService} from './usuario.service';
+import {RespuestasMontajes} from '../models/SolicitudesPersonalizadas/respuestas-montajes';
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +51,8 @@ export class SolicitudesPersonalizadasService {
   listaPrecioMontajes: PrecioMontajes[];
   RespuestasSolicitudesPersonalizadas: RespuestasSolicitudesPersonalizadas;
   listaRespuestasSolicitudesPersonalizadas: RespuestasSolicitudesPersonalizadas[];
+  RespuestasMontajes: RespuestasMontajes;
+  listaRespuestasMontajes: RespuestasMontajes[];
   SolicitudPersonalizada: SolicitudPersonalizada;
   listaSolicitudPersonalizada: SolicitudPersonalizada[];
   fecha = new Date();
@@ -59,6 +62,7 @@ export class SolicitudesPersonalizadasService {
   SolicitudCortizando = false;
   SolicitudCortizado = false;
   SolicitudEnviada = false;
+  SolicitudAceptada = false;
 
   formularioRegistroSolicitudPersonalizada = this.formBuilder.group({
     IdSolicitudPersonalizada: [],
@@ -77,6 +81,14 @@ export class SolicitudesPersonalizadasService {
     Respuesta: [],
     Fecha: [],
     Usuario: []
+  });
+
+  formularioRegistroRespuestaM = this.formBuilder.group({
+    IdRespuestaMontajes: [],
+    IdUsuario: [],
+    IdMontaje: [],
+    Respuesta: [],
+    Fecha: []
   });
 
   formularioRegistroMontaje = this.formBuilder.group({
@@ -100,7 +112,23 @@ export class SolicitudesPersonalizadasService {
     IdSolicitudPersonalizada: [],
   });
 
+  formularioDetalleEstadoMontajes = this.formBuilder.group({
+    IdDetalleEstadosMontajes: [],
+    IdUsuario: [],
+    IdEstado: [],
+    FechaInicio: [],
+    FechaFin: [],
+    IdMontaje: [],
+  });
+
   formularioDetalleProductoSolicitudPerzonalizada = this.formBuilder.group({
+    IdDetalleProductosSolicitud: [],
+    IdUsuario: [],
+    IdSolicitudPersonalizada: [],
+    IdProducto: [],
+  });
+
+  formularioDetalleProductoMontajes = this.formBuilder.group({
     IdDetalleProductosSolicitud: [],
     IdUsuario: [],
     IdSolicitudPersonalizada: [],
@@ -130,8 +158,12 @@ export class SolicitudesPersonalizadasService {
   }
 
   AgregarDetalleEstadosMontajes(): any {
+    this.DetalleEstadosMontajes.FechaInicio = this.hoy.toISOString();
+    this.DetalleEstadosMontajes.FechaFin = '0001-01-01';
+    this.DetalleEstadosMontajes.IdDetalleEstadosMontajes = 0;
+    console.log(this.DetalleEstadosMontajes);
     return this.http.post(
-      this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes/',
+      this.configuracion.rootURL + '/Solicitudes/DetalleEstadosMontajes',
       this.DetalleEstadosMontajes
     );
   }
@@ -394,7 +426,10 @@ export class SolicitudesPersonalizadasService {
     this.http
       .get(this.configuracion.rootURL + '/Solicitudes/Montajes/' + id)
       .toPromise()
-      .then((res) => (this.Montajes = res as Montajes));
+      .then((res) => {
+        this.Montajes = res as Montajes;
+        this.formularioRegistroMontaje.patchValue(this.Montajes);
+      });
   }
 
   AgregarMontajes(): any {
@@ -455,6 +490,19 @@ export class SolicitudesPersonalizadasService {
           (this.listaRespuestasSolicitudesPersonalizadas = res as RespuestasSolicitudesPersonalizadas[])
       );
   }
+  ListaRespuestasMontajes(id): void {
+    this.http
+      .get(
+        this.configuracion.rootURL +
+        '/Solicitudes/RespuestasMontajes/' +
+        id
+      )
+      .toPromise()
+      .then(
+        (res) =>
+          (this.listaRespuestasMontajes = res as RespuestasMontajes[])
+      );
+  }
 
   AgregarRespuestasSolicitudesPersonalizadas(): any {
 
@@ -465,6 +513,18 @@ export class SolicitudesPersonalizadasService {
       this.configuracion.rootURL +
       '/Solicitudes/RespuestasSolicitudesPersonalizadas/',
       this.RespuestasSolicitudesPersonalizadas
+    );
+  }
+
+  AgregarRespuestasMontajes(): any {
+
+    this.RespuestasMontajes.Fecha = this.hoy.toISOString();
+    this.RespuestasMontajes.IdRespuestaMontajes = 0;
+    console.log(this.RespuestasMontajes);
+    return this.http.post(
+      this.configuracion.rootURL +
+      '/Solicitudes/RespuestasMontajes/',
+      this.RespuestasMontajes
     );
   }
 
@@ -501,39 +561,8 @@ export class SolicitudesPersonalizadasService {
       .toPromise()
       .then((res) => {
         this.SolicitudPersonalizada = res as SolicitudPersonalizada;
-        if (this.SolicitudPersonalizada.Estado === 'Rechazada') {
-          // alert('Rechazada');
-          this.SolicitudCortizando = false;
-          this.SolicitudCortizado = false;
-          this.SolicitudEnviada = false;
-          this.SolicitudRechazada = true;
-        }
-        if (this.SolicitudPersonalizada.Estado === 'En proceso de cotizacion') {
-          // alert('En proceso de cotizacion');
-          this.SolicitudCortizado = false;
-          this.SolicitudEnviada = false;
-          this.SolicitudRechazada = false;
-          this.SolicitudCortizando = true;
-        }
-        if (this.SolicitudPersonalizada.Estado === 'Cotizada') {
-          // alert('Cotizada');
-          this.SolicitudCortizando = false;
-          this.SolicitudEnviada = false;
-          this.SolicitudRechazada = false;
-          this.SolicitudCortizado = true;
-        }
-        if (this.SolicitudPersonalizada.Estado === 'Modificada' ||
-          this.SolicitudPersonalizada.Estado === 'Enviada' ||
-          this.SolicitudPersonalizada.Estado === 'Devuelta') {
-          // alert('Modificada o Enviada o Devuelta');
-          this.SolicitudCortizando = false;
-          this.SolicitudRechazada = false;
-          this.SolicitudEnviada = true;
-          this.SolicitudCortizado = false;
-        }
-        this.formularioRegistroSolicitudPersonalizada.patchValue(
-          this.SolicitudPersonalizada
-        );
+        this.formularioRegistroSolicitudPersonalizada.patchValue(this.SolicitudPersonalizada);
+        console.log(this.SolicitudPersonalizada);
       });
   }
 

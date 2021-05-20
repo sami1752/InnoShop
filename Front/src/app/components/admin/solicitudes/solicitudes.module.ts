@@ -16,6 +16,20 @@ import {AgregarMaterialComponent} from './SolicitudesPersonalizadas/detalle-soli
 import {AgregarPrecioComponent} from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-producto-detalle/listar-precio-producto/agregar-precio/agregar-precio.component';
 import { EditarSolicitudComponent } from './SolicitudesPersonalizadas/editar-solicitud/editar-solicitud.component';
 import { RespuestasSolicitudComponent } from './SolicitudesPersonalizadas/respuestas-solicitud/respuestas-solicitud.component';
+import { DetalleMontajeComponent } from './Montajes/detalle-montaje/detalle-montaje.component';
+import { EditarMontajeComponent } from './Montajes/editar-montaje/editar-montaje.component';
+import { GestionMontajeComponent } from './Montajes/gestion-montaje/gestion-montaje.component';
+import { ListarMontajeComponent } from './Montajes/listar-montaje/listar-montaje.component';
+import { RegistrarEditarProductoMontajeComponent } from './Montajes/registrar-editar-producto-montaje/registrar-editar-producto-montaje.component';
+import { RespuestaMontajeComponent } from './Montajes/respuesta-montaje/respuesta-montaje.component';
+import { DetalleProductoDetalleMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/detalle-producto-detalle-m.component';
+import { ListarDetalleProductoMComponent } from './Montajes/detalle-montaje/listar-detalle-producto-m/listar-detalle-producto-m.component';
+import { ListarEntradaProductoMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-entrada-producto-m/listar-entrada-producto-m.component';
+import { ListarMaterialProductoMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-material-producto-m/listar-material-producto-m.component';
+import { ListarPrecioProductoMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-precio-producto-m/listar-precio-producto-m.component';
+import { AgregarEntradaMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-entrada-producto-m/agregar-entrada-m/agregar-entrada-m.component';
+import { AgregarMaterialMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-material-producto-m/agregar-material-m/agregar-material-m.component';
+import { AgregarPrecioMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-precio-producto-m/agregar-precio-m/agregar-precio-m.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +47,20 @@ import { RespuestasSolicitudComponent } from './SolicitudesPersonalizadas/respue
     AgregarPrecioComponent,
     EditarSolicitudComponent,
     RespuestasSolicitudComponent,
+    DetalleMontajeComponent,
+    EditarMontajeComponent,
+    GestionMontajeComponent,
+    ListarMontajeComponent,
+    RegistrarEditarProductoMontajeComponent,
+    RespuestaMontajeComponent,
+    DetalleProductoDetalleMComponent,
+    ListarDetalleProductoMComponent,
+    ListarEntradaProductoMComponent,
+    ListarMaterialProductoMComponent,
+    ListarPrecioProductoMComponent,
+    AgregarEntradaMComponent,
+    AgregarMaterialMComponent,
+    AgregarPrecioMComponent,
 
   ],
   imports: [
