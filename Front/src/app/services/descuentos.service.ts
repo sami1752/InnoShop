@@ -36,6 +36,11 @@ export class DescuentosService {
     formRegistroValorDeRuleta = this.formBuilder.group({
       ValorDeRuleta: []
     });
+    formRegistroCupon = this.formBuilder.group({
+      ValorDescuento: []
+      
+    
+    });
 
 
 
@@ -64,11 +69,12 @@ export class DescuentosService {
     hoy = new Date(this.tiempoTranscurrido);
 
     RegistrarCuponDescuento(){
+  
       this.descuento.IdDescuento = 0
       this.descuento.Fecha = this.hoy.toISOString()
       this.descuento.FechaVencimiento = this.hoy.toISOString()
       this.descuento.Estado = true
-      this.descuento.IdPorcentajeRuleta = 1
+
       this.descuento.IdValorRuleta = this.valorRuleta.IdValorRuleta
 
      return  this.http.post(this.configuracion.rootURL+'/Descuentos',this.descuento)

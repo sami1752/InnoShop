@@ -16,6 +16,7 @@ export class RuletaDescuentosComponent implements OnInit {
   tablaCupones:boolean=false;
 
   ngOnInit(): void {
+    this.descuentosService.ListarPorcentajeDescuentos()
       if(localStorage.getItem('token')!=null){
         this.usuarioService.obtenerPerfil().subscribe(
           (res:any)=>{
@@ -33,7 +34,9 @@ export class RuletaDescuentosComponent implements OnInit {
     if(localStorage.getItem('token')!=null){
       if(this.perfilUsuario.Puntos>=this.descuentosService.valorRuleta.ValorDeRuleta)
       {
+ 
         this.descuentosService.descuento.IdUsuario = this.perfilUsuario.Id
+        this.descuentosService.descuento.IdPorcentajeRuleta = 1
         this.descuentosService.RegistrarCuponDescuento().subscribe(
           (res:any)=>{
             alert(res.mensaje)
@@ -48,6 +51,10 @@ export class RuletaDescuentosComponent implements OnInit {
       }
     }else alert("Inicie Sesión para poder adquirir descuento")
    
+  }
+  obtenerID(){
+    alert("hello");
+    console.log(this.descuentosService.formRegistroCupon.value);
   }
 
 }

@@ -45,6 +45,7 @@ export class InicioadminComponent implements OnInit {
 datos=false;
 iva = false;
 entradas = false;
+soli=true;
 
 
   GestionUsuario(){
@@ -83,5 +84,6 @@ entradas = false;
     this.iva = false;
     this.entradas = true;
   }
+  
 
 }
