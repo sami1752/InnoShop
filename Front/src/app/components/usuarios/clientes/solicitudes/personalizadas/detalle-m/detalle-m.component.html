@@ -74,7 +74,7 @@
                     {{this.solicitudesPersonalizadasService.Montajes.ValorTotal}}
                   </div>
                   <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Cotizada'">
-                    <button class="btn btn-success" (click)="Aceptar()">Aceptar</button>
+                    <button class="btn btn-success" (click) ="Aceptar()">Aceptar</button>
                   </div>
 
                   <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Cotizada'">
@@ -111,9 +111,16 @@
         </section>
       </section>
     </section>
-    <app-listar-detalle-producto></app-listar-detalle-producto>
+    <app-listar-detalle-producto-m></app-listar-detalle-producto-m>
     <div *ngIf="this.productoService.desplegarDetalle">
-      <app-detalle-del-producto-del-detalle></app-detalle-del-producto-del-detalle>
+      <app-detalle-del-producto-del-detalle-m></app-detalle-del-producto-del-detalle-m>
     </div>
   </div>
 </section>
+
+<br>
+<br>
+<br>
+
+
+
