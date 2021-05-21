@@ -84,6 +84,9 @@
                   <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
                     <button class="btn btn-dark" (click)="Devoler()">Devolver</button>
                   </div>
+                  <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Aceptada' && !showPaypalButtons">
+                    <button class="btn btn-success" (click)="pay()">Pagar</button>
+                  </div>
                   <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'">
                     <a [routerLink]="['/solicitudes/Solicitud',this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada]">Editar</a>
@@ -106,6 +109,10 @@
         </section>
       </section>
     </section>
+    <ngx-paypal *ngIf="showPaypalButtons" [config]="payPalConfig">
+    </ngx-paypal>
+
+
     <app-listar-detalle-producto></app-listar-detalle-producto>
     <div *ngIf="this.productoService.desplegarDetalle">
       <app-detalle-del-producto-del-detalle></app-detalle-del-producto-del-detalle>

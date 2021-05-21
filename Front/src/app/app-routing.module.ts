@@ -66,7 +66,6 @@ const routes: Routes = [
       {path: 'detalleProducto/:IdProducto', component: DetalleProductoClienteComponent}
     ]
   },
-
   {
     path: 'solicitudes', component: UsuariosComponent,
     children: [

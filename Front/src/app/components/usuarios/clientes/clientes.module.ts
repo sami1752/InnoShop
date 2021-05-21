@@ -21,6 +21,7 @@ import { DetalleDelProductoDelDetalleComponent } from './solicitudes/personaliza
 import { DetalleMComponent } from './solicitudes/personalizadas/detalle-m/detalle-m.component';
 import { ListarDetalleProductoMComponent } from './solicitudes/personalizadas/detalle-m/listar-detalle-producto-m/listar-detalle-producto-m.component';
 import { DetalleDelProductoDelDetalleMComponent } from './solicitudes/personalizadas/detalle-m/listar-detalle-producto-m/detalle-del-producto-del-detalle-m/detalle-del-producto-del-detalle-m.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { DetalleDelProductoDelDetalleMComponent } from './solicitudes/personaliz
     DetalleDelProductoDelDetalleComponent,
     DetalleMComponent,
     ListarDetalleProductoMComponent,
-    DetalleDelProductoDelDetalleMComponent
+    DetalleDelProductoDelDetalleMComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +49,8 @@ import { DetalleDelProductoDelDetalleMComponent } from './solicitudes/personaliz
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CarouselModule
+    CarouselModule,
+    NgxPayPalModule
   ],
   exports: []
 })
