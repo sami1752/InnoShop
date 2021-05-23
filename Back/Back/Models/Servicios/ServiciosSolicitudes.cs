@@ -554,6 +554,8 @@ namespace Back.Models.Servicios
                             on solicitud.IdSolicitudPersonalizada equals detalle.IdSolicitudPersonalizada
                         join estado in _context.Estados.AsEnumerable()
                         on detalle.IdEstado equals estado.IdEstado
+                        join usuario in _context.Usuarioidentity
+                        on solicitud.IdUsuario equals usuario.Id
                         select new SolicitudPersonalizadaDetalle
                         {
                             Alto = solicitud.Alto,
@@ -562,6 +564,7 @@ namespace Back.Models.Servicios
                             Estado = estado.Estado,
                             Fecha = solicitud.Fecha,
                             Fondo = solicitud.Fondo,
+                            Usuario = usuario.Nombres + " " + usuario.Apellidos,
                             IdSolicitudPersonalizada = solicitud.IdSolicitudPersonalizada,
                             IdUsuario = solicitud.IdUsuario,
                             ValorTotal = (from valor in (from detalle in _context.DetalleProductosSolicitud

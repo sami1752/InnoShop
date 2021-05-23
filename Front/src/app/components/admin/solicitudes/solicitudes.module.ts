@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {MatTableModule} from '@angular/material/table';
 import {ListarSolicitudesPersonalizadasComponent} from './SolicitudesPersonalizadas/listar-solicitudes-personalizadas/listar-solicitudes-personalizadas.component';
 import {GestionSolicitudPersonalizadaComponent} from './SolicitudesPersonalizadas/gestion-solicitud-personalizada/gestion-solicitud-personalizada.component';
 import {DetalleSolicitudPersonalizadaComponent} from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-solicitud-personalizada.component';
@@ -30,6 +31,11 @@ import { ListarPrecioProductoMComponent } from './Montajes/detalle-montaje/detal
 import { AgregarEntradaMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-entrada-producto-m/agregar-entrada-m/agregar-entrada-m.component';
 import { AgregarMaterialMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-material-producto-m/agregar-material-m/agregar-material-m.component';
 import { AgregarPrecioMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-precio-producto-m/agregar-precio-m/agregar-precio-m.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -65,9 +71,15 @@ import { AgregarPrecioMComponent } from './Montajes/detalle-montaje/detalle-prod
   ],
   imports: [
     CommonModule,
+    MatSelectModule,
+    MatInputModule,
+    MatTableModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatSortModule,
 
   ],
   exports: [ListarSolicitudesPersonalizadasComponent, GestionSolicitudPersonalizadaComponent]
