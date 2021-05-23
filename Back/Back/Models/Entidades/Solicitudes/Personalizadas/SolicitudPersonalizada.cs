@@ -31,7 +31,5 @@ namespace Back.Models.Entidades.Solicitudes.Personalizadas
         [Required]
         public string Descripcion { get; set; }
 
-        [Required]
-        public float ValorTotal { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { PorcentajesRuleta } from 'src/app/models/Descuentos/porcentajes-ruleta';
-import { DescuentosService } from 'src/app/services/descuentos.service';
+import {Component, OnInit} from '@angular/core';
+import {PorcentajesRuleta} from 'src/app/models/Descuentos/porcentajes-ruleta';
+import {DescuentosService} from 'src/app/services/descuentos.service';
 
 @Component({
   selector: 'app-listar-porcentajes',
@@ -9,21 +9,22 @@ import { DescuentosService } from 'src/app/services/descuentos.service';
 })
 export class ListarPorcentajesComponent implements OnInit {
 
-  constructor(public descuentosService:DescuentosService) { }
-
-  ngOnInit(): void {
-    this.descuentosService.ListarPorcentajeDescuentos()
+  constructor(public descuentosService: DescuentosService) {
   }
 
-  editarPorcentaje(porcentaje:PorcentajesRuleta){
+  ngOnInit(): void {
+    this.descuentosService.ListarPorcentajeDescuentos();
+  }
+
+  editarPorcentaje(porcentaje: PorcentajesRuleta): void {
     this.descuentosService.EditarPorcentaje(porcentaje).subscribe(
-      (res:any)=>{
-        alert(res.mensaje)
-        this.descuentosService.ListarPorcentajeDescuentos()
-      },err=>{
+      (res: any) => {
+        alert(res.mensaje);
+        this.descuentosService.ListarPorcentajeDescuentos();
+      }, err => {
 
       }
-    )
+    );
   }
 
 }

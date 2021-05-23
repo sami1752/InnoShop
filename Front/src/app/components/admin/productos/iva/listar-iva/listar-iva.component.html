@@ -1,20 +1,20 @@
 <table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Porcentaje</th>
-            <th scope="col">FechaInicio</th>
-            <th scope="col">FechaFin</th>
-            <th scope="col">IdUsuario</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let iva of productoService.listaIVA">
-        <tr>
-            <td>{{iva.IdIva}}</td>
-            <td>{{iva.Porcentaje}}</td>
-            <td>{{iva.FechaInicio}}</td>
-            <td>{{iva.FechaFin}}</td>
-            <td>{{iva.IdUsuario}}</td>
-        </tr>
-    </tbody>
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Porcentaje</th>
+    <th scope="col">FechaInicio</th>
+    <th scope="col">FechaFin</th>
+    <th scope="col">IdUsuario</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let iva of productoService.listaIVA">
+  <tr>
+    <td>{{iva.IdIva}}</td>
+    <td>{{iva.Porcentaje}}</td>
+    <td>{{iva.FechaInicio}}</td>
+    <td>{{iva.FechaFin}}</td>
+    <td>{{iva.IdUsuario}}</td>
+  </tr>
+  </tbody>
 </table>

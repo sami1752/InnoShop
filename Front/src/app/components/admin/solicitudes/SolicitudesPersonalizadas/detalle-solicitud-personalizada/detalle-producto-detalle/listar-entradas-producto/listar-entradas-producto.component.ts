@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductoService } from 'src/app/services/producto.service';
-import { SolicitudesPersonalizadasService } from 'src/app/services/solicitudes-personalizadas.service';
+import {Component, OnInit} from '@angular/core';
+import {ProductoService} from 'src/app/services/producto.service';
+import {SolicitudesPersonalizadasService} from 'src/app/services/solicitudes-personalizadas.service';
 
 @Component({
   selector: 'app-listar-entradas-producto',
@@ -9,7 +9,8 @@ import { SolicitudesPersonalizadasService } from 'src/app/services/solicitudes-p
 })
 export class ListarEntradasProductoComponent implements OnInit {
 
-  constructor(public solicitudesPersonalizadasService :SolicitudesPersonalizadasService,public productoService:ProductoService) { }
+  constructor(public solicitudesPersonalizadasService: SolicitudesPersonalizadasService, public productoService: ProductoService) {
+  }
 
   ngOnInit(): void {
   }

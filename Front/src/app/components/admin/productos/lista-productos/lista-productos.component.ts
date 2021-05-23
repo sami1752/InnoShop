@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Producto } from 'src/app/models/producto';
-import { ProductoService } from 'src/app/services/producto.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Producto} from 'src/app/models/producto';
+import {ProductoService} from 'src/app/services/producto.service';
 
 @Component({
   selector: 'app-lista-productos',
@@ -10,43 +10,47 @@ import { ProductoService } from 'src/app/services/producto.service';
 })
 export class ListaProductosComponent implements OnInit {
 
-  constructor(private router:Router, public productoService:ProductoService) { }
+  constructor(private router: Router, public productoService: ProductoService) {
+  }
 
   ngOnInit(): void {
     this.productoService.listarProducto();
     this.productoService.listarCategorias();
   }
-  llenarFormularioProducto(producto:Producto){
-    this.productoService.CampoPrecio = false
+
+  llenarFormularioProducto(producto: Producto): void {
+    this.productoService.CampoPrecio = false;
     this.productoService.formularioRegistroProductos.patchValue(producto);
-    this.productoService.desplegarDetalleMateriales =true;
-    this.productoService.tablaDetalleMateriales =true;
+    this.productoService.desplegarDetalleMateriales = true;
+    this.productoService.tablaDetalleMateriales = true;
     this.productoService.idProducto1 = producto.IdProducto;
     this.productoService.ListarDetalleMaterial(producto.IdProducto);
   }
-  eliminarProducto(producto:Producto){
-    if (confirm("¿Estás seguro de desactivar el Producto?")) {
+
+  eliminarProducto(producto: Producto): void {
+    if (confirm('¿Estás seguro de desactivar el Producto?')) {
       this.productoService.eliminarProducto(producto).subscribe(
-        res=>{
+        res => {
           this.productoService.listarProducto();
           alert(res);
         },
-        err=>{
+        err => {
           alert(err.code);
         }
       );
     }
   }
-  detalleProducto(id){
+
+  detalleProducto(id): void {
     this.productoService.buscarProductoIdDetalle(id);
     this.productoService.listarPrecios(id);
-    alert(id)
+    alert(id);
     this.productoService.listarImagen(id);
     this.productoService.ListarDetalleMaterial(id);
   }
 
-  tomarIdProducto(id){
-    this.productoService.precio.IdProducto = id
+  tomarIdProducto(id): void {
+    this.productoService.precio.IdProducto = id;
   }
 
 }

@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {UsuarioService} from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -8,10 +8,11 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class UsuariosComponent implements OnInit {
 
-  constructor(public usuarioService:UsuarioService) { }
+  constructor(public usuarioService: UsuarioService) {
+  }
 
   ngOnInit(): void {
-   
+
   }
 
 }

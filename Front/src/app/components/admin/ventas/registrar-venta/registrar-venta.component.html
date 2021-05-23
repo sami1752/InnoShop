@@ -1,1 +1,52 @@
-<p>registrar-venta works!</p>
+<form class="" [formGroup]="this.ventasService.formularioRegistroVenta" (ngSubmit)="agregarDetalleProducto()">
+  <div class="row">
+    <div class="col-4">
+      <label for="IdProducto">Seleccione para agregar a venta <span>**</span></label>
+      <select class="form-control" formControlName="IdProducto" (change)="llenarCamposVenta($event.target.value)"
+              id="IdProducto">
+        <option value=0>Elige Producto</option>
+        <option *ngFor="let pro of this.productosService.listaProductos" [value]=pro.IdProducto>{{pro.Nombre}} </option>
+      </select>
+    </div>
+    <div class=" col-3">
+      <label></label>
+      <button type="submit" [disabled]="!this.camposDetalle"
+              class="btn btn-primary mt-4">Agregar Producto
+      </button>
+    </div>
+    <div *ngIf="this.ventasService.IdVenta" class=" col-3">
+      <label></label>
+      <button type="button" (click)="finalizarVenta()"
+              class="btn btn-success mt-4">Finalizar Venta
+      </button>
+    </div>
+
+  </div>
+  <input type="hidden" formControlName="IdVenta">
+  <br>
+  <div *ngIf="camposDetalle" class="row">
+    <div class="col">
+      <label for="Cantidad">cantidad <span>**</span></label>
+      <input formControlName="Cantidad" type="number" id="Cantidad" placeholder="Cantidad" class="form-control "/>
+    </div>
+    <div class="col">
+      <label>Precio <span>**</span></label>
+      <h3>{{this.productosService.detalleProducto.Precio}} </h3>
+    </div>
+    <div class="col">
+      <label>Stock <span>**</span></label>
+      <h3>{{this.productosService.detalleProducto.CantidadStock}} </h3>
+    </div>
+    <div class="col">
+      <label>SubTotal <span>**</span></label>
+      <h3>{{this.productosService.detalleProducto.Precio * this.ventasService.Cantidad}} </h3>
+    </div>
+  </div>
+
+
+  <div class="mt-20"></div>
+
+  <app-detalle-venta-producto *ngIf="this.ventasService.desplegarDetalleVentaEnRegistro"></app-detalle-venta-producto>
+</form>
+
+

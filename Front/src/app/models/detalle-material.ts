@@ -1,5 +1,5 @@
 export interface DetalleMaterial {
-    IdProducto:number,
-    IdMaterial: number,
-    IdUsuario:string,
+  IdProducto: number;
+  IdMaterial: number;
+  IdUsuario: string;
 }

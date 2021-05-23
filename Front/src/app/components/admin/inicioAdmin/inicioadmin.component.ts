@@ -21,18 +21,28 @@ import {
   styleUrls: ['./inicioadmin.component.css']
 })
 export class InicioadminComponent implements OnInit {
-  constructor(private router: Router, public usuarioService: UsuarioService, public configuracionService: ConfiguracionService) {}
-  perfilUsuario: PerfilUsuario
-  ngOnInit() {
+  constructor(private router: Router, public usuarioService: UsuarioService, public configuracionService: ConfiguracionService) {
+  }
+
+  perfilUsuario: PerfilUsuario;
+  Usuarios = false;
+  Productos = false;
+  datos = false;
+  iva = false;
+  entradas = false;
+  soli = true;
+
+  ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
-        this.perfilUsuario = < PerfilUsuario > res;
-        this.perfilUsuario = < PerfilUsuario > res;
-        if (this.perfilUsuario.IdRol == 2)
+        this.perfilUsuario = (res as PerfilUsuario);
+        this.perfilUsuario = (res as PerfilUsuario);
+        if (this.perfilUsuario.IdRol === 2) {
           this.router.navigate(['/usuarios/inicio']);
+        }
         if (!this.perfilUsuario.Estado) {
-          alert("Usuario Inactivo")
-          this.configuracionService.cerrarSesion()
+          alert('Usuario Inactivo');
+          this.configuracionService.cerrarSesion();
         }
       },
       err => {
@@ -40,48 +50,48 @@ export class InicioadminComponent implements OnInit {
       }
     );
   }
- Usuarios=false;
- Productos=false;
-datos=false;
-iva = false;
-entradas = false;
 
 
-  GestionUsuario(){
-    this.Usuarios=true;
-    this.Productos=false;
-    this.datos=false;
-    this.iva = false
+  GestionUsuario(): void {
+    this.Usuarios = true;
+    this.Productos = false;
+    this.datos = false;
+    this.iva = false;
     this.entradas = false;
-    
+
   }
-  cambioDatosP(){
-    this.datos=true;
-    this.Usuarios=false;
-    this.Productos=false;
+
+  cambioDatosP(): void {
+    this.datos = true;
+    this.Usuarios = false;
+    this.Productos = false;
     this.iva = false;
     this.entradas = false;
   }
-  GestionProductos(){
-    this.Productos=true;
-    this.Usuarios=false;
-    this.datos=false;
-    this.iva = false
+
+  GestionProductos(): void {
+    this.Productos = true;
+    this.Usuarios = false;
+    this.datos = false;
+    this.iva = false;
     this.entradas = false;
   }
-  GestionIVA(){
-    this.Productos=false;
-    this.Usuarios=false;
-    this.datos=false;
+
+  GestionIVA(): void {
+    this.Productos = false;
+    this.Usuarios = false;
+    this.datos = false;
     this.iva = true;
     this.entradas = false;
   }
-  GestionEntradas(){
-    this.Productos=false;
-    this.Usuarios=false;
-    this.datos=false;
+
+  GestionEntradas(): void {
+    this.Productos = false;
+    this.Usuarios = false;
+    this.datos = false;
     this.iva = false;
     this.entradas = true;
   }
+
 
 }

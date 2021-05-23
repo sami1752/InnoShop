@@ -1,7 +1,4 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-<!-- <div class="contcarga">
-    <div class="loader"></div>
-</div> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <div class="wrapper">
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <ul class="navbar-nav">
@@ -14,16 +11,14 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Acerca de nosotros</a>
             </li>
-
         </ul>
         <ul class="navbar-nav ml-auto">
-            <!-- Navbar Search -->
-            <button (click)="configuracionService.cerrarSesion()" class="nav-link2"> <i class="bi bi-power "></i> Cerrar Sesion</button>
+            <button (click)="configuracionService.cerrarSesion()" class="nav-link2"> <i class="bi bi-power "></i> Cerrar
+                Sesion</button>
         </ul>
     </nav>
     <aside class="main-sidebar sidebar-dark-primary elevation-4 ">
         <a href="index3.html " class="brand-link " style="text-align: center; ">
-
             <span class="brand-text font-weight-light "> INNOVA</span>
         </a>
         <div class="sidebar ">
@@ -36,7 +31,8 @@
                 </div>
             </div>
             <nav class="mt-2 ">
-                <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview " role="menu " data-accordion="false ">
+                <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview " role="menu "
+                    data-accordion="false ">
                     <li class="nav-item has-treeview ">
                         <a class="nav-link " href="/Admin/Usuarios ">
                             <i class="nav-icon fa fa-users "></i>
@@ -55,33 +51,30 @@
                             <p>IVA </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview ">
+                    <li class="nav-item" (click)="soli=!soli" onclick="rotate(180)">
                         <a class="nav-link ">
                             <i class="nav-icon far fa-plus-square "></i>
                             <p>
                                 Solicitudes
-                                <i class="fas fa-angle-left right "></i>
+                                <i class="right fas fa-angle-down" id="flecha1"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-
-                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="Admin/solicitudes" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Solicitudes Personalizadas</p>
+                    <li class="nav-item " *ngIf="soli">
+                        <a href="Admin/solicitudes " class="nav-link ">
+                            <i class="far fa-circle nav-icon "></i>
+                            <p>S. Personalizadas</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="pages/examples/register.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                    <li class="nav-item " *ngIf="soli">
+                        <a href="pages/examples/register.html " class="nav-link ">
+                            <i class="far fa-circle nav-icon "></i>
                             <p>Montajes</p>
                         </a>
                     </li>
                     <li class="nav-header ">REPORTES</li>
                     <li class="nav-item ">
-                        <a href="https://adminlte.io/docs/3.0 " class="nav-link ">
+                        <a href="Admin/ventas" class="nav-link ">
                             <i class="nav-icon fas fa-file "></i>
                             <p>Ventas</p>
                         </a>
@@ -105,36 +98,20 @@
                             <p>Montajes</p>
                         </a>
                     </li>
-
                 </ul>
             </nav>
         </div>
     </aside>
-    <!-- <div *ngIf="Usuarios ">
-        <app-gestion-usuario></app-gestion-usuario>
-    </div>
-    <div *ngIf="datos " style="margin-left: 15%; ">
-        <app-modificar-datos></app-modificar-datos>
-    </div>
-    <div *ngIf="Productos ">
-        <app-gestion-productos></app-gestion-productos>
-    </div>
-    <div *ngIf="iva ">
-        <app-gestion-iva></app-gestion-iva>
-    </div> -->
     <router-outlet></router-outlet>
     <aside class="control-sidebar control-sidebar-dark ">
-        <!-- Control sidebar content goes here -->
     </aside>
     <footer class="main-footer ">
         <strong>Innova &nbsp;</strong> <i class="fas fa-map-marker-alt "></i> Cali,valle del cauca.
         <div class="float-right d-none d-sm-inline-block ">
             <i class="fab fa-instagram "></i>&nbsp;<b> <a
-          href="https://www.instagram.com/innovartevitrinas.cali/ ">Innovartevitrinas.cali</a> </b>
+                    href="https://www.instagram.com/innovartevitrinas.cali/ ">Innovartevitrinas.cali</a> </b>
         </div>
         <aside class="control-sidebar control-sidebar-dark ">
-            <!-- Control sidebar content goes here -->
         </aside>
-
     </footer>
 </div>

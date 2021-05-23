@@ -1,6 +1,6 @@
 export interface Categoria {
-    IdCategoria : number,
-    Nombre : string,
-    Fecha : any,
-    IdUsuario : string
+  IdCategoria: number;
+  Nombre: string;
+  Fecha: any;
+  IdUsuario: string;
 }

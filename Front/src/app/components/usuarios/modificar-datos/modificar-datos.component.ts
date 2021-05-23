@@ -22,81 +22,80 @@ import {
 })
 export class ModificarDatosComponent implements OnInit {
 
-  constructor(public usuarioService: UsuarioService, private router: Router, public configuracionService: ConfiguracionService) {}
+  constructor(public usuarioService: UsuarioService, private router: Router, public configuracionService: ConfiguracionService) {
+  }
 
-  //perfilUsuario;
+
   usuario: Usuario;
 
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
-        this.usuarioService.perfilUsuario = < Usuario >  res;
+        this.usuarioService.perfilUsuario = (res as Usuario);
         this.usuarioService.buscarUsuarioId(this.usuarioService.perfilUsuario.Id).subscribe(
           respuesta => {
-            this.usuarioService.formularioRegistroEdicionDatos.patchValue( < Usuario > respuesta);
+            this.usuarioService.formularioRegistroEdicionDatos.patchValue(respuesta as Usuario);
           },
           Error => {
-            alert("Error")
+            alert('Error');
           }
         );
       },
       err => {
         console.log(err);
-        alert("error");
+        alert('error');
       }
     );
   }
 
 
-
-  modificarDatosCuenta() {
+  modificarDatosCuenta(): void {
     this.usuarioService.actualizacionUsuario().subscribe(
       (respuesta: any) => {
         if (respuesta.Succeeded) {
           this.router.navigateByUrl('usuarios/login');
-          alert("Actualizacion Exitosa")
-        } else
+          alert('Actualizacion Exitosa');
+        } else {
           respuesta.Errors.forEach(element => {
             switch (element.Code) {
               case 'DuplicateUserName':
-                alert("Email Existente en la base de datos");
+                alert('Email Existente en la base de datos');
                 break;
               default:
-                alert("error");
+                alert('error');
                 break;
             }
-          })
+          });
+        }
       });
   }
 
-  eliminarCuenta() {
+  eliminarCuenta(): void {
 
     this.usuarioService.obtenerPerfil().subscribe(
       (res: any) => {
         this.usuario = res;
 
-        if (confirm("Esta seguro de desactivar su cuenta")) {
+        if (confirm('Esta seguro de desactivar su cuenta')) {
           this.usuarioService.eliminarUsuario(this.usuario).subscribe(
-            (res: any) => {
+            (resp) => {
               {
-                alert("cliente eliminado con éxito");
-                this.configuracionService.cerrarSesion()
+                alert('cliente eliminado con éxito');
+                this.configuracionService.cerrarSesion();
               }
             },
             err => {
-              alert("error");
+              alert('error');
             }
           );
         }
       },
       err => {
-        alert("error");
+        alert('error');
       }
     );
 
   }
-
-
 
 
 }

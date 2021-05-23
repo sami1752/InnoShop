@@ -1,57 +1,57 @@
 <section class="col-lg-8 connectedSortable" style="float: right; margin-top: -30%; ">
-    <div class="card">
-        <div class="card-header">
-            <h2 class="card-title">
-                <i class="fas fa-info-circle text-success"></i> Información del usuario
-            </h2>
-            <div style="float: right;">
-                <i class="fas fa-star text-success"></i>
-                <label for="" class="p-1">Puntos</label> {{this.UsuarioService.detalleUsuario.Puntos}}
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="tab-content p-0">
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-dot-circle text-secondary"></i>
-                        <label for=" " class="p-1 ">  Nombres:  </label> {{this.UsuarioService.detalleUsuario.Nombres}}
-                    </div>
-                    <div class=" col ">
-                        <i class="fas fa-dot-circle text-secondary"></i>
-                        <label for=" " class="p-1 ">  Apellidos:  </label> {{this.UsuarioService.detalleUsuario.Apellidos}}
-                    </div>
-                </div>
-                <div class="row ">
-                    <div class="col ">
-                        <i class="fas fa-at text-secondary "></i>
-                        <label for=" " class="p-1 ">Correo:  </label> {{this.UsuarioService.detalleUsuario.Email}}
-                    </div>
-                    <div class="col ">
-                        <i class="fas fa-id-card text-secondary "></i>
-                        <label for=" " class="p-1 ">  Tipo documento:  </label> {{this.UsuarioService.detalleUsuario.TipoDocumento}}
-                    </div>
-                </div>
-                <div class="row ">
-                    <div class="col ">
-                        <i class="fas fa-hashtag text-secondary "></i>
-                        <label for=" " class="p-1 ">  Documento:  </label> {{this.UsuarioService.detalleUsuario.NumDocumento}}
-                    </div>
-                    <div class="col ">
-                        <i class="fas fa-map-marker-alt text-secondary "></i>
-                        <label for=" " class="p-1 ">  Dirección:  </label> {{this.UsuarioService.detalleUsuario.Direccion}}
-                    </div>
-                </div>
-                <div class="row ">
-                    <div class="col ">
-                        <i class="fas fa-phone-alt text-secondary "></i>
-                        <label for=" " class="p-1 ">  Teléfono:  </label> {{this.UsuarioService.detalleUsuario.Telefono}}
-                    </div>
-                    <div class="col ">
-                        <i class="fas fa-venus-mars text-secondary "></i>
-                        <label for=" " class="p-1 ">Sexo:  </label> {{this.UsuarioService.detalleUsuario.Sexo}}
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">
+        <i class="fas fa-info-circle text-success"></i> Información del usuario
+      </h2>
+      <div style="float: right;">
+        <i class="fas fa-star text-success"></i>
+        <label class="p-1">Puntos</label> {{this.usuarioService.detalleUsuario.Puntos}}
+      </div>
     </div>
+    <div class="card-body">
+      <div class="tab-content p-0">
+        <div class="row">
+          <div class="col">
+            <i class="fas fa-dot-circle text-secondary"></i>
+            <label class="p-1 "> Nombres: </label> {{this.usuarioService.detalleUsuario.Nombres}}
+          </div>
+          <div class=" col ">
+            <i class="fas fa-dot-circle text-secondary"></i>
+            <label class="p-1 "> Apellidos: </label> {{this.usuarioService.detalleUsuario.Apellidos}}
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col ">
+            <i class="fas fa-at text-secondary "></i>
+            <label class="p-1 ">Correo: </label> {{this.usuarioService.detalleUsuario.Email}}
+          </div>
+          <div class="col ">
+            <i class="fas fa-id-card text-secondary "></i>
+            <label class="p-1 "> Tipo documento: </label> {{this.usuarioService.detalleUsuario.TipoDocumento}}
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col ">
+            <i class="fas fa-hashtag text-secondary "></i>
+            <label class="p-1 "> Documento: </label> {{this.usuarioService.detalleUsuario.NumDocumento}}
+          </div>
+          <div class="col ">
+            <i class="fas fa-map-marker-alt text-secondary "></i>
+            <label class="p-1 "> Dirección: </label> {{this.usuarioService.detalleUsuario.Direccion}}
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col ">
+            <i class="fas fa-phone-alt text-secondary "></i>
+            <label class="p-1 "> Teléfono: </label> {{this.usuarioService.detalleUsuario.Telefono}}
+          </div>
+          <div class="col ">
+            <i class="fas fa-venus-mars text-secondary "></i>
+            <label class="p-1 ">Sexo: </label> {{this.usuarioService.detalleUsuario.Sexo}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

@@ -1,109 +1,147 @@
 <form class="" [formGroup]="this.usuarioService.formularioRegistroUsuarioAdmin" (ngSubmit)="onSubmit()">
 
-    <input type="hidden" formControlName="Id">
+  <input type="hidden" formControlName="Id">
 
-    <div class="row">
-        <div class="col">
-            <label for="name">Nombres <span>**</span></label>
-            <input formControlName="Nombres" id="name" type="text" placeholder="Ingresa nombres" class="form-control " />
-            <div *ngIf="this.usuarioService.nombresAdmin.invalid && (this.usuarioService.nombresAdmin.touched || this.usuarioService.nombresAdmin.dirty)" class="text-danger mb-20 text-center">
-                <div *ngIf="this.usuarioService.nombresAdmin.hasError('required')" class="val">El nombre es obligatorio</div>
-                <div *ngIf="this.usuarioService.nombresAdmin.hasError('pattern')" class="val">El nombre no debe contener números o caracteres especiales</div>
-                <div *ngIf="this.usuarioService.nombresAdmin.hasError('maxlength')" class="val">El nombre de usuario debe contener máximo 30 caracteres</div>
-            </div>
+  <div class="row">
+    <div class="col">
+      <label for="name">Nombres <span>**</span></label>
+      <input formControlName="Nombres" id="name" type="text" placeholder="Ingresa nombres" class="form-control "/>
+      <div
+        *ngIf="this.usuarioService.nombresAdmin.invalid && (this.usuarioService.nombresAdmin.touched || this.usuarioService.nombresAdmin.dirty)"
+        class="text-danger mb-20 text-center">
+        <div *ngIf="this.usuarioService.nombresAdmin.hasError('required')" class="val">El nombre es obligatorio</div>
+        <div *ngIf="this.usuarioService.nombresAdmin.hasError('pattern')" class="val">El nombre no debe contener números
+          o caracteres especiales
         </div>
-        <div class="col">
-            <label for="email-id">Apellidos <span>**</span></label>
-            <input formControlName="Apellidos" type="text" placeholder="Ingresa Apellidos" class="form-control " />
-            <!--Validaciones Apellidos-->
-            <div *ngIf="this.usuarioService.apellidosAdmin.invalid && (this.usuarioService.apellidosAdmin.touched || this.usuarioService.apellidosAdmin.dirty)" class="text-danger mb-20 text-center">
-                <div *ngIf="this.usuarioService.apellidosAdmin.hasError('required')" class="val">El apellido es obligatorio</div>
-                <div *ngIf="this.usuarioService.apellidosAdmin.hasError('pattern')" class="val">El apellido no debe contener numeros o caracteres especiales</div>
-                <div *ngIf="this.usuarioService.apellidosAdmin.hasError('maxlength')" class="val">El apellido de usuario debe contener máximo 30 caracteres</div>
-            </div>
+        <div *ngIf="this.usuarioService.nombresAdmin.hasError('maxlength')" class="val">El nombre de usuario debe
+          contener máximo 30 caracteres
         </div>
-
+      </div>
+    </div>
+    <div class="col">
+      <label for="Apellidos">Apellidos <span>**</span></label>
+      <input id="Apellidos"  formControlName="Apellidos" type="text" placeholder="Ingresa Apellidos" class="form-control "/>
+      <!--Validaciones Apellidos-->
+      <div
+        *ngIf="this.usuarioService.apellidosAdmin.invalid && (this.usuarioService.apellidosAdmin.touched || this.usuarioService.apellidosAdmin.dirty)"
+        class="text-danger mb-20 text-center">
+        <div *ngIf="this.usuarioService.apellidosAdmin.hasError('required')" class="val">El apellido es obligatorio
+        </div>
+        <div *ngIf="this.usuarioService.apellidosAdmin.hasError('pattern')" class="val">El apellido no debe contener
+          numeros o caracteres especiales
+        </div>
+        <div *ngIf="this.usuarioService.apellidosAdmin.hasError('maxlength')" class="val">El apellido de usuario debe
+          contener máximo 30 caracteres
+        </div>
+      </div>
     </div>
 
-    <!--Validaciones Nombre-->
+  </div>
+
+  <!--Validaciones Nombre-->
 
 
-    <label for="pass">Correo<span>**</span></label>
-    <input formControlName="Email" type="email" placeholder="Email" class="form-control " />
-    <!--Validaciones Correo-->
-    <div *ngIf="this.usuarioService.emailAdmin.invalid && (this.usuarioService.emailAdmin.touched || this.usuarioService.emailAdmin.dirty)" class="text-danger mb-20 text-center">
-        <div *ngIf="this.usuarioService.emailAdmin.hasError('required')" class="val">El correo es obligatorio</div>
-        <div *ngIf="this.usuarioService.emailAdmin.hasError('email')" class="val">Digite un correo valido</div>
-        <div *ngIf="this.usuarioService.emailAdmin.hasError('maxlength')" class="val">El correo debe contener máximo 50 caracteres
-        </div>
+  <label for="Email">Correo<span>**</span></label>
+  <input id="Email" formControlName="Email" type="email" placeholder="Email" class="form-control "/>
+  <!--Validaciones Correo-->
+  <div
+    *ngIf="this.usuarioService.emailAdmin.invalid && (this.usuarioService.emailAdmin.touched || this.usuarioService.emailAdmin.dirty)"
+    class="text-danger mb-20 text-center">
+    <div *ngIf="this.usuarioService.emailAdmin.hasError('required')" class="val">El correo es obligatorio</div>
+    <div *ngIf="this.usuarioService.emailAdmin.hasError('email')" class="val">Digite un correo valido</div>
+    <div *ngIf="this.usuarioService.emailAdmin.hasError('maxlength')" class="val">El correo debe contener máximo 50
+      caracteres
     </div>
-    <div class="row">
-        <div class="col">
-            <label for="name">Tipo documento <span>**</span></label>
-            <select class="form-control" formControlName="TipoDocumento">
-            <option value="">Seleccione </option>
-            <option *ngFor="let doc of listaTiposDoc" [value]="doc.Tipo">{{doc.Tipo}}</option>
-          </select>
-            <!--Validaciones Tipo documento-->
-            <div *ngIf="this.usuarioService.tipoDocumentoAdmin.invalid && (this.usuarioService.tipoDocumentoAdmin.touched || this.usuarioService.tipoDocumentoAdmin.dirty)" class="text-danger mb-20 text-center">
-                <div *ngIf="this.usuarioService.tipoDocumentoAdmin.hasError('required')" class="val">Elija una opción</div>
-            </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="name">Tipo documento <span>**</span></label>
+      <select class="form-control" formControlName="TipoDocumento">
+        <option value="">Seleccione</option>
+        <option *ngFor="let doc of listaTiposDoc" [value]="doc.Tipo">{{doc.Tipo}}</option>
+      </select>
+      <!--Validaciones Tipo documento-->
+      <div
+        *ngIf="this.usuarioService.tipoDocumentoAdmin.invalid && (this.usuarioService.tipoDocumentoAdmin.touched || this.usuarioService.tipoDocumentoAdmin.dirty)"
+        class="text-danger mb-20 text-center">
+        <div *ngIf="this.usuarioService.tipoDocumentoAdmin.hasError('required')" class="val">Elija una opción</div>
+      </div>
 
-        </div>
-        <div class="col">
-            <label for="email-id">N°documento <span>**</span></label>
-            <input formControlName="NumDocumento" type="text" class="form-control " placeholder="Ingresa Numero de documento" />
-            <!--Validaciones Numero documento-->
-            <div *ngIf="this.usuarioService.documentoAdmin.invalid && (this.usuarioService.documentoAdmin.touched || this.usuarioService.documentoAdmin.dirty)" class="text-danger mb-20 text-center">
-                <div *ngIf="this.usuarioService.documentoAdmin.hasError('required')" class="val">El número de documento es obligatorio
-                </div>
-                <div *ngIf="this.usuarioService.documentoAdmin.hasError('pattern')" class="val">Digite solo números</div>
-                <div *ngIf="this.usuarioService.documentoAdmin.hasError('maxlength')" class="val">El numero debe contener máximo 10 caracteres
-                </div>
-            </div>
-        </div>
     </div>
-
-
-    <label for="name">Telefono <span>**</span></label>
-    <input formControlName="Telefono" type="text" placeholder="Ingrese telefono" class="form-control " />
-    <!--Validaciones Numero telefono-->
-    <div *ngIf="this.usuarioService.telefonoAdmin.invalid && (this.usuarioService.telefonoAdmin.touched || this.usuarioService.telefonoAdmin.dirty)" class="text-danger mb-20 text-center">
-        <div *ngIf="this.usuarioService.telefonoAdmin.hasError('required')" class="val">El número de telefono es obligatorio</div>
-        <div *ngIf="this.usuarioService.telefonoAdmin.hasError('pattern')" class="val">Digite solo números</div>
-        <div *ngIf="this.usuarioService.telefonoAdmin.hasError('maxlength')" class="val">El número debe contener máximo 10 caracteres
+    <div class="col">
+      <label for="NumDocumento">N°documento <span>**</span></label>
+      <input id="NumDocumento" formControlName="NumDocumento" type="text" class="form-control "
+             placeholder="Ingresa Numero de documento"/>
+      <!--Validaciones Numero documento-->
+      <div
+        *ngIf="this.usuarioService.documentoAdmin.invalid && (this.usuarioService.documentoAdmin.touched || this.usuarioService.documentoAdmin.dirty)"
+        class="text-danger mb-20 text-center">
+        <div *ngIf="this.usuarioService.documentoAdmin.hasError('required')" class="val">El número de documento es
+          obligatorio
         </div>
+        <div *ngIf="this.usuarioService.documentoAdmin.hasError('pattern')" class="val">Digite solo números</div>
+        <div *ngIf="this.usuarioService.documentoAdmin.hasError('maxlength')" class="val">El numero debe contener máximo
+          10 caracteres
+        </div>
+      </div>
     </div>
-    <label for="name">Sexo <span>**</span></label>
-    <select class="form-control " formControlName="Sexo">
+  </div>
+
+
+  <label for="name">Telefono <span>**</span></label>
+  <input formControlName="Telefono" type="text" placeholder="Ingrese telefono" class="form-control "/>
+  <!--Validaciones Numero telefono-->
+  <div
+    *ngIf="this.usuarioService.telefonoAdmin.invalid && (this.usuarioService.telefonoAdmin.touched || this.usuarioService.telefonoAdmin.dirty)"
+    class="text-danger mb-20 text-center">
+    <div *ngIf="this.usuarioService.telefonoAdmin.hasError('required')" class="val">El número de telefono es
+      obligatorio
+    </div>
+    <div *ngIf="this.usuarioService.telefonoAdmin.hasError('pattern')" class="val">Digite solo números</div>
+    <div *ngIf="this.usuarioService.telefonoAdmin.hasError('maxlength')" class="val">El número debe contener máximo 10
+      caracteres
+    </div>
+  </div>
+  <label for="name">Sexo <span>**</span></label>
+  <select class="form-control " formControlName="Sexo">
     <option value="">Elige Sexo</option>
     <option *ngFor="let tipo of listaSexo" [value]="tipo.Sexo">{{tipo.Sexo}}</option>
   </select>
-    <!--Validaciones Sexo-->
-    <div *ngIf="this.usuarioService.sexoAdmin.invalid && (this.usuarioService.sexoAdmin.touched || this.usuarioService.sexoAdmin.dirty)" class="text-danger mb-20 text-center">
-        <div *ngIf="this.usuarioService.sexoAdmin.hasError('required')" class="val">El sexo es obligatorio</div>
-    </div>
-    <label for="Rol">Rol <span>**</span></label>
-    <select class="form-control " formControlName="IdRol">
+  <!--Validaciones Sexo-->
+  <div
+    *ngIf="this.usuarioService.sexoAdmin.invalid && (this.usuarioService.sexoAdmin.touched || this.usuarioService.sexoAdmin.dirty)"
+    class="text-danger mb-20 text-center">
+    <div *ngIf="this.usuarioService.sexoAdmin.hasError('required')" class="val">El sexo es obligatorio</div>
+  </div>
+  <label for="IdRol">Rol <span>**</span></label>
+  <select class="form-control " formControlName="IdRol" id="IdRol">
     <option value="">Elige Rol</option>
     <option value=1>Administrador</option>
     <option value=2>Cliente</option>
   </select>
-    <div *ngIf="this.usuarioService.idrolAdmin.invalid && (this.usuarioService.idrolAdmin.touched || this.usuarioService.idrolAdmin.dirty)" class="text-danger mb-20 text-center">
-        <div *ngIf="this.usuarioService.idrolAdmin.hasError('required')" class="val">El rol es obligatorio</div>
+  <div
+    *ngIf="this.usuarioService.idrolAdmin.invalid && (this.usuarioService.idrolAdmin.touched || this.usuarioService.idrolAdmin.dirty)"
+    class="text-danger mb-20 text-center">
+    <div *ngIf="this.usuarioService.idrolAdmin.hasError('required')" class="val">El rol es obligatorio</div>
+  </div>
+
+
+  <label for="Direccion">Direccion <span>**</span></label>
+  <input id="Direccion" formControlName="Direccion" type="text" class="form-control " placeholder="Ingrese Direccion"/>
+  <div
+    *ngIf="this.usuarioService.direccionAdmin.invalid && (this.usuarioService.direccionAdmin.touched || this.usuarioService.direccionAdmin.dirty)"
+    class="text-danger mb-20 text-center">
+    <div *ngIf="this.usuarioService.direccionAdmin.hasError('required')" class="val">La Direccion es obligatoria</div>
+    <div *ngIf="this.usuarioService.direccionAdmin.hasError('maxlength')" class="val">La Direccion debe contener máximo
+      50 caracteres
     </div>
+  </div>
 
-
-    <label for="pass">Direccion <span>**</span></label>
-    <input formControlName="Direccion" type="text" class="form-control " placeholder="Ingrese Direccion" />
-    <div *ngIf="this.usuarioService.direccionAdmin.invalid && (this.usuarioService.direccionAdmin.touched || this.usuarioService.direccionAdmin.dirty)" class="text-danger mb-20 text-center">
-        <div *ngIf="this.usuarioService.direccionAdmin.hasError('required')" class="val">La Direccion es obligatoria</div>
-        <div *ngIf="this.usuarioService.direccionAdmin.hasError('maxlength')" class="val">La Direccion debe contener máximo 50 caracteres
-        </div>
-    </div>
-
-    <div class="mt-10"></div>
-    <button type="submit" [disabled]="this.usuarioService.formularioRegistroUsuarioAdmin.invalid" class="os-btn w-50">{{usuarioService.boton}}</button>
-    <button type="button" class="os-btn w-50" (click)="this.usuarioService.formularioRegistroUsuarioAdmin.reset();">Limpiar</button>
+  <div class="mt-10"></div>
+  <button type="submit" [disabled]="this.usuarioService.formularioRegistroUsuarioAdmin.invalid"
+          class="os-btn w-50">{{usuarioService.boton}}</button>
+  <button type="button" class="os-btn w-50" (click)="this.usuarioService.formularioRegistroUsuarioAdmin.reset();">
+    Limpiar
+  </button>
 
 </form>

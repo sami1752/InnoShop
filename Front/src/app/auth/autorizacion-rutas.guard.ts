@@ -24,17 +24,20 @@ import {
 })
 
 export class AutorizacionRutasGuard implements CanActivate {
-  constructor(private router: Router, private usuarioService: UsuarioService) {}
-  perfilUsuario: PerfilUsuario
+  constructor(private router: Router, private usuarioService: UsuarioService) {
+  }
+
+  perfilUsuario: PerfilUsuario;
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
     if (localStorage.getItem('token') != null) {
-      this.usuarioService.inicioSesion = true
+      this.usuarioService.inicioSesion = true;
       return true;
     } else {
       this.router.navigate(['usuarios/login']);
-      this.usuarioService.inicioSesion = false
+      this.usuarioService.inicioSesion = false;
       return true;
     }
   }

@@ -149,7 +149,7 @@ namespace Back.Controllers
         {
             try
             {
-                DetalleEstadosMontajes = await _context.AgregarDetalleEstadosMontajes(DetalleEstadosMontajes);
+                DetalleEstadosMontajes = await _context.AgregarDetalleEstadosMontajes(DetalleEstadosMontajes, false);
                 return Ok(new { mensaje = DetalleEstadosMontajes });
             }
             catch (Exception e)
@@ -402,17 +402,17 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("Montajes")]
-        public async Task<ActionResult<IEnumerable<Montajes>>> ListarMontajes() => await _context.ListarMontajes();
+        public async Task<ActionResult<IEnumerable<MontajeDetalle>>> ListarMontajes() => await _context.ListarMontajes();
 
 
         [HttpGet]
         [Route("MisMontajes/{id}")]
-        public async Task<ActionResult<IEnumerable<Montajes>>> ListarMisMontajes(string id) =>
+        public async Task<ActionResult<IEnumerable<MontajeDetalle>>> ListarMisMontajes(string id) =>
             await _context.ListarMisMontajes(id);
 
         [HttpGet]
         [Route("Montajes/{Montajes}")]
-        public async Task<ActionResult<Montajes>> BuscarMontajes(int Montajes)=>await _context.BuscarMontajes(Montajes);
+        public async Task<ActionResult<MontajeDetalle>> BuscarMontajes(int Montajes)=>await _context.BuscarMontajes(Montajes);
 
         [HttpPost]
         [Route("Montajes")]
@@ -472,9 +472,10 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("RespuestasSolicitudesPersonalizadas/{RespuestasSolicitudesPersonalizadas}")]
-        public async Task<ActionResult<IEnumerable<RespuestasSolicitudesPersonalizadas>>> 
+        public async Task<ActionResult<IEnumerable<DetalleRespuestasSolicitudP>>> 
             ListaRespuestasSolicitudesPersonalizadas(int RespuestasSolicitudesPersonalizadas) =>
             await _context.ListaRespuestasSolicitudesPersonalizadas(RespuestasSolicitudesPersonalizadas);
+
 
         [HttpPost]
         [Route("RespuestasSolicitudesPersonalizadas")]
@@ -486,6 +487,30 @@ namespace Back.Controllers
                 RespuestasSolicitudesPersonalizadas = 
                     await _context.AgregarRespuestasSolicitudesPersonalizadas(RespuestasSolicitudesPersonalizadas);
                 return Ok(new { mensaje = RespuestasSolicitudesPersonalizadas });
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        [HttpGet]
+        [Route("RespuestasMontajes/{RespuestasMontajes}")]
+        public async Task<ActionResult<IEnumerable<DetalleRespuestasM>>>
+            ListaRespuestasMontajes(int RespuestasMontajes) =>
+            await _context.ListaRespuestasMontajes(RespuestasMontajes);
+
+
+        [HttpPost]
+        [Route("RespuestasMontajes")]
+        public async Task<Object> AgregarRespuestasMontajes
+            (RespuestasMontajes RespuestasMontajes)
+        {
+            try
+            {
+                RespuestasMontajes =
+                    await _context.AgregarRespuestasMontajes(RespuestasMontajes);
+                return Ok(new { mensaje = RespuestasMontajes });
             }
             catch (Exception e)
             {

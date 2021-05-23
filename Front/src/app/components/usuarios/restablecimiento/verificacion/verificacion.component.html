@@ -1,33 +1,45 @@
 <section class="login-area pt-100 pb-100">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2">
-                <div class="basic-login">
-                    <h3 class="text-center mb-60">Restablece tu contraseña aquí</h3>
-                    <form [formGroup]="this.usuarioService.formularioVerificacionRecuperacionCuenta" (ngSubmit)="this.verificacion()" >
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <div class="basic-login">
+          <h3 class="text-center mb-60">Restablece tu contraseña aquí</h3>
+          <form [formGroup]="this.usuarioService.formularioVerificacionRecuperacionCuenta"
+                (ngSubmit)="this.verificacion()">
 
-                        <label for="pass">Contraseña Nueva<span>**</span></label>
-                        <input formControlName="Contrasena"  type="password" placeholder="Ingrese Contraseña" />
+            <label for="Contrasena">Contraseña Nueva<span>**</span></label>
+            <input formControlName="Contrasena" id="Contrasena" type="password" placeholder="Ingrese Contraseña"/>
 
-                        <!--Validaciones Contraseña-->
-                        <div *ngIf="this.usuarioService.contrasenaVerificacionRecuperacionDeCuenta.invalid && (this.usuarioService.contrasenaVerificacionRecuperacionDeCuenta.touched || this.usuarioService.contrasenaVerificacionRecuperacionDeCuenta.dirty)" class="text-danger mb-20 text-center">
-                            <div *ngIf="this.usuarioService.contrasenaVerificacionRecuperacionDeCuenta.hasError('required')">La contraseña es obligatoria</div>
-                        </div>
-
-                        <label for="pass">Confirmar Contraseña<span>**</span></label>
-                        <input formControlName="ConfirmarContrasena"  type="password" placeholder="Ingrese contraseña" />
-
-                        <!--Validaciones confirmar Contraseña-->
-                        <div *ngIf="this.usuarioService.confirmarContraVerificacionRecuperacionDeCuenta.invalid && (this.usuarioService.confirmarContraVerificacionRecuperacionDeCuenta.touched || this.usuarioService.confirmarContraVerificacionRecuperacionDeCuenta.dirty)" class="text-danger mb-20 text-center">
-                            <div *ngIf="this.usuarioService.confirmarContraVerificacionRecuperacionDeCuenta.hasError('required')">La contraseña de confirmación es obligatoria</div>
-                            <div *ngIf="this.usuarioService.confirmarContraVerificacionRecuperacionDeCuenta.hasError('ContrasenasDiferentes')">Las contraseñas deben coincidir</div>
-                        </div>
-                        <button  type="submit" class="os-btn w-100">Recuperar cuenta</button>
-                        <div class="or-divide"><span></span></div>
-                        <a href="" routerLink='/usuarios/login'  class="os-btn os-btn-black w-100">Atrás</a>
-                    </form>
-                </div>
+            <!--Validaciones Contraseña-->
+            <div
+              *ngIf="this.usuarioService.contrasenaVerificacionRecuperacionDeCuenta.invalid && (this.usuarioService.contrasenaVerificacionRecuperacionDeCuenta.touched || this.usuarioService.contrasenaVerificacionRecuperacionDeCuenta.dirty)"
+              class="text-danger mb-20 text-center">
+              <div *ngIf="this.usuarioService.contrasenaVerificacionRecuperacionDeCuenta.hasError('required')">La
+                contraseña es obligatoria
+              </div>
             </div>
+
+            <label for="ConfirmarContrasena">Confirmar Contraseña<span>**</span></label>
+            <input formControlName="ConfirmarContrasena" id="ConfirmarContrasena" type="password" placeholder="Ingrese contraseña"/>
+
+            <!--Validaciones confirmar Contraseña-->
+            <div
+              *ngIf="this.usuarioService.confirmarContraVerificacionRecuperacionDeCuenta.invalid && (this.usuarioService.confirmarContraVerificacionRecuperacionDeCuenta.touched || this.usuarioService.confirmarContraVerificacionRecuperacionDeCuenta.dirty)"
+              class="text-danger mb-20 text-center">
+              <div *ngIf="this.usuarioService.confirmarContraVerificacionRecuperacionDeCuenta.hasError('required')">La
+                contraseña de confirmación es obligatoria
+              </div>
+              <div
+                *ngIf="this.usuarioService.confirmarContraVerificacionRecuperacionDeCuenta.hasError('ContrasenasDiferentes')">
+                Las contraseñas deben coincidir
+              </div>
+            </div>
+            <button type="submit" class="os-btn w-100">Recuperar cuenta</button>
+            <div class="or-divide"><span></span></div>
+            <a href="" routerLink='/usuarios/login' class="os-btn os-btn-black w-100">Atrás</a>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </section>

@@ -1,20 +1,28 @@
 <table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Direccion</th>
-            <th scope="col">Valor Total</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let solicitud of this.solicitudesPersonalizadasService.listaMontajes">
-        <tr>
-            <td >{{solicitud.IdMontaje}}</td>
-            <td >{{solicitud.Fecha}}</td>
-            <td >{{solicitud.Descripcion}}</td>
-            <td >{{solicitud.Direccion}}</td>
-            <td >{{solicitud.ValorTotal}}</td>
-        </tr>
-    </tbody>
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Direccion</th>
+    <th scope="col">Valor Total</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let montaje of this.solicitudesPersonalizadasService.listaMontajes">
+  <tr>
+    <td>{{montaje.IdMontaje}}</td>
+    <td>{{montaje.Fecha}}</td>
+    <td>{{montaje.Estado}}</td>
+    <td>{{montaje.Direccion}}</td>
+    <td>{{montaje.ValorTotal}}</td>
+    <td><a [routerLink]="['/solicitudes/Montajes',montaje.IdMontaje]"
+           *ngIf="montaje.Estado == 'Enviada'|| montaje.Estado == 'Modificada'">Editar</a></td>
+    <td><a [routerLink]="['/solicitudes/detalleM',montaje.IdMontaje]">Ver</a></td>
+    <td *ngIf="montaje.Estado != 'Rechazada' && montaje.Estado != 'Cancelada'"><a
+      href="solicitudes/respuestasM/{{montaje.IdMontaje}}">Respuestas</a></td>
+  </tr>
+  </tbody>
 </table>

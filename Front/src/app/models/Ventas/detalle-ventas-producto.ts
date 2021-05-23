@@ -1,8 +1,8 @@
 export interface DetalleVentasProducto {
-    IdDetalleVentaProducto:number,
-    Cantidad:number,
-    SubTotal:number,
-    IdVenta:number,
-    IdProducto:number
-
+  IdDetalleVentaProducto: number;
+  Cantidad: number;
+  SubTotal: number;
+  IdVenta: number;
+  IdProducto: number;
+  NombreProducto: string;
 }

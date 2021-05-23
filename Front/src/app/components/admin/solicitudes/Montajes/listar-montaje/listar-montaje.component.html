@@ -1,0 +1,26 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Usuario</th>
+    <th scope="col">Valor Total</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let montaje of this.solicitudesPersonalizadasService.listaMontajes">
+  <tr>
+    <td>{{montaje.IdMontaje}}</td>
+    <td>{{montaje.Fecha}}</td>
+    <td>{{montaje.Estado}}</td>
+    <td>{{montaje.IdUsuario}}</td>
+    <td>{{montaje.ValorTotal}}</td>
+    <td><a href="Admin/detalleM/{{montaje.IdMontaje}}">Ver</a></td>
+    <td><a href="Admin/editarM/{{montaje.IdMontaje}}">Editar</a></td>
+    <td><a href="Admin/respuestasM/{{montaje.IdMontaje}}">Respuestas</a></td>
+  </tr>
+  </tbody>
+</table>

@@ -1,9 +1,12 @@
 <form class="" [formGroup]="this.productoService.formularioRegistroImagen" (ngSubmit)="registro()">
-    <div class="input-group mb-3 ">
-        <input (change)="this.productoService.fileEvent($event) " type="file" id="Imagen " class="form-control " required/>
-        <input type="hidden" formControlName="IdProducto " id="IdProducto ">
-        <button type="submit" [disabled]="this.productoService.formularioRegistroPrecio.invalid " class="btn btn-outline-secondary " title="Guardar "><i class="far fa-save "></i></button>
-        <button type="button" class=" btn btn-outline-secondary " (click)="this.productoService.formularioRegistroPrecio.reset(); this.productoService.FormularioPrecio=false " title="Limpiar "><i class="fas fa-broom "></i></button>
-    </div>
+  <div class="input-group mb-3 ">
+    <input (change)="this.productoService.fileEvent($event) " type="file" id="Imagen " class="form-control " required/>
+    <input type="hidden" formControlName="IdProducto " id="IdProducto ">
+    <button type="submit" [disabled]="this.productoService.formularioRegistroPrecio.invalid "
+            class="btn btn-outline-secondary " title="Guardar "><i class="far fa-save "></i></button>
+    <button type="button" class=" btn btn-outline-secondary "
+            (click)="this.productoService.formularioRegistroPrecio.reset(); this.productoService.FormularioPrecio=false "
+            title="Limpiar "><i class="fas fa-broom "></i></button>
+  </div>
 
 </form>

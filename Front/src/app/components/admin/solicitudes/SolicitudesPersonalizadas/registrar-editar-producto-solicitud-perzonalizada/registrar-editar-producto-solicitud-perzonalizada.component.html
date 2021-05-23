@@ -1,4 +1,5 @@
-<section class="col-lg-5 connectedSortable" *ngIf="this.solicitudesPersonalizadasService.SolicitudCortizando">
+<section class="col-lg-5 connectedSortable" *ngIf="
+this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de cotizacion'">
   <div class="card">
     <div class="card-header">
       <h2 class="card-title">
@@ -10,20 +11,23 @@
         <form class="" [formGroup]="this.productoService.formularioRegistroProductos" (ngSubmit)="onSubmit()">
           <input type="hidden" formControlName="IdProducto">
           <label for="Nombre">Nombre <span>**</span></label>
-          <input formControlName="Nombre" id="Nombre" type="text" placeholder="Ingresa el nombre" class="form-control" />
+          <input formControlName="Nombre" id="Nombre" type="text" placeholder="Ingresa el nombre" class="form-control"/>
           <br>
           <div class="row">
             <div class="col">
               <label for="Ancho">Ancho <span>**</span></label>
-              <input formControlName="Ancho" type="number" step="0.01" id="Ancho" placeholder="Ancho" class="form-control " />
+              <input formControlName="Ancho" type="number" step="0.01" id="Ancho" placeholder="Ancho"
+                     class="form-control "/>
             </div>
             <div class="col">
               <label for="Largo">Largo <span>**</span></label>
-              <input formControlName="Largo" type="number" step="0.01" id="Largo" placeholder="Largo" class="form-control " />
+              <input formControlName="Largo" type="number" step="0.01" id="Largo" placeholder="Largo"
+                     class="form-control "/>
             </div>
             <div class="col">
               <label for="Fondo">Fondo <span>**</span></label>
-              <input formControlName="Fondo" type="number" step="0.01" id="Fondo" placeholder="Fondo" class="form-control " />
+              <input formControlName="Fondo" type="number" step="0.01" id="Fondo" placeholder="Fondo"
+                     class="form-control "/>
             </div>
           </div>
           <br>
@@ -34,10 +38,10 @@
           </select>
           <br>
           <label for="Descripcion"> Descripcion <span>**</span></label>
-          <textarea formControlName="Descripcion" id="Fondo" class="form-control "></textarea>
+          <textarea formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
           <br>
           <label for="Ruedas">Ruedas <span>**</span></label>
-          <select class="form-control" formControlName="Ruedas">
+          <select class="form-control" formControlName="Ruedas" id="Ruedas">
             <option value="">Si o No</option>
             <option *ngFor="let doc of decision" [value]=doc.boo>{{doc.dec}}</option>
           </select>
@@ -47,33 +51,37 @@
             <div class="col">
               <label for="Puntos">Puntos <span>**</span></label>
               <input formControlName="Puntos" type="number" id="Puntos" placeholder="Ingresa los Puntos"
-                class="form-control " />
+                     class="form-control "/>
             </div>
             <div class="col">
               <label for="GarantiaMeses">Garantia en Meses <span>**</span></label>
-              <input formControlName="GarantiaMeses" type="number" id="GarantiaMeses" placeholder="Ingresa la garantia en meses"
-                class="form-control " />
+              <input formControlName="GarantiaMeses" type="number" id="GarantiaMeses"
+                     placeholder="Ingresa la garantia en meses"
+                     class="form-control "/>
             </div>
           </div>
           <div *ngIf="this.productoService.CampoPrecio">
             <label for="Precio">Precio Producto<span>**</span></label>
             <input formControlName="Precio" type="number" id="Precio" placeholder="Ingrese precio producto"
-              class="form-control " />
+                   class="form-control "/>
             <div class="mt-10"></div>
           </div>
           <div *ngIf="this.productoService.CampoPrecio">
-            <label for="Stock">Cantidad Producto<span>**</span></label>
-            <input formControlName="CantidadStock" type="number" id="CantidadStock" placeholder="Ingrese cantidad de producto"
-              class="form-control " />
+            <label for="CantidadStock">Cantidad Producto<span>**</span></label>
+            <input formControlName="CantidadStock" type="number" id="CantidadStock"
+                   placeholder="Ingrese cantidad de producto"
+                   class="form-control "/>
             <div class="mt-10"></div>
           </div>
           <br>
           <input type="hidden" formControlName="IdCategoria">
           <div class="mt-10"></div>
           <button type="submit" [disabled]="this.productoService.formularioRegistroProductos.invalid"
-            class="os-btn w-50">Guardar</button>
+                  class="os-btn w-50">Guardar
+          </button>
           <button type="button" class="os-btn w-50" (click)="this.productoService.formularioRegistroProductos.reset(); this.productoService.CampoPrecio = true;
-              this.productoService.desplegarDetalleMateriales = false">Limpiar</button>
+              this.productoService.desplegarDetalleMateriales = false">Limpiar
+          </button>
         </form>
       </div>
     </div>

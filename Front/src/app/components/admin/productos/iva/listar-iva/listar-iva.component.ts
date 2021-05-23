@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductoService } from 'src/app/services/producto.service';
+import {Component, OnInit} from '@angular/core';
+import {ProductoService} from 'src/app/services/producto.service';
 
 @Component({
   selector: 'app-listar-iva',
@@ -8,7 +8,8 @@ import { ProductoService } from 'src/app/services/producto.service';
 })
 export class ListarIvaComponent implements OnInit {
 
-  constructor(public productoService:ProductoService) { }
+  constructor(public productoService: ProductoService) {
+  }
 
   ngOnInit(): void {
     this.productoService.listarIva();

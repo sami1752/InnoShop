@@ -1,29 +1,30 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfiguracionService {
 
-  constructor(public router:Router) { }
+  constructor(public router: Router) {
+  }
 
-  readonly rootURL= "https://localhost:44385/api";
+  readonly rootURL = 'https://localhost:44385/api';
 
-  public readonly exRegularLetras: any = "^[a-zA-Z ]*$";
-  public readonly exRegularCorreo: any = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-  public readonly exRegularNumeros: any = "^[0-9]*$";
+  public readonly exRegularLetras: any = '^[a-zA-Z ]*$';
+  public readonly exRegularCorreo: any = '\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*';
+  public readonly exRegularNumeros: any = '^[0-9]*$';
 
-  public readonly exRegularPassword:any = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$";
-  public readonly exLetrasNumeros: any = "^[0-9a-zA-Z]+$";
+  public readonly exRegularPassword: any = '^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$';
+  public readonly exLetrasNumeros: any = '^[0-9a-zA-Z]+$';
 
-  inicioSecionAdmin : boolean
+  inicioSecionAdmin: boolean;
 
 
-  cerrarSesion(){
+  cerrarSesion(): any {
     localStorage.removeItem('token');
     this.router.navigateByUrl('usuarios/login');
   }
 
-  
+
 }

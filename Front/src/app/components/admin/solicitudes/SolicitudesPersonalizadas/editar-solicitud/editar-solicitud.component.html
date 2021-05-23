@@ -1,0 +1,13 @@
+<form class="" [formGroup]="this.solicitudesPersonalizadasService.formularioRegistroSolicitudPersonalizada"
+      (ngSubmit)="actualizacion()">
+  <label for="Ancho">Ancho<span>**</span></label>
+  <input formControlName="IdSolicitudPersonalizada" type="hidden" id="IdSolicitudPersonalizada"/>
+  <input formControlName="Ancho" type="number" step="0.01" id="Ancho" placeholder="Ancho" class="form-control"/>
+  <label for="Fondo">Fondo<span>**</span></label>
+  <input formControlName="Fondo" type="number" step="0.01" id="Fondo" placeholder="Fondo" class="form-control"/>
+  <label for="Alto">Alto<span>**</span></label>
+  <input formControlName="Alto" type="number" step="0.01" id="Alto" placeholder="Alto" class="form-control"/>
+  <label for="Descripcion"> Descripcion <span>**</span></label>
+  <textarea formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
+  <button type="submit" class="os-btn w-50">Enviar</button>
+</form>

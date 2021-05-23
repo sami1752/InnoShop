@@ -1,0 +1,41 @@
+<section class="col-lg-15 connectedSortable mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title"><i class="bi bi-tags-fill text-primary"></i> Entradas
+      </h2>
+      <button
+        *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizado && !this.solicitudesPersonalizadasService.SolicitudRechazada"
+        type="button" style="float: right;" class="btn"
+        (click)="this.productoService.formularioEntrada = !this.productoService.formularioEntrada;"><i
+        class="bi bi-folder-plus"></i> Agregar
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="tab-content p-0">
+        <div *ngIf="this.productoService.formularioEntrada">
+          <app-agregar-entrada-m></app-agregar-entrada-m>
+        </div>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Stock</th>
+            <th scope="col">IdProducto</th>
+            <th scope="col">Id usuario</th>
+            <th scope="col">Fecha</th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let entrada of this.productoService.listaEntradas">
+          <tr>
+            <td>{{entrada.IdEntrada}}</td>
+            <td>{{entrada.Cantidad}}</td>
+            <td>{{entrada.IdProducto}}</td>
+            <td>{{entrada.IdUsuario}}</td>
+            <td>{{entrada.Fecha}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

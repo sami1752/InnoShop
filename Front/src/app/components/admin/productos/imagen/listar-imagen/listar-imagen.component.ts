@@ -1,8 +1,8 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-import { Imagen } from 'src/app/models/imagen';
-import { ProductoService } from 'src/app/services/producto.service';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-import{OwlModule} from 'ngx-owl-carousel';
+import {Component, NgModule, OnInit} from '@angular/core';
+import {Imagen} from 'src/app/models/imagen';
+import {ProductoService} from 'src/app/services/producto.service';
+import {OwlOptions} from 'ngx-owl-carousel-o';
+import {OwlModule} from 'ngx-owl-carousel';
 
 @Component({
   selector: 'app-listar-imagen',
@@ -11,24 +11,10 @@ import{OwlModule} from 'ngx-owl-carousel';
 })
 export class ListarImagenComponent implements OnInit {
 
-  constructor(public productoService:ProductoService) { }
-
-  ngOnInit(): void {
+  constructor(public productoService: ProductoService) {
   }
 
-  eliminarImagen(imagen:Imagen){
-    if (confirm("¿Estás seguro de eliminar la imagen?")) {
-      this.productoService.EliminarImagen(imagen.IdImagen).subscribe(
-        res=>{
-          this.productoService.listarImagen(imagen.IdProducto);
-        },
-        err=>{
-          console.log(err);
-        }
-      );
-    }
-  }
-  homeSlider={items: 1, dots:true, nav: true};
+  homeSlider = {items: 1, dots: true, nav: true};
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -52,6 +38,21 @@ export class ListarImagenComponent implements OnInit {
       }
     },
     nav: true
+  };
+
+  ngOnInit(): void {
   }
 
+  eliminarImagen(imagen: Imagen): void {
+    if (confirm('¿Estás seguro de eliminar la imagen?')) {
+      this.productoService.EliminarImagen(imagen.IdImagen).subscribe(
+        res => {
+          this.productoService.listarImagen(imagen.IdProducto);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+  }
 }

@@ -1,4 +1,21 @@
 /* global Chart:false */
+function rotate(value) {
+    var soli = document.getElementById("flecha1");
+    soli.style.color = "red";
+    if (soli.style.msTransform == "rotate(" + 180 + "deg)" || soli.style.webkitTransform == "rotate(" + 180 + "deg)" || soli.style.transform == "rotate(" + 180 + "deg)") {
+        soli.style.webkitTransform = "rotate(" + 0 + "deg)";
+        soli.style.msTransform = "rotate(" + 0 + "deg)";
+        soli.style.transform = "rotate(" + 0 + "deg)";
+    } else {
+        soli.style.webkitTransform = "rotate(" + value + "deg)";
+        soli.style.msTransform = "rotate(" + value + "deg)";
+        soli.style.transform = "rotate(" + value + "deg)";
+    }
+
+
+
+
+}
 
 $(function() {
     'use strict'

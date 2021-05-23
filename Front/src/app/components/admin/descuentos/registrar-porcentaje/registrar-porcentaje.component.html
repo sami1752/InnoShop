@@ -1,9 +1,12 @@
 <form class="" [formGroup]="this.descuentosService.formRegistroPorcentaje" (ngSubmit)="registro()">
-    <div class="input-group mb-3">
-        <input type="hidden" formControlName="IdUsuario">
-        <input formControlName="Porcentaje" type="number" id="Porcentaje" placeholder="Ingresa el Porcentaje" class="form-control " />
-        <button type="submit" [disabled]="this.descuentosService.formRegistroPorcentaje.invalid" class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
-        <button type="button" (click)="this.descuentosService.formRegistroPorcentaje.reset(); 
-        this.descuentosService.formPorcentaje=false" class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button>
-    </div>
+  <div class="input-group mb-3">
+    <input type="hidden" formControlName="IdUsuario">
+    <input formControlName="Porcentaje" type="number" id="Porcentaje" placeholder="Ingresa el Porcentaje"
+           class="form-control "/>
+    <button type="submit" [disabled]="this.descuentosService.formRegistroPorcentaje.invalid"
+            class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
+    <button type="button" (click)="this.descuentosService.formRegistroPorcentaje.reset();
+        this.descuentosService.formPorcentaje=false" class="btn btn-outline-secondary" title="Limpiar"><i
+      class="fas fa-broom"></i></button>
+  </div>
 </form>

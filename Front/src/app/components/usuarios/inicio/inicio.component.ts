@@ -8,7 +8,7 @@ import {
 import {
   PerfilUsuario
 } from 'src/app/models/perfil-usuario';
-import { Usuario } from 'src/app/models/usuario';
+import {Usuario} from 'src/app/models/usuario';
 import {
   ConfiguracionService
 } from 'src/app/services/configuracion.service';
@@ -22,18 +22,21 @@ import {
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-  constructor(public configuracionService: ConfiguracionService, private router: Router, public usuarioService: UsuarioService) {}
-  perfilUsuario: PerfilUsuario
+  constructor(public configuracionService: ConfiguracionService, private router: Router, public usuarioService: UsuarioService) {
+  }
+
+  perfilUsuario: PerfilUsuario;
+  Micuenta = false;
+
   ngOnInit(): void {
     if (localStorage.getItem('token') != null) {
-      this.usuarioService.inicioSesion = true
+      this.usuarioService.inicioSesion = true;
     } else {
-      this.usuarioService.inicioSesion = false
+      this.usuarioService.inicioSesion = false;
     }
   }
 
-  Micuenta = false
-  CambioMicuenta() {
-    this.Micuenta = !this.Micuenta
+  CambioMicuenta(): void {
+    this.Micuenta = !this.Micuenta;
   }
 }

@@ -18,6 +18,7 @@ namespace Back.Models.DAL
         public DbSet<UsuarioIdentity> Usuarioidentity { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Producto> Productos { get; set; }
+        public DbSet<Salida> Salidas { get; set; }
         public DbSet<Material> Materiales { get; set; }
         public DbSet<DetalleMaterial> DetalleMateriales { get; set; }
         public DbSet<Imagen> Imagenes { get; set; }
@@ -37,6 +38,7 @@ namespace Back.Models.DAL
         public DbSet<Montajes> Montajes { get; set; }
         public DbSet<PrecioMontajes> PrecioMontajes { get; set; }
         public DbSet<RespuestasSolicitudesPersonalizadas> RespuestasSolicitudesPersonalizadas { get; set; }
+        public DbSet<RespuestasMontajes> RespuestasMontajes { get; set; }
         public DbSet<SolicitudPersonalizada> SolicitudPersonalizada { get; set; }
         public DbSet<PorcentajesRuleta> PorcentajesRuleta { get; set; }
         public DbSet<ValorRuleta> ValorRuleta { get; set; }
