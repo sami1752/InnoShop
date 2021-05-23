@@ -54,24 +54,11 @@ export class RegistroUsuarioComponent implements OnInit {
     this.usuarioService.uca = true;
     this.usuarioService.registrarUsuarioAdmin().subscribe(
       (respuesta: any) => {
-        alert(respuesta);
-        if (respuesta.Succeeded) {
-          this.usuarioService.formularioRegistroUsuarioAdmin.reset();
-          alert('Registro Exitoso');
-          this.usuarioService.listarUsuarios();
-        } else {
-          respuesta.Errors.forEach(element => {
-            switch (element.Code) {
-              case 'DuplicateUserName':
-                alert('Email Existente en la base de datos');
-                break;
-              default:
-                alert('error');
-                break;
-            }
-          });
-        }
-      });
+        alert('exito gonorrea');
+        this.usuarioService.formularioRegistroUsuarioAdmin.reset();
+        this.usuarioService.listarUsuarios();
+      },
+      err => console.log(err));
   }
 
   actualizacion(): void {

@@ -1,25 +1,161 @@
-<h3 *ngIf="perfilUsuario!=null" class="text-center">Puntos: {{perfilUsuario.Puntos}}</h3>
-<h3 class="text-center">Puntos mínimos para participar: {{this.descuentosService.valorRuleta.ValorDeRuleta}}</h3>
-<div class="text-center">
-  <button (click)="RegistrarCupon()" class="btn-success p-2">Girar ruleta inexistente</button>
-</div>
+<style>
+    .rueda {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        animation-name: rotate;
+        animation-timing-function: linear;
+        animation-duration: 0.9s;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+    }
+    
+    .rueda2 {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        animation-name: rotate;
+        animation-timing-function: ease-out;
+        animation-duration: 0.8s;
+        animation-iteration-count: 2;
+        animation-direction: normal;
+    }
+    
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes rotate2 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    .contenedor {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    .centrado {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .centrado2 {
+        position: absolute;
+        top: 50%;
+        left: 57%;
+        transform: translate(-50%, -50%);
+    }
+</style>
 
-<div *ngIf="this.descuentosService.listaCuponesClientes != undefined" class="">
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th scope="col">% descuento</th>
-      <th scope="col">Fecha vencimiento</th>
-      <th scope="col">Estado</th>
-    </tr>
-    </thead>
-    <tbody *ngFor="let descuento of descuentosService.listaCuponesClientes">
-    <tr>
-      <td>{{descuento.PorcentajeDescuento}}</td>
-      <td>{{descuento.FechaVencimiento}}</td>
-      <td>{{descuento.Estado ? 'activo' : 'vencido o usado'}}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
 
+<body onload="mensaje()">
+    <section class="content py-5 mb-60">
+        <div class="container-fluid">
+            <div class="row">
+                <section class="col-lg-5 connectedSortable mb-60">
+                    <div class="card">
+                        <div class="card-header">
+                            <div style="float: left;">
+                                <label class="p-1"> <i class="bi bi-currency-exchange h5" style="color: #2C4F61"></i>  Valor de la ruleta: <label id="valoruleta">{{this.descuentosService.valorRuleta.ValorDeRuleta}}</label> Punto(s)</label>
+                            </div>
+                            <div style="float: right;">
+                                <label><i class="bi bi-star-fill h5" style="color: #2C4F61"></i> Tus Puntos: <label *ngIf="perfilUsuario!=null" id="puntos">{{perfilUsuario.Puntos}}</label></label>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" align="center">
+                                <div class="contenedor">
+                                    <img src="assets/img/Imagenes/ruleta2.png" alt="" id="rueda" class="" style="width: 400px;
+                                height: 400px;">
+                                    <div class="centrado ">
+                                        <div style="background-color: #f3f2f2;  width: 110px;
+                                    height: 110px;-moz-border-radius: 50%;
+                                        -webkit-border-radius: 50%;
+                                        border-radius: 50%;">
+                                            <p id="porcentaje" style="font-size: 60px;  position: relative; top:25%; line-height: 50px;">0</p>
+                                        </div>
+                                    </div>
+                                    <div class="centrado2">
+                                        <p style="font-size: 30px; " id="simbolo">%</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p id="mensaje" style="display: none;" class="text-danger"> <i class="bi bi-emoji-frown"></i> No tienes suficientes puntos, no podrás girar la ruleta.</p>
+                                    <button type="button" onclick="Parar()" class="btn btn-sm btn-secondary" (click)="RegistrarCupon()" id="parar" style="display: none;"> <i class="bi bi-stop-fill"></i>Parar</button>
+                                    <button type="button" id="iniciar" class="btn btn-sm btn-secondary" onclick="Iniciar()"><i class="bi bi-play-fill"></i>Girar</button>
+                                    <form class="" [formGroup]="this.descuentosService.formRegistroCupon" (ngSubmit)="obtenerID()">
+                                        <input type="hidden" formControlName="ValorDescuento" id="final">
+                                    </form>
+                                </div>
+                                <div>
+                                    <label style="display: none;" id="textoicon"><i class="" id="icon_mensaje"></i>  <label id="texto"></label> </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="col-lg-7 connectedSortable mb-60">
+                    <div class="card">
+                        <div class="card-header">
+
+                            <h2 class="card-title">
+                                <i class="bi bi-bookmarks-fill" style="color: #2C4F61"></i> Cupones
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <div *ngIf="this.descuentosService.listaCuponesClientes != undefined" class="">
+                                    <table class="table table-hover cupones" style="text-transform: capitalize !important;">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Descuento</th>
+                                                <th scope="col">Fecha vencimiento</th>
+                                                <th scope="col">Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let descuento of descuentosService.listaCuponesClientes">
+                                            <tr>
+                                                <td>{{descuento.PorcentajeDescuento}} %</td>
+                                                <td>{{descuento.FechaVencimiento}}</td>
+
+                                                <td>
+                                                    <i class="bi bi-record-fill text-success" *ngIf="descuento.Estado==true"></i><i class="bi bi-record-fill text-danger" *ngIf="descuento.Estado==false"></i><label style="font-weight: normal;">{{descuento.Estado ? 'activo' : 'vencido o usado'}}</label></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <!-- <div class="mb-60">
+    <h3 *ngIf="perfilUsuario!=null" class="text-center">Puntos: {{perfilUsuario.Puntos}}</h3>
+    <h3 class="text-center">Puntos mínimos para participar: {{this.descuentosService.valorRuleta.ValorDeRuleta}}</h3>
+</div> -->
+    <section>
+        <table class="table table-hover" id="tablaPorcentajes" style="display: none;">
+            <tbody *ngFor="let porcentaje of descuentosService.listaPorcentajes">
+                <tr>
+                    <td id="porc">{{porcentaje.Porcentaje}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</body>

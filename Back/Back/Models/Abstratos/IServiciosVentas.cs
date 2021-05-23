@@ -13,10 +13,12 @@ namespace Back.Models.Abstratos
     {
         Task<ActionResult<IEnumerable<DetalleVenta>>> ListarVentas();
         Task<Ventas> ObtenerVentaPorId(int idVenta);
-        Task<ActionResult<IEnumerable<DetalleVentaProductos>>> ListarDetalleVentaProductos(int idVenta);
+        Task<ActionResult<IEnumerable<DetalleVentaProductoInfo>>> ListarDetalleVentaProductos(int idVenta);
         Task<ActionResult<IEnumerable<DetalleVentaSolicitudes>>> ListarDetalleVentaSolicitudes(int idVenta);
         Task<ActionResult<IEnumerable<DetalleVentaMontajes>>> ListarDetalleVentaMontajes(int idVenta);
+        Task<DetalleVenta> DetalleVenta(int idVenta);
         Task<Ventas> AgregarVenta(Ventas venta);
+        Task AgregarSalidaProducto(Salida salida);
         Task<Iva> ObtenerIvaActual();
         Task<PrecioProducto> ObtenerPrecioProducto(int idProducto);
         Task ModificarValorTotalVentas(Ventas venta);

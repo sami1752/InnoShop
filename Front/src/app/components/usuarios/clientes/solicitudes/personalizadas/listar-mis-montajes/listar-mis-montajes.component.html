@@ -21,7 +21,8 @@
     <td><a [routerLink]="['/solicitudes/Montajes',montaje.IdMontaje]"
            *ngIf="montaje.Estado == 'Enviada'|| montaje.Estado == 'Modificada'">Editar</a></td>
     <td><a [routerLink]="['/solicitudes/detalleM',montaje.IdMontaje]">Ver</a></td>
-    <td *ngIf="montaje.Estado != 'Rechazada' && montaje.Estado != 'Cancelada'"><a href="solicitudes/respuestasM/{{montaje.IdMontaje}}">Respuestas</a></td>
+    <td *ngIf="montaje.Estado != 'Rechazada' && montaje.Estado != 'Cancelada'"><a
+      href="solicitudes/respuestasM/{{montaje.IdMontaje}}">Respuestas</a></td>
   </tr>
   </tbody>
 </table>

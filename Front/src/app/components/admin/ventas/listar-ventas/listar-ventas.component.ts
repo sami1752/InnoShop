@@ -15,4 +15,10 @@ export class ListarVentasComponent implements OnInit {
     this.ventasService.ListarVentas();
   }
 
+  detalleVenta(idVenta: number): any {
+    this.ventasService.ListarDetalleVentasProductos(idVenta);
+    this.ventasService.DetalleVenta(idVenta);
+    this.ventasService.desplegarDetalleVentaEnRegistro = !this.ventasService.desplegarDetalleVentaEnRegistro;
+  }
+
 }

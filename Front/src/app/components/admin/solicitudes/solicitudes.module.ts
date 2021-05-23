@@ -36,7 +36,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatSortModule} from '@angular/material/sort';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     ListarSolicitudesPersonalizadasComponent,
@@ -80,6 +80,7 @@ import {MatSortModule} from '@angular/material/sort';
     MatFormFieldModule,
     MatPaginatorModule,
     MatSortModule,
+    DragDropModule
 
   ],
   exports: [ListarSolicitudesPersonalizadasComponent, GestionSolicitudPersonalizadaComponent]

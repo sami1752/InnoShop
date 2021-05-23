@@ -48,7 +48,7 @@ namespace Back.Models.Servicios
                                                             IdCategoria = producto.IdCategoria,
                                                             Puntos = producto.Puntos,
                                                             NombreCategoria = categoria.Nombre,
-                                                            GarantiaMeses = producto.GarantiaMeses,
+                                                            GarantiaMeses = producto.GarantiaMeses
                                                         }).ToList();
                 return ListaProductos;
             }
@@ -85,8 +85,7 @@ namespace Back.Models.Servicios
                                                                         IdCategoria = producto.IdCategoria,
                                                                         Puntos = producto.Puntos,
                                                                         NombreCategoria = categoria.Nombre,
-                                                                        GarantiaMeses = producto.GarantiaMeses,
-                                                                        //Precio = precioProducto.Precio
+                                                                        GarantiaMeses = producto.GarantiaMeses
                                                                     }).ToList();
                 return listaProductosPorCategoria;
             }
@@ -199,6 +198,7 @@ namespace Back.Models.Servicios
 
         public async Task<DetalleProducto> DetalleProducto(int id)
         {
+             
             await using (_context)
             {
                 List<DetalleProducto> detalleProducto = (from producto in _context.Productos
@@ -230,6 +230,7 @@ namespace Back.Models.Servicios
                                                                               where entrada.IdProducto == id
                                                                               select entrada.Cantidad).Sum()                                                     
                                                          }).ToList();
+
                 return detalleProducto[detalleProducto.Count() - 1];
             }
 
@@ -294,6 +295,14 @@ namespace Back.Models.Servicios
             entrada.Fecha = DateTime.Now;
             _context.Entradas.Add(entrada);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> ObtenerStockProducto(int idProducto)
+        {
+            int entradas = _context.Entradas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
+            int salidas = _context.Salidas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
+            return  salidas == 0 ? entradas : entradas - salidas; 
+
         }
 
 

@@ -18,6 +18,7 @@ namespace Back.Models.DAL
         public DbSet<UsuarioIdentity> Usuarioidentity { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Producto> Productos { get; set; }
+        public DbSet<Salida> Salidas { get; set; }
         public DbSet<Material> Materiales { get; set; }
         public DbSet<DetalleMaterial> DetalleMateriales { get; set; }
         public DbSet<Imagen> Imagenes { get; set; }

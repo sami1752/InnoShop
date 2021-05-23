@@ -14,11 +14,13 @@ import {ICreateOrderRequest} from 'ngx-paypal';
 export class DetalleSPComponent implements OnInit {
   public payPalConfig: any;
   public showPaypalButtons: boolean;
+
   constructor(public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
               private rutaActiva: ActivatedRoute,
               public productoService: ProductoService,
               public usuarioService: UsuarioService) {
   }
+
   id: number = this.rutaActiva.snapshot.params.IdSolicitud;
 
   ngOnInit(): void {
@@ -75,7 +77,7 @@ export class DetalleSPComponent implements OnInit {
             'onApprove - you can get full order details inside onApprove: ',
             details
           );
-        })
+        });
         this.usuarioService.obtenerPerfil().subscribe(
           res => {
             this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada =
@@ -117,11 +119,11 @@ export class DetalleSPComponent implements OnInit {
     };
   }
 
-  pay(): void  {
+  pay(): void {
     this.showPaypalButtons = true;
   }
 
-  back(): void  {
+  back(): void {
     this.showPaypalButtons = false;
   }
 

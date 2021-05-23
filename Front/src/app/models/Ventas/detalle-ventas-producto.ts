@@ -4,5 +4,5 @@ export interface DetalleVentasProducto {
   SubTotal: number;
   IdVenta: number;
   IdProducto: number;
-
+  NombreProducto: string;
 }

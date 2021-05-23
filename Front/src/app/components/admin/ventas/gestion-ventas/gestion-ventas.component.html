@@ -1,10 +1,10 @@
-<section class="content">
+<section class="content" xmlns="http://www.w3.org/1999/html">
   <div class="content-wrapper">
     <br>
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <section class="col-lg-7 connectedSortable">
+          <section class="col-lg-4 connectedSortable">
             <div class="card">
               <div class="card-header">
                 <h2 class="card-title">
@@ -18,7 +18,7 @@
               </div>
             </div>
           </section>
-          <section class="col-lg-5 connectedSortable">
+          <section class="col-lg-8 connectedSortable">
             <div class="card">
               <div class="card-header">
                 <h2 class="card-title">
@@ -27,16 +27,18 @@
               </div>
               <div class="card-body">
                 <div class="tab-content p-0">
-                  <app-registrar-detalle-venta></app-registrar-detalle-venta>
+                  <app-registrar-venta></app-registrar-venta>
                 </div>
               </div>
             </div>
           </section>
         </div>
       </div>
-      <!--<div *ngIf="this.productoService.desplegarDetalle" style="margin-top: -45%;">
-          <app-detalle-productos></app-detalle-productos>
-      </div>-->
     </section>
   </div>
 </section>
+
+<!--<div *ngIf="this.ventasService.desplegarDetalle" style="margin-top: -45%;">
+    <app-detalle-venta-producto></app-detalle-venta-producto>
+</div>-->
+

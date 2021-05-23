@@ -20,15 +20,14 @@ export class DescuentosService {
   }
 
   idUsuario = '';
-  fecha = new Date();
-  tiempoTranscurrido = Date.now();
-  hoy = new Date(this.tiempoTranscurrido);
+
   listaPorcentajes: PorcentajesRuleta[];
   listaCuponesClientes: Descuento[];
   listaValoresRuleta: ValorRuleta[];
-
+  fecha = new Date();
+  tiempoTranscurrido = Date.now();
+  hoy = new Date(this.tiempoTranscurrido);
   valorRuleta: ValorRuleta = {IdValorRuleta: 0, IdUsuario: '', ValorDeRuleta: 0, FechaInicio: '', FechaFin: ''};
-
   descuento: Descuento = {
     IdDescuento: 0,
     IdUsuario: '',
@@ -47,38 +46,51 @@ export class DescuentosService {
   formRegistroPorcentaje = this.formBuilder.group({
     Porcentaje: []
   });
-
   formRegistroValorDeRuleta = this.formBuilder.group({
     ValorDeRuleta: []
   });
 
-  ListarPorcentajeDescuentos(): any {
+  // formRegistroCupon = this.formBuilder.group({
+  //   ValorDescuento: []
+  // });
+
+  formRegistroCupon = this.formBuilder.group({
+    ValorDescuento: []
+  });
+
+
+  ListarPorcentajeDescuentos(): void {
     this.http.get(this.configuracion.rootURL + '/Descuentos/Porcentajes').toPromise().then(res =>
       this.listaPorcentajes = res as PorcentajesRuleta[]);
   }
 
-  ListarCuponesDeCliente(idUsuario: string): any {
+  ListarCuponesDeCliente(idUsuario: string): void {
     this.http.get(this.configuracion.rootURL + '/Descuentos/' + idUsuario).toPromise().then(res =>
       this.listaCuponesClientes = res as Descuento[]);
   }
 
-  listarValoresRuleta(): any {
-    this.http.get(this.configuracion.rootURL + '/Descuentos/ValoresRuleta').toPromise().then(res =>
-      this.listaValoresRuleta = res as ValorRuleta[]);
+  listarValoresRuleta(): void {
+    this.http.get(this.configuracion.rootURL + '/Descuentos/ValoresRuleta').toPromise().then(res => {
+        this.listaValoresRuleta = res as ValorRuleta[];
+      }
+      );
   }
 
-  ValorRuletaActual(): any {
-    this.http.get(this.configuracion.rootURL + '/Descuentos/ValorActualRuleta').toPromise().then(
-      res => this.valorRuleta = res as ValorRuleta);
+  ValorRuletaActual(): void {
+    this.http.get(this.configuracion.rootURL + '/Descuentos/ValorActualRuleta').toPromise().then(res =>
+      this.valorRuleta = res as ValorRuleta);
   }
+
 
   RegistrarCuponDescuento(): any {
+
     this.descuento.IdDescuento = 0;
     this.descuento.Fecha = this.hoy.toISOString();
     this.descuento.FechaVencimiento = this.hoy.toISOString();
     this.descuento.Estado = true;
-    this.descuento.IdPorcentajeRuleta = 1;
+
     this.descuento.IdValorRuleta = this.valorRuleta.IdValorRuleta;
+
     return this.http.post(this.configuracion.rootURL + '/Descuentos', this.descuento);
   }
 

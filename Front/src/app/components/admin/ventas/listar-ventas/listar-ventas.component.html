@@ -1,19 +1,22 @@
 <table class="table table-hover">
-  <thead>
-  <tr>
-    <th scope="col">Id</th>
-    <th scope="col">Iva</th>
-    <th scope="col">Valor iva</th>
-    <th scope="col">Valor iva</th>
-    <th scope="col">Total</th>
-
-  </tr>
-  </thead>
-  <tbody *ngFor="let venta of ventasService.listaVentas">
-  <div>
-    <tr>
-    </tr>
-  </div>
-  </tbody>
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Subtotal</th>
+            <th scope="col">Total</th>
+            <th></th>
+    
+        </tr>
+    </thead>
+    <tbody *ngFor="let venta of ventasService.listaVentas">
+            <tr>
+                <td>{{venta.IdVenta}}</td>
+                <td>{{venta.NombreUsuario}}</td>
+                <td>{{venta.SubTotal}}</td>
+                <td>{{venta.Total}}</td>
+                <td><button  (click)="detalleVenta(venta.IdVenta)" class="btn btn-info" type="button">Detalle</button></td>
+            </tr>
+    </tbody>
 </table>
 

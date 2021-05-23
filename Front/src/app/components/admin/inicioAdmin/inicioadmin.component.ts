@@ -30,6 +30,7 @@ export class InicioadminComponent implements OnInit {
   datos = false;
   iva = false;
   entradas = false;
+  soli = true;
 
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
@@ -49,6 +50,7 @@ export class InicioadminComponent implements OnInit {
       }
     );
   }
+
 
   GestionUsuario(): void {
     this.Usuarios = true;
@@ -90,5 +92,6 @@ export class InicioadminComponent implements OnInit {
     this.iva = false;
     this.entradas = true;
   }
+
 
 }

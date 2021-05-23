@@ -86,7 +86,7 @@ namespace Back.Controllers
         public async Task<Object> RegistroUsuario(UsuarioModel usuarioModel)
         {
             try
-            {
+                {
                 UsuarioIdentity usuario = new()
                 {
                     UserName = usuarioModel.Email,
@@ -115,7 +115,7 @@ namespace Back.Controllers
                         $"<a href='{confirmationLink}'>Clic aquí para activar su cuenta</a>";
                     mail.IsBodyHtml = true;
                     using SmtpClient smtp = new("smtp.gmail.com", 587);
-                    smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "Innova1234");
+                    smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "&xDByqBKqWFry88XyiRxQPAI*TI3KsW922ugeh9@RV#Ou^AwF%");
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }
@@ -167,7 +167,7 @@ namespace Back.Controllers
                             $"<a href='{restablecimientoLink}'>Clic aquí para crear nueva contraseña</a>";
                         mail.IsBodyHtml = true;
                         using SmtpClient smtp = new("smtp.gmail.com", 587);
-                        smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "Innova1234");
+                        smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "&xDByqBKqWFry88XyiRxQPAI*TI3KsW922ugeh9@RV#Ou^AwF%");
                         smtp.EnableSsl = true;
                         smtp.Send(mail);
                     }
