@@ -60,6 +60,11 @@ export class RuletaDescuentosComponent implements OnInit {
                 (res: any) => {
                   alert(res.mensaje);
                   this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id);
+                  document.getElementById("textoicon").className="text-success";
+                  document.getElementById("icon_mensaje").className="bi bi-patch-check-fill"
+                  document.getElementById("textoicon").style.display="block";
+                  document.getElementById("texto").className = "text-success";
+                  document.getElementById("texto").textContent =" "+"Obtuviste un cupón de"+" "+document.getElementById("porcentaje").textContent + "%";
                   this.perfilUsuario.Puntos -= this.descuentosService.valorRuleta.ValorDeRuleta;
                 }, err => {
                   alert('error al registrar cupon');
@@ -80,6 +85,8 @@ export class RuletaDescuentosComponent implements OnInit {
   obtenerID(): void {
     alert(this.IdPorcentajeRuleta);
   }
+ 
 
+  
 
 }
