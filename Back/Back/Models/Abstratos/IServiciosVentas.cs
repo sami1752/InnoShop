@@ -18,6 +18,7 @@ namespace Back.Models.Abstratos
         Task<ActionResult<IEnumerable<DetalleVentaMontajes>>> ListarDetalleVentaMontajes(int idVenta);
         Task<DetalleVenta> DetalleVenta(int idVenta);
         Task<Ventas> AgregarVenta(Ventas venta);
+        Task AgregarSalidaProducto(Salida salida);
         Task<Iva> ObtenerIvaActual();
         Task<PrecioProducto> ObtenerPrecioProducto(int idProducto);
         Task ModificarValorTotalVentas(Ventas venta);

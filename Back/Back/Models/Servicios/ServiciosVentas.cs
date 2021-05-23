@@ -129,11 +129,28 @@ namespace Back.Models.Servicios
             venta.TotalIva = venta.SubTotal * (iva.Porcentaje / 100);
             venta.Total = venta.SubTotal + venta.TotalIva;
             await this.ModificarValorTotalVentas(venta);
+
+            Salida salida = new Salida()
+            {
+                IdSalida = 0,
+                IdProducto = detalle.IdProducto,
+                Cantidad = detalle.Cantidad,
+                Fecha = DateTime.Now,
+                IdUsuario = venta.IdUsuario
+            };
+            await this.AgregarSalidaProducto(salida);
         }
         public async Task<PrecioProducto> ObtenerPrecioProducto(int idProducto) =>
             await _context.PrecioProductos.Where(x => x.IdProducto == idProducto).OrderByDescending(x => x.IdPrecioProducto).FirstAsync();
+
         public async Task<Iva> ObtenerIvaActual() =>
             await _context.Iva.OrderByDescending(x => x.IdIva).FirstAsync();
+
+        public async Task AgregarSalidaProducto(Salida salida)
+        {
+            await _context.Salidas.AddAsync(salida);
+            await _context.SaveChangesAsync();
+        }
         public async Task ModificarValorTotalVentas(Ventas venta)
         {
             _context.Ventas.Update(venta);

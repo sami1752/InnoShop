@@ -48,7 +48,7 @@ namespace Back.Models.Servicios
                                                             IdCategoria = producto.IdCategoria,
                                                             Puntos = producto.Puntos,
                                                             NombreCategoria = categoria.Nombre,
-                                                            GarantiaMeses = producto.GarantiaMeses,
+                                                            GarantiaMeses = producto.GarantiaMeses
                                                         }).ToList();
                 return ListaProductos;
             }
