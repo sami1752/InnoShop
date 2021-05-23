@@ -13,7 +13,7 @@ namespace Back.Clases.Ventas
         public string NombreUsuario { get; set; }
         public int IdDescuento { get; set; }
         public float ValorDescuento { get; set; }
-        public float porcentajeDescuento { get; set; }
+        public float PorcentajeDescuento { get; set; }
         public float Total { get; set; }
         public int IdIva { get; set; }
         public float ValorIva { get; set; }

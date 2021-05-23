@@ -1,4 +1,4 @@
-﻿using Back.Clases.Productos;
+﻿    using Back.Clases.Productos;
 using Back.Models.Abstratos;
 using Back.Models.Entidades.Productos;
 using Microsoft.AspNetCore.Hosting;
@@ -292,6 +292,12 @@ namespace Back.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("stock/{idProducto}")]
+        public async Task<int> StockProducto(int idProducto)
+        {
+            return await _context.ObtenerStockProducto(idProducto);
+        }
 
 
     }

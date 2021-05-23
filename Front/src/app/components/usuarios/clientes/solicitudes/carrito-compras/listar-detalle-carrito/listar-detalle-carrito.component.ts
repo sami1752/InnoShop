@@ -5,6 +5,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { CarritoDeComprasService } from 'src/app/services/carrito-de-compras.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { VentasService } from 'src/app/services/ventas.service';
 
 @Component({
   selector: 'app-listar-detalle-carrito',
@@ -13,7 +14,11 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ListarDetalleCarritoComponent implements OnInit {
 
-  constructor(public carritoDeComprasService:CarritoDeComprasService, public productoService:ProductoService, public usuarioService:UsuarioService) { }
+  constructor(public carritoDeComprasService:CarritoDeComprasService,
+      public productoService:ProductoService,
+      public usuarioService:UsuarioService,
+      public ventasService:VentasService
+      ) { }
 
   perfilUsuario;
   ngOnInit(): void {
@@ -25,6 +30,7 @@ export class ListarDetalleCarritoComponent implements OnInit {
         this.perfilUsuario =  res;
         this.carritoDeComprasService.CarritoDeComprasUsuario(res.Id);
         this.carritoDeComprasService.listarDetalleCarrito(res.Id);
+        this.ventasService.ObtenerIvaActual()
       },
       err => {
         console.log(err);

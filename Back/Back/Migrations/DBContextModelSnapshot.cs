@@ -321,6 +321,31 @@ namespace Back.Migrations
                     b.ToTable("Productos");
                 });
 
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Salida", b =>
+                {
+                    b.Property<int>("IdSalida")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdProducto")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("IdSalida");
+
+                    b.ToTable("Salidas");
+                });
+
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.CarritoDeCompras", b =>
                 {
                     b.Property<int>("IdCarritoDeCompras")
