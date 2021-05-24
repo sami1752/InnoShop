@@ -1,28 +1,73 @@
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th scope="col">Id</th>
-    <th scope="col">Fecha</th>
-    <th scope="col">Estado</th>
-    <th scope="col">Direccion</th>
-    <th scope="col">Valor Total</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody *ngFor="let montaje of this.solicitudesPersonalizadasService.listaMontajes">
-  <tr>
-    <td>{{montaje.IdMontaje}}</td>
-    <td>{{montaje.Fecha}}</td>
-    <td>{{montaje.Estado}}</td>
-    <td>{{montaje.Direccion}}</td>
-    <td>{{montaje.ValorTotal}}</td>
-    <td><a [routerLink]="['/solicitudes/Montajes',montaje.IdMontaje]"
-           *ngIf="montaje.Estado == 'Enviada'|| montaje.Estado == 'Modificada'">Editar</a></td>
-    <td><a [routerLink]="['/solicitudes/detalleM',montaje.IdMontaje]">Ver</a></td>
-    <td *ngIf="montaje.Estado != 'Rechazada' && montaje.Estado != 'Cancelada'"><a
-      href="solicitudes/respuestasM/{{montaje.IdMontaje}}">Respuestas</a></td>
-  </tr>
-  </tbody>
-</table>
+<!-- <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Valor Total</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let montaje of this.solicitudesPersonalizadasService.listaMontajes">
+        <tr>
+            <td>{{montaje.IdMontaje}}</td>
+            <td>{{montaje.Fecha}}</td>
+            <td>{{montaje.Estado}}</td>
+            <td>{{montaje.Direccion}}</td>
+            <td>{{montaje.ValorTotal}}</td>
+            <td><a [routerLink]="['/solicitudes/Montajes',montaje.IdMontaje]" *ngIf="montaje.Estado == 'Enviada'|| montaje.Estado == 'Modificada'">Editar</a></td>
+            <td><a [routerLink]="['/solicitudes/detalleM',montaje.IdMontaje]">Ver</a></td>
+            <td *ngIf="montaje.Estado != 'Rechazada' && montaje.Estado != 'Cancelada'"><a href="solicitudes/respuestasM/{{montaje.IdMontaje}}">Respuestas</a></td>
+        </tr>
+    </tbody>
+</table> -->
+<div style="display: flex;justify-content: center;align-items: center;" class="mb-10 py-3">
+    <div class="card" style="width:80%;  ">
+        <div class="card-header">
+            <h1 class="card-title colortxt">
+                <i class="fas fa-toolbox"></i> MIS MONTAJES
+            </h1>
+        </div>
+        <div class="card-body">
+            <div class="tab-content p-0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="colortxt">
+                            <th scope="col">Id</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Valor Total</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let montaje of this.solicitudesPersonalizadasService.listaMontajes">
+                        <tr>
+                            <td>{{montaje.IdMontaje}}</td>
+                            <td>{{montaje.Fecha}}</td>
+                            <td>{{montaje.Estado}}</td>
+                            <td>{{montaje.Direccion}}</td>
+                            <td>{{montaje.ValorTotal}}</td>
+                            <td>
+                                <div class="form-group row">
+                                    <div class="col-md-2">
+                                        <a class="btn btn-sm btn-outline-secondary" title="Editar" [routerLink]="['/solicitudes/Montajes',montaje.IdMontaje]" *ngIf="montaje.Estado == 'Enviada'|| montaje.Estado == 'Modificada'"><i class="bi bi-pencil-fill"></i> </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a [routerLink]="['/solicitudes/detalleM',montaje.IdMontaje]" class="btn btn-sm btn-outline-info" title="Ver"><i class="bi bi-eye-fill"></i> </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="solicitudes/respuestasM/{{montaje.IdMontaje}}" class="btn btn-sm btn-outline-dark" title="Respuestas" *ngIf="montaje.Estado != 'Rechazada' && montaje.Estado != 'Cancelada'"><i class="bi bi-chat-square-dots-fill"></i></a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

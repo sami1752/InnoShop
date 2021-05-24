@@ -1,127 +1,226 @@
-<section class="content">
-  <div class="content-wrapper">
-    <br>
-    <section class="content">
-      <section class="content">
-        <section class="col-lg-7 connectedSortable">
-          <div class="card">
-            <div class="card-header">
-              <h2 class="card-title">
-                <i class="bi bi-info-circle-fill text-primary"></i> Información de la solicitud
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="tab-content p-0">
-                <div class="row">
-                  <div class="col">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Id Solicitud: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}
-                  </div>
-                  <div class="col">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Usuario: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Usuario}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class=" col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Fecha: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fecha}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 ">Alto: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Alto}}
-                  </div>
-                  <div class="col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Ancho: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Ancho}}
-                  </div>
-                </div>
-                <div class="row ">
-                  <div class="col">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Fondo: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fondo}}
-                  </div>
-                  <div class="col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Estado: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Descripción: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Descripcion}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Valor Total: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
-                  </div>
-                  <div class="col"
-                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
-                    <button class="btn btn-success" (click)="Aceptar()">Aceptar</button>
-                  </div>
+<!-- <section class="content" style="text-align: justify;">
+    <div class="content-wrapper">
+        <br>
+        <section class="content">
+            <section class="content">
+                <section class="col-lg-7 connectedSortable">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="bi bi-info-circle-fill colortxt"></i> Información de la solicitud
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="bi bi-arrow-right-short colortxt"></i>
+                                        <label class="p-1 colortxt"> Id Solicitud: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}
+                                    </div>
+                                    <div class="col">
+                                        <i class="bi bi-arrow-right-short colortxt"></i>
+                                        <label class="p-1 colortxt"> Usuario: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Usuario}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class=" col ">
+                                        <i class="bi bi-arrow-right-short colortxt"></i>
+                                        <label class="p-1 colortxt"> Fecha: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fecha}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col ">
+                                        <i class="bi bi-arrow-right-short colortxt"></i>
+                                        <label class="p-1 colortxt">Alto: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Alto}}
+                                    </div>
+                                    <div class="col ">
+                                        <i class="bi bi-arrow-right-short colortxt"></i>
+                                        <label class="p-1 colortxt"> Ancho: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Ancho}}
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col">
+                                        <i class="bi bi-arrow-right-short colortxt"></i>
+                                        <label class="p-1 colortxt"> Fondo: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fondo}}
+                                    </div>
+                                    <div class="col ">
+                                        <i class="bi bi-arrow-right-short colortxt"></i>
+                                        <label class="p-1 colortxt"> Estado: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="bi bi-arrow-right-short colortxt"></i>
+                                        <label> Descripción:  </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Descripcion}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col ">
+                                        <i class="bi bi-arrow-right-short colortxt"></i>
+                                        <label class="p-1 colortxt"> Valor Total: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
+                                    </div>
+                                    <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
+                                        <button class="btn btn-success" (click)="Aceptar()">Aceptar</button>
+                                    </div>
 
-                  <div class="col"
-                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
-                    <button class="btn btn-danger" (click)="Rechazar()">Rechazar</button>
-                  </div>
-                  <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de cotizacion' ||
+                                    <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
+                                        <button class="btn btn-danger" (click)="Rechazar()">Rechazar</button>
+                                    </div>
+                                    <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de cotizacion' ||
                   this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Devuelta'||
                   this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
                   this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'">
-                    <button class="btn btn-danger" (click)="Cancelar()">Cancelar</button>
-                  </div>
-                  <div class="col"
-                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
-                    <button class="btn btn-dark" (click)="Devoler()">Devolver</button>
-                  </div>
-                  <div class="col"
-                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Aceptada' && !showPaypalButtons">
-                    <button class="btn btn-success" (click)="pay()">Pagar</button>
-                  </div>
-                  <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
+                                        <button class="btn btn-danger" (click)="Cancelar()">Cancelar</button>
+                                    </div>
+                                    <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
+                                        <button class="btn btn-dark" (click)="Devoler()">Devolver</button>
+                                    </div>
+                                    <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Aceptada' && !showPaypalButtons">
+                                        <button class="btn btn-success" (click)="pay()">Pagar</button>
+                                    </div>
+                                    <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'">
-                    <a
-                      [routerLink]="['/solicitudes/Solicitud',this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada]">Editar</a>
-                  </div>
-                  <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
+                                        <a [routerLink]="['/solicitudes/Solicitud',this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada]">Editar</a>
+                                    </div>
+                                    <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'">
-                    <a *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado !=
+                                        <a *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado !=
                     'Rechazada' && this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado !=
-                    'Cancelada'"
-                       href="solicitudes/respuestasSP/{{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}">
+                    'Cancelada'" href="solicitudes/respuestasSP/{{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}">
                       Respuestas</a>
-                  </div>
+                                    </div>
 
-                  <!--                  <div class="col" >-->
-                  <!--                    <button class="btn btn-danger">Pagar</button>-->
-                  <!--                  </div>-->
-                </div>
-              </div>
-            </div>
-          </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
         </section>
-      </section>
-    </section>
-    <ngx-paypal *ngIf="showPaypalButtons" [config]="payPalConfig">
-    </ngx-paypal>
+        <ngx-paypal *ngIf="showPaypalButtons" [config]="payPalConfig">
+        </ngx-paypal>
 
 
-    <app-listar-detalle-producto></app-listar-detalle-producto>
-    <div *ngIf="this.productoService.desplegarDetalle">
-      <app-detalle-del-producto-del-detalle></app-detalle-del-producto-del-detalle>
+        <app-listar-detalle-producto></app-listar-detalle-producto>
+        <div *ngIf="this.productoService.desplegarDetalle">
+            <app-detalle-del-producto-del-detalle></app-detalle-del-producto-del-detalle>
+        </div>
     </div>
-  </div>
+</section> -->
+<section class="content py-5 mb-60">
+    <div class="container-fluid">
+        <div class="row">
+            <section class="col-lg-7 connectedSortable mb-60">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title colortxt">
+                            <i class="bi bi-info-circle-fill color"></i> Información de la solicitud
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content p-0">
+                            <div class="row">
+                                <div class="col">
+                                    <i class="bi bi-arrow-right-short colortxt"></i>
+                                    <label class="p-1 colortxt"> Id Solicitud: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}
+                                </div>
+                                <div class="col">
+                                    <i class="bi bi-arrow-right-short colortxt"></i>
+                                    <label class="p-1 colortxt"> Usuario: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Usuario}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col ">
+                                    <i class="bi bi-arrow-right-short colortxt"></i>
+                                    <label class="p-1 colortxt"> Fecha: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fecha}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col ">
+                                    <i class="bi bi-arrow-right-short colortxt"></i>
+                                    <label class="p-1 colortxt">Alto: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Alto}}
+                                </div>
+                                <div class="col ">
+                                    <i class="bi bi-arrow-right-short colortxt"></i>
+                                    <label class="p-1 colortxt"> Ancho: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Ancho}}
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col">
+                                    <i class="bi bi-arrow-right-short colortxt"></i>
+                                    <label class="p-1 colortxt"> Fondo: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fondo}}
+                                </div>
+                                <div class="col ">
+                                    <i class="bi bi-arrow-right-short colortxt"></i>
+                                    <label class="p-1 colortxt"> Estado: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <i class="bi bi-arrow-right-short colortxt"></i>
+                                    <label class="p-1 colortxt"> Descripción:  </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Descripcion}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col ">
+                                    <i class="bi bi-arrow-right-short colortxt"></i>
+                                    <label class="p-1 colortxt"> Valor Total: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
+                                </div>
+                            </div>
+                            <div class="row" align="center" style="margin-top: 5px;">
+
+                                <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
+                                    <button class="btn btn-sm btn-success" (click)="Aceptar()">Aceptar</button>
+                                </div>
+
+                                <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
+                                    <button class="btn   btn-sm btn-danger" (click)="Rechazar()">Rechazar</button>
+                                </div>
+                                <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de cotizacion' ||
+          this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Devuelta'||
+          this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
+          this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'">
+                                    <button class="btn btn-sm btn-danger" (click)="Cancelar()">Cancelar</button>
+                                </div>
+                                <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
+                                    <button class="btn btn-sm btn-dark" (click)="Devoler()">Devolver</button>
+                                </div>
+                                <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Aceptada' && !showPaypalButtons">
+                                    <button class="btn btn-sm btn-success" (click)="pay()">Pagar</button>
+                                </div>
+                                <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
+               this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'">
+                                    <a [routerLink]="['/solicitudes/Solicitud',this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada]" class="btn btn-sm btn-secondary">Editar</a>
+                                </div>
+                                <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
+               this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'">
+                                    <a *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado !=
+            'Rechazada' && this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado !=
+            'Cancelada'" href="solicitudes/respuestasSP/{{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}" class="btn btn-sm btn-primary">
+              Respuestas</a>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="col-lg-5 connectedSortable mb-60">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tab-content p-0">
+                            <ngx-paypal *ngIf="showPaypalButtons" [config]="payPalConfig">
+                            </ngx-paypal>
+                            <app-listar-detalle-producto></app-listar-detalle-producto>
+                            <div *ngIf="this.productoService.desplegarDetalle">
+                                <app-detalle-del-producto-del-detalle></app-detalle-del-producto-del-detalle>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 </section>

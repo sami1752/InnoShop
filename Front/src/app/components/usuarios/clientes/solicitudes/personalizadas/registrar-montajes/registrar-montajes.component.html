@@ -1,4 +1,30 @@
-<form class="" [formGroup]="this.solicitudesPersonalizadasService.formularioRegistroMontaje"
+<div style="display: flex;justify-content: center;align-items: center;" class="mb-40 py-3">
+    <div class="card" style="width:40%;  ">
+        <div class="card-header">
+            <h1 class="card-title" style="color: #2C4F61">
+                <i class="fas fa-hard-hat"></i> MONTAJES
+            </h1>
+        </div>
+        <div class="card-body">
+            <div class="tab-content p-0">
+                <form class="" [formGroup]="this.solicitudesPersonalizadasService.formularioRegistroMontaje" (ngSubmit)="onSubmit()">
+                    <label for="Ancho">Ancho<span class="text-danger">**</span></label>
+                    <input formControlName="Ancho" type="number" step="0.01" id="Ancho" placeholder="Ancho" class="form-control" />
+                    <label for="Fondo">Fondo<span class="text-danger">**</span></label>
+                    <input formControlName="Fondo" type="number" step="0.01" id="Fondo" placeholder="Fondo" class="form-control" />
+                    <label for="Alto">Alto<span class="text-danger">**</span></label>
+                    <input formControlName="Alto" type="number" step="0.01" id="Alto" placeholder="Alto" class="form-control" />
+                    <label for="Alto">Dirección<span class="text-danger">**</span></label>
+                    <input formControlName="Direccion" type="text" id="Direccion" placeholder="Dirección" class="form-control" />
+                    <label for="Descripcion"> Descripción <span class="text-danger">**</span></label>
+                    <textarea formControlName="Descripción" id="Descripcion" class="form-control "></textarea>
+                    <button type="submit" class="os-btn w-100" style="margin-top: 20px;">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <form class="" [formGroup]="this.solicitudesPersonalizadasService.formularioRegistroMontaje"
       (ngSubmit)="onSubmit()">
   <label for="Ancho">Ancho<span>**</span></label>
   <input formControlName="Ancho" type="number" step="0.01" id="Ancho" placeholder="Ancho" class="form-control"/>
@@ -11,4 +37,4 @@
   <label for="Descripcion"> Descripcion <span>**</span></label>
   <textarea formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
   <button type="submit" class="os-btn w-50">Enviar</button>
-</form>
+</form> -->
