@@ -22,9 +22,14 @@ export class RespuestasSolicitudComponent implements OnInit {
   }
 
   id: number = this.rutaActiva.snapshot.params.IdSolicitud;
-
+idUsuario="";
   ngOnInit(): void {
+    this.usuarioService.obtenerPerfil().subscribe(
+      (res) =>{
+        this.idUsuario=(res as Usuario).Id;
+      })
     this.solicitudesPersonalizadasService.ListaRespuestasSolicitudesPersonalizadas(this.id);
+   
   }
 
   resgistrarRespuesta(): void {

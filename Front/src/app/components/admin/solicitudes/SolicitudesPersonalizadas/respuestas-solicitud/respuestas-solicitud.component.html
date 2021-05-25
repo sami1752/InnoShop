@@ -1,25 +1,47 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<div style="display: flex;justify-content: center;align-items: center;" class="mb-40 py-3">
+    <div class="card direct-chat " style="width: 70%;">
+        <div class="card-header">
+            <h1 class="card-title colortxt">
+                Respuestas
+            </h1>
+        </div>
+        <div class="card-body ">
+            <div class="direct-chat-messages direct-chat-secondary">
 
-<form class="" [formGroup]="this.solicitudesPersonalizadasService.formularioRegistroRespuesta" (ngSubmit)="resgistrarRespuesta()">
-  <label for="Respuesta"><span></span></label>
-  <input formControlName="Respuesta" id="Respuesta" type="text" placeholder="Ingresa la respuestas"
-         class="form-control"/>
-  <button type="submit" [disabled]="this.solicitudesPersonalizadasService.formularioRegistroRespuesta.invalid"
-          class="os-btn w-50">Enviar
-  </button>
-  <div *ngFor="let respuesta of solicitudesPersonalizadasService.listaRespuestasSolicitudesPersonalizadas">
-    <label class="p-1 "> {{respuesta.Fecha}} </label>
-    <label class="p-1 "> {{respuesta.Usuario}} </label>
-    <label class="p-1 "> {{respuesta.Respuesta}} </label>
-    <label class="p-1 "> ------------------------------------------ </label>
-  </div>
+                <div *ngFor="let respuesta of solicitudesPersonalizadasService.listaRespuestasSolicitudesPersonalizadas">
+                    <div class="direct-chat-msg right" *ngIf="respuesta.IdUsuario==idUsuario">
+                        <div class="direct-chat-infos clearfix ">
+                            <span class="direct-chat-name float-right colortxt" style="text-transform: capitalize;">{{respuesta.Usuario}}</span>
+                            <span class="direct-chat-timestamp float-left ">{{respuesta.Fecha}}</span>
+                        </div>
 
-</form>
+                        <div class="direct-chat-text ">
+                            {{respuesta.Respuesta}}
+                        </div>
+                    </div>
+                    <div class="direct-chat-msg " *ngIf="respuesta.IdUsuario!=idUsuario">
+                        <div class="direct-chat-infos clearfix ">
+                            <span class="direct-chat-name float-left colortxt" style="text-transform: capitalize;">{{respuesta.Usuario}}</span>
+                            <span class="direct-chat-timestamp float-right ">{{respuesta.Fecha}}</span>
+                        </div>
 
-
-
+                        <div class="direct-chat-text">
+                            {{respuesta.Respuesta}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer ">
+            <form class="" [formGroup]="this.solicitudesPersonalizadasService.formularioRegistroRespuesta" (ngSubmit)="resgistrarRespuesta()">
+                <div class="input-group">
+                    <label for="Respuesta"><span></span></label>
+                    <input formControlName="Respuesta" id="Respuesta" type="text" placeholder="Digita la respuesta ... " class="form-control " />
+                    <span class="input-group-append ">
+                <button type="submit"  [disabled]="this.solicitudesPersonalizadasService.formularioRegistroRespuesta.invalid "class="btn btn-secondary ">Enviar</button>
+                </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,82 +1,68 @@
-<div class="py-4" style="width:100%; margin-left: 5%;">
-    <div class="row" *ngIf="this.carritoDeComprasService.carritoDeCompras.IdCarritoDeCompras
-        && this.carritoDeComprasService.listaDetalleCarritoCompras.length>0; else carritoVacio">
+<section class="content py-5 mb-10">
+    <div class="container-fluid">
+        <div class="row">
+            <section class="col-lg-7 connectedSortable mb-60">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead style="color: #2C4F61;">
+                                <tr>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Subtotal</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let detalle of carritoDeComprasService.listaDetalleCarritoCompras">
+                                <tr>
+                                    <!-- <td>{{detalle.IdDetalleCarritoDeCompras}}</td> -->
+                                    <td>
+                                        <a [routerLink]="['/productos/detalleProducto',detalle.IdProducto]" class="text-dark">{{detalle.NombreProducto}}</a>
 
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table">
-                        <thead style="color: #2C4F61;">
-                            <tr>
-                                <th scope="col">Producto</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Subtotal</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody *ngFor="let detalle of carritoDeComprasService.listaDetalleCarritoCompras">
-                            <tr>
-                                <!-- <td>{{detalle.IdDetalleCarritoDeCompras}}</td> -->
-                                <td>
-                                    <a [routerLink]="['/productos/detalleProducto',detalle.IdProducto]" class="text-dark">{{detalle.NombreProducto}}</a>
+                                    </td>
+                                    <ng-container *ngFor="let precio of productoService.listaPrecios">
+                                        <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio}}</td>
+                                    </ng-container>
 
-                                </td>
-                                <ng-container *ngFor="let precio of productoService.listaPrecios">
-                                    <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio}}</td>
-                                </ng-container>
+                                    <td class="product-quantity">
+                                        <div class="cart-plus-minus"><input (change)="editarDetalleCarrito(detalle)" [(ngModel)]="detalle.Cantidad" type="number" min="1" /></div>
+                                    </td>
+                                    <ng-container *ngFor="let precio of productoService.listaPrecios">
+                                        <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio * detalle.Cantidad}}</td>
+                                    </ng-container>
+                                    <td><a (click)="eliminarDetalle(detalle)" class="btn"><i class="bi bi-x text-danger" style="font-size: 19px;"></i></a></td>
 
-                                <td class="product-quantity">
-                                    <div class="cart-plus-minus"><input (change)="editarDetalleCarrito(detalle)" [(ngModel)]="detalle.Cantidad" type="number" min="1" /></div>
-                                </td>
-                                <ng-container *ngFor="let precio of productoService.listaPrecios">
-                                    <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio * detalle.Cantidad}}</td>
-                                </ng-container>
-                                <td><a (click)="eliminarDetalle(detalle)" class="btn"><i class="bi bi-x text-danger"
-                                                                       style="font-size: 19px;"></i></a></td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="card col-4 ml-4 mr-4">
-
-            <div class="card-body">
-                <div class="cart-page-total" style="text-align: left;">
-                    <h1 style="color: #2C4F61;"><i class="fas fa-cash-register"></i> Total</h1>
-                    <ul class="mb-20">
-                        <li>Subtotal <span>${{this.carritoDeComprasService.carritoDeCompras.Valor}}</span></li>
-                        <li>Valor iva
-                            <span>${{((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}</span>
-                        </li>
-                        <li>Total
-                            <span>${{this.carritoDeComprasService.carritoDeCompras.Valor +
-              ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}
-                             </span>
-                        </li>
-                    </ul>
-                    <div class="pro-cart-btn">
-                        <a [routerLink]="['/solicitudes/finalizarCompra']" routerLinkActive="router-link-active" class="add-cart-btn">Continuar</a>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
+            </section>
+            <section class="col-lg-5 connectedSortable mb-60">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="cart-page-total" style="text-align: left;">
+                            <h1 style="color: #2C4F61;"><i class="fas fa-cash-register"></i> Total</h1>
+                            <ul class="mb-20">
+                                <li>Subtotal <span>${{this.carritoDeComprasService.carritoDeCompras.Valor}}</span></li>
+                                <li>Valor iva
+                                    <span>${{((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}</span>
+                                </li>
+                                <li>Total
+                                    <span>${{this.carritoDeComprasService.carritoDeCompras.Valor +
+                      ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}
+                                     </span>
+                                </li>
+                            </ul>
+                            <div class="pro-cart-btn">
+                                <a [routerLink]="['/solicitudes/finalizarCompra']" routerLinkActive="router-link-active" class="add-cart-btn">Continuar</a>
+                            </div>
 
-            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-
-
     </div>
-    <ng-template #carritoVacio>
-        <div class="card text-center">
-            <div class="card-body">
-                <p class="card-text">Carrito de compras vacío</p>
-
-                <a [routerLink]="['/productos/inicio/']" class="btn btn-primary">Ir a tienda</a>
-            </div>
-        </div>
-    </ng-template>
-</div>
+</section>
