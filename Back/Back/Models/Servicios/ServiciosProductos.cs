@@ -226,9 +226,7 @@ namespace Back.Models.Servicios
                                                              GarantiaMeses = producto.GarantiaMeses,
                                                              Precio = precioProducto.Precio,
                                                              Usuario = usuario.Nombres + " " + usuario.Apellidos,
-                                                             CantidadStock = (from entrada in _context.Entradas 
-                                                                              where entrada.IdProducto == id
-                                                                              select entrada.Cantidad).Sum()                                                     
+                                                             CantidadStock = 0
                                                          }).ToList();
 
                 return detalleProducto[detalleProducto.Count() - 1];
@@ -299,10 +297,12 @@ namespace Back.Models.Servicios
 
         public async Task<int> ObtenerStockProducto(int idProducto)
         {
-            int entradas = _context.Entradas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
-            int salidas = _context.Salidas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
-            return  salidas == 0 ? entradas : entradas - salidas; 
-
+            await using (_context)
+            {
+                int entradas = _context.Entradas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
+                int salidas = _context.Salidas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
+                return salidas == 0 ? entradas : entradas - salidas;
+            }
         }
 
 

@@ -132,7 +132,7 @@ namespace Back.Controllers
             {
                 return await _context.DetalleProducto(id);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }

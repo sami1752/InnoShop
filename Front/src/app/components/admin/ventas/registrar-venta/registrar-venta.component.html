@@ -10,7 +10,7 @@
     </div>
     <div class=" col-3">
       <label></label>
-      <button type="submit" [disabled]="!this.camposDetalle"
+      <button type="submit" [disabled]="!this.camposDetalle || this.ventasService.formularioRegistroVenta.invalid"
               class="btn btn-primary mt-4">Agregar Producto
       </button>
     </div>
@@ -28,7 +28,16 @@
     <div class="col">
       <label for="Cantidad">cantidad <span>**</span></label>
       <input formControlName="Cantidad" type="number" id="Cantidad" placeholder="Cantidad" class="form-control "/>
+      <div
+        *ngIf="this.ventasService.Cantidad.invalid && (this.ventasService.Cantidad.touched || this.ventasService.Cantidad.dirty)"
+        class="text-danger block mb-20 text-center">
+        <div *ngIf="this.ventasService.Cantidad.hasError('required')">El campo es obligatorio</div>
+        <div *ngIf="this.ventasService.Cantidad.hasError('pattern')">Solo se permiten números válidos
+        </div>
+        <div *ngIf="this.ventasService.Cantidad.hasError('validarStock')">El valor no debe superar el stock</div>
+      </div>
     </div>
+
     <div class="col">
       <label>Precio <span>**</span></label>
       <h3>{{this.productosService.detalleProducto.Precio}} </h3>
@@ -39,7 +48,7 @@
     </div>
     <div class="col">
       <label>SubTotal <span>**</span></label>
-      <h3>{{this.productosService.detalleProducto.Precio * this.ventasService.Cantidad}} </h3>
+      <h3>{{this.productosService.detalleProducto.Precio * this.ventasService.CantidadV}} </h3>
     </div>
   </div>
 

@@ -119,10 +119,11 @@ namespace Back.Models.Servicios
         }
         public async Task AgregarDetalleVentaProducto(DetalleVentaProductos detalle)
         {
+            var precio = await this.ObtenerPrecioProducto(detalle.IdProducto);
+            detalle.SubTotal = precio.Precio * detalle.Cantidad;
             await _context.DetalleVentaProductos.AddAsync(detalle);
             await _context.SaveChangesAsync();
             var venta = await this.ObtenerVentaPorId(detalle.IdVenta);
-            var precio = await this.ObtenerPrecioProducto(detalle.IdProducto);
             var iva = await this.ObtenerIvaActual();
             venta.IdIva = iva.IdIva;
             venta.SubTotal += detalle.Cantidad * precio.Precio;

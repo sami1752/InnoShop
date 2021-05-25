@@ -20,6 +20,13 @@ namespace Back.Controllers
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DetalleVenta>>> ListarVentas() => await _context.ListarVentas();
+
+        [HttpGet]
+        [Route("compras/{idUsuario}")]
+        public async Task<ActionResult<IEnumerable<Ventas>>> ListarVentasPorCliente(string idUsuario) => await _context.ListaVentasPorCliente(idUsuario);
+
+
+
         [HttpGet]
         [Route("detalleVentaProductos/{idVenta}")]
         public async Task<ActionResult<IEnumerable<DetalleVentaProductoInfo>>> ListaDetalleVentaProductos(int idVenta)

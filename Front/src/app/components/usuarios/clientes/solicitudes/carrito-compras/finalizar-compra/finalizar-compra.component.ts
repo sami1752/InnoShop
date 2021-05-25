@@ -9,6 +9,7 @@ import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import {VentasService} from 'src/app/services/ventas.service';
 import {environment} from 'src/environments/environment';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-finalizar-compra',
@@ -20,42 +21,46 @@ export class FinalizarCompraComponent implements OnInit {
   constructor(public carritoDeComprasService: CarritoDeComprasService,
               public productosService: ProductoService,
               public usuarioService: UsuarioService,
-              public ventasService: VentasService) {
+              public ventasService: VentasService,
+              private router: Router) {
   }
 
   public payPalConfig ?: IPayPalConfig;
   public PaypalButtons: boolean;
-  public detalleVentaProducto: DetalleVentasProducto;
+  public detalleVentaProducto: DetalleVentasProducto =
+    { IdDetalleVentaProducto: 0, IdProducto: 0, IdVenta: 0, NombreProducto: '', Cantidad: 0, SubTotal: 0 };
 
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       (res: any) => {
         this.initConfig(res.Id);
+        this.ventasService.ObtenerIvaActual();
         this.carritoDeComprasService.CarritoDeComprasUsuario(res.Id);
         this.carritoDeComprasService.listarDetalleCarrito(res.id);
       }, err => {
       }
     );
   }
-
-  private initConfig(idUsuario: string): void {
+  private initConfig(idUsuario): void {
     this.payPalConfig = {
-      currency: 'EUR',
+      currency: 'USD',
       clientId: environment.clienteId,
       createOrderOnClient: (data) => <ICreateOrderRequest> {
         intent: 'CAPTURE',
-        purchase_units: [{
+        purchase_units : [{
           amount: {
-            currency_code: 'EUR',
-            value: this.carritoDeComprasService.carritoDeCompras.Valor.toString(),
+            currency_code: 'USD',
+            value: (this.carritoDeComprasService.carritoDeCompras.Valor
+              + ((this.ventasService.iva.Porcentaje * this.carritoDeComprasService.carritoDeCompras.Valor) / 100)).toString(),
             breakdown: {
               item_total: {
-                currency_code: 'EUR',
-                value: this.carritoDeComprasService.carritoDeCompras.Valor.toString()
+                currency_code: 'USD',
+                value: (this.carritoDeComprasService.carritoDeCompras.Valor
+                  + ((this.ventasService.iva.Porcentaje * this.carritoDeComprasService.carritoDeCompras.Valor) / 100)).toString()
               }
             }
           },
-          items: this.productosVenta()
+          items: this.productosVenta(),
         }]
       },
       advanced: {
@@ -68,27 +73,17 @@ export class FinalizarCompraComponent implements OnInit {
       onApprove: (data, actions) => {
         console.log('onApprove - transaction was approved, but not authorized', data, actions);
         actions.order.get().then(details => {
-          /* this.ventasService.AgregarVenta().subscribe(
-             (res:Venta)=>{
-               this.carritoDeComprasService.listarDetalleCarrito(idUsuario)
-               this.carritoDeComprasService.listaDetalleCarritoCompras.forEach((dCar:DetalleCarritoDeCompras)=>{
-               this.detalleVentaProducto.Cantidad = dCar.Cantidad
-               this.detalleVentaProducto.IdProducto = dCar.IdProducto
-               this.detalleVentaProducto.IdVenta = res.IdVenta
-               this.detalleVentaProducto.SubTotal = 0
-               })
-               //this.ventasService.agregarDetalleVenta()
-             },err=>{alert("Error")}
-           )*/
           console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
-
       },
       onClientAuthorization: (data) => {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-      },
+        this.carritoDeComprasService.listarDetalleCarrito(idUsuario);
+        this.agregarVenta();
+        },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
+        alert('Pago cancelado');
       },
       onError: err => {
         console.log('OnError', err);
@@ -115,6 +110,32 @@ export class FinalizarCompraComponent implements OnInit {
       items.push(item);
     });
     return items;
+  }
+  agregarVenta(): void{
+    this.usuarioService.obtenerPerfil().subscribe(
+      (res: any) => {
+        this.ventasService.venta.IdUsuario = res.Id;
+        this.ventasService.AgregarVenta().subscribe(
+          (resV: Venta) => {
+            console.log(this.carritoDeComprasService.listaDetalleCarritoCompras);
+            this.carritoDeComprasService.listaDetalleCarritoCompras.forEach((dCar) => {
+              this.detalleVentaProducto.Cantidad = dCar.Cantidad;
+              this.detalleVentaProducto.IdProducto = dCar.IdProducto;
+              this.detalleVentaProducto.IdVenta = resV.IdVenta;
+              this.detalleVentaProducto.SubTotal = 0;
+              this.detalleVentaProducto.IdDetalleVentaProducto = 0;
+              console.log(this.detalleVentaProducto);
+              // tslint:disable-next-line:no-shadowed-variable
+              this.ventasService.agregarDetalleVenta(this.detalleVentaProducto).subscribe((res: any) => {} );
+              this.carritoDeComprasService.CarritoDeComprasUsuario(res.Id);
+              this.carritoDeComprasService.editarCarrito().subscribe();
+            });
+            alert('Compra realizada con exito');
+            this.router.navigateByUrl('solicitudes/historialCompras');
+          }, err => {alert('Error'); console.log(err); }
+        );
+      }, err => {}
+    );
   }
 
 

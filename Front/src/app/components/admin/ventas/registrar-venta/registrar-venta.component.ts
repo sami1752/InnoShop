@@ -25,6 +25,7 @@ export class RegistrarVentaComponent implements OnInit {
 
 
   llenarCamposVenta(idProducto: number): any {
+    this.ventasService.desplegarDetalle = false;
     if (idProducto > 0) {
       this.usuarioService.obtenerPerfil().subscribe((res: any) => this.ventasService.venta.IdUsuario = res.Id);
       this.camposDetalle = true;
@@ -45,6 +46,7 @@ export class RegistrarVentaComponent implements OnInit {
 
 
   agregarDetalleProducto(): any {
+    this.ventasService.desplegarDetalle = false;
     if (this.ventasService.IdVenta > 0) {
       this.detalleVentaProducto = this.ventasService.formularioRegistroVenta.value;
       this.detalleVentaProducto.IdDetalleVentaProducto = 0;

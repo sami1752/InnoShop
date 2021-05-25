@@ -1,0 +1,19 @@
+<table class="table table-hover cupones" style="text-transform: capitalize !important;">
+  <thead>
+  <tr>
+    <th scope="col">Descuento</th>
+    <th scope="col">Fecha vencimiento</th>
+    <th scope="col">Estado</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let descuento of descuentosService.listaCuponesClientes">
+  <tr *ngIf="descuento.Estado">
+    <td>{{descuento.PorcentajeDescuento}} %</td>
+    <td>{{descuento.FechaVencimiento}}</td>
+
+    <td >
+      <i class="bi bi-record-fill text-success" *ngIf="descuento.Estado==true"></i>
+      <label style="font-weight: normal;">activo</label></td>
+  </tr>
+  </tbody>
+</table>
