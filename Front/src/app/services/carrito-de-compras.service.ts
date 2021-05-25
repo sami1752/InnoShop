@@ -40,6 +40,12 @@ export class CarritoDeComprasService {
     return this.http.post(this.configuracion.rootURL + '/Solicitudes/DetalleCarritoDeCompras', this.detalleCarritoDeCompras);
   }
 
+  editarCarrito(): any {
+    console.log(this.carritoDeCompras);
+    this.carritoDeCompras.Estado = true;
+    return this.http.put(this.configuracion.rootURL + '/Solicitudes/CarritoDeCompras', this.carritoDeCompras);
+  }
+
   editarDetalleCarrito(detalleCarrito, cant): any {
     return this.http.put(this.configuracion.rootURL + '/Solicitudes/DetalleCarritoDeCompras/' + cant, detalleCarrito);
   }

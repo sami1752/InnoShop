@@ -41,6 +41,7 @@ import {RespuestaMontajeComponent} from './components/admin/solicitudes/Montajes
 import {EditarMontajeComponent} from './components/admin/solicitudes/Montajes/editar-montaje/editar-montaje.component';
 import {GestionMontajeComponent} from './components/admin/solicitudes/Montajes/gestion-montaje/gestion-montaje.component';
 import {DetalleMontajeComponent} from './components/admin/solicitudes/Montajes/detalle-montaje/detalle-montaje.component';
+import {HistorialComprasComponent} from './components/usuarios/clientes/solicitudes/historial-compras/historial-compras.component';
 
 
 const routes: Routes = [
@@ -79,7 +80,8 @@ const routes: Routes = [
       {path: 'detalleSP/:IdSolicitud', component: DetalleSPComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'respuestasSP/:IdSolicitud', component: RespuestasSolicitudComponent},
       {path: 'detalleM/:IdMontaje', component: DetalleMComponent, canActivate: [AutorizacionRutasGuard]},
-      {path: 'respuestasM/:IdMontaje', component: RespuestaMontajeComponent}
+      {path: 'respuestasM/:IdMontaje', component: RespuestaMontajeComponent},
+      {path: 'historialCompras', component: HistorialComprasComponent}
     ]
   },
 

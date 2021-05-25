@@ -10,6 +10,8 @@ import {DetalleVentaProductoComponent} from './detalle-venta-producto/detalle-ve
 import {DetalleVentaCompletoComponent} from './detalle-venta-completo/detalle-venta-completo.component';
 import {FinalizarCompraComponent} from '../../usuarios/clientes/solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
 import {NgxPayPalModule} from 'ngx-paypal';
+import {ClientesModule} from '../../usuarios/clientes/clientes.module';
+import { HistorialComprasComponent } from 'src/app/components/usuarios/clientes/solicitudes/historial-compras/historial-compras.component';
 
 @NgModule({
   declarations: [
@@ -18,16 +20,18 @@ import {NgxPayPalModule} from 'ngx-paypal';
     GestionVentasComponent,
     DetalleVentaProductoComponent,
     DetalleVentaCompletoComponent,
-    FinalizarCompraComponent
+    FinalizarCompraComponent,
+    HistorialComprasComponent
   ],
-  imports: [
-    CommonModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgxPayPalModule
-  ]
+    imports: [
+        CommonModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NgxPayPalModule,
+        ClientesModule
+    ]
 })
 export class VentasModule {
 }

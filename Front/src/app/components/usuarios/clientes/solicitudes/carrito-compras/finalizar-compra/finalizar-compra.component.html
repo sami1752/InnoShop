@@ -1,1 +1,27 @@
+<div class="row">
+  <div class="card col-4 ml-4 mr-4">
+    <div class="card-body">
+      <div class="cart-page-total" style="text-align: left;">
+        <h2 style="color: #2C4F61;"><i class="fas fa-cash-register"></i> Descripción</h2>
+        <ul class="mb-20">
+          <li>Subtotal <span>${{this.carritoDeComprasService.carritoDeCompras.Valor}}</span></li>
+          <li>Valor iva
+            <span>${{((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}</span>
+          </li>
+          <li>Total
+            <span>${{this.carritoDeComprasService.carritoDeCompras.Valor +
+            ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}
+                             </span>
+          </li>
+        </ul>
+        <!--<div class="pro-cart-btn">
+          <button class="add-cart-btn" >Usar cupon de descuento</button>
+        </div>-->
+      </div>
+    </div>
+  </div>
+  <!--<app-listar-cupones class="col-4"></app-listar-cupones>-->
+</div>
+
+
 <ngx-paypal [config]="payPalConfig"></ngx-paypal>
