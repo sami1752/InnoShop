@@ -26,7 +26,7 @@ export class DetalleSPComponent implements OnInit {
   public payPalConfig ?: IPayPalConfig;
   public PaypalButtons: boolean;
   public DetalleVentasSolicitud: DetalleVentasSolicitud =
-    {IdDetalleVentasSolicitud: 0, IdSolictud: 0, IdVenta: 0, Cantidad: 0, SubTotal: 0};
+    {IdDetalleVentasSolicitud: 0, IdSolicitudPersonalizada: 0, IdVenta: 0, Cantidad: 0, SubTotal: 0};
 
   constructor(public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
               private rutaActiva: ActivatedRoute,
@@ -48,8 +48,6 @@ export class DetalleSPComponent implements OnInit {
   }
 
   private initConfig(): void {
-    alert('sdgg');
-
     this.payPalConfig = {
       currency: 'USD',
       clientId: 'AVqWU6rPDlF2Rkm2CQUtWH2cZ1l3s96DO_u1FaT6JMbbT12TdOgAjNurv_6dj4TYnQHd39srPNttQhXt',
@@ -95,11 +93,12 @@ export class DetalleSPComponent implements OnInit {
               (respuesta: any) => {
                 this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
                 this.ventasService.venta.IdUsuario = res.Id;
+                this.ventasService.venta.IdVenta = 0;
+                this.ventasService.venta.Total = this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal;
                 this.ventasService.AgregarVenta().subscribe(
                   (resV: Venta) => {
                     this.DetalleVentasSolicitud.Cantidad = 1;
-                    this.DetalleVentasSolicitud.IdSolictud =
-                      this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada;
+                    this.DetalleVentasSolicitud.IdSolicitudPersonalizada = this.id;
                     this.DetalleVentasSolicitud.IdVenta = resV.IdVenta;
                     this.DetalleVentasSolicitud.SubTotal = this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal;
                     this.DetalleVentasSolicitud.IdDetalleVentasSolicitud = 0;

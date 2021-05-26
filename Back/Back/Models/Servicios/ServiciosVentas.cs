@@ -166,6 +166,11 @@ namespace Back.Models.Servicios
         }
         public async Task AgregarDetalleVentaSolicitudes(DetalleVentaSolicitudes detalle)
         {
+            var venta = await this.ObtenerVentaPorId(detalle.IdVenta);
+            var iva = await this.ObtenerIvaActual();
+            venta.IdIva = iva.IdIva;
+            venta.TotalIva = venta.Total * (iva.Porcentaje / 100);
+            await this.ModificarValorTotalVentas(venta);
             await _context.DetalleVentaSolicitudes.AddAsync(detalle);
             await _context.SaveChangesAsync();
         }

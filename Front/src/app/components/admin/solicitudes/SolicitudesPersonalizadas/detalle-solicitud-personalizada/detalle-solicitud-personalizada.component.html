@@ -71,7 +71,8 @@
                   <div class="col "
                        *ngIf="(this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada')&&
                        (this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada' ||
-                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada')">
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'||
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Devuelta')">
                     <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
                   </div>
                   <div class="col"
