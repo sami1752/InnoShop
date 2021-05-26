@@ -45,20 +45,22 @@
                         <div class="cart-page-total" style="text-align: left;">
                             <h1 style="color: #2C4F61;"><i class="fas fa-cash-register"></i> Total</h1>
                             <ul class="mb-20">
-                                <li>Subtotal <span>${{this.carritoDeComprasService.carritoDeCompras.Valor}}</span></li>
+                              <li>Subtotal
+                                <span>${{
+                                  this.carritoDeComprasService.carritoDeCompras.Valor -
+                                  ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}
+                                </span>
+                              </li>
                                 <li>Valor iva
                                     <span>${{((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}</span>
                                 </li>
                                 <li>Total
-                                    <span>${{this.carritoDeComprasService.carritoDeCompras.Valor +
-                      ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}
-                                     </span>
+                                    <span>${{this.carritoDeComprasService.carritoDeCompras.Valor}}</span>
                                 </li>
                             </ul>
                             <div class="pro-cart-btn">
                                 <a [routerLink]="['/solicitudes/finalizarCompra']" routerLinkActive="router-link-active" class="add-cart-btn">Continuar</a>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -66,3 +68,4 @@
         </div>
     </div>
 </section>
+

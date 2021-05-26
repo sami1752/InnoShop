@@ -2,7 +2,6 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Iva} from '../models/iva';
-import {Ventas} from '../models/Ventas/ventas';
 import {ConfiguracionService} from './configuracion.service';
 import {Precio} from '../models/precio';
 import {DetalleVentasProducto} from '../models/Ventas/detalle-ventas-producto';
@@ -11,6 +10,7 @@ import {Venta} from '../models/Ventas/venta';
 import {UsuarioService} from './usuario.service';
 import {ProductoService} from './producto.service';
 import {DetalleVentasSolicitud} from '../models/Ventas/detalle-ventas-Solicitud';
+import {DescuentosService} from './descuentos.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,8 @@ export class VentasService {
     private http: HttpClient,
     private configuracion: ConfiguracionService,
     private formBuilder: FormBuilder,
-    private productosService: ProductoService) {
+    private productosService: ProductoService,
+    private descuentosService: DescuentosService) {
   }
 
   listaVentas: DetalleVentas[];
@@ -32,7 +33,7 @@ export class VentasService {
   desplegarDetalle = false;
   desplegarDetalleVentaEnRegistro = false;
   iva: Iva;
-  venta: Venta = {IdVenta: 0, Fecha: '', IdUsuario: '', IdDescuento: 0, SubTotal: 0, Total: 0, IdIva: 0, TotalIva: 0};
+  venta: Venta = {IdVenta: 0, Fecha: '', IdUsuario: '', IdDescuento: 0, Total: 0, IdIva: 0, TotalIva: 0};
   detalleVenta: DetalleVentas;
   detalleVentaSolicitudes: DetalleVentasSolicitud;
 
@@ -96,7 +97,7 @@ export class VentasService {
 
   AgregarVenta(): any {
     this.venta.Fecha = '0001-01-01';
-    this.venta.IdDescuento = 17;
+    this.venta.IdDescuento = this.descuentosService.descuentoEnVenta.IdDescuento;
     console.log(this.venta);
     return this.http.post(this.configuracion.rootURL + '/Ventas', this.venta);
   }

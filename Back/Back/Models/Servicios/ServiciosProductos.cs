@@ -199,10 +199,9 @@ namespace Back.Models.Servicios
 
         public async Task<DetalleProducto> DetalleProducto(int id)
         {
-             
             await using (_context)
             {
-                List<DetalleProducto> detalleProducto = (from producto in _context.Productos
+                DetalleProducto detalleProducto = (from producto in _context.Productos
                                                          join categoria in _context.Categorias
                                                          on producto.IdCategoria equals categoria.IdCategoria
                                                          join precioProducto in _context.PrecioProductos
@@ -227,10 +226,10 @@ namespace Back.Models.Servicios
                                                              GarantiaMeses = producto.GarantiaMeses,
                                                              Precio = precioProducto.Precio,
                                                              Usuario = usuario.Nombres + " " + usuario.Apellidos,
-                                                             CantidadStock = 0
-                                                         }).ToList();
+                                                             CantidadStock = this.ObtenerStockProducto(id)
+            }).First();
 
-                return detalleProducto[detalleProducto.Count() - 1];
+                return detalleProducto;
             }
 
 
@@ -297,14 +296,11 @@ namespace Back.Models.Servicios
             await _context.SaveChangesAsync();
         }
 
-        public async Task<int> ObtenerStockProducto(int idProducto)
+        public int ObtenerStockProducto(int idProducto)
         {
-            await using (_context)
-            {
                 int entradas = _context.Entradas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
                 int salidas = _context.Salidas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
                 return salidas == 0 ? entradas : entradas - salidas;
-            }
         }
 
 

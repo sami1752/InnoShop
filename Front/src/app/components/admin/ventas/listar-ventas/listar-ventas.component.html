@@ -3,17 +3,17 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Usuario</th>
-            <th scope="col">Subtotal</th>
+            <th scope="col">Total iva</th>
             <th scope="col">Total</th>
             <th></th>
-    
+
         </tr>
     </thead>
     <tbody *ngFor="let venta of ventasService.listaVentas">
             <tr>
                 <td>{{venta.IdVenta}}</td>
                 <td>{{venta.NombreUsuario}}</td>
-                <td>{{venta.SubTotal}}</td>
+                <td>{{venta.TotalIva}}</td>
                 <td>{{venta.Total}}</td>
                 <td><button  (click)="detalleVenta(venta.IdVenta)" class="btn btn-info" type="button">Detalle</button></td>
             </tr>

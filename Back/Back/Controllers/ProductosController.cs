@@ -295,9 +295,9 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("stock/{idProducto}")]
-        public async Task<int> StockProducto(int idProducto)
+        public int StockProducto(int idProducto)
         {
-            return await _context.ObtenerStockProducto(idProducto);
+            return  _context.ObtenerStockProducto(idProducto);
         }
 
 

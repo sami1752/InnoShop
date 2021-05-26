@@ -17,8 +17,6 @@ namespace Back.Models.Entidades.Ventas
         [Required]
         public int IdDescuento { get; set; }//
         [Required]
-        public float SubTotal { get; set; }
-        [Required]
         public float Total { get; set; }
         [Required]
         public int IdIva { get; set; }

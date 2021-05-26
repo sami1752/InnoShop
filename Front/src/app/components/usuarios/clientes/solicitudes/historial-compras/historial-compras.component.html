@@ -14,7 +14,7 @@
       <tbody *ngFor="let venta of ventasService.listaVentas">
       <tr>
         <td>{{venta.IdVenta}}</td>
-        <td>{{venta.SubTotal}}</td>
+        <td>{{venta.Total-venta.TotalIva}}</td>
         <td>{{venta.TotalIva}}</td>
         <td>{{venta.Total}}</td>
         <td><button  (click)="detalleVenta(venta.IdVenta)" class="btn btn-info" type="button">Detalle</button></td>
