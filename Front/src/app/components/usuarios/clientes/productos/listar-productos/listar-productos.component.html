@@ -141,18 +141,19 @@
                             ${{producto.Precio}} </p>
                         </div>
                       </div>
-                      <div style="margin-left: 5px; ">
-                        <div class=" product__content p-relative " style=" margin:-3.0% 0">
-                          <div class="add-cart transition-3 ">
-                            <a class="btn" (click)="agregarCarrito(producto.IdProducto)"><i
-                              class="bi bi-cart-plus-fill "></i> Agregar al carrito
-                              <ng-container *ngFor="let item of carritoDeComprasService.listaDetalleCarritoCompras">
-                                ({{item.Cantidad}})
-                              </ng-container>
-                            </a>
+                        <div style="margin-left: 5px; ">
+                          <div class=" product__content p-relative " style=" margin:-3.0% 0">
+                            <div  class="add-cart transition-3 ">
+                              <a class="btn" (click)="agregarCarrito(producto.IdProducto)"><i
+                                class="bi bi-cart-plus-fill "></i> Agregar al carrito
+                                <ng-container *ngFor="let item of carritoDeComprasService.listaDetalleCarritoCompras">
+                                  ({{item.Cantidad}})
+                                </ng-container>
+                              </a>
+                            </div>
                           </div>
                         </div>
-                      </div>
+
                     </div>
                   </div>
                 </div>

@@ -828,9 +828,6 @@ namespace Back.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("SubTotal")
-                        .HasColumnType("real");
-
                     b.Property<float>("Total")
                         .HasColumnType("real");
 

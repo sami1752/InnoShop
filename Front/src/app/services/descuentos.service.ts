@@ -19,7 +19,19 @@ export class DescuentosService {
     private formBuilder: FormBuilder) {
   }
 
+  desplegarListaCupones = false;
+
   idUsuario = '';
+  descuentoEnVenta: Descuento = {
+    IdDescuento: 17,
+    IdUsuario: '',
+    Fecha: '',
+    FechaVencimiento: '',
+    Estado: false,
+    IdPorcentajeRuleta: 0,
+    IdValorRuleta: 0,
+    PorcentajeDescuento: 0
+  };
 
   listaPorcentajes: PorcentajesRuleta[];
   listaCuponesClientes: Descuento[];
@@ -113,5 +125,9 @@ export class DescuentosService {
   EditarPorcentaje(porcentaje: PorcentajesRuleta): any {
     porcentaje.Estado = !porcentaje.Estado;
     return this.http.put(this.configuracion.rootURL + '/Descuentos/editarPorcentaje', porcentaje);
+  }
+  EditarCupon(descuento: Descuento): any {
+    descuento.Estado = false;
+    return this.http.put(this.configuracion.rootURL + '/Descuentos/editarCupon', descuento);
   }
 }

@@ -1,6 +1,7 @@
 ﻿using Back.Clases.Ventas;
 using Back.Models.Abstratos;
 using Back.Models.DAL;
+using Back.Models.Entidades.Descuentos;
 using Back.Models.Entidades.Productos;
 using Back.Models.Entidades.Ventas;
 using Microsoft.AspNetCore.Mvc;
@@ -42,8 +43,7 @@ namespace Back.Models.Servicios
                                                       Total = venta.Total,
                                                       IdIva = venta.IdIva,
                                                       ValorIva = iva.Porcentaje,
-                                                      TotalIva = venta.TotalIva,
-                                                      SubTotal = venta.SubTotal
+                                                      TotalIva = venta.TotalIva
                                                       
                                                   }).ToList();
                 return listaVentas;
@@ -74,8 +74,7 @@ namespace Back.Models.Servicios
                                                       Total = venta.Total,
                                                       IdIva = venta.IdIva,
                                                       ValorIva = iva.Porcentaje,
-                                                      TotalIva = venta.TotalIva,
-                                                      SubTotal = venta.SubTotal
+                                                      TotalIva = venta.TotalIva
 
                                                   }).First();
                 return detalleVenta;
@@ -119,16 +118,23 @@ namespace Back.Models.Servicios
         }
         public async Task AgregarDetalleVentaProducto(DetalleVentaProductos detalle)
         {
+
             var precio = await this.ObtenerPrecioProducto(detalle.IdProducto);
             detalle.SubTotal = precio.Precio * detalle.Cantidad;
             await _context.DetalleVentaProductos.AddAsync(detalle);
             await _context.SaveChangesAsync();
             var venta = await this.ObtenerVentaPorId(detalle.IdVenta);
+
+            float descuento = (from desc in _context.Descuentos
+                                           join porc in _context.PorcentajesRuleta on desc.IdPorcentajeRuleta equals porc.IdPorcentajeRuleta
+                                           where desc.IdDescuento == venta.IdDescuento
+                                           select porc.Porcentaje).First();
+
+
             var iva = await this.ObtenerIvaActual();
             venta.IdIva = iva.IdIva;
-            venta.SubTotal += detalle.Cantidad * precio.Precio;
-            venta.TotalIva = venta.SubTotal * (iva.Porcentaje / 100);
-            venta.Total = venta.SubTotal + venta.TotalIva;
+            venta.Total += (detalle.Cantidad * precio.Precio)-descuento*(detalle.SubTotal/100);
+            venta.TotalIva += (detalle.Cantidad * precio.Precio) * (iva.Porcentaje / 100);
             await this.ModificarValorTotalVentas(venta);
 
             Salida salida = new Salida()

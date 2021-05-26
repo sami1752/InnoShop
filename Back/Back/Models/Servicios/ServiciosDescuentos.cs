@@ -94,6 +94,12 @@ namespace Back.Models.Servicios
             await _context.SaveChangesAsync();
         }
 
+        public async Task EditarCuponDescuento(Descuentos descuento)
+        {
+            _context.Descuentos.Update(descuento);
+            await _context.SaveChangesAsync();
+        }
+
 
 
     }

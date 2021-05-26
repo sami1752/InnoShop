@@ -2,9 +2,16 @@
 
 namespace Back.Migrations
 {
-    public partial class subtotalVenta : Migration
+    public partial class correcionventas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropColumn(
+                name: "SubTotal",
+                table: "Ventas");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<float>(
                 name: "SubTotal",
@@ -12,13 +19,6 @@ namespace Back.Migrations
                 type: "real",
                 nullable: false,
                 defaultValue: 0f);
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "SubTotal",
-                table: "Ventas");
         }
     }
 }
