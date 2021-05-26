@@ -506,6 +506,96 @@
             .os-btn:hover span {
                 color: #ffffff;
             }
+            /*btn danger*/
+            
+            .os-btn-danger {
+                position: relative;
+                display: inline-block;
+                text-transform: uppercase;
+                text-align: center;
+                font-weight: 600;
+                height: 50px;
+                line-height: 46px;
+                padding: 0 42px;
+                border: 2px solid #ebebeb;
+                color: rgb(196, 0, 0);
+                background: transparent;
+                z-index: 1;
+                font-size: 12px;
+            }
+            
+            .os-btn-danger span {
+                color: #bc8246;
+            }
+            
+            .os-btn-danger::after {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 0;
+                background-color: rgb(196, 0, 0);
+                z-index: -1;
+            }
+            
+            .os-btn-danger:hover {
+                color: #ffffff;
+                border: 0.1;
+            }
+            
+            .os-btn-danger:hover::after {
+                height: 100%;
+            }
+            
+            .os-btn-danger:hover span {
+                color: #ffffff;
+            }
+            
+            .os-btn {
+                position: relative;
+                display: inline-block;
+                text-transform: uppercase;
+                text-align: center;
+                font-weight: 600;
+                height: 50px;
+                line-height: 46px;
+                padding: 0 42px;
+                border: 2px solid #ebebeb;
+                color: #323232;
+                background: transparent;
+                z-index: 1;
+                font-size: 12px;
+            }
+            
+            .os-btn span {
+                color: #bc8246;
+            }
+            
+            .os-btn::after {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 0;
+                background-color: #2C4F61;
+                z-index: -1;
+            }
+            
+            .os-btn:hover {
+                color: #ffffff;
+                border-color: #00000065;
+                border: 0.1;
+            }
+            
+            .os-btn:hover::after {
+                height: 100%;
+            }
+            
+            .os-btn:hover span {
+                color: #ffffff;
+            }
             
             .os-btn-2 {
                 border-color: #323232;
@@ -4715,7 +4805,7 @@
             
             .basic-login input {
                 width: 100%;
-                height: 60px;
+                height: 50px;
                 border: 2px solid #eaedff;
                 color: #6f7172;
                 padding: 0 20px;
