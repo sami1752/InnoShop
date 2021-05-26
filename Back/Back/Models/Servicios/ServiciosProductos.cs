@@ -189,6 +189,7 @@ namespace Back.Models.Servicios
 
         public async Task<PrecioProducto> AgregarPrecioProducto(PrecioProducto precioProducto)
         {
+            precioProducto.FechaInicio = DateTime.Now;
             _context.PrecioProductos.Add(precioProducto);
             await _context.SaveChangesAsync();
             return precioProducto;
@@ -239,6 +240,7 @@ namespace Back.Models.Servicios
 
         public async Task AgregarIva(Iva iva)
         {
+            iva.FechaInicio = DateTime.Now;
             _context.Iva.Add(iva);
             await _context.SaveChangesAsync();
         }

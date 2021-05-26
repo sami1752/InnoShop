@@ -108,6 +108,7 @@ namespace Back.Controllers
         {
             try
             {
+                precio.FechaInicio = DateTime.Now;
                 await _context.ModificaPrecio(precio.FechaInicio, precio.IdProducto);
                 await _context.AgregarPrecioProducto(precio);
                 return Ok(new { mensaje = "Registro exitoso" });

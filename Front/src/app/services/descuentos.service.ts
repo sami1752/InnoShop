@@ -85,8 +85,8 @@ export class DescuentosService {
   RegistrarCuponDescuento(): any {
 
     this.descuento.IdDescuento = 0;
-    this.descuento.Fecha = this.hoy.toISOString();
-    this.descuento.FechaVencimiento = this.hoy.toISOString();
+    this.descuento.Fecha = '0001-01-01';
+    this.descuento.FechaVencimiento = '0001-01-01';
     this.descuento.Estado = true;
 
     this.descuento.IdValorRuleta = this.valorRuleta.IdValorRuleta;
@@ -97,14 +97,14 @@ export class DescuentosService {
   RegistrarPorcentaje(): any {
     this.porcentajeRuleta = this.formRegistroPorcentaje.value;
     this.porcentajeRuleta.Estado = true;
-    this.porcentajeRuleta.Fecha = this.hoy.toISOString();
+    this.porcentajeRuleta.Fecha = '0001-01-01';
     this.porcentajeRuleta.IdUsuario = this.idUsuario;
     return this.http.post(this.configuracion.rootURL + '/Descuentos/AgregarPorcentaje', this.porcentajeRuleta);
   }
 
   RegistrarValorRuleta(): any {
     this.valorRuleta = this.formRegistroValorDeRuleta.value;
-    this.valorRuleta.FechaInicio = this.hoy.toISOString();
+    this.valorRuleta.FechaInicio = '0001-01-01';
     this.valorRuleta.FechaFin = '0001-01-01';
     this.valorRuleta.IdUsuario = this.idUsuario;
     return this.http.post(this.configuracion.rootURL + '/Descuentos/AgregarValorRuleta', this.valorRuleta);

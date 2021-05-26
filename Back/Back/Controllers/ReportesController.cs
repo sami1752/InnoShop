@@ -17,8 +17,14 @@ namespace Back.Controllers
         public ReportesController(IServiciosReportes context) => _context = context;
 
         [HttpGet]
-        [Route("Solicitudes")]
-        public async Task<ActionResult<ReporteSolicitudes>> ObtenerReporteSolicitudes() => await _context.ObtenerReporteSolicitudes();
+        [Route("Solicitudes/{desde}/{hasta}")]
+        public async Task<ActionResult<ReporteSolicitudes>> ObtenerReporteSolicitudes(DateTime desde, DateTime hasta) =>
+            await _context.ObtenerReporteSolicitudes(desde, hasta);
+
+        [HttpGet]
+        [Route("Montajes/{desde}/{hasta}")]
+        public async Task<ActionResult<ReporteMontaje>> ObtenerReporteMontajes(DateTime desde, DateTime hasta) =>
+            await _context.ObtenerReporteMontajes(desde, hasta);
 
     }
 }

@@ -11,11 +11,11 @@ namespace Back.Models.Entidades.Ventas
         [Key]
         public int IdVenta { get; set; }
         [Required]
-        public DateTime Fecha { get; set; }
+        public DateTime Fecha { get; set; }//
         [Required]
         public string IdUsuario { get; set; }
         [Required]
-        public int IdDescuento { get; set; }
+        public int IdDescuento { get; set; }//
         [Required]
         public float SubTotal { get; set; }
         [Required]

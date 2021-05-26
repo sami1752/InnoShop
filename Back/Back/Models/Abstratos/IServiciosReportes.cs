@@ -9,6 +9,7 @@ namespace Back.Models.Abstratos
 {
     public interface IServiciosReportes
     {
-        Task<ActionResult<ReporteSolicitudes>> ObtenerReporteSolicitudes();
+        Task<ActionResult<ReporteSolicitudes>> ObtenerReporteSolicitudes(DateTime desde, DateTime hasta);
+        Task<ActionResult<ReporteMontaje>> ObtenerReporteMontajes(DateTime desde, DateTime hasta);
     }
 }

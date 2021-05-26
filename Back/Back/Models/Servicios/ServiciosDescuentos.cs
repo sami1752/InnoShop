@@ -57,8 +57,8 @@ namespace Back.Models.Servicios
 
         public async Task RegistrarCuponDescuento(Descuentos descuento)
         {
-            
-            descuento.FechaVencimiento= descuento.FechaVencimiento.AddMonths(1);
+            descuento.Fecha = DateTime.Now;
+            descuento.FechaVencimiento= DateTime.Now.AddMonths(1);
             _context.Descuentos.Add(descuento);
             await _context.SaveChangesAsync();
         }
@@ -72,6 +72,7 @@ namespace Back.Models.Servicios
 
         public async Task AgregarPuntuacionNueva(ValorRuleta valorRuleta)
         {
+            valorRuleta.FechaInicio = DateTime.Now;
             _context.ValorRuleta.Add(valorRuleta);
             await _context.SaveChangesAsync();
         }
@@ -84,6 +85,7 @@ namespace Back.Models.Servicios
         }
         public async Task AgregarPorcentajeRuleta(PorcentajesRuleta porcentaje)
         {
+            porcentaje.Fecha = DateTime.Now;
             _context.PorcentajesRuleta.Add(porcentaje);
             await _context.SaveChangesAsync();
         }
