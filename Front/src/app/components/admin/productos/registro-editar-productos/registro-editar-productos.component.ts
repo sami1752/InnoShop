@@ -1,6 +1,6 @@
 import {
   Component,
-  OnInit
+  OnInit, ViewChild
 } from '@angular/core';
 import {
   Router
@@ -17,6 +17,10 @@ import {
 import {
   UsuarioService
 } from 'src/app/services/usuario.service';
+import {ListaProductosComponent} from '../lista-productos/lista-productos.component';
+import {MatTableDataSource} from '@angular/material/table';
+import {ProductoTabla} from '../../../../models/producto-tabla';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-registro-editar-productos',
@@ -24,11 +28,12 @@ import {
   styleUrls: ['./registro-editar-productos.component.css']
 })
 export class RegistroEditarProductosComponent implements OnInit {
-
+  @ViewChild(ListaProductosComponent) hijo: ListaProductosComponent;
   constructor(public usuarioService: UsuarioService, private router: Router,
-              public productoService: ProductoService, public configuracion: ConfiguracionService) {
+              public productoService: ProductoService,
+              public configuracion: ConfiguracionService,
+              public listap: ListaProductosComponent) {
   }
-
   listaTiposPuerta = [{
     Tipo: 'Bisagra'
   },
@@ -69,14 +74,16 @@ export class RegistroEditarProductosComponent implements OnInit {
       res => {
         this.productoService.producto = this.productoService.formularioRegistroProductos.value;
         this.productoService.producto.IdUsuario = (res as Usuario).Id;
-        this.productoService.producto.IdCategoria = 2;
+        this.productoService.producto.IdCategoria = 3;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
+            this.listap.tabla = false;
+            alert('jejejeje');
+            this.listap.tabla = true;
             alert('Registro exitoso');
             this.productoService.desplegarDetalleMateriales = true;
             this.productoService.idProducto1 = respuesta.mensaje;
             this.productoService.formularioRegistroProductos.reset();
-            this.productoService.listarProducto();
           }, error => {
             alert(error);
             console.log(error);

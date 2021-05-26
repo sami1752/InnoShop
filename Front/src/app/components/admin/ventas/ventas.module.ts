@@ -12,6 +12,14 @@ import {FinalizarCompraComponent} from '../../usuarios/clientes/solicitudes/carr
 import {NgxPayPalModule} from 'ngx-paypal';
 import {ClientesModule} from '../../usuarios/clientes/clientes.module';
 import { HistorialComprasComponent } from 'src/app/components/usuarios/clientes/solicitudes/historial-compras/historial-compras.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatSortModule} from '@angular/material/sort';
+import {MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -24,13 +32,20 @@ import { HistorialComprasComponent } from 'src/app/components/usuarios/clientes/
     HistorialComprasComponent
   ],
     imports: [
-        CommonModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        NgxPayPalModule,
-        ClientesModule
+      CommonModule,
+      AppRoutingModule,
+      FormsModule,
+      ReactiveFormsModule,
+      HttpClientModule,
+      NgxPayPalModule,
+      ClientesModule,
+      MatFormFieldModule,
+      MatTableModule,
+      MatPaginatorModule,
+      DragDropModule,
+      MatSortModule,
+      MatInputModule,
+      MatSelectModule
     ]
 })
 export class VentasModule {

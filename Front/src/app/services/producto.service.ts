@@ -114,7 +114,7 @@ export class ProductoService {
     return this.formularioRegistroProductos.controls.GarantiaMeses;
   }
 
-
+  registroEditarEjecutado = false;
   idProducto1 = 0;
   entrada: Entrada;
   listaEntradas: Entrada[];
