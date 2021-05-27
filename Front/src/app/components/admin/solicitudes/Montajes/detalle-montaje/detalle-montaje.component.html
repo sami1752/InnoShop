@@ -77,13 +77,25 @@
                   <div class="col "
                        *ngIf="(this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada')&&
                        (this.solicitudesPersonalizadasService.Montajes.Estado == 'Enviada' ||
-                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Modificada'||
-                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Devuelta')">
+                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Modificada')">
                     <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
+                  </div>
+                  <div class="col "
+                       *ngIf="( this.solicitudesPersonalizadasService.Montajes.Estado == 'Pagada')">
+                    <button class="btn btn-primary" (click)="Fabricar()">Fabricar</button>
+                  </div>
+                  <div class="col"
+                       *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'En proceso de fabricacion'">
+                    <button class="btn btn-success" (click)="Terminar()">Terminar</button>
+                  </div>
+                  <div class="col"
+                       *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Terminada'">
+                    <button class="btn btn-success" (click)="Entregar()">Entregar</button>
                   </div>
                   <div class="col"
                        *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada' &&
-                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Rechazada'">
+                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Rechazada'||
+                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Devuelta'">
                     <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
                   </div>
                   <div class="col"
@@ -94,8 +106,19 @@
                   <div class="col"
                        *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.Montajes.Estado != 'Rechazada' &&
-                       this.solicitudesPersonalizadasService.Montajes.Estado != 'Cancelada'">
+                       this.solicitudesPersonalizadasService.Montajes.Estado != 'Cancelada'&&
+                       this.solicitudesPersonalizadasService.Montajes.Estado != 'Pagada'&&
+                       this.solicitudesPersonalizadasService.Montajes.Estado != 'En proceso de fabricacion'&&
+                       this.solicitudesPersonalizadasService.Montajes.Estado != 'Terminada'&&
+                       this.solicitudesPersonalizadasService.Montajes.Estado != 'Entregada'">
                     <button class="btn btn-danger" (click)="cancelar()">Rechazar</button>
+                  </div>
+                  <div>
+                    <a href="Admin/respuestasM/{{this.solicitudesPersonalizadasService.Montajes.IdMontaje}}">
+                      Respuestas</a>
+                  </div>
+                  <div class="col">
+                    <a href="Admin/editarM/{{this.solicitudesPersonalizadasService.Montajes.IdMontaje}}">Editar</a>
                   </div>
                 </div>
               </div>

@@ -91,17 +91,12 @@
                this.solicitudesPersonalizadasService.Montajes.Estado == 'Modificada'">
                   <a [routerLink]="['/solicitudes/Montajes',this.solicitudesPersonalizadasService.Montajes.IdMontaje]">Editar</a>
                 </div>
-                <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Enviada'||
-               this.solicitudesPersonalizadasService.Montajes.Estado == 'Modificada'">
-                  <a *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado !=
-            'Rechazada' && this.solicitudesPersonalizadasService.Montajes.Estado !=
-            'Cancelada'" href="solicitudes/respuestasM/{{this.solicitudesPersonalizadasService.Montajes.IdMontaje}}">
+                <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado !='Rechazada' &&
+                this.solicitudesPersonalizadasService.Montajes.Estado != 'Cancelada'&&
+                this.solicitudesPersonalizadasService.Montajes.Estado != 'Entregada'" >
+                  <a href="solicitudes/respuestasM/{{this.solicitudesPersonalizadasService.Montajes.IdMontaje}}">
                     Respuestas</a>
                 </div>
-
-                <!--                  <div class="col" >-->
-                <!--                    <button class="btn btn-danger">Pagar</button>-->
-                <!--                  </div>-->
               </div>
             </div>
           </div>
@@ -111,6 +106,7 @@
         <div class="card">
           <div class="card-body">
             <div class="tab-content p-0">
+              <ngx-paypal [config]="payPalConfig" *ngIf="PaypalButtons"></ngx-paypal>
               <app-listar-detalle-producto-m></app-listar-detalle-producto-m>
               <div *ngIf="this.productoService.desplegarDetalle">
                 <app-detalle-del-producto-del-detalle-m></app-detalle-del-producto-del-detalle-m>

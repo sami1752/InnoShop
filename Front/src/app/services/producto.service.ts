@@ -318,6 +318,7 @@ export class ProductoService {
   }
 
   ListarDetalleMaterial(idProducto): any {
+    alert(idProducto + 'hola');
     this.http.get(this.configuracion.rootURL + '/Productos/ListaDetalleMateriales/' + idProducto)
       .toPromise()
       .then(res => this.ListaDetalleMateriales = res as DetalleMaterialProducto[]);

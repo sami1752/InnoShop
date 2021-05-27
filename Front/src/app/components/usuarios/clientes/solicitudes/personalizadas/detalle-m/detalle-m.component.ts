@@ -37,6 +37,7 @@ export class DetalleMComponent implements OnInit {
   }
 
   private initConfig(): void {
+    alert('hola');
     this.payPalConfig = {
       currency: 'USD',
       clientId: 'AVqWU6rPDlF2Rkm2CQUtWH2cZ1l3s96DO_u1FaT6JMbbT12TdOgAjNurv_6dj4TYnQHd39srPNttQhXt',
@@ -45,11 +46,11 @@ export class DetalleMComponent implements OnInit {
         purchase_units: [{
           amount: {
             currency_code: 'USD',
-            value: this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal.toString(),
+            value: this.solicitudesPersonalizadasService.Montajes.ValorTotal.toString(),
             breakdown: {
               item_total: {
                 currency_code: 'USD',
-                value: this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal.toString()
+                value: this.solicitudesPersonalizadasService.Montajes.ValorTotal.toString()
               }
             }
           },
@@ -73,27 +74,27 @@ export class DetalleMComponent implements OnInit {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         this.usuarioService.obtenerPerfil().subscribe(
           res => {
-            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada =
-              this.solicitudesPersonalizadasService.formularioDetalleEstadoSolicitudPerzonalizada.value;
-            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdUsuario = (res as Usuario).Id;
-            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdEstado = 6;
-            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada = this.id;
-            this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes =
+              this.solicitudesPersonalizadasService.formularioDetalleEstadoMontajes.value;
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdUsuario = (res as Usuario).Id;
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdEstado = 6;
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdMontaje = this.id;
+            this.solicitudesPersonalizadasService.AgregarDetalleEstadosMontajes().subscribe(
               (respuesta: any) => {
-                this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
+                this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
                 this.ventasService.venta.IdUsuario = res.Id;
                 this.ventasService.venta.IdVenta = 0;
-                this.ventasService.venta.Total = this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal;
+                this.ventasService.venta.Total = this.solicitudesPersonalizadasService.Montajes.ValorTotal;
                 this.ventasService.AgregarVenta().subscribe(
                   (resV: Venta) => {
                     this.DetalleVentasMontaje.Cantidad = 1;
                     this.DetalleVentasMontaje.IdMontaje = this.id;
                     this.DetalleVentasMontaje.IdVenta = resV.IdVenta;
-                    this.DetalleVentasMontaje.SubTotal = this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal;
+                    this.DetalleVentasMontaje.SubTotal = this.solicitudesPersonalizadasService.Montajes.ValorTotal;
                     this.DetalleVentasMontaje.IdDetalleVentaMontaje = 0;
                     // tslint:disable-next-line:no-shadowed-variable
-                    // this.ventasService.AgregarDetalleVentaSolicitudes(this.DetalleVentasMontaje).subscribe((res: any) => {
-                    // });
+                    this.ventasService.AgregarDetalleVentaMontajes(this.DetalleVentasMontaje).subscribe((res: any) => {
+                    });
                     alert('Compra realizada con exito');
                     this.router.navigateByUrl('solicitudes/historialCompras');
                   }, err => {
@@ -124,16 +125,19 @@ export class DetalleMComponent implements OnInit {
       },
     };
   }
+  Pagar(): void {
+    this.PaypalButtons = true;
+  }
 
   productosVenta(): any[] {
     const items: any [] = [];
     let item = {};
     item = {
       name: 'Compra Solicitud Perzonalizada N°' +
-        this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada.toString(),
+        this.solicitudesPersonalizadasService.Montajes.IdMontaje.toString(),
       quantity: '1',
       unit_amount: {
-        value: this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal.toString(),
+        value: this.solicitudesPersonalizadasService.Montajes.ValorTotal.toString(),
         currency_code: 'USD'
       }
     };

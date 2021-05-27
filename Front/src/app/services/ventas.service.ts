@@ -11,6 +11,7 @@ import {UsuarioService} from './usuario.service';
 import {ProductoService} from './producto.service';
 import {DetalleVentasSolicitud} from '../models/Ventas/detalle-ventas-Solicitud';
 import {DescuentosService} from './descuentos.service';
+import {DetalleVentasMontaje} from '../models/Ventas/detalle-ventas-Montaje';
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +83,10 @@ export class VentasService {
 
   AgregarDetalleVentaSolicitudes(detalleVentasSolicitud: DetalleVentasSolicitud): any {
     return this.http.post(this.configuracion.rootURL + '/Ventas/DetalleVentaSolicitud', detalleVentasSolicitud);
+  }
+
+  AgregarDetalleVentaMontajes(detalleVentasMontaje: DetalleVentasMontaje): any {
+    return this.http.post(this.configuracion.rootURL + '/Ventas/DetalleVentaSolicitud', detalleVentasMontaje);
   }
 
   ListarVentas(): any {
