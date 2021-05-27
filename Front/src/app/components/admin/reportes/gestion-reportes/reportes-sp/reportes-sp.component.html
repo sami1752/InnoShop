@@ -1,0 +1,40 @@
+<div align="center" id="htmlData">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="Desde">
+      <input matEndDate formControlName="end" placeholder="Hasta" (dateInput)="Reporte()">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+
+    <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Fecha Inicial Erronea</mat-error>
+    <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Fecha Final Erronea</mat-error>
+  </mat-form-field>
+  <div>
+    <p>Cotizada: {{ReporteE.Cotizada}} ---- Aceptada: {{ReporteE.Aceptada}}</p>
+    <p>Cancelada: {{ReporteE.Cancelada}} ---- Devuelta: {{ReporteE.Devuelta}}</p>
+    <p>En Proceso De Cotizacion: {{ReporteE.EnProcesoDeCotizacion}} ---- En Proceso De
+      Fabricacion: {{ReporteE.EnProcesoDeFabricacion}}</p>
+    <p>Entregada: {{ReporteE.Entregada}} ---- Modificada: {{ReporteE.Modificada}}</p>
+    <p>Pagada: {{ReporteE.Pagada}} ---- Rechazada: {{ReporteE.Rechazada}}</p>
+    <p>Terminada: {{ReporteE.Terminada}} ---- TotalSolicitudes: {{ReporteE.TotalSolicitudes}}</p>
+    <p>TotalVendido: {{ReporteE.TotalVendido}}</p>
+  </div>
+  <br>
+  <h3>INNOSHOP REPORTE SOLICITUDES PERZONALIZADAS</h3>
+  <br>
+  <br>
+</div>
+<div align="center">
+  <button class="btn btn-danger" (click)="downloadPDF()">PDF</button>
+</div>
+
+

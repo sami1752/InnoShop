@@ -47,6 +47,8 @@ import {
 import {UsuarioService} from './usuario.service';
 import {Entrada} from '../models/entrada';
 import {DetalleEntrada} from '../models/detalle-entrada';
+import {ProductoTabla} from '../models/producto-tabla';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root'
@@ -114,7 +116,7 @@ export class ProductoService {
     return this.formularioRegistroProductos.controls.GarantiaMeses;
   }
 
-
+  productosTabla: ProductoTabla[];
   idProducto1 = 0;
   entrada: Entrada;
   listaEntradas: Entrada[];
@@ -210,8 +212,8 @@ export class ProductoService {
   }
 
   registrarIVA(): any {
-    this.iva.FechaInicio = this.hoy.toISOString();
-    this.iva.FechaFin = '1111-11-11';
+    this.iva.FechaInicio = '0001-01-01';
+    this.iva.FechaFin = '0001-01-01';
     this.iva.IdIva = 0;
     console.log(this.iva);
     return this.http.put(this.configuracion.rootURL + '/Productos/AgregarIva', this.iva);
@@ -227,6 +229,16 @@ export class ProductoService {
     this.http.get(this.configuracion.rootURL + '/Productos')
       .toPromise()
       .then(res => this.listaProductos = res as Producto[]);
+  }
+  listarProductoTabla(): any {
+    this.http
+      .get(this.configuracion.rootURL + '/Productos')
+      .toPromise()
+      .then(
+        (res) => {
+          this.productosTabla = res as ProductoTabla[];
+        }
+      );
   }
 
   listarIva(): any {
@@ -264,7 +276,7 @@ export class ProductoService {
 
   registroPrecio(): any {
     this.precio.IdProducto = this.detalleProducto.IdProducto;
-    this.precio.FechaInicio = this.hoy.toISOString();
+    this.precio.FechaInicio = '0001-01-01';
     this.precio.FechaFin = '0001-01-01';
     this.precio.IdPrecioProducto = 0;
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarPrecio', this.precio);
@@ -318,6 +330,7 @@ export class ProductoService {
   }
 
   ListarDetalleMaterial(idProducto): any {
+    alert(idProducto + 'hola');
     this.http.get(this.configuracion.rootURL + '/Productos/ListaDetalleMateriales/' + idProducto)
       .toPromise()
       .then(res => this.ListaDetalleMateriales = res as DetalleMaterialProducto[]);

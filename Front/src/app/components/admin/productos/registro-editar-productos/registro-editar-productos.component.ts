@@ -1,6 +1,6 @@
 import {
   Component,
-  OnInit
+  OnInit, ViewChild
 } from '@angular/core';
 import {
   Router
@@ -24,11 +24,11 @@ import {
   styleUrls: ['./registro-editar-productos.component.css']
 })
 export class RegistroEditarProductosComponent implements OnInit {
-
+  // @ViewChild(ListaProductosComponent) hijo: ListaProductosComponent;
   constructor(public usuarioService: UsuarioService, private router: Router,
-              public productoService: ProductoService, public configuracion: ConfiguracionService) {
+              public productoService: ProductoService,
+              public configuracion: ConfiguracionService) {
   }
-
   listaTiposPuerta = [{
     Tipo: 'Bisagra'
   },
@@ -69,14 +69,13 @@ export class RegistroEditarProductosComponent implements OnInit {
       res => {
         this.productoService.producto = this.productoService.formularioRegistroProductos.value;
         this.productoService.producto.IdUsuario = (res as Usuario).Id;
-        this.productoService.producto.IdCategoria = 2;
+        this.productoService.producto.IdCategoria = 3;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
-            alert('Registro exitoso');
+            window.location.reload();
             this.productoService.desplegarDetalleMateriales = true;
             this.productoService.idProducto1 = respuesta.mensaje;
             this.productoService.formularioRegistroProductos.reset();
-            this.productoService.listarProducto();
           }, error => {
             alert(error);
             console.log(error);
@@ -95,6 +94,7 @@ export class RegistroEditarProductosComponent implements OnInit {
       (respuesta: any) => {
         this.productoService.formularioRegistroProductos.reset();
         alert('Actualizacion Exitosa');
+        window.location.reload();
         this.productoService.CampoPrecio = true;
         this.productoService.listarProducto();
         this.productoService.ListarDetalleMaterial(this.productoService.producto.IdProducto);

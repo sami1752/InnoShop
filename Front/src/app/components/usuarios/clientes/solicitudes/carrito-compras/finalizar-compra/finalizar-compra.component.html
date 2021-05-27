@@ -2,26 +2,70 @@
   <div class="card col-4 ml-4 mr-4">
     <div class="card-body">
       <div class="cart-page-total" style="text-align: left;">
-        <h2 style="color: #2C4F61;"><i class="fas fa-cash-register"></i> Descripción</h2>
-        <ul class="mb-20">
-          <li>Subtotal <span>${{this.carritoDeComprasService.carritoDeCompras.Valor}}</span></li>
+        <h2 style="color: #2C4F61;"><i class="fas fa-cash-register"></i> Descripción</h2><ul class="mb-20">
+          <li>Subtotal <span>${{
+            this.carritoDeComprasService.carritoDeCompras.Valor -
+            ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}</span></li>
           <li>Valor iva
             <span>${{((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}</span>
           </li>
+          <li>Descuento
+            <span id="Descuento">${{(this.descuentosService.descuentoEnVenta.PorcentajeDescuento
+              * this.carritoDeComprasService.carritoDeCompras.Valor /100)}}</span>
+          </li>
           <li>Total
-            <span>${{this.carritoDeComprasService.carritoDeCompras.Valor +
-            ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}
-                             </span>
+            <span>${{this.carritoDeComprasService.carritoDeCompras.Valor
+            - (this.descuentosService.descuentoEnVenta.PorcentajeDescuento
+              * this.carritoDeComprasService.carritoDeCompras.Valor /100)}}</span>
           </li>
         </ul>
-        <!--<div class="pro-cart-btn">
-          <button class="add-cart-btn" >Usar cupon de descuento</button>
-        </div>-->
+        <div class=" row pro-cart-btn">
+          <a (click)="desplegarCupones()" class="add-cart-btn text-white" >Usar cupón descuento</a>
+          <div class="pro-cart-btn col-4">
+            <a (click)="pagar()" class="add-cart-btn text-white" >Pagar Paypal</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
-  <!--<app-listar-cupones class="col-4"></app-listar-cupones>-->
+  <div class="col-4 ml-40" *ngIf="this.descuentosService.desplegarListaCupones">
+      <div *ngIf="this.descuentosService.listaCuponesClientes !== undefined; else noCupones">
+        <h2 class="text-center">Cupones disponibles</h2>
+        <table class="table table-hover cupones" style="text-transform: capitalize !important;">
+          <thead>
+          <tr>
+            <th></th>
+            <th scope="col">Descuento</th>
+            <th scope="col">Fecha vencimiento</th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let descuento of descuentosService.listaCuponesClientes">
+          <tr *ngIf="descuento.Estado">
+            <td>
+              <div class="form-check">
+                <input (click)="usarDescuento(descuento)" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              </div>
+            </td>
+            <td>{{descuento.PorcentajeDescuento}} %</td>
+            <td>{{descuento.FechaVencimiento}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-template #noCupones>
+        <div class="card">
+          <h5 class="card-header">Descuentos</h5>
+          <div class="card-body">
+            <h5 class="card-title">¡Oh no! No tienes cupones</h5>
+            <p class="card-text">¿Quieres conseguir descuentos?</p>
+            <a href="/descuentos/ruleta" class="btn btn-primary">Click aquí</a>
+          </div>
+        </div>
+      </ng-template>
+
+  </div>
+
 </div>
-
-
-<ngx-paypal [config]="payPalConfig"></ngx-paypal>
+<ngx-paypal  [config]="payPalConfig"></ngx-paypal>

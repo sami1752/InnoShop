@@ -110,6 +110,22 @@ namespace Back.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("editarCupon")]
+        public async Task<Object> EditarCupon(Descuentos descuento)
+        {
+            try
+            {
+                await _context.EditarCuponDescuento(descuento);
+                return Ok(new { mensaje = "Edición exitosa" });
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+            }
+        }
+
 
     }
 }

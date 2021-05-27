@@ -1,21 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ander\\Desktop\\Tatiana\\Proyecto\\INNOSHOP\\InnoShop\\Back\\Back\\Back.csproj": {}
+    "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\Back.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ander\\Desktop\\Tatiana\\Proyecto\\INNOSHOP\\InnoShop\\Back\\Back\\Back.csproj": {
+    "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\Back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ander\\Desktop\\Tatiana\\Proyecto\\INNOSHOP\\InnoShop\\Back\\Back\\Back.csproj",
+        "projectUniqueName": "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\Back.csproj",
         "projectName": "Back",
-        "projectPath": "C:\\Users\\ander\\Desktop\\Tatiana\\Proyecto\\INNOSHOP\\InnoShop\\Back\\Back\\Back.csproj",
-        "packagesPath": "C:\\Users\\ander\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ander\\Desktop\\Tatiana\\Proyecto\\INNOSHOP\\InnoShop\\Back\\Back\\obj\\",
+        "projectPath": "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\Back.csproj",
+        "packagesPath": "C:\\Users\\sami1\\.nuget\\packages\\",
+        "outputPath": "C:\\Lenguajes de programacion\\C#\\InnoShop\\Back\\Back\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ander\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\sami1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -101,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

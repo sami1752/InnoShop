@@ -10,6 +10,8 @@ import {UsuarioService} from 'src/app/services/usuario.service';
 import {VentasService} from 'src/app/services/ventas.service';
 import {environment} from 'src/environments/environment';
 import {Route, Router} from '@angular/router';
+import {DescuentosService} from '../../../../../../services/descuentos.service';
+import {Descuento} from '../../../../../../models/Descuentos/descuento';
 
 @Component({
   selector: 'app-finalizar-compra',
@@ -22,7 +24,8 @@ export class FinalizarCompraComponent implements OnInit {
               public productosService: ProductoService,
               public usuarioService: UsuarioService,
               public ventasService: VentasService,
-              private router: Router) {
+              private router: Router,
+              public descuentosService: DescuentosService) {
   }
 
   public payPalConfig ?: IPayPalConfig;
@@ -33,7 +36,7 @@ export class FinalizarCompraComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       (res: any) => {
-        this.initConfig(res.Id);
+        this.descuentosService.ListarCuponesDeCliente(res.Id);
         this.ventasService.ObtenerIvaActual();
         this.carritoDeComprasService.CarritoDeComprasUsuario(res.Id);
         this.carritoDeComprasService.listarDetalleCarrito(res.id);
@@ -41,7 +44,12 @@ export class FinalizarCompraComponent implements OnInit {
       }
     );
   }
-  private initConfig(idUsuario): void {
+
+  public usarDescuento(descuento: Descuento): void{
+    this.descuentosService.descuentoEnVenta = descuento;
+  }
+
+  private initConfig(idUsuario, valor): void {
     this.payPalConfig = {
       currency: 'USD',
       clientId: environment.clienteId,
@@ -50,13 +58,11 @@ export class FinalizarCompraComponent implements OnInit {
         purchase_units : [{
           amount: {
             currency_code: 'USD',
-            value: (this.carritoDeComprasService.carritoDeCompras.Valor
-              + ((this.ventasService.iva.Porcentaje * this.carritoDeComprasService.carritoDeCompras.Valor) / 100)).toString(),
+            value: valor,
             breakdown: {
               item_total: {
                 currency_code: 'USD',
-                value: (this.carritoDeComprasService.carritoDeCompras.Valor
-                  + ((this.ventasService.iva.Porcentaje * this.carritoDeComprasService.carritoDeCompras.Valor) / 100)).toString()
+                value: valor,
               }
             }
           },
@@ -80,6 +86,10 @@ export class FinalizarCompraComponent implements OnInit {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         this.carritoDeComprasService.listarDetalleCarrito(idUsuario);
         this.agregarVenta();
+        this.descuentosService.EditarCupon(this.descuentosService.descuentoEnVenta).subscribe(
+          res => {
+          }, err => {alert('Error'); }
+        );
         },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
@@ -137,6 +147,19 @@ export class FinalizarCompraComponent implements OnInit {
       }, err => {}
     );
   }
-
+  desplegarCupones(): void{
+    // tslint:disable-next-line:no-unused-expression
+    this.descuentosService.desplegarListaCupones = !this.descuentosService.desplegarListaCupones;
+  }
+  pagar(): void{
+    this.usuarioService.obtenerPerfil().subscribe(
+      (res: any) => {
+        const valor = this.carritoDeComprasService.carritoDeCompras.Valor
+          - (this.descuentosService.descuentoEnVenta.PorcentajeDescuento
+            * this.carritoDeComprasService.carritoDeCompras.Valor / 100);
+        this.initConfig(res.Id, valor);
+      }
+    );
+  }
 
 }

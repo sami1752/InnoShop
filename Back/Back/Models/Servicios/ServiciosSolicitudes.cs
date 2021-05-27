@@ -107,8 +107,9 @@ namespace Back.Models.Servicios
         public async Task<DetalleEstadosMontajes> AgregarDetalleEstadosMontajes
             (DetalleEstadosMontajes DetalleEstadosMontajes, bool nueva)
         {
+            DetalleEstadosMontajes.FechaInicio = DateTime.Now;
             if (!nueva)
-                await ModificarEstadoM(DateTime.Now, DetalleEstadosMontajes.IdMontaje);
+                await ModificarEstadoM(DetalleEstadosMontajes.FechaInicio, DetalleEstadosMontajes.IdMontaje);
             _context.DetalleEstadosMontajes.Add(DetalleEstadosMontajes);
             await _context.SaveChangesAsync();
             return DetalleEstadosMontajes;
@@ -143,8 +144,9 @@ namespace Back.Models.Servicios
         public async Task<DetalleEstadosSolicitudPersonalizada> AgregarDetalleEstadosSolicitudPersonalizada
             (DetalleEstadosSolicitudPersonalizada DetalleEstadosSolicitudPersonalizada, bool nueva)
         {
+            DetalleEstadosSolicitudPersonalizada.FechaInicio = DateTime.Now;
             if (!nueva)
-                await ModificarEstado(DateTime.Now, DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada);
+                await ModificarEstado(DetalleEstadosSolicitudPersonalizada.FechaInicio, DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada);
             _context.DetalleEstadosSolicitudPersonalizada.Add(DetalleEstadosSolicitudPersonalizada);
             await _context.SaveChangesAsync();
             return DetalleEstadosSolicitudPersonalizada;
@@ -439,6 +441,7 @@ namespace Back.Models.Servicios
 
         public async Task<Montajes> AgregarMontajes(Montajes Montajes)
         {
+            Montajes.Fecha = DateTime.Now;
             _context.Montajes.Add(Montajes);
             await _context.SaveChangesAsync();
             await AgregarDetalleEstadosMontajes(new DetalleEstadosMontajes
@@ -483,6 +486,7 @@ namespace Back.Models.Servicios
         public async Task<RespuestasSolicitudesPersonalizadas> AgregarRespuestasSolicitudesPersonalizadas
             (RespuestasSolicitudesPersonalizadas RespuestasSolicitudesPersonalizadas)
         {
+            RespuestasSolicitudesPersonalizadas.Fecha = DateTime.Now;
             _context.RespuestasSolicitudesPersonalizadas.Add(RespuestasSolicitudesPersonalizadas);
             await _context.SaveChangesAsync();
             return RespuestasSolicitudesPersonalizadas;
@@ -510,6 +514,7 @@ namespace Back.Models.Servicios
         public async Task<RespuestasMontajes> AgregarRespuestasMontajes
             (RespuestasMontajes RespuestasMontajes)
         {
+            RespuestasMontajes.Fecha = DateTime.Now;
             _context.RespuestasMontajes.Add(RespuestasMontajes);
             await _context.SaveChangesAsync();
             return RespuestasMontajes;
@@ -717,6 +722,7 @@ namespace Back.Models.Servicios
 
         public async Task<SolicitudPersonalizada> AgregarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada)
         {
+            SolicitudPersonalizada.Fecha = DateTime.Now;
             _context.SolicitudPersonalizada.Add(SolicitudPersonalizada);
             await _context.SaveChangesAsync();
             await AgregarDetalleEstadosSolicitudPersonalizada(new DetalleEstadosSolicitudPersonalizada
@@ -739,7 +745,7 @@ namespace Back.Models.Servicios
                 IdUsuario = SolicitudPersonalizada.IdUsuario,
                 IdSolicitudPersonalizada = SolicitudPersonalizada.IdSolicitudPersonalizada,
                 FechaFin = new DateTime(),
-                FechaInicio = DateTime.Now,
+                FechaInicio = SolicitudPersonalizada.Fecha,
                 IdEstado = 9
             }, false);
             return SolicitudPersonalizada;

@@ -6,10 +6,10 @@
                 <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Tienda</a>
+                <a href="/" class="nav-link">Tienda</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Acerca de nosotros</a>
+                <a href="/" class="nav-link">Acerca de nosotros</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -18,7 +18,7 @@
         </ul>
     </nav>
     <aside class="main-sidebar sidebar-dark-primary elevation-4 ">
-        <a href="index3.html " class="brand-link " style="text-align: center; ">
+        <a href="/" class="brand-link " style="text-align: center; ">
             <span class="brand-text font-weight-light "> INNOVA</span>
         </a>
         <div class="sidebar ">
@@ -45,6 +45,12 @@
                             <p>Productos </p>
                         </a>
                     </li>
+                  <li class="nav-item has-treeview ">
+                    <a class="nav-link " href="Admin/ventas">
+                      <i class="bi bi-box nav-icon"></i>
+                      <p>Ventas </p>
+                    </a>
+                  </li>
                     <li class="nav-item has-treeview ">
                         <a class="nav-link " href="/Admin/Iva ">
                           <i class="bi bi-percent nav-icon"></i>
@@ -67,35 +73,35 @@
                         </a>
                     </li>
                     <li class="nav-item " *ngIf="soli">
-                        <a href="pages/examples/register.html " class="nav-link " style="margin-left: 3px">
-                          <i class="bi bi-record nav-icon"></i>
-                          <p>Montajes</p>
+                        <a href="Admin/montajes" class="nav-link ">
+                            <i class="far fa-circle nav-icon "></i>
+                            <p>Montajes</p>
                         </a>
                     </li>
                     <li class="nav-header ">REPORTES</li>
                     <li class="nav-item has-treeview">
-                        <a href="Admin/ventas" class="nav-link ">
+                        <a class="nav-link " href="Admin/reportes/ventas" >
                           <i class="bi bi-file-earmark-pdf nav-icon"></i>
                             <p>Ventas</p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview  ">
-                        <a href="https://adminlte.io/docs/3.0 " class="nav-link ">
-                          <i class="bi bi-file-earmark-pdf nav-icon"></i>
+                    <li class="nav-item ">
+                        <a href="Admin/reportes/solicitudes" class="nav-link ">
+                            <i class="nav-icon fas fa-file "></i>
                             <p>Solicitudes</p>
                         </a>
                     </li>
+                  <li class="nav-item ">
+                    <a href="Admin/reportes/montajes" class="nav-link ">
+                      <i class="nav-icon fas fa-file "></i>
+                      <p>Montajes</p>
+                    </a>
+                  </li>
                     <li class="nav-header ">OTROS</li>
-                    <li class="nav-item has-treeview ">
-                        <a href="# " class="nav-link ">
-                          <i class="bi bi-record nav-icon"></i>
-                          <p>Ruleta</p>
-                        </a>
-                    </li>
-                    <li class="nav-item has-treeview ">
-                        <a href="# " class="nav-link ">
-                          <i class="bi bi-record nav-icon"></i>
-                            <p>Descuentos</p>
+                    <li class="nav-item ">
+                        <a href="Admin/descuentos " class="nav-link ">
+                            <i class="nav-icon fas fa-dharmachakra "></i>
+                            <p>Ruleta</p>
                         </a>
                     </li>
                 </ul>

@@ -2,7 +2,6 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Iva} from '../models/iva';
-import {Ventas} from '../models/Ventas/ventas';
 import {ConfiguracionService} from './configuracion.service';
 import {Precio} from '../models/precio';
 import {DetalleVentasProducto} from '../models/Ventas/detalle-ventas-producto';
@@ -10,6 +9,9 @@ import {DetalleVentas} from '../models/Ventas/detalleventas';
 import {Venta} from '../models/Ventas/venta';
 import {UsuarioService} from './usuario.service';
 import {ProductoService} from './producto.service';
+import {DetalleVentasSolicitud} from '../models/Ventas/detalle-ventas-Solicitud';
+import {DescuentosService} from './descuentos.service';
+import {DetalleVentasMontaje} from '../models/Ventas/detalle-ventas-Montaje';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,8 @@ export class VentasService {
     private http: HttpClient,
     private configuracion: ConfiguracionService,
     private formBuilder: FormBuilder,
-    private productosService: ProductoService) {
+    private productosService: ProductoService,
+    private descuentosService: DescuentosService) {
   }
 
   listaVentas: DetalleVentas[];
@@ -31,8 +34,9 @@ export class VentasService {
   desplegarDetalle = false;
   desplegarDetalleVentaEnRegistro = false;
   iva: Iva;
-  venta: Venta = {IdVenta: 0, Fecha: '', IdUsuario: '', IdDescuento: 0, SubTotal: 0, Total: 0, IdIva: 0, TotalIva: 0};
+  venta: Venta = {IdVenta: 0, Fecha: '', IdUsuario: '', IdDescuento: 0, Total: 0, IdIva: 0, TotalIva: 0};
   detalleVenta: DetalleVentas;
+  detalleVentaSolicitudes: DetalleVentasSolicitud;
 
 
   formularioRegistroVenta = this.formBuilder.group({
@@ -40,12 +44,13 @@ export class VentasService {
     IdVenta: [0],
     Cantidad: [1, [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros)]],
   }, {
-      validator: this.validarStock.bind(this)
-    });
+    validator: this.validarStock.bind(this)
+  });
+
   validarStock(formGroup: FormGroup): any {
     const cantidad = formGroup.get('Cantidad');
     // tslint:disable-next-line:triple-equals
-    if (this.productosService.detalleProducto != undefined){
+    if (this.productosService.detalleProducto != undefined) {
       const stock = this.productosService.detalleProducto.CantidadStock;
       if (cantidad.errors == null || 'validarStock' in cantidad) {
         if (cantidad.value > stock) {
@@ -62,6 +67,7 @@ export class VentasService {
   get CantidadV(): any {
     return this.formularioRegistroVenta.controls.Cantidad.value;
   }
+
   get Cantidad(): any {
     return this.formularioRegistroVenta.controls.Cantidad;
   }
@@ -75,6 +81,14 @@ export class VentasService {
     return this.http.post(this.configuracion.rootURL + '/Ventas/AgregarProducto', detalleVentaProducto);
   }
 
+  AgregarDetalleVentaSolicitudes(detalleVentasSolicitud: DetalleVentasSolicitud): any {
+    return this.http.post(this.configuracion.rootURL + '/Ventas/DetalleVentaSolicitud', detalleVentasSolicitud);
+  }
+
+  AgregarDetalleVentaMontajes(detalleVentasMontaje: DetalleVentasMontaje): any {
+    return this.http.post(this.configuracion.rootURL + '/Ventas/DetalleVentaMontaje', detalleVentasMontaje);
+  }
+
   ListarVentas(): any {
     this.http.get(this.configuracion.rootURL + '/Ventas').toPromise().then(res => this.listaVentas = res as DetalleVentas[]);
   }
@@ -86,17 +100,16 @@ export class VentasService {
   }
 
 
-
   AgregarVenta(): any {
-    this.venta.Fecha = this.hoy.toISOString();
-    this.venta.IdDescuento = 17;
+    this.venta.Fecha = '0001-01-01';
+    this.venta.IdDescuento = this.descuentosService.descuentoEnVenta.IdDescuento;
     console.log(this.venta);
     return this.http.post(this.configuracion.rootURL + '/Ventas', this.venta);
   }
 
   ListarDetalleVentasProductos(idVenta: number): any {
-    this.http.get(this.configuracion.rootURL + '/Ventas/detalleVentaProductos/' + idVenta).
-    toPromise().then(res => this.listaDetalleVentaProductos = res as DetalleVentasProducto[]);
+    this.http.get(this.configuracion.rootURL + '/Ventas/detalleVentaProductos/' +
+      idVenta).toPromise().then(res => this.listaDetalleVentaProductos = res as DetalleVentasProducto[]);
   }
 
   DetalleVenta(idVenta: number): any {

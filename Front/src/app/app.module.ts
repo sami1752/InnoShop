@@ -33,15 +33,18 @@ import {RegistrarEntradaComponent} from './components/admin/productos/Entrada/re
 import {OwlModule} from 'ngx-owl-carousel';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {SolicitudesModule} from './components/admin/solicitudes/solicitudes.module';
-import {ListarPorcentajesComponent} from './components/admin/descuentos/listar-porcentajes/listar-porcentajes.component';
-import {GestionRuletaComponent} from './components/admin/descuentos/gestion-ruleta/gestion-ruleta.component';
-import {RegistrarPorcentajeComponent} from './components/admin/descuentos/registrar-porcentaje/registrar-porcentaje.component';
-import {ListarValorRuletaComponent} from './components/admin/descuentos/listar-valor-ruleta/listar-valor-ruleta.component';
-import {RegistrarValorRuletaComponent} from './components/admin/descuentos/registrar-valor-ruleta/registrar-valor-ruleta.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DescuentosModule} from './components/admin/descuentos/descuentos.module';
 import {VentasModule} from './components/admin/ventas/ventas.module';
-
+import {ReportesModule} from './components/admin/reportes/reportes.module';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatSortModule} from '@angular/material/sort';
+import {MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import {ListarProductosComponent} from './components/usuarios/clientes/productos/listar-productos/listar-productos.component';
 
 
 @NgModule({
@@ -81,9 +84,17 @@ import {VentasModule} from './components/admin/ventas/ventas.module';
     SolicitudesModule,
     BrowserAnimationsModule,
     DescuentosModule,
-    VentasModule
+    VentasModule,
+    ReportesModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    DragDropModule,
+    MatSortModule,
+    MatInputModule,
+    MatSelectModule
   ],
-  providers: [UsuarioService, ConfiguracionService, {
+  providers: [UsuarioService, ConfiguracionService, ListarProductosComponent, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true

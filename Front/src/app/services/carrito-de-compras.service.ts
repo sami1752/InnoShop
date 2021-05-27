@@ -13,7 +13,8 @@ import {UsuarioService} from './usuario.service';
 export class CarritoDeComprasService {
 
   constructor(public usuarioService: UsuarioService, private http: HttpClient,
-              private configuracion: ConfiguracionService, private formBuilder: FormBuilder, public productoService: ProductoService) {
+              private configuracion: ConfiguracionService, private formBuilder: FormBuilder,
+              public productoService: ProductoService) {
   }
 
   carritoDeCompras: CarritoDeCompras = {IdCarritoDeCompras: 0, IdUsuario: '', Fecha: '', Estado: false, Valor: 0};
@@ -30,7 +31,7 @@ export class CarritoDeComprasService {
 
   agregarCarritoDeCompras(): any {
     this.carritoDeCompras.Estado = false;
-    this.carritoDeCompras.Fecha = '1111-11-11';
+    this.carritoDeCompras.Fecha = '0001-01-01';
     return this.http.post(this.configuracion.rootURL + '/Solicitudes/CarritoDeCompras', this.carritoDeCompras);
   }
 

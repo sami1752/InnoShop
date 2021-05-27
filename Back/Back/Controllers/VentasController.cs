@@ -66,6 +66,38 @@ namespace Back.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("DetalleVentaSolicitud")]
+        public async Task<Object> AgregarDetalleVentaSolicitudes(DetalleVentaSolicitudes detalle)
+        {
+            try
+            {
+                await _context.AgregarDetalleVentaSolicitudes(detalle);
+                return Ok(new { mensaje = "Registro de detalle exitoso" });
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+            }
+        }
+
+        [HttpPost]
+        [Route("DetalleVentaMontaje")]
+        public async Task<Object> AgregarDetalleVentaMontaje(DetalleVentaMontajes detalle)
+        {
+            try
+            {
+                await _context.AgregarDetalleVentaMontajes(detalle);
+                return Ok(new { mensaje = "Registro de detalle exitoso" });
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+            }
+        }
+
         [HttpGet]
         [Route("IvaActual")]
         public async Task<Iva> ObtenerIva()

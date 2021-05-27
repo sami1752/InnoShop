@@ -103,8 +103,11 @@
 
 
 
-                        <a type="button" class="os-btn w-50" href="cambiarMiContraseña">Cambiar Contraseña</a>
-                        <button type="submit" [disabled]="this.usuarioService.formularioRegistroEdicionDatos.invalid" class="os-btn w-50">Editar datos
+            <div class="mt-10"></div>
+            <a *ngIf="usuario.IdRol == 2" type="button" class="os-btn w-100" href="usuarios/cambiarMiContraseña">Cambiar Contraseña</a>
+            <a *ngIf="usuario.IdRol == 1" type="button" class="os-btn w-100" href="Admin/cambiarMiContraseña">Cambiar Contraseña</a>
+            <button type="submit" [disabled]="this.usuarioService.formularioRegistroEdicionDatos.invalid"
+                    class="os-btn w-100">Editar datos
             </button>
                         <div class="or-divide"><span></span></div>
                         <button type="button" (click)="eliminarCuenta()" class="os-btn-danger w-100"><i class="bi bi-x-circle-fill"></i> Eliminar cuenta</button>
