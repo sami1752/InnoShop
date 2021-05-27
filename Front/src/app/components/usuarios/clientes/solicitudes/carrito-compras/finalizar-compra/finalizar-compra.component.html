@@ -2,8 +2,7 @@
   <div class="card col-4 ml-4 mr-4">
     <div class="card-body">
       <div class="cart-page-total" style="text-align: left;">
-        <h2 style="color: #2C4F61;"><i class="fas fa-cash-register"></i> Descripción</h2>
-        <ul class="mb-20">
+        <h2 style="color: #2C4F61;"><i class="fas fa-cash-register"></i> Descripción</h2><ul class="mb-20">
           <li>Subtotal <span>${{
             this.carritoDeComprasService.carritoDeCompras.Valor -
             ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}</span></li>
@@ -69,6 +68,4 @@
   </div>
 
 </div>
-
-
 <ngx-paypal  [config]="payPalConfig"></ngx-paypal>

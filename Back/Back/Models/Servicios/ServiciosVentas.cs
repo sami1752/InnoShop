@@ -119,19 +119,23 @@ namespace Back.Models.Servicios
         }
         public async Task AgregarDetalleVentaProducto(DetalleVentaProductos detalle)
         {
-
             var precio = await this.ObtenerPrecioProducto(detalle.IdProducto);
             detalle.SubTotal = precio.Precio * detalle.Cantidad;
             await _context.DetalleVentaProductos.AddAsync(detalle);
             await _context.SaveChangesAsync();
             var venta = await this.ObtenerVentaPorId(detalle.IdVenta);
 
+            var usuario = await _context.Usuarioidentity.FindAsync(venta.IdUsuario);
+            var prod = await _context.Productos.FindAsync(detalle.IdProducto);
+
+            usuario.Puntos += prod.Puntos;
+            _context.Usuarioidentity.Update(usuario);
+            await _context.SaveChangesAsync();
+
             float descuento = (from desc in _context.Descuentos
                                            join porc in _context.PorcentajesRuleta on desc.IdPorcentajeRuleta equals porc.IdPorcentajeRuleta
                                            where desc.IdDescuento == venta.IdDescuento
                                            select porc.Porcentaje).First();
-
-
             var iva = await this.ObtenerIvaActual();
             venta.IdIva = iva.IdIva;
             venta.Total += (detalle.Cantidad * precio.Precio)-descuento*(detalle.SubTotal/100);

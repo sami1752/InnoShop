@@ -41,11 +41,12 @@ import {RespuestaMontajeComponent} from './components/admin/solicitudes/Montajes
 import {EditarMontajeComponent} from './components/admin/solicitudes/Montajes/editar-montaje/editar-montaje.component';
 import {GestionMontajeComponent} from './components/admin/solicitudes/Montajes/gestion-montaje/gestion-montaje.component';
 import {DetalleMontajeComponent} from './components/admin/solicitudes/Montajes/detalle-montaje/detalle-montaje.component';
-import {HistorialComprasComponent} from './components/usuarios/clientes/solicitudes/historial-compras/historial-compras.component';
 import {ReportesSPComponent} from './components/admin/reportes/gestion-reportes/reportes-sp/reportes-sp.component';
 import {ReportesMComponent} from './components/admin/reportes/gestion-reportes/reportes-m/reportes-m.component';
 import {ReportesVComponent} from './components/admin/reportes/gestion-reportes/reportes-v/reportes-v.component';
 import {GestionReportesComponent} from './components/admin/reportes/gestion-reportes/gestion-reportes.component';
+import {HistorialComprasComponent} from './components/usuarios/clientes/solicitudes/gestion-compras/historial-compras/historial-compras.component';
+import {GestionComprasComponent} from './components/usuarios/clientes/solicitudes/gestion-compras/gestion-compras.component';
 
 
 const routes: Routes = [
@@ -85,7 +86,7 @@ const routes: Routes = [
       {path: 'respuestasSP/:IdSolicitud', component: RespuestasSolicitudComponent},
       {path: 'detalleM/:IdMontaje', component: DetalleMComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'respuestasM/:IdMontaje', component: RespuestaMontajeComponent},
-      {path: 'historialCompras', component: HistorialComprasComponent}
+      {path: 'historialCompras', component: GestionComprasComponent}
     ]
   },
 

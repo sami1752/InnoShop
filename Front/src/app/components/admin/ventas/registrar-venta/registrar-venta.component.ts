@@ -42,6 +42,7 @@ export class RegistrarVentaComponent implements OnInit {
     this.ventasService.desplegarDetalleVentaEnRegistro = false;
     this.ventasService.ListarVentas();
     alert('Venta Finalizada con exito');
+    window.location.reload();
   }
 
 

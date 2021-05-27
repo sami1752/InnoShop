@@ -22,7 +22,13 @@ import { ListarDetalleProductoMComponent } from './solicitudes/personalizadas/de
 import { DetalleDelProductoDelDetalleMComponent } from './solicitudes/personalizadas/detalle-m/listar-detalle-producto-m/detalle-del-producto-del-detalle-m/detalle-del-producto-del-detalle-m.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { ListarCuponesComponent } from './descuentos/listar-cupones/listar-cupones.component';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatSortModule} from '@angular/material/sort';
+import {MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -53,7 +59,14 @@ import { ListarCuponesComponent } from './descuentos/listar-cupones/listar-cupon
     ReactiveFormsModule,
     HttpClientModule,
     CarouselModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    DragDropModule,
+    MatSortModule,
+    MatInputModule,
+    MatSelectModule
   ],
     exports: [
         ListarCuponesComponent

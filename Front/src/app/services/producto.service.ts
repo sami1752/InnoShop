@@ -47,6 +47,8 @@ import {
 import {UsuarioService} from './usuario.service';
 import {Entrada} from '../models/entrada';
 import {DetalleEntrada} from '../models/detalle-entrada';
+import {ProductoTabla} from '../models/producto-tabla';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root'
@@ -114,7 +116,7 @@ export class ProductoService {
     return this.formularioRegistroProductos.controls.GarantiaMeses;
   }
 
-
+  productosTabla: ProductoTabla[];
   idProducto1 = 0;
   entrada: Entrada;
   listaEntradas: Entrada[];
@@ -227,6 +229,16 @@ export class ProductoService {
     this.http.get(this.configuracion.rootURL + '/Productos')
       .toPromise()
       .then(res => this.listaProductos = res as Producto[]);
+  }
+  listarProductoTabla(): any {
+    this.http
+      .get(this.configuracion.rootURL + '/Productos')
+      .toPromise()
+      .then(
+        (res) => {
+          this.productosTabla = res as ProductoTabla[];
+        }
+      );
   }
 
   listarIva(): any {
