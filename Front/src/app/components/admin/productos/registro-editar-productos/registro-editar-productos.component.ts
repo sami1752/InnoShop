@@ -17,10 +17,6 @@ import {
 import {
   UsuarioService
 } from 'src/app/services/usuario.service';
-import {ListaProductosComponent} from '../lista-productos/lista-productos.component';
-import {MatTableDataSource} from '@angular/material/table';
-import {ProductoTabla} from '../../../../models/producto-tabla';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-registro-editar-productos',
@@ -28,11 +24,10 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./registro-editar-productos.component.css']
 })
 export class RegistroEditarProductosComponent implements OnInit {
-  @ViewChild(ListaProductosComponent) hijo: ListaProductosComponent;
+  // @ViewChild(ListaProductosComponent) hijo: ListaProductosComponent;
   constructor(public usuarioService: UsuarioService, private router: Router,
               public productoService: ProductoService,
-              public configuracion: ConfiguracionService,
-              public listap: ListaProductosComponent) {
+              public configuracion: ConfiguracionService) {
   }
   listaTiposPuerta = [{
     Tipo: 'Bisagra'
@@ -77,10 +72,7 @@ export class RegistroEditarProductosComponent implements OnInit {
         this.productoService.producto.IdCategoria = 3;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
-            this.listap.tabla = false;
-            alert('jejejeje');
-            this.listap.tabla = true;
-            alert('Registro exitoso');
+            window.location.reload();
             this.productoService.desplegarDetalleMateriales = true;
             this.productoService.idProducto1 = respuesta.mensaje;
             this.productoService.formularioRegistroProductos.reset();
@@ -102,6 +94,7 @@ export class RegistroEditarProductosComponent implements OnInit {
       (respuesta: any) => {
         this.productoService.formularioRegistroProductos.reset();
         alert('Actualizacion Exitosa');
+        window.location.reload();
         this.productoService.CampoPrecio = true;
         this.productoService.listarProducto();
         this.productoService.ListarDetalleMaterial(this.productoService.producto.IdProducto);

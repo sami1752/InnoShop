@@ -29,16 +29,14 @@ export class ListaProductosComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
-  tabla = true;
-
   constructor(private router: Router,
               public productoService: ProductoService,
               private http: HttpClient,
               private configuracion: ConfiguracionService) {
-    this.actualizarTablaProductos();
+
   }
   actualizarTablaProductos(): void {
+    console.log(this.productoService.productosTabla);
     this.http
       .get(this.configuracion.rootURL + '/Productos')
       .toPromise()
@@ -51,6 +49,7 @@ export class ListaProductosComponent implements AfterViewInit {
       );
   }
   ngAfterViewInit(): void {
+    this.actualizarTablaProductos();
   }
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;

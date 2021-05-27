@@ -11,7 +11,8 @@ import {DetalleVentaCompletoComponent} from './detalle-venta-completo/detalle-ve
 import {FinalizarCompraComponent} from '../../usuarios/clientes/solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
 import {NgxPayPalModule} from 'ngx-paypal';
 import {ClientesModule} from '../../usuarios/clientes/clientes.module';
-import { HistorialComprasComponent } from 'src/app/components/usuarios/clientes/solicitudes/historial-compras/historial-compras.component';
+import { HistorialComprasComponent } from 'src/app/components/usuarios/clientes/solicitudes/gestion-compras/historial-compras/historial-compras.component';
+import { GestionComprasComponent } from 'src/app/components/usuarios/clientes/solicitudes/gestion-compras/gestion-compras.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -29,7 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
     DetalleVentaProductoComponent,
     DetalleVentaCompletoComponent,
     FinalizarCompraComponent,
-    HistorialComprasComponent
+    HistorialComprasComponent,
+    GestionComprasComponent
   ],
     imports: [
       CommonModule,

@@ -54,9 +54,10 @@ export class RegistroUsuarioComponent implements OnInit {
     this.usuarioService.uca = true;
     this.usuarioService.registrarUsuarioAdmin().subscribe(
       (respuesta: any) => {
-        alert('exito gonorrea');
+        alert('exito');
         this.usuarioService.formularioRegistroUsuarioAdmin.reset();
         this.usuarioService.listarUsuarios();
+        window.location.reload();
       },
       err => console.log(err));
   }
@@ -67,6 +68,7 @@ export class RegistroUsuarioComponent implements OnInit {
         if (respuesta.Succeeded) {
           this.usuarioService.formularioRegistroUsuarioAdmin.reset();
           alert('Actualizacion Exitosa');
+          window.location.reload();
           this.usuarioService.listarUsuarios();
         } else {
           respuesta.Errors.forEach(element => {
