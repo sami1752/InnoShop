@@ -102,12 +102,11 @@
                      *ngFor="let imagen of productoService.listaImagenes">
                   <div class="product__wrapper mb-60" *ngIf="imagen.IdProducto == producto.IdProducto"
                        style="background-color: rgba(255, 255, 255, 0.856); ">
-                    <div class="product__thumb">
-                      <a [routerLink]="['/productos/detalleProducto',producto.IdProducto]" class="w-img">
-                        <img src="assets/img/Imagenes/{{imagen.RutaImagen}}" alt="Imagen"
-                             style="width: 250px; height: 250px;">
+                    <div class="product__thumb" >
+                      <a [routerLink]="['/productos/detalleProducto',producto.IdProducto]" >
+                        <img src="assets/img/Imagenes/{{imagen.RutaImagen}}" class="w-img" alt="Imagen"
+                             style="width: 294px; height: 300px;">
                       </a>
-
                       <div class="product__action transition-3">
                         <a [routerLink]="['/productos/detalleProducto',producto.IdProducto]" data-toggle="tooltip"
                            data-placement="top" title="Detalle">
@@ -125,24 +124,25 @@
                           </ng-container>
                         </a>
                       </div>
-                      <hr>
-                      <div>
-                        <div style="text-transform: uppercase;  margin-left: 5px; ">
-                          <p style=" text-transform: uppercase; font-size: 17px;"
-                             style="margin:-2.2% 0; ">{{producto.Nombre}}</p>
+                      <hr style="border:none">
+                      <div >
+                        <div style=" text-transform: uppercase;   margin-left: 5px; ">
+                          <p style=" text-transform: uppercase; font-size: 18px;"
+                           >{{producto.Nombre}}</p>
                         </div>
-                        <div *ngFor="let precio of productoService.listaPrecios">
-                          <span style=" font-size: 20px; color:rgb(182, 0, 0); margin-left: 5px;"
+                        <div *ngFor="let precio of productoService.listaPrecios" style=" margin:-3.2% 0">
+                          <span style=" font-size: 22px; color:rgb(182, 0, 0); margin-left: 5px;"
                                 *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==producto.IdProducto"> $ {{precio.Precio}}
                             COP</span>
                         </div>
+
                         <div class="product__price transition-3 " style="margin-left: 5px; ">
-                          <p style=" margin:-3.2% 0"> {{producto.NombreCategoria}}<i class="bi bi-dot "></i> Unidad a
+                          <p > {{producto.NombreCategoria}}<i class="bi bi-dot "></i> Unidad a
                             ${{producto.Precio}} </p>
                         </div>
                       </div>
                       <div style="margin-left: 5px; ">
-                        <div class=" product__content p-relative " style=" margin:-3.0% 0">
+                        <div class=" product__content p-relative " style=" margin:-2.0% 0">
                           <div class="add-cart transition-3 ">
                             <a class="btn" (click)="agregarCarrito(producto.IdProducto)"><i
                               class="bi bi-cart-plus-fill "></i> Agregar al carrito

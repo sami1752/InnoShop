@@ -1,11 +1,8 @@
 <section class="col-lg-15 connectedSortable mt-5">
   <div class="card">
     <div class="card-header">
-      <h2 class="card-title"><i class="bi bi-tags-fill text-secondary"></i> Entradas
-      </h2>
-      <button type="button" style="float: right;" class="btn"
-              (click)="this.productoService.formularioEntrada = !this.productoService.formularioEntrada "><i
-        class="bi bi-folder-plus"></i> Agregar
+      <h2 class="card-title colortxt font-weight-light"><i class="bi bi-file-arrow-up"></i>  ENTRADAS</h2>
+      <button type="button" style="float: right;" class="btn font-weight-light"(click)="this.productoService.formularioEntrada = !this.productoService.formularioEntrada "><i class="bi bi-folder-plus"></i> Agregar
       </button>
     </div>
     <div class="card-body">
@@ -23,7 +20,7 @@
             <th scope="col">Fecha</th>
           </tr>
           </thead>
-          <tbody *ngFor="let entrada of this.productoService.listaEntradas">
+          <tbody *ngFor="let entrada of this.productoService.listaEntradas" class="font-weight-light">
           <tr>
             <td>{{entrada.IdEntrada}}</td>
             <td>{{entrada.Cantidad}}</td>

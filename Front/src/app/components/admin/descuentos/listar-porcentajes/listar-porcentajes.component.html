@@ -1,9 +1,8 @@
-<section class="col-lg-15 connectedSortable">
   <div class="card">
     <div class="card-header">
-      <h2 class="card-title"><i class="bi bi-tags-fill text-primary"></i> Porcentajes ruleta
+      <h2 class="card-title  colortxt font-weight-light"><i class="bi bi-percent"></i> PORCENTAJES RULETA
       </h2>
-      <button type="button" style="float: right;" class="btn"
+      <button type="button" class="btn colortxt font-weight-light" style="float: right; color: #2C4F61"
               (click)="this.descuentosService.formPorcentaje = !this.descuentosService.formPorcentaje "><i
         class="bi bi-folder-plus"></i> Agregar
       </button>
@@ -26,9 +25,12 @@
           <tr>
             <td>{{porcentaje.IdPorcentajeRuleta}}</td>
             <td>{{porcentaje.Porcentaje}}</td>
-            <td>{{porcentaje.Estado ? 'activo' : 'inactivo'}}</td>
+            <td style="text-transform: capitalize">{{porcentaje.Estado ? 'activo' : 'inactivo'}}</td>
             <td>
-              <button (click)="editarPorcentaje(porcentaje)" class="btn-info">Activar/Descativar</button>
+
+              <i class="bi bi-toggle-on text-success" *ngIf="porcentaje.Estado" (click)="editarPorcentaje(porcentaje)"></i>
+              <i class="bi bi-toggle-off text-secondary" *ngIf="!porcentaje.Estado" (click)="editarPorcentaje(porcentaje)"></i>
+              <!--<button (click)="editarPorcentaje(porcentaje)" class="btn-info">Activar/Descativar</button>!-->
             </td>
           </tr>
           </tbody>
@@ -36,4 +38,3 @@
       </div>
     </div>
   </div>
-</section>

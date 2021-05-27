@@ -27,7 +27,7 @@
                     <img src="assets/img/images.png " class="img-circle elevation-2 " alt="User Image ">
                 </div>
                 <div class="info " style="text-align: center; ">
-                    <a class="d-block " href="/Admin/MiCuenta ">{{this.perfilUsuario.Nombres}}</a>
+                    <a class="d-block " href="/Admin/MiCuenta " style="text-transform: uppercase">{{this.perfilUsuario.Nombres}}</a>
                 </div>
             </div>
             <nav class="mt-2 ">
@@ -35,25 +35,25 @@
                     data-accordion="false ">
                     <li class="nav-item has-treeview ">
                         <a class="nav-link " href="/Admin/Usuarios ">
-                            <i class="nav-icon fa fa-users "></i>
+                          <i class="bi bi-people nav-icon"></i>
                             <p>Usuarios</p>
                         </a>
                     </li>
                     <li class="nav-item has-treeview ">
                         <a class="nav-link " href="/Admin/Productos ">
-                            <i class="nav-icon fas fa-box-open "></i>
+                          <i class="bi bi-box nav-icon"></i>
                             <p>Productos </p>
                         </a>
                     </li>
                     <li class="nav-item has-treeview ">
                         <a class="nav-link " href="/Admin/Iva ">
-                            <i class="nav-icon fas fa-percent "></i>
+                          <i class="bi bi-percent nav-icon"></i>
                             <p>IVA </p>
                         </a>
                     </li>
                     <li class="nav-item" (click)="soli=!soli" onclick="rotate(180)">
                         <a class="nav-link ">
-                            <i class="nav-icon far fa-plus-square "></i>
+                          <i class="bi bi-folder2 nav-icon"></i>
                             <p>
                                 Solicitudes
                                 <i class="right fas fa-angle-down" id="flecha1"></i>
@@ -61,41 +61,41 @@
                         </a>
                     </li>
                     <li class="nav-item " *ngIf="soli">
-                        <a href="Admin/solicitudes " class="nav-link ">
-                            <i class="far fa-circle nav-icon "></i>
+                        <a href="Admin/solicitudes " class="nav-link " style="margin-left: 3px">
+                          <i class="bi bi-record nav-icon"></i>
                             <p>S. Personalizadas</p>
                         </a>
                     </li>
                     <li class="nav-item " *ngIf="soli">
-                        <a href="pages/examples/register.html " class="nav-link ">
-                            <i class="far fa-circle nav-icon "></i>
-                            <p>Montajes</p>
+                        <a href="pages/examples/register.html " class="nav-link " style="margin-left: 3px">
+                          <i class="bi bi-record nav-icon"></i>
+                          <p>Montajes</p>
                         </a>
                     </li>
                     <li class="nav-header ">REPORTES</li>
-                    <li class="nav-item ">
+                    <li class="nav-item has-treeview">
                         <a href="Admin/ventas" class="nav-link ">
-                            <i class="nav-icon fas fa-file "></i>
+                          <i class="bi bi-file-earmark-pdf nav-icon"></i>
                             <p>Ventas</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item has-treeview  ">
                         <a href="https://adminlte.io/docs/3.0 " class="nav-link ">
-                            <i class="nav-icon fas fa-file "></i>
+                          <i class="bi bi-file-earmark-pdf nav-icon"></i>
                             <p>Solicitudes</p>
                         </a>
                     </li>
                     <li class="nav-header ">OTROS</li>
-                    <li class="nav-item ">
+                    <li class="nav-item has-treeview ">
                         <a href="# " class="nav-link ">
-                            <i class="nav-icon fas fa-dharmachakra "></i>
-                            <p>Ruleta</p>
+                          <i class="bi bi-record nav-icon"></i>
+                          <p>Ruleta</p>
                         </a>
                     </li>
                     <li class="nav-item has-treeview ">
                         <a href="# " class="nav-link ">
-                            <i class="nav-icon fas fa-tools "></i>
-                            <p>Montajes</p>
+                          <i class="bi bi-record nav-icon"></i>
+                            <p>Descuentos</p>
                         </a>
                     </li>
                 </ul>

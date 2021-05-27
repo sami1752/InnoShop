@@ -10,7 +10,7 @@
 
   </tr>
   </thead>
-  <tbody *ngFor="let usuario of usuarioService.listaUsuarios">
+  <tbody *ngFor="let usuario of usuarioService.listaUsuarios" class="font-weight-light">
   <tr *ngIf="usuario.Estado">
     <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Nombres}}</td>
     <td (click)="llenarFormularioUsuario(usuario)">{{usuario.Email}}</td>

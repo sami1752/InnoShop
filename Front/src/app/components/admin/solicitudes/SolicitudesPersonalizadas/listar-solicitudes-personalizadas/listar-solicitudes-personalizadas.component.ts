@@ -33,7 +33,7 @@ const NAMES: string[] = [
 export class ListarSolicitudesPersonalizadasComponent implements AfterViewInit {
 
   // displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  displayedColumns: string[] = ['IdSolicitudPersonalizada', 'Fecha', 'ValorTotal', 'Usuario', 'Estado'];
+  displayedColumns: string[] = ['IdSolicitudPersonalizada', 'Fecha',  'Usuario','ValorTotal', 'Estado','Opciones'];
   // dataSource: MatTableDataSource<UserData>;
   dataSource: MatTableDataSource<SolicitudPersonalizadaCorta>;
 
