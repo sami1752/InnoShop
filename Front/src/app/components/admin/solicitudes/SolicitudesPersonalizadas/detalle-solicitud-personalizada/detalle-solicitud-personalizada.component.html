@@ -75,9 +75,22 @@
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Devuelta')">
                     <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
                   </div>
+                  <div class="col "
+                       *ngIf="( this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Pagada')">
+                    <button class="btn btn-primary" (click)="Fabricar()">Fabricar</button>
+                  </div>
+                  <div class="col"
+                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de fabricacion'">
+                    <button class="btn btn-success" (click)="Terminar()">Terminar</button>
+                  </div>
+                  <div class="col"
+                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Terminada'">
+                    <button class="btn btn-success" (click)="Entregar()">Entregar</button>
+                  </div>
                   <div class="col"
                        *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
-                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Rechazada'">
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Rechazada'||
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Devuelta'">
                     <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
                   </div>
                   <div class="col"
@@ -88,8 +101,19 @@
                   <div class="col"
                        *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Rechazada' &&
-                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Cancelada'">
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Cancelada'&&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Pagada'&&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'En proceso de fabricacion'&&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Terminada'&&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Entregada'">
                     <button class="btn btn-danger" (click)="cancelar()">Rechazar</button>
+                  </div>
+                  <div>
+                    <a href="Admin/respuestasSP/{{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}">
+                      Respuestas</a>
+                  </div>
+                  <div class="col">
+                    <a href="Admin/editarSP/{{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}">Editar</a>
                   </div>
                 </div>
               </div>
