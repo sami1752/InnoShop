@@ -137,7 +137,8 @@
 
 
             <div class="mt-10"></div>
-            <a type="button" class="os-btn w-100" href="cambiarMiContraseña">Cambiar Contraseña</a>
+            <a *ngIf="usuario.IdRol == 2" type="button" class="os-btn w-100" href="usuarios/cambiarMiContraseña">Cambiar Contraseña</a>
+            <a *ngIf="usuario.IdRol == 1" type="button" class="os-btn w-100" href="Admin/cambiarMiContraseña">Cambiar Contraseña</a>
             <button type="submit" [disabled]="this.usuarioService.formularioRegistroEdicionDatos.invalid"
                     class="os-btn w-100">Editar datos
             </button>

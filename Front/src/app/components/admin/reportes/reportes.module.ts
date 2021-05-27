@@ -4,6 +4,11 @@ import { GestionReportesComponent } from './gestion-reportes/gestion-reportes.co
 import { ReportesSPComponent } from './gestion-reportes/reportes-sp/reportes-sp.component';
 import { ReportesMComponent } from './gestion-reportes/reportes-m/reportes-m.component';
 import { ReportesVComponent } from './gestion-reportes/reportes-v/reportes-v.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -15,7 +20,12 @@ import { ReportesVComponent } from './gestion-reportes/reportes-v/reportes-v.com
     ReportesVComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    RouterModule
   ]
 })
 export class ReportesModule { }

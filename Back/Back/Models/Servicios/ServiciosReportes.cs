@@ -64,6 +64,9 @@ namespace Back.Models.Servicios
 
                 return new ReporteSolicitudes
                 {
+                    Entregada= (from estado in a.ToList()
+                                where estado.Estado == "Entregada"
+                                select estado).Count(),
                     Aceptada = (from estado in a.ToList()
                                 where estado.Estado == "Aceptada"
                                 select estado).Count(),
@@ -102,7 +105,7 @@ namespace Back.Models.Servicios
                     TotalVendido = (from solicitud in (from solicitud in (from solicitud in _context.SolicitudPersonalizada.AsEnumerable()
                                                                           join estado in a.AsEnumerable()
                                                                          on solicitud.IdSolicitudPersonalizada equals estado.Aosciacion
-                                                                          where estado.IdEstado == 6
+                                                                          where estado.IdEstado == 6 || estado.IdEstado == 7 || estado.IdEstado == 8 || estado.IdEstado == 12    
                                                                           select solicitud)
                                                        select new SolicitudPersonalizadaDetalle
                                                        {
@@ -181,6 +184,9 @@ namespace Back.Models.Servicios
 
                 return new ReporteMontaje
                 {
+                    Entregada = (from estado in a.ToList()
+                                 where estado.Estado == "Entregada"
+                                 select estado).Count(),
                     Aceptada = (from estado in a.ToList()
                                 where estado.Estado == "Aceptada"
                                 select estado).Count(),
@@ -219,7 +225,7 @@ namespace Back.Models.Servicios
                     TotalVendido = (from solicitud in (from solicitud in (from montaje in _context.Montajes.AsEnumerable()
                                                                           join estado in a.AsEnumerable()
                                                                          on montaje.IdMontaje equals estado.Aosciacion
-                                                                          where estado.IdEstado == 6
+                                                                          where estado.IdEstado == 6 || estado.IdEstado == 7 || estado.IdEstado == 8 || estado.IdEstado == 12
                                                                           select montaje)
                                                        select new MontajeDetalle
                                                        {

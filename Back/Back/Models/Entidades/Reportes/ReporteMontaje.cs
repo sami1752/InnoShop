@@ -20,5 +20,7 @@ namespace Back.Models.Entidades.Reportes
         public int EnProcesoDeCotizacion { get; set; }
         public int TotalSolicitudes { get; set; }
         public float TotalVendido { get; set; }
+        public int Entregada { get; set; }
+        
     }
 }

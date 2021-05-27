@@ -20,8 +20,10 @@ namespace Back.Models.Entidades.Reportes
         public int Terminada { get; set; }
         public int Modificada { get; set; }
         public int EnProcesoDeCotizacion { get; set; }
+
         public int TotalSolicitudes { get; set; }
         public float TotalVendido { get; set; }
+        public int Entregada { get; set; }
 
     }
 }

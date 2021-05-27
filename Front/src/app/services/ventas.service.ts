@@ -86,7 +86,7 @@ export class VentasService {
   }
 
   AgregarDetalleVentaMontajes(detalleVentasMontaje: DetalleVentasMontaje): any {
-    return this.http.post(this.configuracion.rootURL + '/Ventas/DetalleVentaSolicitud', detalleVentasMontaje);
+    return this.http.post(this.configuracion.rootURL + '/Ventas/DetalleVentaMontaje', detalleVentasMontaje);
   }
 
   ListarVentas(): any {

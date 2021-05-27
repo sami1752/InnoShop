@@ -41,6 +41,7 @@ import {RegistrarValorRuletaComponent} from './components/admin/descuentos/regis
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DescuentosModule} from './components/admin/descuentos/descuentos.module';
 import {VentasModule} from './components/admin/ventas/ventas.module';
+import {ReportesModule} from './components/admin/reportes/reportes.module';
 
 
 
@@ -81,7 +82,8 @@ import {VentasModule} from './components/admin/ventas/ventas.module';
     SolicitudesModule,
     BrowserAnimationsModule,
     DescuentosModule,
-    VentasModule
+    VentasModule,
+    ReportesModule
   ],
   providers: [UsuarioService, ConfiguracionService, {
     provide: HTTP_INTERCEPTORS,
