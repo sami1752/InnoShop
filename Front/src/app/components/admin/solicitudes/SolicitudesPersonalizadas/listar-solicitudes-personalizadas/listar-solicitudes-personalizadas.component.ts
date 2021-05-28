@@ -23,8 +23,9 @@ export interface UserData {
 })
 export class ListarSolicitudesPersonalizadasComponent implements AfterViewInit {
 
-
-  displayedColumns: string[] = ['IdSolicitudPersonalizada', 'Fecha', 'ValorTotal', 'Usuario', 'Estado'];
+  // displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
+  displayedColumns: string[] = ['IdSolicitudPersonalizada', 'Fecha',  'Usuario','ValorTotal', 'Estado','Opciones'];
+  // dataSource: MatTableDataSource<UserData>;
   dataSource: MatTableDataSource<SolicitudPersonalizadaCorta>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

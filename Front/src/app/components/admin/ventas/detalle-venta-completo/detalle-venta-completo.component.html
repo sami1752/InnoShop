@@ -13,6 +13,11 @@
     <td class="text-right">{{venta.SubTotal}}</td>
   </tr>
   </tbody>
+  <tr *ngIf="ventasService.listaDetalleVentaProductos.length == 0">
+    <td class="text-right">Venta Solicitud</td>
+    <td class="text-right">1</td>
+    <td class="text-right">{{this.ventasService.detalleVenta.Total - this.ventasService.detalleVenta.TotalIva}}</td>
+  </tr>
 </table>
 <hr>
 <div class=" mt-3">

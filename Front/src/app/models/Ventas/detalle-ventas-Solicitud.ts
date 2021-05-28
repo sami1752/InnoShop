@@ -3,5 +3,5 @@ export interface DetalleVentasSolicitud {
   Cantidad: number;
   SubTotal: number;
   IdVenta: number;
-  IdSolictud: number;
+  IdSolicitudPersonalizada: number;
 }

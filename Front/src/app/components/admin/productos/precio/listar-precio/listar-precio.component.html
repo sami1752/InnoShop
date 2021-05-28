@@ -1,11 +1,8 @@
 <section class="col-lg-15 connectedSortable">
   <div class="card">
     <div class="card-header">
-      <h2 class="card-title"><i class="bi bi-tags-fill text-secondary"></i> Precios
-      </h2>
-      <button type="button" style="float: right;" class="btn"
-              (click)="this.productoService.FormularioPrecio = !this.productoService.FormularioPrecio "><i
-        class="bi bi-folder-plus"></i> Agregar
+      <h2 class="card-title  colortxt font-weight-light"><i class="bi bi-currency-dollar"></i> PRECIOS</h2>
+      <button type="button" style="float: right; color: #2C4F61" class="btn colortxt font-weight-light" (click)="this.productoService.FormularioPrecio = !this.productoService.FormularioPrecio "><i class="bi bi-folder-plus colortxt"></i> Agregar
       </button>
     </div>
     <div class="card-body">
@@ -13,7 +10,6 @@
         <div *ngIf="this.productoService.FormularioPrecio">
           <app-registrar-precio></app-registrar-precio>
         </div>
-
         <table class="table table-hover">
           <thead>
           <tr>
@@ -24,7 +20,7 @@
             <th scope="col">Id Usuario</th>
           </tr>
           </thead>
-          <tbody *ngFor="let precio of productoService.listaPrecios">
+          <tbody *ngFor="let precio of productoService.listaPrecios" class="font-weight-light">
           <tr>
             <td>{{precio.IdPrecioProducto}}</td>
             <td>{{precio.Precio}}</td>

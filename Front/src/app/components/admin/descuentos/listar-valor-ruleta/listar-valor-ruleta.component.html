@@ -1,38 +1,38 @@
-<section class="col-lg-15 connectedSortable">
   <div class="card">
-    <div class="card-header">
-      <h2 class="card-title"><i class="bi bi-tags-fill text-primary"></i> Valor de ruleta
-      </h2>
-      <button type="button" style="float: right;" class="btn"
-              (click)="this.descuentosService.formValorRuleta = !this.descuentosService.formValorRuleta "><i
-        class="bi bi-folder-plus"></i> Agregar
-      </button>
-    </div>
-
-    <div class="tab-content p-0">
-      <div *ngIf="this.descuentosService.formValorRuleta">
-        <app-registrar-valor-ruleta></app-registrar-valor-ruleta>
+      <div class="card-header">
+        <h2 class="card-title colortxt font-weight-light"><i class="bi bi-currency-dollar"></i> VALOR RULETA
+        </h2>
+        <button type="button" class="btn colortxt font-weight-light" style="float: right; color: #2C4F61"
+                (click)="this.descuentosService.formValorRuleta = !this.descuentosService.formValorRuleta "><i
+          class="bi bi-folder-plus"></i> Agregar
+        </button>
       </div>
-      <div>
-        <table class="table table-hover">
-          <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Valor ruleta</th>
-            <th scope="col">Fecha Inicio</th>
-            <th scope="col">Fecha Fin</th>
-          </tr>
-          </thead>
-          <tbody *ngFor="let valor of descuentosService.listaValoresRuleta">
-          <tr>
-            <td>{{valor.IdValorRuleta}}</td>
-            <td>{{valor.ValorDeRuleta}}</td>
-            <td>{{valor.FechaInicio}}</td>
-            <td>{{valor.FechaFin}}</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <div class="card-body">
+        <div class="tab-content p-0">
+          <div *ngIf="this.descuentosService.formValorRuleta">
+            <app-registrar-valor-ruleta></app-registrar-valor-ruleta>
+          </div>
+          <div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Valor ruleta</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha Fin</th>
+              </tr>
+              </thead>
+              <tbody *ngFor="let valor of descuentosService.listaValoresRuleta">
+              <tr>
+                <td>{{valor.IdValorRuleta}}</td>
+                <td>{{valor.ValorDeRuleta}}</td>
+                <td>{{valor.FechaInicio}}</td>
+                <td>{{valor.FechaFin}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+     </div>
   </div>
-</section>
+

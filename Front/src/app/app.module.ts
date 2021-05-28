@@ -36,6 +36,7 @@ import {SolicitudesModule} from './components/admin/solicitudes/solicitudes.modu
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DescuentosModule} from './components/admin/descuentos/descuentos.module';
 import {VentasModule} from './components/admin/ventas/ventas.module';
+import {ReportesModule} from './components/admin/reportes/reportes.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -84,6 +85,7 @@ import {ListarProductosComponent} from './components/usuarios/clientes/productos
     BrowserAnimationsModule,
     DescuentosModule,
     VentasModule,
+    ReportesModule,
     MatFormFieldModule,
     MatTableModule,
     MatPaginatorModule,
