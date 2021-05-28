@@ -35,10 +35,7 @@ export class ListaUsuariosComponent implements AfterViewInit {
               public usuarioService: UsuarioService,
               private http: HttpClient,
               private configuracion: ConfiguracionService) {
-        this.http
-          .get(this.configuracion.rootURL + '/Usuarios/ListaUsuarios')
-          .toPromise()
-          .then(
+          this.http.get(this.configuracion.rootURL + '/Usuarios/ListaUsuarios').toPromise().then(
             (res) => {
               this.dataSource = new MatTableDataSource(res as UsuariosTabla[]);
               this.dataSource.paginator = this.paginator;

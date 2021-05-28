@@ -63,8 +63,6 @@ export class ListaProductosComponent implements AfterViewInit {
   llenarFormularioProducto(producto: Producto): void {
     this.productoService.CampoPrecio = false;
     this.productoService.formularioRegistroProductos.patchValue(producto);
-    this.productoService.desplegarDetalleMateriales = true;
-    this.productoService.tablaDetalleMateriales = true;
     this.productoService.idProducto1 = producto.IdProducto;
     this.productoService.ListarDetalleMaterial(producto.IdProducto);
   }
@@ -97,6 +95,7 @@ export class ListaProductosComponent implements AfterViewInit {
     this.productoService.listarImagen(id);
     this.productoService.ListarDetalleMaterial(id);
     this.productoService.listarEntradas(id);
+    this.productoService.listarIva();
   }
 
   tomarIdProducto(id): void {

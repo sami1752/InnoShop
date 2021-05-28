@@ -27,9 +27,7 @@ export class RegistrarIvaComponent implements OnInit {
         this.productoService.registrarIVA().subscribe(
           (respuesta: any) => {
             alert(respuesta.mensaje);
-            console.log(respuesta.mensaje);
-            this.productoService.formularioRegistroIVA.reset();
-            this.productoService.listarIva();
+            window.location.reload();
           }, error => {
             alert(error);
             console.log(error);

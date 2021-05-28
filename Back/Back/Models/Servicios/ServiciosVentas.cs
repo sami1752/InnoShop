@@ -160,9 +160,11 @@ namespace Back.Models.Servicios
 
         public async Task AgregarSalidaProducto(Salida salida)
         {
+            salida.Fecha = DateTime.Now;
             await _context.Salidas.AddAsync(salida);
             await _context.SaveChangesAsync();
         }
+        
         public async Task ModificarValorTotalVentas(Ventas venta)
         {
             _context.Ventas.Update(venta);
@@ -181,7 +183,26 @@ namespace Back.Models.Servicios
         public async Task<ActionResult<IEnumerable<Ventas>>> ListaVentasPorCliente(string idUsuario) =>
            await _context.Ventas.Where(x => x.IdUsuario == idUsuario).ToListAsync();
 
-
+        public async Task<ActionResult<IEnumerable<SalidaProductoInfo>>> listarSalidas(int idProducto)
+        {
+            await using (_context)
+            {
+                List<SalidaProductoInfo> listaSalidas = (from salida in _context.Salidas
+                                             join usuario in _context.Usuarioidentity
+                                             on salida.IdUsuario equals usuario.Id
+                                             where salida.IdProducto == idProducto
+                                             select new SalidaProductoInfo
+                                             {
+                                              IdSalida = salida.IdSalida,
+                                              IdProducto = salida.IdProducto,
+                                              Cantidad = salida.Cantidad,
+                                              Fecha = salida.Fecha,
+                                              IdUsuario = salida.IdUsuario,
+                                              NombreUsuario = usuario.Nombres
+                                             }).ToList();
+                return listaSalidas;
+            }
+        }
 
 
 

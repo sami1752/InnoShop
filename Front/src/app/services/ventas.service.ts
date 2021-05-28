@@ -12,6 +12,7 @@ import {ProductoService} from './producto.service';
 import {DetalleVentasSolicitud} from '../models/Ventas/detalle-ventas-Solicitud';
 import {DescuentosService} from './descuentos.service';
 import {DetalleVentasMontaje} from '../models/Ventas/detalle-ventas-Montaje';
+import {Salida} from '../models/salida';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class VentasService {
     private productosService: ProductoService,
     private descuentosService: DescuentosService) {
   }
-
+  listaSalidas: Salida [];
   listaVentas: DetalleVentas[];
   listaDetalleVentaProductos: DetalleVentasProducto[];
   fecha = new Date();
@@ -120,4 +121,8 @@ export class VentasService {
     return this.http.get(this.configuracion.rootURL + '/Ventas/IvaActual').toPromise().then(res => this.iva = res as Iva);
   }
 
+  ListarSalidasProducto(idProducto: number): any {
+    this.http.get(this.configuracion.rootURL + '/Ventas/Salidas/' +
+      idProducto).toPromise().then(res => this.listaSalidas = res as Salida[]);
+  }
 }

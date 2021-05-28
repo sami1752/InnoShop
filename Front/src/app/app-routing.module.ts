@@ -21,7 +21,6 @@ import {DetalleProductoClienteComponent} from './components/usuarios/clientes/pr
 import {ListaProductosComponent} from './components/admin/productos/lista-productos/lista-productos.component';
 import {RegistrarSolicitudPErsonalizadaComponent} from './components/usuarios/clientes/solicitudes/personalizadas/registrar-solicitud-personalizada/registrar-solicitud-personalizada.component';
 import {GestionProductosComponent} from './components/admin/productos/gestion-productos/gestion-productos.component';
-import {GestionIvaComponent} from './components/admin/productos/iva/gestion-iva/gestion-iva.component';
 import {ListarMisSolicitudesPersonalizadasComponent} from './components/usuarios/clientes/solicitudes/personalizadas/listar-mis-solicitudes-personalizadas/listar-mis-solicitudes-personalizadas.component';
 import {RegistrarMontajesComponent} from './components/usuarios/clientes/solicitudes/personalizadas/registrar-montajes/registrar-montajes.component';
 import {ListarMisMontajesComponent} from './components/usuarios/clientes/solicitudes/personalizadas/listar-mis-montajes/listar-mis-montajes.component';
@@ -103,7 +102,6 @@ const routes: Routes = [
       {path: 'inicioadmin', component: ReportesSPComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'Usuarios', component: GestionUsuarioComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'Productos', component: GestionProductosComponent, canActivate: [AutorizacionRutasGuard]},
-      {path: 'Iva', component: GestionIvaComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'MiCuenta', component: ModificarDatosComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'cambiarMiContraseña', component: CambioContraComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'solicitudes', component: GestionSolicitudPersonalizadaComponent, canActivate: [AutorizacionRutasGuard]},

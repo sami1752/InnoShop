@@ -29,6 +29,7 @@ export class RegistrarEntradaComponent implements OnInit {
             this.productoService.formularioRegistroEntrada.reset();
             this.productoService.formularioEntrada = false;
             this.productoService.listarEntradas(this.productoService.entrada.IdProducto);
+            window.location.reload();
           }, error => {
             alert('error');
             console.log(error);

@@ -1,0 +1,8 @@
+<form class="" [formGroup]="this.productoService.formularioRegistroSalida" (ngSubmit)="registroSalida()">
+  <div class="input-group mb-3 ">
+    <input formControlName="Cantidad" type="number" id="Cantidad" placeholder="Ingrese stock" class="form-control "/>
+
+    <button type="submit" [disabled]="this.productoService.formularioRegistroSalida.invalid" class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
+    <button type="button" (click)="this.productoService.formularioRegistroSalida.reset(); this.productoService.formularioSalida=false" class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button> </div>
+</form>
+

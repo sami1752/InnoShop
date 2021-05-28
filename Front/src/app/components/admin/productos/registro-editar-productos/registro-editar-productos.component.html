@@ -60,10 +60,7 @@
   <input type="hidden" formControlName="IdCategoria">
   <button type="submit" [disabled]="this.productoService.formularioRegistroProductos.invalid" class="os-btn w-50">Guardar
   </button>
-  <button type="button" class="os-btn w-50" (click)="this.productoService.formularioRegistroProductos.reset(); this.productoService.CampoPrecio = true;
-    this.productoService.desplegarDetalleMateriales = false">Limpiar</button>
+  <button type="button" class="os-btn w-50" (click)="this.productoService.formularioRegistroProductos.reset(); this.productoService.CampoPrecio = true;">Limpiar</button>
 </form>
-<div *ngIf="this.productoService.desplegarDetalleMateriales">
-  <app-registro-detalle-material></app-registro-detalle-material>
-</div>
+
 

@@ -19,7 +19,6 @@ import {GestionProductosComponent} from './components/admin/productos/gestion-pr
 import {DetalleProductosComponent} from './components/admin/productos/detalle-productos/detalle-productos.component';
 import {RegistroEditarProductosComponent} from './components/admin/productos/registro-editar-productos/registro-editar-productos.component';
 import {ListaProductosComponent} from './components/admin/productos/lista-productos/lista-productos.component';
-import {GestionIvaComponent} from './components/admin/productos/iva/gestion-iva/gestion-iva.component';
 import {RegistrarIvaComponent} from './components/admin/productos/iva/registrar-iva/registrar-iva.component';
 import {ListarIvaComponent} from './components/admin/productos/iva/listar-iva/listar-iva.component';
 import {RegistrarPrecioComponent} from './components/admin/productos/precio/registrar-precio/registrar-precio.component';
@@ -45,6 +44,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {ListarProductosComponent} from './components/usuarios/clientes/productos/listar-productos/listar-productos.component';
+import { RegistrarSalidaComponent } from './components/admin/productos/salidas/registrar-salida/registrar-salida.component';
+import { ListarSalidasComponent } from './components/admin/productos/salidas/listar-salidas/listar-salidas.component';
 
 
 @NgModule({
@@ -60,7 +61,6 @@ import {ListarProductosComponent} from './components/usuarios/clientes/productos
     DetalleProductosComponent,
     RegistroEditarProductosComponent,
     ListaProductosComponent,
-    GestionIvaComponent,
     RegistrarIvaComponent,
     ListarIvaComponent,
     RegistrarPrecioComponent,
@@ -70,7 +70,9 @@ import {ListarProductosComponent} from './components/usuarios/clientes/productos
     RegistroDetalleMaterialComponent,
     ListarDetalleMaterialComponent,
     ListarEntradasComponent,
-    RegistrarEntradaComponent
+    RegistrarEntradaComponent,
+    RegistrarSalidaComponent,
+    ListarSalidasComponent
   ],
   imports: [
     BrowserModule,

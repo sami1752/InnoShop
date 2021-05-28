@@ -26,5 +26,10 @@ namespace Back.Controllers
         public async Task<ActionResult<ReporteMontaje>> ObtenerReporteMontajes(DateTime desde, DateTime hasta) =>
             await _context.ObtenerReporteMontajes(desde, hasta);
 
+        [HttpGet]
+        [Route("Ventas/{desde}/{hasta}")]
+        public async Task<ActionResult<ReporteVentas>> ObtenerReporteVentas(DateTime desde, DateTime hasta) =>
+           await _context.ObtenerReporteVentas(desde, hasta);
+
     }
 }

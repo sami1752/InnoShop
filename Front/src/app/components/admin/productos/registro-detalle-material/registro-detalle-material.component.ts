@@ -24,8 +24,8 @@ export class RegistroDetalleMaterialComponent implements OnInit {
         this.productoService.DetalleMaterial.IdUsuario = (res as Usuario).Id;
         this.productoService.RegistrarDetalleMaterial().subscribe(
           (respuesta: any) => {
-            this.productoService.ListarDetalleMaterial(this.productoService.DetalleMaterial.IdProducto);
-            this.productoService.tablaDetalleMateriales = true;
+            alert('Registro  material exitoso');
+            window.location.reload();
           }, error => {
             alert(error);
             console.log(error);

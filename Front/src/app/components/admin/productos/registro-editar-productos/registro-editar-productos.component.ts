@@ -73,8 +73,6 @@ export class RegistroEditarProductosComponent implements OnInit {
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
             window.location.reload();
-            this.productoService.desplegarDetalleMateriales = true;
-            this.productoService.idProducto1 = respuesta.mensaje;
             this.productoService.formularioRegistroProductos.reset();
           }, error => {
             alert(error);
@@ -97,7 +95,6 @@ export class RegistroEditarProductosComponent implements OnInit {
         window.location.reload();
         this.productoService.CampoPrecio = true;
         this.productoService.listarProducto();
-        this.productoService.ListarDetalleMaterial(this.productoService.producto.IdProducto);
       }, error => {
         alert(error);
         console.log(error);

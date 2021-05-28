@@ -1,13 +1,12 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {DetalleEntrada} from 'src/app/models/detalle-entrada';
-import {Entrada} from 'src/app/models/entrada';
-import {ProductoService} from 'src/app/services/producto.service';
 import {MatTableDataSource} from '@angular/material/table';
-import {ProductoTabla} from '../../../../../models/producto-tabla';
+import {Entrada} from '../../../../../models/entrada';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {HttpClient} from '@angular/common/http';
 import {ConfiguracionService} from '../../../../../services/configuracion.service';
+import {Salida} from '../../../../../models/salida';
+import {ProductoService} from '../../../../../services/producto.service';
 
 export interface UserData {
   id: string;
@@ -17,30 +16,30 @@ export interface UserData {
 }
 
 @Component({
-  selector: 'app-listar-entradas',
-  templateUrl: './listar-entradas.component.html',
-  styleUrls: ['./listar-entradas.component.css']
+  selector: 'app-listar-salidas',
+  templateUrl: './listar-salidas.component.html',
+  styleUrls: ['./listar-salidas.component.css']
 })
-export class ListarEntradasComponent implements AfterViewInit {
+export class ListarSalidasComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['IdEntrada', 'Cantidad',  'IdProducto', 'IdUsuario', 'Fecha'];
-  dataSource: MatTableDataSource<Entrada>;
+  displayedColumns: string[] = ['IdSalida', 'IdProducto', 'Cantidad', 'NombreUsuario', 'Fecha'];
+  dataSource: MatTableDataSource<Salida>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
   constructor(public productoService: ProductoService,
               private http: HttpClient,
               private configuracion: ConfiguracionService) {
-    this.listarEntradas(this.productoService.detalleProducto.IdProducto);
+    this.listarSalidas(this.productoService.detalleProducto.IdProducto);
   }
 
-  listarEntradas(idProducto): void {
-    this.http.get(this.configuracion.rootURL + '/Productos/listarEntradas/' + idProducto)
+
+  listarSalidas(idProducto): void {
+    this.http.get(this.configuracion.rootURL + '/Ventas/Salidas/' + idProducto)
       .toPromise()
       .then(
         (res) => {
-          this.dataSource = new MatTableDataSource(res as Entrada[]);
+          this.dataSource = new MatTableDataSource(res as Salida[]);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }

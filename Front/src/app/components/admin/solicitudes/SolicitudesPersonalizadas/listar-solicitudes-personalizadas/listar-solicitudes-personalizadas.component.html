@@ -2,7 +2,7 @@
   <mat-label>Buscar</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Eje. Mia" #input>
 </mat-form-field>
-<div cdkDrag>
+<div >
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort >
       |
@@ -25,7 +25,6 @@
               <a href="Admin/respuestasSP/{{row.IdSolicitudPersonalizada}}" class="btn btn-sm btn-outline-dark" title="Respuestas" ><i class="bi bi-chat-square-dots-fill"></i></a>
             </div>
           </div>
-
         </td>
       </ng-container>
       <!-- Progress Column -->

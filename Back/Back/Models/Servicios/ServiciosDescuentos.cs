@@ -33,7 +33,7 @@ namespace Back.Models.Servicios
                                                            on descuentos.IdValorRuleta equals valorRuleta.IdValorRuleta
                                                            join porcentR in _context.PorcentajesRuleta
                                                            on descuentos.IdPorcentajeRuleta equals porcentR.IdPorcentajeRuleta
-                                                           where descuentos.IdUsuario == IdUsuario
+                                                           where descuentos.IdUsuario == IdUsuario orderby descuentos.IdDescuento descending
                                                            select new DetalleDescuentos
                                                            {
                                                                IdDescuento = descuentos.IdDescuento,

@@ -261,12 +261,61 @@ namespace Back.Models.Servicios
             }
         }
 
-        public async Task<ActionResult<IEnumerable<ReporteVentas>>> ObtenerReporteVentas()
+        public async Task<ReporteVentas> ObtenerReporteVentas(DateTime desde, DateTime hasta)
         {
             await using (_context)
             {
-                return null;
+                if (hasta == new DateTime())
+                    hasta = DateTime.Now.AddDays(1);
+
+                var VrangoFechas = (from v in _context.Ventas where v.Fecha >= desde && v.Fecha <= hasta select v).ToList();
+
+                var montoProducto = (from v in VrangoFechas join dv in _context.DetalleVentaProductos on v.IdVenta equals dv.IdVenta
+                                     join p in _context.Productos on dv.IdProducto equals p.IdProducto where p.IdCategoria == 1
+                                     select dv.SubTotal).Sum();
+
+                var montoDescuento = ((from v in VrangoFechas join d in _context.Descuentos on v.IdDescuento equals d.IdDescuento
+                                       join porc in _context.PorcentajesRuleta on d.IdPorcentajeRuleta equals porc.IdPorcentajeRuleta
+                                       where porc.Porcentaje > 0 select porc.Porcentaje).Sum() / 100) * montoProducto;
+
+                var montoPersonalizado = (from v in VrangoFechas join dv in _context.DetalleVentaProductos on v.IdVenta equals dv.IdVenta
+                                          join p in _context.Productos on dv.IdProducto equals p.IdProducto where p.IdCategoria == 2
+                                          select dv.SubTotal).Sum();
+
+                var ReporteVenta = new ReporteVentas
+                {
+                    CantProdPerso = (from v in VrangoFechas
+                                     join dv in _context.DetalleVentaProductos on v.IdVenta equals dv.IdVenta
+                                     join p in _context.Productos on dv.IdProducto equals p.IdProducto
+                                     where p.IdCategoria == 2
+                                     select dv.Cantidad).Sum(),
+
+                    MontoPerso = montoPersonalizado,
+                    NumDescuentosPerson = 0,
+                    MontoDescuentosPerson = 0,
+                    CantProducto = (from dv in _context.DetalleVentaProductos
+                                    join p in _context.Productos on dv.IdProducto equals p.IdProducto
+                                    where p.IdCategoria == 1
+                                    select dv.Cantidad).Sum(),
+
+                    MontoProd = montoProducto,
+                    NumDescuentosProd = (from v in VrangoFechas
+                                         join d in _context.Descuentos on v.IdDescuento equals d.IdDescuento
+                                         join porc in _context.PorcentajesRuleta on d.IdPorcentajeRuleta equals porc.IdPorcentajeRuleta
+                                         where porc.Porcentaje > 0
+                                         select v.IdDescuento).Count(),
+
+                    MontoDescuentosProdu = montoDescuento,
+                    TotalGlobal = montoPersonalizado + montoProducto,
+                    TotalDescuentos = montoDescuento,
+                    TotalIngresos = (montoPersonalizado + montoProducto) - montoDescuento
+
+                };
+                return ReporteVenta;
+            }
+                    
+
+                
             }
         }
     }
-}

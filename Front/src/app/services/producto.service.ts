@@ -49,6 +49,7 @@ import {Entrada} from '../models/entrada';
 import {DetalleEntrada} from '../models/detalle-entrada';
 import {ProductoTabla} from '../models/producto-tabla';
 import {MatTableDataSource} from '@angular/material/table';
+import {Salida} from '../models/salida';
 
 @Injectable({
   providedIn: 'root'
@@ -116,9 +117,11 @@ export class ProductoService {
     return this.formularioRegistroProductos.controls.GarantiaMeses;
   }
 
+
   productosTabla: ProductoTabla[];
   idProducto1 = 0;
   entrada: Entrada;
+  salida: Salida;
   listaEntradas: Entrada[];
   DetalleMaterial: DetalleMaterial;
   listaMateriales: Material[];
@@ -139,11 +142,12 @@ export class ProductoService {
   FormularioPrecio = false;
   formularioEntrada = false;
   FormularioImagen = false;
+  formularioMateriales = false;
+  formularioIva = false;
+  formularioSalida = false;
   detalleProducto: Producto;
   IdProducto: number;
   desplegarDetalle = false;
-  desplegarDetalleMateriales = false;
-  tablaDetalleMateriales = false;
 
   formularioRegistroProductos = this.formBuilder.group({
     IdProducto: [],
@@ -175,6 +179,11 @@ export class ProductoService {
   formularioRegistroEntrada = this.formBuilder.group({
     Cantidad: [],
   });
+
+  formularioRegistroSalida = this.formBuilder.group({
+    Cantidad: [],
+  });
+
 
   formularioRegistroPrecio = this.formBuilder.group({
     IdPrecioProducto: [],
@@ -325,12 +334,11 @@ export class ProductoService {
   }
 
   RegistrarDetalleMaterial(): any {
-    this.DetalleMaterial.IdProducto = this.idProducto1;
+    this.DetalleMaterial.IdProducto = this.detalleProducto.IdProducto;
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarDetalleMaterial', this.DetalleMaterial);
   }
 
   ListarDetalleMaterial(idProducto): any {
-    alert(idProducto + 'hola');
     this.http.get(this.configuracion.rootURL + '/Productos/ListaDetalleMateriales/' + idProducto)
       .toPromise()
       .then(res => this.ListaDetalleMateriales = res as DetalleMaterialProducto[]);
@@ -360,6 +368,12 @@ export class ProductoService {
 
   EliminarImagen(id): any {
     return this.http.delete(this.configuracion.rootURL + '/Productos/EliminarImagen/' + id);
+  }
+
+  RegistroSalida(): any {
+    this.salida.IdSalida = 0;
+    this.salida.Fecha = '0001-01-01';
+    return this.http.post(this.configuracion.rootURL + '/Ventas/AgregarSalida', this.salida);
   }
 
 }

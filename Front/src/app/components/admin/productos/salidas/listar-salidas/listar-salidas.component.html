@@ -1,14 +1,14 @@
 <section class="col-lg-15 connectedSortable mt-5">
   <div class="card">
     <div class="card-header">
-      <h2 class="card-title colortxt font-weight-light"><i class="bi bi-file-arrow-up"></i>  ENTRADAS</h2>
-      <button type="button" style="float: right;" class="btn font-weight-light"(click)="this.productoService.formularioEntrada = !this.productoService.formularioEntrada "><i class="bi bi-folder-plus"></i> Agregar
+      <h2 class="card-title colortxt font-weight-light"><i class="bi bi-file-arrow-up"></i>  SALIDAS</h2>
+      <button type="button" style="float: right;" class="btn font-weight-light"(click)="this.productoService.formularioSalida = !this.productoService.formularioSalida "><i class="bi bi-folder-plus"></i> Agregar
       </button>
     </div>
     <div class="card-body">
       <div class="tab-content p-0">
-        <div *ngIf="this.productoService.formularioEntrada">
-          <app-registrar-entrada></app-registrar-entrada>
+        <div *ngIf="this.productoService.formularioSalida">
+          <app-registrar-salida></app-registrar-salida>
         </div>
         <mat-form-field>
           <mat-label>Buscar</mat-label>
@@ -18,24 +18,24 @@
           <table mat-table [dataSource]="dataSource" matSort>
             |
             <!-- ID Column -->
-            <ng-container matColumnDef="IdEntrada">
+            <ng-container matColumnDef="IdSalida">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
-              <td mat-cell *matCellDef="let row"> {{row.IdEntrada}} </td>
+              <td mat-cell *matCellDef="let row"> {{row.IdSalida}} </td>
             </ng-container>
 
             <!-- Progress Column -->
-            <ng-container matColumnDef="Cantidad">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad</th>
-              <td mat-cell *matCellDef="let row"> {{row.Cantidad}} </td>
-            </ng-container>
-
             <ng-container matColumnDef="IdProducto">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> IdProducto</th>
-              <td  mat-cell *matCellDef="let row"> {{row.IdProducto}} </td>
+              <td mat-cell *matCellDef="let row"> {{row.IdProducto}} </td>
             </ng-container>
-            <ng-container matColumnDef="IdUsuario">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> IdUsuario</th>
-              <td  mat-cell *matCellDef="let row"> {{row.IdUsuario}}</td>
+
+            <ng-container matColumnDef="Cantidad">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad</th>
+              <td  mat-cell *matCellDef="let row"> {{row.Cantidad}} </td>
+            </ng-container>
+            <ng-container matColumnDef="NombreUsuario">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> NombreUsuario</th>
+              <td  mat-cell *matCellDef="let row"> {{row.NombreUsuario}}</td>
             </ng-container>
             <ng-container matColumnDef="Fecha">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha</th>

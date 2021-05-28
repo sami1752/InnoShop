@@ -3,5 +3,6 @@ export interface MontajesTabla {
   Fecha: any;
   Estado: string;
   Direccion: string;
+  Usuario: string;
   ValorTotal: number;
 }

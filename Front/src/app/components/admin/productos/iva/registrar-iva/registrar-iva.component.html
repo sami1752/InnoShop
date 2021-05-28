@@ -1,19 +1,14 @@
+
 <form class="" [formGroup]="this.productoService.formularioRegistroIVA" (ngSubmit)="registro()">
+  <div class="input-group mb-3">
+    <input formControlName="Porcentaje" type="number" id="Porcentaje" placeholder="Ingresa el Porcentaje" class="form-control "/>
+    <button type="submit" [disabled]="this.productoService.formularioRegistroIVA.invalid"
+            class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
+    <button type="button"
+            (click)="this.productoService.formularioRegistroIVA.reset(); this.productoService.formularioIva=false"
+            class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button>
+  </div>
 
-  <label for="Porcentaje">Porcentaje <span>**</span></label>
-  <input formControlName="Porcentaje" type="number" id="Porcentaje" placeholder="Ingresa el Porcentaje"
-         class="form-control "/>
 
-
-  <div class="mt-10"></div>
-
-  <button type="submit" [disabled]="this.productoService.formularioRegistroIVA.invalid"
-          class="os-btn w-50">Guardar
-  </button>
-
-  <button type="button" class="os-btn w-50"
-          (click)="this.productoService.formularioRegistroIVA.reset();">Limpiar
-  </button>
-
-  <div class="or-divide"><span></span></div>
 </form>
+

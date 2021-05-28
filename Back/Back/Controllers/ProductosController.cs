@@ -246,7 +246,7 @@ namespace Back.Controllers
         {
             try
             {
-                iva.FechaFin = new DateTime();
+                iva.FechaInicio = DateTime.Now;
                 await _context.ModificarIva(iva.FechaInicio);
                 await _context.AgregarIva(iva);
                 return Ok(new { mensaje = "Iva agregado exitosamente" });

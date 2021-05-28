@@ -25,6 +25,7 @@ namespace Back.Models.Abstratos
         Task AgregarDetalleVentaProducto(DetalleVentaProductos detalle);
         Task AgregarDetalleVentaSolicitudes(DetalleVentaSolicitudes detalle);
         Task AgregarDetalleVentaMontajes(DetalleVentaMontajes detalle);
+        Task<ActionResult<IEnumerable<SalidaProductoInfo>>> listarSalidas(int idProducto);
         Task<ActionResult<IEnumerable<Ventas>>> ListaVentasPorCliente(string idUsuario);
     }
 }

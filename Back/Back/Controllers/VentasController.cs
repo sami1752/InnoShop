@@ -108,5 +108,25 @@ namespace Back.Controllers
         public async Task<PrecioProducto> PrecioProd(int idProducto)
           => await _context.ObtenerPrecioProducto(idProducto);
 
+        [HttpGet]
+        [Route("Salidas/{idProducto}")]
+        public async Task<ActionResult<IEnumerable<SalidaProductoInfo>>> listarSalidas(int idProducto)
+          => await _context.listarSalidas(idProducto);
+
+        [HttpPost]
+        [Route("AgregarSalida")]
+        public async Task<Object> AgregarSalida(Salida salida)
+        {
+            try
+            {
+                await _context.AgregarSalidaProducto(salida);
+                return Ok(new { mensaje = "Registro exitoso" });
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+            }
+        }
     }
 }

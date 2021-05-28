@@ -11,5 +11,6 @@ namespace Back.Models.Abstratos
     {
         Task<ActionResult<ReporteSolicitudes>> ObtenerReporteSolicitudes(DateTime desde, DateTime hasta);
         Task<ActionResult<ReporteMontaje>> ObtenerReporteMontajes(DateTime desde, DateTime hasta);
+        Task<ReporteVentas> ObtenerReporteVentas(DateTime desde, DateTime hasta);
     }
 }

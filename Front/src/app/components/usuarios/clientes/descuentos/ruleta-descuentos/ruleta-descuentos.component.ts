@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {PerfilUsuario} from 'src/app/models/perfil-usuario';
 import {DescuentosService} from 'src/app/services/descuentos.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
@@ -6,37 +6,69 @@ import {ValorRuleta} from '../../../../../models/Descuentos/valor-ruleta';
 import {HttpClient} from '@angular/common/http';
 import {ConfiguracionService} from '../../../../../services/configuracion.service';
 import {PorcentajesRuleta} from '../../../../../models/Descuentos/porcentajes-ruleta';
+import {MatTableDataSource} from '@angular/material/table';
+import {VentasTabla} from '../../../../../models/Ventas/ventas-tabla';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {DescuentosTabla} from '../../../../../models/Descuentos/descuentos-tabla';
+
+export interface UserData {
+  id: string;
+  name: string;
+  progress: string;
+  color: string;
+}
 
 @Component({
   selector: 'app-ruleta-descuentos',
   templateUrl: './ruleta-descuentos.component.html',
   styleUrls: ['./ruleta-descuentos.component.css']
 })
-export class RuletaDescuentosComponent implements OnInit {
+export class RuletaDescuentosComponent implements AfterViewInit {
+
+  displayedColumns: string[] = ['PorcentajeDescuento', 'FechaVencimiento', 'Estado'];
+  dataSource: MatTableDataSource<DescuentosTabla>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(public descuentosService: DescuentosService,
-              public usuarioService: UsuarioService,
+              public usuariosService: UsuarioService,
               private http: HttpClient,
               private configuracion: ConfiguracionService) {
+    if (localStorage.getItem('token') != null) {
+      this.usuariosService.obtenerPerfil().subscribe(
+        (res: any) => {
+          this.perfilUsuario = (res as PerfilUsuario);
+          this.listarCupones(res.Id);
+        });
+    }
   }
 
   perfilUsuario: PerfilUsuario = null;
   tablaCupones = false;
   IdPorcentajeRuleta: number;
 
-  ngOnInit(): void {
-    this.descuentosService.ListarPorcentajeDescuentos();
-    if (localStorage.getItem('token') != null) {
-      this.usuarioService.obtenerPerfil().subscribe(
-        (res: any) => {
-          this.perfilUsuario = (res as PerfilUsuario);
-          this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id);
-        });
-    }
-
-
+  listarCupones(id): void {
+    this.http.get(this.configuracion.rootURL + '/Descuentos/' + id).toPromise().then(
+        (res) => {
+          this.dataSource = new MatTableDataSource(res as DescuentosTabla[]);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      );
+  }
+  ngAfterViewInit(): void {
     this.descuentosService.ListarPorcentajeDescuentos();
     this.descuentosService.ValorRuletaActual();
+  }
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   RegistrarCupon(): void {
@@ -67,6 +99,7 @@ export class RuletaDescuentosComponent implements OnInit {
                   document.getElementById('texto').textContent = ' ' +
                     'Obtuviste un cupón de' + ' ' + document.getElementById('porcentaje').textContent + '%';
                   this.perfilUsuario.Puntos -= this.descuentosService.valorRuleta.ValorDeRuleta;
+                  window.location.reload();
                 }, err => {
                   alert('error al registrar cupon');
                 }
