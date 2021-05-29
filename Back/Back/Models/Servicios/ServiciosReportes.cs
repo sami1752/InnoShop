@@ -274,9 +274,11 @@ namespace Back.Models.Servicios
                                      join p in _context.Productos on dv.IdProducto equals p.IdProducto where p.IdCategoria == 1
                                      select dv.SubTotal).Sum();
 
-                var montoDescuento = ((from v in VrangoFechas join d in _context.Descuentos on v.IdDescuento equals d.IdDescuento
+                var montoDescuento = ((from v in VrangoFechas
+                                       join d in _context.Descuentos on v.IdDescuento equals d.IdDescuento
                                        join porc in _context.PorcentajesRuleta on d.IdPorcentajeRuleta equals porc.IdPorcentajeRuleta
-                                       where porc.Porcentaje > 0 select porc.Porcentaje).Sum() / 100) * montoProducto;
+                                       where porc.Porcentaje > 0
+                                       select porc.Porcentaje).Sum() / 100) * montoProducto;
 
                 var montoPersonalizado = (from v in VrangoFechas join dv in _context.DetalleVentaProductos on v.IdVenta equals dv.IdVenta
                                           join p in _context.Productos on dv.IdProducto equals p.IdProducto where p.IdCategoria == 2
@@ -303,7 +305,7 @@ namespace Back.Models.Servicios
                                          join d in _context.Descuentos on v.IdDescuento equals d.IdDescuento
                                          join porc in _context.PorcentajesRuleta on d.IdPorcentajeRuleta equals porc.IdPorcentajeRuleta
                                          where porc.Porcentaje > 0
-                                         select v.IdDescuento).Count(),
+                                         select v).Count(),
 
                     MontoDescuentosProdu = montoDescuento,
                     TotalGlobal = montoPersonalizado + montoProducto,
