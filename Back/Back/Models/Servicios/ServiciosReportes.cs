@@ -271,7 +271,7 @@ namespace Back.Models.Servicios
                 var VrangoFechas = (from v in _context.Ventas where v.Fecha >= desde && v.Fecha <= hasta select v).ToList();
 
                 var montoProducto = (from v in VrangoFechas join dv in _context.DetalleVentaProductos on v.IdVenta equals dv.IdVenta
-                                     join p in _context.Productos on dv.IdProducto equals p.IdProducto where p.IdCategoria == 1
+                                     join p in _context.Productos on dv.IdProducto equals p.IdProducto where p.IdCategoria == 2
                                      select dv.SubTotal).Sum();
 
                 var montoDescuento = ((from v in VrangoFechas

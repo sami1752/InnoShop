@@ -139,8 +139,10 @@ export class ProductoService {
   imagen: Imagen;
   CampoPrecio = true;
   CampoStock = true;
+  tablaDetalleMateriales = false;
   FormularioPrecio = false;
   formularioEntrada = false;
+  desplegarDetalleMateriales = false;
   FormularioImagen = false;
   formularioMateriales = false;
   formularioIva = false;
