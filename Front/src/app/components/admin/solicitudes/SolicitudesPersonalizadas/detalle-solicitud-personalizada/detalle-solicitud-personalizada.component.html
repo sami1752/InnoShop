@@ -137,101 +137,139 @@
     </section>
   </div>
 </section>!-->
+
 <section class="content">
   <div class="content-wrapper">
     <br>
     <section class="content">
       <div class="container-fluid">
-        <section class="col-lg-7 connectedSortable">
-          <div class="card">
-            <div class="card-header">
-              <h2 class="card-title">
-                <i class="bi bi-info-circle-fill text-primary"></i> INFORMACIÓN DE LA SOLICITUD
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="tab-content p-0">
-                <div class="row">
+        <div class="row">
+          <section class="col-lg-7 connectedSortable">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title colortxt font-weight-light">
+                  <i class="bi bi-info-circle"></i>
+                  INFORMACIÓN SOLICITUD
+                </h2>
+                <div class="row" style="float: right">
                   <div class="col">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Id Solicitud: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}
+                    <a
+                      href="Admin/respuestasSP/{{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}">
+                      Respuestas</a>
                   </div>
                   <div class="col">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Usuario: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Usuario}}
+                    <a
+                      href="Admin/editarSP/{{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}">Editar</a>
                   </div>
                 </div>
-                <div class="row">
-                  <div class=" col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Fecha: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fecha}}
+              </div>
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <div class="row">
+                    <div class="col">
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 "> Id Solicitud: </label>
+                      {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}
+                    </div>
+                    <div class="col">
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 "> Usuario: </label>
+                      {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Usuario}}
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 ">Alto: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Alto}}
+                  <div class="row">
+                    <div class=" col ">
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 "> Fecha: </label>
+                      {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fecha}}
+                    </div>
                   </div>
-                  <div class="col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Ancho: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Ancho}}
+                  <div class="row">
+                    <div class="col ">
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 ">Alto: </label>
+                      {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Alto}}
+                    </div>
+                    <div class="col ">
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 "> Ancho: </label>
+                      {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Ancho}}
+                    </div>
                   </div>
-                </div>
-                <div class="row ">
-                  <div class="col">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Fondo: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fondo}}
+                  <div class="row ">
+                    <div class="col">
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 "> Fondo: </label>
+                      {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fondo}}
+                    </div>
+                    <div class="col ">
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 "> Estado: </label>
+                      {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado}}
+                    </div>
                   </div>
-                  <div class="col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Estado: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado}}
+                  <div class="row">
+                    <div class="col ">
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 "> Descripción: </label>
+                      {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Descripcion}}
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Descripción: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Descripcion}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col ">
-                    <i class="bi bi-arrow-right-short text-primary"></i>
-                    <label class="p-1 "> Valor Total: </label>
-                    {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
-                  </div>
-                  <div class="col "
-                       *ngIf="(this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada')&&
+                  <div class="row">
+                    <div class="col ">
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 "> Valor Total: </label>
+                      {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
+                    </div>
+                    <div class="col "
+                         *ngIf="(this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada')&&
                        (this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada' ||
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada')">
-                    <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
-                  </div>
-                  <div class="col"
-                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
+                      <button class="btn btn-sm btn-primary" (click)="cotizar()">Cotizar</button>
+                    </div>
+                    <div class="col"
+                         *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Rechazada'">
-                    <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
-                  </div>
-                  <div class="col"
-                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
+                      <button class="btn btn-sm btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
+                    </div>
+                    <div class="col"
+                         *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de cotizacion'">
-                    <button class="btn btn-success" (click)="TerminarCotizacion()">Terminar Cotizacion</button>
-                  </div>
-                  <div class="col"
-                       *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
+                      <button class="btn btn-sm btn-success" (click)="TerminarCotizacion()">Terminar Cotizacion</button>
+                    </div>
+                    <div class="col"
+                         *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Rechazada' &&
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Cancelada'">
-                    <button class="btn btn-danger" (click)="cancelar()">Rechazar</button>
+                      <button class="btn btn-sm btn-danger" (click)="cancelar()">Rechazar</button>
+                    </div>
+
                   </div>
                 </div>
               </div>
             </div>
+          </section>
+          <section class="col-lg-5 connectedSortable" *ngIf="
+              this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de cotizacion'">
+            <app-registrar-editar-producto-solicitud-perzonalizada></app-registrar-editar-producto-solicitud-perzonalizada>
+          </section>
+          <section class="col-lg-7 connectedSortable">
+            <app-listar-detalle-producto></app-listar-detalle-producto>
+          </section>
+
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+<section class="content">
+  <div class="content-wrapper">
+    <br>
+    <section class="content">
+      <section class="content">
+        <section class="col-lg-7 connectedSortable">
+          <div *ngIf="this.productoService.desplegarDetalle">
+            <app-detalle-producto-detalle></app-detalle-producto-detalle>
           </div>
         </section>
         <app-registrar-editar-producto-solicitud-perzonalizada></app-registrar-editar-producto-solicitud-perzonalizada>
@@ -239,12 +277,7 @@
         <div *ngIf="this.productoService.desplegarDetalle">
           <app-detalle-producto-detalle></app-detalle-producto-detalle>
         </div>
-      </div>
+      </section>
     </section>
   </div>
 </section>
-
-
-
-
-
