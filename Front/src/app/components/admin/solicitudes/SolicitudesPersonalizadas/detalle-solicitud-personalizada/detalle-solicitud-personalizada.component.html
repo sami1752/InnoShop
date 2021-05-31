@@ -235,6 +235,10 @@
           </div>
         </section>
         <app-registrar-editar-producto-solicitud-perzonalizada></app-registrar-editar-producto-solicitud-perzonalizada>
+        <app-listar-detalle-producto></app-listar-detalle-producto>
+        <div *ngIf="this.productoService.desplegarDetalle">
+          <app-detalle-producto-detalle></app-detalle-producto-detalle>
+        </div>
       </div>
     </section>
   </div>

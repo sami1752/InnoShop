@@ -280,24 +280,21 @@ namespace Back.Models.Servicios
                                        where porc.Porcentaje > 0
                                        select porc.Porcentaje).Sum() / 100) * montoProducto;
 
-                var montoPersonalizado = (from v in VrangoFechas join dv in _context.DetalleVentaProductos on v.IdVenta equals dv.IdVenta
-                                          join p in _context.Productos on dv.IdProducto equals p.IdProducto where p.IdCategoria == 2
-                                          select dv.SubTotal).Sum();
+                var montoPersonalizado = (from v in VrangoFechas join dvs in _context.DetalleVentaSolicitudes on v.IdVenta equals dvs.IdVenta
+                                          select dvs.SubTotal).Sum();
 
                 var ReporteVenta = new ReporteVentas
                 {
                     CantProdPerso = (from v in VrangoFechas
-                                     join dv in _context.DetalleVentaProductos on v.IdVenta equals dv.IdVenta
-                                     join p in _context.Productos on dv.IdProducto equals p.IdProducto
-                                     where p.IdCategoria == 2
-                                     select dv.Cantidad).Sum(),
+                                     join dvs in _context.DetalleVentaSolicitudes on v.IdVenta equals dvs.IdVenta
+                                     select dvs.Cantidad).Sum(),
 
                     MontoPerso = montoPersonalizado,
                     NumDescuentosPerson = 0,
                     MontoDescuentosPerson = 0,
                     CantProducto = (from dv in _context.DetalleVentaProductos
                                     join p in _context.Productos on dv.IdProducto equals p.IdProducto
-                                    where p.IdCategoria == 1
+                                    where p.IdCategoria == 2
                                     select dv.Cantidad).Sum(),
 
                     MontoProd = montoProducto,
@@ -306,8 +303,9 @@ namespace Back.Models.Servicios
                                          join porc in _context.PorcentajesRuleta on d.IdPorcentajeRuleta equals porc.IdPorcentajeRuleta
                                          where porc.Porcentaje > 0
                                          select v).Count(),
-
                     MontoDescuentosProdu = montoDescuento,
+
+
                     TotalGlobal = montoPersonalizado + montoProducto,
                     TotalDescuentos = montoDescuento,
                     TotalIngresos = (montoPersonalizado + montoProducto) - montoDescuento

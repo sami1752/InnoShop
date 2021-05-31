@@ -17,7 +17,7 @@ import {
 import {
   UsuarioService
 } from 'src/app/services/usuario.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-registrar-imagen',
   templateUrl: './registrar-imagen.component.html',
@@ -26,7 +26,9 @@ import {
 export class RegistrarImagenComponent implements OnInit {
 
   constructor(public usuarioService: UsuarioService, private router: Router,
-              public productoService: ProductoService, public configuracion: ConfiguracionService) {
+              public productoService: ProductoService,
+              public configuracion: ConfiguracionService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -40,18 +42,16 @@ export class RegistrarImagenComponent implements OnInit {
         this.productoService.imagen.IdUsuario = (res as Usuario).Id;
         this.productoService.registroImagen().subscribe(
           (respuesta: any) => {
-            alert(respuesta.mensaje);
-            console.log(respuesta.mensaje);
+            this.toastr.success(respuesta.mensaje);
             this.productoService.formularioRegistroImagen.reset();
             this.productoService.FormularioImagen = false;
             this.productoService.listarImagen(this.productoService.imagen.IdProducto);
           }, error => {
-            alert(error);
-            console.log(error);
+            this.toastr.error('Ha ocurrido un error');
           });
       },
       err => {
-        console.log(err);
+        this.toastr.error('Ha ocurrido un error al buscar usuario');
       }
     );
   }

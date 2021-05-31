@@ -5,6 +5,7 @@ import {Venta} from 'src/app/models/Ventas/venta';
 import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import {VentasService} from 'src/app/services/ventas.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registrar-venta',
@@ -13,7 +14,10 @@ import {VentasService} from 'src/app/services/ventas.service';
 })
 export class RegistrarVentaComponent implements OnInit {
 
-  constructor(public ventasService: VentasService, public productosService: ProductoService, public usuarioService: UsuarioService) {
+  constructor(public ventasService: VentasService,
+              public productosService: ProductoService,
+              public usuarioService: UsuarioService,
+              private toastr: ToastrService) {
   }
   detalleVentaProducto: DetalleVentasProducto;
   camposDetalle = false;
@@ -41,7 +45,7 @@ export class RegistrarVentaComponent implements OnInit {
     this.camposDetalle = false;
     this.ventasService.desplegarDetalleVentaEnRegistro = false;
     this.ventasService.ListarVentas();
-    alert('Venta Finalizada con exito');
+    this.toastr.success('Registro exitoso');
     window.location.reload();
   }
 
@@ -55,12 +59,11 @@ export class RegistrarVentaComponent implements OnInit {
       this.detalleVentaProducto.SubTotal = this.detalleVentaProducto.Cantidad * this.productosService.detalleProducto.Precio;
       this.ventasService.agregarDetalleVenta(this.detalleVentaProducto).subscribe(
         (res: any) => {
-          alert(res.mensaje);
           this.ventasService.desplegarDetalleVentaEnRegistro = true;
           this.ventasService.ListarDetalleVentasProductos(this.ventasService.IdVenta);
           this.ventasService.DetalleVenta(this.ventasService.IdVenta);
           this.camposDetalle = false;
-        });
+        }, err => { this.toastr.error('Ha ocurrido un error'); });
     } else {
       this.ventasService.AgregarVenta().subscribe(
         (resp: Venta) => {
@@ -71,13 +74,12 @@ export class RegistrarVentaComponent implements OnInit {
           this.detalleVentaProducto.SubTotal = this.detalleVentaProducto.Cantidad * this.productosService.detalleProducto.Precio;
           this.ventasService.agregarDetalleVenta(this.detalleVentaProducto).subscribe(
             (res: any) => {
-              alert(res.mensaje);
               this.camposDetalle = false;
               this.ventasService.desplegarDetalleVentaEnRegistro = true;
               this.ventasService.ListarDetalleVentasProductos(resp.IdVenta);
               this.ventasService.DetalleVenta(this.ventasService.IdVenta);
             }, err => {
-              alert('Error');
+              this.toastr.error('Ha ocurrido un error');
             }
           );
         }

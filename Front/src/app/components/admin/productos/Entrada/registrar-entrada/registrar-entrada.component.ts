@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Usuario} from 'src/app/models/usuario';
 import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-registrar-entrada',
   templateUrl: './registrar-entrada.component.html',
@@ -10,7 +10,9 @@ import {UsuarioService} from 'src/app/services/usuario.service';
 })
 export class RegistrarEntradaComponent implements OnInit {
 
-  constructor(public productoService: ProductoService, public usuarioService: UsuarioService) {
+  constructor(public productoService: ProductoService,
+              public usuarioService: UsuarioService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -25,18 +27,17 @@ export class RegistrarEntradaComponent implements OnInit {
 
         this.productoService.RegistroEntrada().subscribe(
           (respuesta: any) => {
-            alert(respuesta.mensaje);
+            this.toastr.success('Registro exitoso');
             this.productoService.formularioRegistroEntrada.reset();
             this.productoService.formularioEntrada = false;
             this.productoService.listarEntradas(this.productoService.entrada.IdProducto);
             window.location.reload();
           }, error => {
-            alert('error');
-            console.log(error);
+            this.toastr.error('Ha ocurrido un error');
           });
       },
       err => {
-        console.log(err);
+        this.toastr.error('Ha ocurrido un error al buscar usuario');
       }
     );
   }

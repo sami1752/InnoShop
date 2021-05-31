@@ -46,7 +46,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {ListarProductosComponent} from './components/usuarios/clientes/productos/listar-productos/listar-productos.component';
 import { RegistrarSalidaComponent } from './components/admin/productos/salidas/registrar-salida/registrar-salida.component';
 import { ListarSalidasComponent } from './components/admin/productos/salidas/listar-salidas/listar-salidas.component';
-
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -94,7 +94,8 @@ import { ListarSalidasComponent } from './components/admin/productos/salidas/lis
     DragDropModule,
     MatSortModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [UsuarioService, ConfiguracionService, ListarProductosComponent, {
     provide: HTTP_INTERCEPTORS,
