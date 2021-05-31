@@ -11,12 +11,17 @@ namespace Back.Models.Entidades.Productos
     {
         [Key]
         public int IdIva { get; set; }
+
         [Required]
         public float Porcentaje { get; set; }
+
         [Required]
         public DateTime FechaInicio { get; set; }
-        public DateTime FechaFin { get; set; }
+
         [Required]
+        public DateTime FechaFin { get; set; }
+
+        [Column(TypeName = "varchar(50)"), Required]
         public string IdUsuario { get; set; }
     }
 }

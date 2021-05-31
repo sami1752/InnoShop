@@ -13,13 +13,16 @@ namespace Back.Models.Entidades.Solicitudes.Personalizadas
         [Key]
         public int IdRespuestaSolicitudesPersonalizadas { get; set; }
 
-        [Required]
+        [Column(TypeName = "varchar(50)"), Required]
         public string IdUsuario { get; set; }
 
         [Required]
+        [ForeignKey("SolicitudPersonalizada")]
         public int IdSolicitudPersonalizada { get; set; }
+        [ForeignKey("IdSolicitudPersonalizada")]
+        public virtual SolicitudPersonalizada SolicitudPersonalizada { get; set; }
 
-        [Required]
+        [Column(TypeName = "varchar(500)"), Required]
         public string Respuesta { get; set; }
 
         [Required]

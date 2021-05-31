@@ -12,18 +12,24 @@ namespace Back.Models.Entidades.Ventas
     {
         [Key]
         public int IdDetalleVentaProducto { get; set; }
+
         [Required]
         public int Cantidad { get; set; }
+
         [Required]
         public float SubTotal { get; set; }
+
         [Required]
+        [ForeignKey("Ventas")]
         public int IdVenta { get; set; }
+        [ForeignKey("IdVenta")]
+        public virtual Ventas Ventas { get; set; }
 
 
         [Required]
         [ForeignKey("Productos")]
         public int IdProducto { get; set; }
         [ForeignKey("IdProducto")]
-        public Producto Productos { get; set; }
+        public virtual Producto Productos { get; set; }
     }
 }

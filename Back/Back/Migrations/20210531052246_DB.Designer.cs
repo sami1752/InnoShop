@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Back.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20210520023248_Eliminacion valor total montajes")]
-    partial class Eliminacionvalortotalmontajes
+    [Migration("20210531052246_DB")]
+    partial class DB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,12 +42,16 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("IdValorRuleta")
                         .HasColumnType("int");
 
                     b.HasKey("IdDescuento");
+
+                    b.HasIndex("IdPorcentajeRuleta");
+
+                    b.HasIndex("IdValorRuleta");
 
                     b.ToTable("Descuentos");
                 });
@@ -112,10 +116,6 @@ namespace Back.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("IdUsuario")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("varchar(20)");
@@ -144,6 +144,10 @@ namespace Back.Migrations
 
                     b.HasKey("IdDetalleMaterial");
 
+                    b.HasIndex("IdMaterial");
+
+                    b.HasIndex("IdProducto");
+
                     b.ToTable("DetalleMateriales");
                 });
 
@@ -169,6 +173,8 @@ namespace Back.Migrations
 
                     b.HasKey("IdEntrada");
 
+                    b.HasIndex("IdProducto");
+
                     b.ToTable("Entradas");
                 });
 
@@ -191,6 +197,8 @@ namespace Back.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.HasKey("IdImagen");
+
+                    b.HasIndex("IdProducto");
 
                     b.ToTable("Imagenes");
                 });
@@ -270,6 +278,8 @@ namespace Back.Migrations
 
                     b.HasKey("IdPrecioProducto");
 
+                    b.HasIndex("IdProducto");
+
                     b.ToTable("PrecioProductos");
                 });
 
@@ -323,6 +333,33 @@ namespace Back.Migrations
                     b.ToTable("Productos");
                 });
 
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Salida", b =>
+                {
+                    b.Property<int>("IdSalida")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdProducto")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("IdSalida");
+
+                    b.HasIndex("IdProducto");
+
+                    b.ToTable("Salidas");
+                });
+
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.CarritoDeCompras", b =>
                 {
                     b.Property<int>("IdCarritoDeCompras")
@@ -370,6 +407,8 @@ namespace Back.Migrations
 
                     b.HasKey("IdDetalleCarritoDeCompras");
 
+                    b.HasIndex("IdProducto");
+
                     b.ToTable("DetalleCarritoDeCompras");
                 });
 
@@ -399,34 +438,6 @@ namespace Back.Migrations
                     b.HasKey("IdDetalleEstadosMontajes");
 
                     b.ToTable("DetalleEstadosMontajes");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetalleEstadosProductosPersoanlizados", b =>
-                {
-                    b.Property<int>("IdDetalleEstadosProductosPersoanlizados")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("FechaFin")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("FechaInicio")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IdEstado")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdProducto")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IdUsuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdDetalleEstadosProductosPersoanlizados");
-
-                    b.ToTable("DetalleEstadosProductosPersoanlizados");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetalleEstadosSolicitudPersonalizada", b =>
@@ -476,51 +487,9 @@ namespace Back.Migrations
 
                     b.HasKey("IdDetalleProductosSolicitud");
 
+                    b.HasIndex("IdProducto");
+
                     b.ToTable("DetalleProductosSolicitud");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetallesMaterialesMontajes", b =>
-                {
-                    b.Property<int>("IdDetallesMaterialesMontajes")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IdMaterial")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdMontaje")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IdUsuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdDetallesMaterialesMontajes");
-
-                    b.ToTable("DetallesMaterialesMontajes");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetallesMaterialesSolicitudesPersonalizadas", b =>
-                {
-                    b.Property<int>("IdDetallesMaterialesSolicitudesPersonalizadas")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IdMaterial")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdSolicitudPersonalizada")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IdUsuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdDetallesMaterialesSolicitudesPersonalizadas");
-
-                    b.ToTable("DetallesMaterialesSolicitudesPersonalizadas");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetallesProductosMontajes", b =>
@@ -541,6 +510,8 @@ namespace Back.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdDetallesProductosMontajes");
+
+                    b.HasIndex("IdProducto");
 
                     b.ToTable("DetallesProductosMontajes");
                 });
@@ -599,34 +570,6 @@ namespace Back.Migrations
                     b.HasKey("IdMontaje");
 
                     b.ToTable("Montajes");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.PrecioMontajes", b =>
-                {
-                    b.Property<int>("IdPrecioMontajes")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("FechaFin")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("FechaInicio")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IdMontaje")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IdUsuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("Precio")
-                        .HasColumnType("real");
-
-                    b.HasKey("IdPrecioMontajes");
-
-                    b.ToTable("PrecioMontajes");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.RespuestasMontajes", b =>
@@ -758,6 +701,8 @@ namespace Back.Migrations
 
                     b.HasKey("IdDetalleVentaProducto");
 
+                    b.HasIndex("IdProducto");
+
                     b.ToTable("DetalleVentaProductos");
                 });
 
@@ -804,9 +749,6 @@ namespace Back.Migrations
                     b.Property<string>("IdUsuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("SubTotal")
-                        .HasColumnType("real");
 
                     b.Property<float>("Total")
                         .HasColumnType("real");
@@ -1067,6 +1009,132 @@ namespace Back.Migrations
                         .HasColumnType("varchar(25)");
 
                     b.HasDiscriminator().HasValue("UsuarioIdentity");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Descuentos.Descuentos", b =>
+                {
+                    b.HasOne("Back.Models.Entidades.Descuentos.PorcentajesRuleta", "PorcentajesRuleta")
+                        .WithMany()
+                        .HasForeignKey("IdPorcentajeRuleta")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Back.Models.Entidades.Descuentos.ValorRuleta", "ValorRuleta")
+                        .WithMany()
+                        .HasForeignKey("IdValorRuleta")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PorcentajesRuleta");
+
+                    b.Navigation("ValorRuleta");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Productos.DetalleMaterial", b =>
+                {
+                    b.HasOne("Back.Models.Entidades.Productos.Material", "Material")
+                        .WithMany()
+                        .HasForeignKey("IdMaterial")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                        .WithMany()
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Material");
+
+                    b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Entrada", b =>
+                {
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                        .WithMany()
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Imagen", b =>
+                {
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                        .WithMany()
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Productos.PrecioProducto", b =>
+                {
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                        .WithMany()
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Salida", b =>
+                {
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                        .WithMany()
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.DetalleCarritoDeCompras", b =>
+                {
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                        .WithMany()
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetalleProductosSolicitud", b =>
+                {
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                        .WithMany()
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetallesProductosMontajes", b =>
+                {
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                        .WithMany()
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Ventas.DetalleVentaProductos", b =>
+                {
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                        .WithMany()
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Productos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

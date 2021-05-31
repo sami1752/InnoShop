@@ -14,18 +14,23 @@ namespace Back.Models.Entidades.Solicitudes
         [Key]
         public int IdDetalleCarritoDeCompras { get; set; }
 
-        [Required]
+        [Column(TypeName = "varchar(50)"), Required]
         public string IdUsuario { get; set; }
 
         [Required]
         [ForeignKey("Productos")]
         public int IdProducto { get; set; }
         [ForeignKey("IdProducto")]
-        public Producto Productos { get; set; }
+        public virtual Producto Productos { get; set; }
 
 
         [Required]
+        [ForeignKey("CarritoDeCompras")]
         public int IdCarritoDeCompras { get; set; }
+        [ForeignKey("IdCarritoDeCompras")]
+        public virtual CarritoDeCompras CarritoDeCompras { get; set; }
+
+
         [Required]
         public int Cantidad { get; set; }
 

@@ -11,6 +11,7 @@ namespace Back.Models.Entidades.Productos
     {
         [Key]
         public int IdImagen { get; set; }
+
         [Column(TypeName ="varchar(200)"), Required]
         public string RutaImagen { get; set; }
 
@@ -19,7 +20,7 @@ namespace Back.Models.Entidades.Productos
         [ForeignKey("Productos")]
         public int IdProducto { get; set; }
         [ForeignKey("IdProducto")]
-        public Producto Productos { get; set; }
+        public virtual Producto Productos { get; set; }
 
 
 

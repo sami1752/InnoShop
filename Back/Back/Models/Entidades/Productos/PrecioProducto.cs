@@ -11,19 +11,21 @@ namespace Back.Models.Entidades.Productos
     {
         [Key]
         public int IdPrecioProducto { get; set; }
+
         [Required]
         public float Precio { get; set; }
+
         [Required]
         public DateTime FechaInicio { get; set; }
+
+        [Required]
         public DateTime FechaFin { get; set; }
 
         [Required]
         [ForeignKey("Productos")]
         public int IdProducto { get; set; }
         [ForeignKey("IdProducto")]
-        public Producto Productos { get; set; }
-
-
+        public virtual Producto Productos { get; set; }
 
         [Column(TypeName = "varchar(50)"), Required]
         public string IdUsuario { get; set; }

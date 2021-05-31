@@ -13,18 +13,27 @@ namespace Back.Models.Entidades.Solicitudes.Personalizadas
         [Key]
         public int IdDetalleEstadoSolicitudPersonalizada { get; set; }
 
-        [Required]
+        [Column(TypeName = "varchar(50)"), Required]
         public string IdUsuario { get; set; }
 
         [Required]
+        [ForeignKey("Estados")]
         public int IdEstado { get; set; }
+        [ForeignKey("IdEstado")]
+        public virtual Estados Estados { get; set; }
 
         [Required]
         public DateTime FechaInicio { get; set; }
+
         [Required]
         public DateTime FechaFin { get; set; }
 
         [Required]
+        [ForeignKey("SolicitudPersonalizada")]
         public int IdSolicitudPersonalizada { get; set; }
+        [ForeignKey("IdSolicitudPersonalizada")]
+        public virtual SolicitudPersonalizada SolicitudPersonalizada { get; set; }
+
+
     }
 }

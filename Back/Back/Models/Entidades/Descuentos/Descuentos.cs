@@ -11,13 +11,16 @@ namespace Back.Models.Entidades.Descuentos
     {
         [Key]
         public int IdDescuento { get; set; }
-        [Required]
-        [Column(TypeName = "nvarchar(50)")]
+
+        [Column(TypeName = "varchar(50)"), Required]
         public string IdUsuario { get; set; }
+
         [Required]
         public DateTime Fecha { get; set; }
+
         [Required]
         public DateTime FechaVencimiento { get; set; }
+
         [Required]
         public bool Estado { get; set; }
 
