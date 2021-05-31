@@ -501,6 +501,7 @@
 
             .os-btn:hover::after {
                 height: 100%;
+              color:white;
             }
 
             .os-btn:hover span {
@@ -588,7 +589,10 @@
                 border-color: #00000065;
                 border: 0.1;
             }
+            .os-btn:hover a {
+              color: #ffffff;
 
+            }
             .os-btn:hover::after {
                 height: 100%;
             }
