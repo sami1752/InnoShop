@@ -159,37 +159,7 @@ namespace Back.Controllers
         }
 
 
-        [HttpGet]
-        [Route("DetalleEstadosProductosPersoanlizados")]
-        public async Task<ActionResult<IEnumerable<DetalleEstadosProductosPersoanlizados>>>
-            ListarDetalleEstadosProductosPersoanlizados() =>
-            await _context.ListarDetalleEstadosProductosPersoanlizados();
-
-        [HttpGet]
-        [Route("DetalleEstadosProductosPersoanlizados/{DetalleEstadosProductosPersoanlizados}")]
-        public async Task<ActionResult<IEnumerable<DetalleEstadosProductosPersoanlizados>>>
-            ListaDetalleEstadosProductosPersoanlizados(int DetalleEstadosProductosPersoanlizados) =>
-            await _context.ListaDetalleEstadosProductosPersoanlizados(DetalleEstadosProductosPersoanlizados);
-
-        [HttpPost]
-        [Route("DetalleEstadosProductosPersoanlizados")]
-        public async Task<Object> AgregarDetalleEstadosProductosPersoanlizados
-            (DetalleEstadosProductosPersoanlizados DetalleEstadosProductosPersoanlizados)
-        {
-            try
-            {
-                DetalleEstadosProductosPersoanlizados =
-                    await _context.AgregarDetalleEstadosProductosPersoanlizados(DetalleEstadosProductosPersoanlizados);
-                return Ok(new { mensaje = DetalleEstadosProductosPersoanlizados });
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
-        }
-
-
-
+      
         [HttpGet]
         [Route("DetalleEstadosSolicitudPersonalizada")]
         public async Task<ActionResult<IEnumerable<DetalleEstadosSolicitudPersonalizada>>>
@@ -264,99 +234,6 @@ namespace Back.Controllers
                 return e.Message;
             }
         }
-
-
-        [HttpDelete]
-        [Route("DetallesMaterialesMontajes/{DetallesMaterialesMontajes}")]
-        public async Task<Object> EliminarDetallesMaterialesMontajes(int DetallesMaterialesMontajes)
-        {
-            try
-            {
-                await _context.EliminarDetallesMaterialesMontajes(DetallesMaterialesMontajes);
-                return Ok(new { mensaje = "Eliminación Exitosa" });
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        [HttpGet]
-        [Route("DetallesMaterialesMontajes")]
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>>
-        ListarDetallesMaterialesMontajes() =>
-            await _context.ListarDetallesMaterialesMontajes();
-
-        [HttpGet]
-        [Route("DetallesMaterialesMontajes/{DetallesMaterialesMontajes}")]
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>>
-            ListaDetallesMaterialesMontajes(int DetallesMaterialesMontajes) =>
-            await _context.ListaDetallesMaterialesMontajes(DetallesMaterialesMontajes);
-
-        [HttpPost]
-        [Route("DetallesMaterialesMontajes")]
-        public async Task<Object> AgregarDetallesMaterialesMontajes
-            (DetallesMaterialesMontajes DetallesMaterialesMontajes)
-        {
-            try
-            {
-                DetallesMaterialesMontajes =
-                    await _context.AgregarDetallesMaterialesMontajes(DetallesMaterialesMontajes);
-                return Ok(new { mensaje = DetallesMaterialesMontajes });
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
-        }
-
-        [HttpDelete]
-        [Route("DetallesMaterialesSolicitudesPersonalizadas/{DetallesMaterialesSolicitudesPersonalizadas}")]
-        public async Task<Object> EliminarDetallesMaterialesSolicitudesPersonalizadas
-            (int DetallesMaterialesSolicitudesPersonalizadas)
-        {
-            try
-            {
-                await _context.EliminarDetallesMaterialesSolicitudesPersonalizadas
-                    (DetallesMaterialesSolicitudesPersonalizadas);
-                return Ok(new { mensaje = "Eliminación Exitosa" });
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        [HttpGet]
-        [Route("DetallesMaterialesSolicitudesPersonalizadas")]
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
-        ListarDetallesMaterialesSolicitudesPersonalizadas() =>
-            await _context.ListarDetallesMaterialesSolicitudesPersonalizadas();
-
-        [HttpGet]
-        [Route("DetallesMaterialesSolicitudesPersonalizadas/{DetallesMaterialesSolicitudesPersonalizadas}")]
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
-            ListaDetallesMaterialesSolicitudesPersonalizadas(int DetallesMaterialesSolicitudesPersonalizadas) =>
-            await _context.ListaDetallesMaterialesSolicitudesPersonalizadas(DetallesMaterialesSolicitudesPersonalizadas);
-
-        [HttpPost]
-        [Route("DetallesMaterialesSolicitudesPersonalizadas")]
-        public async Task<Object> AgregarDetallesMaterialesSolicitudesPersonalizadas
-            (DetallesMaterialesSolicitudesPersonalizadas DetallesMaterialesSolicitudesPersonalizadas)
-        {
-            try
-            {
-                DetallesMaterialesSolicitudesPersonalizadas =
-                    await _context.AgregarDetallesMaterialesSolicitudesPersonalizadas
-                    (DetallesMaterialesSolicitudesPersonalizadas);
-                return Ok(new { mensaje = DetallesMaterialesSolicitudesPersonalizadas });
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
-        }
-
 
         [HttpDelete]
         [Route("DetallesProductosMontajes/{DetallesProductosMontajes}")]
@@ -444,31 +321,6 @@ namespace Back.Controllers
             }
         }
 
-
-        [HttpGet]
-        [Route("PrecioMontajes")]
-        public async Task<ActionResult<IEnumerable<PrecioMontajes>>> ListarPrecioMontajes() => 
-            await _context.ListarPrecioMontajes();
-
-        [HttpGet]
-        [Route("PrecioMontajes/{PrecioMontajes}")]
-        public async Task<ActionResult<IEnumerable<PrecioMontajes>>> ListaPrecioMontajes(int PrecioMontajes) =>
-            await _context.ListaPrecioMontajes(PrecioMontajes);
-
-        [HttpPost]
-        [Route("PrecioMontajes")]
-        public async Task<Object> AgregarPrecioMontajes(PrecioMontajes PrecioMontajes)
-        {
-            try
-            {
-                PrecioMontajes = await _context.AgregarPrecioMontajes(PrecioMontajes);
-                return Ok(new { mensaje = PrecioMontajes });
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
-        }
 
         [HttpGet]
         [Route("RespuestasSolicitudesPersonalizadas/{RespuestasSolicitudesPersonalizadas}")]

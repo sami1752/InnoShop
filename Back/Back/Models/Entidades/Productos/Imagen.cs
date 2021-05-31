@@ -14,7 +14,15 @@ namespace Back.Models.Entidades.Productos
         [Column(TypeName ="varchar(200)"), Required]
         public string RutaImagen { get; set; }
 
+
+        [Required]
+        [ForeignKey("Productos")]
         public int IdProducto { get; set; }
+        [ForeignKey("IdProducto")]
+        public Producto Productos { get; set; }
+
+
+
         [Column(TypeName = "varchar(50)"), Required]
         public string IdUsuario { get; set; }
     }

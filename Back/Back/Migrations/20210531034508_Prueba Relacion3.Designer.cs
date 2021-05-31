@@ -4,14 +4,16 @@ using Back.Models.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Back.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20210531034508_Prueba Relacion3")]
+    partial class PruebaRelacion3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +42,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdValorRuleta")
                         .HasColumnType("int");
@@ -48,8 +50,6 @@ namespace Back.Migrations
                     b.HasKey("IdDescuento");
 
                     b.HasIndex("IdPorcentajeRuleta");
-
-                    b.HasIndex("IdValorRuleta");
 
                     b.ToTable("Descuentos");
                 });
@@ -114,6 +114,10 @@ namespace Back.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("varchar(20)");
@@ -142,10 +146,6 @@ namespace Back.Migrations
 
                     b.HasKey("IdDetalleMaterial");
 
-                    b.HasIndex("IdMaterial");
-
-                    b.HasIndex("IdProducto");
-
                     b.ToTable("DetalleMateriales");
                 });
 
@@ -171,8 +171,6 @@ namespace Back.Migrations
 
                     b.HasKey("IdEntrada");
 
-                    b.HasIndex("IdProducto");
-
                     b.ToTable("Entradas");
                 });
 
@@ -195,8 +193,6 @@ namespace Back.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.HasKey("IdImagen");
-
-                    b.HasIndex("IdProducto");
 
                     b.ToTable("Imagenes");
                 });
@@ -276,8 +272,6 @@ namespace Back.Migrations
 
                     b.HasKey("IdPrecioProducto");
 
-                    b.HasIndex("IdProducto");
-
                     b.ToTable("PrecioProductos");
                 });
 
@@ -353,8 +347,6 @@ namespace Back.Migrations
 
                     b.HasKey("IdSalida");
 
-                    b.HasIndex("IdProducto");
-
                     b.ToTable("Salidas");
                 });
 
@@ -404,8 +396,6 @@ namespace Back.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdDetalleCarritoDeCompras");
-
-                    b.HasIndex("IdProducto");
 
                     b.ToTable("DetalleCarritoDeCompras");
                 });
@@ -485,8 +475,6 @@ namespace Back.Migrations
 
                     b.HasKey("IdDetalleProductosSolicitud");
 
-                    b.HasIndex("IdProducto");
-
                     b.ToTable("DetalleProductosSolicitud");
                 });
 
@@ -508,8 +496,6 @@ namespace Back.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdDetallesProductosMontajes");
-
-                    b.HasIndex("IdProducto");
 
                     b.ToTable("DetallesProductosMontajes");
                 });
@@ -568,6 +554,34 @@ namespace Back.Migrations
                     b.HasKey("IdMontaje");
 
                     b.ToTable("Montajes");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.PrecioMontajes", b =>
+                {
+                    b.Property<int>("IdPrecioMontajes")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaFin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdMontaje")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Precio")
+                        .HasColumnType("real");
+
+                    b.HasKey("IdPrecioMontajes");
+
+                    b.ToTable("PrecioMontajes");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.RespuestasMontajes", b =>
@@ -698,8 +712,6 @@ namespace Back.Migrations
                         .HasColumnType("real");
 
                     b.HasKey("IdDetalleVentaProducto");
-
-                    b.HasIndex("IdProducto");
 
                     b.ToTable("DetalleVentaProductos");
                 });
@@ -1017,122 +1029,7 @@ namespace Back.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Back.Models.Entidades.Descuentos.ValorRuleta", "ValorRuleta")
-                        .WithMany()
-                        .HasForeignKey("IdValorRuleta")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("PorcentajesRuleta");
-
-                    b.Navigation("ValorRuleta");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Productos.DetalleMaterial", b =>
-                {
-                    b.HasOne("Back.Models.Entidades.Productos.Material", "Material")
-                        .WithMany()
-                        .HasForeignKey("IdMaterial")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
-                        .WithMany()
-                        .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Material");
-
-                    b.Navigation("Productos");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Productos.Entrada", b =>
-                {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
-                        .WithMany()
-                        .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Productos");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Productos.Imagen", b =>
-                {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
-                        .WithMany()
-                        .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Productos");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Productos.PrecioProducto", b =>
-                {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
-                        .WithMany()
-                        .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Productos");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Productos.Salida", b =>
-                {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
-                        .WithMany()
-                        .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Productos");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.DetalleCarritoDeCompras", b =>
-                {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
-                        .WithMany()
-                        .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Productos");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetalleProductosSolicitud", b =>
-                {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
-                        .WithMany()
-                        .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Productos");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetallesProductosMontajes", b =>
-                {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
-                        .WithMany()
-                        .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Productos");
-                });
-
-            modelBuilder.Entity("Back.Models.Entidades.Ventas.DetalleVentaProductos", b =>
-                {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
-                        .WithMany()
-                        .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Productos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

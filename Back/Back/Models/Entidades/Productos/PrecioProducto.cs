@@ -16,8 +16,15 @@ namespace Back.Models.Entidades.Productos
         [Required]
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
+
         [Required]
+        [ForeignKey("Productos")]
         public int IdProducto { get; set; }
+        [ForeignKey("IdProducto")]
+        public Producto Productos { get; set; }
+
+
+
         [Column(TypeName = "varchar(50)"), Required]
         public string IdUsuario { get; set; }
     }

@@ -29,79 +29,40 @@ namespace Back.Models.Abstratos
         Task<DetalleEstadosMontajes> AgregarDetalleEstadosMontajes (DetalleEstadosMontajes DetalleEstadosMontajes, bool nueva);
         Task<ActionResult<IEnumerable<DetalleEstadosMontajes>>> ListarDetalleEstadosMontajes();
         Task<ActionResult<IEnumerable<DetalleEstadosMontajes>>> ListaDetalleEstadosMontajes(int id);
-
-        Task<DetalleEstadosProductosPersoanlizados> AgregarDetalleEstadosProductosPersoanlizados
-                    (DetalleEstadosProductosPersoanlizados DetalleEstadosProductosPersoanlizados);
-        Task<ActionResult<IEnumerable<DetalleEstadosProductosPersoanlizados>>>
-                    ListarDetalleEstadosProductosPersoanlizados();
-        Task<ActionResult<IEnumerable<DetalleEstadosProductosPersoanlizados>>>
-                    ListaDetalleEstadosProductosPersoanlizados(int id);
-
         Task<DetalleEstadosSolicitudPersonalizada> AgregarDetalleEstadosSolicitudPersonalizada
                     (DetalleEstadosSolicitudPersonalizada DetalleEstadosSolicitudPersonalizada, bool nueva);
         Task<ActionResult<IEnumerable<DetalleEstadosSolicitudPersonalizada>>>
                     ListarDetalleEstadosSolicitudPersonalizada();
         Task<ActionResult<IEnumerable<DetalleEstadosSolicitudPersonalizada>>>
                     ListaDetalleEstadosSolicitudPersonalizada(int id);
-
         Task<DetalleProductosSolicitud> AgregarDetalleProductosSolicitud
                     (DetalleProductosSolicitud DetalleProductosSolicitud);
         Task<ActionResult<IEnumerable<DetalleProductosSolicitud>>> ListarDetalleProductosSolicitud();
         Task<ActionResult<IEnumerable<DetalleProductosSolicitud>>> ListaDetalleProductosSolicitud(int id);
         Task EliminarDetalleProductosSolicitud(int id);
-       
-        Task<DetallesMaterialesMontajes> AgregarDetallesMaterialesMontajes
-                    (DetallesMaterialesMontajes DetallesMaterialesMontajes);
-        Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>> ListarDetallesMaterialesMontajes();
-        Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>> ListaDetallesMaterialesMontajes(int id);
-        Task EliminarDetallesMaterialesMontajes(int id);
-
-        Task<DetallesMaterialesSolicitudesPersonalizadas> AgregarDetallesMaterialesSolicitudesPersonalizadas
-                    (DetallesMaterialesSolicitudesPersonalizadas DetallesMaterialesSolicitudesPersonalizadas);
-        Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
-                    ListarDetallesMaterialesSolicitudesPersonalizadas();
-        Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
-                    ListaDetallesMaterialesSolicitudesPersonalizadas(int id);
-        Task EliminarDetallesMaterialesSolicitudesPersonalizadas(int id);
-
         Task<DetallesProductosMontajes> AgregarDetallesProductosMontajes
                     (DetallesProductosMontajes DetallesProductosMontajes);
         Task<ActionResult<IEnumerable<DetallesProductosMontajes>>> ListarDetallesProductosMontajes();
         Task<ActionResult<IEnumerable<DetallesProductosMontajes>>> ListaDetallesProductosMontajes(int id);
         Task EliminarDetallesProductosMontajes(int id);
-
         Task<ActionResult<IEnumerable<MontajeDetalle>>> ListarMontajes();
         Task<ActionResult<IEnumerable<MontajeDetalle>>> ListarMisMontajes(string id);
         Task<MontajeDetalle> BuscarMontajes(int id);
         Task<Montajes> AgregarMontajes(Montajes Montajes);
         Task<Montajes> EditarMontajes(Montajes Montajes);
-   
-        Task<PrecioMontajes> AgregarPrecioMontajes(PrecioMontajes PrecioMontajes);
-        Task<ActionResult<IEnumerable<PrecioMontajes>>> ListarPrecioMontajes();
-        Task<ActionResult<IEnumerable<PrecioMontajes>>> ListaPrecioMontajes(int id);
-        
-        
-        
-
         Task<RespuestasSolicitudesPersonalizadas> AgregarRespuestasSolicitudesPersonalizadas
                     (RespuestasSolicitudesPersonalizadas RespuestasSolicitudesPersonalizadas);
         Task<ActionResult<IEnumerable<DetalleRespuestasSolicitudP>>>
                     ListaRespuestasSolicitudesPersonalizadas(int id);
-
         Task<RespuestasMontajes> AgregarRespuestasMontajes
             (RespuestasMontajes RespuestasMontajes);
         Task<ActionResult<IEnumerable<DetalleRespuestasM>>>
                     ListaRespuestasMontajes(int id);
-
-
-
         Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarSolicitudPersonalizada();
         Task<ActionResult<IEnumerable<SolicitudPersonalizadaDetalle>>> ListarMisSolicitudPersonalizada(string id);
         SolicitudPersonalizadaDetalle BuscarSolicitudPersonalizada(int id);    
         Task<SolicitudPersonalizada> AgregarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada);
         Task<SolicitudPersonalizada> EditarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada);
-
-
         Task<List<CarritoDeCompras>> ExisteCarritoUsuarioPorId(string id);
         Task EliminarDetalleCarrito(int idDetalle);
         Task<Estados> AgregarEstado(Estados Estados);

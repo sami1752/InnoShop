@@ -124,22 +124,7 @@ namespace Back.Models.Servicios
             await _context.DetalleEstadosMontajes.Where(x => x.IdDetalleEstadosMontajes == id).ToListAsync();
 
 
-        public async Task<DetalleEstadosProductosPersoanlizados> AgregarDetalleEstadosProductosPersoanlizados
-            (DetalleEstadosProductosPersoanlizados DetalleEstadosProductosPersoanlizados)
-        {
-            _context.DetalleEstadosProductosPersoanlizados.Add(DetalleEstadosProductosPersoanlizados);
-            await _context.SaveChangesAsync();
-            return DetalleEstadosProductosPersoanlizados;
-        }
 
-        public async Task<ActionResult<IEnumerable<DetalleEstadosProductosPersoanlizados>>>
-            ListarDetalleEstadosProductosPersoanlizados() =>
-            await _context.DetalleEstadosProductosPersoanlizados.ToListAsync();
-
-        public async Task<ActionResult<IEnumerable<DetalleEstadosProductosPersoanlizados>>>
-            ListaDetalleEstadosProductosPersoanlizados(int id) =>
-            await _context.DetalleEstadosProductosPersoanlizados.Where(x =>
-            x.IdDetalleEstadosProductosPersoanlizados == id).ToListAsync();
 
         public async Task<DetalleEstadosSolicitudPersonalizada> AgregarDetalleEstadosSolicitudPersonalizada
             (DetalleEstadosSolicitudPersonalizada DetalleEstadosSolicitudPersonalizada, bool nueva)
@@ -182,52 +167,6 @@ namespace Back.Models.Servicios
             await _context.SaveChangesAsync();
         }
 
-        public async Task<DetallesMaterialesMontajes> AgregarDetallesMaterialesMontajes
-            (DetallesMaterialesMontajes DetallesMaterialesMontajes)
-        {
-            _context.DetallesMaterialesMontajes.Add(DetallesMaterialesMontajes);
-            await _context.SaveChangesAsync();
-            return DetallesMaterialesMontajes;
-        }
-
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>> ListarDetallesMaterialesMontajes() =>
-            await _context.DetallesMaterialesMontajes.ToListAsync();
-
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>> ListaDetallesMaterialesMontajes(int id) =>
-            await _context.DetallesMaterialesMontajes.Where(x => x.IdDetallesMaterialesMontajes == id).ToListAsync();
-
-        public async Task EliminarDetallesMaterialesMontajes(int id)
-        {
-            DetallesMaterialesMontajes DetallesMaterialesMontajes =
-                await _context.DetallesMaterialesMontajes.FindAsync(id);
-            _context.DetallesMaterialesMontajes.Remove(DetallesMaterialesMontajes);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<DetallesMaterialesSolicitudesPersonalizadas> AgregarDetallesMaterialesSolicitudesPersonalizadas
-            (DetallesMaterialesSolicitudesPersonalizadas DetallesMaterialesSolicitudesPersonalizadas)
-        {
-            _context.DetallesMaterialesSolicitudesPersonalizadas.Add(DetallesMaterialesSolicitudesPersonalizadas);
-            await _context.SaveChangesAsync();
-            return DetallesMaterialesSolicitudesPersonalizadas;
-        }
-
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
-            ListarDetallesMaterialesSolicitudesPersonalizadas() =>
-            await _context.DetallesMaterialesSolicitudesPersonalizadas.ToListAsync();
-
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
-            ListaDetallesMaterialesSolicitudesPersonalizadas(int id) =>
-            await _context.DetallesMaterialesSolicitudesPersonalizadas.Where(x =>
-            x.IdDetallesMaterialesSolicitudesPersonalizadas == id).ToListAsync();
-
-        public async Task EliminarDetallesMaterialesSolicitudesPersonalizadas(int id)
-        {
-            DetallesMaterialesSolicitudesPersonalizadas DetallesMaterialesSolicitudesPersonalizadas =
-                await _context.DetallesMaterialesSolicitudesPersonalizadas.FindAsync(id);
-            _context.DetallesMaterialesSolicitudesPersonalizadas.Remove(DetallesMaterialesSolicitudesPersonalizadas);
-            await _context.SaveChangesAsync();
-        }
 
         public async Task<DetallesProductosMontajes> AgregarDetallesProductosMontajes
             (DetallesProductosMontajes DetallesProductosMontajes)
@@ -469,19 +408,6 @@ namespace Back.Models.Servicios
             }, false);
             return Montajes;
         }
-
-        public async Task<PrecioMontajes> AgregarPrecioMontajes(PrecioMontajes PrecioMontajes)
-        {
-            _context.PrecioMontajes.Add(PrecioMontajes);
-            await _context.SaveChangesAsync();
-            return PrecioMontajes;
-        }
-
-        public async Task<ActionResult<IEnumerable<PrecioMontajes>>> ListarPrecioMontajes() =>
-            await _context.PrecioMontajes.ToListAsync();
-
-        public async Task<ActionResult<IEnumerable<PrecioMontajes>>> ListaPrecioMontajes(int id) =>
-            await _context.PrecioMontajes.Where(x => x.IdMontaje == id).ToListAsync();
 
         public async Task<RespuestasSolicitudesPersonalizadas> AgregarRespuestasSolicitudesPersonalizadas
             (RespuestasSolicitudesPersonalizadas RespuestasSolicitudesPersonalizadas)

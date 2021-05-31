@@ -4,14 +4,16 @@ using Back.Models.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Back.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20210531040910_Relaciones IdProducto")]
+    partial class RelacionesIdProducto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1036,7 +1038,7 @@ namespace Back.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1044,95 +1046,95 @@ namespace Back.Migrations
 
                     b.Navigation("Material");
 
-                    b.Navigation("Productos");
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Productos.Entrada", b =>
                 {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Productos");
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Productos.Imagen", b =>
                 {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Productos");
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Productos.PrecioProducto", b =>
                 {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Productos");
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Productos.Salida", b =>
                 {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Productos");
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.DetalleCarritoDeCompras", b =>
                 {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Productos");
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetalleProductosSolicitud", b =>
                 {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Productos");
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.DetallesProductosMontajes", b =>
                 {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Productos");
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Ventas.DetalleVentaProductos", b =>
                 {
-                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Productos")
+                    b.HasOne("Back.Models.Entidades.Productos.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Productos");
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

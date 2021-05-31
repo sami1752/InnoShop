@@ -28,15 +28,11 @@ namespace Back.Models.DAL
         public DbSet<CarritoDeCompras> CarritoDeCompras { get; set; }
         public DbSet<Entrada> Entradas { get; set; }
         public DbSet<DetalleEstadosMontajes> DetalleEstadosMontajes { get; set; }
-        public DbSet<DetalleEstadosProductosPersoanlizados> DetalleEstadosProductosPersoanlizados { get; set; }
         public DbSet<DetalleEstadosSolicitudPersonalizada> DetalleEstadosSolicitudPersonalizada { get; set; }
         public DbSet<DetalleProductosSolicitud> DetalleProductosSolicitud { get; set; }
-        public DbSet<DetallesMaterialesMontajes> DetallesMaterialesMontajes { get; set; }
-        public DbSet<DetallesMaterialesSolicitudesPersonalizadas> DetallesMaterialesSolicitudesPersonalizadas { get; set; }
         public DbSet<DetallesProductosMontajes> DetallesProductosMontajes { get; set; }
         public DbSet<Estados> Estados { get; set; }
         public DbSet<Montajes> Montajes { get; set; }
-        public DbSet<PrecioMontajes> PrecioMontajes { get; set; }
         public DbSet<RespuestasSolicitudesPersonalizadas> RespuestasSolicitudesPersonalizadas { get; set; }
         public DbSet<RespuestasMontajes> RespuestasMontajes { get; set; }
         public DbSet<SolicitudPersonalizada> SolicitudPersonalizada { get; set; }

@@ -11,7 +11,18 @@ namespace Back.Models.Entidades.Productos
     {
         [Key]
         public int IdEntrada { get; set; }
+
+
+
+        [Required]
+        [ForeignKey("Productos")]
         public int IdProducto { get; set; }
+        [ForeignKey("IdProducto")]
+        public Producto Productos { get; set; }
+
+
+
+
         public int Cantidad { get; set; }
         public DateTime Fecha { get; set; }
         [Column(TypeName = "varchar(50)"), Required]

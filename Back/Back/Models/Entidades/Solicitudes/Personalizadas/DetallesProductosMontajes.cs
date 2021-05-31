@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Back.Models.Entidades.Productos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,6 +21,9 @@ namespace Back.Models.Entidades.Solicitudes.Personalizadas
         public int IdMontaje { get; set; }
 
         [Required]
+        [ForeignKey("Productos")]
         public int IdProducto { get; set; }
+        [ForeignKey("IdProducto")]
+        public Producto Productos { get; set; }
     }
 }
