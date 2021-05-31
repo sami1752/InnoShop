@@ -40,7 +40,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("IdValorRuleta")
                         .HasColumnType("int");
@@ -69,7 +69,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("Porcentaje")
                         .HasColumnType("real");
@@ -94,7 +94,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ValorDeRuleta")
                         .HasColumnType("int");
@@ -138,7 +138,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdDetalleMaterial");
 
@@ -167,7 +167,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdEntrada");
 
@@ -188,7 +188,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RutaImagen")
                         .IsRequired()
@@ -216,7 +216,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("Porcentaje")
                         .HasColumnType("real");
@@ -242,7 +242,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -271,7 +271,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("Precio")
                         .HasColumnType("real");
@@ -311,7 +311,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("Largo")
                         .HasColumnType("real");
@@ -355,7 +355,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdSalida");
 
@@ -379,7 +379,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("Valor")
                         .HasColumnType("real");
@@ -407,7 +407,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdDetalleCarritoDeCompras");
 
@@ -439,7 +439,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdDetalleEstadosMontajes");
 
@@ -471,7 +471,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdDetalleEstadoSolicitudPersonalizada");
 
@@ -497,7 +497,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdDetalleProductosSolicitud");
 
@@ -523,7 +523,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdDetallesProductosMontajes");
 
@@ -547,7 +547,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdEstado");
 
@@ -583,7 +583,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdMontaje");
 
@@ -605,7 +605,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Respuesta")
                         .IsRequired()
@@ -633,7 +633,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Respuesta")
                         .IsRequired()
@@ -671,7 +671,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdSolicitudPersonalizada");
 
@@ -780,7 +780,7 @@ namespace Back.Migrations
 
                     b.Property<string>("IdUsuario")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("Total")
                         .HasColumnType("real");

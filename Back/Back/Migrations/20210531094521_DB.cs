@@ -63,7 +63,7 @@ namespace Back.Migrations
                 {
                     IdCarritoDeCompras = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
                     Valor = table.Column<float>(type: "real", nullable: false)
@@ -88,79 +88,13 @@ namespace Back.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DetalleEstadosMontajes",
-                columns: table => new
-                {
-                    IdDetalleEstadosMontajes = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdEstado = table.Column<int>(type: "int", nullable: false),
-                    FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdMontaje = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetalleEstadosMontajes", x => x.IdDetalleEstadosMontajes);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DetalleEstadosSolicitudPersonalizada",
-                columns: table => new
-                {
-                    IdDetalleEstadoSolicitudPersonalizada = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdEstado = table.Column<int>(type: "int", nullable: false),
-                    FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdSolicitudPersonalizada = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetalleEstadosSolicitudPersonalizada", x => x.IdDetalleEstadoSolicitudPersonalizada);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DetalleVentaMontajes",
-                columns: table => new
-                {
-                    IdDetalleVentaMontaje = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Cantidad = table.Column<int>(type: "int", nullable: false),
-                    SubTotal = table.Column<float>(type: "real", nullable: false),
-                    IdVenta = table.Column<int>(type: "int", nullable: false),
-                    IdMontaje = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetalleVentaMontajes", x => x.IdDetalleVentaMontaje);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DetalleVentaSolicitudes",
-                columns: table => new
-                {
-                    IdDetalleVentaSolicitud = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Cantidad = table.Column<int>(type: "int", nullable: false),
-                    SubTotal = table.Column<float>(type: "real", nullable: false),
-                    IdVenta = table.Column<int>(type: "int", nullable: false),
-                    IdSolicitudPersonalizada = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetalleVentaSolicitudes", x => x.IdDetalleVentaSolicitud);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Estados",
                 columns: table => new
                 {
                     IdEstado = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Estado = table.Column<string>(type: "varchar(60)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -176,7 +110,7 @@ namespace Back.Migrations
                     Porcentaje = table.Column<float>(type: "real", nullable: false),
                     FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -190,9 +124,9 @@ namespace Back.Migrations
                     IdMaterial = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "varchar(150)", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Descripcion = table.Column<string>(type: "varchar(500)", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -205,13 +139,13 @@ namespace Back.Migrations
                 {
                     IdMontaje = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Direccion = table.Column<string>(type: "varchar(250)", nullable: false),
                     Ancho = table.Column<float>(type: "real", nullable: false),
                     Fondo = table.Column<float>(type: "real", nullable: false),
                     Alto = table.Column<float>(type: "real", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Descripcion = table.Column<string>(type: "varchar(500)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -226,7 +160,7 @@ namespace Back.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Porcentaje = table.Column<float>(type: "real", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -235,73 +169,17 @@ namespace Back.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Productos",
-                columns: table => new
-                {
-                    IdProducto = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "varchar(60)", nullable: false),
-                    Estado = table.Column<bool>(type: "bit", nullable: false),
-                    Ancho = table.Column<float>(type: "real", nullable: false),
-                    Largo = table.Column<float>(type: "real", nullable: false),
-                    Fondo = table.Column<float>(type: "real", nullable: false),
-                    TipoPuerta = table.Column<string>(type: "varchar(20)", nullable: true),
-                    Descripcion = table.Column<string>(type: "varchar(250)", nullable: true),
-                    Ruedas = table.Column<bool>(type: "bit", nullable: false),
-                    IdUsuario = table.Column<string>(type: "varchar(50)", nullable: false),
-                    Puntos = table.Column<int>(type: "int", nullable: false),
-                    IdCategoria = table.Column<int>(type: "int", nullable: false),
-                    GarantiaMeses = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Productos", x => x.IdProducto);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RespuestasMontajes",
-                columns: table => new
-                {
-                    IdRespuestaMontajes = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdMontaje = table.Column<int>(type: "int", nullable: false),
-                    Respuesta = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RespuestasMontajes", x => x.IdRespuestaMontajes);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RespuestasSolicitudesPersonalizadas",
-                columns: table => new
-                {
-                    IdRespuestaSolicitudesPersonalizadas = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdSolicitudPersonalizada = table.Column<int>(type: "int", nullable: false),
-                    Respuesta = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RespuestasSolicitudesPersonalizadas", x => x.IdRespuestaSolicitudesPersonalizadas);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SolicitudPersonalizada",
                 columns: table => new
                 {
                     IdSolicitudPersonalizada = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Ancho = table.Column<float>(type: "real", nullable: false),
                     Fondo = table.Column<float>(type: "real", nullable: false),
                     Alto = table.Column<float>(type: "real", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Descripcion = table.Column<string>(type: "varchar(500)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -314,7 +192,7 @@ namespace Back.Migrations
                 {
                     IdValorRuleta = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ValorDeRuleta = table.Column<int>(type: "int", nullable: false),
                     FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -322,24 +200,6 @@ namespace Back.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ValorRuleta", x => x.IdValorRuleta);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Ventas",
-                columns: table => new
-                {
-                    IdVenta = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdDescuento = table.Column<int>(type: "int", nullable: false),
-                    Total = table.Column<float>(type: "real", nullable: false),
-                    IdIva = table.Column<int>(type: "int", nullable: false),
-                    TotalIva = table.Column<float>(type: "real", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ventas", x => x.IdVenta);
                 });
 
             migrationBuilder.CreateTable(
@@ -449,12 +309,174 @@ namespace Back.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Productos",
+                columns: table => new
+                {
+                    IdProducto = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "varchar(60)", nullable: false),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
+                    Ancho = table.Column<float>(type: "real", nullable: false),
+                    Largo = table.Column<float>(type: "real", nullable: false),
+                    Fondo = table.Column<float>(type: "real", nullable: false),
+                    TipoPuerta = table.Column<string>(type: "varchar(30)", nullable: false),
+                    Descripcion = table.Column<string>(type: "varchar(500)", nullable: false),
+                    Ruedas = table.Column<bool>(type: "bit", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Puntos = table.Column<int>(type: "int", nullable: false),
+                    IdCategoria = table.Column<int>(type: "int", nullable: false),
+                    GarantiaMeses = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Productos", x => x.IdProducto);
+                    table.ForeignKey(
+                        name: "FK_Productos_Categorias_IdCategoria",
+                        column: x => x.IdCategoria,
+                        principalTable: "Categorias",
+                        principalColumn: "IdCategoria",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DetalleEstadosMontajes",
+                columns: table => new
+                {
+                    IdDetalleEstadosMontajes = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IdEstado = table.Column<int>(type: "int", nullable: false),
+                    FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdMontaje = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DetalleEstadosMontajes", x => x.IdDetalleEstadosMontajes);
+                    table.ForeignKey(
+                        name: "FK_DetalleEstadosMontajes_Estados_IdEstado",
+                        column: x => x.IdEstado,
+                        principalTable: "Estados",
+                        principalColumn: "IdEstado",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleEstadosMontajes_Montajes_IdMontaje",
+                        column: x => x.IdMontaje,
+                        principalTable: "Montajes",
+                        principalColumn: "IdMontaje",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RespuestasMontajes",
+                columns: table => new
+                {
+                    IdRespuestaMontajes = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IdMontaje = table.Column<int>(type: "int", nullable: false),
+                    Respuesta = table.Column<string>(type: "varchar(500)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RespuestasMontajes", x => x.IdRespuestaMontajes);
+                    table.ForeignKey(
+                        name: "FK_RespuestasMontajes_Montajes_IdMontaje",
+                        column: x => x.IdMontaje,
+                        principalTable: "Montajes",
+                        principalColumn: "IdMontaje",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DetalleEstadosSolicitudPersonalizada",
+                columns: table => new
+                {
+                    IdDetalleEstadoSolicitudPersonalizada = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IdEstado = table.Column<int>(type: "int", nullable: false),
+                    FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdSolicitudPersonalizada = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DetalleEstadosSolicitudPersonalizada", x => x.IdDetalleEstadoSolicitudPersonalizada);
+                    table.ForeignKey(
+                        name: "FK_DetalleEstadosSolicitudPersonalizada_Estados_IdEstado",
+                        column: x => x.IdEstado,
+                        principalTable: "Estados",
+                        principalColumn: "IdEstado",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleEstadosSolicitudPersonalizada_SolicitudPersonalizada_IdSolicitudPersonalizada",
+                        column: x => x.IdSolicitudPersonalizada,
+                        principalTable: "SolicitudPersonalizada",
+                        principalColumn: "IdSolicitudPersonalizada",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RespuestasSolicitudesPersonalizadas",
+                columns: table => new
+                {
+                    IdRespuestaSolicitudesPersonalizadas = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IdSolicitudPersonalizada = table.Column<int>(type: "int", nullable: false),
+                    Respuesta = table.Column<string>(type: "varchar(500)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RespuestasSolicitudesPersonalizadas", x => x.IdRespuestaSolicitudesPersonalizadas);
+                    table.ForeignKey(
+                        name: "FK_RespuestasSolicitudesPersonalizadas_SolicitudPersonalizada_IdSolicitudPersonalizada",
+                        column: x => x.IdSolicitudPersonalizada,
+                        principalTable: "SolicitudPersonalizada",
+                        principalColumn: "IdSolicitudPersonalizada",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Descuentos",
+                columns: table => new
+                {
+                    IdDescuento = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaVencimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
+                    IdPorcentajeRuleta = table.Column<int>(type: "int", nullable: false),
+                    IdValorRuleta = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Descuentos", x => x.IdDescuento);
+                    table.ForeignKey(
+                        name: "FK_Descuentos_PorcentajesRuleta_IdPorcentajeRuleta",
+                        column: x => x.IdPorcentajeRuleta,
+                        principalTable: "PorcentajesRuleta",
+                        principalColumn: "IdPorcentajeRuleta",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Descuentos_ValorRuleta_IdValorRuleta",
+                        column: x => x.IdValorRuleta,
+                        principalTable: "ValorRuleta",
+                        principalColumn: "IdValorRuleta",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DetalleCarritoDeCompras",
                 columns: table => new
                 {
                     IdDetalleCarritoDeCompras = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     IdProducto = table.Column<int>(type: "int", nullable: false),
                     IdCarritoDeCompras = table.Column<int>(type: "int", nullable: false),
                     Cantidad = table.Column<int>(type: "int", nullable: false)
@@ -462,6 +484,12 @@ namespace Back.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DetalleCarritoDeCompras", x => x.IdDetalleCarritoDeCompras);
+                    table.ForeignKey(
+                        name: "FK_DetalleCarritoDeCompras_CarritoDeCompras_IdCarritoDeCompras",
+                        column: x => x.IdCarritoDeCompras,
+                        principalTable: "CarritoDeCompras",
+                        principalColumn: "IdCarritoDeCompras",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DetalleCarritoDeCompras_Productos_IdProducto",
                         column: x => x.IdProducto,
@@ -478,7 +506,7 @@ namespace Back.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdProducto = table.Column<int>(type: "int", nullable: false),
                     IdMaterial = table.Column<int>(type: "int", nullable: false),
-                    IdUsuario = table.Column<string>(type: "varchar(50)", nullable: false)
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -503,7 +531,7 @@ namespace Back.Migrations
                 {
                     IdDetalleProductosSolicitud = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     IdSolicitudPersonalizada = table.Column<int>(type: "int", nullable: false),
                     IdProducto = table.Column<int>(type: "int", nullable: false)
                 },
@@ -516,6 +544,12 @@ namespace Back.Migrations
                         principalTable: "Productos",
                         principalColumn: "IdProducto",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleProductosSolicitud_SolicitudPersonalizada_IdSolicitudPersonalizada",
+                        column: x => x.IdSolicitudPersonalizada,
+                        principalTable: "SolicitudPersonalizada",
+                        principalColumn: "IdSolicitudPersonalizada",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -524,7 +558,7 @@ namespace Back.Migrations
                 {
                     IdDetallesProductosMontajes = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     IdMontaje = table.Column<int>(type: "int", nullable: false),
                     IdProducto = table.Column<int>(type: "int", nullable: false)
                 },
@@ -532,10 +566,162 @@ namespace Back.Migrations
                 {
                     table.PrimaryKey("PK_DetallesProductosMontajes", x => x.IdDetallesProductosMontajes);
                     table.ForeignKey(
+                        name: "FK_DetallesProductosMontajes_Montajes_IdMontaje",
+                        column: x => x.IdMontaje,
+                        principalTable: "Montajes",
+                        principalColumn: "IdMontaje",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_DetallesProductosMontajes_Productos_IdProducto",
                         column: x => x.IdProducto,
                         principalTable: "Productos",
                         principalColumn: "IdProducto",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Entradas",
+                columns: table => new
+                {
+                    IdEntrada = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdProducto = table.Column<int>(type: "int", nullable: false),
+                    Cantidad = table.Column<int>(type: "int", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Entradas", x => x.IdEntrada);
+                    table.ForeignKey(
+                        name: "FK_Entradas_Productos_IdProducto",
+                        column: x => x.IdProducto,
+                        principalTable: "Productos",
+                        principalColumn: "IdProducto",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Imagenes",
+                columns: table => new
+                {
+                    IdImagen = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RutaImagen = table.Column<string>(type: "varchar(200)", nullable: false),
+                    IdProducto = table.Column<int>(type: "int", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Imagenes", x => x.IdImagen);
+                    table.ForeignKey(
+                        name: "FK_Imagenes_Productos_IdProducto",
+                        column: x => x.IdProducto,
+                        principalTable: "Productos",
+                        principalColumn: "IdProducto",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PrecioProductos",
+                columns: table => new
+                {
+                    IdPrecioProducto = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Precio = table.Column<float>(type: "real", nullable: false),
+                    FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdProducto = table.Column<int>(type: "int", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PrecioProductos", x => x.IdPrecioProducto);
+                    table.ForeignKey(
+                        name: "FK_PrecioProductos_Productos_IdProducto",
+                        column: x => x.IdProducto,
+                        principalTable: "Productos",
+                        principalColumn: "IdProducto",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Salidas",
+                columns: table => new
+                {
+                    IdSalida = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdProducto = table.Column<int>(type: "int", nullable: false),
+                    Cantidad = table.Column<int>(type: "int", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Salidas", x => x.IdSalida);
+                    table.ForeignKey(
+                        name: "FK_Salidas_Productos_IdProducto",
+                        column: x => x.IdProducto,
+                        principalTable: "Productos",
+                        principalColumn: "IdProducto",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ventas",
+                columns: table => new
+                {
+                    IdVenta = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IdDescuento = table.Column<int>(type: "int", nullable: false),
+                    Total = table.Column<float>(type: "real", nullable: false),
+                    IdIva = table.Column<int>(type: "int", nullable: false),
+                    TotalIva = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ventas", x => x.IdVenta);
+                    table.ForeignKey(
+                        name: "FK_Ventas_Descuentos_IdDescuento",
+                        column: x => x.IdDescuento,
+                        principalTable: "Descuentos",
+                        principalColumn: "IdDescuento",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ventas_Iva_IdIva",
+                        column: x => x.IdIva,
+                        principalTable: "Iva",
+                        principalColumn: "IdIva",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DetalleVentaMontajes",
+                columns: table => new
+                {
+                    IdDetalleVentaMontaje = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cantidad = table.Column<int>(type: "int", nullable: false),
+                    SubTotal = table.Column<float>(type: "real", nullable: false),
+                    IdVenta = table.Column<int>(type: "int", nullable: false),
+                    IdMontaje = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DetalleVentaMontajes", x => x.IdDetalleVentaMontaje);
+                    table.ForeignKey(
+                        name: "FK_DetalleVentaMontajes_Montajes_IdMontaje",
+                        column: x => x.IdMontaje,
+                        principalTable: "Montajes",
+                        principalColumn: "IdMontaje",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleVentaMontajes_Ventas_IdVenta",
+                        column: x => x.IdVenta,
+                        principalTable: "Ventas",
+                        principalColumn: "IdVenta",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -559,123 +745,39 @@ namespace Back.Migrations
                         principalTable: "Productos",
                         principalColumn: "IdProducto",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleVentaProductos_Ventas_IdVenta",
+                        column: x => x.IdVenta,
+                        principalTable: "Ventas",
+                        principalColumn: "IdVenta",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Entradas",
+                name: "DetalleVentaSolicitudes",
                 columns: table => new
                 {
-                    IdEntrada = table.Column<int>(type: "int", nullable: false)
+                    IdDetalleVentaSolicitud = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdProducto = table.Column<int>(type: "int", nullable: false),
                     Cantidad = table.Column<int>(type: "int", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdUsuario = table.Column<string>(type: "varchar(50)", nullable: false)
+                    SubTotal = table.Column<float>(type: "real", nullable: false),
+                    IdVenta = table.Column<int>(type: "int", nullable: false),
+                    IdSolicitudPersonalizada = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Entradas", x => x.IdEntrada);
+                    table.PrimaryKey("PK_DetalleVentaSolicitudes", x => x.IdDetalleVentaSolicitud);
                     table.ForeignKey(
-                        name: "FK_Entradas_Productos_IdProducto",
-                        column: x => x.IdProducto,
-                        principalTable: "Productos",
-                        principalColumn: "IdProducto",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Imagenes",
-                columns: table => new
-                {
-                    IdImagen = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RutaImagen = table.Column<string>(type: "varchar(200)", nullable: false),
-                    IdProducto = table.Column<int>(type: "int", nullable: false),
-                    IdUsuario = table.Column<string>(type: "varchar(50)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Imagenes", x => x.IdImagen);
-                    table.ForeignKey(
-                        name: "FK_Imagenes_Productos_IdProducto",
-                        column: x => x.IdProducto,
-                        principalTable: "Productos",
-                        principalColumn: "IdProducto",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PrecioProductos",
-                columns: table => new
-                {
-                    IdPrecioProducto = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Precio = table.Column<float>(type: "real", nullable: false),
-                    FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdProducto = table.Column<int>(type: "int", nullable: false),
-                    IdUsuario = table.Column<string>(type: "varchar(50)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PrecioProductos", x => x.IdPrecioProducto);
-                    table.ForeignKey(
-                        name: "FK_PrecioProductos_Productos_IdProducto",
-                        column: x => x.IdProducto,
-                        principalTable: "Productos",
-                        principalColumn: "IdProducto",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Salidas",
-                columns: table => new
-                {
-                    IdSalida = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdProducto = table.Column<int>(type: "int", nullable: false),
-                    Cantidad = table.Column<int>(type: "int", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdUsuario = table.Column<string>(type: "varchar(50)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Salidas", x => x.IdSalida);
-                    table.ForeignKey(
-                        name: "FK_Salidas_Productos_IdProducto",
-                        column: x => x.IdProducto,
-                        principalTable: "Productos",
-                        principalColumn: "IdProducto",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Descuentos",
-                columns: table => new
-                {
-                    IdDescuento = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FechaVencimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Estado = table.Column<bool>(type: "bit", nullable: false),
-                    IdPorcentajeRuleta = table.Column<int>(type: "int", nullable: false),
-                    IdValorRuleta = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Descuentos", x => x.IdDescuento);
-                    table.ForeignKey(
-                        name: "FK_Descuentos_PorcentajesRuleta_IdPorcentajeRuleta",
-                        column: x => x.IdPorcentajeRuleta,
-                        principalTable: "PorcentajesRuleta",
-                        principalColumn: "IdPorcentajeRuleta",
+                        name: "FK_DetalleVentaSolicitudes_SolicitudPersonalizada_IdSolicitudPersonalizada",
+                        column: x => x.IdSolicitudPersonalizada,
+                        principalTable: "SolicitudPersonalizada",
+                        principalColumn: "IdSolicitudPersonalizada",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Descuentos_ValorRuleta_IdValorRuleta",
-                        column: x => x.IdValorRuleta,
-                        principalTable: "ValorRuleta",
-                        principalColumn: "IdValorRuleta",
+                        name: "FK_DetalleVentaSolicitudes_Ventas_IdVenta",
+                        column: x => x.IdVenta,
+                        principalTable: "Ventas",
+                        principalColumn: "IdVenta",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -729,9 +831,34 @@ namespace Back.Migrations
                 column: "IdValorRuleta");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DetalleCarritoDeCompras_IdCarritoDeCompras",
+                table: "DetalleCarritoDeCompras",
+                column: "IdCarritoDeCompras");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DetalleCarritoDeCompras_IdProducto",
                 table: "DetalleCarritoDeCompras",
                 column: "IdProducto");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleEstadosMontajes_IdEstado",
+                table: "DetalleEstadosMontajes",
+                column: "IdEstado");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleEstadosMontajes_IdMontaje",
+                table: "DetalleEstadosMontajes",
+                column: "IdMontaje");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleEstadosSolicitudPersonalizada_IdEstado",
+                table: "DetalleEstadosSolicitudPersonalizada",
+                column: "IdEstado");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleEstadosSolicitudPersonalizada_IdSolicitudPersonalizada",
+                table: "DetalleEstadosSolicitudPersonalizada",
+                column: "IdSolicitudPersonalizada");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DetalleMateriales_IdMaterial",
@@ -749,14 +876,49 @@ namespace Back.Migrations
                 column: "IdProducto");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DetalleProductosSolicitud_IdSolicitudPersonalizada",
+                table: "DetalleProductosSolicitud",
+                column: "IdSolicitudPersonalizada");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetallesProductosMontajes_IdMontaje",
+                table: "DetallesProductosMontajes",
+                column: "IdMontaje");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DetallesProductosMontajes_IdProducto",
                 table: "DetallesProductosMontajes",
                 column: "IdProducto");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DetalleVentaMontajes_IdMontaje",
+                table: "DetalleVentaMontajes",
+                column: "IdMontaje");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleVentaMontajes_IdVenta",
+                table: "DetalleVentaMontajes",
+                column: "IdVenta");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DetalleVentaProductos_IdProducto",
                 table: "DetalleVentaProductos",
                 column: "IdProducto");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleVentaProductos_IdVenta",
+                table: "DetalleVentaProductos",
+                column: "IdVenta");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleVentaSolicitudes_IdSolicitudPersonalizada",
+                table: "DetalleVentaSolicitudes",
+                column: "IdSolicitudPersonalizada");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleVentaSolicitudes_IdVenta",
+                table: "DetalleVentaSolicitudes",
+                column: "IdVenta");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Entradas_IdProducto",
@@ -774,9 +936,34 @@ namespace Back.Migrations
                 column: "IdProducto");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Productos_IdCategoria",
+                table: "Productos",
+                column: "IdCategoria");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RespuestasMontajes_IdMontaje",
+                table: "RespuestasMontajes",
+                column: "IdMontaje");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RespuestasSolicitudesPersonalizadas_IdSolicitudPersonalizada",
+                table: "RespuestasSolicitudesPersonalizadas",
+                column: "IdSolicitudPersonalizada");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Salidas_IdProducto",
                 table: "Salidas",
                 column: "IdProducto");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ventas_IdDescuento",
+                table: "Ventas",
+                column: "IdDescuento");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ventas_IdIva",
+                table: "Ventas",
+                column: "IdIva");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -795,15 +982,6 @@ namespace Back.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "CarritoDeCompras");
-
-            migrationBuilder.DropTable(
-                name: "Categorias");
-
-            migrationBuilder.DropTable(
-                name: "Descuentos");
 
             migrationBuilder.DropTable(
                 name: "DetalleCarritoDeCompras");
@@ -836,16 +1014,7 @@ namespace Back.Migrations
                 name: "Entradas");
 
             migrationBuilder.DropTable(
-                name: "Estados");
-
-            migrationBuilder.DropTable(
                 name: "Imagenes");
-
-            migrationBuilder.DropTable(
-                name: "Iva");
-
-            migrationBuilder.DropTable(
-                name: "Montajes");
 
             migrationBuilder.DropTable(
                 name: "PrecioProductos");
@@ -860,28 +1029,46 @@ namespace Back.Migrations
                 name: "Salidas");
 
             migrationBuilder.DropTable(
-                name: "SolicitudPersonalizada");
-
-            migrationBuilder.DropTable(
-                name: "Ventas");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "PorcentajesRuleta");
+                name: "CarritoDeCompras");
 
             migrationBuilder.DropTable(
-                name: "ValorRuleta");
+                name: "Estados");
 
             migrationBuilder.DropTable(
                 name: "Materiales");
 
             migrationBuilder.DropTable(
+                name: "Ventas");
+
+            migrationBuilder.DropTable(
+                name: "Montajes");
+
+            migrationBuilder.DropTable(
+                name: "SolicitudPersonalizada");
+
+            migrationBuilder.DropTable(
                 name: "Productos");
+
+            migrationBuilder.DropTable(
+                name: "Descuentos");
+
+            migrationBuilder.DropTable(
+                name: "Iva");
+
+            migrationBuilder.DropTable(
+                name: "Categorias");
+
+            migrationBuilder.DropTable(
+                name: "PorcentajesRuleta");
+
+            migrationBuilder.DropTable(
+                name: "ValorRuleta");
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Back.Models.Entidades.Solicitudes.Personalizadas
         [Key]
         public int IdDetalleProductosSolicitud { get; set; }
 
-        [Column(TypeName = "varchar(50)"), Required]
+        [Column(TypeName = "nvarchar(450)"), Required]
         public string IdUsuario { get; set; }
 
         [Required]

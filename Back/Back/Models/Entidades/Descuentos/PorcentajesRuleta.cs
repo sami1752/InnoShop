@@ -18,7 +18,7 @@ namespace Back.Models.Entidades.Descuentos
         [Required]
         public bool Estado { get; set; }
 
-        [Column(TypeName = "varchar(50)"), Required]
+        [Column(TypeName = "nvarchar(450)"), Required]
         public string IdUsuario { get; set; }
 
         [Required]

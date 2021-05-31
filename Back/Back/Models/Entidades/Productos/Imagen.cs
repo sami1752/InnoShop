@@ -24,7 +24,7 @@ namespace Back.Models.Entidades.Productos
 
 
 
-        [Column(TypeName = "varchar(50)"), Required]
+        [Column(TypeName = "nvarchar(450)"), Required]
         public string IdUsuario { get; set; }
     }
 }

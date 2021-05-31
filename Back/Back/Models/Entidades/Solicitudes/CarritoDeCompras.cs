@@ -13,7 +13,7 @@ namespace Back.Models.Entidades.Solicitudes
         [Key]
         public int IdCarritoDeCompras { get; set; }
 
-        [Column(TypeName = "varchar(50)"), Required]
+        [Column(TypeName = "nvarchar(450)"), Required]
         public string IdUsuario { get; set; }
 
         [Required]
