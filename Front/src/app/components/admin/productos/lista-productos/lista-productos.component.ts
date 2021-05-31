@@ -24,7 +24,7 @@ export interface UserData {
 })
 export class ListaProductosComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['IdProducto', 'Nombre',  'GarantiaMeses', 'NombreCategoria'];
+  displayedColumns: string[] = ['IdProducto', 'Nombre',  'GarantiaMeses', 'NombreCategoria','Opciones'];
   dataSource: MatTableDataSource<ProductoTabla>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
