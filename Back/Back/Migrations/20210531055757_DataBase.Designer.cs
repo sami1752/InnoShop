@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Back.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20210504145316_ventas")]
-    partial class ventas
+    [Migration("20210531055757_DataBase")]
+    partial class DataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -323,6 +323,31 @@ namespace Back.Migrations
                     b.ToTable("Productos");
                 });
 
+            modelBuilder.Entity("Back.Models.Entidades.Productos.Salida", b =>
+                {
+                    b.Property<int>("IdSalida")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdProducto")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("IdSalida");
+
+                    b.ToTable("Salidas");
+                });
+
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.CarritoDeCompras", b =>
                 {
                     b.Property<int>("IdCarritoDeCompras")
@@ -596,9 +621,6 @@ namespace Back.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("ValorTotal")
-                        .HasColumnType("real");
-
                     b.HasKey("IdMontaje");
 
                     b.ToTable("Montajes");
@@ -630,6 +652,32 @@ namespace Back.Migrations
                     b.HasKey("IdPrecioMontajes");
 
                     b.ToTable("PrecioMontajes");
+                });
+
+            modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.RespuestasMontajes", b =>
+                {
+                    b.Property<int>("IdRespuestaMontajes")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdMontaje")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Respuesta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdRespuestaMontajes");
+
+                    b.ToTable("RespuestasMontajes");
                 });
 
             modelBuilder.Entity("Back.Models.Entidades.Solicitudes.Personalizadas.RespuestasSolicitudesPersonalizadas", b =>
@@ -684,9 +732,6 @@ namespace Back.Migrations
                     b.Property<string>("IdUsuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("ValorTotal")
-                        .HasColumnType("real");
 
                     b.HasKey("IdSolicitudPersonalizada");
 
