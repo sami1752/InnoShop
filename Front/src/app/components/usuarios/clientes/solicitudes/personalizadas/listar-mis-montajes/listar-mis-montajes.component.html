@@ -41,7 +41,7 @@
                               row.Estado == 'Modificada'"><i class="bi bi-pencil-fill"></i> </a>
                 <a [routerLink]="['/solicitudes/detalleM',row.IdMontaje]"
                    class="btn btn-sm btn-outline-info" title="Ver"><i class="bi bi-eye-fill"></i> </a>
-                <a href="solicitudes/respuestasSP/{{row.IdSolicitudPersonalizada}}"
+                <a href="solicitudes/respuestasM/{{row.IdMontaje}}"
                    class="btn btn-sm btn-outline-dark" title="Respuestas"
                    *ngIf="row.Estado != 'Rechazada' && row.Estado != 'Cancelada'">
                   <i class="bi bi-chat-square-dots-fill"></i></a>

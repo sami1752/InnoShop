@@ -1,7 +1,5 @@
 <form class="" [formGroup]="this.usuarioService.formularioRegistroUsuarioAdmin" (ngSubmit)="onSubmit()" style="position:relative">
-
   <input type="hidden" formControlName="Id">
-
   <div class="row">
     <div class="col">
       <label for="name">Nombres <span class="text-danger">**</span></label>
@@ -145,8 +143,10 @@
   <br>
   <div class="mt-10"></div>
   <button type="submit" [disabled]="this.usuarioService.formularioRegistroUsuarioAdmin.invalid"
-          class="os-btn w-50">{{usuarioService.boton}}</button>
-  <button type="button" class="os-btn w-50" (click)="this.usuarioService.formularioRegistroUsuarioAdmin.reset();">
+          class="os-btn w-100">{{usuarioService.boton}}</button>
+  <br>
+  <br>
+  <button type="button" class="os-btn w-100" (click)="this.usuarioService.formularioRegistroUsuarioAdmin.reset();">
     Limpiar
   </button>
 
