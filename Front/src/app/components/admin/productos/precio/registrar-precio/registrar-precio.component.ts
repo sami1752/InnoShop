@@ -4,7 +4,7 @@ import {Usuario} from 'src/app/models/usuario';
 import {ConfiguracionService} from 'src/app/services/configuracion.service';
 import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-registrar-precio',
   templateUrl: './registrar-precio.component.html',
@@ -13,7 +13,9 @@ import {UsuarioService} from 'src/app/services/usuario.service';
 export class RegistrarPrecioComponent implements OnInit {
 
   constructor(public usuarioService: UsuarioService, private router: Router,
-              public productoService: ProductoService, public configuracion: ConfiguracionService) {
+              public productoService: ProductoService,
+              public configuracion: ConfiguracionService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -27,19 +29,17 @@ export class RegistrarPrecioComponent implements OnInit {
         this.productoService.precio.IdUsuario = (res as Usuario).Id;
         this.productoService.registroPrecio().subscribe(
           (respuesta: any) => {
-            alert(respuesta.mensaje);
-            console.log(respuesta.mensaje);
+            this.toastr.success(respuesta.mensaje);
             this.productoService.formularioRegistroPrecio.reset();
             this.productoService.FormularioPrecio = false;
             this.productoService.listarPrecios(this.productoService.precio.IdProducto);
             this.productoService.buscarProductoIdDetalle(this.productoService.precio.IdProducto);
           }, error => {
-            alert(error);
-            console.log(error);
+            this.toastr.error('Ha ocurrido un error');
           });
       },
       err => {
-        console.log(err);
+        this.toastr.error('Ha ocurrido un error al buscar usuario');
       }
     );
   }

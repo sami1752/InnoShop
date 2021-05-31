@@ -14,6 +14,7 @@ import {
 import {
   UsuarioService
 } from 'src/app/services/usuario.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -22,7 +23,10 @@ import {
 })
 export class RegistroUsuarioComponent implements OnInit {
 
-  constructor(private router: Router, public usuarioService: UsuarioService, public configuracion: ConfiguracionService) {
+  constructor(private router: Router,
+              public usuarioService: UsuarioService,
+              public configuracion: ConfiguracionService,
+              private toastr: ToastrService) {
   }
 
   listaTiposDoc = [{
@@ -49,17 +53,17 @@ export class RegistroUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   registro(): void {
     this.usuarioService.uca = true;
     this.usuarioService.registrarUsuarioAdmin().subscribe(
       (respuesta: any) => {
-        alert('exito');
+        this.toastr.success(respuesta);
         this.usuarioService.formularioRegistroUsuarioAdmin.reset();
         this.usuarioService.listarUsuarios();
         window.location.reload();
-      },
-      err => console.log(err));
+      }, err => {
+        this.toastr.error('Ha ocurrido un error');
+      });
   }
 
   actualizacion(): void {
@@ -67,17 +71,17 @@ export class RegistroUsuarioComponent implements OnInit {
       (respuesta: any) => {
         if (respuesta.Succeeded) {
           this.usuarioService.formularioRegistroUsuarioAdmin.reset();
-          alert('Actualizacion Exitosa');
+          this.toastr.success('Actualización exitosa');
           window.location.reload();
           this.usuarioService.listarUsuarios();
         } else {
           respuesta.Errors.forEach(element => {
             switch (element.Code) {
               case 'DuplicateUserName':
-                alert('Email Existente en la base de datos');
+                this.toastr.error('Email existente en la base de datos');
                 break;
               default:
-                alert('error');
+                this.toastr.error('Ha ocurrido un error');
                 break;
             }
           });
@@ -90,7 +94,6 @@ export class RegistroUsuarioComponent implements OnInit {
     if (this.usuarioService.usuario.Id == null ||
       this.usuarioService.usuario.Id === '') {
       this.registro();
-      console.log(this.usuarioService.usuario);
     } else {
       this.actualizacion();
     }

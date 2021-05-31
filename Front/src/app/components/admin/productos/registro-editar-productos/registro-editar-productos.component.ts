@@ -17,6 +17,7 @@ import {
 import {
   UsuarioService
 } from 'src/app/services/usuario.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registro-editar-productos',
@@ -27,7 +28,8 @@ export class RegistroEditarProductosComponent implements OnInit {
   // @ViewChild(ListaProductosComponent) hijo: ListaProductosComponent;
   constructor(public usuarioService: UsuarioService, private router: Router,
               public productoService: ProductoService,
-              public configuracion: ConfiguracionService) {
+              public configuracion: ConfiguracionService,
+              private toastr: ToastrService) {
   }
   listaTiposPuerta = [{
     Tipo: 'Bisagra'
@@ -72,11 +74,11 @@ export class RegistroEditarProductosComponent implements OnInit {
         this.productoService.producto.IdCategoria = 3;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
+            this.toastr.success('Registro exitoso');
             window.location.reload();
             this.productoService.formularioRegistroProductos.reset();
           }, error => {
-            alert(error);
-            console.log(error);
+            this.toastr.error('Ha ocurrido un error');
           });
       },
       err => {
@@ -91,13 +93,12 @@ export class RegistroEditarProductosComponent implements OnInit {
     this.productoService.actualizacionProducto().subscribe(
       (respuesta: any) => {
         this.productoService.formularioRegistroProductos.reset();
-        alert('Actualizacion Exitosa');
+        this.toastr.success('Registro exitoso');
         window.location.reload();
         this.productoService.CampoPrecio = true;
         this.productoService.listarProducto();
       }, error => {
-        alert(error);
-        console.log(error);
+        this.toastr.error('Ha ocurrido un error');
       });
   }
 

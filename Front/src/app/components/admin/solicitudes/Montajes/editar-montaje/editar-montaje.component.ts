@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SolicitudesPersonalizadasService} from '../../../../../services/solicitudes-personalizadas.service';
 import {UsuarioService} from '../../../../../services/usuario.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-editar-montaje',
   templateUrl: './editar-montaje.component.html',
@@ -13,13 +13,13 @@ export class EditarMontajeComponent implements OnInit {
   constructor(public router: Router,
               public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
               public usuarioService: UsuarioService,
-              private rutaActiva: ActivatedRoute) {
+              private rutaActiva: ActivatedRoute,
+              private toastr: ToastrService) {
   }
 
   id: number = this.rutaActiva.snapshot.params.IdMontaje;
 
   ngOnInit(): void {
-    alert(this.id);
     this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
   }
 
@@ -30,13 +30,11 @@ export class EditarMontajeComponent implements OnInit {
       .EditarMontajes()
       .subscribe(
         (respuesta: any) => {
-          this.router.navigate(['Admin/detalleSP/',
-            this.solicitudesPersonalizadasService.Montajes.IdMontaje]);
-          alert('Actualizacion Exitosa');
+          this.router.navigate(['Admin/detalleSP/', this.solicitudesPersonalizadasService.Montajes.IdMontaje]);
+          this.toastr.success('Edición exitosa');
         },
         (error) => {
-          alert(error);
-          console.log(error);
+          this.toastr.error('Ha ocurrido un error');
         }
       );
   }

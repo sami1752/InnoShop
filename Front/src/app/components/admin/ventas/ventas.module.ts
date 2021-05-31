@@ -11,17 +11,21 @@ import {DetalleVentaCompletoComponent} from './detalle-venta-completo/detalle-ve
 import {FinalizarCompraComponent} from '../../usuarios/clientes/solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
 import {NgxPayPalModule} from 'ngx-paypal';
 import {ClientesModule} from '../../usuarios/clientes/clientes.module';
-import { HistorialComprasComponent } from 'src/app/components/usuarios/clientes/solicitudes/gestion-compras/historial-compras/historial-compras.component';
-import { GestionComprasComponent } from 'src/app/components/usuarios/clientes/solicitudes/gestion-compras/gestion-compras.component';
+import {HistorialComprasComponent} from 'src/app/components/usuarios/clientes/solicitudes/gestion-compras/historial-compras/historial-compras.component';
+import {GestionComprasComponent} from 'src/app/components/usuarios/clientes/solicitudes/gestion-compras/gestion-compras.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatSortModule} from '@angular/material/sort';
-import {MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 
 
+// @ts-ignore
+// @ts-ignore
 @NgModule({
   declarations: [
     ListarVentasComponent,
@@ -33,22 +37,41 @@ import { MatSelectModule } from '@angular/material/select';
     HistorialComprasComponent,
     GestionComprasComponent
   ],
-    imports: [
-      CommonModule,
-      AppRoutingModule,
-      FormsModule,
-      ReactiveFormsModule,
-      HttpClientModule,
-      NgxPayPalModule,
-      ClientesModule,
-      MatFormFieldModule,
-      MatTableModule,
-      MatPaginatorModule,
-      DragDropModule,
-      MatSortModule,
-      MatInputModule,
-      MatSelectModule
-    ]
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPayPalModule,
+    ClientesModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    DragDropModule,
+    MatSortModule,
+    MatInputModule,
+    MatSelectModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      closeButton: false,
+      debug: false,
+      newestOnTop: false,
+      progressBar: true,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      onclick: null,
+      showDuration: 300,
+      hideDuration: 1000,
+      timeOut: 2000,
+      extendedTimeOut: 1000,
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut'
+    }), // ToastrModule added
+  ]
 })
 export class VentasModule {
 }
