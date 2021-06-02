@@ -3,9 +3,10 @@ import {FormGroup, FormControl} from '@angular/forms';
 import {DetalleVentas} from '../../../../../models/Ventas/detalleventas';
 import {HttpClient} from '@angular/common/http';
 import {ConfiguracionService} from '../../../../../services/configuracion.service';
-import {ReporteSPM} from '../../../../../models/Reportes/reporte-spm';
+import {DATA_BAR_CHAR, ReporteSPM} from '../../../../../models/Reportes/reporte-spm';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import {IBarChart} from "../../../../../models/Reportes/charts.interface";
 
 @Component({
   selector: 'app-reportes-sp',
@@ -13,6 +14,24 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./reportes-sp.component.css']
 })
 export class ReportesSPComponent implements OnInit {
+  data: IBarChart[];
+
+
+  view: any[] = [700, 400];
+
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'SOLICITUDES PERSONALIZADAS';
+  showYAxisLabel = true;
+  yAxisLabel = 'CANTIDAD';
+
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
 
   range = new FormGroup({
     start: new FormControl(),
@@ -20,6 +39,7 @@ export class ReportesSPComponent implements OnInit {
   });
 
   ReporteE: ReporteSPM;
+Cotizada=0;
 
   constructor(private http: HttpClient,
               private configuracion: ConfiguracionService) {
@@ -60,10 +80,24 @@ export class ReportesSPComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.data=DATA_BAR_CHAR;
     this.http.get(this.configuracion.rootURL +
       '/Reportes/Solicitudes/0001-01-01 00:00:00.0000000/0001-01-01 00:00:00.0000000').toPromise().then(res => {
       this.ReporteE = res as ReporteSPM;
+
+
+
     });
+    this.data.push({
+      name:'Cotizada',
+      value: this.Cotizada,
+      extra:{
+        code:'co'
+      }
+    })
+
+
   }
+
 
 }

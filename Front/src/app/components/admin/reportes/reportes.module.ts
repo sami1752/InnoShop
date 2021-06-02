@@ -9,6 +9,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 
 
 
@@ -25,7 +26,8 @@ import {RouterModule} from '@angular/router';
     MatDatepickerModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    RouterModule
+    RouterModule,
+    NgxChartsModule
   ]
 })
 export class ReportesModule { }

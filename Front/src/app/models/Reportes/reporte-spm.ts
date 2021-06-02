@@ -1,3 +1,5 @@
+import {IBarChart} from "./charts.interface";
+
 export interface ReporteSPM {
   Cotizada: number;
   Devuelta: number;
@@ -13,3 +15,35 @@ export interface ReporteSPM {
   TotalVendido: number;
   Entregada: number;
 }
+export const DATA_BAR_CHAR:IBarChart[]=[
+  {
+    name: "Germany",
+    value: 15,
+    extra: {
+      code: "de"
+    }
+  },
+  {
+    name: "United States",
+    value: 8,
+    extra: {
+      code: "us"
+    }
+  },
+  {
+    name: "France",
+    value: 3,
+    extra: {
+      code: "fr"
+    }
+  },
+  {
+    name: "United Kingdom",
+    value: 10,
+    extra: {
+      code: "uk"
+    }
+  }
+
+
+]
