@@ -31,6 +31,9 @@ export class ListarValorRuletaComponent implements AfterViewInit {
   constructor(public descuentosService: DescuentosService,
               private http: HttpClient,
               private configuracion: ConfiguracionService) {
+    this.listarValorRuleta();
+  }
+  public listarValorRuleta(): void{
     this.http
       .get(this.configuracion.rootURL + '/Descuentos/ValoresRuleta')
       .toPromise()

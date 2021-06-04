@@ -270,8 +270,9 @@ export class ProductoService {
       .then(res => this.listaCategorias = res as Categoria[]);
   }
 
-  eliminarProducto(producto: Producto): any {
-    producto.Estado = false;
+  eliminarProducto(producto): any {
+    producto.Estado = !producto.Estado;
+    console.log(producto);
     return this.http.put(this.configuracion.rootURL + '/Productos/Editar', producto);
   }
 

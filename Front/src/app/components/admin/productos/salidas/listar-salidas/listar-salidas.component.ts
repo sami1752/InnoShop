@@ -34,7 +34,7 @@ export class ListarSalidasComponent implements AfterViewInit {
   }
 
 
-  listarSalidas(idProducto): void {
+  public listarSalidas(idProducto): void {
     this.http.get(this.configuracion.rootURL + '/Ventas/Salidas/' + idProducto)
       .toPromise()
       .then(

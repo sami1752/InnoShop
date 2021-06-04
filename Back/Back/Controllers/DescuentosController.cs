@@ -58,6 +58,7 @@ namespace Back.Controllers
         {
             try
             {
+                valorRuleta.FechaInicio = DateTime.Now;
                 IEnumerable<ValorRuleta> list  = await _context.ListarValoresRuleta();
                 if (list.Count() == 0)
                 {
@@ -65,6 +66,7 @@ namespace Back.Controllers
                 }
                 else
                 {
+                    
                     await _context.EditarValorRuleta(valorRuleta.FechaInicio);
                     await _context.AgregarPuntuacionNueva(valorRuleta);
                 }

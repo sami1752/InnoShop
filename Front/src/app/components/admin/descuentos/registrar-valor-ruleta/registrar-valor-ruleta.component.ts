@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DescuentosService} from 'src/app/services/descuentos.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
+import {ListarValorRuletaComponent} from '../listar-valor-ruleta/listar-valor-ruleta.component';
 
 @Component({
   selector: 'app-registrar-valor-ruleta',
@@ -9,7 +10,9 @@ import {UsuarioService} from 'src/app/services/usuario.service';
 })
 export class RegistrarValorRuletaComponent implements OnInit {
 
-  constructor(public descuentosService: DescuentosService, public usuarioService: UsuarioService) {
+  constructor(public descuentosService: DescuentosService,
+              public usuarioService: UsuarioService,
+              public listValor: ListarValorRuletaComponent) {
   }
 
   ngOnInit(): void {
@@ -22,7 +25,7 @@ export class RegistrarValorRuletaComponent implements OnInit {
         this.descuentosService.RegistrarValorRuleta().subscribe(
           (res: any) => {
             alert(res.mensaje);
-            this.descuentosService.listarValoresRuleta();
+            this.listValor.listarValorRuleta();
             this.descuentosService.ValorRuletaActual();
           }, err => {
             alert('error');

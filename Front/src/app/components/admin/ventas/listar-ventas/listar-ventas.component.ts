@@ -32,6 +32,11 @@ export class ListarVentasComponent implements AfterViewInit {
   constructor(public ventasService: VentasService,
               private http: HttpClient,
               private configuracion: ConfiguracionService) {
+    this.listarVentas();
+  }
+  ngAfterViewInit(): void {
+  }
+  listarVentas(): void {
     this.http
       .get(this.configuracion.rootURL + '/Ventas')
       .toPromise()
@@ -42,8 +47,6 @@ export class ListarVentasComponent implements AfterViewInit {
           this.dataSource.sort = this.sort;
         }
       );
-  }
-  ngAfterViewInit(): void {
   }
 
   applyFilter(event: Event): void {
