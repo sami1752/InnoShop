@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/Back/.vs/Back/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/Back/.vs/Back/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/.vs/Back/config/applicationhost.config" beforeDir="false" afterPath="$PROJECT_DIR$/Back/.vs/Back/config/applicationhost.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/.vs/Back/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/Back/.vs/Back/v16/.suo" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Back/Back/Controllers/SolicitudesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/Controllers/SolicitudesController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/20210416120235_Reztablecimiento migraciones.Designer.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/20210416120235_Reztablecimiento migraciones.cs" beforeDir="false" />
@@ -63,6 +64,15 @@
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.StaticWebAssets.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.exe" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/20210531094521_DB.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/20210531094521_DB.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/20210531094833_Relaciones Usuario.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/20210531094833_Relaciones Usuario.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.StaticWebAssets.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.dll" afterDir="false" />
+>>>>>>> 0868f60ebcfd5738fa4fe4107dace35f916ee64d
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.runtimeconfig.dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.runtimeconfig.dev.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/appsettings.json" afterDir="false" />
@@ -70,18 +80,22 @@
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Back.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Back.csproj.nuget.dgspec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Back.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Back.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csproj.CoreCompileInputs.cache" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csprojAssemblyReference.cache" afterDir="false" />
+=======
+>>>>>>> 0868f60ebcfd5738fa4fe4107dace35f916ee64d
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/apphost.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/ref/Back.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/ref/Back.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/staticwebassets/Back.StaticWebAssets.Manifest.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/staticwebassets/Back.StaticWebAssets.Manifest.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/staticwebassets/Back.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/staticwebassets/Back.StaticWebAssets.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/project.nuget.cache" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Front/node_modules/__ngcc_entry_points__.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Front/node_modules/browserslist/CHANGELOG.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Front/node_modules/browserslist/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Front/node_modules/browserslist/README.md" afterDir="false" />
@@ -173,6 +187,8 @@
       <change beforePath="$PROJECT_DIR$/Front/src/app/components/usuarios/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/usuarios/login/login.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Front/src/app/models/Reportes/reporte-spm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/models/Reportes/reporte-spm.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Front/src/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/assets/css/style.css" afterDir="false" />
+=======
+>>>>>>> 0868f60ebcfd5738fa4fe4107dace35f916ee64d
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
