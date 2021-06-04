@@ -17,7 +17,7 @@ namespace Back.Models.Entidades.Productos
         [ForeignKey("Productos")]
         public int IdProducto { get; set; }
         [ForeignKey("IdProducto")]
-        [Required]
+        
         public virtual Producto Productos { get; set; }
 
 

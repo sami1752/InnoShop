@@ -1,57 +1,126 @@
-<div align="center" id="htmlData">
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Enter a date range</mat-label>
-    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-      <input matStartDate formControlName="start" placeholder="Desde">
-      <input matEndDate formControlName="end" placeholder="Hasta" (dateInput)="Reporte()">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
+<section class="content" >
+  <div class="content-wrapper"  >
+    <br>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <section class="col-lg-4 connectedSortable">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <button class="btn font-weight-light" style="float:left" (click)="downloadPDF()"><i class="bi bi-file-earmark-pdf-fill text-danger"></i>Descargar</button>
 
-    <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Fecha Inicial Erronea</mat-error>
-    <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Fecha Final Erronea</mat-error>
-  </mat-form-field>
-  <div>
-    <p>Cotizada: {{ReporteE.Cotizada}} ---- Aceptada: {{ReporteE.Aceptada}}</p>
-    <p>Cancelada: {{ReporteE.Cancelada}} ---- Devuelta: {{ReporteE.Devuelta}}</p>
-    <p>En Proceso De Cotizacion: {{ReporteE.EnProcesoDeCotizacion}} ---- En Proceso De
-      Fabricacion: {{ReporteE.EnProcesoDeFabricacion}}</p>
-    <p>Entregada: {{ReporteE.Entregada}} ---- Modificada: {{ReporteE.Modificada}}</p>
-    <p>Pagada: {{ReporteE.Pagada}} ---- Rechazada: {{ReporteE.Rechazada}}</p>
-    <p>Terminada: {{ReporteE.Terminada}} ---- TotalSolicitudes: {{ReporteE.TotalSolicitudes}}</p>
-    <p>TotalVendido: {{ReporteE.TotalVendido}}</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <div>
+                    <mat-form-field appearance="fill" >
+                      <mat-label>Rango de fecha</mat-label>
+                      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                        <input matStartDate formControlName="start" placeholder="Desde">
+                        <input matEndDate formControlName="end" placeholder="Hasta" (dateInput)="Reporte()">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #picker></mat-date-range-picker>
+
+                      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Fecha Inicial Erronea</mat-error>
+                      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Fecha Final Erronea</mat-error>
+                    </mat-form-field>
+                  </div>
+
+                  <div >
+                    <table class="table table-bordered font-weight-light">
+                      <tr>
+                        <td>Cotizada:</td>
+                        <td align="center">{{ReporteE.Cotizada}}</td>
+                      </tr>
+                      <tr>
+                        <td>Aceptada:</td>
+                        <td align="center">{{ReporteE.Aceptada}}</td>
+                       </tr>
+                      <tr>
+                        <td>Cancelada:</td>
+                        <td align="center">{{ReporteE.Cancelada}}</td>
+                      </tr>
+                      <tr>
+                        <td>Devuelta:</td>
+                        <td align="center">{{ReporteE.Devuelta}}</td>
+                      </tr>
+                      <tr>
+                        <td>En Proceso De Cotizacion:</td>
+                        <td align="center"> {{ReporteE.EnProcesoDeCotizacion}}</td>
+                      </tr>
+                      <tr>
+                        <td>En Proceso De Fabricacion:</td>
+                        <td align="center">{{ReporteE.EnProcesoDeFabricacion}}</td>
+                      </tr>
+                      <tr>
+                        <td>Entregada:</td>
+                        <td align="center">{{ReporteE.Entregada}}</td>
+                      </tr>
+                      <tr>
+                        <td>Modificada:</td>
+                        <td align="center">{{ReporteE.Modificada}}</td>
+                      </tr>
+                      <tr>
+                        <td>Pagada:</td>
+                        <td align="center">{{ReporteE.Pagada}}</td>
+                      </tr>
+                      <tr>
+                        <td>Rechazada:</td>
+                        <td align="center">{{ReporteE.Rechazada}}</td>
+                      </tr>
+                      <tr>
+                        <td>Terminada:</td>
+                        <td align="center">{{ReporteE.Terminada}} </td>
+                      </tr>
+                      <tr>
+                        <td>TotalSolicitudes:</td>
+                        <td align="center">{{ReporteE.TotalSolicitudes}}</td>
+                      </tr>
+                      <tr>
+                        <td class="bg-success">TotalVendido:</td>
+                        <td class="bg-success" align="center">{{ReporteE.TotalVendido}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="col-lg-8 connectedSortable" id="htmlData">
+            <div class="card" align="center">
+              <div class="card-header">
+                <div class="card-title colortxt font-weight-light">
+                  REPORTE SOLICITUDES PERSONALIZADAS
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <ngx-charts-bar-vertical
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="data"
+                    [gradient]="gradient"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabel"
+                    [yAxisLabel]="yAxisLabel" [noBarWhenZero]="noBarWhenZero"
+                    [yScaleMin]="yScaleMin" [trimXAxisTicks]="trimXAxisTicks"
+                    [trimYAxisTicks]="trimYAxisTicks" [rotateXAxisTicks]="rotateXAxisTicks" [legendTitle]="legendTitle">
+                  </ngx-charts-bar-vertical>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+    </section>
   </div>
-  <br>
-  <h3>INNOSHOP REPORTE SOLICITUDES PERZONALIZADAS</h3>
-  <br>
-  <br>
-</div>
-<div align="center">
-  <button class="btn btn-danger" (click)="downloadPDF()">PDF</button>
-  <ngx-charts-bar-vertical
-    [view]="view"
-    [scheme]="colorScheme"
-    [results]="data"
-    [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [legend]="showLegend"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel">
-  </ngx-charts-bar-vertical>
-</div>
-<br>
-<br>
-<br>
-<br>
-
+</section>
 
