@@ -59,14 +59,15 @@ export class UsuarioService {
 
   formularioRegistroUsuario = this.formBuilder.group({
     Id: [''],
-    Nombres: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
-    Apellidos: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
-    Email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
+    Nombres: ['', [Validators.required, Validators.maxLength(40), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Apellidos: ['', [Validators.required, Validators.maxLength(40), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Email: ['', [Validators.required, Validators.email]],
     TipoDocumento: ['', [Validators.required]],
-    NumDocumento: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(this.configuracion.exRegularNumeros)]],
+    NumDocumento: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(this.configuracion.exRegularNumeros)]],
     Sexo: ['', [Validators.required]],
-    Telefono: ['', [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros)]],
-    Contrasena: ['', [Validators.required, Validators.maxLength(15)]],
+    Telefono: ['', [Validators.required, Validators.minLength(7),
+      Validators.maxLength(15), Validators.pattern(this.configuracion.exRegularNumeros)]],
+    Contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
     Direccion: ['', [Validators.required, Validators.maxLength(50)]],
     ConfirmarContrasena: ['', [Validators.required]]
   }, {
@@ -76,43 +77,43 @@ export class UsuarioService {
 
   formularioRegistroUsuarioAdmin = this.formBuilder.group({
     Id: [''],
-    Nombres: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
-    Apellidos: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
-    Email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
+    Nombres: ['', [Validators.required, Validators.maxLength(40), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Apellidos: ['', [Validators.required, Validators.maxLength(40), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Email: ['', [Validators.required, Validators.email]],
     TipoDocumento: ['', [Validators.required]],
-    NumDocumento: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(this.configuracion.exRegularNumeros)]],
+    NumDocumento: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(this.configuracion.exRegularNumeros)]],
     Sexo: ['', [Validators.required]],
-    Telefono: ['', [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros)]],
+    Telefono: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(this.configuracion.exRegularNumeros)]],
     Direccion: ['', [Validators.required, Validators.maxLength(50)]],
     IdRol: ['', [Validators.required]]
   });
 
   formularioRegistroEdicionDatos = this.formBuilder.group({
     Id: [''],
-    Nombres: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
-    Apellidos: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(this.configuracion.exRegularLetras)]],
-    Email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
+    Nombres: ['', [Validators.required, Validators.maxLength(40), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Apellidos: ['', [Validators.required, Validators.maxLength(40), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Email: ['', [Validators.required, Validators.email]],
     TipoDocumento: ['', [Validators.required]],
-    NumDocumento: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(this.configuracion.exRegularNumeros)]],
+    NumDocumento: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(this.configuracion.exRegularNumeros)]],
     Sexo: ['', [Validators.required]],
-    Telefono: ['', [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros)]],
+    Telefono: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(this.configuracion.exRegularNumeros)]],
     Direccion: ['', [Validators.required, Validators.maxLength(50)]],
     IdRol: ['', [Validators.required]]
   });
 
   formularioLogin = this.formBuilder.group({
-    Email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
-    Contrasena: ['', [Validators.required, Validators.maxLength(15)]]
+    Email: ['', [Validators.required, Validators.email]],
+    Contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
   });
 
   formularioRecuperacion = this.formBuilder.group({
-    Email: ['', [Validators.required]]
+    Email: ['', [Validators.required, Validators.email]]
   });
 
   formularioVerificacionRecuperacionCuenta = this.formBuilder.group({
     Token: ['', [Validators.required]],
     Id: ['', [Validators.required]],
-    Contrasena: ['', [Validators.required]],
+    Contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
     ConfirmarContrasena: ['', [Validators.required]]
   }, {
     validator: this.compararContrasena.bind(this)
@@ -120,8 +121,8 @@ export class UsuarioService {
 
   formularioCambioContrasena = this.formBuilder.group({
     Email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
-    ContrasenaAntigua: ['', [Validators.required], Validators.maxLength(15)],
-    Contrasena: ['', Validators.required, Validators.maxLength(15)],
+    ContrasenaAntigua: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
+    Contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
     ConfirmarContrasena: ['', [Validators.required]]
   }, {
     validator: this.compararContrasena.bind(this)

@@ -14,7 +14,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 @NgModule({
   declarations: [
     ListarPorcentajesComponent,
@@ -34,7 +35,9 @@ import { MatSelectModule } from '@angular/material/select';
     DragDropModule,
     MatSortModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   exports: [GestionRuletaComponent]
 })

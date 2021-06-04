@@ -31,15 +31,18 @@ export class ListarPorcentajesComponent implements AfterViewInit {
   constructor(public descuentosService: DescuentosService,
               private http: HttpClient,
               private configuracion: ConfiguracionService) {
-    this.http.get(this.configuracion.rootURL + '/Descuentos/Porcentajes').toPromise().then(
-        (res) => {
-          this.dataSource = new MatTableDataSource(res as PorcentajesRuleta[]);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        }
-      );
+    this.listarPorcen();
   }
   ngAfterViewInit(): void {
+  }
+  public listarPorcen(): void{
+    this.http.get(this.configuracion.rootURL + '/Descuentos/Porcentajes').toPromise().then(
+      (res) => {
+        this.dataSource = new MatTableDataSource(res as PorcentajesRuleta[]);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    );
   }
 
   applyFilter(event: Event): void {

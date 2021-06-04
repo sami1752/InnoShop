@@ -3,6 +3,7 @@ import {Usuario} from 'src/app/models/usuario';
 import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import {ListarEntradasComponent} from '../listar-entradas/listar-entradas.component';
 @Component({
   selector: 'app-registrar-entrada',
   templateUrl: './registrar-entrada.component.html',
@@ -12,7 +13,8 @@ export class RegistrarEntradaComponent implements OnInit {
 
   constructor(public productoService: ProductoService,
               public usuarioService: UsuarioService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              public listaEntradas: ListarEntradasComponent) {
   }
 
   ngOnInit(): void {
@@ -28,10 +30,10 @@ export class RegistrarEntradaComponent implements OnInit {
         this.productoService.RegistroEntrada().subscribe(
           (respuesta: any) => {
             this.toastr.success('Registro exitoso');
+            this.listaEntradas.listarEntradas(this.productoService.detalleProducto.IdProducto);
             this.productoService.formularioRegistroEntrada.reset();
             this.productoService.formularioEntrada = false;
             this.productoService.listarEntradas(this.productoService.entrada.IdProducto);
-            window.location.reload();
           }, error => {
             this.toastr.error('Ha ocurrido un error');
           });

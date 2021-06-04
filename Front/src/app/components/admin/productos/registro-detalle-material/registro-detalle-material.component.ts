@@ -3,6 +3,7 @@ import {Usuario} from 'src/app/models/usuario';
 import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import {ListarDetalleMaterialComponent} from '../listar-detalle-material/listar-detalle-material.component';
 @Component({
   selector: 'app-registro-detalle-material',
   templateUrl: './registro-detalle-material.component.html',
@@ -12,7 +13,8 @@ export class RegistroDetalleMaterialComponent implements OnInit {
 
   constructor(public productoService: ProductoService,
               public usuarioService: UsuarioService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              public listarDMaterial: ListarDetalleMaterialComponent) {
   }
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class RegistroDetalleMaterialComponent implements OnInit {
         this.productoService.RegistrarDetalleMaterial().subscribe(
           (respuesta: any) => {
             this.toastr.success('Registro exitoso');
-            window.location.reload();
+            this.listarDMaterial.listarMateriales(this.productoService.detalleProducto.IdProducto);
           }, error => {
             this.toastr.error('Ha ocurrido un error');
           });

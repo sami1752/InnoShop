@@ -48,7 +48,6 @@ namespace Back.Models.Entidades.Productos
         [Required]
         [ForeignKey("Categorias")]
         public int IdCategoria { get; set; }
-        [Required]
         [ForeignKey("IdCategoria")]
         public virtual Categoria Categorias { get; set; }
 

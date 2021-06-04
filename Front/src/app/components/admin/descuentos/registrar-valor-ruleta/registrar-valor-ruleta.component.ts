@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DescuentosService} from 'src/app/services/descuentos.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
-
+import {ListarValorRuletaComponent} from '../listar-valor-ruleta/listar-valor-ruleta.component';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-registrar-valor-ruleta',
   templateUrl: './registrar-valor-ruleta.component.html',
@@ -9,7 +10,10 @@ import {UsuarioService} from 'src/app/services/usuario.service';
 })
 export class RegistrarValorRuletaComponent implements OnInit {
 
-  constructor(public descuentosService: DescuentosService, public usuarioService: UsuarioService) {
+  constructor(public descuentosService: DescuentosService,
+              public usuarioService: UsuarioService,
+              public listValor: ListarValorRuletaComponent,
+              public toast: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -21,8 +25,8 @@ export class RegistrarValorRuletaComponent implements OnInit {
         this.descuentosService.idUsuario = resp.Id;
         this.descuentosService.RegistrarValorRuleta().subscribe(
           (res: any) => {
-            alert(res.mensaje);
-            this.descuentosService.listarValoresRuleta();
+            this.toast.success('Registro exitoso');
+            this.listValor.listarValorRuleta();
             this.descuentosService.ValorRuletaActual();
           }, err => {
             alert('error');

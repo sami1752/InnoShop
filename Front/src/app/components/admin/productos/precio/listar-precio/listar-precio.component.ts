@@ -34,7 +34,7 @@ export class ListarPrecioComponent implements AfterViewInit {
     this.listarPrecios(this.productoService.detalleProducto.IdProducto);
   }
 
-  listarPrecios(idProducto): void {
+  public listarPrecios(idProducto): void {
     console.log(this.productoService.productosTabla);
     this.http.get(this.configuracion.rootURL + '/Productos/listaPrecioProducto/' + idProducto)
       .toPromise()
