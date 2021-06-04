@@ -7960,20 +7960,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ander\\.nuget\\packages\\": {}
+    "C:\\Users\\Tatiana Polo\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ander\\Desktop\\Tatiana\\Proyecto\\INNOSHOP\\InnoShop\\Back\\Back\\Back.csproj",
+      "projectUniqueName": "D:\\SENA\\Proyecto\\InnoShop\\Back\\Back\\Back.csproj",
       "projectName": "Back",
-      "projectPath": "C:\\Users\\ander\\Desktop\\Tatiana\\Proyecto\\INNOSHOP\\InnoShop\\Back\\Back\\Back.csproj",
-      "packagesPath": "C:\\Users\\ander\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ander\\Desktop\\Tatiana\\Proyecto\\INNOSHOP\\InnoShop\\Back\\Back\\obj\\",
+      "projectPath": "D:\\SENA\\Proyecto\\InnoShop\\Back\\Back\\Back.csproj",
+      "packagesPath": "C:\\Users\\Tatiana Polo\\.nuget\\packages\\",
+      "outputPath": "D:\\SENA\\Proyecto\\InnoShop\\Back\\Back\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\ander\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Tatiana Polo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
