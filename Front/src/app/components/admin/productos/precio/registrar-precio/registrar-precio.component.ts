@@ -5,6 +5,7 @@ import {ConfiguracionService} from 'src/app/services/configuracion.service';
 import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import {ListarPrecioComponent} from '../listar-precio/listar-precio.component';
 @Component({
   selector: 'app-registrar-precio',
   templateUrl: './registrar-precio.component.html',
@@ -15,9 +16,9 @@ export class RegistrarPrecioComponent implements OnInit {
   constructor(public usuarioService: UsuarioService, private router: Router,
               public productoService: ProductoService,
               public configuracion: ConfiguracionService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              public compPrecio: ListarPrecioComponent) {
   }
-
   ngOnInit(): void {
     this.productoService.formularioRegistroPrecio.patchValue(this.productoService.precio);
   }
@@ -30,6 +31,7 @@ export class RegistrarPrecioComponent implements OnInit {
         this.productoService.registroPrecio().subscribe(
           (respuesta: any) => {
             this.toastr.success(respuesta.mensaje);
+            this.compPrecio.listarPrecios(this.productoService.detalleProducto.IdProducto);
             this.productoService.formularioRegistroPrecio.reset();
             this.productoService.FormularioPrecio = false;
             this.productoService.listarPrecios(this.productoService.precio.IdProducto);

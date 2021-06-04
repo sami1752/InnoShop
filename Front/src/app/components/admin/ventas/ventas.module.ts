@@ -25,7 +25,6 @@ import {ToastrModule} from 'ngx-toastr';
 
 
 // @ts-ignore
-// @ts-ignore
 @NgModule({
   declarations: [
     ListarVentasComponent,
@@ -54,23 +53,7 @@ import {ToastrModule} from 'ngx-toastr';
     MatSelectModule,
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot({
-      closeButton: false,
-      debug: false,
-      newestOnTop: false,
-      progressBar: true,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-      onclick: null,
-      showDuration: 300,
-      hideDuration: 1000,
-      timeOut: 2000,
-      extendedTimeOut: 1000,
-      showEasing: 'swing',
-      hideEasing: 'linear',
-      showMethod: 'fadeIn',
-      hideMethod: 'fadeOut'
-    }), // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
   ]
 })
 export class VentasModule {

@@ -33,7 +33,7 @@ export class ListarIvaComponent implements AfterViewInit {
               private configuracion: ConfiguracionService) {
     this.listarIva();
   }
-  listarIva(): void {
+  public listarIva(): void {
     this.http.get(this.configuracion.rootURL + '/Productos/ListarIva')
       .toPromise()
       .then(

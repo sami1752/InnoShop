@@ -113,6 +113,8 @@ namespace Back.Models.Servicios
         public async Task<Ventas> AgregarVenta(Ventas venta)
         {
             venta.Fecha = DateTime.Now;
+            var iva = await ObtenerIvaActual();
+            venta.IdIva = iva.IdIva;
             await _context.Ventas.AddAsync(venta);
             await _context.SaveChangesAsync();
             return venta;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Back.Models.Entidades.Productos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,13 +14,19 @@ namespace Back.Models.Entidades.Solicitudes.Personalizadas
         [Key]
         public int IdDetallesProductosMontajes { get; set; }
 
-        [Required]
+        [Column(TypeName = "nvarchar(450)"), Required]
         public string IdUsuario { get; set; }
 
         [Required]
+        [ForeignKey("Montajes")]
         public int IdMontaje { get; set; }
+        [ForeignKey("IdMontaje")]
+        public virtual Montajes Montajes { get; set; }
 
         [Required]
+        [ForeignKey("Productos")]
         public int IdProducto { get; set; }
+        [ForeignKey("IdProducto")]
+        public virtual Producto Productos { get; set; }
     }
 }

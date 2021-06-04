@@ -36,7 +36,7 @@ export class ListarDetalleMaterialComponent implements AfterViewInit {
     this.listarMateriales(this.productoService.detalleProducto.IdProducto);
     this.productoService.listarMateriales();
   }
-  listarMateriales(idProducto): void {
+  public listarMateriales(idProducto): void {
     this.http.get(this.configuracion.rootURL + '/Productos/ListaDetalleMateriales/' + idProducto)
       .toPromise()
       .then(
@@ -63,7 +63,7 @@ export class ListarDetalleMaterialComponent implements AfterViewInit {
       this.productoService.EliminarDetalleMaterial(idDetalle).subscribe(
         res => {
           alert('Se eliminó con exito');
-          window.location.reload();
+          this.listarMateriales(this.productoService.detalleProducto.IdProducto);
         },
         err => {
           console.log(err);

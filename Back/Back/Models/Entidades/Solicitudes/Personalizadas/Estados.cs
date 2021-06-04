@@ -13,10 +13,10 @@ namespace Back.Models.Entidades.Solicitudes.Personalizadas
         [Key]
         public int IdEstado { get; set; }
 
-        [Required]
+        [Column(TypeName = "nvarchar(450)"), Required]
         public string IdUsuario { get; set; }
 
-        [Required]
+        [Column(TypeName = "varchar(60)"), Required]
         public string Estado { get; set; }
     }
 }

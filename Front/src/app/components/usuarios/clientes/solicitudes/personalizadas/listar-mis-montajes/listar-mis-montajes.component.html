@@ -1,7 +1,7 @@
 <div style="display: flex;justify-content: center;align-items: center;" class="mb-10 py-3">
   <div class="card" style="width:80%;  ">
     <div class="card-header">
-      <h1 class="card-title colortxt">
+      <h1 class="card-title colortxt font-weight-light">
         <i class="fas fa-toolbox"></i> MIS MONTAJES
       </h1>
     </div>
@@ -41,7 +41,7 @@
                               row.Estado == 'Modificada'"><i class="bi bi-pencil-fill"></i> </a>
                 <a [routerLink]="['/solicitudes/detalleM',row.IdMontaje]"
                    class="btn btn-sm btn-outline-info" title="Ver"><i class="bi bi-eye-fill"></i> </a>
-                <a href="solicitudes/respuestasSP/{{row.IdSolicitudPersonalizada}}"
+                <a href="solicitudes/respuestasM/{{row.IdMontaje}}"
                    class="btn btn-sm btn-outline-dark" title="Respuestas"
                    *ngIf="row.Estado != 'Rechazada' && row.Estado != 'Cancelada'">
                   <i class="bi bi-chat-square-dots-fill"></i></a>

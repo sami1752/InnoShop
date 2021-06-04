@@ -1,9 +1,8 @@
 
 
-<div class="row">
-  <app-historial-compras  class="col-5"></app-historial-compras>
 
-  <div *ngIf="this.ventasService.desplegarDetalle" class="col-5">
+  <app-historial-compras  ></app-historial-compras>
+
+    <div *ngIf="this.ventasService.desplegarDetalle" >
     <app-detalle-venta-completo></app-detalle-venta-completo>
   </div>
-</div>

@@ -11,9 +11,21 @@ namespace Back.Models.Entidades.Productos
     {
         [Key]
         public int IdDetalleMaterial { get; set; }
+
+        [Required]
+        [ForeignKey("Productos")]
         public int IdProducto { get; set; }
+        [ForeignKey("IdProducto")]
+        public virtual Producto Productos { get; set; }
+
+        [Required]
+        [ForeignKey("Material")]
         public int IdMaterial { get; set; }
-        [Column(TypeName = "varchar(50)"), Required]
+        [ForeignKey("IdMaterial")]
+        public virtual Material Material { get; set; }
+
+
+        [Column(TypeName = "nvarchar(450)"), Required]
         public string IdUsuario { get; set; }
     }
 }

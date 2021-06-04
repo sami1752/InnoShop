@@ -91,11 +91,15 @@ export class RuletaDescuentosComponent implements AfterViewInit {
                 // tslint:disable-next-line:no-shadowed-variable
                 (res: any) => {
                   alert(res.mensaje);
+                  document.getElementById('texto').style.fontWeight = 'light';
+                  document.getElementById('textoicon').style.fontWeight = 'light';
                   this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id);
                   document.getElementById('textoicon').className = 'text-success';
                   document.getElementById('icon_mensaje').className = 'bi bi-patch-check-fill';
                   document.getElementById('textoicon').style.display = 'block';
                   document.getElementById('texto').className = 'text-success';
+                  document.getElementById('texto').style.fontWeight = 'light';
+
                   document.getElementById('texto').textContent = ' ' +
                     'Obtuviste un cupón de' + ' ' + document.getElementById('porcentaje').textContent + '%';
                   this.perfilUsuario.Puntos -= this.descuentosService.valorRuleta.ValorDeRuleta;

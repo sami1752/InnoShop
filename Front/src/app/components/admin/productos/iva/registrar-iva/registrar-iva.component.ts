@@ -5,6 +5,7 @@ import {ConfiguracionService} from 'src/app/services/configuracion.service';
 import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import {ListarIvaComponent} from '../listar-iva/listar-iva.component';
 @Component({
   selector: 'app-registrar-iva',
   templateUrl: './registrar-iva.component.html',
@@ -15,7 +16,8 @@ export class RegistrarIvaComponent implements OnInit {
   constructor(public usuarioService: UsuarioService, private router: Router,
               public productoService: ProductoService,
               public configuracion: ConfiguracionService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              public listaIva: ListarIvaComponent) {
   }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class RegistrarIvaComponent implements OnInit {
         this.productoService.registrarIVA().subscribe(
           (respuesta: any) => {
             this.toastr.success(respuesta.mensaje);
-            window.location.reload();
+            this.listaIva.listarIva();
           }, error => {
             this.toastr.error('Ha ocurrido un error');
             console.log(error);

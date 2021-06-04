@@ -24,7 +24,7 @@ export interface UserData {
 })
 export class ListaProductosComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['IdProducto', 'Nombre',  'GarantiaMeses', 'NombreCategoria'];
+  displayedColumns: string[] = ['IdProducto', 'Nombre',  'GarantiaMeses', 'NombreCategoria', 'Opciones'];
   dataSource: MatTableDataSource<ProductoTabla>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,10 +33,9 @@ export class ListaProductosComponent implements AfterViewInit {
               public productoService: ProductoService,
               private http: HttpClient,
               private configuracion: ConfiguracionService) {
-
+    this.actualizarTablaProductos();
   }
-  actualizarTablaProductos(): void {
-    console.log(this.productoService.productosTabla);
+    public actualizarTablaProductos(): void {
     this.http
       .get(this.configuracion.rootURL + '/Productos')
       .toPromise()
@@ -49,7 +48,6 @@ export class ListaProductosComponent implements AfterViewInit {
       );
   }
   ngAfterViewInit(): void {
-    this.actualizarTablaProductos();
   }
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -63,27 +61,23 @@ export class ListaProductosComponent implements AfterViewInit {
   llenarFormularioProducto(producto: Producto): void {
     this.productoService.CampoPrecio = false;
     this.productoService.formularioRegistroProductos.patchValue(producto);
-    this.productoService.idProducto1 = producto.IdProducto;
-    this.productoService.ListarDetalleMaterial(producto.IdProducto);
   }
 
   eliminarProducto(idProducto): void {
     if (confirm('¿Estás seguro de desactivar el Producto?')) {
       this.productoService.buscarProducto(idProducto).subscribe(
         (res: Producto) => {
-          res.Estado = !res.Estado;
           this.productoService.eliminarProducto(res).subscribe(
             resp => {
-              this.productoService.listarProducto();
-              alert(resp.mensaje);
+              alert('Exitoso');
+              this.actualizarTablaProductos();
             },
             err => {
-              alert(err.code);
+              alert('Error');
             }
           );
-        }, err => { alert('Erros'); }
+        }, err => { alert('Error'); }
       );
-      this.productoService.detalleProducto.Estado = !this.productoService.detalleProducto.Estado;
     }
   }
 

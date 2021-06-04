@@ -18,6 +18,8 @@ import {
   UsuarioService
 } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import {ListaProductosComponent} from '../lista-productos/lista-productos.component';
+import {window} from 'rxjs/operators';
 
 @Component({
   selector: 'app-registro-editar-productos',
@@ -25,7 +27,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./registro-editar-productos.component.css']
 })
 export class RegistroEditarProductosComponent implements OnInit {
-  // @ViewChild(ListaProductosComponent) hijo: ListaProductosComponent;
   constructor(public usuarioService: UsuarioService, private router: Router,
               public productoService: ProductoService,
               public configuracion: ConfiguracionService,
@@ -71,11 +72,11 @@ export class RegistroEditarProductosComponent implements OnInit {
       res => {
         this.productoService.producto = this.productoService.formularioRegistroProductos.value;
         this.productoService.producto.IdUsuario = (res as Usuario).Id;
-        this.productoService.producto.IdCategoria = 3;
+        this.productoService.producto.IdCategoria = 2;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
             this.toastr.success('Registro exitoso');
-            window.location.reload();
+            document.location.reload();
             this.productoService.formularioRegistroProductos.reset();
           }, error => {
             this.toastr.error('Ha ocurrido un error');
@@ -94,9 +95,9 @@ export class RegistroEditarProductosComponent implements OnInit {
       (respuesta: any) => {
         this.productoService.formularioRegistroProductos.reset();
         this.toastr.success('Registro exitoso');
-        window.location.reload();
         this.productoService.CampoPrecio = true;
         this.productoService.listarProducto();
+        document.location.reload();
       }, error => {
         this.toastr.error('Ha ocurrido un error');
       });

@@ -1,3 +1,7 @@
+import {IBarChart} from "./charts.interface";
+import {HttpClient} from "@angular/common/http";
+import {ConfiguracionService} from "../../services/configuracion.service";
+
 export interface ReporteSPM {
   Cotizada: number;
   Devuelta: number;
@@ -13,3 +17,7 @@ export interface ReporteSPM {
   TotalVendido: number;
   Entregada: number;
 }
+//
+export const DATA_BAR_CHAR:IBarChart[]=[
+
+]
