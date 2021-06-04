@@ -1,3 +1,5 @@
+import {IAdvanceChart} from './charts.interface';
+
 export interface ReporteVentas {
   CantProdPerso: number;
   MontoPerso: number;
@@ -11,3 +13,6 @@ export interface ReporteVentas {
   TotalDescuentos: number;
   TotalIngresos: number;
 }
+export const DATA_ADVANCE_CHAR: IAdvanceChart[] = [];
+export const DATA_PIE_GRID_CHAR: IAdvanceChart[] = [];
+export const DATA_PIE_CHAR: IAdvanceChart[] = [];

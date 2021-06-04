@@ -1,0 +1,18 @@
+
+/deep/ .advanced-pie-legend /deep/ .legend-items-container /deep/ .legend-items /deep/
+.legend-item /deep/ .item-value {
+  margin-top: 2px !important;
+  font-weight: lighter;
+
+}
+/deep/ .advanced-pie-legend /deep/ .total-label {
+  margin-top: 5px !important;
+  font-weight: lighter;
+  color: #2C4F61
+}
+/deep/ .advanced-pie-legend /deep/ .total-value {
+  font-weight: lighter;
+  color: #2C4F61
+}
+
+
