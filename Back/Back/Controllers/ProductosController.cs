@@ -108,6 +108,7 @@ namespace Back.Controllers
         {
             try
             {
+                precio.FechaInicio = DateTime.Now;
                 await _context.ModificaPrecio(precio.FechaInicio, precio.IdProducto);
                 await _context.AgregarPrecioProducto(precio);
                 return Ok(new { mensaje = "Registro exitoso" });
@@ -132,7 +133,7 @@ namespace Back.Controllers
             {
                 return await _context.DetalleProducto(id);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }
@@ -245,7 +246,7 @@ namespace Back.Controllers
         {
             try
             {
-                iva.FechaFin = new DateTime();
+                iva.FechaInicio = DateTime.Now;
                 await _context.ModificarIva(iva.FechaInicio);
                 await _context.AgregarIva(iva);
                 return Ok(new { mensaje = "Iva agregado exitosamente" });
@@ -294,9 +295,9 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("stock/{idProducto}")]
-        public async Task<int> StockProducto(int idProducto)
+        public int StockProducto(int idProducto)
         {
-            return await _context.ObtenerStockProducto(idProducto);
+            return  _context.ObtenerStockProducto(idProducto);
         }
 
 

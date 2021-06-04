@@ -3,7 +3,6 @@ export interface Venta {
   Fecha: any;
   IdUsuario: string;
   IdDescuento: number;
-  SubTotal: number;
   Total: number;
   IdIva: number;
   TotalIva: number;

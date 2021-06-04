@@ -2,22 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7b760ed-9478-4789-8cfb-c779884b939c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/.vs/Back/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/Back/.vs/Back/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/.vs/Back/config/applicationhost.config" beforeDir="false" afterPath="$PROJECT_DIR$/Back/.vs/Back/config/applicationhost.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/.vs/Back/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/Back/.vs/Back/v16/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/Clases/Ventas/DetalleVenta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/Clases/Ventas/DetalleVenta.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/Controllers/ProductosController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/Controllers/ProductosController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/Controllers/VentasController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/Controllers/VentasController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/DBContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/Migrations/DBContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/Models/Abstratos/IServiciosVentas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/Models/Abstratos/IServiciosVentas.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/Models/Abstratos/IserviciosProductos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/Models/Abstratos/IserviciosProductos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/Models/DAL/DBContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/Models/DAL/DBContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/Models/Servicios/ServiciosProductos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/Models/Servicios/ServiciosProductos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/Models/Servicios/ServiciosVentas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/Models/Servicios/ServiciosVentas.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/20210531094521_DB.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/20210531094521_DB.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/20210531094833_Relaciones Usuario.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/Migrations/20210531094833_Relaciones Usuario.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.StaticWebAssets.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.runtimeconfig.dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/Back.runtimeconfig.dev.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/bin/Debug/net5.0/appsettings.json" afterDir="false" />
@@ -25,28 +20,16 @@
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Back.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Back.csproj.nuget.dgspec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Back.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Back.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/Back.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/apphost.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/ref/Back.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/ref/Back.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/staticwebassets/Back.StaticWebAssets.Manifest.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/staticwebassets/Back.StaticWebAssets.Manifest.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/staticwebassets/Back.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/Debug/net5.0/staticwebassets/Back.StaticWebAssets.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back/Back/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Back/Back/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/node_modules/@angular/material/icon/testing/fake-icon-registry.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/node_modules/@angular/material/icon/testing/fake-icon-registry.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/node_modules/@angular/material/icon/testing/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/node_modules/@angular/material/icon/testing/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/node_modules/@angular/material/icon/testing/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front/node_modules/@angular/material/icon/testing/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/node_modules/@angular/platform-browser-dynamic/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front/node_modules/@angular/platform-browser-dynamic/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/node_modules/@angular/platform-browser-dynamic/platform-browser-dynamic.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/Front/node_modules/@angular/platform-browser-dynamic/platform-browser-dynamic.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/components/admin/ventas/gestion-ventas/gestion-ventas.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/admin/ventas/gestion-ventas/gestion-ventas.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/components/admin/ventas/listar-ventas/listar-ventas.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/admin/ventas/listar-ventas/listar-ventas.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/components/admin/ventas/registrar-venta/registrar-venta.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/admin/ventas/registrar-venta/registrar-venta.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/components/admin/ventas/registrar-venta/registrar-venta.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/admin/ventas/registrar-venta/registrar-venta.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/models/Ventas/ventas.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/services/ventas.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/services/ventas.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +55,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -84,6 +68,8 @@
       <workItem from="1615779747515" duration="107000" />
       <workItem from="1619754518482" duration="610000" />
       <workItem from="1620590241289" duration="61000" />
+      <workItem from="1622583548094" duration="32000" />
+      <workItem from="1622583909542" duration="605000" />
     </task>
     <servers />
   </component>

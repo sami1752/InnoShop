@@ -11,11 +11,20 @@ namespace Back.Models.Entidades.Productos
     {
         [Key]
         public int IdImagen { get; set; }
+
         [Column(TypeName ="varchar(200)"), Required]
         public string RutaImagen { get; set; }
 
+
+        [Required]
+        [ForeignKey("Productos")]
         public int IdProducto { get; set; }
-        [Column(TypeName = "varchar(50)"), Required]
+        [ForeignKey("IdProducto")]
+        public virtual Producto Productos { get; set; }
+
+
+
+        [Column(TypeName = "nvarchar(450)"), Required]
         public string IdUsuario { get; set; }
     }
 }

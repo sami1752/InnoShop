@@ -21,7 +21,6 @@ import {DetalleProductoClienteComponent} from './components/usuarios/clientes/pr
 import {ListaProductosComponent} from './components/admin/productos/lista-productos/lista-productos.component';
 import {RegistrarSolicitudPErsonalizadaComponent} from './components/usuarios/clientes/solicitudes/personalizadas/registrar-solicitud-personalizada/registrar-solicitud-personalizada.component';
 import {GestionProductosComponent} from './components/admin/productos/gestion-productos/gestion-productos.component';
-import {GestionIvaComponent} from './components/admin/productos/iva/gestion-iva/gestion-iva.component';
 import {ListarMisSolicitudesPersonalizadasComponent} from './components/usuarios/clientes/solicitudes/personalizadas/listar-mis-solicitudes-personalizadas/listar-mis-solicitudes-personalizadas.component';
 import {RegistrarMontajesComponent} from './components/usuarios/clientes/solicitudes/personalizadas/registrar-montajes/registrar-montajes.component';
 import {ListarMisMontajesComponent} from './components/usuarios/clientes/solicitudes/personalizadas/listar-mis-montajes/listar-mis-montajes.component';
@@ -41,6 +40,12 @@ import {RespuestaMontajeComponent} from './components/admin/solicitudes/Montajes
 import {EditarMontajeComponent} from './components/admin/solicitudes/Montajes/editar-montaje/editar-montaje.component';
 import {GestionMontajeComponent} from './components/admin/solicitudes/Montajes/gestion-montaje/gestion-montaje.component';
 import {DetalleMontajeComponent} from './components/admin/solicitudes/Montajes/detalle-montaje/detalle-montaje.component';
+import {ReportesSPComponent} from './components/admin/reportes/gestion-reportes/reportes-sp/reportes-sp.component';
+import {ReportesMComponent} from './components/admin/reportes/gestion-reportes/reportes-m/reportes-m.component';
+import {ReportesVComponent} from './components/admin/reportes/gestion-reportes/reportes-v/reportes-v.component';
+import {GestionReportesComponent} from './components/admin/reportes/gestion-reportes/gestion-reportes.component';
+import {HistorialComprasComponent} from './components/usuarios/clientes/solicitudes/gestion-compras/historial-compras/historial-compras.component';
+import {GestionComprasComponent} from './components/usuarios/clientes/solicitudes/gestion-compras/gestion-compras.component';
 
 
 const routes: Routes = [
@@ -79,7 +84,8 @@ const routes: Routes = [
       {path: 'detalleSP/:IdSolicitud', component: DetalleSPComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'respuestasSP/:IdSolicitud', component: RespuestasSolicitudComponent},
       {path: 'detalleM/:IdMontaje', component: DetalleMComponent, canActivate: [AutorizacionRutasGuard]},
-      {path: 'respuestasM/:IdMontaje', component: RespuestaMontajeComponent}
+      {path: 'respuestasM/:IdMontaje', component: RespuestaMontajeComponent},
+      {path: 'historialCompras', component: GestionComprasComponent}
     ]
   },
 
@@ -93,11 +99,11 @@ const routes: Routes = [
   {
     path: 'Admin', component: InicioadminComponent,
     children: [
-      {path: 'inicioadmin', component: InicioadminComponent, canActivate: [AutorizacionRutasGuard]},
+      {path: 'inicioadmin', component: ReportesSPComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'Usuarios', component: GestionUsuarioComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'Productos', component: GestionProductosComponent, canActivate: [AutorizacionRutasGuard]},
-      {path: 'Iva', component: GestionIvaComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'MiCuenta', component: ModificarDatosComponent, canActivate: [AutorizacionRutasGuard]},
+      {path: 'cambiarMiContraseña', component: CambioContraComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'solicitudes', component: GestionSolicitudPersonalizadaComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'montajes', component: GestionMontajeComponent},
       {path: 'detalleSP/:IdSolicitud', component: DetalleSolicitudPersonalizadaComponent},
@@ -108,6 +114,11 @@ const routes: Routes = [
       {path: 'editarM/:IdMontaje', component: EditarMontajeComponent},
       {path: 'respuestasM/:IdMontaje', component: RespuestaMontajeComponent},
       {path: 'detalleM/:IdMontaje', component: DetalleMontajeComponent},
+      {path: 'reportes', component: GestionReportesComponent, children: [
+          {path: 'montajes', component: ReportesMComponent},
+          {path: 'solicitudes', component: ReportesSPComponent},
+          {path: 'ventas', component: ReportesVComponent}
+        ]}
     ]
   }
 ];

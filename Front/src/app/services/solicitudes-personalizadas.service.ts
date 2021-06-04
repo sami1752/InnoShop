@@ -158,7 +158,7 @@ export class SolicitudesPersonalizadasService {
   }
 
   AgregarDetalleEstadosMontajes(): any {
-    this.DetalleEstadosMontajes.FechaInicio = this.hoy.toISOString();
+    this.DetalleEstadosMontajes.FechaInicio = '0001-01-01';
     this.DetalleEstadosMontajes.FechaFin = '0001-01-01';
     this.DetalleEstadosMontajes.IdDetalleEstadosMontajes = 0;
     console.log(this.DetalleEstadosMontajes);
@@ -231,7 +231,7 @@ export class SolicitudesPersonalizadasService {
   }
 
   AgregarDetalleEstadosSolicitudPersonalizada(): any {
-    this.DetalleEstadosSolicitudPersonalizada.FechaInicio = this.hoy.toISOString();
+    this.DetalleEstadosSolicitudPersonalizada.FechaInicio = '0001-01-01';
     this.DetalleEstadosSolicitudPersonalizada.FechaFin = '0001-01-01';
     this.DetalleEstadosSolicitudPersonalizada.IdDetalleEstadoSolicitudPersonalizada = 0;
     return this.http.post(
@@ -433,11 +433,12 @@ export class SolicitudesPersonalizadasService {
   }
 
   AgregarMontajes(): any {
-    this.Montajes.Fecha = this.hoy.toISOString();
+    this.Montajes.Fecha = '0001-01-01';
     this.Montajes.ValorTotal = 0;
     this.Montajes.IdMontaje = 0;
+    console.log(this.Montajes);
     return this.http.post(
-      this.configuracion.rootURL + '/Solicitudes/Montajes/',
+      this.configuracion.rootURL + '/Solicitudes/Montajes',
       this.Montajes
     );
   }
@@ -506,7 +507,7 @@ export class SolicitudesPersonalizadasService {
 
   AgregarRespuestasSolicitudesPersonalizadas(): any {
 
-    this.RespuestasSolicitudesPersonalizadas.Fecha = this.hoy.toISOString();
+    this.RespuestasSolicitudesPersonalizadas.Fecha = '0001-01-01';
     this.RespuestasSolicitudesPersonalizadas.IdRespuestaSolicitudesPersonalizadas = 0;
     console.log(this.RespuestasSolicitudesPersonalizadas);
     return this.http.post(
@@ -518,7 +519,7 @@ export class SolicitudesPersonalizadasService {
 
   AgregarRespuestasMontajes(): any {
 
-    this.RespuestasMontajes.Fecha = this.hoy.toISOString();
+    this.RespuestasMontajes.Fecha = '0001-01-01';
     this.RespuestasMontajes.IdRespuestaMontajes = 0;
     console.log(this.RespuestasMontajes);
     return this.http.post(
@@ -567,7 +568,7 @@ export class SolicitudesPersonalizadasService {
   }
 
   AgregarSolicitudPersonalizada(): any {
-    this.SolicitudPersonalizada.Fecha = this.hoy.toISOString();
+    this.SolicitudPersonalizada.Fecha = '0001-01-01';
     this.SolicitudPersonalizada.IdSolicitudPersonalizada = 0;
     console.log(this.SolicitudPersonalizada);
     return this.http.post(

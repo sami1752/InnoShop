@@ -20,7 +20,7 @@ namespace Back.Models.Abstratos
         Task EditarValorRuleta(DateTime nueva);
         Task AgregarPorcentajeRuleta(PorcentajesRuleta porcentaje);
         Task EditarPorcentajeRuleta(PorcentajesRuleta porcentaje);
-
+        Task EditarCuponDescuento(Descuentos descuento);
 
     }
 

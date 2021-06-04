@@ -1,45 +1,45 @@
-<section class="col-lg-5 connectedSortable" *ngIf="this.solicitudesPersonalizadasService.SolicitudCortizando">
+
   <div class="card">
     <div class="card-header">
-      <h2 class="card-title">
-        <i class="bi bi-file-earmark-plus-fill text-secondary"></i> Registro
+      <h2 class="card-title colortxt font-weight-light">
+        <i class="bi bi-plus-circle"></i> REGISTRO
       </h2>
     </div>
     <div class="card-body">
       <div class="tab-content p-0">
         <form class="" [formGroup]="this.productoService.formularioRegistroProductos" (ngSubmit)="onSubmit()">
           <input type="hidden" formControlName="IdProducto">
-          <label for="Nombre">Nombre <span>**</span></label>
+          <label for="Nombre">Nombre <span class="text-danger">**</span></label>
           <input formControlName="Nombre" id="Nombre" type="text" placeholder="Ingresa el nombre" class="form-control"/>
           <br>
           <div class="row">
             <div class="col">
-              <label for="Ancho">Ancho <span>**</span></label>
+              <label for="Ancho">Ancho <span class="text-danger">**</span></label>
               <input formControlName="Ancho" type="number" step="0.01" id="Ancho" placeholder="Ancho"
                      class="form-control "/>
             </div>
             <div class="col">
-              <label for="Largo">Largo <span>**</span></label>
+              <label for="Largo">Largo <span class="text-danger">**</span></label>
               <input formControlName="Largo" type="number" step="0.01" id="Largo" placeholder="Largo"
                      class="form-control "/>
             </div>
             <div class="col">
-              <label for="Fondo">Fondo <span>**</span></label>
+              <label for="Fondo">Fondo <span class="text-danger">**</span></label>
               <input formControlName="Fondo" type="number" step="0.01" id="Fondo" placeholder="Fondo"
                      class="form-control "/>
             </div>
           </div>
           <br>
-          <label for="TipoPuerta">Tipo de Puerta <span>**</span></label>
+          <label for="TipoPuerta">Tipo de Puerta <span class="text-danger">**</span></label>
           <select class="form-control" formControlName="TipoPuerta" id="TipoPuerta">
             <option value="">Elige Tipo de Puerta</option>
             <option *ngFor="let doc of listaTiposPuerta" [value]="doc.Tipo">{{doc.Tipo}}</option>
           </select>
           <br>
-          <label for="Descripcion"> Descripcion <span>**</span></label>
+          <label for="Descripcion"> Descripcion <span class="text-danger">**</span></label>
           <textarea formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
           <br>
-          <label for="Ruedas">Ruedas <span>**</span></label>
+          <label for="Ruedas">Ruedas <span class="text-danger">**</span></label>
           <select class="form-control" formControlName="Ruedas" id="Ruedas">
             <option value="">Si o No</option>
             <option *ngFor="let doc of decision" [value]=doc.boo>{{doc.dec}}</option>
@@ -48,25 +48,25 @@
           <br>
           <div class="row">
             <div class="col">
-              <label for="Puntos">Puntos <span>**</span></label>
+              <label for="Puntos">Puntos <span class="text-danger">**</span></label>
               <input formControlName="Puntos" type="number" id="Puntos" placeholder="Ingresa los Puntos"
                      class="form-control "/>
             </div>
             <div class="col">
-              <label for="GarantiaMeses">Garantia en Meses <span>**</span></label>
+              <label for="GarantiaMeses">Garantia en Meses <span class="text-danger">**</span></label>
               <input formControlName="GarantiaMeses" type="number" id="GarantiaMeses"
                      placeholder="Ingresa la garantia en meses"
                      class="form-control "/>
             </div>
           </div>
           <div *ngIf="this.productoService.CampoPrecio">
-            <label for="Precio">Precio Producto<span>**</span></label>
+            <label for="Precio">Precio Producto<span class="text-danger">**</span></label>
             <input formControlName="Precio" type="number" id="Precio" placeholder="Ingrese precio producto"
                    class="form-control "/>
             <div class="mt-10"></div>
           </div>
           <div *ngIf="this.productoService.CampoPrecio">
-            <label for="CantidadStock">Cantidad Producto<span>**</span></label>
+            <label for="CantidadStock">Cantidad Producto<span class="text-danger">**</span></label>
             <input formControlName="CantidadStock" type="number" id="CantidadStock"
                    placeholder="Ingrese cantidad de producto"
                    class="form-control "/>
@@ -85,4 +85,3 @@
       </div>
     </div>
   </div>
-</section>

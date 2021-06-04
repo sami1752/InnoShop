@@ -12,7 +12,6 @@ export class DetalleProductosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productoService.ListarDetalleMaterial(this.productoService.detalleProducto.IdProducto);
   }
 
 }

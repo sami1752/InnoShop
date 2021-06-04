@@ -5,6 +5,7 @@ import {ConfiguracionService} from 'src/app/services/configuracion.service';
 import {ProductoService} from 'src/app/services/producto.service';
 import {SolicitudesPersonalizadasService} from 'src/app/services/solicitudes-personalizadas.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-registrar-editar-producto-solicitud-perzonalizada',
@@ -23,7 +24,8 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
     private router: Router,
     public productoService: ProductoService,
     public configuracion: ConfiguracionService,
-    private rutaActiva: ActivatedRoute
+    private rutaActiva: ActivatedRoute,
+    private toastr: ToastrService
   ) {
   }
 
@@ -63,7 +65,7 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
         this.productoService.producto.IdCategoria = 1;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
-            alert('Registro exitoso');
+            this.toastr.success('Registro exitoso');
             this.productoService.formularioRegistroProductos.reset();
             this.solicitudesPersonalizadasService.DetalleProductosSolicitud =
               this.solicitudesPersonalizadasService.formularioDetalleProductoSolicitudPerzonalizada.value;
@@ -74,22 +76,21 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
             this.solicitudesPersonalizadasService.AgregarDetalleProductosSolicitud().subscribe(
               (r) => {
                 this.solicitudesPersonalizadasService.ListaDetalleProductosSolicitud(this.id);
-                alert('Registro Detalle Exitoso');
+                this.toastr.error('Ha ocurrido un error');
                 this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
               },
               (e) => {
-                alert('Registro Detalle Fallido');
+                this.toastr.error('Ha ocurrido un error');
               }
             );
           },
           (error) => {
-            alert(error);
-            console.log(error);
+            this.toastr.error('Ha ocurrido un error');
           }
         );
       },
       (err) => {
-        console.log(err);
+        this.toastr.error('Ha ocurrido un error al buscar usuario');
       }
     );
   }
@@ -98,7 +99,7 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
     this.productoService.actualizacionProducto().subscribe(
       (respuesta: any) => {
         this.productoService.formularioRegistroProductos.reset();
-        alert('Actualizacion Exitosa');
+        this.toastr.success('Edición exitosa');
         this.productoService.CampoPrecio = true;
         this.productoService.listarProducto();
         this.productoService.ListarDetalleMaterial(
@@ -106,8 +107,7 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
         );
       },
       (error) => {
-        alert(error);
-        console.log(error);
+        this.toastr.error('Ha ocurrido un error');
       }
     );
   }
@@ -119,7 +119,6 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
       this.productoService.producto.IdProducto === 0
     ) {
       this.registro();
-      console.log(this.productoService.producto);
     } else {
       this.actualizacion();
     }

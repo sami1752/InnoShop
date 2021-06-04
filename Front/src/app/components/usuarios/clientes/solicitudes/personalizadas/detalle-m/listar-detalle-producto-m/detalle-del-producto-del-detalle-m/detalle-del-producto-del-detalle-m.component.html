@@ -1,116 +1,104 @@
 <div>
-  <div>
-    <section class="col-lg-7 connectedSortable">
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title">
-            <i class="bi bi-info-circle-fill text-primary"></i> Información del Producto
-          </h2>
-        </div>
-        <div class="card-body">
-          <div class="tab-content p-0">
-            <div class="row">
-              <div class="col">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Id: </label>
-                {{this.productoService.detalleProducto.IdProducto}}
-              </div>
-              <div class="col">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Estado: </label>
-                {{this.productoService.detalleProducto.Estado}}
-              </div>
-            </div>
-            <div class="row">
-              <div class=" col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Nombre: </label>
-                {{this.productoService.detalleProducto.Nombre}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 ">Largo: </label>
-                {{this.productoService.detalleProducto.Largo}}
-              </div>
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Ancho: </label>
-                {{this.productoService.detalleProducto.Ancho}}
-              </div>
-            </div>
-            <div class="row ">
-              <div class="col">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Fondo: </label>
-                {{this.productoService.detalleProducto.Fondo}}
-              </div>
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Tipo puerta: </label>
-                {{this.productoService.detalleProducto.TipoPuerta}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Descripción: </label>
-                {{this.productoService.detalleProducto.Descripcion}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Ruedas: </label>
-                {{this.productoService.detalleProducto.Ruedas}}
-              </div>
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Puntos: </label>
-                {{this.productoService.detalleProducto.Puntos}}
-              </div>
-            </div>
-            <div class="row ">
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Id usuario:
+    <div>
+        <section class="col-lg-7 connectedSortable">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="bi bi-info-circle-fill text-primary"></i> Información del Producto
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content p-0">
+                        <div class="row">
+                            <div class="col">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Id: </label> {{this.productoService.detalleProducto.IdProducto}}
+                            </div>
+                            <div class="col">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Estado: </label> {{this.productoService.detalleProducto.Estado}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Nombre: </label> {{this.productoService.detalleProducto.Nombre}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt">Largo: </label> {{this.productoService.detalleProducto.Largo}}
+                            </div>
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Ancho: </label> {{this.productoService.detalleProducto.Ancho}}
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Fondo: </label> {{this.productoService.detalleProducto.Fondo}}
+                            </div>
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Tipo puerta: </label> {{this.productoService.detalleProducto.TipoPuerta}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Descripción: </label> {{this.productoService.detalleProducto.Descripcion}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Ruedas: </label> {{this.productoService.detalleProducto.Ruedas}}
+                            </div>
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Puntos: </label> {{this.productoService.detalleProducto.Puntos}}
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Id usuario:
                 </label>{{this.productoService.detalleProducto.IdUsuario}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Id Categoria: </label>
-                {{this.productoService.detalleProducto.IdCategoria}}
-              </div>
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Categoria:
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Id Categoria: </label> {{this.productoService.detalleProducto.IdCategoria}}
+                            </div>
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Categoria:
                 </label>{{this.productoService.detalleProducto.NombreCategoria}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Meses de garantía: </label>
-                {{this.productoService.detalleProducto.GarantiaMeses}}
-              </div>
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Precio:
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Meses de garantía: </label> {{this.productoService.detalleProducto.GarantiaMeses}}
+                            </div>
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Precio:
                 </label>{{this.productoService.detalleProducto.Precio}}
-              </div>
-              <div class="col ">
-                <i class="bi bi-arrow-right-short text-primary"></i>
-                <label class="p-1 "> Cantidad:
+                            </div>
+                            <div class="col ">
+                                <i class="bi bi-arrow-right-short text-primary"></i>
+                                <label class="p-1 colortxt"> Cantidad:
                 </label>{{this.productoService.detalleProducto.CantidadStock}}
-              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
             </div>
-          </div>
-          <div></div>
-        </div>
-      </div>
-    </section>
-  </div>
+        </section>
+    </div>
 </div>

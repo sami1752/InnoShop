@@ -22,8 +22,14 @@ export class RespuestasSolicitudComponent implements OnInit {
   }
 
   id: number = this.rutaActiva.snapshot.params.IdSolicitud;
-
+  idUsuario = '';
+  idRol = 0;
   ngOnInit(): void {
+    this.usuarioService.obtenerPerfil().subscribe(
+      (res) => {
+          this.idUsuario = (res as Usuario).Id;
+          this.idRol =  (res as Usuario).IdRol;
+      });
     this.solicitudesPersonalizadasService.ListaRespuestasSolicitudesPersonalizadas(this.id);
   }
 

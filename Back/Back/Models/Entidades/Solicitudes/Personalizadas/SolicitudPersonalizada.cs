@@ -13,7 +13,7 @@ namespace Back.Models.Entidades.Solicitudes.Personalizadas
         [Key]
         public int IdSolicitudPersonalizada { get; set; }
 
-        [Required]
+        [Column(TypeName = "nvarchar(450)"), Required]
         public string IdUsuario { get; set; }
 
         [Required]
@@ -28,7 +28,7 @@ namespace Back.Models.Entidades.Solicitudes.Personalizadas
         [Required]
         public DateTime Fecha { get; set; }
 
-        [Required]
+        [Column(TypeName = "varchar(500)"), Required]
         public string Descripcion { get; set; }
 
     }

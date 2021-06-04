@@ -21,6 +21,14 @@ import { DetalleMComponent } from './solicitudes/personalizadas/detalle-m/detall
 import { ListarDetalleProductoMComponent } from './solicitudes/personalizadas/detalle-m/listar-detalle-producto-m/listar-detalle-producto-m.component';
 import { DetalleDelProductoDelDetalleMComponent } from './solicitudes/personalizadas/detalle-m/listar-detalle-producto-m/detalle-del-producto-del-detalle-m/detalle-del-producto-del-detalle-m.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { ListarCuponesComponent } from './descuentos/listar-cupones/listar-cupones.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatSortModule} from '@angular/material/sort';
+import {MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -42,6 +50,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     DetalleMComponent,
     ListarDetalleProductoMComponent,
     DetalleDelProductoDelDetalleMComponent,
+    ListarCuponesComponent
   ],
   imports: [
     CommonModule,
@@ -50,9 +59,18 @@ import { NgxPayPalModule } from 'ngx-paypal';
     ReactiveFormsModule,
     HttpClientModule,
     CarouselModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    DragDropModule,
+    MatSortModule,
+    MatInputModule,
+    MatSelectModule
   ],
-  exports: []
+    exports: [
+        ListarCuponesComponent
+    ]
 })
 export class ClientesModule {
 }

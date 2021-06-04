@@ -34,7 +34,8 @@ export class ModificarDatosComponent implements OnInit {
         this.usuarioService.perfilUsuario = (res as Usuario);
         this.usuarioService.buscarUsuarioId(this.usuarioService.perfilUsuario.Id).subscribe(
           respuesta => {
-            this.usuarioService.formularioRegistroEdicionDatos.patchValue(respuesta as Usuario);
+            this.usuario = respuesta as Usuario;
+            this.usuarioService.formularioRegistroEdicionDatos.patchValue(this.usuario);
           },
           Error => {
             alert('Error');

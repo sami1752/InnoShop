@@ -107,8 +107,9 @@ namespace Back.Models.Servicios
         public async Task<DetalleEstadosMontajes> AgregarDetalleEstadosMontajes
             (DetalleEstadosMontajes DetalleEstadosMontajes, bool nueva)
         {
+            DetalleEstadosMontajes.FechaInicio = DateTime.Now;
             if (!nueva)
-                await ModificarEstadoM(DateTime.Now, DetalleEstadosMontajes.IdMontaje);
+                await ModificarEstadoM(DetalleEstadosMontajes.FechaInicio, DetalleEstadosMontajes.IdMontaje);
             _context.DetalleEstadosMontajes.Add(DetalleEstadosMontajes);
             await _context.SaveChangesAsync();
             return DetalleEstadosMontajes;
@@ -123,28 +124,14 @@ namespace Back.Models.Servicios
             await _context.DetalleEstadosMontajes.Where(x => x.IdDetalleEstadosMontajes == id).ToListAsync();
 
 
-        public async Task<DetalleEstadosProductosPersoanlizados> AgregarDetalleEstadosProductosPersoanlizados
-            (DetalleEstadosProductosPersoanlizados DetalleEstadosProductosPersoanlizados)
-        {
-            _context.DetalleEstadosProductosPersoanlizados.Add(DetalleEstadosProductosPersoanlizados);
-            await _context.SaveChangesAsync();
-            return DetalleEstadosProductosPersoanlizados;
-        }
 
-        public async Task<ActionResult<IEnumerable<DetalleEstadosProductosPersoanlizados>>>
-            ListarDetalleEstadosProductosPersoanlizados() =>
-            await _context.DetalleEstadosProductosPersoanlizados.ToListAsync();
-
-        public async Task<ActionResult<IEnumerable<DetalleEstadosProductosPersoanlizados>>>
-            ListaDetalleEstadosProductosPersoanlizados(int id) =>
-            await _context.DetalleEstadosProductosPersoanlizados.Where(x =>
-            x.IdDetalleEstadosProductosPersoanlizados == id).ToListAsync();
 
         public async Task<DetalleEstadosSolicitudPersonalizada> AgregarDetalleEstadosSolicitudPersonalizada
             (DetalleEstadosSolicitudPersonalizada DetalleEstadosSolicitudPersonalizada, bool nueva)
         {
+            DetalleEstadosSolicitudPersonalizada.FechaInicio = DateTime.Now;
             if (!nueva)
-                await ModificarEstado(DateTime.Now, DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada);
+                await ModificarEstado(DetalleEstadosSolicitudPersonalizada.FechaInicio, DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada);
             _context.DetalleEstadosSolicitudPersonalizada.Add(DetalleEstadosSolicitudPersonalizada);
             await _context.SaveChangesAsync();
             return DetalleEstadosSolicitudPersonalizada;
@@ -180,52 +167,6 @@ namespace Back.Models.Servicios
             await _context.SaveChangesAsync();
         }
 
-        public async Task<DetallesMaterialesMontajes> AgregarDetallesMaterialesMontajes
-            (DetallesMaterialesMontajes DetallesMaterialesMontajes)
-        {
-            _context.DetallesMaterialesMontajes.Add(DetallesMaterialesMontajes);
-            await _context.SaveChangesAsync();
-            return DetallesMaterialesMontajes;
-        }
-
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>> ListarDetallesMaterialesMontajes() =>
-            await _context.DetallesMaterialesMontajes.ToListAsync();
-
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesMontajes>>> ListaDetallesMaterialesMontajes(int id) =>
-            await _context.DetallesMaterialesMontajes.Where(x => x.IdDetallesMaterialesMontajes == id).ToListAsync();
-
-        public async Task EliminarDetallesMaterialesMontajes(int id)
-        {
-            DetallesMaterialesMontajes DetallesMaterialesMontajes =
-                await _context.DetallesMaterialesMontajes.FindAsync(id);
-            _context.DetallesMaterialesMontajes.Remove(DetallesMaterialesMontajes);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<DetallesMaterialesSolicitudesPersonalizadas> AgregarDetallesMaterialesSolicitudesPersonalizadas
-            (DetallesMaterialesSolicitudesPersonalizadas DetallesMaterialesSolicitudesPersonalizadas)
-        {
-            _context.DetallesMaterialesSolicitudesPersonalizadas.Add(DetallesMaterialesSolicitudesPersonalizadas);
-            await _context.SaveChangesAsync();
-            return DetallesMaterialesSolicitudesPersonalizadas;
-        }
-
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
-            ListarDetallesMaterialesSolicitudesPersonalizadas() =>
-            await _context.DetallesMaterialesSolicitudesPersonalizadas.ToListAsync();
-
-        public async Task<ActionResult<IEnumerable<DetallesMaterialesSolicitudesPersonalizadas>>>
-            ListaDetallesMaterialesSolicitudesPersonalizadas(int id) =>
-            await _context.DetallesMaterialesSolicitudesPersonalizadas.Where(x =>
-            x.IdDetallesMaterialesSolicitudesPersonalizadas == id).ToListAsync();
-
-        public async Task EliminarDetallesMaterialesSolicitudesPersonalizadas(int id)
-        {
-            DetallesMaterialesSolicitudesPersonalizadas DetallesMaterialesSolicitudesPersonalizadas =
-                await _context.DetallesMaterialesSolicitudesPersonalizadas.FindAsync(id);
-            _context.DetallesMaterialesSolicitudesPersonalizadas.Remove(DetallesMaterialesSolicitudesPersonalizadas);
-            await _context.SaveChangesAsync();
-        }
 
         public async Task<DetallesProductosMontajes> AgregarDetallesProductosMontajes
             (DetallesProductosMontajes DetallesProductosMontajes)
@@ -439,6 +380,7 @@ namespace Back.Models.Servicios
 
         public async Task<Montajes> AgregarMontajes(Montajes Montajes)
         {
+            Montajes.Fecha = DateTime.Now;
             _context.Montajes.Add(Montajes);
             await _context.SaveChangesAsync();
             await AgregarDetalleEstadosMontajes(new DetalleEstadosMontajes
@@ -467,22 +409,10 @@ namespace Back.Models.Servicios
             return Montajes;
         }
 
-        public async Task<PrecioMontajes> AgregarPrecioMontajes(PrecioMontajes PrecioMontajes)
-        {
-            _context.PrecioMontajes.Add(PrecioMontajes);
-            await _context.SaveChangesAsync();
-            return PrecioMontajes;
-        }
-
-        public async Task<ActionResult<IEnumerable<PrecioMontajes>>> ListarPrecioMontajes() =>
-            await _context.PrecioMontajes.ToListAsync();
-
-        public async Task<ActionResult<IEnumerable<PrecioMontajes>>> ListaPrecioMontajes(int id) =>
-            await _context.PrecioMontajes.Where(x => x.IdMontaje == id).ToListAsync();
-
         public async Task<RespuestasSolicitudesPersonalizadas> AgregarRespuestasSolicitudesPersonalizadas
             (RespuestasSolicitudesPersonalizadas RespuestasSolicitudesPersonalizadas)
         {
+            RespuestasSolicitudesPersonalizadas.Fecha = DateTime.Now;
             _context.RespuestasSolicitudesPersonalizadas.Add(RespuestasSolicitudesPersonalizadas);
             await _context.SaveChangesAsync();
             return RespuestasSolicitudesPersonalizadas;
@@ -510,6 +440,7 @@ namespace Back.Models.Servicios
         public async Task<RespuestasMontajes> AgregarRespuestasMontajes
             (RespuestasMontajes RespuestasMontajes)
         {
+            RespuestasMontajes.Fecha = DateTime.Now;
             _context.RespuestasMontajes.Add(RespuestasMontajes);
             await _context.SaveChangesAsync();
             return RespuestasMontajes;
@@ -717,6 +648,7 @@ namespace Back.Models.Servicios
 
         public async Task<SolicitudPersonalizada> AgregarSolicitudPersonalizada(SolicitudPersonalizada SolicitudPersonalizada)
         {
+            SolicitudPersonalizada.Fecha = DateTime.Now;
             _context.SolicitudPersonalizada.Add(SolicitudPersonalizada);
             await _context.SaveChangesAsync();
             await AgregarDetalleEstadosSolicitudPersonalizada(new DetalleEstadosSolicitudPersonalizada
@@ -739,7 +671,7 @@ namespace Back.Models.Servicios
                 IdUsuario = SolicitudPersonalizada.IdUsuario,
                 IdSolicitudPersonalizada = SolicitudPersonalizada.IdSolicitudPersonalizada,
                 FechaFin = new DateTime(),
-                FechaInicio = DateTime.Now,
+                FechaInicio = SolicitudPersonalizada.Fecha,
                 IdEstado = 9
             }, false);
             return SolicitudPersonalizada;

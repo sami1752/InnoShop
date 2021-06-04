@@ -25,6 +25,69 @@ export class DetalleSolicitudPersonalizadaComponent implements OnInit {
     this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
   }
 
+  Fabricar(): void {
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada =
+          this.solicitudesPersonalizadasService.formularioDetalleEstadoSolicitudPerzonalizada.value;
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdUsuario = (res as Usuario).Id;
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdEstado = 7;
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada = this.id;
+        this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
+          (respuesta: any) => {
+            this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
+          }, error => {
+            alert(error);
+            console.log(error);
+          });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  Terminar(): void {
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada =
+          this.solicitudesPersonalizadasService.formularioDetalleEstadoSolicitudPerzonalizada.value;
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdUsuario = (res as Usuario).Id;
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdEstado = 8;
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada = this.id;
+        this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
+          (respuesta: any) => {
+            this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
+          }, error => {
+            alert(error);
+            console.log(error);
+          });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  Entregar(): void {
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada =
+          this.solicitudesPersonalizadasService.formularioDetalleEstadoSolicitudPerzonalizada.value;
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdUsuario = (res as Usuario).Id;
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdEstado = 12;
+        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada = this.id;
+        this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
+          (respuesta: any) => {
+            this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
+          }, error => {
+            alert(error);
+            console.log(error);
+          });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
   cancelar(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
@@ -36,7 +99,6 @@ export class DetalleSolicitudPersonalizadaComponent implements OnInit {
         this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
           (respuesta: any) => {
             this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
-            alert('Registro Cancelacion exitosa');
           }, error => {
             alert(error);
             console.log(error);

@@ -20,6 +20,13 @@ namespace Back.Controllers
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DetalleVenta>>> ListarVentas() => await _context.ListarVentas();
+
+        [HttpGet]
+        [Route("compras/{idUsuario}")]
+        public async Task<ActionResult<IEnumerable<Ventas>>> ListarVentasPorCliente(string idUsuario) => await _context.ListaVentasPorCliente(idUsuario);
+
+
+
         [HttpGet]
         [Route("detalleVentaProductos/{idVenta}")]
         public async Task<ActionResult<IEnumerable<DetalleVentaProductoInfo>>> ListaDetalleVentaProductos(int idVenta)
@@ -59,6 +66,38 @@ namespace Back.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("DetalleVentaSolicitud")]
+        public async Task<Object> AgregarDetalleVentaSolicitudes(DetalleVentaSolicitudes detalle)
+        {
+            try
+            {
+                await _context.AgregarDetalleVentaSolicitudes(detalle);
+                return Ok(new { mensaje = "Registro de detalle exitoso" });
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+            }
+        }
+
+        [HttpPost]
+        [Route("DetalleVentaMontaje")]
+        public async Task<Object> AgregarDetalleVentaMontaje(DetalleVentaMontajes detalle)
+        {
+            try
+            {
+                await _context.AgregarDetalleVentaMontajes(detalle);
+                return Ok(new { mensaje = "Registro de detalle exitoso" });
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+            }
+        }
+
         [HttpGet]
         [Route("IvaActual")]
         public async Task<Iva> ObtenerIva()
@@ -69,5 +108,25 @@ namespace Back.Controllers
         public async Task<PrecioProducto> PrecioProd(int idProducto)
           => await _context.ObtenerPrecioProducto(idProducto);
 
+        [HttpGet]
+        [Route("Salidas/{idProducto}")]
+        public async Task<ActionResult<IEnumerable<SalidaProductoInfo>>> listarSalidas(int idProducto)
+          => await _context.listarSalidas(idProducto);
+
+        [HttpPost]
+        [Route("AgregarSalida")]
+        public async Task<Object> AgregarSalida(Salida salida)
+        {
+            try
+            {
+                await _context.AgregarSalidaProducto(salida);
+                return Ok(new { mensaje = "Registro exitoso" });
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+            }
+        }
     }
 }

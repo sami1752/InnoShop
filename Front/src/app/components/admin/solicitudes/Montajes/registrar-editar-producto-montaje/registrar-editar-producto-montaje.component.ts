@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ProductoService} from '../../../../../services/producto.service';
 import {ConfiguracionService} from '../../../../../services/configuracion.service';
 import {Usuario} from '../../../../../models/usuario';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-registrar-editar-producto-montaje',
   templateUrl: './registrar-editar-producto-montaje.component.html',
@@ -19,7 +19,8 @@ export class RegistrarEditarProductoMontajeComponent implements OnInit {
     private router: Router,
     public productoService: ProductoService,
     public configuracion: ConfiguracionService,
-    private rutaActiva: ActivatedRoute
+    private rutaActiva: ActivatedRoute,
+    private toastr: ToastrService
   ) {
   }
 
@@ -59,7 +60,7 @@ export class RegistrarEditarProductoMontajeComponent implements OnInit {
         this.productoService.producto.IdCategoria = 1;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
-            alert('Registro exitoso');
+            this.toastr.success('Registro exitosa');
             this.productoService.formularioRegistroProductos.reset();
             this.solicitudesPersonalizadasService.DetallesProductosMontajes =
               this.solicitudesPersonalizadasService.formularioDetalleProductoMontajes.value;
@@ -70,22 +71,21 @@ export class RegistrarEditarProductoMontajeComponent implements OnInit {
             this.solicitudesPersonalizadasService.AgregarDetallesProductosMontajes().subscribe(
               (r) => {
                 this.solicitudesPersonalizadasService.ListaDetallesProductosMontajes(this.id);
-                alert('Registro Detalle Exitoso');
+                this.toastr.success('Registro detalle exitosa');
                 this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
               },
               (e) => {
-                alert('Registro Detalle Fallido');
+                this.toastr.error('Registro fallido');
               }
             );
           },
           (error) => {
-            alert(error);
-            console.log(error);
+            this.toastr.error('Ha ocurrrido un error');
           }
         );
       },
       (err) => {
-        console.log(err);
+        this.toastr.error('Ha ocurrrido un error');
       }
     );
   }
@@ -94,7 +94,7 @@ export class RegistrarEditarProductoMontajeComponent implements OnInit {
     this.productoService.actualizacionProducto().subscribe(
       (respuesta: any) => {
         this.productoService.formularioRegistroProductos.reset();
-        alert('Actualizacion Exitosa');
+        this.toastr.success('Edición exitosa');
         this.productoService.CampoPrecio = true;
         this.productoService.listarProducto();
         this.productoService.ListarDetalleMaterial(
@@ -102,7 +102,7 @@ export class RegistrarEditarProductoMontajeComponent implements OnInit {
         );
       },
       (error) => {
-        alert(error);
+        this.toastr.error('Ha ocurrrido un error');
         console.log(error);
       }
     );

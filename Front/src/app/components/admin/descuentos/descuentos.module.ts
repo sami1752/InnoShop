@@ -7,6 +7,13 @@ import {ListarValorRuletaComponent} from 'src/app/components/admin/descuentos/li
 import {RegistrarValorRuletaComponent} from 'src/app/components/admin/descuentos/registrar-valor-ruleta/registrar-valor-ruleta.component';
 import {AppRoutingModule} from '../../../app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatSortModule} from '@angular/material/sort';
+import {MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    DragDropModule,
+    MatSortModule,
+    MatInputModule,
+    MatSelectModule
   ],
   exports: [GestionRuletaComponent]
 })

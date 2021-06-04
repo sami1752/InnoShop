@@ -1,20 +1,33 @@
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th scope="col">Id</th>
-    <th scope="col">Id Producto</th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody *ngFor="let producto of solicitudesPersonalizadasService.listaDetalleProductosSolicitud">
-  <tr>
-    <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.IdDetalleProductosSolicitud}}</td>
-    <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.IdProducto}}</td>
-    <td><i (click)="eliminarProducto(producto.IdDetalleProductosSolicitud)" class="bi bi-trash text-danger"></i></td>
-    <td><i
-      (click)=" detalleProducto(producto.IdProducto); this.productoService.desplegarDetalle =!this.productoService.desplegarDetalle; "
-      class="bi bi-eye" aria-hidden="true"></i></td>
-  </tr>
-  </tbody>
-</table>
+
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title colortxt font-weight-light">
+      <i class="bi bi-box"></i>
+      PRODUCTOS
+    </h2>
+  </div>
+  <div class="card-body">
+    <div class="tab-content p-0">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Id Producto</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let producto of solicitudesPersonalizadasService.listaDetalleProductosSolicitud">
+        <tr>
+          <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.IdDetalleProductosSolicitud}}</td>
+          <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.IdProducto}}</td>
+          <td><i (click)="eliminarProducto(producto.IdDetalleProductosSolicitud)" class="bi bi-trash text-danger"></i></td>
+          <td><i
+            (click)=" detalleProducto(producto.IdProducto); this.productoService.desplegarDetalle =!this.productoService.desplegarDetalle; "
+            class="bi bi-eye" aria-hidden="true"></i></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

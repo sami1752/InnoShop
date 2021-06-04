@@ -47,6 +47,9 @@ import {
 import {UsuarioService} from './usuario.service';
 import {Entrada} from '../models/entrada';
 import {DetalleEntrada} from '../models/detalle-entrada';
+import {ProductoTabla} from '../models/producto-tabla';
+import {MatTableDataSource} from '@angular/material/table';
+import {Salida} from '../models/salida';
 
 @Injectable({
   providedIn: 'root'
@@ -115,8 +118,10 @@ export class ProductoService {
   }
 
 
+  productosTabla: ProductoTabla[];
   idProducto1 = 0;
   entrada: Entrada;
+  salida: Salida;
   listaEntradas: Entrada[];
   DetalleMaterial: DetalleMaterial;
   listaMateriales: Material[];
@@ -134,14 +139,17 @@ export class ProductoService {
   imagen: Imagen;
   CampoPrecio = true;
   CampoStock = true;
+  tablaDetalleMateriales = false;
   FormularioPrecio = false;
   formularioEntrada = false;
+  desplegarDetalleMateriales = false;
   FormularioImagen = false;
+  formularioMateriales = false;
+  formularioIva = false;
+  formularioSalida = false;
   detalleProducto: Producto;
   IdProducto: number;
   desplegarDetalle = false;
-  desplegarDetalleMateriales = false;
-  tablaDetalleMateriales = false;
 
   formularioRegistroProductos = this.formBuilder.group({
     IdProducto: [],
@@ -173,6 +181,11 @@ export class ProductoService {
   formularioRegistroEntrada = this.formBuilder.group({
     Cantidad: [],
   });
+
+  formularioRegistroSalida = this.formBuilder.group({
+    Cantidad: [],
+  });
+
 
   formularioRegistroPrecio = this.formBuilder.group({
     IdPrecioProducto: [],
@@ -210,8 +223,8 @@ export class ProductoService {
   }
 
   registrarIVA(): any {
-    this.iva.FechaInicio = this.hoy.toISOString();
-    this.iva.FechaFin = '1111-11-11';
+    this.iva.FechaInicio = '0001-01-01';
+    this.iva.FechaFin = '0001-01-01';
     this.iva.IdIva = 0;
     console.log(this.iva);
     return this.http.put(this.configuracion.rootURL + '/Productos/AgregarIva', this.iva);
@@ -227,6 +240,16 @@ export class ProductoService {
     this.http.get(this.configuracion.rootURL + '/Productos')
       .toPromise()
       .then(res => this.listaProductos = res as Producto[]);
+  }
+  listarProductoTabla(): any {
+    this.http
+      .get(this.configuracion.rootURL + '/Productos')
+      .toPromise()
+      .then(
+        (res) => {
+          this.productosTabla = res as ProductoTabla[];
+        }
+      );
   }
 
   listarIva(): any {
@@ -264,7 +287,7 @@ export class ProductoService {
 
   registroPrecio(): any {
     this.precio.IdProducto = this.detalleProducto.IdProducto;
-    this.precio.FechaInicio = this.hoy.toISOString();
+    this.precio.FechaInicio = '0001-01-01';
     this.precio.FechaFin = '0001-01-01';
     this.precio.IdPrecioProducto = 0;
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarPrecio', this.precio);
@@ -313,7 +336,7 @@ export class ProductoService {
   }
 
   RegistrarDetalleMaterial(): any {
-    this.DetalleMaterial.IdProducto = this.idProducto1;
+    this.DetalleMaterial.IdProducto = this.detalleProducto.IdProducto;
     return this.http.post(this.configuracion.rootURL + '/Productos/AgregarDetalleMaterial', this.DetalleMaterial);
   }
 
@@ -347,6 +370,12 @@ export class ProductoService {
 
   EliminarImagen(id): any {
     return this.http.delete(this.configuracion.rootURL + '/Productos/EliminarImagen/' + id);
+  }
+
+  RegistroSalida(): any {
+    this.salida.IdSalida = 0;
+    this.salida.Fecha = '0001-01-01';
+    return this.http.post(this.configuracion.rootURL + '/Ventas/AgregarSalida', this.salida);
   }
 
 }

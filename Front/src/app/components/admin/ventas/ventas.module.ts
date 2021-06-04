@@ -10,7 +10,21 @@ import {DetalleVentaProductoComponent} from './detalle-venta-producto/detalle-ve
 import {DetalleVentaCompletoComponent} from './detalle-venta-completo/detalle-venta-completo.component';
 import {FinalizarCompraComponent} from '../../usuarios/clientes/solicitudes/carrito-compras/finalizar-compra/finalizar-compra.component';
 import {NgxPayPalModule} from 'ngx-paypal';
+import {ClientesModule} from '../../usuarios/clientes/clientes.module';
+import {HistorialComprasComponent} from 'src/app/components/usuarios/clientes/solicitudes/gestion-compras/historial-compras/historial-compras.component';
+import {GestionComprasComponent} from 'src/app/components/usuarios/clientes/solicitudes/gestion-compras/gestion-compras.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatSortModule} from '@angular/material/sort';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 
+
+// @ts-ignore
 @NgModule({
   declarations: [
     ListarVentasComponent,
@@ -18,7 +32,9 @@ import {NgxPayPalModule} from 'ngx-paypal';
     GestionVentasComponent,
     DetalleVentaProductoComponent,
     DetalleVentaCompletoComponent,
-    FinalizarCompraComponent
+    FinalizarCompraComponent,
+    HistorialComprasComponent,
+    GestionComprasComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +42,18 @@ import {NgxPayPalModule} from 'ngx-paypal';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    ClientesModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    DragDropModule,
+    MatSortModule,
+    MatInputModule,
+    MatSelectModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ]
 })
 export class VentasModule {

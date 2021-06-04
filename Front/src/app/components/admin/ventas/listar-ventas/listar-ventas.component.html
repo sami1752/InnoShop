@@ -1,22 +1,43 @@
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Usuario</th>
-            <th scope="col">Subtotal</th>
-            <th scope="col">Total</th>
-            <th></th>
-    
-        </tr>
-    </thead>
-    <tbody *ngFor="let venta of ventasService.listaVentas">
-            <tr>
-                <td>{{venta.IdVenta}}</td>
-                <td>{{venta.NombreUsuario}}</td>
-                <td>{{venta.SubTotal}}</td>
-                <td>{{venta.Total}}</td>
-                <td><button  (click)="detalleVenta(venta.IdVenta)" class="btn btn-info" type="button">Detalle</button></td>
-            </tr>
-    </tbody>
-</table>
 
+<mat-form-field>
+  <mat-label>Buscar</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Eje. Mia" #input>
+</mat-form-field>
+<div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="IdVenta">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id</th>
+        <td  mat-cell *matCellDef="let row"> {{row.IdVenta}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NombreUsuario">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario</th>
+        <td mat-cell *matCellDef="let row"> {{row.NombreUsuario}} </td>
+      </ng-container>
+      <ng-container matColumnDef="TotalIva">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Iva</th>
+        <td mat-cell *matCellDef="let row"> {{row.TotalIva}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Total">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total</th>
+        <td mat-cell *matCellDef="let row"> {{row.Total}}
+          <i (click)="detalleVenta(row.IdVenta)"
+             class="bi bi-eye float-right text-info" aria-hidden="true"></i>
+        </td>
+
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay datos que coincidan con la busqueda"{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5]"></mat-paginator>
+  </div>
+</div>

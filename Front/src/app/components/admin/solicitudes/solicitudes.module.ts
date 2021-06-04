@@ -37,6 +37,8 @@ import {MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatSortModule} from '@angular/material/sort';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 @NgModule({
   declarations: [
     ListarSolicitudesPersonalizadasComponent,
@@ -80,8 +82,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatFormFieldModule,
     MatPaginatorModule,
     MatSortModule,
-    DragDropModule
-
+    DragDropModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   exports: [ListarSolicitudesPersonalizadasComponent, GestionSolicitudPersonalizadaComponent]
 })

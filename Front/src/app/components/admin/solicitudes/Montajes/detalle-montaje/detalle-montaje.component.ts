@@ -23,6 +23,70 @@ export class DetalleMontajeComponent implements OnInit {
     this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
   }
 
+  Fabricar(): void {
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes =
+          this.solicitudesPersonalizadasService.formularioDetalleEstadoMontajes.value;
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdUsuario = (res as Usuario).Id;
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdEstado = 7;
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdMontaje = this.id;
+        this.solicitudesPersonalizadasService.AgregarDetalleEstadosMontajes().subscribe(
+          (respuesta: any) => {
+            this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
+          }, error => {
+            alert(error);
+            console.log(error);
+          });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  Terminar(): void {
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes =
+          this.solicitudesPersonalizadasService.formularioDetalleEstadoMontajes.value;
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdUsuario = (res as Usuario).Id;
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdEstado = 8;
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdMontaje = this.id;
+        this.solicitudesPersonalizadasService.AgregarDetalleEstadosMontajes().subscribe(
+          (respuesta: any) => {
+            this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
+          }, error => {
+            alert(error);
+            console.log(error);
+          });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  Entregar(): void {
+    this.usuarioService.obtenerPerfil().subscribe(
+      res => {
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes =
+          this.solicitudesPersonalizadasService.formularioDetalleEstadoMontajes.value;
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdUsuario = (res as Usuario).Id;
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdEstado = 12;
+        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdMontaje = this.id;
+        this.solicitudesPersonalizadasService.AgregarDetalleEstadosMontajes().subscribe(
+          (respuesta: any) => {
+            this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
+          }, error => {
+            alert(error);
+            console.log(error);
+          });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
   cancelar(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {

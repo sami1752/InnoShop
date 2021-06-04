@@ -1,54 +1,55 @@
-<section class="col-lg-8 connectedSortable" style="float: right; margin-top: -30%; ">
+<section class="col-lg-7 connectedSortable" style="float: right; margin-top: -30%; ">
   <div class="card">
     <div class="card-header">
-      <h2 class="card-title">
-        <i class="fas fa-info-circle text-success"></i> Información del usuario
+      <h2 class="card-title colortxt font-weight-light">
+        <i class="bi bi-info-circle"></i> INFORMACIÓN DEL USUARIO
       </h2>
       <div style="float: right;">
-        <i class="fas fa-star text-success"></i>
-        <label class="p-1">Puntos</label> {{this.usuarioService.detalleUsuario.Puntos}}
+        <i class="bi bi-star-fill colortxt"></i>
+        <label class="p-1 colortxt">Puntos</label>
+        <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Puntos}}</label>
       </div>
     </div>
     <div class="card-body">
       <div class="tab-content p-0">
         <div class="row">
           <div class="col">
-            <i class="fas fa-dot-circle text-secondary"></i>
-            <label class="p-1 "> Nombres: </label> {{this.usuarioService.detalleUsuario.Nombres}}
+            <i class="bi bi-record-fill colortxt"></i>
+            <label class="p-1 colortxt"> Nombres: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Nombres}}</label>
           </div>
           <div class=" col ">
-            <i class="fas fa-dot-circle text-secondary"></i>
-            <label class="p-1 "> Apellidos: </label> {{this.usuarioService.detalleUsuario.Apellidos}}
+            <i class="bi bi-record-fill colortxt"></i>
+            <label class="p-1 colortxt"> Apellidos: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Apellidos}}</label>
           </div>
         </div>
         <div class="row ">
           <div class="col ">
-            <i class="fas fa-at text-secondary "></i>
-            <label class="p-1 ">Correo: </label> {{this.usuarioService.detalleUsuario.Email}}
+            <i class="fas fa-at colortxt "></i>
+            <label class="p-1 colortxt">Correo: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Email}}</label>
           </div>
           <div class="col ">
-            <i class="fas fa-id-card text-secondary "></i>
-            <label class="p-1 "> Tipo documento: </label> {{this.usuarioService.detalleUsuario.TipoDocumento}}
-          </div>
-        </div>
-        <div class="row ">
-          <div class="col ">
-            <i class="fas fa-hashtag text-secondary "></i>
-            <label class="p-1 "> Documento: </label> {{this.usuarioService.detalleUsuario.NumDocumento}}
-          </div>
-          <div class="col ">
-            <i class="fas fa-map-marker-alt text-secondary "></i>
-            <label class="p-1 "> Dirección: </label> {{this.usuarioService.detalleUsuario.Direccion}}
+            <i class="fas fa-id-card colortxt "></i>
+            <label class="p-1 colortxt"> Tipo documento: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.TipoDocumento}}</label>
           </div>
         </div>
         <div class="row ">
           <div class="col ">
-            <i class="fas fa-phone-alt text-secondary "></i>
-            <label class="p-1 "> Teléfono: </label> {{this.usuarioService.detalleUsuario.Telefono}}
+            <i class="fas fa-hashtag colortxt"></i>
+            <label class="p-1 colortxt"> Documento: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.NumDocumento}}</label>
           </div>
           <div class="col ">
-            <i class="fas fa-venus-mars text-secondary "></i>
-            <label class="p-1 ">Sexo: </label> {{this.usuarioService.detalleUsuario.Sexo}}
+            <i class="fas fa-map-marker-alt colortxt "></i>
+            <label class="p-1 colortxt"> Dirección: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Direccion}}</label>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col ">
+            <i class="fas fa-phone-alt colortxt "></i>
+            <label class="p-1 colortxt"> Teléfono: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Telefono}}</label>
+          </div>
+          <div class="col ">
+            <i class="fas fa-venus-mars colortxt "></i>
+            <label class="p-1 colortxt">Sexo: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Sexo}}</label>
           </div>
         </div>
       </div>
