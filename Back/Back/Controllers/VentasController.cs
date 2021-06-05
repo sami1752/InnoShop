@@ -45,7 +45,6 @@ namespace Back.Controllers
             }
             catch (Exception e)
             {
-
                 return e.Message;
             }
         }

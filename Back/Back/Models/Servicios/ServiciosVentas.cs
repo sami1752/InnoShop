@@ -53,6 +53,9 @@ namespace Back.Models.Servicios
         {
             await using (_context)
             {
+                var subtotal = (from dVenta in _context.DetalleVentaProductos
+                                where dVenta.IdVenta == idVenta
+                                select dVenta.SubTotal).Sum();
                 DetalleVenta detalleVenta = (from venta in _context.Ventas
                                                   join usuario in _context.Usuarioidentity
                                                   on venta.IdUsuario equals usuario.Id
@@ -69,7 +72,7 @@ namespace Back.Models.Servicios
                                                       IdUsuario = venta.IdUsuario,
                                                       NombreUsuario = usuario.Nombres,
                                                       IdDescuento = venta.IdDescuento,
-                                                      ValorDescuento = porcentaje.Porcentaje == 0 ? 0 : venta.Total * (porcentaje.Porcentaje / 100),
+                                                      ValorDescuento = porcentaje.Porcentaje == 0 ? 0 : subtotal * (porcentaje.Porcentaje / 100),
                                                       PorcentajeDescuento = porcentaje.Porcentaje,
                                                       Total = venta.Total,
                                                       IdIva = venta.IdIva,

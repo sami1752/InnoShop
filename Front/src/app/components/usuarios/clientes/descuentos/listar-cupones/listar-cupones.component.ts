@@ -23,11 +23,14 @@ export class ListarCuponesComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   public usarDescuento(descuento: Descuento){
-    this.descuentosService.descuentoEnVenta = descuento;
-    this.carritoDeComprasService.carritoDeCompras.Valor =
-      this.carritoDeComprasService.carritoDeCompras.Valor
-      - (this.descuentosService.descuentoEnVenta.PorcentajeDescuento
-      * this.carritoDeComprasService.carritoDeCompras.Valor / 100);
+    if (confirm('Esta seguro de usar este cupón de descuento')){
+      this.descuentosService.descuentoEnVenta = descuento;
+      this.carritoDeComprasService.carritoDeCompras.Valor =
+        this.carritoDeComprasService.carritoDeCompras.Valor
+        - (this.descuentosService.descuentoEnVenta.PorcentajeDescuento
+        * this.carritoDeComprasService.carritoDeCompras.Valor / 100);
+      this.descuentosService.usoCupones = true;
+    }
   }
 
 }
