@@ -24,7 +24,7 @@ export interface UserData {
 })
 export class ListaProductosComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['IdProducto', 'Nombre',  'GarantiaMeses', 'NombreCategoria', 'Opciones'];
+  displayedColumns: string[] = ['IdProducto', 'Nombre',  'Estado', 'NombreCategoria', 'Opciones'];
   dataSource: MatTableDataSource<ProductoTabla>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -64,7 +64,6 @@ export class ListaProductosComponent implements AfterViewInit {
   }
 
   eliminarProducto(idProducto): void {
-    if (confirm('¿Estás seguro de desactivar el Producto?')) {
       this.productoService.buscarProducto(idProducto).subscribe(
         (res: Producto) => {
           this.productoService.eliminarProducto(res).subscribe(
@@ -78,7 +77,6 @@ export class ListaProductosComponent implements AfterViewInit {
           );
         }, err => { alert('Error'); }
       );
-    }
   }
 
   detalleProducto(id): void {

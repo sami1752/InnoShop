@@ -157,8 +157,28 @@ namespace Back.Models.Servicios
         public async Task<ActionResult<IEnumerable<DetalleProductosSolicitud>>> ListarDetalleProductosSolicitud() =>
             await _context.DetalleProductosSolicitud.ToListAsync();
 
-        public async Task<ActionResult<IEnumerable<DetalleProductosSolicitud>>> ListaDetalleProductosSolicitud(int id) =>
-            await _context.DetalleProductosSolicitud.Where(x => x.IdSolicitudPersonalizada == id).ToListAsync();
+        public async Task<ActionResult<IEnumerable<DetalleProductosSolicitudDetalle>>> ListaDetalleProductosSolicitud(int id) {
+            await using (_context)
+            {
+                return (from DetalleP in _context.DetalleProductosSolicitud.ToList()
+                        join Producto in _context.Productos.ToList()
+                        on DetalleP.IdProducto equals Producto.IdProducto
+                        join Usuario in _context.Usuarioidentity
+                        on DetalleP.IdUsuario equals Usuario.Id
+                        where DetalleP.IdSolicitudPersonalizada == id
+                        select new DetalleProductosSolicitudDetalle
+                        {
+                            IdDetalleProductosSolicitud = DetalleP.IdDetalleProductosSolicitud,
+                            IdProducto = DetalleP.IdProducto,
+                            Producto = Producto.Nombre,
+                            IdSolicitudPersonalizada = DetalleP.IdSolicitudPersonalizada,
+                            IdUsuario = DetalleP.IdUsuario,
+                            Usuario = Usuario.Nombres + " " + Usuario.Apellidos
+                        }).ToList();
+            }
+
+        }
+           
 
         public async Task EliminarDetalleProductosSolicitud(int id)
         {

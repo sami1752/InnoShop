@@ -79,26 +79,43 @@
                     <div class="col "
                          *ngIf="(this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada')&&
                        (this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada' ||
-                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada')">
-                      <button class="btn btn-sm btn-primary" (click)="cotizar()">Cotizar</button>
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'||
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Devuelta')">
+                      <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
+                    </div>
+                    <div class="col "
+                         *ngIf="( this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Pagada')">
+                      <button class="btn btn-primary" (click)="Fabricar()">Fabricar</button>
+                    </div>
+                    <div class="col"
+                         *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de fabricacion'">
+                      <button class="btn btn-success" (click)="Terminar()">Terminar</button>
+                    </div>
+                    <div class="col"
+                         *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Terminada'">
+                      <button class="btn btn-success" (click)="Entregar()">Entregar</button>
                     </div>
                     <div class="col"
                          *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
-                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Rechazada'">
-                      <button class="btn btn-sm btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Rechazada'||
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Devuelta'">
+                      <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
                     </div>
                     <div class="col"
                          *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de cotizacion'">
-                      <button class="btn btn-sm btn-success" (click)="TerminarCotizacion()">Terminar Cotizacion</button>
+                      <button class="btn btn-success" (click)="TerminarCotizacion()">Terminar Cotizacion</button>
                     </div>
                     <div class="col"
                          *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Rechazada' &&
-                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Cancelada'">
-                      <button class="btn btn-sm btn-danger" (click)="cancelar()">Rechazar</button>
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Cancelada'&&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Pagada'&&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'En proceso de fabricacion'&&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Terminada'&&
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Entregada'">
+                      <button class="btn btn-danger" (click)="cancelar()">Rechazar</button>
                     </div>
-
                   </div>
                 </div>
               </div>

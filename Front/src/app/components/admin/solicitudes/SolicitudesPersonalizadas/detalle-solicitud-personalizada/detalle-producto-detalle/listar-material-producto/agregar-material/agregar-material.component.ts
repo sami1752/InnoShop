@@ -17,13 +17,14 @@ export class AgregarMaterialComponent implements OnInit {
     this.productoService.listarMateriales();
   }
 
-  registrarDetalle(): void  {
+  registrarDetalle(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
         this.productoService.DetalleMaterial = this.productoService.formularioRegistroDetalleMaterial.value;
         this.productoService.DetalleMaterial.IdUsuario = (res as Usuario).Id;
         this.productoService.RegistrarDetalleMaterial().subscribe(
           (respuesta: any) => {
+            alert('Exito');
             this.productoService.ListarDetalleMaterial(this.productoService.DetalleMaterial.IdProducto);
             this.productoService.tablaDetalleMateriales = true;
           }, error => {

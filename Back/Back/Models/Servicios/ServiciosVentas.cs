@@ -130,7 +130,7 @@ namespace Back.Models.Servicios
             var usuario = await _context.Usuarioidentity.FindAsync(venta.IdUsuario);
             var prod = await _context.Productos.FindAsync(detalle.IdProducto);
 
-            usuario.Puntos += prod.Puntos;
+            usuario.Puntos += (prod.Puntos * detalle.Cantidad);
             _context.Usuarioidentity.Update(usuario);
             await _context.SaveChangesAsync();
 

@@ -1,6 +1,6 @@
 export interface ProductoTabla {
   IdProducto: number;
   Nombre: string;
-  GarantiaMeses: string;
+  Estado: boolean;
   NombreCategoria: string;
 }

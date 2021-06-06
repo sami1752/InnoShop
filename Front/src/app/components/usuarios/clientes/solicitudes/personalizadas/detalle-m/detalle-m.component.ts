@@ -37,7 +37,6 @@ export class DetalleMComponent implements OnInit {
   }
 
   private initConfig(): void {
-    alert('hola');
     this.payPalConfig = {
       currency: 'USD',
       clientId: 'AVqWU6rPDlF2Rkm2CQUtWH2cZ1l3s96DO_u1FaT6JMbbT12TdOgAjNurv_6dj4TYnQHd39srPNttQhXt',

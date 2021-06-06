@@ -74,7 +74,7 @@
                         class="p-1 ">  Tipo puerta:  </label> {{this.productoService.detalleProducto.TipoPuerta}}</span>
                       </li>
                       <li><span><label
-                        class="p-1 ">  Ruedas:  </label> {{this.productoService.detalleProducto.Ruedas}}</span>
+                        class="p-1 ">  Ruedas:  </label> <label *ngIf="!this.productoService.detalleProducto.Ruedas">No</label>  <label *ngIf="this.productoService.detalleProducto.Ruedas">Si</label> </span>
                       </li>
                       <li><span><label
                         class="p-1 ">  Precio:  </label>{{this.productoService.detalleProducto.Precio}}</span>

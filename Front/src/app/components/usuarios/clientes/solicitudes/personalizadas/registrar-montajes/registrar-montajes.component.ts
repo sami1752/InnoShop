@@ -35,7 +35,6 @@ export class RegistrarMontajesComponent implements OnInit {
       res => {
         this.solicitudesPersonalizadasService.Montajes =
           this.solicitudesPersonalizadasService.formularioRegistroMontaje.value;
-        alert(this.solicitudesPersonalizadasService.Montajes.Descripcion);
         this.solicitudesPersonalizadasService.Montajes.IdUsuario = (res as Usuario).Id;
         this.solicitudesPersonalizadasService.AgregarMontajes().subscribe(
           (respuesta: any) => {

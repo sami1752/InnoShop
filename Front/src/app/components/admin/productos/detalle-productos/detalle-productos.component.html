@@ -13,93 +13,99 @@
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Id: </label>
-                <label for="" class="font-weight-light"> {{this.productoService.detalleProducto.IdProducto}}</label>
+                <label class="font-weight-light"> {{this.productoService.detalleProducto.IdProducto}}</label>
               </div>
               <div class="col">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Estado: </label>
-                <label for="" class="font-weight-light">{{this.productoService.detalleProducto.Estado}}</label>
+                <label *ngIf="this.productoService.detalleProducto.Estado" class="font-weight-light">Activo</label>
+                <label *ngIf="!this.productoService.detalleProducto.Estado" class="font-weight-light">Inactivo</label>
               </div>
             </div>
             <div class="row">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Nombre: </label>
-                <label for="" class="font-weight-light"> {{this.productoService.detalleProducto.Nombre}}</label>
+                <label class="font-weight-light"> {{this.productoService.detalleProducto.Nombre}}</label>
               </div>
             </div>
             <div class="row">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt">Largo: </label>
-                <label for="" class="font-weight-light">{{this.productoService.detalleProducto.Largo}}</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.Largo}}</label>
               </div>
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Ancho: </label>
-                <label for="" class="font-weight-light"> {{this.productoService.detalleProducto.Ancho}}</label>
+                <label class="font-weight-light"> {{this.productoService.detalleProducto.Ancho}}</label>
               </div>
             </div>
             <div class="row ">
               <div class="col">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Fondo: </label>
-                <label for="" class="font-weight-light">{{this.productoService.detalleProducto.Fondo}}</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.Fondo}}</label>
               </div>
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Tipo puerta: </label>
-                <label for="" class="font-weight-light">{{this.productoService.detalleProducto.TipoPuerta}}</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.TipoPuerta}}</label>
               </div>
             </div>
             <div class="row">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Descripción: </label>
-                <label for="" class="font-weight-light" style="text-align: justify-all; ">{{this.productoService.detalleProducto.Descripcion}}</label>
+                <label class="font-weight-light" style="text-align: justify-all; ">{{this.productoService.detalleProducto.Descripcion}}</label>
               </div>
             </div>
             <div class="row">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Ruedas: </label>
-                <label for="" class="font-weight-light">{{this.productoService.detalleProducto.Ruedas}}</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.Ruedas}}</label>
               </div>
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Puntos: </label>
-                <label for="" class="font-weight-light"> {{this.productoService.detalleProducto.Puntos}}</label>
+                <label class="font-weight-light"> {{this.productoService.detalleProducto.Puntos}}</label>
               </div>
             </div>
             <div class="row ">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
-                <label class="p-1 colortxt"> Id usuario:
-                </label><label for="" class="font-weight-light">{{this.productoService.detalleProducto.IdUsuario}}</label>
+                <label class="p-1 colortxt"> Id usuario:</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.IdUsuario}}</label>
               </div>
             </div>
             <div class="row">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Id Categoria: </label>
-                <label for="" class="font-weight-light">{{this.productoService.detalleProducto.IdCategoria}}</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.IdCategoria}}</label>
               </div>
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Categoria:
-                </label><label for="" class="font-weight-light">{{this.productoService.detalleProducto.NombreCategoria}}</label>
+                </label><label class="font-weight-light">{{this.productoService.detalleProducto.NombreCategoria}}</label>
               </div>
             </div>
             <div class="row">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Meses de garantía: </label>
-                <label for="" class="font-weight-light">{{this.productoService.detalleProducto.GarantiaMeses}}</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.GarantiaMeses}}</label>
               </div>
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
-                <label class="p-1 colortxt"> Precio:
-                </label><label for="" class="font-weight-light">{{this.productoService.detalleProducto.Precio}}</label>
+                <label class="p-1 colortxt"> Precio:</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.Precio}}</label>
+              </div>
+              <div class="col ">
+                <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
+                <label class="p-1 colortxt"> Cantidad: </label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.CantidadStock}}</label>
               </div>
             </div>
           </div>
