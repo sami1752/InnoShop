@@ -42,8 +42,24 @@ namespace Back.Controllers
             try
             {
                 await _context.RegistrarCuponDescuento(descuento);
-                await _context.EditarPuntosUsuario(descuento.IdUsuario);
+                //await _context.EditarPuntosUsuario(descuento.IdUsuario);
                 return Ok(new { mensaje = "Cupon de descuento obtenido" });
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+            }
+        }
+
+        [HttpGet]
+        [Route("EditarPuntos/{IdUsuario}")]
+        public async Task<Object> EditarPuntos(string IdUsuario)
+        {
+            try
+            {
+                await _context.EditarPuntosUsuario(IdUsuario);
+                return Ok(new { mensaje = "Edicion de puntos" });
             }
             catch (Exception e)
             {

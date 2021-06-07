@@ -1,15 +1,16 @@
-<form  class="" [formGroup]="this.productoService.formularioRegistroDetalleMaterial" (ngSubmit)="registrarDetalle()">
-    <label for="IdMaterial">Materiales <span>**</span></label>
-      <select class="form-control" formControlName="IdMaterial" id="IdMaterial">
-        <option value=0 selected>Elige el Material</option>
-        <option *ngFor="let material of this.productoService.listaMateriales"
-         [value]=material.IdMaterial>{{material.Nombre}}</option>
-      </select>
-      <button type="submit" class="os-btn w-50" >Agregar</button>
-      <button type="button" class="os-btn w-50"
-      (click)="this.productoService.desplegarDetalleMateriales = false">Terminar</button>
-  </form>
-  <br>
-  <div *ngIf="this.productoService.tablaDetalleMateriales && this.productoService.ListaDetalleMateriales.length">
-    <app-listar-material-producto></app-listar-material-producto>
+
+<form class="" [formGroup]="this.productoService.formularioRegistroDetalleMaterial" (ngSubmit)="registrarDetalle()">
+  <div class="input-group mb-3">
+    <select class="form-control" formControlName="IdMaterial" id="IdMaterial">
+      <option value=0 selected>Elige el Material</option>
+      <option *ngFor="let material of this.productoService.listaMateriales"
+              [value]=material.IdMaterial>{{material.Nombre}}</option>
+    </select>
+    <button type="submit" [disabled]="this.productoService.formularioRegistroDetalleMaterial.invalid"
+            class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
+    <button type="button"
+            (click)="this.productoService.formularioRegistroPrecio.reset();
+             this.productoService.formularioMateriales=false"
+            class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button>
   </div>
+</form>

@@ -12,7 +12,7 @@
         <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">Id Producto</th>
+          <th scope="col">Producto</th>
           <th></th>
           <th></th>
         </tr>
@@ -20,7 +20,7 @@
         <tbody *ngFor="let producto of solicitudesPersonalizadasService.listaDetalleProductosSolicitud">
         <tr>
           <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.IdDetalleProductosSolicitud}}</td>
-          <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.IdProducto}}</td>
+          <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.Producto}}</td>
           <td><i (click)="eliminarProducto(producto.IdDetalleProductosSolicitud)" class="bi bi-trash text-danger"></i></td>
           <td><i
             (click)=" detalleProducto(producto.IdProducto); this.productoService.desplegarDetalle =!this.productoService.desplegarDetalle; "

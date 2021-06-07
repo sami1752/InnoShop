@@ -19,16 +19,18 @@
                         </div>
 
 
-                        <label for="pass">Contraseña <span class="colortxt">**</span></label>
-                        <input formControlName="Contrasena" id="pass" type="password" placeholder="Ingrese contraseña" />
+                        <label for="Contrasena">Contraseña <span class="colortxt">**</span></label>
+                        <input formControlName="Contrasena" type="password" placeholder="Ingrese contraseña" id="Contrasena" />
 
                         <!--Validacion Contraseña-->
                         <div *ngIf="this.usuarioService.contrasenaLogin.invalid && (this.usuarioService.contrasenaLogin.touched
                                  || this.usuarioService.contrasenaLogin.dirty)" class="text-danger mb-20 text-center">
 
                             <div *ngIf="this.usuarioService.contrasenaLogin.hasError('required')">La contraseña es obligatoria</div>
-                            <div *ngIf="this.usuarioService.contrasenaLogin.hasError('maxLength')">La contraseña debe contener máximo 15 caracteres
+                            <div *ngIf="this.usuarioService.contrasenaLogin.hasError('maxlength')">La contraseña debe contener máximo 15 caracteres
                             </div>
+                          <div *ngIf="this.usuarioService.contrasenaLogin.hasError('minlength')">La contraseña debe contener minimo 6 caracteres
+                          </div>
                         </div>
 
 

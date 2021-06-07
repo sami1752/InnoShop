@@ -1,39 +1,130 @@
-<div align="center" id="htmlData">
-  <br>
-  <br>
-  <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Enter a date range</mat-label>
-    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-      <input matStartDate formControlName="start" placeholder="Desde">
-      <input matEndDate formControlName="end" placeholder="Hasta" (dateInput)="Reporte()">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
 
-    <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Fecha Inicial Erronea</mat-error>
-    <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Fecha Final Erronea</mat-error>
-  </mat-form-field>
-  <div>
-    <b>Ventas solicitudes Personalizadas</b>
-    <p>Cantidad productos: {{ReporteV.CantProdPerso}}</p>
-    <p>Monto :  {{ReporteV.MontoPerso}}</p>
+<section class="content" >
+  <div class="content-wrapper"  >
     <br>
-    <b>Venta productos</b>
-    <p>Cantidad productos :{{ReporteV.CantProducto}}</p>
-    <p>Monto :  {{ReporteV.MontoProd}}</p>
-    <p>Numero de descuentos :  {{ReporteV.NumDescuentosProd}}</p>
-    <p>Monto descuentos :  {{ReporteV.MontoDescuentosProdu}}</p>
-    <br>
-    <b>Total en ventas</b>
-    <p>Total global :  {{ReporteV.TotalGlobal}}</p>
-    <p>Total  descuentos :  {{ReporteV.TotalDescuentos}}</p>
-    <p>Total  ingresos :  {{ReporteV.TotalIngresos}}</p>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <section class="col-lg-4 connectedSortable">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <button class="btn font-weight-light" style="float:left" (click)="downloadPDF()"><i class="bi bi-file-earmark-pdf-fill text-danger"></i>Descargar</button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <div align="center"><mat-form-field appearance="fill">
+                    <mat-label>Enter a date range</mat-label>
+                    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                      <input matStartDate formControlName="start" placeholder="Desde">
+                      <input matEndDate formControlName="end" placeholder="Hasta" (dateInput)="Reporte()">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+
+                    <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Fecha Inicial Erronea</mat-error>
+                    <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Fecha Final Erronea</mat-error>
+                  </mat-form-field></div>
+
+                  <table class="table table-bordered font-weight-light">
+                    <tr>
+                      <td colspan="2" class="bg-secondary"> Ventas solicitudes personalizadas</td>
+                    </tr>
+                    <tr>
+                      <td>Cantidad productos:</td>
+                      <td align="center">{{ReporteV.CantProdPerso}}</td>
+                    </tr>
+                    <tr>
+                      <td>Monto : </td>
+                      <td align="center">{{ReporteV.MontoPerso}}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="bg-secondary"> Ventas productos</td>
+                    </tr>
+                    <tr>
+                      <td>Cantidad productos:</td>
+                      <td align="center">{{ReporteV.CantProducto}}</td>
+                    </tr>
+                    <tr>
+                      <td>Monto : </td>
+                      <td align="center"> {{ReporteV.MontoProd}}</td>
+                    </tr>
+                    <tr>
+                      <td>Numero de descuentos:</td>
+                      <td align="center">{{ReporteV.NumDescuentosProd}}</td>
+                    </tr>
+                    <tr>
+                      <td>Monto descuentos :</td>
+                      <td align="center"> {{ReporteV.MontoDescuentosProdu}}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="bg-secondary"> Ventas productos</td>
+                    </tr>
+                    <tr>
+                      <td>Total global :  </td>
+                      <td align="center">{{ReporteV.TotalGlobal}}</td>
+                    </tr>
+                    <tr>
+                      <td>Total  descuentos :</td>
+                      <td align="center">{{ReporteV.TotalDescuentos}}</td>
+                    </tr>
+                    <tr>
+                      <td>Total  ingresos : </td>
+                      <td align="center"> {{ReporteV.TotalIngresos}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="col-lg-8 connectedSortable" id="htmlData">
+            <div class="card" align="center">
+              <div class="card-header">
+                 <h1 class="card-title  colortxt font-weight-light" > REPORTE VENTAS</h1>
+              </div>
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <ngx-charts-advanced-pie-chart
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="data"
+                    [label]="label">
+                  </ngx-charts-advanced-pie-chart>
+                </div>
+                <div>
+                  <h2 class="font-weight-light colortxt">CANTIDAD DE PRODUCTOS</h2>
+                  <ngx-charts-pie-grid
+                    [view]="view2"
+                    [scheme]="colorScheme2"
+                    [results]="datos">
+                  </ngx-charts-pie-grid>
+                </div>
+
+              </div>
+              <div >
+
+                <h2 class="font-weight-light colortxt" >TOTAL EN VENTAS</h2>
+                <ngx-charts-pie-chart
+                  [view]="view3"
+                  [scheme]="colorScheme3"
+                  [results]="Total"
+                  [legend]="showLegend"
+                  [legendTitle]="legendTitle"
+                  [legendPosition]="legendPosition"
+                  [labels]="showLabels"
+                  [doughnut]="isDoughnut">
+                </ngx-charts-pie-chart>
+              </div>
+              <br>
+              <br>
+            </div>
+          </section>
+        </div>
+      </div>
+
+    </section>
   </div>
-  <br>
-  <h3>INNOSHOP REPORTE VENTAS</h3>
-</div>
-<div align="center">
-  <button class="btn btn-danger" (click)="downloadPDF()">PDF</button>
-</div>
+</section>
 

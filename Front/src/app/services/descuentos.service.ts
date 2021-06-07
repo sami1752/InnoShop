@@ -106,6 +106,11 @@ export class DescuentosService {
     return this.http.post(this.configuracion.rootURL + '/Descuentos', this.descuento);
   }
 
+
+  EditarPuntos(id): any {
+    return this.http.get(this.configuracion.rootURL + '/Descuentos/EditarPuntos/' + id);
+  }
+
   RegistrarPorcentaje(): any {
     this.porcentajeRuleta = this.formRegistroPorcentaje.value;
     this.porcentajeRuleta.Estado = true;

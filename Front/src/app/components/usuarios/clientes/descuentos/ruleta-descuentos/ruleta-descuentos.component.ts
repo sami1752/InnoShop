@@ -65,7 +65,6 @@ export class RuletaDescuentosComponent implements AfterViewInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
@@ -86,29 +85,43 @@ export class RuletaDescuentosComponent implements AfterViewInit {
             this.descuentosService.descuento.IdUsuario = this.perfilUsuario.Id;
             this.descuentosService.descuento.IdPorcentajeRuleta = this.IdPorcentajeRuleta;
             console.log(this.descuentosService.descuento);
-            if ((document.getElementById('porcentaje').textContent as unknown as number) != 0) {
-              this.descuentosService.RegistrarCuponDescuento().subscribe(
-                // tslint:disable-next-line:no-shadowed-variable
-                (res: any) => {
-                  alert(res.mensaje);
-                  document.getElementById('texto').style.fontWeight = 'light';
-                  document.getElementById('textoicon').style.fontWeight = 'light';
-                  this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id);
-                  document.getElementById('textoicon').className = 'text-success';
-                  document.getElementById('icon_mensaje').className = 'bi bi-patch-check-fill';
-                  document.getElementById('textoicon').style.display = 'block';
-                  document.getElementById('texto').className = 'text-success';
-                  document.getElementById('texto').style.fontWeight = 'light';
-
-                  document.getElementById('texto').textContent = ' ' +
-                    'Obtuviste un cupón de' + ' ' + document.getElementById('porcentaje').textContent + '%';
-                  this.perfilUsuario.Puntos -= this.descuentosService.valorRuleta.ValorDeRuleta;
-                  window.location.reload();
-                }, err => {
-                  alert('error al registrar cupon');
-                }
-              );
-            }
+            this.usuariosService.obtenerPerfil().subscribe(
+              (resp: any) => {
+                this.perfilUsuario = (resp as PerfilUsuario);
+                this.descuentosService.EditarPuntos(this.perfilUsuario.Id).subscribe(
+                  // tslint:disable-next-line:no-shadowed-variable
+                  (respuesta: any) => {
+                    this.usuariosService.obtenerPerfil().subscribe(
+                      (respueesta: any) => {
+                        this.perfilUsuario = (respueesta as PerfilUsuario);
+                      });
+                    if ((document.getElementById('porcentaje').textContent as unknown as number) != 0) {
+                      this.descuentosService.RegistrarCuponDescuento().subscribe(
+                        // tslint:disable-next-line:no-shadowed-variable
+                        (res: any) => {
+                          alert(res.mensaje);
+                          document.getElementById('texto').style.fontWeight = 'light';
+                          document.getElementById('textoicon').style.fontWeight = 'light';
+                          this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id);
+                          document.getElementById('textoicon').className = 'text-success';
+                          document.getElementById('icon_mensaje').className = 'bi bi-patch-check-fill';
+                          document.getElementById('textoicon').style.display = 'block';
+                          document.getElementById('texto').className = 'text-success';
+                          document.getElementById('texto').style.fontWeight = 'light';
+                          document.getElementById('texto').textContent = ' ' +
+                            'Obtuviste un cupón de' + ' ' + document.getElementById('porcentaje').textContent + '%';
+                          this.perfilUsuario.Puntos -= this.descuentosService.valorRuleta.ValorDeRuleta;
+                          window.location.reload();
+                        }, err => {
+                          alert('error al registrar cupon');
+                        }
+                      );
+                    }
+                  },
+                  error => {
+                    alert('error');
+                  });
+              });
           } else {
             alert('No tiene los puntos necesarios para jugar');
           }
