@@ -68,7 +68,7 @@ export class HistorialComprasComponent implements AfterViewInit {
   detalleVenta(idVenta){
     this.ventasService.ListarDetalleVentasProductos(idVenta);
     this.ventasService.DetalleVenta(idVenta);
-    this.ventasService.desplegarDetalle = !this.ventasService.desplegarDetalle;
+    this.ventasService.desplegarDetalle = true;
   }
 
 }

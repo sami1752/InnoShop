@@ -4,9 +4,17 @@
       <section class="col-lg-7 connectedSortable mb-60">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title colortxt">
-              <i class="bi bi-info-circle-fill color"></i> Información de la solicitud
+            <h2 class="card-title colortxt font-weight-light">
+              <i class="bi bi-info-circle"></i> INFORMACIÓN DE LA SOLICITUD
             </h2>
+            <div style="float: right" >
+              <a href="solicitudes/respuestasSP/{{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}" class="btn  colortxt font-weight-light" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Rechazada' &&
+                  this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Cancelada'&&
+                  this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Entregada'">
+                <i class="bi bi-chat-square-dots-fill colortxt"></i> Respuestas</a>
+              <a [routerLink]="['/solicitudes/Solicitud',this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada]" class="btn  colortxt font-weight-light"  *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
+               this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'"><i class="bi bi-pencil-fill colortxt"></i> Editar</a>
+            </div>
           </div>
           <div class="card-body">
             <div class="tab-content p-0">
@@ -92,20 +100,6 @@
                      *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Aceptada' && !showPaypalButtons">
                   <button class="btn btn-sm btn-success" (click)="Pagar()">Pagar</button>
                 </div>
-                <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Enviada'||
-               this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Modificada'">
-                  <a
-                    [routerLink]="['/solicitudes/Solicitud',this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada]"
-                    class="btn btn-sm btn-secondary">Editar</a>
-                </div>
-                <div class="col" *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Rechazada' &&
-                  this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Cancelada'&&
-                  this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Entregada'">
-                  <a href="solicitudes/respuestasSP/{{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}"
-                     class="btn btn-sm btn-primary"> Respuestas</a>
-                </div>
-
-
               </div>
             </div>
           </div>

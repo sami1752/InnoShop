@@ -4,9 +4,16 @@
       <section class="col-lg-7 connectedSortable mb-60">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title colortxt">
-              <i class="bi bi-info-circle-fill "></i> Información del Montaje
+            <h2 class="card-title colortxt font-weight-light">
+              <i class="bi bi-info-circle"></i>  INFORMACIÓN MONTAJE
             </h2>
+            <div style="float: right" >
+              <a href="solicitudes/respuestasM/{{this.solicitudesPersonalizadasService.Montajes.IdMontaje}}" class="btn  colortxt font-weight-light" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'Entregada' &&
+               this.solicitudesPersonalizadasService.Montajes.Estado != 'Cancelada' && this.solicitudesPersonalizadasService.Montajes.Estado != 'Rechazada'">
+                <i class="bi bi-chat-square-dots-fill colortxt"></i> Respuestas</a>
+              <a [routerLink]="['/solicitudes/Montajes',this.solicitudesPersonalizadasService.Montajes.IdMontaje]" class="btn  colortxt font-weight-light"  *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado =='Modificada' ||
+                this.solicitudesPersonalizadasService.Montajes.Estado == 'Enviada'"><i class="bi bi-pencil-fill colortxt"></i> Editar</a>
+            </div>
           </div>
           <div class="card-body">
             <div class="tab-content p-0">
@@ -68,34 +75,24 @@
                     Total: </label> {{this.solicitudesPersonalizadasService.Montajes.ValorTotal}}
                 </div>
                 <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Cotizada'">
-                  <button class="btn btn-success" (click)="Aceptar()">Aceptar</button>
+                  <button class="btn btn-sm btn-success" (click)="Aceptar()">Aceptar</button>
                 </div>
 
                 <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Cotizada'">
-                  <button class="btn btn-danger" (click)="Rechazar()">Rechazar</button>
+                  <button class="btn btn-sm btn-danger" (click)="Rechazar()">Rechazar</button>
                 </div>
                 <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'En proceso de cotizacion' ||
           this.solicitudesPersonalizadasService.Montajes.Estado == 'Devuelta'||
           this.solicitudesPersonalizadasService.Montajes.Estado == 'Enviada'||
           this.solicitudesPersonalizadasService.Montajes.Estado == 'Modificada'">
-                  <button class="btn btn-danger" (click)="Cancelar()">Cancelar</button>
+                  <button class="btn btn-sm btn-danger" (click)="Cancelar()">Cancelar</button>
                 </div>
                 <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Cotizada'">
-                  <button class="btn btn-dark" (click)="Devoler()">Devolver</button>
+                  <button class="btn  btn-sm btn-dark" (click)="Devoler()">Devolver</button>
                 </div>
                 <div class="col"
                      *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Aceptada' && !showPaypalButtons">
                   <button class="btn btn-sm btn-success" (click)="Pagar()">Pagar</button>
-                </div>
-                <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Enviada'||
-               this.solicitudesPersonalizadasService.Montajes.Estado == 'Modificada'">
-                  <a [routerLink]="['/solicitudes/Montajes',this.solicitudesPersonalizadasService.Montajes.IdMontaje]">Editar</a>
-                </div>
-                <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado !='Rechazada' &&
-                this.solicitudesPersonalizadasService.Montajes.Estado != 'Cancelada'&&
-                this.solicitudesPersonalizadasService.Montajes.Estado != 'Entregada'" >
-                  <a href="solicitudes/respuestasM/{{this.solicitudesPersonalizadasService.Montajes.IdMontaje}}">
-                    Respuestas</a>
                 </div>
               </div>
             </div>

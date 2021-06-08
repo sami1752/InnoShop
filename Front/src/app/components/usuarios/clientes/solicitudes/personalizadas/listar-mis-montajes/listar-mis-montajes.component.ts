@@ -23,7 +23,7 @@ export interface UserData {
   styleUrls: ['./listar-mis-montajes.component.css']
 })
 export class ListarMisMontajesComponent implements AfterViewInit {
-  displayedColumns: string[] = ['IdMontaje', 'Fecha', 'Estado', 'Direccion', 'ValorTotal'];
+  displayedColumns: string[] = ['IdMontaje', 'Fecha', 'Estado', 'Direccion', 'ValorTotal', 'Opciones'];
   dataSource: MatTableDataSource<MontajesTabla>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

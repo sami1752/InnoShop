@@ -1,8 +1,24 @@
 
 
+<div style="display: flex;justify-content: center;align-items: center;" class="mb-10 py-3"
+     *ngIf="this.ventasService.desplegarDetalle==false">
+  <div class="card" style="width: 70%">
+  <app-historial-compras></app-historial-compras>
+</div>
+</div>
 
-  <app-historial-compras  ></app-historial-compras>
+  <section class="content py-3 mb-60 "  *ngIf="this.ventasService.desplegarDetalle">
+    <div class="container-fluid">
+      <div class="row">
+        <section class="col-lg-7 connectedSortable">
+          <div class="card">
+            <app-historial-compras></app-historial-compras>
+          </div>
+        </section>
+        <section class="col-lg-5 connectedSortable">
+                <app-detalle-venta-completo></app-detalle-venta-completo>
+        </section>
+      </div>
+    </div>
 
-    <div *ngIf="this.ventasService.desplegarDetalle" >
-    <app-detalle-venta-completo></app-detalle-venta-completo>
-  </div>
+  </section>
