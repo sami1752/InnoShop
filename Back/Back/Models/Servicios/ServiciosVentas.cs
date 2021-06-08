@@ -30,7 +30,7 @@ namespace Back.Models.Servicios
                                                   on venta.IdDescuento equals descuento.IdDescuento
                                                   join porcentaje in _context.PorcentajesRuleta
                                                   on descuento.IdPorcentajeRuleta equals porcentaje.IdPorcentajeRuleta
-                                                  join iva in _context.Iva on venta.IdIva equals iva.IdIva
+                                                  join iva in _context.Iva on venta.IdIva equals iva.IdIva orderby venta.IdVenta descending
                                                   select new DetalleVenta
                                                   {
                                                       IdVenta=venta.IdVenta,

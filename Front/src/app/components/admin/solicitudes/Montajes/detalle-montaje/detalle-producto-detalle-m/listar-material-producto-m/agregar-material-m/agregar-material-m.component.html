@@ -9,6 +9,11 @@
   <button type="button" class="os-btn w-50"
           (click)="this.productoService.desplegarDetalleMateriales = false">Terminar</button>
 </form>
+<div
+  *ngIf="this.productoService.IdMaterial.invalid && (this.productoService.IdMaterial.touched || this.productoService.IdMaterial.dirty)"
+  class="alertad mb-20" style=" ">
+  <div *ngIf="this.productoService.IdMaterial.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+</div>
 <br>
 <div *ngIf="this.productoService.tablaDetalleMateriales && this.productoService.ListaDetalleMateriales.length">
   <app-listar-material-producto-m></app-listar-material-producto-m>

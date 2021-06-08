@@ -9,7 +9,7 @@ import {
   Injectable
 } from '@angular/core';
 import {
-  FormBuilder
+  FormBuilder, Validators
 } from '@angular/forms';
 import {
   Observable
@@ -61,10 +61,58 @@ export class ProductoService {
               private formBuilder: FormBuilder) {
   }
 
-  get idMaterial(): any {
-    return this.formularioRegistroDetalleMaterial.controls.IdMaterial;
-  }
 
+  productosTabla: ProductoTabla[];
+  idProducto1 = 0;
+  entrada: Entrada;
+  salida: Salida;
+  listaEntradas: Entrada[];
+  DetalleMaterial: DetalleMaterial;
+  listaMateriales: Material[];
+  ListaDetalleMateriales: DetalleMaterialProducto[];
+  precio: Precio;
+  imagenFile;
+  listaPrecios: Precio[];
+  listaImagenes: Imagen[];
+  listaImagenesProducto: Imagen[];
+  producto: Producto;
+  listaProductos: Producto[];
+  listaCategorias: Categoria[];
+  listaIVA: Iva[];
+  iva: Iva;
+  imagen: Imagen;
+  CampoPrecio = true;
+  CampoStock = true;
+  tablaDetalleMateriales = false;
+  FormularioPrecio = false;
+  formularioEntrada = false;
+  desplegarDetalleMateriales = false;
+  FormularioImagen = false;
+  formularioMateriales = false;
+  formularioIva = false;
+  formularioSalida = false;
+  detalleProducto: Producto;
+  IdProducto: number;
+  desplegarDetalle = false;
+
+  formularioRegistroProductos = this.formBuilder.group({
+    IdProducto: [],
+    Nombre: ['', [Validators.required, Validators.maxLength(60), Validators.pattern(this.configuracion.exRegularLetras)]],
+    Estado: [],
+    Ancho: [ , [Validators.required, Validators.max(1000), Validators.min(1)]],
+    Largo: [ , [Validators.required, Validators.max(1000), Validators.min(1)]],
+    Fondo: [ , [Validators.required, Validators.max(1000), Validators.min(1)]],
+    TipoPuerta: ['', [Validators.required]],
+    Descripcion: ['', [Validators.required, Validators.maxLength(500)]],
+    Ruedas: ['', [Validators.required]],
+    IdUsuario: [''],
+    Puntos: ['', [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros)]],
+    IdCategoria: [''],
+    NombreCategoria: [''],
+    GarantiaMeses: [, [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros)]],
+    Precio: [ , [Validators.required, Validators.min(1)]],
+    CantidadStock: [ , [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros), Validators.min(1)]]
+  });
   get Id(): any {
     return this.formularioRegistroProductos.controls.Id;
   }
@@ -116,86 +164,48 @@ export class ProductoService {
   get GarantiaMeses(): any {
     return this.formularioRegistroProductos.controls.GarantiaMeses;
   }
-
-
-  productosTabla: ProductoTabla[];
-  idProducto1 = 0;
-  entrada: Entrada;
-  salida: Salida;
-  listaEntradas: Entrada[];
-  DetalleMaterial: DetalleMaterial;
-  listaMateriales: Material[];
-  ListaDetalleMateriales: DetalleMaterialProducto[];
-  precio: Precio;
-  imagenFile;
-  listaPrecios: Precio[];
-  listaImagenes: Imagen[];
-  listaImagenesProducto: Imagen[];
-  producto: Producto;
-  listaProductos: Producto[];
-  listaCategorias: Categoria[];
-  listaIVA: Iva[];
-  iva: Iva;
-  imagen: Imagen;
-  CampoPrecio = true;
-  CampoStock = true;
-  tablaDetalleMateriales = false;
-  FormularioPrecio = false;
-  formularioEntrada = false;
-  desplegarDetalleMateriales = false;
-  FormularioImagen = false;
-  formularioMateriales = false;
-  formularioIva = false;
-  formularioSalida = false;
-  detalleProducto: Producto;
-  IdProducto: number;
-  desplegarDetalle = false;
-
-  formularioRegistroProductos = this.formBuilder.group({
-    IdProducto: [],
-    Nombre: [''],
-    Estado: [],
-    Ancho: [],
-    Largo: [],
-    Fondo: [],
-    TipoPuerta: [''],
-    Descripcion: [''],
-    Ruedas: [],
-    IdUsuario: [''],
-    Puntos: [],
-    IdCategoria: [],
-    NombreCategoria: [''],
-    GarantiaMeses: [],
-    Precio: [],
-    CantidadStock: []
-  });
-
+  get Precio(): any {
+    return this.formularioRegistroProductos.controls.Precio;
+  }
+  get CantidadStock(): any {
+    return this.formularioRegistroProductos.controls.CantidadStock;
+  }
   formularioRegistroIVA = this.formBuilder.group({
     IdIva: [],
-    Porcentaje: [],
+    Porcentaje: [ , [Validators.required, Validators.min(1), Validators.max(100)]],
     FechaInicio: [],
     FechaFin: [],
     IdUsuario: [],
   });
+  get PorcentajeIva(): any {
+    return this.formularioRegistroIVA.controls.Porcentaje;
+  }
 
   formularioRegistroEntrada = this.formBuilder.group({
-    Cantidad: [],
+    Cantidad: [ , [Validators.required, Validators.min(1), Validators.max(100)]],
   });
+  get CantidadEntrada(): any {
+    return this.formularioRegistroEntrada.controls.Cantidad;
+  }
 
   formularioRegistroSalida = this.formBuilder.group({
-    Cantidad: [],
+    Cantidad: [ , [Validators.required, Validators.min(1), Validators.max(100)]],
   });
-
+  get CantidadSalida(): any {
+    return this.formularioRegistroSalida.controls.Cantidad;
+  }
 
   formularioRegistroPrecio = this.formBuilder.group({
     IdPrecioProducto: [],
-    Precio: [],
+    Precio: [ , [Validators.required, Validators.min(1), Validators.max(9999999)]],
     FechaInicio: [],
     FechaFin: [],
     IdUsuario: [],
     IdProducto: []
   });
-
+  get RegistroPrecio(): any {
+    return this.formularioRegistroPrecio.controls.Precio;
+  }
   formularioRegistroImagen = this.formBuilder.group({
     IdImagen: [],
     RutaImagen: [],
@@ -204,9 +214,11 @@ export class ProductoService {
     IdProducto: []
   });
   formularioRegistroDetalleMaterial = this.formBuilder.group({
-    IdMaterial: []
+    IdMaterial: ['' , [Validators.required]]
   });
-
+  get IdMaterial(): any {
+    return this.formularioRegistroDetalleMaterial.controls.IdMaterial;
+  }
   fecha = new Date();
   tiempoTranscurrido = Date.now();
   hoy = new Date(this.tiempoTranscurrido);

@@ -8,7 +8,15 @@
             (click)="this.productoService.formularioRegistroIVA.reset(); this.productoService.formularioIva=false"
             class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button>
   </div>
-
+  <div
+    *ngIf="this.productoService.PorcentajeIva.invalid && (this.productoService.PorcentajeIva.touched || this.productoService.PorcentajeIva.dirty)"
+    class="alertad mb-20" style=" ">
+    <div *ngIf="this.productoService.PorcentajeIva.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+    <div *ngIf="this.productoService.PorcentajeIva.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Porcentaje debe ser mayor a cero
+    </div>
+    <div *ngIf="this.productoService.PorcentajeIva.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Porcentaje debe ser menor
+    </div>
+  </div>
 
 </form>
 

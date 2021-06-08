@@ -4,4 +4,14 @@
 
   <button type="submit" [disabled]="this.productoService.formularioRegistroEntrada.invalid" class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
   <button type="button" (click)="this.productoService.formularioRegistroEntrada.reset(); this.productoService.formularioEntrada=false" class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button> </div>
+
+  <div
+    *ngIf="this.productoService.CantidadEntrada.invalid && (this.productoService.CantidadEntrada.touched || this.productoService.CantidadEntrada.dirty)"
+    class="alertad mb-20" style=" ">
+    <div *ngIf="this.productoService.CantidadEntrada.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+    <div *ngIf="this.productoService.CantidadEntrada.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Cantidad debe ser mayor a cero
+    </div>
+    <div *ngIf="this.productoService.CantidadEntrada.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Cantidad debe ser menor
+    </div>
+  </div>
 </form>

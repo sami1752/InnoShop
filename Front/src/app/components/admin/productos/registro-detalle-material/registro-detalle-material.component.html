@@ -13,4 +13,10 @@
              this.productoService.formularioMateriales=false"
             class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button>
   </div>
+  <div
+    *ngIf="this.productoService.IdMaterial.invalid && (this.productoService.IdMaterial.touched || this.productoService.IdMaterial.dirty)"
+    class="alertad mb-20" style=" ">
+    <div *ngIf="this.productoService.IdMaterial.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+  </div>
 </form>
+
