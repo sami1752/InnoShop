@@ -120,7 +120,7 @@ export class UsuarioService {
   });
 
   formularioCambioContrasena = this.formBuilder.group({
-    Email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
+    Email: [''],
     ContrasenaAntigua: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
     Contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
     ConfirmarContrasena: ['', [Validators.required]]
@@ -198,6 +198,19 @@ export class UsuarioService {
 
   get ConfirmarContrasena(): any {
     return this.formularioRegistroUsuario.controls.ConfirmarContrasena;
+  }
+
+
+  get contrasenaActual(): any {
+    return this.formularioCambioContrasena.controls.ContrasenaAntigua;
+  }
+
+  get contrasenaNueva(): any {
+    return this.formularioCambioContrasena.controls.Contrasena;
+  }
+
+  get ConfirmarcontrasenaNueva(): any {
+    return this.formularioCambioContrasena.controls.ConfirmarContrasena;
   }
 
   get direccionAdmin(): any {

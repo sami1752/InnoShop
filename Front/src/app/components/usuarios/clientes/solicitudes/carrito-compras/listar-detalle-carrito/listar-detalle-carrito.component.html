@@ -18,10 +18,8 @@
                 </thead>
                 <tbody *ngFor="let detalle of carritoDeComprasService.listaDetalleCarritoCompras">
                 <tr>
-                  <!-- <td>{{detalle.IdDetalleCarritoDeCompras}}</td> -->
                   <td>
                     <a [routerLink]="['/productos/detalleProducto',detalle.IdProducto]" class="text-dark">{{detalle.NombreProducto}}</a>
-
                   </td>
                   <ng-container *ngFor="let precio of productoService.listaPrecios">
                     <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio}}</td>

@@ -43,7 +43,7 @@ export class VentasService {
   formularioRegistroVenta = this.formBuilder.group({
     IdProducto: [],
     IdVenta: [0],
-    Cantidad: [1, [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros)]],
+    Cantidad: [, [Validators.required, Validators.min(1), Validators.pattern(this.configuracion.exRegularNumeros)]],
   }, {
     validator: this.validarStock.bind(this)
   });

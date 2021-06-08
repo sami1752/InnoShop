@@ -9,28 +9,28 @@
             <input id="ContrasenaAntigua" formControlName="ContrasenaAntigua" type="password" placeholder="Ingrese Contraseña actual"/>
             <!--Validaciones Contraseña-->
             <div
-              *ngIf="this.usuarioService.contrasena.invalid && (this.usuarioService.contrasena.touched || this.usuarioService.contrasena.dirty)"
+              *ngIf="this.usuarioService.contrasenaActual.invalid && (this.usuarioService.contrasenaActual.touched || this.usuarioService.contrasenaActual.dirty)"
               class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.contrasena.hasError('required')">La contraseña es obligatoria</div>
+              <div *ngIf="this.usuarioService.contrasenaActual.hasError('required')">La contraseña es obligatoria</div>
             </div>
             <label for="Contrasena">Contraseña Nueva<span>**</span></label>
             <input id="Contrasena" formControlName="Contrasena" type="password" placeholder="Ingrese Contraseña"/>
             <!--Validaciones Contraseña-->
             <div
-              *ngIf="this.usuarioService.contrasena.invalid && (this.usuarioService.contrasena.touched || this.usuarioService.contrasena.dirty)"
+              *ngIf="this.usuarioService.contrasenaNueva.invalid && (this.usuarioService.contrasenaNueva.touched || this.usuarioService.contrasenaNueva.dirty)"
               class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.contrasena.hasError('required')">La contraseña es obligatoria</div>
+              <div *ngIf="this.usuarioService.contrasenaNueva.hasError('required')">La contraseña es obligatoria</div>
             </div>
             <label for="ConfirmarContrasena">Confirmar Contraseña<span>**</span></label>
             <input id="ConfirmarContrasena" formControlName="ConfirmarContrasena" type="password" placeholder="Ingrese contraseña"/>
             <!--Validaciones confirmar Contraseña-->
             <div
-              *ngIf="this.usuarioService.ConfirmarContrasena.invalid && (this.usuarioService.ConfirmarContrasena.touched || this.usuarioService.ConfirmarContrasena.dirty)"
+              *ngIf="this.usuarioService.ConfirmarcontrasenaNueva.invalid && (this.usuarioService.ConfirmarcontrasenaNueva.touched || this.usuarioService.ConfirmarcontrasenaNueva.dirty)"
               class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.ConfirmarContrasena.hasError('required')">La contraseña de confirmación es
+              <div *ngIf="this.usuarioService.ConfirmarcontrasenaNueva.hasError('required')">La contraseña de confirmación es
                 obligatoria
               </div>
-              <div *ngIf="this.usuarioService.ConfirmarContrasena.hasError('ContrasenasDiferentes')">Las contraseñas
+              <div *ngIf="this.usuarioService.ConfirmarcontrasenaNueva.hasError('ContrasenasDiferentes')">Las contraseñas
                 deben coincidir
               </div>
             </div>

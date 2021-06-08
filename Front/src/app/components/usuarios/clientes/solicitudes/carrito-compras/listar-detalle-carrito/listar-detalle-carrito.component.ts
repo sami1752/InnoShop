@@ -25,7 +25,6 @@ export class ListarDetalleCarritoComponent implements OnInit {
 
   ngOnInit(): void {
     this.productoService.listarTodosPrecios();
-
     this.usuarioService.obtenerPerfil().subscribe(
       (res: any) => {
         this.perfilUsuario = res;
@@ -34,7 +33,6 @@ export class ListarDetalleCarritoComponent implements OnInit {
         this.ventasService.ObtenerIvaActual();
       },
       err => {
-        console.log(err);
       }
     );
   }
@@ -54,9 +52,13 @@ export class ListarDetalleCarritoComponent implements OnInit {
   }
 
   editarDetalleCarrito(detalle: DetalleCarritoDeCompras): void {
+    this.productoService.buscarProductoIdDetalle(detalle.IdProducto);
     if (detalle.Cantidad == null || detalle.Cantidad <= 0) {
       this.carritoDeComprasService.listarDetalleCarrito(detalle.IdUsuario);
-    } else {
+    }else if (detalle.Cantidad > this.productoService.detalleProducto.CantidadStock){
+      alert('La cantidad indicada supera el stock del producto');
+      this.carritoDeComprasService.listarDetalleCarrito(detalle.IdUsuario);
+    }else {
       this.carritoDeComprasService.CantidadDetalleAnterior(detalle.IdDetalleCarritoDeCompras).subscribe(
         res => {
           this.carritoDeComprasService.editarDetalleCarrito(detalle, res).subscribe(

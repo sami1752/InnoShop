@@ -86,10 +86,12 @@ export class FinalizarCompraComponent implements OnInit {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         this.carritoDeComprasService.listarDetalleCarrito(idUsuario);
         this.agregarVenta();
-        this.descuentosService.EditarCupon(this.descuentosService.descuentoEnVenta).subscribe(
-          res => {
-          }, err => {alert('Error'); }
-        );
+        if (this.descuentosService.usoCupones){
+          this.descuentosService.EditarCupon(this.descuentosService.descuentoEnVenta).subscribe(
+            res => {
+            }, err => {alert('Error'); }
+          );
+        }
         },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);

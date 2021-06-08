@@ -20,7 +20,7 @@ export class DescuentosService {
   }
 
   desplegarListaCupones = false;
-
+  usoCupones = false;
   idUsuario = '';
   descuentoEnVenta: Descuento = {
     IdDescuento: 17,

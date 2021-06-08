@@ -1,10 +1,9 @@
-<section class="login-area pt-100 pb-100 mb-10">
-    <div class="container">
+ <div class="container py-2 mb-60" style="width: 60%">
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
-                <div class="basic-login">
-                    <a class="colortxt" href="usuarios/inicio"><i class="bi bi-arrow-left  h5 colortxt"></i></a>
-                    <h2 class="text-center mb-60 colortxt">Inicia sesion desde aquí</h2>
+                <div class=" card basic-login">
+                    <a class="colortxt font-weight-bold" href="usuarios/inicio"><i class="bi bi-arrow-left  h5 colortxt"></i></a>
+                    <h2 class="text-center mb-5 colortxt font-weight-bold">Inicia sesion desde aquí</h2>
                     <form [formGroup]="this.usuarioService.formularioLogin" (ngSubmit)="this.onSubmit()">
 
                         <label for="name">Correo electrónico <span class="colortxt">**</span></label>
@@ -34,23 +33,17 @@
                         </div>
 
 
-                        <div class="login-action mb-20 fix">
-                            <span class="log-rem f-left">
-                <input id="remember" type="checkbox"/>
-                <label for="remember">¡Recuérdame!</label>
-              </span>
-                            <span class="forgot-login f-right">
-                <a href="" routerLink='/usuarios/restablecimientoContraseña'>¿Olvidaste tu contraseña?</a>
-              </span>
-                        </div>
-                        <button [disabled]="this.usuarioService.formularioLogin.invalid" type="submit" class="os-btn w-100">Iniciar
-              sesión
-            </button>
-                        <div class="or-divide"><span></span></div>
-                        <a href="" routerLink='/usuarios/registro' class="os-btn os-btn-black w-100">Registrar</a>
+                        <button [disabled]="this.usuarioService.formularioLogin.invalid" type="submit" class="os-btn w-100 mb-1">Iniciar sesión</button>
+                      <div class="login-action  fix">
+                          <span class="forgot-login f-right font-weight-light colortxt mt-1">
+                          <a href="" routerLink='/usuarios/restablecimientoContraseña'>¿Olvidaste tu contraseña?</a></span>
+                        <span class="forgot-login f-left">
+                          <p class="font-weight-light colortxt"> ¿No tienes cuenta? Regístrate <a href="" routerLink='/usuarios/registro'>aquí</a></p>
+                        </span>
+                      </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</section>
+

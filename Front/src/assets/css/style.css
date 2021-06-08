@@ -4780,7 +4780,7 @@
 /*----------------------------------------*/
 
             .basic-login {
-                padding: 90px;
+                padding: 50px;
                 border: 2px solid #eaedff;
             }
 
@@ -4812,7 +4812,7 @@
                 border: 2px solid #eaedff;
                 color: #6f7172;
                 padding: 0 20px;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
 
             .basic-login input::placeholder,
@@ -4870,7 +4870,7 @@
             }
 
             .forgot-login a:hover {
-                color: #bc8246;
+                color: #2C4F61;
             }
 
             @media (max-width: 767px) {
