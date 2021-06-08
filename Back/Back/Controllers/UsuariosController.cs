@@ -111,8 +111,14 @@ namespace Back.Controllers
                     mail.From = new MailAddress("innoshopcali@gmail.com", "Innova");
                     mail.To.Add(usuario.Email);
                     mail.Subject = "Activacion de cuenta";
-                    mail.Body = $"<h1 color='green'>ACTIVACIÓN DE CUENTA</h1>" +
-                        $"<a href='{confirmationLink}'>Clic aquí para activar su cuenta</a>";
+                    mail.Body = $"<div style='width:100%; background-color: light; font-family: calibri;font-weight: lighter;' align='center'>" +
+                        $"<header>" +
+                         $"<p style = 'font-weight: light; font-size: 35px;  color: #2C4F61;' > ACTIVACIÓN DE CUENTA</p>" +
+                         $"</header>" + $"<div>" + $"<p>¡Bienvenido! Gracias por registrarte, continua en tu proceso...</p>" +
+                         $"<span>Clic en activar para activar su cuenta</span>" +
+                         $"<p><a   href='{confirmationLink}' style = 'border: none; text-decoration: none;padding: 5px; font-weight: 600; font-size: 15px; color: #ffffff; background-color: #2C4F61;border-radius: 4px;border: 2px solid #2C4F61;'>Activar </a></p>" +
+                         $"</div>" +
+                         $"</div>";
                     mail.IsBodyHtml = true;
                     using SmtpClient smtp = new("smtp.gmail.com", 587);
                     smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "&xDByqBKqWFry88XyiRxQPAI*TI3KsW922ugeh9@RV#Ou^AwF%");
@@ -163,8 +169,14 @@ namespace Back.Controllers
                         mail.From = new MailAddress("innoshopcali@gmail.com", "Innova");
                         mail.To.Add(usuario.Email);
                         mail.Subject = "Recuperación contraseña de cuenta";
-                        mail.Body = $"<h1 color='green'>RECUPERACIÓN CONTRASEÑA DE CUENTA</h1>" +
-                            $"<a href='{restablecimientoLink}'>Clic aquí para crear nueva contraseña</a>";
+                        mail.Body = $"<div style='width:100%; background-color: light; font-family: calibri;font-weight: lighter;' align='center'>" +
+                        $"<header>" +
+                         $"<p style = 'font-weight: light; font-size: 35px;  color: #2C4F61;' > RECUPERACIÓN DE CONTRASEÑA</p>" +
+                         $"</header>" + $"<div>" + $"<p>¡No te preocupes! reestablece tu contraseña e intenta no olvidarla de nuevo...</p>" +
+                         $"<span>Clic en restablecer para cambiar su contraseña</span>" +
+                         $"<p><a   href='{restablecimientoLink}' style = 'border: none; text-decoration: none;padding: 5px; font-weight: 600; font-size: 15px; color: #ffffff; background-color: #2C4F61;border-radius: 4px;border: 2px solid #2C4F61;'>Restablecer </a></p>" +
+                         $"</div>" +
+                         $"</div>";
                         mail.IsBodyHtml = true;
                         using SmtpClient smtp = new("smtp.gmail.com", 587);
                         smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "&xDByqBKqWFry88XyiRxQPAI*TI3KsW922ugeh9@RV#Ou^AwF%");

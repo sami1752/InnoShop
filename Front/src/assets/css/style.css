@@ -4814,6 +4814,14 @@
                 padding: 0 20px;
                 margin-bottom: 15px;
             }
+            .basic-login select {
+              width: 100%;
+              height: 50px;
+              border: 2px solid #eaedff;
+              color: #6f7172;
+              padding: 0 20px;
+              margin-bottom: 15px;
+            }
 
             .basic-login input::placeholder,
             .basic-login input::-moz-placeholder {

@@ -1,41 +1,41 @@
-<section class="login-area pt-100 pb-100">
-  <div class="container">
+  <div class="container py-3 mb-60" style="width: 70%">
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
-        <div class="basic-login">
-          <h3 class="text-center mb-60">Registrate aquí</h3>
+        <div class="card basic-login">
+          <h2 class="text-center mb-5 colortxt font-weight-bold">Regístrate aquí</h2>
           <form class="" [formGroup]="this.usuarioService.formularioRegistroUsuario" (ngSubmit)="registro()">
+            <div class="row">
+              <div class="col">   <label for="name">Nombres <span>**</span></label>
+                <input formControlName="Nombres" id="name" type="text" placeholder="Ingresa nombres"/>
+                <!--Validaciones Nombre-->
+                <div
+                  *ngIf="this.usuarioService.nombres.invalid && (this.usuarioService.nombres.touched || this.usuarioService.nombres.dirty)"
+                  class="text-danger mb-20 text-center">
+                  <div *ngIf="this.usuarioService.nombres.hasError('required')">El nombre es obligatorio</div>
+                  <div *ngIf="this.usuarioService.nombres.hasError('pattern')">El nombre no debe contener numeros o
+                    caracteres especiales
+                  </div>
+                  <div *ngIf="this.usuarioService.nombres.hasError('maxlength')">El nombre debe contener máximo 40 caracteres
+                  </div>
+                </div></div>
+              <div class="col">
+                <label for="Apellidos">Apellidos <span>**</span></label>
+                <input formControlName="Apellidos" type="text" placeholder="Ingresa Apellidos" id="Apellidos"/>
 
-            <label for="name">Nombres <span>**</span></label>
-            <input formControlName="Nombres" id="name" type="text" placeholder="Ingresa nombres"/>
+                <!--Validaciones Apellidos-->
+                <div
+                  *ngIf="this.usuarioService.apellidos.invalid && (this.usuarioService.apellidos.touched || this.usuarioService.apellidos.dirty)"
+                  class="text-danger mb-20 text-center">
+                  <div *ngIf="this.usuarioService.apellidos.hasError('required')">El apellido es obligatorio</div>
+                  <div *ngIf="this.usuarioService.apellidos.hasError('pattern')">El apellido no debe contener numeros o
+                    caracteres especiales
+                  </div>
+                  <div *ngIf="this.usuarioService.apellidos.hasError('maxlength')">El apellido debe contener maximo 40 caracteres
+                  </div>
+                </div>
+              </div>
 
-            <!--Validaciones Nombre-->
-            <div
-              *ngIf="this.usuarioService.nombres.invalid && (this.usuarioService.nombres.touched || this.usuarioService.nombres.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.nombres.hasError('required')">El nombre es obligatorio</div>
-              <div *ngIf="this.usuarioService.nombres.hasError('pattern')">El nombre no debe contener numeros o
-                caracteres especiales
-              </div>
-              <div *ngIf="this.usuarioService.nombres.hasError('maxlength')">El nombre debe contener máximo 40 caracteres
-              </div>
             </div>
-
-            <label for="Apellidos">Apellidos <span>**</span></label>
-            <input formControlName="Apellidos" type="text" placeholder="Ingresa Apellidos" id="Apellidos"/>
-
-            <!--Validaciones Apellidos-->
-            <div
-              *ngIf="this.usuarioService.apellidos.invalid && (this.usuarioService.apellidos.touched || this.usuarioService.apellidos.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.apellidos.hasError('required')">El apellido es obligatorio</div>
-              <div *ngIf="this.usuarioService.apellidos.hasError('pattern')">El apellido no debe contener numeros o
-                caracteres especiales
-              </div>
-              <div *ngIf="this.usuarioService.apellidos.hasError('maxlength')">El apellido debe contener maximo 40 caracteres
-              </div>
-            </div>
-
             <label for="Email">Correo<span>**</span></label>
             <input formControlName="Email" type="text" placeholder="Email" id="Email"/>
 
@@ -47,37 +47,36 @@
               <div *ngIf="this.usuarioService.email.hasError('email')">Digite un correo valido</div>
             </div>
 
+            <div class="row">
+              <div class="col"><label for="name">Tipo documento <span>**</span></label>
+                <select class="form-control mb-3 " formControlName="TipoDocumento">
+                  <option value="">Elige Tipo de documento</option>
+                  <option *ngFor="let doc of this.usuarioService.listaTiposDoc" [value]="doc.Tipo">{{doc.Tipo}}</option>
+                </select>
 
-            <label for="name">Tipo documento <span>**</span></label>
-            <select class="form-control mb-3 " formControlName="TipoDocumento">
-              <option value="">Elige Tipo de documento</option>
-              <option *ngFor="let doc of this.usuarioService.listaTiposDoc" [value]="doc.Tipo">{{doc.Tipo}}</option>
-            </select>
+                <!--Validaciones Tipo documento-->
+                <div
+                  *ngIf="this.usuarioService.tipoDocumento.invalid && (this.usuarioService.tipoDocumento.touched || this.usuarioService.tipoDocumento.dirty)"
+                  class="text-danger mb-20 text-center">
+                  <div *ngIf="this.usuarioService.tipoDocumento.hasError('required')">Elija un tipo de documento</div>
+                </div></div>
+              <div class="col"><label for="NumDocumento">Numero documento <span>**</span></label>
+                <input formControlName="NumDocumento" type="text" placeholder="Ingresa Numero de documento"
+                       id="NumDocumento"/>
 
-            <!--Validaciones Tipo documento-->
-            <div
-              *ngIf="this.usuarioService.tipoDocumento.invalid && (this.usuarioService.tipoDocumento.touched || this.usuarioService.tipoDocumento.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.tipoDocumento.hasError('required')">Elija un tipo de documento</div>
-            </div>
-
-
-            <label for="NumDocumento">Numero documento <span>**</span></label>
-            <input formControlName="NumDocumento" type="text" placeholder="Ingresa Numero de documento"
-                   id="NumDocumento"/>
-
-            <!--Validaciones Numero documento-->
-            <div
-              *ngIf="this.usuarioService.documento.invalid && (this.usuarioService.documento.touched || this.usuarioService.documento.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.documento.hasError('required')">El número de documento es obligatorio
+                <!--Validaciones Numero documento-->
+                <div
+                  *ngIf="this.usuarioService.documento.invalid && (this.usuarioService.documento.touched || this.usuarioService.documento.dirty)"
+                  class="text-danger mb-20 text-center">
+                  <div *ngIf="this.usuarioService.documento.hasError('required')">El número de documento es obligatorio
+                  </div>
+                  <div *ngIf="this.usuarioService.documento.hasError('pattern')">Digite solo números</div>
+                  <div *ngIf="this.usuarioService.documento.hasError('maxlength')">El numero no debe contener máximo 15
+                    caracteres
+                  </div>
+                </div>
               </div>
-              <div *ngIf="this.usuarioService.documento.hasError('pattern')">Digite solo números</div>
-              <div *ngIf="this.usuarioService.documento.hasError('maxlength')">El numero no debe contener máximo 15
-                caracteres
-              </div>
             </div>
-
             <label for="name">Telefono <span>**</span></label>
             <input formControlName="Telefono" type="text" placeholder="Ingrese telefono"/>
 
@@ -94,21 +93,17 @@
                 caracteres
               </div>
             </div>
-
-
             <label for="name">Sexo <span>**</span></label>
             <select class="form-control mb-3 " formControlName="Sexo">
               <option value="">Elige Sexo</option>
               <option *ngFor="let tipo of this.usuarioService.listaSexo" [value]="tipo.Sexo">{{tipo.Sexo}}</option>
             </select>
-
             <!--Validaciones Sexo-->
             <div
               *ngIf="this.usuarioService.sexo.invalid && (this.usuarioService.sexo.touched || this.usuarioService.sexo.dirty)"
               class="text-danger mb-20 text-center">
               <div *ngIf="this.usuarioService.sexo.hasError('required')">El número de telefono es obligatorio</div>
             </div>
-
             <label for="Direccion">Direccion <span>**</span></label>
             <input formControlName="Direccion" type="text" placeholder="Ingrese Direccion" id="Direccion"/>
             <div
@@ -119,51 +114,48 @@
                 caracteres
               </div>
             </div>
+            <div class="row">
+              <div class="col"><label for="Contrasena">Contraseña <span>**</span></label>
+                <input formControlName="Contrasena" type="password" placeholder="Ingrese Contraseña" id="Contrasena"/>
 
-
-            <label for="Contrasena">Contraseña <span>**</span></label>
-            <input formControlName="Contrasena" type="password" placeholder="Ingrese Contraseña" id="Contrasena"/>
-
-            <!--Validaciones Contraseña-->
-            <div
-              *ngIf="this.usuarioService.contrasena.invalid && (this.usuarioService.contrasena.touched || this.usuarioService.contrasena.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.contrasena.hasError('required')">La contraseña es obligatoria</div>
-              <div *ngIf="this.usuarioService.contrasena.hasError('maxlength')">La contraseña debe contener máximo 15
-                caracteres
+                <!--Validaciones Contraseña-->
+                <div
+                  *ngIf="this.usuarioService.contrasena.invalid && (this.usuarioService.contrasena.touched || this.usuarioService.contrasena.dirty)"
+                  class="text-danger mb-20 text-center">
+                  <div *ngIf="this.usuarioService.contrasena.hasError('required')">La contraseña es obligatoria</div>
+                  <div *ngIf="this.usuarioService.contrasena.hasError('maxlength')">La contraseña debe contener máximo 15
+                    caracteres
+                  </div>
+                  <div *ngIf="this.usuarioService.contrasena.hasError('minlength')">La contraseña debe contener minimo 6
+                    caracteres
+                  </div>
+                </div>
               </div>
-              <div *ngIf="this.usuarioService.contrasena.hasError('minlength')">La contraseña debe contener minimo 6
-                caracteres
-              </div>
+              <div class="col"> <label for="ConfirmarContrasena">Confirmar Contraseña<span>**</span></label>
+                <input formControlName="ConfirmarContrasena" type="password" placeholder="Ingrese contraseña"
+                       id="ConfirmarContrasena"/>
+
+                <!--Validaciones confirmar Contraseña-->
+                <div
+                  *ngIf="this.usuarioService.ConfirmarContrasena.invalid && (this.usuarioService.ConfirmarContrasena.touched || this.usuarioService.ConfirmarContrasena.dirty)"
+                  class="text-danger mb-20 text-center">
+                  <div *ngIf="this.usuarioService.ConfirmarContrasena.hasError('required')">La contraseña de confirmación es
+                    obligatoria
+                  </div>
+                  <div *ngIf="this.usuarioService.ConfirmarContrasena.hasError('ContrasenasDiferentes')">Las contraseñas
+                    deben coincidir
+                  </div>
+                </div></div>
+
             </div>
-
-
-            <label for="ConfirmarContrasena">Confirmar Contraseña<span>**</span></label>
-            <input formControlName="ConfirmarContrasena" type="password" placeholder="Ingrese contraseña"
-                   id="ConfirmarContrasena"/>
-
-            <!--Validaciones confirmar Contraseña-->
-            <div
-              *ngIf="this.usuarioService.ConfirmarContrasena.invalid && (this.usuarioService.ConfirmarContrasena.touched || this.usuarioService.ConfirmarContrasena.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.ConfirmarContrasena.hasError('required')">La contraseña de confirmación es
-                obligatoria
-              </div>
-              <div *ngIf="this.usuarioService.ConfirmarContrasena.hasError('ContrasenasDiferentes')">Las contraseñas
-                deben coincidir
-              </div>
-            </div>
-
-
             <div class="mt-10"></div>
-            <button type="submit" [disabled]="this.usuarioService.formularioRegistroUsuario.invalid"
-                    class="os-btn w-100">Registrarse
-            </button>
-            <div class="or-divide"><span></span></div>
-            <a routerLink="/usuarios/login" class="os-btn os-btn-black w-100">Iniciar sesión</a>
+            <button type="submit" [disabled]="this.usuarioService.formularioRegistroUsuario.invalid" class="os-btn  w-100 mb-1">Registrarse</button>
+            <div class="login-action  fix">
+              <span class="forgot-login f-left">
+                <p class="font-weight-light colortxt"> ¿Ya tienes una cuenta? Inicia sesión  <a routerLink="/usuarios/login" class="text-info">aquí</a></p></span>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-</section>

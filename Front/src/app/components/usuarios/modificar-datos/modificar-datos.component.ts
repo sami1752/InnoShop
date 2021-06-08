@@ -27,6 +27,9 @@ export class ModificarDatosComponent implements OnInit {
 
 
   usuario: Usuario;
+  nombre = [];
+  nombrecompleto = '';
+  letra = '';
 
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
@@ -35,6 +38,9 @@ export class ModificarDatosComponent implements OnInit {
         this.usuarioService.buscarUsuarioId(this.usuarioService.perfilUsuario.Id).subscribe(
           respuesta => {
             this.usuario = respuesta as Usuario;
+            this.nombre = Array.from(this.usuarioService.perfilUsuario.Nombres);
+            this.nombrecompleto=this.usuarioService.perfilUsuario.Nombres + ' ' + this.usuarioService.perfilUsuario.Apellidos;
+            this.letra = this.nombre[0];
             this.usuarioService.formularioRegistroEdicionDatos.patchValue(this.usuario);
           },
           Error => {

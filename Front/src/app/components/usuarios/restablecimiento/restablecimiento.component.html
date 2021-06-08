@@ -1,28 +1,21 @@
-<section class="login-area pt-100 pb-100">
-  <div class="container">
+  <div class="container py-3 mb-60" style="width: 65%">
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
-        <div class="basic-login">
-          <h3 class="text-center mb-60">Restablece tu contraseña aquí</h3>
+        <div class=" card basic-login">
+          <a class="colortxt " href="usuarios/login"><i class="bi bi-arrow-left font-weight-bold h5 colortxt"></i></a>
+          <h2 class="text-center mb-60 font-weight-bold colortxt">Restablece tu contraseña aquí</h2>
           <form [formGroup]="this.usuarioService.formularioRecuperacion" (ngSubmit)="this.restablecer()">
-
             <label for="name">Correo electrónico <span>**</span></label>
             <input formControlName="Email" id="name" type="email" placeholder="Ingrese email"/>
-
             <div
               *ngIf="this.usuarioService.emailRecuperacion.invalid && (this.usuarioService.emailRecuperacion.touched || this.usuarioService.emailRecuperacion.dirty)"
               class="text-danger mb-20 text-center">
               <div *ngIf="this.usuarioService.emailRecuperacion.hasError('required')">El correo es obligatorio</div>
               <div *ngIf="this.usuarioService.emailRecuperacion.hasError('email')">Digite un correo valido</div>
             </div>
-
-
-            <button type="submit" class="os-btn w-100">Enviar link de recuperacion a correo</button>
-            <div class="or-divide"><span></span></div>
-            <a href="" routerLink='/usuarios/login' class="os-btn os-btn-black w-100">Atrás</a>
+            <button type="submit" class="os-btn w-100">Continuar</button>
           </form>
         </div>
       </div>
     </div>
   </div>
-</section>

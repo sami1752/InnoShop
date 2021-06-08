@@ -13,13 +13,13 @@
         <div *ngIf="this.productoService.FormularioImagen">
           <app-registrar-imagen></app-registrar-imagen>
         </div>
-        <div style="width: 30%;" align="center">
+        <div style="width: 40%;" align="center">
           <owl-carousel-o [options]="customOptions ">
             <ng-template carouselSlide *ngFor="let imagen of productoService.listaImagenesProducto ">
-              <img src="assets/img/Imagenes/{{imagen.RutaImagen}}" style="height: 400px; width: 400px">
+              <img src="assets/img/Imagenes/{{imagen.RutaImagen}}" style="height: 390px; width: 390px">
               <!-- <caption><i (click)="eliminarImagen(imagen) " class="bi bi-trash text-danger "></i></caption> -->
               <br>
-              <button class="btn btn-sm btn-block btn-outline-danger" style="font-family: monospace;" (click)="eliminarImagen(imagen) "><i class="bi bi-x-circle-fill"></i> Eliminar</button>
+              <button class="btn btn-sm  btn-danger" style="font-family: monospace;" (click)="eliminarImagen(imagen) "><i class="bi bi-x-circle-fill"></i> Eliminar</button>
             </ng-template>
           </owl-carousel-o>
         </div>

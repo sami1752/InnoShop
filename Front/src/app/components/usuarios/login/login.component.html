@@ -1,14 +1,12 @@
- <div class="container py-2 mb-60" style="width: 60%">
+ <div class="container py-2 " style="width: 65%">
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 <div class=" card basic-login">
-                    <a class="colortxt font-weight-bold" href="usuarios/inicio"><i class="bi bi-arrow-left  h5 colortxt"></i></a>
-                    <h2 class="text-center mb-5 colortxt font-weight-bold">Inicia sesion desde aquí</h2>
+                    <a class="colortxt " href="usuarios/inicio"><i class="bi bi-arrow-left font-weight-bold h5 colortxt"></i></a>
+                    <h2 class="text-center mb-5 colortxt font-weight-bold">Inicia sesión desde aquí</h2>
                     <form [formGroup]="this.usuarioService.formularioLogin" (ngSubmit)="this.onSubmit()">
-
                         <label for="name">Correo electrónico <span class="colortxt">**</span></label>
                         <input formControlName="Email" id="name" type="email" placeholder="Ingrese email" />
-
                         <!--Validacion correo-->
                         <div *ngIf="this.usuarioService.nombreUsuarioLogin.invalid && (this.usuarioService.nombreUsuarioLogin.touched || this.usuarioService.nombreUsuarioLogin.dirty)" class="text-danger mb-20 text-center">
                             <div *ngIf="this.usuarioService.nombreUsuarioLogin.hasError('required')">El correo es obligatorio</div>
@@ -16,34 +14,28 @@
                             <div *ngIf="this.usuarioService.nombreUsuarioLogin.hasError('maxLength')">El correo debe contener máximo 50 caracteres
                             </div>
                         </div>
-
-
                         <label for="Contrasena">Contraseña <span class="colortxt">**</span></label>
                         <input formControlName="Contrasena" type="password" placeholder="Ingrese contraseña" id="Contrasena" />
-
                         <!--Validacion Contraseña-->
-                        <div *ngIf="this.usuarioService.contrasenaLogin.invalid && (this.usuarioService.contrasenaLogin.touched
-                                 || this.usuarioService.contrasenaLogin.dirty)" class="text-danger mb-20 text-center">
-
+                        <div *ngIf="this.usuarioService.contrasenaLogin.invalid && (this.usuarioService.contrasenaLogin.touched|| this.usuarioService.contrasenaLogin.dirty)" class="text-danger mb-20 text-center">
                             <div *ngIf="this.usuarioService.contrasenaLogin.hasError('required')">La contraseña es obligatoria</div>
                             <div *ngIf="this.usuarioService.contrasenaLogin.hasError('maxlength')">La contraseña debe contener máximo 15 caracteres
                             </div>
                           <div *ngIf="this.usuarioService.contrasenaLogin.hasError('minlength')">La contraseña debe contener minimo 6 caracteres
                           </div>
                         </div>
-
-
                         <button [disabled]="this.usuarioService.formularioLogin.invalid" type="submit" class="os-btn w-100 mb-1">Iniciar sesión</button>
                       <div class="login-action  fix">
-                          <span class="forgot-login f-right font-weight-light colortxt mt-1">
-                          <a href="" routerLink='/usuarios/restablecimientoContraseña'>¿Olvidaste tu contraseña?</a></span>
-                        <span class="forgot-login f-left">
-                          <p class="font-weight-light colortxt"> ¿No tienes cuenta? Regístrate <a href="" routerLink='/usuarios/registro'>aquí</a></p>
+                           <span class="forgot-login f-right font-weight-light colortxt mt-1">
+                              <a href="" routerLink='/usuarios/restablecimientoContraseña'>¿Olvidaste tu contraseña?</a>
+                           </span>
+                         <span class="forgot-login f-left">
+                          <p class="font-weight-light colortxt"> ¿No tienes una cuenta? Regístrate <a href="" routerLink='/usuarios/registro' class="text-info">aquí</a></p>
                         </span>
                       </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+ </div>
 

@@ -28,8 +28,9 @@
       <ng-container matColumnDef="Opciones">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Opciones</th>
         <td mat-cell *matCellDef="let row">
-          <i (click)="eliminarUsuario(row)" class="bi bi-trash text-danger"></i>
-          <i (click)="detalleUsuario(row.Id); this.usuarioService.desplegarDetalle =!this.usuarioService.desplegarDetalle"
+          <i *ngIf="row.Estado" (click)="eliminarUsuario(row)" class="bi bi-toggle-on text-success"></i>
+          <i *ngIf="!row.Estado" (click)="eliminarUsuario(row)" class="bi bi-toggle-off text-secondary"></i>
+          <i (click)="detalleUsuario(row.Id); this.usuarioService.desplegarDetalle=true "
              class="bi bi-eye float-right" aria-hidden="true"></i>
         </td>
       </ng-container>
