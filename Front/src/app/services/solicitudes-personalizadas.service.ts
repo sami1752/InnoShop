@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {DetalleEstadosMontajes} from '../models/SolicitudesPersonalizadas/detalle-estados-montajes';
 import {DetalleEstadosProductosPersoanlizados} from '../models/SolicitudesPersonalizadas/detalle-estados-productos-persoanlizados';
 import {DetalleEstadosSolicitudPersonalizada} from '../models/SolicitudesPersonalizadas/detalle-estados-solicitud-personalizada';
@@ -67,13 +67,27 @@ export class SolicitudesPersonalizadasService {
   formularioRegistroSolicitudPersonalizada = this.formBuilder.group({
     IdSolicitudPersonalizada: [],
     IdUsuario: [],
-    Ancho: [],
-    Fondo: [],
-    Alto: [],
+    Ancho: [ , [Validators.required, Validators.max(1000), Validators.min(1)]],
+    Fondo: [ , [Validators.required, Validators.max(1000), Validators.min(1)]],
+    Alto: [ , [Validators.required, Validators.max(1000), Validators.min(1)]],
     Fecha: [],
-    Descripcion: [],
+    Descripcion: ['', [Validators.required, Validators.maxLength(500)]],
     ValorTotal: [],
   });
+  get Ancho(): any {
+    return this.formularioRegistroSolicitudPersonalizada.controls.Ancho;
+  }
+
+  get Alto(): any {
+    return this.formularioRegistroSolicitudPersonalizada.controls.Alto;
+  }
+
+  get Fondo(): any {
+    return this.formularioRegistroSolicitudPersonalizada.controls.Fondo;
+  }
+  get Descripcion(): any {
+    return this.formularioRegistroSolicitudPersonalizada.controls.Descripcion;
+  }
   formularioRegistroRespuesta = this.formBuilder.group({
     IdRespuestaSolicitudesPersonalizadas: [],
     IdUsuario: [],

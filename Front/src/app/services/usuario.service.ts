@@ -370,7 +370,7 @@ export class UsuarioService {
   }
 
   eliminarUsuario(usuario: Usuario): any {
-    usuario.Estado = false;
+    usuario.Estado = !usuario.Estado;
     return this.http.put(this.configuracion.rootURL + '/Usuarios/ActualizacionDatos', usuario);
   }
 

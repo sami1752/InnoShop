@@ -11,22 +11,63 @@
           <input type="hidden" formControlName="IdProducto">
           <label for="Nombre">Nombre <span class="text-danger">**</span></label>
           <input formControlName="Nombre" id="Nombre" type="text" placeholder="Ingresa el nombre" class="form-control"/>
+          <div
+            *ngIf="this.productoService.Nombre.invalid && (this.productoService.Nombre.touched || this.productoService.Nombre.dirty)"
+            class="alertad mb-20" style=" ">
+            <div *ngIf="this.productoService.Nombre.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+            <div *ngIf="this.productoService.Nombre.hasError('pattern')" class="val"><i class="bi bi-exclamation-triangle-fill"></i>El nombre no debe contener números
+              o caracteres especiales
+            </div>
+            <div *ngIf="this.productoService.Nombre.hasError('maxlength')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo debe contener máximo 30 caracteres
+            </div>
+          </div>
+
           <br>
           <div class="row">
             <div class="col">
               <label for="Ancho">Ancho <span class="text-danger">**</span></label>
               <input formControlName="Ancho" type="number" step="0.01" id="Ancho" placeholder="Ancho"
                      class="form-control "/>
+              <div
+                *ngIf="this.productoService.Ancho.invalid && (this.productoService.Ancho.touched || this.productoService.Ancho.dirty)"
+                class="alertad mb-20" style=" ">
+                <div *ngIf="this.productoService.Ancho.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+                <div *ngIf="this.productoService.Ancho.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                </div>
+                <div *ngIf="this.productoService.Ancho.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                </div>
+              </div>
             </div>
+
             <div class="col">
               <label for="Largo">Largo <span class="text-danger">**</span></label>
               <input formControlName="Largo" type="number" step="0.01" id="Largo" placeholder="Largo"
                      class="form-control "/>
+              <div
+                *ngIf="this.productoService.Largo.invalid && (this.productoService.Largo.touched || this.productoService.Largo.dirty)"
+                class="alertad mb-20" style=" ">
+                <div *ngIf="this.productoService.Largo.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+                <div *ngIf="this.productoService.Largo.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                </div>
+                <div *ngIf="this.productoService.Largo.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                </div>
+              </div>
             </div>
+
             <div class="col">
               <label for="Fondo">Fondo <span class="text-danger">**</span></label>
               <input formControlName="Fondo" type="number" step="0.01" id="Fondo" placeholder="Fondo"
                      class="form-control "/>
+              <div
+                *ngIf="this.productoService.Fondo.invalid && (this.productoService.Fondo.touched || this.productoService.Fondo.dirty)"
+                class="alertad mb-20" style=" ">
+                <div *ngIf="this.productoService.Fondo.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+                <div *ngIf="this.productoService.Fondo.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                </div>
+                <div *ngIf="this.productoService.Fondo.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                </div>
+              </div>
+
             </div>
           </div>
           <br>
@@ -35,15 +76,32 @@
             <option value="">Elige Tipo de Puerta</option>
             <option *ngFor="let doc of listaTiposPuerta" [value]="doc.Tipo">{{doc.Tipo}}</option>
           </select>
+          <div
+            *ngIf="this.productoService.TipoPuerta.invalid && (this.productoService.TipoPuerta.touched || this.productoService.TipoPuerta.dirty)"
+            class="alertad mb-20" style=" ">
+            <div *ngIf="this.productoService.TipoPuerta.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+          </div>
           <br>
           <label for="Descripcion"> Descripcion <span class="text-danger">**</span></label>
           <textarea formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
+          <div
+            *ngIf="this.productoService.Descripcion.invalid && (this.productoService.Descripcion.touched || this.productoService.Descripcion.dirty)"
+            class="alertad mb-20" style=" ">
+            <div *ngIf="this.productoService.Descripcion.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+            <div *ngIf="this.productoService.Descripcion.hasError('maxLength')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo debe contener máximo 500 caracteres
+            </div>
+          </div>
           <br>
           <label for="Ruedas">Ruedas <span class="text-danger">**</span></label>
           <select class="form-control" formControlName="Ruedas" id="Ruedas">
             <option value="">Si o No</option>
             <option *ngFor="let doc of decision" [value]=doc.boo>{{doc.dec}}</option>
           </select>
+          <div
+            *ngIf="this.productoService.Ruedas.invalid && (this.productoService.Ruedas.touched || this.productoService.Ruedas.dirty)"
+            class="alertad mb-20" style=" ">
+            <div *ngIf="this.productoService.Ruedas.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+          </div>
           <input type="hidden" formControlName="IdUsuario">
           <br>
           <div class="row">
@@ -51,18 +109,41 @@
               <label for="Puntos">Puntos <span class="text-danger">**</span></label>
               <input formControlName="Puntos" type="number" id="Puntos" placeholder="Ingresa los Puntos"
                      class="form-control "/>
+              <div
+                *ngIf="this.productoService.Puntos.invalid && (this.productoService.Puntos.touched || this.productoService.Puntos.dirty)"
+                class="alertad mb-20" style=" ">
+                <div *ngIf="this.productoService.Puntos.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+                <div *ngIf="this.productoService.Puntos.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> El máximo de puntos debe ser menor a 1000
+                </div>
+                <div *ngIf="this.productoService.Puntos.hasError('pattern')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte un número válido
+                </div>
+              </div>
             </div>
             <div class="col">
               <label for="GarantiaMeses">Garantia en Meses <span class="text-danger">**</span></label>
               <input formControlName="GarantiaMeses" type="number" id="GarantiaMeses"
                      placeholder="Ingresa la garantia en meses"
                      class="form-control "/>
+              <div
+                *ngIf="this.productoService.GarantiaMeses.invalid && (this.productoService.GarantiaMeses.touched || this.productoService.GarantiaMeses.dirty)"
+                class="alertad mb-20" style=" ">
+                <div *ngIf="this.productoService.GarantiaMeses.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+                <div *ngIf="this.productoService.GarantiaMeses.hasError('pattern')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte un número válido
+                </div>
+              </div>
             </div>
           </div>
           <div *ngIf="this.productoService.CampoPrecio">
             <label for="Precio">Precio Producto<span class="text-danger">**</span></label>
             <input formControlName="Precio" type="number" id="Precio" placeholder="Ingrese precio producto"
                    class="form-control "/>
+            <div
+              *ngIf="this.productoService.Precio.invalid && (this.productoService.Precio.touched || this.productoService.Precio.dirty)"
+              class="alertad mb-20" style=" ">
+              <div *ngIf="this.productoService.Precio.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+              <div *ngIf="this.productoService.Precio.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Precio debe ser mayor a cero
+              </div>
+            </div>
             <div class="mt-10"></div>
           </div>
           <div *ngIf="this.productoService.CampoPrecio">
@@ -70,6 +151,15 @@
             <input formControlName="CantidadStock" type="number" id="CantidadStock"
                    placeholder="Ingrese cantidad de producto"
                    class="form-control "/>
+            <div
+              *ngIf="this.productoService.CantidadStock.invalid && (this.productoService.CantidadStock.touched || this.productoService.CantidadStock.dirty)"
+              class="alertad mb-20" style=" ">
+              <div *ngIf="this.productoService.CantidadStock.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+              <div *ngIf="this.productoService.CantidadStock.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> La cantidad debe ser mayor a cero
+              </div>
+              <div *ngIf="this.productoService.CantidadStock.hasError('pattern')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte un número válido
+              </div>
+            </div>
             <div class="mt-10"></div>
           </div>
           <br>

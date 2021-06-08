@@ -9,4 +9,13 @@
         this.descuentosService.formValorRuleta=false" class="btn btn-outline-secondary" title="Limpiar"><i
       class="fas fa-broom"></i></button>
   </div>
+  <div
+    *ngIf="this.descuentosService.ValorDeRuleta.invalid && (this.descuentosService.ValorDeRuleta.touched || this.descuentosService.ValorDeRuleta.dirty)"
+    class="alertad mb-20" style=" ">
+    <div *ngIf="this.descuentosService.ValorDeRuleta.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+    <div *ngIf="this.descuentosService.ValorDeRuleta.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Valor debe ser mayor a cero
+    </div>
+    <div *ngIf="this.descuentosService.ValorDeRuleta.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Valor debe ser menor
+    </div>
+  </div>
 </form>

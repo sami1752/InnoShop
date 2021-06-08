@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {THIS_EXPR} from '@angular/compiler/src/output/output_ast';
 import {Injectable} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {Descuento} from '../models/Descuentos/descuento';
 import {PorcentajesRuleta} from '../models/Descuentos/porcentajes-ruleta';
 import {ValorRuleta} from '../models/Descuentos/valor-ruleta';
@@ -56,11 +56,17 @@ export class DescuentosService {
   formValorRuleta = false;
 
   formRegistroPorcentaje = this.formBuilder.group({
-    Porcentaje: []
+    Porcentaje: [ , [Validators.required, Validators.min(1), Validators.max(100)]]
   });
+  get Porcentaje(): any {
+    return this.formRegistroPorcentaje.controls.Porcentaje;
+  }
   formRegistroValorDeRuleta = this.formBuilder.group({
-    ValorDeRuleta: []
+    ValorDeRuleta: [ , [Validators.required, Validators.min(1), Validators.max(1000)]]
   });
+  get ValorDeRuleta(): any {
+    return this.formRegistroValorDeRuleta.controls.ValorDeRuleta;
+  }
 
   // formRegistroCupon = this.formBuilder.group({
   //   ValorDescuento: []

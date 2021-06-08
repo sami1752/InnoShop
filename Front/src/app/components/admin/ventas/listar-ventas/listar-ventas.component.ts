@@ -61,7 +61,9 @@ export class ListarVentasComponent implements AfterViewInit {
   detalleVenta(idVenta: number): any {
     this.ventasService.ListarDetalleVentasProductos(idVenta);
     this.ventasService.DetalleVenta(idVenta);
+    this.ventasService.desplegarDetalleVentaEnRegistro = false;
     this.ventasService.desplegarDetalle = !this.ventasService.desplegarDetalle;
+    this.ventasService.formularioRegistroVenta.reset();
   }
 
 }

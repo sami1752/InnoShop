@@ -12,12 +12,49 @@
                   <label for="Ancho">Ancho<span class="text-danger">**</span></label>
                   <input formControlName="IdSolicitudPersonalizada" type="hidden" id="IdSolicitudPersonalizada"/>
                   <input formControlName="Ancho" type="number" step="0.01" id="Ancho" placeholder="Ancho" class="form-control"/>
+                  <div
+                    *ngIf="this.solicitudesPersonalizadasService.Ancho.invalid && (this.solicitudesPersonalizadasService.Fondo.touched || this.solicitudesPersonalizadasService.Fondo.dirty)"
+                    class="alertad mb-20" style=" ">
+                    <div *ngIf="this.solicitudesPersonalizadasService.Ancho.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+                    <div *ngIf="this.solicitudesPersonalizadasService.Ancho.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                    </div>
+                    <div *ngIf="this.solicitudesPersonalizadasService.Ancho.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                    </div>
+                  </div>
+
                   <label for="Fondo">Fondo<span class="text-danger">**</span></label>
                   <input formControlName="Fondo" type="number" step="0.01" id="Fondo" placeholder="Fondo" class="form-control"/>
+                  <div
+                    *ngIf="this.solicitudesPersonalizadasService.Fondo.invalid && (this.solicitudesPersonalizadasService.Fondo.touched || this.solicitudesPersonalizadasService.Fondo.dirty)"
+                    class="alertad mb-20" style=" ">
+                    <div *ngIf="this.solicitudesPersonalizadasService.Fondo.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+                    <div *ngIf="this.solicitudesPersonalizadasService.Fondo.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                    </div>
+                    <div *ngIf="this.solicitudesPersonalizadasService.Fondo.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                    </div>
+                  </div>
+
                   <label for="Alto">Alto<span class="text-danger">**</span></label>
                   <input formControlName="Alto" type="number" step="0.01" id="Alto" placeholder="Alto" class="form-control"/>
+                  <div
+                    *ngIf="this.solicitudesPersonalizadasService.Alto.invalid && (this.solicitudesPersonalizadasService.Alto.touched || this.solicitudesPersonalizadasService.Alto.dirty)"
+                    class="alertad mb-20" style=" ">
+                    <div *ngIf="this.solicitudesPersonalizadasService.Alto.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+                    <div *ngIf="this.solicitudesPersonalizadasService.Alto.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                    </div>
+                    <div *ngIf="this.solicitudesPersonalizadasService.Alto.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida
+                    </div>
+                  </div>
+
                   <label for="Descripcion"> Descripcion <span class="text-danger">**</span></label>
                   <textarea formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
+                  <div
+                    *ngIf="this.solicitudesPersonalizadasService.Descripcion.invalid && (this.solicitudesPersonalizadasService.Descripcion.touched || this.solicitudesPersonalizadasService.Descripcion.dirty)"
+                    class="alertad mb-20" style=" ">
+                    <div *ngIf="this.solicitudesPersonalizadasService.Descripcion.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+                    <div *ngIf="this.solicitudesPersonalizadasService.Descripcion.hasError('maxlength')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo debe contener máximo 500 caracteres
+                    </div>
+                  </div>
                    <br>
                   <button type="submit" class="os-btn w-100">Enviar</button>
                 </form>

@@ -5,4 +5,13 @@
         <button type="submit" [disabled]="this.productoService.formularioRegistroPrecio.invalid" class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
         <button type="button" (click)="this.productoService.formularioRegistroPrecio.reset(); this.productoService.FormularioPrecio=false" class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button>
     </div>
+  <div
+    *ngIf="this.productoService.RegistroPrecio.invalid && (this.productoService.RegistroPrecio.touched || this.productoService.RegistroPrecio.dirty)"
+    class="alertad mb-20" style=" ">
+    <div *ngIf="this.productoService.RegistroPrecio.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+    <div *ngIf="this.productoService.RegistroPrecio.hasError('min')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Precio debe ser mayor a cero
+    </div>
+    <div *ngIf="this.productoService.RegistroPrecio.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Precio debe ser menor
+    </div>
+  </div>
 </form>

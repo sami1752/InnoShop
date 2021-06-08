@@ -7,12 +7,15 @@
         <select class="form-control font-weight-light" formControlName="IdProducto" (change)="llenarCamposVenta($event.target.value)"
                 id="IdProducto">
           <option value=0>Elige Producto</option>
-          <option *ngFor="let pro of this.productosService.listaProductos" [value]=pro.IdProducto>{{pro.Nombre}} </option>
+          <ng-container *ngFor="let pro of this.productosService.listaProductos">
+            <option *ngIf="pro.IdCategoria ==2"  [value]=pro.IdProducto>{{pro.Nombre}} </option>
+          </ng-container>
+
         </select>
         <button type="submit" [disabled]="!this.camposDetalle || this.ventasService.formularioRegistroVenta.invalid"
                 class=" ml-2 btn btn-sm btn-info">Agregar
         </button>
-  <button type="button" *ngIf="this.ventasService.IdVenta"  (click)="finalizarVenta()"
+  <button type="button" *ngIf="this.ventasService.IdVenta && !this.ventasService.desplegarDetalle"  (click)="finalizarVenta()"
           class="ml-3 btn btn-sm btn-success">Finalizar
   </button>
 
@@ -31,11 +34,12 @@
       <input formControlName="Cantidad" type="number" id="Cantidad" placeholder="Cantidad" class="form-control "/>
       <div
         *ngIf="this.ventasService.Cantidad.invalid && (this.ventasService.Cantidad.touched || this.ventasService.Cantidad.dirty)"
-        class="text-danger block mb-20 text-center">
-        <div *ngIf="this.ventasService.Cantidad.hasError('required')">El campo es obligatorio</div>
-        <div *ngIf="this.ventasService.Cantidad.hasError('pattern')">Solo se permiten números válidos
+        class="alertad mb-20" style=" ">
+        <div *ngIf="this.ventasService.Cantidad.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
+        <div *ngIf="this.ventasService.Cantidad.hasError('pattern')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Solo se permiten números válidos
         </div>
-        <div *ngIf="this.ventasService.Cantidad.hasError('validarStock')">El valor no debe superar el stock</div>
+        <div *ngIf="this.ventasService.Cantidad.hasError('validarStock')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> El valor no debe superar el stock
+        </div>
       </div>
     </div>
 
