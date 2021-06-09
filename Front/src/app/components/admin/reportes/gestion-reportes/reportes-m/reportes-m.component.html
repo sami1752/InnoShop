@@ -15,8 +15,8 @@
               <div class="card-body">
                 <div class="tab-content p-0">
                   <div>
-                    <mat-form-field appearance="fill" >
-                      <mat-label>Rango de fecha</mat-label>
+                    <div align="center"><mat-form-field appearance="fill" >
+                      <mat-label>Seleccione rango de fecha</mat-label>
                       <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
                         <input matStartDate formControlName="start" placeholder="Desde">
                         <input matEndDate formControlName="end" placeholder="Hasta" (dateInput)="Reporte()">
@@ -26,7 +26,7 @@
 
                       <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Fecha Inicial Erronea</mat-error>
                       <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Fecha Final Erronea</mat-error>
-                    </mat-form-field>
+                    </mat-form-field></div>
                   </div>
 
                   <div >
@@ -48,11 +48,11 @@
                         <td align="center">{{ReporteE.Devuelta}}</td>
                       </tr>
                       <tr>
-                        <td>En Proceso De Cotizacion:</td>
+                        <td>En proceso de cotización:</td>
                         <td align="center"> {{ReporteE.EnProcesoDeCotizacion}}</td>
                       </tr>
                       <tr>
-                        <td>En Proceso De Fabricacion:</td>
+                        <td>En proceso de fabricación:</td>
                         <td align="center">{{ReporteE.EnProcesoDeFabricacion}}</td>
                       </tr>
                       <tr>
@@ -76,11 +76,11 @@
                         <td align="center">{{ReporteE.Terminada}} </td>
                       </tr>
                       <tr>
-                        <td>TotalSolicitudes:</td>
+                        <td>Total montajes:</td>
                         <td align="center">{{ReporteE.TotalSolicitudes}}</td>
                       </tr>
                       <tr>
-                        <td class="bg-success">TotalVendido:</td>
+                        <td class="bg-success">Total vendido:</td>
                         <td class="bg-success" align="center">{{ReporteE.TotalVendido}}</td>
                       </tr>
                     </table>

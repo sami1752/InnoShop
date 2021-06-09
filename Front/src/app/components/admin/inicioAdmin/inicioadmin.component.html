@@ -6,13 +6,13 @@
                 <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/" class="nav-link">Ayuda</a>
+                <a href="Admin/ayudaenlinea"  class="nav-link "><i class="bi bi-question-circle"></i> Ayuda</a>
             </li>
 
         </ul>
         <ul class="navbar-nav ml-auto">
             <button (click)="configuracionService.cerrarSesion()" class="nav-link2"> <i class="bi bi-power "></i> Cerrar
-                Sesion</button>
+                sesión</button>
         </ul>
     </nav>
     <aside class="main-sidebar sidebar-dark-primary elevation-4 ">
@@ -22,10 +22,13 @@
         <div class="sidebar ">
             <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
                 <div class="image ">
-                    <img src="assets/img/images.png " class="img-circle elevation-2 " alt="User Image ">
+                  <div style=" width: 30px; height: 30px;-moz-border-radius: 50%;  -webkit-border-radius: 50%;   border-radius: 50%;background: #dcdcdc; opacity: 70%;    display: flex; align-items: center; font-size: 20px; font-family:  small-caps; color:#2C4F61; font-weight: bold;    justify-content: center;" >
+                    {{letra}}
+                  </div>
+
                 </div>
                 <div class="info " style="text-align: center; ">
-                    <a class="d-block " href="/Admin/MiCuenta " style="text-transform: uppercase">{{this.perfilUsuario.Nombres}}</a>
+                    <a class="d-block " href="/Admin/MiCuenta " style="text-transform: uppercase; font-weight: lighter">{{nombrecompleto}}</a>
                 </div>
             </div>
             <nav class="mt-2 ">
@@ -61,7 +64,7 @@
                     <li class="nav-item " *ngIf="soli">
                         <a href="Admin/solicitudes " class="nav-link " style="margin-left: 3px">
                           <i class="bi bi-record nav-icon"></i>
-                            <p>S. Personalizadas</p>
+                            <p>S.Personalizadas</p>
                         </a>
                     </li>
                     <li class="nav-item " *ngIf="soli">
@@ -70,25 +73,34 @@
                             <p>Montajes</p>
                         </a>
                     </li>
-                    <li class="nav-header ">REPORTES</li>
-                    <li class="nav-item has-treeview">
-                        <a class="nav-link " href="Admin/reportes/ventas" >
-                          <i class="bi bi-file-earmark-pdf nav-icon"></i>
-                            <p>Ventas</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="Admin/reportes/solicitudes" class="nav-link ">
-                          <i class="bi bi-file-earmark-pdf nav-icon"></i>
-                            <p>Solicitudes</p>
-                        </a>
-                    </li>
-                  <li class="nav-item ">
-                    <a href="Admin/reportes/montajes" class="nav-link ">
-                      <i class="bi bi-file-earmark-pdf nav-icon"></i>
+                  <li class="nav-item" (click)="repor=!repor" onclick="rotate2(180)">
+                    <a class="nav-link ">
+                      <i class="bi bi-file-earmark-bar-graph nav-icon"></i>
+                      <p>
+                        Reportes
+                        <i class="right fas fa-angle-down" id="flecha2"></i>
+                      </p>
+                    </a>
+                  </li>
+                  <li class="nav-item " *ngIf="repor">
+                    <a href="Admin/reportes/solicitudes" class="nav-link " style="margin-left: 3px">
+                      <i class="bi bi-record nav-icon"></i>
+                      <p>Solicitudes</p>
+                    </a>
+                  </li>
+                  <li class="nav-item " *ngIf="repor">
+                    <a href="Admin/reportes/montajes" class="nav-link " style="margin-left: 3px">
+                      <i class="bi bi-record nav-icon"></i>
                       <p>Montajes</p>
                     </a>
                   </li>
+                  <li class="nav-item " *ngIf="repor">
+                    <a href="Admin/reportes/ventas"  class="nav-link " style="margin-left: 3px">
+                      <i class="bi bi-record nav-icon"></i>
+                      <p>Ventas</p>
+                    </a>
+                  </li>
+
                     <li class="nav-header ">OTROS</li>
                     <li class="nav-item ">
                         <a href="Admin/descuentos " class="nav-link ">

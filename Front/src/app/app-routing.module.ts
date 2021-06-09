@@ -46,7 +46,7 @@ import {ReportesVComponent} from './components/admin/reportes/gestion-reportes/r
 import {GestionReportesComponent} from './components/admin/reportes/gestion-reportes/gestion-reportes.component';
 import {HistorialComprasComponent} from './components/usuarios/clientes/solicitudes/gestion-compras/historial-compras/historial-compras.component';
 import {GestionComprasComponent} from './components/usuarios/clientes/solicitudes/gestion-compras/gestion-compras.component';
-
+import {AyudaEnLineaComponent} from './components/admin/ayuda-en-linea/ayuda-en-linea.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'usuarios/inicio', pathMatch: 'full'},
@@ -100,6 +100,7 @@ const routes: Routes = [
     path: 'Admin', component: InicioadminComponent,
     children: [
       {path: 'inicioadmin', component: ReportesSPComponent, canActivate: [AutorizacionRutasGuard]},
+      {path: 'ayudaenlinea', component: AyudaEnLineaComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'Usuarios', component: GestionUsuarioComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'Productos', component: GestionProductosComponent, canActivate: [AutorizacionRutasGuard]},
       {path: 'MiCuenta', component: ModificarDatosComponent, canActivate: [AutorizacionRutasGuard]},

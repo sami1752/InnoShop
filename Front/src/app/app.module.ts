@@ -47,6 +47,7 @@ import {ListarProductosComponent} from './components/usuarios/clientes/productos
 import { RegistrarSalidaComponent } from './components/admin/productos/salidas/registrar-salida/registrar-salida.component';
 import { ListarSalidasComponent } from './components/admin/productos/salidas/listar-salidas/listar-salidas.component';
 import {ToastrModule} from 'ngx-toastr';
+import { AyudaEnLineaComponent } from './components/admin/ayuda-en-linea/ayuda-en-linea.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {ToastrModule} from 'ngx-toastr';
     ListarEntradasComponent,
     RegistrarEntradaComponent,
     RegistrarSalidaComponent,
-    ListarSalidasComponent
+    ListarSalidasComponent,
+    AyudaEnLineaComponent
   ],
   imports: [
     BrowserModule,

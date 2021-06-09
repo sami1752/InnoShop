@@ -15,7 +15,7 @@
               <div class="card-body">
                 <div class="tab-content p-0">
                   <div align="center"><mat-form-field appearance="fill">
-                    <mat-label>Enter a date range</mat-label>
+                    <mat-label>Seleccione rango de fecha</mat-label>
                     <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
                       <input matStartDate formControlName="start" placeholder="Desde">
                       <input matEndDate formControlName="end" placeholder="Hasta" (dateInput)="Reporte()">
@@ -51,7 +51,7 @@
                       <td align="center"> {{ReporteV.MontoProd}}</td>
                     </tr>
                     <tr>
-                      <td>Numero de descuentos:</td>
+                      <td>Número de descuentos:</td>
                       <td align="center">{{ReporteV.NumDescuentosProd}}</td>
                     </tr>
                     <tr>
@@ -114,7 +114,8 @@
                   [legendTitle]="legendTitle"
                   [legendPosition]="legendPosition"
                   [labels]="showLabels"
-                  [doughnut]="isDoughnut">
+                  [doughnut]="isDoughnut"
+                >
                 </ngx-charts-pie-chart>
               </div>
               <br>

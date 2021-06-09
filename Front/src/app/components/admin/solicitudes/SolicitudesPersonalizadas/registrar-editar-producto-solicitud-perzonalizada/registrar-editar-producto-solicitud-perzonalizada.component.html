@@ -71,7 +71,7 @@
             </div>
           </div>
           <br>
-          <label for="TipoPuerta">Tipo de Puerta <span class="text-danger">**</span></label>
+          <label for="TipoPuerta">Tipo de puerta <span class="text-danger">**</span></label>
           <select class="form-control" formControlName="TipoPuerta" id="TipoPuerta">
             <option value="">Elige Tipo de Puerta</option>
             <option *ngFor="let doc of listaTiposPuerta" [value]="doc.Tipo">{{doc.Tipo}}</option>
@@ -82,7 +82,7 @@
             <div *ngIf="this.productoService.TipoPuerta.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
           </div>
           <br>
-          <label for="Descripcion"> Descripcion <span class="text-danger">**</span></label>
+          <label for="Descripcion"> Descripción <span class="text-danger">**</span></label>
           <textarea formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
           <div
             *ngIf="this.productoService.Descripcion.invalid && (this.productoService.Descripcion.touched || this.productoService.Descripcion.dirty)"
@@ -120,7 +120,7 @@
               </div>
             </div>
             <div class="col">
-              <label for="GarantiaMeses">Garantia en Meses <span class="text-danger">**</span></label>
+              <label for="GarantiaMeses">Garantía en meses <span class="text-danger">**</span></label>
               <input formControlName="GarantiaMeses" type="number" id="GarantiaMeses"
                      placeholder="Ingresa la garantia en meses"
                      class="form-control "/>
@@ -134,7 +134,7 @@
             </div>
           </div>
           <div *ngIf="this.productoService.CampoPrecio">
-            <label for="Precio">Precio Producto<span class="text-danger">**</span></label>
+            <label for="Precio">Precio producto<span class="text-danger">**</span></label>
             <input formControlName="Precio" type="number" id="Precio" placeholder="Ingrese precio producto"
                    class="form-control "/>
             <div
@@ -147,7 +147,7 @@
             <div class="mt-10"></div>
           </div>
           <div *ngIf="this.productoService.CampoPrecio">
-            <label for="CantidadStock">Cantidad Producto<span class="text-danger">**</span></label>
+            <label for="CantidadStock">Cantidad producto<span class="text-danger">**</span></label>
             <input formControlName="CantidadStock" type="number" id="CantidadStock"
                    placeholder="Ingrese cantidad de producto"
                    class="form-control "/>

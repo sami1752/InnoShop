@@ -28,6 +28,7 @@ export class ReportesVComponent implements OnInit {
   label = 'TOTAL MONTO VENTAS';
   legendPosition = 'right';
   legendTitle = '';
+  labels = true;
 
   colorScheme = {
     domain: ['#4B6789', '#6D4B89']

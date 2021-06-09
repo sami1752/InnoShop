@@ -1,0 +1,93 @@
+<section class="content">
+  <div class="content-wrapper">
+    <br>
+    <section class="content">
+      <section class="connectedSortable">
+        <div class="card">
+          <div class="card-header ">
+            <h2 class="card-title colortxt font-weight-light"><i class="bi bi-question-circle"></i> AYUDA EN LÍNEA</h2>
+          </div>
+          <nav class="mt-1">
+            <ul class="nav" style=" margin: 0; padding: 0; ">
+              <li  (click)="mostrarInicioSesion()" style="margin-left: auto; margin-right: auto;" >
+                <a class="btn btn-sm">
+                  <p class="colortxt" id="modi">
+                    Módulo inicio de sesión
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item"   (click)="mostrarUsuarios()" style="margin-left: auto; margin-right: auto;" >
+                <a class="btn btn-sm">
+                  <p id="modu">Módulo usuarios</p>
+                </a>
+              </li>
+
+              <li class="nav-item"  (click)="mostrarProductos()" style="margin-left: auto; margin-right: auto;">
+                <a class="btn btn-sm">
+                  <p id="modp">Módulo productos</p>
+                </a>
+              </li>
+
+              <li class="nav-item"  (click)="mostrarVentas()" style="margin-left: auto; margin-right: auto;" >
+                <a class="btn btn-sm">
+                  <p id="modv">Módulo ventas</p>
+                </a>
+              </li>
+
+              <li class="nav-item"   (click)="mostrarSolicitudes()"  style="margin-left: auto; margin-right: auto;">
+                <a class="btn btn-sm">
+                  <p id="mods">Módulo solicitudes</p>
+                </a>
+              </li>
+
+              <li class="nav-item"   (click)="mostrarReportes()" style="margin-left: auto; margin-right: auto;">
+                <a class="btn btn-sm">
+                  <p id="modr">Módulo reportes</p>
+                </a>
+              </li>
+
+              <li class="nav-item"  (click)="mostrarDescuentos()" style="margin-left: auto; margin-right: auto;">
+                <a class="btn btn-sm">
+                  <p id="modd">Módulo descuentos</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="card-body" align="center">
+            <div class="tab-content p-0">
+              <div *ngIf="this.modInicioSesion">
+              <h2 class="colortxt font-weight-light mb-1 mt-1">MÓDULO INICIO DE SESIÓN</h2>
+              <iframe   width="560" height="315" src="https://www.youtube.com/embed/uW-eJfmbrQw?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div *ngIf="this.modUsuario">
+                <h2 class="colortxt font-weight-light mb-1 mt-1">MÓDULO USUARIOS</h2>
+                <iframe   width="560" height="315" src="https://www.youtube.com/embed/uW-eJfmbrQw?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div *ngIf="this.modProductos">
+                <h2 class="colortxt font-weight-light mb-1 mt-1">MÓDULO PRODUCTOS</h2>
+                <iframe   width="560" height="315" src="https://www.youtube.com/embed/uW-eJfmbrQw?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div *ngIf="this.modVentas">
+                <h2 class="colortxt font-weight-light mb-1 mt-1">MÓDULO VENTAS</h2>
+                <iframe   width="560" height="315" src="https://www.youtube.com/embed/uW-eJfmbrQw?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div *ngIf="this.modSolicitudes">
+                <h2 class="colortxt font-weight-light mb-1 mt-1">MÓDULO SOLICITUDES</h2>
+                <iframe   width="560" height="315" src="https://www.youtube.com/embed/uW-eJfmbrQw?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div *ngIf="this.modReportes">
+                <h2 class="colortxt font-weight-light mb-1 mt-1">MÓDULO REPORTES</h2>
+                <iframe   width="560" height="315" src="https://www.youtube.com/embed/uW-eJfmbrQw?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div *ngIf="this.modDescuentos">
+                <h2 class="colortxt font-weight-light mb-1 mt-1">MÓDULO DESCUENTOS</h2>
+                <iframe   width="560" height="315" src="https://www.youtube.com/embed/uW-eJfmbrQw?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+</section>

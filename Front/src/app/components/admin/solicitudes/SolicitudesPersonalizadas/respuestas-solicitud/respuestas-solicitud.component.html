@@ -19,7 +19,6 @@
                                     <span class="direct-chat-name float-right colortxt" style="text-transform: capitalize;">{{respuesta.Usuario}}</span>
                                     <span class="direct-chat-timestamp float-left ">{{respuesta.Fecha}}</span>
                                 </div>
-
                                 <div class="direct-chat-text ">
                                     {{respuesta.Respuesta}}
                                 </div>
@@ -29,7 +28,6 @@
                                     <span class="direct-chat-name float-left colortxt" style="text-transform: capitalize;">{{respuesta.Usuario}}</span>
                                     <span class="direct-chat-timestamp float-right ">{{respuesta.Fecha}}</span>
                                 </div>
-
                                 <div class="direct-chat-text">
                                     {{respuesta.Respuesta}}
                                 </div>
@@ -41,7 +39,7 @@
                     <form class="" [formGroup]="this.solicitudesPersonalizadasService.formularioRegistroRespuesta" (ngSubmit)="resgistrarRespuesta()">
                         <div class="input-group">
                             <label for="Respuesta"><span></span></label>
-                            <input formControlName="Respuesta" id="Respuesta" type="text" placeholder="Digita la respuesta ... " class="form-control " />
+                            <input formControlName="Respuesta" id="" type="text" placeholder="Digita la respuesta ... " class="form-control " />
                             <span class="input-group-append ">
                         <button type="submit"  [disabled]="this.solicitudesPersonalizadasService.formularioRegistroRespuesta.invalid "class="btn btn-secondary ">Enviar</button>
                         </span>

@@ -39,7 +39,7 @@ export class ModificarDatosComponent implements OnInit {
           respuesta => {
             this.usuario = respuesta as Usuario;
             this.nombre = Array.from(this.usuarioService.perfilUsuario.Nombres);
-            this.nombrecompleto=this.usuarioService.perfilUsuario.Nombres + ' ' + this.usuarioService.perfilUsuario.Apellidos;
+            this.nombrecompleto = this.usuarioService.perfilUsuario.Nombres + ' ' + this.usuarioService.perfilUsuario.Apellidos;
             this.letra = this.nombre[0];
             this.usuarioService.formularioRegistroEdicionDatos.patchValue(this.usuario);
           },

@@ -31,12 +31,19 @@ export class InicioadminComponent implements OnInit {
   iva = false;
   entradas = false;
   soli = true;
+  repor = true;
+  nombre = [];
+  nombrecompleto = '';
+  letra = '';
 
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
         this.perfilUsuario = (res as PerfilUsuario);
         this.perfilUsuario = (res as PerfilUsuario);
+        this.nombre = Array.from(this.perfilUsuario.Nombres);
+        this.nombrecompleto = this.perfilUsuario.Nombres + ' ' + this.perfilUsuario.Apellidos;
+        this.letra = this.nombre[0];
         if (this.perfilUsuario.IdRol === 2) {
           this.router.navigate(['/usuarios/inicio']);
         }

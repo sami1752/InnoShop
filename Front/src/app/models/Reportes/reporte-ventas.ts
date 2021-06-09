@@ -1,4 +1,5 @@
-import {IAdvanceChart} from './charts.interface';
+// @ts-ignore
+import {IAdvanceChart} from './charts.interface' ;
 
 export interface ReporteVentas {
   CantProdPerso: number;

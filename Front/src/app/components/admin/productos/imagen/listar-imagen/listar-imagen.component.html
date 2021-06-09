@@ -13,7 +13,7 @@
         <div *ngIf="this.productoService.FormularioImagen">
           <app-registrar-imagen></app-registrar-imagen>
         </div>
-        <div style="width: 40%;" align="center">
+        <div style="" align="center">
           <owl-carousel-o [options]="customOptions ">
             <ng-template carouselSlide *ngFor="let imagen of productoService.listaImagenesProducto ">
               <img src="assets/img/Imagenes/{{imagen.RutaImagen}}" style="height: 390px; width: 390px">

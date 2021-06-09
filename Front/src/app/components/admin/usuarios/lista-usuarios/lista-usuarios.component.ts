@@ -25,7 +25,7 @@ export interface UserData {
 })
 export class ListaUsuariosComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['Nombres', 'Email',  'Direccion', 'Telefono','Opciones'];
+  displayedColumns: string[] = ['Nombres', 'Email',  'Direccion', 'Telefono', 'Opciones'];
   dataSource: MatTableDataSource<UsuariosTabla>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

@@ -21,63 +21,63 @@
                 <div class="tab-content p-0">
                   <div class="row">
                     <div class="col">
-                      <i class="bi bi-arrow-right-short text-primary"></i>
-                      <label class="p-1 "> Id Montaje: </label>
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 colortxt"> Id Montaje: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.IdMontaje}}
                     </div>
                     <div class="col">
-                      <i class="bi bi-arrow-right-short text-primary"></i>
-                      <label class="p-1 "> Usuario: </label>
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 colortxt"> Usuario: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.Usuario}}
                     </div>
                   </div>
                   <div class="row">
                     <div class=" col ">
-                      <i class="bi bi-arrow-right-short text-primary"></i>
-                      <label class="p-1 "> Fecha: </label>
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 colortxt"> Fecha: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.Fecha}}
                     </div>
                     <div class=" col ">
-                      <i class="bi bi-arrow-right-short text-primary"></i>
-                      <label class="p-1 "> Direccion: </label>
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 colortxt"> Dirección: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.Direccion}}
                     </div>
                   </div>
                   <div class="row">
                     <div class="col ">
-                      <i class="bi bi-arrow-right-short text-primary"></i>
-                      <label class="p-1 ">Alto: </label>
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 colortxt">Alto: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.Alto}}
                     </div>
                     <div class="col ">
-                      <i class="bi bi-arrow-right-short text-primary"></i>
-                      <label class="p-1 "> Ancho: </label>
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 colortxt"> Ancho: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.Ancho}}
                     </div>
                   </div>
                   <div class="row ">
                     <div class="col">
-                      <i class="bi bi-arrow-right-short text-primary"></i>
-                      <label class="p-1 "> Fondo: </label>
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 colortxt"> Fondo: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.Fondo}}
                     </div>
                     <div class="col ">
-                      <i class="bi bi-arrow-right-short text-primary"></i>
-                      <label class="p-1 "> Estado: </label>
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 colortxt"> Estado: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.Estado}}
                     </div>
                   </div>
                   <div class="row">
                     <div class="col ">
-                      <i class="bi bi-arrow-right-short text-primary"></i>
-                      <label class="p-1 "> Descripción: </label>
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 colortxt"> Descripción: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.Descripcion}}
                     </div>
                   </div>
                   <div class="row">
                     <div class="col ">
-                      <i class="bi bi-arrow-right-short text-primary"></i>
-                      <label class="p-1 "> Valor Total: </label>
+                      <i class="bi bi-arrow-right-short colortxt"></i>
+                      <label class="p-1 colortxt"> Valor total: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.ValorTotal}}
                     </div>
 
@@ -86,30 +86,30 @@
                        (this.solicitudesPersonalizadasService.Montajes.Estado == 'Enviada' ||
                        this.solicitudesPersonalizadasService.Montajes.Estado == 'Modificada'||
                        this.solicitudesPersonalizadasService.Montajes.Estado == 'Devuelta')">
-                      <button class="btn btn-primary" (click)="cotizar()">Cotizar</button>
+                      <button class="btn btn-sm btn-primary" (click)="cotizar()">Cotizar</button>
                     </div>
                     <div class="col "
                          *ngIf="( this.solicitudesPersonalizadasService.Montajes.Estado == 'Pagada')">
-                      <button class="btn btn-primary" (click)="Fabricar()">Fabricar</button>
+                      <button class="btn btn-sm btn-primary" (click)="Fabricar()">Fabricar</button>
                     </div>
                     <div class="col"
                          *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'En proceso de fabricacion'">
-                      <button class="btn btn-success" (click)="Terminar()">Terminar</button>
+                      <button class="btn btn-sm btn-success" (click)="Terminar()">Terminar</button>
                     </div>
                     <div class="col"
                          *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Terminada'">
-                      <button class="btn btn-success" (click)="Entregar()">Entregar</button>
+                      <button class="btn btn-sm btn-success" (click)="Entregar()">Entregar</button>
                     </div>
                     <div class="col"
                          *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.Montajes.Estado == 'Rechazada'||
                        this.solicitudesPersonalizadasService.Montajes.Estado == 'Devuelta'">
-                      <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
+                      <button class="btn btn-sm btn-dark" (click)="cotizar()">Reiniciar cotización</button>
                     </div>
                     <div class="col"
                          *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.Montajes.Estado == 'En proceso de cotizacion'">
-                      <button class="btn btn-success" (click)="TerminarCotizacion()">Terminar Cotizacion</button>
+                      <button class="btn btn-sm btn-success" (click)="TerminarCotizacion()">Terminar cotización</button>
                     </div>
                     <div class="col"
                          *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada' &&
@@ -119,7 +119,7 @@
                        this.solicitudesPersonalizadasService.Montajes.Estado != 'En proceso de fabricacion'&&
                        this.solicitudesPersonalizadasService.Montajes.Estado != 'Terminada'&&
                        this.solicitudesPersonalizadasService.Montajes.Estado != 'Entregada'">
-                      <button class="btn btn-danger" (click)="cancelar()">Rechazar</button>
+                      <button class="btn btn-sm btn-danger" (click)="cancelar()">Rechazar</button>
                     </div>
 
                   </div>

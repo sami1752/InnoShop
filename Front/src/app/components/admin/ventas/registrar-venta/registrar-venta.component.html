@@ -20,11 +20,7 @@
   </button>
 
     </div>
-
     </div>
-
-
-
   </div>
   <input type="hidden" formControlName="IdVenta">
   <br>
@@ -34,11 +30,11 @@
       <input formControlName="Cantidad" type="number" id="Cantidad" placeholder="Cantidad" class="form-control "/>
       <div
         *ngIf="this.ventasService.Cantidad.invalid && (this.ventasService.Cantidad.touched || this.ventasService.Cantidad.dirty)"
-        class="alertad mb-20" style=" ">
+        class="alertad-l mb-20" style=" ">
         <div *ngIf="this.ventasService.Cantidad.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
         <div *ngIf="this.ventasService.Cantidad.hasError('pattern')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Solo se permiten números válidos
         </div>
-        <div *ngIf="this.ventasService.Cantidad.hasError('validarStock')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> El valor no debe superar el stock
+        <div *ngIf="this.ventasService.Cantidad.hasError('validarStock')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> La cantidad no debe superar el stock
         </div>
       </div>
     </div>
