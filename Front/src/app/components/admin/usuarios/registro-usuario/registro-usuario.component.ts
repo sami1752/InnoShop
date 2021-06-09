@@ -57,7 +57,7 @@ export class RegistroUsuarioComponent implements OnInit {
     this.usuarioService.uca = true;
     this.usuarioService.registrarUsuarioAdmin().subscribe(
       (respuesta: any) => {
-        this.toastr.success(respuesta);
+        this.toastr.success('Se registró el usuario  exitosamente', 'Registro usuario');
         this.usuarioService.formularioRegistroUsuarioAdmin.reset();
         this.usuarioService.listarUsuarios();
         window.location.reload();

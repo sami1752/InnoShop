@@ -60,7 +60,7 @@ export class RegistrarEditarProductoMontajeComponent implements OnInit {
         this.productoService.producto.IdCategoria = 1;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
-            this.toastr.success('Registro exitosa');
+            this.toastr.success('Se registró el producto exitosamente', 'Registro producto');
             this.productoService.formularioRegistroProductos.reset();
             this.solicitudesPersonalizadasService.DetallesProductosMontajes =
               this.solicitudesPersonalizadasService.formularioDetalleProductoMontajes.value;
@@ -71,7 +71,6 @@ export class RegistrarEditarProductoMontajeComponent implements OnInit {
             this.solicitudesPersonalizadasService.AgregarDetallesProductosMontajes().subscribe(
               (r) => {
                 this.solicitudesPersonalizadasService.ListaDetallesProductosMontajes(this.id);
-                this.toastr.success('Registro detalle exitosa');
                 this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
               },
               (e) => {

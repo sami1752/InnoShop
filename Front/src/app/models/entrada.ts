@@ -4,4 +4,5 @@ export interface Entrada {
   Cantidad: number;
   Fecha: any;
   IdUsuario: string;
+  NombreUsuario: string;
 }

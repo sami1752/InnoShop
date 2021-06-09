@@ -29,7 +29,7 @@ export class RegistrarEntradaComponent implements OnInit {
 
         this.productoService.RegistroEntrada().subscribe(
           (respuesta: any) => {
-            this.toastr.success('Registro exitoso');
+            this.toastr.success('Se registró la entrada  exitosamente', 'Registro entrada');
             this.listaEntradas.listarEntradas(this.productoService.detalleProducto.IdProducto);
             this.productoService.formularioRegistroEntrada.reset();
             this.productoService.formularioEntrada = false;

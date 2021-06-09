@@ -19,7 +19,7 @@ import {
 } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import {ListaProductosComponent} from '../lista-productos/lista-productos.component';
-import {window} from 'rxjs/operators';
+import {timeout, window} from 'rxjs/operators';
 
 @Component({
   selector: 'app-registro-editar-productos',
@@ -75,9 +75,9 @@ export class RegistroEditarProductosComponent implements OnInit {
         this.productoService.producto.IdCategoria = 2;
         this.productoService.registrarProducto().subscribe(
           (respuesta: any) => {
-            this.toastr.success('Registro exitoso');
-            document.location.reload();
+            this.toastr.success('Se registró el producto  exitosamente', 'Registro producto');
             this.productoService.formularioRegistroProductos.reset();
+            document.location.reload();
           }, error => {
             this.toastr.error('Ha ocurrido un error');
           });
@@ -94,7 +94,7 @@ export class RegistroEditarProductosComponent implements OnInit {
     this.productoService.actualizacionProducto().subscribe(
       (respuesta: any) => {
         this.productoService.formularioRegistroProductos.reset();
-        this.toastr.success('Registro exitoso');
+        this.toastr.success('Se editó el producto  exitosamente', 'Edición producto');
         this.productoService.CampoPrecio = true;
         this.productoService.listarProducto();
         document.location.reload();

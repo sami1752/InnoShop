@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductoService} from '../../../../../../../../services/producto.service';
 import {UsuarioService} from '../../../../../../../../services/usuario.service';
 import {Usuario} from '../../../../../../../../models/usuario';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-agregar-material-m',
   templateUrl: './agregar-material-m.component.html',
@@ -10,7 +10,9 @@ import {Usuario} from '../../../../../../../../models/usuario';
 })
 export class AgregarMaterialMComponent implements OnInit {
 
-  constructor(public productoService: ProductoService, public usuarioService: UsuarioService) {
+  constructor(public productoService: ProductoService,
+              public usuarioService: UsuarioService,
+              public toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class AgregarMaterialMComponent implements OnInit {
         this.productoService.DetalleMaterial.IdUsuario = (res as Usuario).Id;
         this.productoService.RegistrarDetalleMaterial().subscribe(
           (respuesta: any) => {
+            this.toastr.success('Se registró el material exitosamente', 'Registro material');
             this.productoService.ListarDetalleMaterial(this.productoService.DetalleMaterial.IdProducto);
             this.productoService.tablaDetalleMateriales = true;
           }, error => {

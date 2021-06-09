@@ -27,7 +27,7 @@ export class RegistrarSalidaComponent implements OnInit {
         this.productoService.salida.IdProducto = this.productoService.detalleProducto.IdProducto;
         this.productoService.RegistroSalida().subscribe(
           (respuesta: any) => {
-            this.toast.success('Registro exitoso');
+            this.toast.success('Se registró la salida exitosamente', 'Salidas producto');
             this.listaSalidas.listarSalidas(this.productoService.detalleProducto.IdProducto);
             this.productoService.formularioRegistroEntrada.reset();
             this.productoService.formularioSalida = false;

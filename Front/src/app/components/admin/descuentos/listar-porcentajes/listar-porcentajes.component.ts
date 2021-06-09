@@ -7,7 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {HttpClient} from '@angular/common/http';
 import {ConfiguracionService} from '../../../../services/configuracion.service';
-
+import { ToastrService } from 'ngx-toastr';
 export interface UserData {
   id: string;
   name: string;
@@ -30,7 +30,8 @@ export class ListarPorcentajesComponent implements AfterViewInit {
 
   constructor(public descuentosService: DescuentosService,
               private http: HttpClient,
-              private configuracion: ConfiguracionService) {
+              private configuracion: ConfiguracionService,
+              public toastr: ToastrService) {
     this.listarPorcen();
   }
   ngAfterViewInit(): void {
@@ -56,7 +57,7 @@ export class ListarPorcentajesComponent implements AfterViewInit {
   editarPorcentaje(porcentaje: PorcentajesRuleta): void {
     this.descuentosService.EditarPorcentaje(porcentaje).subscribe(
       (res: any) => {
-        alert(res.mensaje);
+        this.toastr.success('Se editó el estado exitosamente', 'Edición porcentaje');
         this.descuentosService.ListarPorcentajeDescuentos();
       }, err => {
 

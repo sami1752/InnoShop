@@ -25,7 +25,7 @@ export class RegistrarValorRuletaComponent implements OnInit {
         this.descuentosService.idUsuario = resp.Id;
         this.descuentosService.RegistrarValorRuleta().subscribe(
           (res: any) => {
-            this.toast.success('Registro exitoso');
+            this.toast.success('Se registró el valor  exitosamente', 'Registro valor');
             this.listValor.listarValorRuleta();
             this.descuentosService.ValorRuletaActual();
           }, err => {

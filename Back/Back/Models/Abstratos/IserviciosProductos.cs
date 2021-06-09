@@ -16,7 +16,7 @@ namespace Back.Models.Abstratos
         Task<ActionResult<IEnumerable<Imagen>>> ListarImagenes();
         Task<ActionResult<IEnumerable<Imagen>>> ListaImagenesProducto(int id);
         Task<ActionResult<IEnumerable<DetalleProducto>>> ListarProductosPorCategoria(int idCategoria);
-        Task<ActionResult<IEnumerable<PrecioProducto>>> ListaPrecioProducto(int idProducto);
+        Task<ActionResult<IEnumerable<DetallePrecioProducto>>> ListaPrecioProducto(int idProducto);
         Task<List<DetalleMaterialNombres>> ListarMaterialesProducto(int idProducto);
         Task EliminarDetalleMaterial(int id);
         Task EliminarImagen(int id);
@@ -29,11 +29,11 @@ namespace Back.Models.Abstratos
         Task AgregarDetalleMaterialProducto(DetalleMaterial detalleMaterial);
         Task<PrecioProducto> AgregarPrecioProducto(PrecioProducto precioProducto);
         Task EditarFechaPrecio(int id);
-        Task<ActionResult<IEnumerable<Iva>>> listarIva();
+        Task<ActionResult<IEnumerable<DetalleIva>>> listarIva();
         Task AgregarIva(Iva iva);
         Task ModificarIva(DateTime nueva);
         Task ModificaPrecio(DateTime nueva, int Id);
-        Task<ActionResult<IEnumerable<Entrada>>> ListarEntradasPorProducto(int idProducto);
+        Task<ActionResult<IEnumerable<DetalleEntradaProducto>>> ListarEntradasPorProducto(int idProducto);
         Task AgregarEntrada(Entrada entrada);
         Task<ActionResult<IEnumerable<PrecioProducto>>> ListaTodosPreciosProducto();
         public int ObtenerStockProducto(int idProducto);

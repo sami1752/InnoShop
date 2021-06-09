@@ -31,7 +31,7 @@ export class EditarMontajeComponent implements OnInit {
       .subscribe(
         (respuesta: any) => {
           this.router.navigate(['Admin/detalleSP/', this.solicitudesPersonalizadasService.Montajes.IdMontaje]);
-          this.toastr.success('Edición exitosa');
+          this.toastr.success('Se editó el montaje exitosamente', 'Edición montaje');
         },
         (error) => {
           this.toastr.error('Ha ocurrido un error');

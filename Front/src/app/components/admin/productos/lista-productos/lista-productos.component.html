@@ -8,7 +8,7 @@
       |
       <!-- ID Column -->
       <ng-container matColumnDef="IdProducto">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id</th>
         <td (click)="llenarFormularioProducto(row)" mat-cell *matCellDef="let row"> {{row.IdProducto}} </td>
       </ng-container>
 
@@ -23,7 +23,7 @@
         <td (click)="llenarFormularioProducto(row)" mat-cell *matCellDef="let row"> <p *ngIf="row.Estado">Activo</p> <p *ngIf="!row.Estado">Inactivo</p> </td>
       </ng-container>
       <ng-container matColumnDef="NombreCategoria">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Categoria</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Categoría</th>
         <td (click)="llenarFormularioProducto(row)" mat-cell *matCellDef="let row"> {{row.NombreCategoria}}
 
         </td>

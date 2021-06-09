@@ -37,7 +37,13 @@ import {ToastrModule} from 'ngx-toastr';
     MatInputModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      closeButton: true,
+      progressBar: true,
+      positionClass: 'toast-top-right',
+      timeOut: 2000,
+      easing: 'swing'
+    })
   ],
   exports: [GestionRuletaComponent]
 })

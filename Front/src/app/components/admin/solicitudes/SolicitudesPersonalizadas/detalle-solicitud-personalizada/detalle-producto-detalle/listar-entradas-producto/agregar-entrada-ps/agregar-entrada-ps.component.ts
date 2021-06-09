@@ -4,7 +4,7 @@ import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import {ActivatedRoute} from '@angular/router';
 import {SolicitudesPersonalizadasService} from '../../../../../../../../services/solicitudes-personalizadas.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-agregar-entrada-ps',
   templateUrl: './agregar-entrada-ps.component.html',
@@ -14,7 +14,8 @@ export class AgregarEntradaPSComponent implements OnInit {
 
   constructor(public productoService: ProductoService, public usuarioService: UsuarioService,
               private rutaActiva: ActivatedRoute,
-              public solicitudesPersonalizadasService: SolicitudesPersonalizadasService) {
+              public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
+              public toastr: ToastrService) {
   }
   id: number = this.rutaActiva.snapshot.params.IdSolicitud;
 
@@ -30,7 +31,7 @@ export class AgregarEntradaPSComponent implements OnInit {
 
         this.productoService.RegistroEntrada().subscribe(
           (respuesta: any) => {
-            alert(respuesta.mensaje);
+            this.toastr.success('Se registró la entrada exitosamente', 'Registro entrada');
             this.productoService.formularioRegistroEntrada.reset();
             this.productoService.formularioEntrada = false;
             this.productoService.listarEntradas(this.productoService.entrada.IdProducto);

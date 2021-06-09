@@ -48,6 +48,7 @@ import { RegistrarSalidaComponent } from './components/admin/productos/salidas/r
 import { ListarSalidasComponent } from './components/admin/productos/salidas/listar-salidas/listar-salidas.component';
 import {ToastrModule} from 'ngx-toastr';
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +96,14 @@ import {ToastrModule} from 'ngx-toastr';
     MatSortModule,
     MatInputModule,
     MatSelectModule,
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot({
+      closeButton: true,
+      progressBar: true,
+      positionClass: 'toast-top-right',
+      timeOut: 2000,
+      extendedTimeOut: 1000,
+      easing: 'swing'
+    })
   ],
   providers: [UsuarioService, ConfiguracionService, ListarProductosComponent, {
     provide: HTTP_INTERCEPTORS,

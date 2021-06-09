@@ -3,7 +3,7 @@ import {Usuario} from 'src/app/models/usuario';
 import {SolicitudesPersonalizadasService} from 'src/app/services/solicitudes-personalizadas.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import {ActivatedRoute, Router} from '@angular/router';
-
+import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-registrar-montajes',
   templateUrl: './registrar-montajes.component.html',
@@ -15,7 +15,8 @@ export class RegistrarMontajesComponent implements OnInit {
     public router: Router,
     public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
     public usuarioService: UsuarioService,
-    private rutaActiva: ActivatedRoute
+    private rutaActiva: ActivatedRoute,
+    public toastr: ToastrService
   ) {
   }
 
@@ -40,9 +41,9 @@ export class RegistrarMontajesComponent implements OnInit {
           (respuesta: any) => {
             this.solicitudesPersonalizadasService.formularioRegistroMontaje.reset();
             this.router.navigate(['solicitudes/MisMontajes']);
-            alert('Exito');
+            this.toastr.success('Se registró el montaje exitosamente', 'Registro montaje');
           }, error => {
-            alert(error);
+            this.toastr.error('Ha ocurrido un error');
             console.log(error);
           });
       },
@@ -58,10 +59,10 @@ export class RegistrarMontajesComponent implements OnInit {
       .subscribe(
         (respuesta: any) => {
           this.router.navigate(['solicitudes/MisMontajes']);
-          alert('Actualizacion Exitosa');
+          this.toastr.success('Se editó el montaje exitosamente', 'edición montaje');
         },
         (error) => {
-          alert(error);
+          this.toastr.success('Ha ocurrido un error');
           console.log(error);
         }
       );

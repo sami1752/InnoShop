@@ -5,7 +5,7 @@ import {ConfiguracionService} from 'src/app/services/configuracion.service';
 import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import {SolicitudesPersonalizadasService} from '../../../../../../../../services/solicitudes-personalizadas.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-agregar-precio',
   templateUrl: './agregar-precio.component.html',
@@ -16,7 +16,8 @@ export class AgregarPrecioComponent implements OnInit {
   constructor(public usuarioService: UsuarioService, private router: Router,
               public productoService: ProductoService, public configuracion: ConfiguracionService,
               private rutaActiva: ActivatedRoute,
-              public solicitudesPersonalizadasService: SolicitudesPersonalizadasService) {
+              public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
+              public toastr: ToastrService) {
   }
 
   id: number = this.rutaActiva.snapshot.params.IdSolicitud;
@@ -31,8 +32,7 @@ export class AgregarPrecioComponent implements OnInit {
         this.productoService.precio.IdUsuario = (res as Usuario).Id;
         this.productoService.registroPrecio().subscribe(
           (respuesta: any) => {
-            alert(respuesta.mensaje);
-            console.log(respuesta.mensaje);
+            this.toastr.success('Se registró el precio exitosamente', 'Registro precio');
             this.productoService.formularioRegistroPrecio.reset();
             this.productoService.FormularioPrecio = false;
             this.productoService.listarPrecios(this.productoService.precio.IdProducto);

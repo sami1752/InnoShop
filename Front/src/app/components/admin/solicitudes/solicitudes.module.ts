@@ -84,7 +84,13 @@ import {ToastrModule} from 'ngx-toastr';
     MatSortModule,
     DragDropModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      closeButton: true,
+      progressBar: true,
+      positionClass: 'toast-top-right',
+      timeOut: 2000,
+      easing: 'swing'
+    })
   ],
   exports: [ListarSolicitudesPersonalizadasComponent, GestionSolicitudPersonalizadaComponent]
 })

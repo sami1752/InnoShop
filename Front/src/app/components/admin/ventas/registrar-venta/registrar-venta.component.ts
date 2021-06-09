@@ -59,7 +59,6 @@ export class RegistrarVentaComponent implements OnInit {
       this.detalleVentaProducto.SubTotal = this.detalleVentaProducto.Cantidad * this.productosService.detalleProducto.Precio;
       this.ventasService.agregarDetalleVenta(this.detalleVentaProducto).subscribe(
         (res: any) => {
-          this.toastr.success('Se agrego producto con éxito');
           this.ventasService.desplegarDetalleVentaEnRegistro = true;
           this.ventasService.ListarDetalleVentasProductos(this.ventasService.IdVenta);
           this.ventasService.DetalleVenta(this.ventasService.IdVenta);
@@ -75,7 +74,7 @@ export class RegistrarVentaComponent implements OnInit {
           this.detalleVentaProducto.SubTotal = this.detalleVentaProducto.Cantidad * this.productosService.detalleProducto.Precio;
           this.ventasService.agregarDetalleVenta(this.detalleVentaProducto).subscribe(
             (res: any) => {
-              this.toastr.success('Se agrego producto con éxito');
+              this.toastr.success('Se registró la venta  exitosamente', 'Registro venta');
               this.camposDetalle = false;
               this.ventasService.desplegarDetalleVentaEnRegistro = true;
               this.ventasService.ListarDetalleVentasProductos(resp.IdVenta);

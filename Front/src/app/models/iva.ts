@@ -4,4 +4,5 @@ export interface Iva {
   FechaInicio: any;
   FechaFin: any;
   IdUsuario: string;
+  NombreUsuario: string;
 }

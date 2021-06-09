@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Usuario} from 'src/app/models/usuario';
 import {SolicitudesPersonalizadasService} from 'src/app/services/solicitudes-personalizadas.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
-
+import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-registrar-solicitud-personalizada',
   templateUrl: './registrar-solicitud-personalizada.component.html',
@@ -14,7 +14,8 @@ export class RegistrarSolicitudPErsonalizadaComponent implements OnInit {
     public router: Router,
     public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
     public usuarioService: UsuarioService,
-    private rutaActiva: ActivatedRoute
+    private rutaActiva: ActivatedRoute,
+    public toastr: ToastrService
   ) {
   }
 
@@ -41,10 +42,10 @@ export class RegistrarSolicitudPErsonalizadaComponent implements OnInit {
             (respuesta: any) => {
               this.solicitudesPersonalizadasService.formularioRegistroSolicitudPersonalizada.reset();
               this.router.navigate(['solicitudes/MisSolicitudes']);
-              alert('Exito');
+              this.toastr.success('Se registró la solicitud exitosamente', 'Solicitud personalizada');
             },
             (error) => {
-              alert(error);
+              this.toastr.error('Ha ocurrido un error');
               console.log(error);
             }
           );

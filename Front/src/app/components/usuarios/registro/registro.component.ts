@@ -8,7 +8,7 @@ import {
 import {
   UsuarioService
 } from 'src/app/services/usuario.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registro',
@@ -17,7 +17,8 @@ import {
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(public usuarioService: UsuarioService, public configuracion: ConfiguracionService) {
+  constructor(public usuarioService: UsuarioService, public configuracion: ConfiguracionService,
+              public toastr: ToastrService) {
   }
 
   sw: number;
@@ -32,17 +33,17 @@ export class RegistroComponent implements OnInit {
       (respuesta: any) => {
         if (respuesta.Succeeded) {
           this.usuarioService.formularioRegistroUsuario.reset();
-          alert('Registro exitoso');
+          this.toastr.success('Se ha registrado exitosamente');
           this.sw = 1;
         } else {
           respuesta.Errors.forEach(element => {
             switch (element.Code) {
               case 'DuplicateUserName':
-                alert('Correo Existente en la base de datos');
+                this.toastr.info('El usuario ya se encuentra registrado');
                 this.sw = 1;
                 break;
               default:
-                alert('error');
+                this.toastr.error('Ha ocurrido un error');
                 break;
             }
           });
