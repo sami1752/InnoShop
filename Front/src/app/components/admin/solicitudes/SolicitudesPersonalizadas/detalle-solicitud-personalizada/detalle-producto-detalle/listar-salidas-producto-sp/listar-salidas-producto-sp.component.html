@@ -1,0 +1,36 @@
+<section class="connectedSortable">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title colortxt font-weight-light"><i class="bi bi-tags"></i> SALIDAS
+      </h2>
+      <button *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de cotizacion'" type="button" style="float: right;" class="btn font-weight-light"(click)="this.productoService.formularioSalida = !this.productoService.formularioSalida "><i class="bi bi-folder-plus"></i> Agregar
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="tab-content p-0">
+        <div *ngIf="this.productoService.formularioSalida">
+          <app-agregar-salida-psp></app-agregar-salida-psp>
+        </div>
+
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Usuario</th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let salida of ventasService.listaSalidas">
+          <tr>
+            <td>{{salida.IdSalida}}</td>
+            <td>{{salida.Cantidad}}</td>
+            <td>{{salida.Fecha  | date:'dd-MM-yyyy'}}</td>
+            <td>{{salida.NombreUsuario}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

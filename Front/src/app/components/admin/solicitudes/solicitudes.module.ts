@@ -39,6 +39,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
+import { ListarSalidasProductoSPComponent } from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-producto-detalle/listar-salidas-producto-sp/listar-salidas-producto-sp.component';
+import { AgregarSalidaPSPComponent } from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-producto-detalle/listar-salidas-producto-sp/agregar-salida-psp/agregar-salida-psp.component';
 @NgModule({
   declarations: [
     ListarSolicitudesPersonalizadasComponent,
@@ -69,6 +71,8 @@ import {ToastrModule} from 'ngx-toastr';
     AgregarEntradaMComponent,
     AgregarMaterialMComponent,
     AgregarPrecioMComponent,
+    ListarSalidasProductoSPComponent,
+    AgregarSalidaPSPComponent,
 
   ],
   imports: [

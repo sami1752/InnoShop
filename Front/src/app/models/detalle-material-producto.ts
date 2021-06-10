@@ -3,6 +3,7 @@ export interface DetalleMaterialProducto {
   IdProducto: number;
   IdMaterial: number;
   IdUsuario: string;
+  Usuario: string;
   NombreMaterial: string;
   Descripcion: string;
 }

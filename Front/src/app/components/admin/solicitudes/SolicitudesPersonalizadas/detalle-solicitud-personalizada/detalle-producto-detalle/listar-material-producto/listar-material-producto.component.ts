@@ -8,6 +8,7 @@ import {MatSort} from '@angular/material/sort';
 import {HttpClient} from '@angular/common/http';
 import {ConfiguracionService} from '../../../../../../../services/configuracion.service';
 import {Material} from '../../../../../../../models/material';
+import {SolicitudesPersonalizadasService} from '../../../../../../../services/solicitudes-personalizadas.service';
 
 export interface UserData {
   id: string;
@@ -32,7 +33,8 @@ export class ListarMaterialProductoComponent implements AfterViewInit {
 
   constructor(public productoService: ProductoService,
               private http: HttpClient,
-              private configuracion: ConfiguracionService) {
+              private configuracion: ConfiguracionService,
+              public solicitudesPersonalizadasService: SolicitudesPersonalizadasService) {
     this.listarMateriales(this.productoService.detalleProducto.IdProducto);
     this.productoService.listarMateriales();
   }

@@ -4,10 +4,10 @@
       <h2 class="card-title colortxt font-weight-light">
         <i class="bi bi-info-circle"></i> INFORMACIÓN DEL USUARIO
       </h2>
-      <div style="float: right;">
+      <div style="float: right;" *ngIf="usuarioService.detalleUsuario.IdRol == 2">
         <i class="bi bi-star-fill colortxt"></i>
         <label class="p-1 colortxt">Puntos</label>
-        <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Puntos}}</label>
+        <label class="font-weight-light">{{this.usuarioService.detalleUsuario.Puntos}}</label>
       </div>
     </div>
     <div class="card-body">
@@ -15,45 +15,45 @@
         <div class="row">
           <div class="col">
             <i class="bi bi-record-fill colortxt"></i>
-            <label class="p-1 colortxt"> Nombres: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Nombres}}</label>
+            <label class="p-1 colortxt"> Nombres: </label> <label class="font-weight-light">{{this.usuarioService.detalleUsuario.Nombres}}</label>
           </div>
           <div class=" col ">
             <i class="bi bi-record-fill colortxt"></i>
-            <label class="p-1 colortxt"> Apellidos: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Apellidos}}</label>
+            <label class="p-1 colortxt"> Apellidos: </label> <label class="font-weight-light">{{this.usuarioService.detalleUsuario.Apellidos}}</label>
           </div>
         </div>
         <div class="row ">
           <div class="col ">
             <i class="fas fa-at colortxt "></i>
-            <label class="p-1 colortxt">Correo: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Email}}</label>
+            <label class="p-1 colortxt">Correo: </label> <label class="font-weight-light">{{this.usuarioService.detalleUsuario.Email}}</label>
           </div>
           <div class="col ">
             <i class="fas fa-id-card colortxt "></i>
-            <label class="p-1 colortxt"> Tipo documento: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.TipoDocumento}}</label>
+            <label class="p-1 colortxt"> Tipo documento: </label> <label class="font-weight-light">{{this.usuarioService.detalleUsuario.TipoDocumento}}</label>
           </div>
         </div>
         <div class="row ">
           <div class="col ">
             <i class="fas fa-hashtag colortxt"></i>
-            <label class="p-1 colortxt"> Documento: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.NumDocumento}}</label>
+            <label class="p-1 colortxt"> Documento: </label> <label class="font-weight-light">{{this.usuarioService.detalleUsuario.NumDocumento}}</label>
           </div>
           <div class="col ">
             <i class="fas fa-map-marker-alt colortxt "></i>
-            <label class="p-1 colortxt"> Dirección: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Direccion}}</label>
+            <label class="p-1 colortxt"> Dirección: </label> <label class="font-weight-light">{{this.usuarioService.detalleUsuario.Direccion}}</label>
           </div>
         </div>
         <div class="row ">
           <div class="col ">
             <i class="fas fa-phone-alt colortxt "></i>
-            <label class="p-1 colortxt"> Teléfono: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Telefono}}</label>
+            <label class="p-1 colortxt"> Teléfono: </label> <label class="font-weight-light">{{this.usuarioService.detalleUsuario.Telefono}}</label>
           </div>
           <div class="col ">
             <i class="fas fa-venus-mars colortxt "></i>
-            <label class="p-1 colortxt">Sexo: </label> <label for="" class="font-weight-light">{{this.usuarioService.detalleUsuario.Sexo}}</label>
+            <label class="p-1 colortxt">Sexo: </label> <label class="font-weight-light">{{this.usuarioService.detalleUsuario.Sexo}}</label>
           </div>
           <div class="col ">
             <i class="bi bi-record-fill colortxt"></i>
-            <label class="p-1 colortxt">Rol: </label> <label for="" class="font-weight-light">{{ this.usuarioService.detalleUsuario.IdRol== 1 ? "Administrador" : "Cliente"}}</label>
+            <label class="p-1 colortxt">Rol: </label> <label class="font-weight-light">{{ this.usuarioService.detalleUsuario.IdRol== 1 ? "Administrador" : "Cliente"}}</label>
           </div>
         </div>
       </div>

@@ -8,6 +8,10 @@ import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
 import {DetalleVentasMontaje} from '../../../../../../models/Ventas/detalle-ventas-Montaje';
 import {Venta} from '../../../../../../models/Ventas/venta';
 import {VentasService} from '../../../../../../services/ventas.service';
+import {Producto} from '../../../../../../models/producto';
+import {DetalleVentasProducto} from '../../../../../../models/Ventas/detalle-ventas-producto';
+import {ConfiguracionService} from '../../../../../../services/configuracion.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-detalle-m',
@@ -20,12 +24,16 @@ export class DetalleMComponent implements OnInit {
   public PaypalButtons: boolean;
   public DetalleVentasMontaje: DetalleVentasMontaje =
     {IdDetalleVentaMontaje: 0, IdMontaje: 0, IdVenta: 0, Cantidad: 0, SubTotal: 0};
+  public detalleVentaProducto: DetalleVentasProducto =
+    { IdDetalleVentaProducto: 0, IdProducto: 0, IdVenta: 0, NombreProducto: '', Cantidad: 0, SubTotal: 0 };
   constructor(public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
               private rutaActiva: ActivatedRoute,
               public productoService: ProductoService,
               public usuarioService: UsuarioService,
               public ventasService: VentasService,
-              private router: Router) {
+              private router: Router,
+              private http: HttpClient,
+              private configuracion: ConfiguracionService) {
   }
   id: number = this.rutaActiva.snapshot.params.IdMontaje;
 
@@ -93,6 +101,21 @@ export class DetalleMComponent implements OnInit {
                     this.DetalleVentasMontaje.IdDetalleVentaMontaje = 0;
                     // tslint:disable-next-line:no-shadowed-variable
                     this.ventasService.AgregarDetalleVentaMontajes(this.DetalleVentasMontaje).subscribe((res: any) => {
+                      this.solicitudesPersonalizadasService.listaDetallesProductosMontajes.forEach(detalleProd => {
+                        return this.http.get(this.configuracion.rootURL + '/Productos/Detalle/' + detalleProd.IdProducto)
+                          .toPromise().then(resdP => {
+                            console.log(resdP as Producto);
+                            console.log(this.detalleVentaProducto);
+                            this.detalleVentaProducto.Cantidad = (resdP as Producto).CantidadStock;
+                            this.detalleVentaProducto.IdProducto = detalleProd.IdProducto;
+                            this.detalleVentaProducto.IdVenta = resV.IdVenta;
+                            this.detalleVentaProducto.SubTotal = 0;
+                            this.detalleVentaProducto.IdDetalleVentaProducto = 0;
+                            console.log(this.detalleVentaProducto);
+                            // tslint:disable-next-line:no-shadowed-variable
+                            this.ventasService.agregarDetalleVenta(this.detalleVentaProducto).subscribe((res: any) => {} );
+                          });
+                      });
                     });
                     alert('Compra realizada con exito');
                     this.router.navigateByUrl('solicitudes/historialCompras');

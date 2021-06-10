@@ -23,7 +23,7 @@
             <th scope="col">Precio</th>
             <th scope="col">Fecha inicio</th>
             <th scope="col">Fecha fin</th>
-            <th scope="col">Id usuario</th>
+            <th scope="col">Usuario</th>
           </tr>
           </thead>
           <tbody *ngFor="let precio of productoService.listaPrecios">
@@ -32,7 +32,7 @@
             <td>{{precio.Precio}}</td>
             <td>{{precio.FechaInicio  | date:'dd-MM-yyyy'}}</td>
             <td>{{precio.FechaFin  | date:'dd-MM-yyyy'}}</td>
-            <td>{{precio.IdUsuario}}</td>
+            <td>{{precio.NombreUsuario}}</td>
           </tr>
           </tbody>
         </table>

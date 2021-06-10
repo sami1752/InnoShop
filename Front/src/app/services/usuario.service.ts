@@ -35,7 +35,7 @@ export class UsuarioService {
 
   inicioSesion = false;
   desplegarDetalle = false;
-  detalleUsuario;
+  detalleUsuario: Usuario;
   perfilUsuario: Usuario;
 
   listaTiposDoc = [{Tipo: 'Cédula de ciudadania'},

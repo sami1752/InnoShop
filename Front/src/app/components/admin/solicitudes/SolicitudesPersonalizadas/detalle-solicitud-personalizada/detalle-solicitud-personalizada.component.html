@@ -98,7 +98,8 @@
                     <div class="col"
                          *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Rechazada'||
-                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Devuelta'">
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Devuelta' ||
+                       this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'Cotizada'">
                       <button class="btn btn-dark" (click)="cotizar()">Reiniciar cotizacion</button>
                     </div>
                     <div class="col"
