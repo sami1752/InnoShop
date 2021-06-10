@@ -43,6 +43,7 @@ import { ListarSalidasProductoSPComponent } from './SolicitudesPersonalizadas/de
 import { AgregarSalidaPSPComponent } from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-producto-detalle/listar-salidas-producto-sp/agregar-salida-psp/agregar-salida-psp.component';
 import {MatIconModule} from '@angular/material/icon';
 import { ListarSalidasProductoMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-salidas-producto-m/listar-salidas-producto-m.component';
+import { AgregarSalidaPMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-salidas-producto-m/agregar-salida-pm/agregar-salida-pm.component';
 @NgModule({
   declarations: [
     ListarSolicitudesPersonalizadasComponent,
@@ -76,6 +77,7 @@ import { ListarSalidasProductoMComponent } from './Montajes/detalle-montaje/deta
     ListarSalidasProductoSPComponent,
     AgregarSalidaPSPComponent,
     ListarSalidasProductoMComponent,
+    AgregarSalidaPMComponent,
 
   ],
   imports: [

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {SolicitudesPersonalizadasService} from '../../../../../../../services/solicitudes-personalizadas.service';
+import {ProductoService} from '../../../../../../../services/producto.service';
+import {VentasService} from '../../../../../../../services/ventas.service';
 
 @Component({
   selector: 'app-listar-salidas-producto-m',
@@ -7,8 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarSalidasProductoMComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
+              public productoService: ProductoService,
+              public ventasService: VentasService) {
+  }
   ngOnInit(): void {
   }
 
