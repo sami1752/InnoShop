@@ -25,6 +25,4 @@ export class ConfiguracionService {
     localStorage.removeItem('token');
     this.router.navigateByUrl('usuarios/login');
   }
-
-
 }

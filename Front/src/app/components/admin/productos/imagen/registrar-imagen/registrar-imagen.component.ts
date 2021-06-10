@@ -42,7 +42,7 @@ export class RegistrarImagenComponent implements OnInit {
         this.productoService.imagen.IdUsuario = (res as Usuario).Id;
         this.productoService.registroImagen().subscribe(
           (respuesta: any) => {
-            this.toastr.success(respuesta.mensaje);
+            this.toastr.success('Se registró la imagen  exitosamente', 'Registro imagen');
             this.productoService.formularioRegistroImagen.reset();
             this.productoService.FormularioImagen = false;
             this.productoService.listarImagen(this.productoService.imagen.IdProducto);

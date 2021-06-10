@@ -30,8 +30,8 @@
           <tr>
             <td>{{precio.IdPrecioProducto}}</td>
             <td>{{precio.Precio}}</td>
-            <td>{{precio.FechaInicio}}</td>
-            <td>{{precio.FechaFin}}</td>
+            <td>{{precio.FechaInicio | date:'dd-MM-yyyy'}}</td>
+            <td>{{precio.FechaFin | date:'dd-MM-yyyy'}}</td>
             <td>{{precio.IdUsuario}}</td>
           </tr>
           </tbody>

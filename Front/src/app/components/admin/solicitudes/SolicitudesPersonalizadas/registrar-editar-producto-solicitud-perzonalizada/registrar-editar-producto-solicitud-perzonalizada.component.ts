@@ -76,7 +76,7 @@ export class RegistrarEditarProductoSolicitudPerzonalizadaComponent
             this.solicitudesPersonalizadasService.AgregarDetalleProductosSolicitud().subscribe(
               (r) => {
                 this.solicitudesPersonalizadasService.ListaDetalleProductosSolicitud(this.id);
-                this.toastr.error('Ha ocurrido un error');
+                this.toastr.success('Registro Detalle Exitoso');
                 this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
               },
               (e) => {

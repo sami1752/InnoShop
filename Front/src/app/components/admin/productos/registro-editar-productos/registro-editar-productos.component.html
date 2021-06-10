@@ -57,7 +57,7 @@
   <br>
   <label for="TipoPuerta">Tipo de puerta <span class="text-danger">**</span></label>
   <select class="form-control" formControlName="TipoPuerta" id="TipoPuerta">
-    <option value="">Elige Tipo de Puerta</option>
+    <option value="">Elige tipo de puerta</option>
     <option *ngFor="let doc of listaTiposPuerta" [value]="doc.Tipo">{{doc.Tipo}}</option>
   </select>
   <div
@@ -67,7 +67,7 @@
   </div>
   <br>
   <label for="Descripcion"> Descripción <span class="text-danger">**</span></label>
-  <textarea formControlName="Descripción" id="Descripcion" class="form-control "></textarea>
+  <textarea formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
   <div
     *ngIf="this.productoService.Descripcion.invalid && (this.productoService.Descripcion.touched || this.productoService.Descripcion.dirty)"
     class="alertad mb-20" style=" ">
@@ -117,7 +117,7 @@
   </div>
   <br>
   <div *ngIf="this.productoService.CampoPrecio" >
-    <label for="Precio">Precio producto <span class="text-danger">**</span></label>
+    <label for="Precio">Precio del producto <span class="text-danger">**</span></label>
     <input formControlName="Precio" type="number" id="Precio" placeholder="Ingrese precio producto" class="form-control "/>
     <div
       *ngIf="this.productoService.Precio.invalid && (this.productoService.Precio.touched || this.productoService.Precio.dirty)"
@@ -129,7 +129,7 @@
   </div>
   <br>
   <div *ngIf="this.productoService.CampoPrecio">
-    <label for="CantidadStock">Cantidad producto <span class="text-danger">**</span></label>
+    <label for="CantidadStock">Cantidad del producto <span class="text-danger">**</span></label>
     <input formControlName="CantidadStock" type="number" id="CantidadStock" placeholder="Ingrese cantidad de producto"class="form-control "/>
     <div
       *ngIf="this.productoService.CantidadStock.invalid && (this.productoService.CantidadStock.touched || this.productoService.CantidadStock.dirty)"

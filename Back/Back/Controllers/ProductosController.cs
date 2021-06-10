@@ -238,7 +238,7 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("ListarIva")]
-        public async Task<ActionResult<IEnumerable<Iva>>> listarIva() => await _context.listarIva();
+        public async Task<ActionResult<IEnumerable<DetalleIva>>> listarIva() => await _context.listarIva();
 
         [HttpPut]
         [Route("AgregarIva")]
@@ -259,7 +259,7 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("listaPrecioProducto/{idProducto}")]
-        public async Task<ActionResult<IEnumerable<PrecioProducto>>> ListaPrecioProducto(int idProducto)
+        public async Task<ActionResult<IEnumerable<DetallePrecioProducto>>> ListaPrecioProducto(int idProducto)
         {
             return await _context.ListaPrecioProducto(idProducto);
         }
@@ -273,7 +273,7 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("listarEntradas/{idProducto}")]
-        public async Task<ActionResult<IEnumerable<Entrada>>> ListaEntradas(int idProducto)
+        public async Task<ActionResult<IEnumerable<DetalleEntradaProducto>>> ListaEntradas(int idProducto)
         {
             return await _context.ListarEntradasPorProducto( idProducto);
         }

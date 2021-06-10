@@ -56,7 +56,7 @@ export class DescuentosService {
   formValorRuleta = false;
 
   formRegistroPorcentaje = this.formBuilder.group({
-    Porcentaje: [ , [Validators.required, Validators.min(1), Validators.max(100)]]
+    Porcentaje: [ , [Validators.required, Validators.min(0), Validators.max(100)]]
   });
   get Porcentaje(): any {
     return this.formRegistroPorcentaje.controls.Porcentaje;

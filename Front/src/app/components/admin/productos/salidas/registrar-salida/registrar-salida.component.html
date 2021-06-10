@@ -12,6 +12,8 @@
     </div>
     <div *ngIf="this.productoService.CantidadSalida.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Cantidad debe ser menor
     </div>
+    <div *ngIf="this.productoService.CantidadSalida.hasError('validarStock')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Cantidad no debe superar stock
+    </div>
   </div>
 </form>
 

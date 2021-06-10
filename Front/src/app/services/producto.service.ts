@@ -9,7 +9,7 @@ import {
   Injectable
 } from '@angular/core';
 import {
-  FormBuilder, Validators
+  FormBuilder, FormGroup, Validators
 } from '@angular/forms';
 import {
   Observable
@@ -110,8 +110,8 @@ export class ProductoService {
     IdCategoria: [''],
     NombreCategoria: [''],
     GarantiaMeses: [, [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros)]],
-    Precio: [ , [Validators.required, Validators.min(1)]],
-    CantidadStock: [ , [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros), Validators.min(1)]]
+    Precio: [ 0, [Validators.required, Validators.min(0)]],
+    CantidadStock: [ 0, [Validators.required, Validators.pattern(this.configuracion.exRegularNumeros), Validators.min(0)]]
   });
   get Id(): any {
     return this.formularioRegistroProductos.controls.Id;
@@ -189,8 +189,9 @@ export class ProductoService {
   }
 
   formularioRegistroSalida = this.formBuilder.group({
-    Cantidad: [ , [Validators.required, Validators.min(1), Validators.max(100)]],
-  });
+    Cantidad: [ , [Validators.required, Validators.min(1), Validators.max(100)]]
+  }, {validator: this.validarStock.bind(this)}
+  );
   get CantidadSalida(): any {
     return this.formularioRegistroSalida.controls.Cantidad;
   }
@@ -219,9 +220,22 @@ export class ProductoService {
   get IdMaterial(): any {
     return this.formularioRegistroDetalleMaterial.controls.IdMaterial;
   }
-  fecha = new Date();
-  tiempoTranscurrido = Date.now();
-  hoy = new Date(this.tiempoTranscurrido);
+  validarStock(formGroup: FormGroup): any {
+    const cantidad = formGroup.get('Cantidad');
+    // tslint:disable-next-line:triple-equals
+    if (this.detalleProducto != undefined) {
+      const stock = this.detalleProducto.CantidadStock;
+      if (cantidad.errors == null || 'validarStock' in cantidad) {
+        if (cantidad.value > stock) {
+          cantidad.setErrors({
+            validarStock: true
+          });
+        } else {
+          cantidad.setErrors(null);
+        }
+      }
+    }
+  }
 
   registrarProducto(): any {
     this.producto.Estado = true;

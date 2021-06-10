@@ -12,6 +12,8 @@ import {VerificacionComponent} from './restablecimiento/verificacion/verificacio
 import {CambioContraComponent} from './cambio-contra/cambio-contra.component';
 import {ConfirmarEmailComponent} from './confirmar-email/confirmar-email.component';
 import {ModificarDatosComponent} from './modificar-datos/modificar-datos.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 
 
 @NgModule({
@@ -23,7 +25,15 @@ import {ModificarDatosComponent} from './modificar-datos/modificar-datos.compone
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      progressBar: true,
+      positionClass: 'toast-top-right',
+      timeOut: 2000,
+      easing: 'swing'
+    })
 
   ],
   exports: [UsuariosComponent, ModificarDatosComponent]

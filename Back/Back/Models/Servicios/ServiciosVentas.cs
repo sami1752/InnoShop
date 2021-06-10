@@ -203,7 +203,7 @@ namespace Back.Models.Servicios
                                               Cantidad = salida.Cantidad,
                                               Fecha = salida.Fecha,
                                               IdUsuario = salida.IdUsuario,
-                                              NombreUsuario = usuario.Nombres
+                                              NombreUsuario = usuario.Nombres+" "+usuario.Apellidos
                                              }).ToList();
                 return listaSalidas;
             }

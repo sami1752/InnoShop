@@ -28,7 +28,7 @@ export class RegistroDetalleMaterialComponent implements OnInit {
         this.productoService.DetalleMaterial.IdUsuario = (res as Usuario).Id;
         this.productoService.RegistrarDetalleMaterial().subscribe(
           (respuesta: any) => {
-            this.toastr.success('Registro exitoso');
+            this.toastr.success('Se registró el material  exitosamente', 'Registro Material');
             this.listarDMaterial.listarMateriales(this.productoService.detalleProducto.IdProducto);
           }, error => {
             this.toastr.error('Ha ocurrido un error');

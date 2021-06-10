@@ -64,7 +64,7 @@
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Ruedas: </label>
-                <label class="font-weight-light">{{this.productoService.detalleProducto.Ruedas}}</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.Ruedas ? 'Sí' : 'No'}}</label>
               </div>
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
@@ -75,19 +75,14 @@
             <div class="row ">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
-                <label class="p-1 colortxt"> Id usuario:</label>
-                <label class="font-weight-light">{{this.productoService.detalleProducto.IdUsuario}}</label>
+                <label class="p-1 colortxt"> Usuario:</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.Usuario}}</label>
               </div>
             </div>
             <div class="row">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
-                <label class="p-1 colortxt"> Id Categoria: </label>
-                <label class="font-weight-light">{{this.productoService.detalleProducto.IdCategoria}}</label>
-              </div>
-              <div class="col ">
-                <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
-                <label class="p-1 colortxt"> Categoria:
+                <label class="p-1 colortxt"> Categoría:
                 </label><label class="font-weight-light">{{this.productoService.detalleProducto.NombreCategoria}}</label>
               </div>
             </div>

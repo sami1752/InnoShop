@@ -14,7 +14,7 @@ import {
 import {
   UsuarioService
 } from 'src/app/services/usuario.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-modificar-datos',
   templateUrl: './modificar-datos.component.html',
@@ -22,7 +22,10 @@ import {
 })
 export class ModificarDatosComponent implements OnInit {
 
-  constructor(public usuarioService: UsuarioService, private router: Router, public configuracionService: ConfiguracionService) {
+  constructor(public usuarioService: UsuarioService,
+              private router: Router,
+              public configuracionService: ConfiguracionService,
+              public toastr: ToastrService) {
   }
 
 
@@ -61,15 +64,15 @@ export class ModificarDatosComponent implements OnInit {
       (respuesta: any) => {
         if (respuesta.Succeeded) {
           this.router.navigateByUrl('usuarios/login');
-          alert('Actualizacion Exitosa');
+          this.toastr.success('Se ha actualizado los datos exitosamente', 'Edición de tu cuenta');
         } else {
           respuesta.Errors.forEach(element => {
             switch (element.Code) {
               case 'DuplicateUserName':
-                alert('Email Existente en la base de datos');
+                this.toastr.info('Usuario existente en la base de datos');
                 break;
               default:
-                alert('error');
+                this.toastr.error('Ha ocurrido un error');
                 break;
             }
           });
@@ -87,18 +90,18 @@ export class ModificarDatosComponent implements OnInit {
           this.usuarioService.eliminarUsuario(this.usuario).subscribe(
             (resp) => {
               {
-                alert('cliente eliminado con éxito');
+                this.toastr.info('Se ha eliminado con éxito la cuenta');
                 this.configuracionService.cerrarSesion();
               }
             },
             err => {
-              alert('error');
+              this.toastr.error('Ha ocurrido un error');
             }
           );
         }
       },
       err => {
-        alert('error');
+        this.toastr.error('Ha ocurrido un error');
       }
     );
 

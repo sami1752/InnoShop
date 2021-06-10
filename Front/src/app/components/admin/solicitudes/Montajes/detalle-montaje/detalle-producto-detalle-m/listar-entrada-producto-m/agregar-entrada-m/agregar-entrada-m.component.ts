@@ -4,7 +4,7 @@ import {UsuarioService} from '../../../../../../../../services/usuario.service';
 import {ActivatedRoute} from '@angular/router';
 import {SolicitudesPersonalizadasService} from '../../../../../../../../services/solicitudes-personalizadas.service';
 import {Usuario} from '../../../../../../../../models/usuario';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-agregar-entrada-m',
   templateUrl: './agregar-entrada-m.component.html',
@@ -14,7 +14,8 @@ export class AgregarEntradaMComponent implements OnInit {
 
   constructor(public productoService: ProductoService, public usuarioService: UsuarioService,
               private rutaActiva: ActivatedRoute,
-              public solicitudesPersonalizadasService: SolicitudesPersonalizadasService) {
+              public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
+              public toastr: ToastrService) {
   }
   id: number = this.rutaActiva.snapshot.params.IdSolicitud;
 
@@ -30,15 +31,14 @@ export class AgregarEntradaMComponent implements OnInit {
 
         this.productoService.RegistroEntrada().subscribe(
           (respuesta: any) => {
-            alert(respuesta.mensaje);
+            this.toastr.success('Se registró la entrada exitosamente', 'Registro entrada');
             this.productoService.formularioRegistroEntrada.reset();
             this.productoService.formularioEntrada = false;
             this.productoService.listarEntradas(this.productoService.entrada.IdProducto);
             this.productoService.buscarProductoIdDetalle(this.productoService.entrada.IdProducto);
             this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
           }, error => {
-            alert('error');
-            console.log(error);
+            this.toastr.error('Ha ocurrido un error');
           });
       },
       err => {

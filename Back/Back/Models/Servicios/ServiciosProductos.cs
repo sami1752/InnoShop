@@ -33,6 +33,7 @@ namespace Back.Models.Servicios
                 List<DetalleProducto> ListaProductos = (from producto in _context.Productos
                                                         join categoria in _context.Categorias
                                                         on producto.IdCategoria equals categoria.IdCategoria
+                                                        orderby producto.IdCategoria descending
                                                         select new DetalleProducto
                                                         {
                                                             IdProducto = producto.IdProducto,
@@ -100,9 +101,29 @@ namespace Back.Models.Servicios
             }
         }
 
-        public async Task<ActionResult<IEnumerable<PrecioProducto>>> ListaPrecioProducto(int idProducto)
+        public async Task<ActionResult<IEnumerable<DetallePrecioProducto>>> ListaPrecioProducto(int idProducto)
         {
-            return await _context.PrecioProductos.Where(x => x.IdProducto == idProducto).ToListAsync();
+            await using (_context)
+            {
+                var listaPreciosProd = (from pre in _context.PrecioProductos
+                                        join us in _context.Usuarioidentity
+                                        on pre.IdUsuario equals us.Id
+                                        join pro in _context.Productos on pre.IdProducto equals pro.IdProducto
+                                        where pre.IdProducto == idProducto
+                                        select new DetallePrecioProducto
+                                        {
+                                            IdPrecioProducto = pre.IdPrecioProducto,
+                                            Precio = pre.Precio,
+                                            IdProducto = pre.IdProducto,
+                                            FechaFin = pre.FechaFin,
+                                            FechaInicio = pre.FechaInicio,
+                                            IdUsuario = pre.IdUsuario,
+                                            NombreProducto = pro.Nombre,
+                                            NombreUsuario = us.Nombres + " " + us.Apellidos
+                                        }).ToList();
+                return listaPreciosProd;
+            }
+                
         }
         public async Task<ActionResult<IEnumerable<PrecioProducto>>> ListaTodosPreciosProducto()
         {
@@ -244,7 +265,25 @@ namespace Back.Models.Servicios
 
         }
 
-        public async Task<ActionResult<IEnumerable<Iva>>> listarIva() => await _context.Iva.ToListAsync();
+        public async Task<ActionResult<IEnumerable<DetalleIva>>> listarIva()
+        {
+            await using (_context)
+            {
+                var listaIva = (from iva in _context.Iva
+                                join us in _context.Usuarioidentity
+                                on iva.IdUsuario equals us.Id
+                                select new DetalleIva
+                                {
+                                    IdIva = iva.IdIva,
+                                    IdUsuario = iva.IdUsuario,
+                                    FechaFin = iva.FechaFin,
+                                    FechaInicio = iva.FechaInicio,
+                                    NombreUsuario = us.Nombres + " " + us.Apellidos,
+                                    Porcentaje = iva.Porcentaje
+                                }).ToList();
+                return listaIva;
+            }
+        }
 
         public async Task AgregarIva(Iva iva)
         {
@@ -294,9 +333,26 @@ namespace Back.Models.Servicios
 
         public async Task<ActionResult<IEnumerable<Material>>> ListaMatriales()  => await _context.Materiales.ToListAsync();
 
-        public async Task<ActionResult<IEnumerable<Entrada>>> ListarEntradasPorProducto(int idProducto)
+        public async Task<ActionResult<IEnumerable<DetalleEntradaProducto>>> ListarEntradasPorProducto(int idProducto)
         {
-            return  await _context.Entradas.Where(x => x.IdProducto == idProducto).ToListAsync();
+            await using (_context)
+            {
+                var listaEntradasProd = (from ent in _context.Entradas
+                                        join us in _context.Usuarioidentity
+                                        on ent.IdUsuario equals us.Id
+                                        where ent.IdProducto == idProducto
+                                        select new DetalleEntradaProducto
+                                        {
+                                            IdEntrada = ent.IdEntrada,
+                                            Cantidad = ent.Cantidad,
+                                            Fecha = ent.Fecha,
+                                            IdProducto = ent.IdProducto,
+                                            IdUsuario = ent.IdUsuario,
+
+                                            NombreUsuario = us.Nombres + " " + us.Apellidos
+                                        }).ToList();
+                return listaEntradasProd;
+            }
         }
         public async Task AgregarEntrada(Entrada entrada)
         {

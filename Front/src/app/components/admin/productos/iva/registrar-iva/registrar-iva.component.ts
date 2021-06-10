@@ -30,7 +30,7 @@ export class RegistrarIvaComponent implements OnInit {
         this.productoService.iva.IdUsuario = (res as Usuario).Id;
         this.productoService.registrarIVA().subscribe(
           (respuesta: any) => {
-            this.toastr.success(respuesta.mensaje);
+            this.toastr.success('Se registró el iva  exitosamente', 'Registro iva');
             this.listaIva.listarIva();
           }, error => {
             this.toastr.error('Ha ocurrido un error');

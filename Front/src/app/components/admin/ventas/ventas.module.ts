@@ -53,7 +53,13 @@ import {ToastrModule} from 'ngx-toastr';
     MatSelectModule,
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot({
+      closeButton: true,
+      progressBar: true,
+      positionClass: 'toast-top-right',
+      timeOut: 2000,
+      easing: 'swing'
+    }), // ToastrModule added
   ]
 })
 export class VentasModule {

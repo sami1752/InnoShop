@@ -49,6 +49,7 @@ import { ListarSalidasComponent } from './components/admin/productos/salidas/lis
 import {ToastrModule} from 'ngx-toastr';
 import { AyudaEnLineaComponent } from './components/admin/ayuda-en-linea/ayuda-en-linea.component';
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +98,14 @@ import { AyudaEnLineaComponent } from './components/admin/ayuda-en-linea/ayuda-e
     MatSortModule,
     MatInputModule,
     MatSelectModule,
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot({
+      closeButton: true,
+      progressBar: true,
+      positionClass: 'toast-top-right',
+      timeOut: 2000,
+      extendedTimeOut: 1000,
+      easing: 'swing'
+    })
   ],
   providers: [UsuarioService, ConfiguracionService, ListarProductosComponent, {
     provide: HTTP_INTERCEPTORS,

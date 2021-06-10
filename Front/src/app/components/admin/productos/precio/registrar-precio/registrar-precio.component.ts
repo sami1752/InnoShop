@@ -30,7 +30,7 @@ export class RegistrarPrecioComponent implements OnInit {
         this.productoService.precio.IdUsuario = (res as Usuario).Id;
         this.productoService.registroPrecio().subscribe(
           (respuesta: any) => {
-            this.toastr.success(respuesta.mensaje);
+            this.toastr.success('Se registró el precio  exitosamente', 'Precio producto');
             this.compPrecio.listarPrecios(this.productoService.detalleProducto.IdProducto);
             this.productoService.formularioRegistroPrecio.reset();
             this.productoService.FormularioPrecio = false;

@@ -5,4 +5,6 @@ export interface Precio {
   FechaFin: any;
   IdProducto: number;
   IdUsuario: string;
+  NombreUsuario: string;
+  NombreProducto: string;
 }

@@ -9,7 +9,7 @@ import {ConfiguracionService} from '../../../../services/configuracion.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {ProductoTabla} from '../../../../models/producto-tabla';
-
+import { ToastrService } from 'ngx-toastr';
 export interface UserData {
   id: string;
   name: string;
@@ -32,7 +32,8 @@ export class ListaProductosComponent implements AfterViewInit {
   constructor(private router: Router,
               public productoService: ProductoService,
               private http: HttpClient,
-              private configuracion: ConfiguracionService) {
+              private configuracion: ConfiguracionService,
+              public  toastr: ToastrService) {
     this.actualizarTablaProductos();
   }
     public actualizarTablaProductos(): void {
@@ -68,7 +69,11 @@ export class ListaProductosComponent implements AfterViewInit {
         (res: Producto) => {
           this.productoService.eliminarProducto(res).subscribe(
             resp => {
-              alert('Exitoso');
+              if (res.Estado){
+                this.toastr.success('Se ha activado con éxito', 'Activación producto');
+              }else{
+                this.toastr.info('Se ha desactivado con éxito', 'Desactivación producto');
+              }
               this.actualizarTablaProductos();
             },
             err => {

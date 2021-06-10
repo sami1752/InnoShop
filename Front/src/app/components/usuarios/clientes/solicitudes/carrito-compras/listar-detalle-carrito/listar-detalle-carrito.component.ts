@@ -6,7 +6,7 @@ import {CarritoDeComprasService} from 'src/app/services/carrito-de-compras.servi
 import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import {VentasService} from 'src/app/services/ventas.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-listar-detalle-carrito',
   templateUrl: './listar-detalle-carrito.component.html',
@@ -17,7 +17,8 @@ export class ListarDetalleCarritoComponent implements OnInit {
   constructor(public carritoDeComprasService: CarritoDeComprasService,
               public productoService: ProductoService,
               public usuarioService: UsuarioService,
-              public ventasService: VentasService
+              public ventasService: VentasService,
+              public toastr: ToastrService
   ) {
   }
 
@@ -56,7 +57,11 @@ export class ListarDetalleCarritoComponent implements OnInit {
     if (detalle.Cantidad == null || detalle.Cantidad <= 0) {
       this.carritoDeComprasService.listarDetalleCarrito(detalle.IdUsuario);
     }else if (detalle.Cantidad > this.productoService.detalleProducto.CantidadStock){
-      alert('La cantidad indicada supera el stock del producto');
+      this.toastr.warning('La cantidad indicada sobrepasa el stock del producto', 'Stock',
+        {
+          timeOut: 4000,
+          positionClass: 'toast-top-center',
+        });
       this.carritoDeComprasService.listarDetalleCarrito(detalle.IdUsuario);
     }else {
       this.carritoDeComprasService.CantidadDetalleAnterior(detalle.IdDetalleCarritoDeCompras).subscribe(

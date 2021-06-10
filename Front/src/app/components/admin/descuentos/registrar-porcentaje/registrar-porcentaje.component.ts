@@ -27,7 +27,7 @@ export class RegistrarPorcentajeComponent implements OnInit {
         this.descuentosService.idUsuario = resp.Id;
         this.descuentosService.RegistrarPorcentaje().subscribe(
           (res: any) => {
-            this.toast.success('Registro exitoso');
+            this.toast.success('Se registró el porcentaje  exitosamente', 'Registro porcentaje');
             this.listaPorcen.listarPorcen();
           }, err => {
             alert('error');
