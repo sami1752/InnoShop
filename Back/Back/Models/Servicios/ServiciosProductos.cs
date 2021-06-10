@@ -372,9 +372,46 @@ namespace Back.Models.Servicios
             return salidas == 0 ? entradas : entradas - salidas;
         }
 
+        public async Task<ActionResult<IEnumerable<DetalleProducto>>> ListarProductos(string Busqueda)
+        {
+
+            await using (_context)
+            {
+
+                List<DetalleProducto> ListaProductos = (from producto in _context.Productos
+                                                        join categoria in _context.Categorias
+                                                        on producto.IdCategoria equals categoria.IdCategoria
+                                                        orderby producto.IdCategoria descending
+                                                        select new DetalleProducto
+                                                        {
+                                                            IdProducto = producto.IdProducto,
+                                                            Nombre = producto.Nombre.ToUpper(),
+                                                            Estado = producto.Estado,
+                                                            Ancho = producto.Ancho,
+                                                            Largo = producto.Largo,
+                                                            Fondo = producto.Fondo,
+                                                            TipoPuerta = producto.TipoPuerta,
+                                                            Descripcion = producto.Descripcion,
+                                                            Ruedas = producto.Ruedas,
+                                                            IdUsuario = producto.IdUsuario,
+                                                            IdCategoria = producto.IdCategoria,
+                                                            Puntos = producto.Puntos,
+                                                            NombreCategoria = categoria.Nombre,
+                                                            GarantiaMeses = producto.GarantiaMeses
+                                                        }).ToList();
+
+
+                if (!String.IsNullOrEmpty(Busqueda))
+                {
+                    ListaProductos = ListaProductos.Where(s => s.Nombre.Contains(Busqueda.ToUpper())).ToList();
+                }
+
+                return ListaProductos;
+            }
 
 
 
+        }
     }
 
 }

@@ -19,10 +19,12 @@
         <tr>
           <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.IdDetallesProductosMontajes}}</td>
           <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.IdProducto}}</td>
-          <td><i (click)="eliminarProducto(producto.IdDetallesProductosMontajes)" class="bi bi-trash text-danger"></i></td>
-          <td><i
-            (click)=" detalleProducto(producto.IdProducto); this.productoService.desplegarDetalle =!this.productoService.desplegarDetalle; "
-            class="bi bi-eye" aria-hidden="true"></i></td>
+          <td>
+            <i (click)="eliminarProducto(producto.IdDetallesProductosMontajes)" class="bi bi-trash text-danger pointer"></i>
+            <i (click)=" detalleProducto(producto.IdProducto); this.productoService.desplegarDetalle =!this.productoService.desplegarDetalle; "
+               class="bi bi-eye ml-2 pointer" aria-hidden="true"></i>
+          </td>
+
         </tr>
         </tbody>
       </table>

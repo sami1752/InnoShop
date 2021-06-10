@@ -10,6 +10,7 @@ namespace Back.Models.Abstratos
 {
     public interface IserviciosProductos
     {
+        Task<ActionResult<IEnumerable<DetalleProducto>>> ListarProductos(string Busqueda);
         Task<Producto> BuscarProducto(int id);
         Task<ActionResult<IEnumerable<DetalleProducto>>> listarProductos();
         Task<ActionResult<IEnumerable<Categoria>>> listarCategorias();

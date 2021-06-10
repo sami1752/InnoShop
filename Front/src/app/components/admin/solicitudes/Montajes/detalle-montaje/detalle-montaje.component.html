@@ -70,17 +70,26 @@
                   <div class="row">
                     <div class="col ">
                       <i class="bi bi-arrow-right-short colortxt"></i>
-                      <label class="p-1 colortxt"> Descripción: </label>
-                      {{this.solicitudesPersonalizadasService.Montajes.Descripcion}}
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col ">
-                      <i class="bi bi-arrow-right-short colortxt"></i>
                       <label class="p-1 colortxt"> Valor total: </label>
                       {{this.solicitudesPersonalizadasService.Montajes.ValorTotal}}
                     </div>
-
+                  </div>
+                  <div>
+                    <div class="row bg-gray-light">
+                      <div class="col">
+                        <label class="p-1 colortxt ml-3"> Descripción: </label>
+                      </div>
+                    </div>
+                    <div class="row bg-gray-light">
+                      <div class="col">
+                        <label class="font-weight-light text-justify ml-4 mr-3" style="text-align: justify-all; ">
+                          {{this.solicitudesPersonalizadasService.Montajes.Descripcion}}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
                     <div class="col "
                          *ngIf="(this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada')&&
                        (this.solicitudesPersonalizadasService.Montajes.Estado == 'Enviada' ||
@@ -103,7 +112,8 @@
                     <div class="col"
                          *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada' &&
                        this.solicitudesPersonalizadasService.Montajes.Estado == 'Rechazada'||
-                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Devuelta'">
+                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Devuelta'||
+                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Cotizada'">
                       <button class="btn btn-sm btn-dark" (click)="cotizar()">Reiniciar cotización</button>
                     </div>
                     <div class="col"
@@ -121,20 +131,16 @@
                        this.solicitudesPersonalizadasService.Montajes.Estado != 'Entregada'">
                       <button class="btn btn-sm btn-danger" (click)="cancelar()">Rechazar</button>
                     </div>
-
                   </div>
                 </div>
               </div>
             </div>
           </section>
-          <section class="col-lg-5 connectedSortable" *ngIf=" this.solicitudesPersonalizadasService.Montajes.Estado == 'En proceso de cotizacion'">
+          <section class="col-lg-7 connectedSortable">
+            <app-listar-detalle-producto-m></app-listar-detalle-producto-m>
+          </section>
+          <section class="col-lg-5 connectedSortable" style="margin-top: -39%" *ngIf=" this.solicitudesPersonalizadasService.Montajes.Estado == 'En proceso de cotizacion'">
             <app-registrar-editar-producto-montaje></app-registrar-editar-producto-montaje>
-          </section>
-          <section class="col-lg-7 connectedSortable" style="margin-top:-50%"  *ngIf=" this.solicitudesPersonalizadasService.Montajes.Estado == 'En proceso de cotizacion'" >
-            <app-listar-detalle-producto-m></app-listar-detalle-producto-m>
-          </section>
-          <section class="col-lg-7 connectedSortable" style="margin-top:0%"  *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado != 'En proceso de cotizacion'" >
-            <app-listar-detalle-producto-m></app-listar-detalle-producto-m>
           </section>
         </div>
       </div>

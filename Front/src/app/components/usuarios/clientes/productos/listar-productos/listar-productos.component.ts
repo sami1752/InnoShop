@@ -18,7 +18,7 @@ declare var $;
 })
 
 export class ListarProductosComponent implements OnInit {
-
+z
   constructor(public router: Router, public productoService: ProductoService,
               public usuarioService: UsuarioService,
               public carritoDeComprasService: CarritoDeComprasService,

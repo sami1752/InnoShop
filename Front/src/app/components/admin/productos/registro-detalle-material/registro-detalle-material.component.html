@@ -2,7 +2,7 @@
 <form class="" [formGroup]="this.productoService.formularioRegistroDetalleMaterial" (ngSubmit)="registrarDetalle()">
   <div class="input-group mb-3">
     <select class="form-control" formControlName="IdMaterial" id="IdMaterial">
-      <option value=0 selected>Elige el Material</option>
+      <option value=0 selected>Selecciona el material</option>
       <option *ngFor="let material of this.productoService.listaMateriales"
               [value]=material.IdMaterial>{{material.Nombre}}</option>
     </select>

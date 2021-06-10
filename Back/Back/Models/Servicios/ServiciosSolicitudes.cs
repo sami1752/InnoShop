@@ -226,8 +226,10 @@ namespace Back.Models.Servicios
                                              IdEstado = detalle.IdEstado,
                                              IdMontaje = detalle.IdMontaje,
                                              IdUsuario = detalle.IdUsuario
-                                         }).AsEnumerable()
-                            on montaje.IdMontaje equals detalle.IdMontaje
+                                         }).AsEnumerable()                 
+                        on montaje.IdMontaje equals detalle.IdMontaje
+                        join usuario in _context.Usuarioidentity
+                        on montaje.IdUsuario equals usuario.Id
                         join estado in _context.Estados.AsEnumerable()
                         on detalle.IdEstado equals estado.IdEstado
                         select new MontajeDetalle
@@ -238,6 +240,7 @@ namespace Back.Models.Servicios
                             Estado = estado.Estado,
                             Fecha = montaje.Fecha,
                             Fondo = montaje.Fondo,
+                            Usuario=usuario.Nombres+" "+usuario.Apellidos,
                             IdMontaje = montaje.IdMontaje,
                             IdUsuario = montaje.IdUsuario,
                             Direccion = montaje.Direccion,

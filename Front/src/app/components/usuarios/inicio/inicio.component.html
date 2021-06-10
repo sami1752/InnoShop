@@ -26,9 +26,8 @@
                         <div class="input-group ">
                           <input type="text " class="form-control "
                                  aria-label="Text input with segmented dropdown button "
-                                 placeholder="Buscador en construcción... ">
-                          <button type="button " class="btn btn-sm btn-outline-secondary "><i class="bi bi-search "></i>
-                          </button>
+                                 placeholder="Buscador" [(ngModel)]="buscar" (input)="Buscar()">
+
                         </div>
                       </li>
                       <li class="has-dropdown " *ngIf="usuarioService.inicioSesion ">

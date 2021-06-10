@@ -405,4 +405,10 @@ export class ProductoService {
     return this.http.post(this.configuracion.rootURL + '/Ventas/AgregarSalida', this.salida);
   }
 
+  BuscarProdutoBuscadorUSuario(busqueda): void{
+    this.http.get(this.configuracion.rootURL + '/Productos/BuscarProducto/' + busqueda)
+      .toPromise()
+      .then(res => this.listaProductos = res as Producto[]);
+  }
+
 }
