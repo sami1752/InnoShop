@@ -1,3 +1,94 @@
+<style>
+
+
+  .contenedortarjetas{
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tarjeta{
+    width: 300px;
+  height: 460px;
+    background: white;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0;
+    transform: scale(0.95);
+    transition: box-shadow .5s ease-in-out,
+    transform .5s ease-in-out;
+  }
+  .tarjeta:hover{
+    transform: scale(1);
+    box-shadow: 5px 15px 15px rgba(42, 70, 104, 0.16);
+  }
+  .imgBox{
+    width: 100%;
+    height: 72%;
+    overflow: hidden;
+  }
+  .img{
+    width: 100%;
+    height: 100%;
+  }
+  .infoproducto{
+    width: 100%;
+    height:20%;
+    background: #fafafabe;
+    padding: 0px 25px;
+
+  }
+  .infoproducto:hover{
+    bottom: 0;
+  }
+  .textContent{
+    position: relative;
+    color: #2a565f;
+
+  }
+  .textContent a{
+    color: #2a565f;
+
+  }
+  .h3{
+    transform: scale(0.95);
+    font-size: 23px;
+    padding: 5px 0;
+  }
+  .h3{
+    transform: scale(0.95);
+    font-size: 23px;
+    padding: 5px 0;
+  }
+  .h3:hover{
+    transform: scale(1);
+    cursor: pointer;
+  }
+  .precio{
+    font-size: 30px;
+    color: darkred;
+  }
+
+  .agregarcarrito{
+    width: 100%;
+    padding: 5px 0;
+    margin: 10px 0;
+    background: #2a565f;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .agregarcarrito:hover{
+    background: rgba(42, 86, 95, 0.68);
+  }
+
+
+</style>
+<div  >
 <div class="py-3">
   <h1 style="font-size: 17px; color: #757575; text-align: center; font-weight: 500;">BIENVENIDO</h1>
   <div>
@@ -5,18 +96,128 @@
       productos de calidad y a excelente precio. ¡Compruébalo tu mismo!</p>
   </div>
 </div>
+<div>
+<div class="float-left ml-3 mb-120">
+  <div class=" mb-60">
+    <div class=" mb-20">
+      <h3>
+        <i class="bi bi-dot "></i> Precio</h3>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" disabled>
+        <label class="form-check-label" for="flexCheckDefault">
+          Más bajo a Más alto
+        </label>
+      </div>
+      <div class="form-check" style="padding-top:50px ;" >
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" disabled>
+        <label class="form-check-label" for="flexCheckChecked2">
+          Más alto a Más bajo
+        </label>
+      </div>
+    </div>
+  </div>
 
-<section class="shop__area pt-2 pb-2">
+
+  <div class=" mb-60">
+    <div class=" mb-20">
+      <h3><i class="bi bi-dot "></i>Categoría</h3>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" disabled>
+        <label class="form-check-label" for="flexCheckDefault3">
+          Categoría 1
+        </label>
+      </div>
+      <div class="form-check" style="padding-top:40px ;">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" disabled>
+        <label class="form-check-label" for="flexCheckChecked4">
+          Categoría 2
+        </label>
+      </div>
+      <div class="form-check" style="padding-top:40px ;">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5" disabled>
+        <label class="form-check-label" for="flexCheckDefault5">
+          Categoría 3
+        </label>
+      </div>
+      <div class="form-check" style="padding-top:40px ;">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked6" disabled>
+        <label class="form-check-label" for="flexCheckChecked6">
+          Categoría 4
+        </label>
+      </div>
+
+    </div>
+  </div>
+  <div class=" mb-60">
+    <div class=" mb-20">
+      <h3><i class="bi bi-dot "></i>Material</h3>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault7" disabled>
+        <label class="form-check-label" for="flexCheckDefault7">
+          Material 1
+        </label>
+      </div>
+      <div class="form-check" style="padding-top:40px ;">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked8" disabled>
+        <label class="form-check-label" for="flexCheckChecked8">
+          Material 2
+        </label>
+      </div>
+      <div class="form-check" style="padding-top:40px ;">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked9" disabled>
+        <label class="form-check-label" for="flexCheckChecked9">
+          Material 3
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+<div  class="float-left ml-5 mb-120" style="width: 85%; height: 100%">
+
+
+  <div class="contenedortarjetas" >
+    <ng-container *ngFor="let producto of productoService.listaProductos">
+      <ng-container *ngIf="producto.Estado">
+        <ng-container *ngFor="let imagen of productoService.listaImagenes">
+    <div class="tarjeta"  *ngIf="imagen.IdProducto == producto.IdProducto">
+      <div class="imgBox">
+        <a [routerLink]="['/productos/detalleProducto',producto.IdProducto]">
+        <img class="img" src="assets/img/Imagenes/{{imagen.RutaImagen}}"></a>
+      </div>
+      <div class="infoproducto">
+        <div class="textContent">
+          <a [routerLink]="['/productos/detalleProducto',producto.IdProducto]">
+          <h3 style="font-weight: bold; text-transform: uppercase" class="h3" >{{producto.Nombre}}</h3></a>
+          <ng-container *ngFor="let precio of productoService.listaPrecios">
+
+          <div class="precio" *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==producto.IdProducto" > $ {{precio.Precio}} </div>
+          </ng-container>
+        </div>
+          <ng-container *ngFor="let item of carritoDeComprasService.listaDetalleCarritoCompras">
+            <button class="agregarcarrito"  *ngIf="item.IdProducto==producto.IdProducto" (click)="agregarCarrito(producto.IdProducto)"> <i class="bi bi-cart-plus-fill "></i> Agregar al carrito({{item.Cantidad}})
+            </button>
+
+          </ng-container>
+
+
+      </div>
+    </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+</div>
+
+<!--<section class="shop__area pt-2 pb-2">
   <div class="container-fluid">
-    <div class="row">
-      <div style="margin-left: 2%; margin-right:1% ;">
+    <div class="">
+      <div style="margin-left: 2%; margin-right:1% ;" class="col">
         <div class="shop__sidebar">
-          <div class="sidebar__widget-title mb-30">
-            <!-- <h3 style="color: #2C4F61;"> <i class="bi bi-funnel-fill"></i>Filtro</h3> -->
-          </div>
 
-          <div class="sidebar__widget mb-55">
-            <div class="sidebar__widget-title mb-30">
+
+          <div class=" mb-55">
+            <div class=" mb-30">
               <h3>
                 <i class="bi bi-dot "></i> Precio</h3>
               <div class="form-check">
@@ -37,8 +238,8 @@
           </div>
 
 
-          <div class="sidebar__widget mb-60">
-            <div class="sidebar__widget-title mb-20">
+          <div class=" mb-60">
+            <div class=" mb-20">
               <h3><i class="bi bi-dot "></i>Categoría</h3>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" disabled>
@@ -67,8 +268,8 @@
 
             </div>
           </div>
-          <div class="sidebar__widget mb-60">
-            <div class="sidebar__widget-title mb-20">
+          <div class=" mb-60">
+            <div class=" mb-20">
               <h3><i class="bi bi-dot "></i>Material</h3>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault7" disabled>
@@ -89,7 +290,69 @@
                 </label>
               </div>
             </div>
+          </div>
+            <div class="contenedortarjetas">
+              <div class="tarjeta">
+                <div class="imgBox">
+                  <img src="https://sc02.alicdn.com/kf/HTB1cK9LvDlYBeNjSszcq6zwhFXaf/200039803/HTB1cK9LvDlYBeNjSszcq6zwhFXaf.jpg">
+                </div>
+                <div class="infoproducto">
+                  <div class="textContent">
+                                                 <h3 style="font-weight: bold; text-transform: uppercase" class="h3">Vitrina producto</h3>                    <div class="precio">$ 250.000 </div>
+                  </div>
+                  <button class="agregarcarrito">Agregar al carrito</button>
+                </div>
 
+              </div>
+              <div class="tarjeta">
+                <div class="imgBox">
+                  <img src="https://sc02.alicdn.com/kf/HTB1cK9LvDlYBeNjSszcq6zwhFXaf/200039803/HTB1cK9LvDlYBeNjSszcq6zwhFXaf.jpg">
+                </div>
+                <div class="infoproducto">
+                  <div class="textContent">
+                            <h3 style="font-weight: bold; text-transform: uppercase" class="h3">Vitrina producto</h3>                    <div class="precio">$ 250.000 </div>
+                  </div>
+                  <button class="agregarcarrito">Agregar al carrito</button>
+                </div>
+
+              </div>
+              <div class="tarjeta">
+                <div class="imgBox">
+                  <img src="https://vitrinasdelujo.com/site/wp-content/uploads/2020/02/IMG-20200128-WA0037-500x500.jpg">
+                </div>
+                <div class="infoproducto">
+                  <div class="textContent">
+                            <h3 style="font-weight: bold; text-transform: uppercase" class="h3">Vitrina producto</h3>                    <div class="precio">$ 250.000 </div>
+                  </div>
+                  <button class="agregarcarrito">Agregar al carrito</button>
+                </div>
+
+              </div>
+              <div class="tarjeta">
+                <div class="imgBox">
+                  <img src="https://sc02.alicdn.com/kf/HTB1cK9LvDlYBeNjSszcq6zwhFXaf/200039803/HTB1cK9LvDlYBeNjSszcq6zwhFXaf.jpg">
+                </div>
+                <div class="infoproducto">
+                  <div class="textContent">
+                            <h3 style="font-weight: bold; text-transform: uppercase" class="h3">Vitrina producto</h3>                    <div class="precio">$ 250.000 </div>
+                  </div>
+                  <button class="agregarcarrito">Agregar al carrito</button>
+                </div>
+
+              </div>
+              <div class="tarjeta">
+                <div class="imgBox">
+                  <img src="https://sc02.alicdn.com/kf/HTB1cK9LvDlYBeNjSszcq6zwhFXaf/200039803/HTB1cK9LvDlYBeNjSszcq6zwhFXaf.jpg">
+                </div>
+                <div class="infoproducto">
+                  <div class="textContent">
+                            <h3 style="font-weight: bold; text-transform: uppercase" class="h3">Vitrina producto</h3>                    <div class="precio">$ 250.000 </div>
+                  </div>
+                  <button class="agregarcarrito">Agregar al carrito</button>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -130,9 +393,7 @@
                                   <div class="add-cart transition-3 ">
                                     <a class="btn" (click)="agregarCarrito(producto.IdProducto)"><i
                                       class="bi bi-cart-plus-fill "></i> Agregar al carrito
-                                      <ng-container *ngFor="let item of carritoDeComprasService.listaDetalleCarritoCompras">
-                                        ({{item.Cantidad}})
-                                      </ng-container>
+
                                     </a>
                                   </div>
                                 </div>
@@ -148,7 +409,7 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </div>-->
+
+
+</div>

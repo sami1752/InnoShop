@@ -6,7 +6,7 @@
           <div class="container" align="center">
             <owl-carousel-o [options]="customOptions">
               <ng-template carouselSlide *ngFor="let imagen of productoService.listaImagenesProducto"><img
-                src="assets/img/Imagenes/{{imagen.RutaImagen}} " alt=""></ng-template>
+                src="assets/img/Imagenes/{{imagen.RutaImagen}} "  width="390px" height="390px" alt=""></ng-template>
 
             </owl-carousel-o>
           </div>
@@ -33,8 +33,7 @@
                 </div>
                 <ng-container *ngFor="let item of carritoDeComprasService.listaDetalleCarritoCompras">
                   <div class="pro-cart-btn" *ngIf="item.IdProducto==this.productoService.detalleProducto.IdProducto">
-                    <a class="add-cart-btn mb-20" [routerLink]="['/solicitudes/carrito']">Ir a carrito({{item.Cantidad}}
-                      )</a>
+                    <a class="add-cart-btn mb-20" [routerLink]="['/solicitudes/carrito']">Ir a carrito({{item.Cantidad}})</a>
                   </div>
                 </ng-container>
 

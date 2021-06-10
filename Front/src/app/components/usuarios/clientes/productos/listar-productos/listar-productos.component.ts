@@ -31,7 +31,7 @@ export class ListarProductosComponent implements OnInit {
   CarritoExiste;
 
   detalleExiste = false;
-
+aux=5;
   ngOnInit(): void {
     this.usuarioService.obtenerPerfil().subscribe(
       res => {
