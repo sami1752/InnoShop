@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {SolicitudesPersonalizadasService} from '../../../../../../services/solicitudes-personalizadas.service';
 import {ProductoService} from '../../../../../../services/producto.service';
 import {Producto} from '../../../../../../models/producto';
-
+import { SweetAlertService } from 'ng2-sweetalert2';
 @Component({
   selector: 'app-listar-detalle-producto-m',
   templateUrl: './listar-detalle-producto-m.component.html',
@@ -13,7 +13,9 @@ export class ListarDetalleProductoMComponent implements OnInit {
 
   constructor(private rutaActiva: ActivatedRoute,
               public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
-              private router: Router, public productoService: ProductoService) {
+              private router: Router,
+              public productoService: ProductoService,
+              public Swal: SweetAlertService) {
   }
 
   id: number = this.rutaActiva.snapshot.params.IdMontaje;
@@ -36,6 +38,23 @@ export class ListarDetalleProductoMComponent implements OnInit {
 
 
   eliminarProducto(id): void {
+    this.Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        );
+      }
+    });
     if (confirm('¿Estás seguro de eliminar el Producto?')) {
       this.solicitudesPersonalizadasService.EliminarDetallesProductosMontajes(id).subscribe(
         res => {

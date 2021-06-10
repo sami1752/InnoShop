@@ -8,7 +8,7 @@ import {CarritoDeComprasService} from 'src/app/services/carrito-de-compras.servi
 import {ConfiguracionService} from 'src/app/services/configuracion.service';
 import {ProductoService} from 'src/app/services/producto.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
-
+import { ToastrService } from 'ngx-toastr';
 declare var $;
 
 @Component({
@@ -22,7 +22,8 @@ export class ListarProductosComponent implements OnInit {
   constructor(public router: Router, public productoService: ProductoService,
               public usuarioService: UsuarioService,
               public carritoDeComprasService: CarritoDeComprasService,
-              public configuracionService: ConfiguracionService) {
+              public configuracionService: ConfiguracionService,
+              public toast: ToastrService) {
   }
 
   subtotal: number;
@@ -37,7 +38,7 @@ export class ListarProductosComponent implements OnInit {
       res => {
         this.usuarioService.perfilUsuario = (res as Usuario);
         if (!this.usuarioService.perfilUsuario.Estado) {
-          alert('Usuario inactivo');
+          this.toast.info('Usuario inactivo');
           this.usuarioService.inicioSesion = false;
           this.configuracionService.cerrarSesion();
         }
@@ -82,14 +83,14 @@ export class ListarProductosComponent implements OnInit {
                       respu => {
                         this.productoService.listarProducto();
                         this.carritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id);
-                        alert('Se agrego producto con exito');
+                        this.toast.success('Se agrego producto  al carrito  exitosamente');
                       },
                       err => {
-                        alert('error');
+                        this.toast.error('error');
                       }
                     );
                   }, error => {
-                    alert('error al buscar carrito de usuario');
+                    this.toast.error('error al buscar carrito de usuario');
                   });
 
               } else {
@@ -103,13 +104,13 @@ export class ListarProductosComponent implements OnInit {
                           respu => {
                             this.productoService.listarProducto();
                             this.carritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id);
-                            alert('Se sumo producto al carrito con exito');
+                            this.toast.success('Se agrego producto  al carrito  exitosamente');
                           }, err => {
                           }
                         );
                       },
                       err => {
-                        alert('error al buscar cantidad anterior');
+                        this.toast.success('Se agrego producto  al carrito exitosamente');
                       }
                     );
                   }
@@ -120,18 +121,17 @@ export class ListarProductosComponent implements OnInit {
                     respu => {
                       this.productoService.listarProducto();
                       this.carritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id);
-                      alert('Se agrego producto a carrito existente');
+                      this.toast.success('Se agrego producto  al carrito  exitosamente');
                     },
                     err => {
-                      alert('error detalle solito');
-                      console.log(err);
+                      this.toast.error('error detalle solito');
                     }
                   );
                 }
               }
 
             }, err => {
-              alert('error en carro existe');
+              this.toast.error('error en carro existe');
             }
           );
         },
@@ -140,8 +140,8 @@ export class ListarProductosComponent implements OnInit {
         }
       );
     } else {
-      alert('Antes de realizar tu pedido inicia sesión');
-      this.router.navigate(['usuarios/login']);
+      this.toast.info('Antes de realizar tu pedido inicia sesión');
+      // this.router.navigate(['usuarios/login']);
     }
   }
 

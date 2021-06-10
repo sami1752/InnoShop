@@ -57,10 +57,13 @@ export class ListarPorcentajesComponent implements AfterViewInit {
   editarPorcentaje(porcentaje: PorcentajesRuleta): void {
     this.descuentosService.EditarPorcentaje(porcentaje).subscribe(
       (res: any) => {
-        this.toastr.success('Se editó el estado exitosamente', 'Edición porcentaje');
+        if (porcentaje.Estado){
+          this.toastr.success('Se ha activado con éxito', 'Activación porcentaje');
+        }else{
+          this.toastr.info('Se ha desactivado con éxito', 'Desactivación porcentaje');
+        }
         this.descuentosService.ListarPorcentajeDescuentos();
       }, err => {
-
       }
     );
   }

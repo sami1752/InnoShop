@@ -4812,7 +4812,6 @@
                 border: 2px solid #eaedff;
                 color: #6f7172;
                 padding: 0 20px;
-                margin-bottom: 15px;
             }
             .basic-login select {
               width: 100%;
@@ -4820,7 +4819,6 @@
               border: 2px solid #eaedff;
               color: #6f7172;
               padding: 0 20px;
-              margin-bottom: 15px;
             }
 
             .basic-login input::placeholder,

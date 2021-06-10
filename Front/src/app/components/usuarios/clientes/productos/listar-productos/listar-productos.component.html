@@ -124,7 +124,7 @@
                                 <a data-toggle="modal" data-target="#productModalId" title="Ir al carrito"
                                    [routerLink]="['/solicitudes/carrito']">
                                   <ng-container *ngFor="let item of carritoDeComprasService.listaDetalleCarritoCompras">
-                                    ({{item.Cantidad}})
+                                    <p *ngIf="item.IdProducto == producto.IdProducto">({{item.Cantidad}})</p>
                                   </ng-container>
                                 </a>
                               </div>
@@ -148,9 +148,6 @@
                                   <div class="add-cart transition-3 ">
                                     <a class="btn" (click)="agregarCarrito(producto.IdProducto)"><i
                                       class="bi bi-cart-plus-fill "></i> Agregar al carrito
-                                      <ng-container *ngFor="let item of carritoDeComprasService.listaDetalleCarritoCompras">
-                                        ({{item.Cantidad}})
-                                      </ng-container>
                                     </a>
                                   </div>
                                 </div>

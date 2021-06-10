@@ -8,7 +8,8 @@ import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
 import {DetalleVentasMontaje} from '../../../../../../models/Ventas/detalle-ventas-Montaje';
 import {Venta} from '../../../../../../models/Ventas/venta';
 import {VentasService} from '../../../../../../services/ventas.service';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-detalle-m',
   templateUrl: './detalle-m.component.html',
@@ -25,7 +26,8 @@ export class DetalleMComponent implements OnInit {
               public productoService: ProductoService,
               public usuarioService: UsuarioService,
               public ventasService: VentasService,
-              private router: Router) {
+              private router: Router,
+              public toastr: ToastrService) {
   }
   id: number = this.rutaActiva.snapshot.params.IdMontaje;
 
@@ -94,7 +96,7 @@ export class DetalleMComponent implements OnInit {
                     // tslint:disable-next-line:no-shadowed-variable
                     this.ventasService.AgregarDetalleVentaMontajes(this.DetalleVentasMontaje).subscribe((res: any) => {
                     });
-                    alert('Compra realizada con exito');
+                    this.toastr.success('Su compra se ha realizado exitosamente', 'Compras');
                     this.router.navigateByUrl('solicitudes/historialCompras');
                   }, err => {
                     alert('Error');
@@ -114,7 +116,7 @@ export class DetalleMComponent implements OnInit {
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
-        alert('Pago cancelado');
+        this.toastr.info('Pago cancelado');
       },
       onError: err => {
         console.log('OnError', err);
@@ -191,47 +193,83 @@ export class DetalleMComponent implements OnInit {
     );
   }
   Rechazar(): void {
-    this.usuarioService.obtenerPerfil().subscribe(
-      res => {
-        this.solicitudesPersonalizadasService.DetalleEstadosMontajes =
-          this.solicitudesPersonalizadasService.formularioDetalleEstadoMontajes.value;
-        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdUsuario = (res as Usuario).Id;
-        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdEstado = 5;
-        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdMontaje = this.id;
-        this.solicitudesPersonalizadasService.AgregarDetalleEstadosMontajes().subscribe(
-          (respuesta: any) => {
-
-            this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
-          }, error => {
-            alert(error);
-            console.log(error);
-          });
-      },
-      err => {
-        console.log(err);
+    Swal.fire({
+      title: '¿Está seguro de rechazar la cotización?',
+      text: 'Se rechazara la cotización',
+      textClass: 'center',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.obtenerPerfil().subscribe(
+          res => {
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes =
+              this.solicitudesPersonalizadasService.formularioDetalleEstadoMontajes.value;
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdUsuario = (res as Usuario).Id;
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdEstado = 5;
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdMontaje = this.id;
+            this.solicitudesPersonalizadasService.AgregarDetalleEstadosMontajes().subscribe(
+              (respuesta: any) => {
+                Swal.fire(
+                  'rechazo de solicitud',
+                  'Se ha rechazado con éxito',
+                  'success'
+                );
+                this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
+              }, error => {
+                alert(error);
+                console.log(error);
+              });
+          },
+          err => {
+            console.log(err);
+          }
+        );
       }
-    );
+    });
   }
   Cancelar(): void {
-    this.usuarioService.obtenerPerfil().subscribe(
-      res => {
-        this.solicitudesPersonalizadasService.DetalleEstadosMontajes =
-          this.solicitudesPersonalizadasService.formularioDetalleEstadoMontajes.value;
-        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdUsuario = (res as Usuario).Id;
-        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdEstado = 11;
-        this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdMontaje = this.id;
-        this.solicitudesPersonalizadasService.AgregarDetalleEstadosMontajes().subscribe(
-          (respuesta: any) => {
-
-            this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
-          }, error => {
-            alert(error);
-            console.log(error);
-          });
-      },
-      err => {
-        console.log(err);
+    Swal.fire({
+      title: '¿Está seguro de cancelar la solicitud?',
+      text: 'Se cancelará la solicitud',
+      textClass: 'center',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.obtenerPerfil().subscribe(
+          res => {
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes =
+              this.solicitudesPersonalizadasService.formularioDetalleEstadoMontajes.value;
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdUsuario = (res as Usuario).Id;
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdEstado = 11;
+            this.solicitudesPersonalizadasService.DetalleEstadosMontajes.IdMontaje = this.id;
+            this.solicitudesPersonalizadasService.AgregarDetalleEstadosMontajes().subscribe(
+              (respuesta: any) => {
+                Swal.fire(
+                  'Cancelación de solicitud',
+                  'Se ha cancelado con éxito',
+                  'success'
+                );
+                this.solicitudesPersonalizadasService.BuscarMontajes(this.id);
+              }, error => {
+                alert(error);
+                console.log(error);
+              });
+          },
+          err => {
+            console.log(err);
+          }
+        );
       }
-    );
+    });
   }
 }

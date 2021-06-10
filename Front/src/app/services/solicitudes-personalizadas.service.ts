@@ -108,14 +108,29 @@ export class SolicitudesPersonalizadasService {
   formularioRegistroMontaje = this.formBuilder.group({
     IdMontaje: [],
     IdUsuario: [],
-    Ancho: [],
-    Fondo: [],
-    Alto: [],
+    Ancho: [ , [Validators.required, Validators.max(1000), Validators.min(1)]],
+    Fondo: [, [Validators.required, Validators.max(1000), Validators.min(1)]],
+    Alto: [, [Validators.required, Validators.max(1000), Validators.min(1)]],
     Fecha: [],
-    Descripcion: [],
+    Descripcion: ['', [Validators.required, Validators.maxLength(500)]],
     ValorTotal: [],
-    Direccion: [],
+    Direccion: ['', [Validators.required, Validators.maxLength(50)]]
   });
+  get AnchoM(): any {
+    return this.formularioRegistroMontaje.controls.Ancho;
+  }
+  get AltoM(): any {
+    return this.formularioRegistroMontaje.controls.Alto;
+  }
+  get FondoM(): any {
+    return this.formularioRegistroMontaje.controls.Fondo;
+  }
+  get DescripcionM(): any {
+    return this.formularioRegistroMontaje.controls.Descripcion;
+  }
+  get DireccionM(): any {
+    return this.formularioRegistroMontaje.controls.Direccion;
+  }
 
   formularioDetalleEstadoSolicitudPerzonalizada = this.formBuilder.group({
     IdDetalleEstadoSolicitudPersonalizada: [],
