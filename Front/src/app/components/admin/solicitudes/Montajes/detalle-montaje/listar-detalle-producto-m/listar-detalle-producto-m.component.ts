@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {SolicitudesPersonalizadasService} from '../../../../../../services/solicitudes-personalizadas.service';
 import {ProductoService} from '../../../../../../services/producto.service';
 import {Producto} from '../../../../../../models/producto';
+import {VentasService} from '../../../../../../services/ventas.service';
 
 @Component({
   selector: 'app-listar-detalle-producto-m',
@@ -13,7 +14,9 @@ export class ListarDetalleProductoMComponent implements OnInit {
 
   constructor(private rutaActiva: ActivatedRoute,
               public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
-              private router: Router, public productoService: ProductoService) {
+              private router: Router,
+              public productoService: ProductoService,
+              public ventasService: VentasService) {
   }
 
   id: number = this.rutaActiva.snapshot.params.IdMontaje;
@@ -54,6 +57,7 @@ export class ListarDetalleProductoMComponent implements OnInit {
     this.productoService.listarImagen(id);
     this.productoService.ListarDetalleMaterial(id);
     this.productoService.listarEntradas(id);
+    this.ventasService.ListarSalidasProducto(id);
   }
 
 }
