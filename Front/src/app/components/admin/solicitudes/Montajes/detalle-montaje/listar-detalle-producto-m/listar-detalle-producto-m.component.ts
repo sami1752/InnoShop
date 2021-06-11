@@ -3,7 +3,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {SolicitudesPersonalizadasService} from '../../../../../../services/solicitudes-personalizadas.service';
 import {ProductoService} from '../../../../../../services/producto.service';
 import {Producto} from '../../../../../../models/producto';
-import { SweetAlertService } from 'ng2-sweetalert2';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import {VentasService} from '../../../../../../services/ventas.service';
+
 @Component({
   selector: 'app-listar-detalle-producto-m',
   templateUrl: './listar-detalle-producto-m.component.html',
@@ -15,7 +17,7 @@ export class ListarDetalleProductoMComponent implements OnInit {
               public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
               private router: Router,
               public productoService: ProductoService,
-              public Swal: SweetAlertService) {
+              public ventasService: VentasService) {
   }
 
   id: number = this.rutaActiva.snapshot.params.IdMontaje;
@@ -38,7 +40,7 @@ export class ListarDetalleProductoMComponent implements OnInit {
 
 
   eliminarProducto(id): void {
-    this.Swal.fire({
+    Swal.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',
       icon: 'warning',
@@ -48,7 +50,7 @@ export class ListarDetalleProductoMComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.Swal.fire(
+        Swal.fire(
           'Deleted!',
           'Your file has been deleted.',
           'success'
@@ -70,10 +72,10 @@ export class ListarDetalleProductoMComponent implements OnInit {
   detalleProducto(id): void {
     this.productoService.buscarProductoIdDetalle(id);
     this.productoService.listarPrecios(id);
-    alert(id);
     this.productoService.listarImagen(id);
     this.productoService.ListarDetalleMaterial(id);
     this.productoService.listarEntradas(id);
+    this.ventasService.ListarSalidasProducto(id);
   }
 
 }

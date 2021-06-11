@@ -23,7 +23,7 @@ export interface UserData {
 })
 export class ListarEntradasComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['IdEntrada', 'Cantidad',  'IdProducto', 'IdUsuario', 'Fecha'];
+  displayedColumns: string[] = ['IdEntrada', 'Cantidad', 'IdUsuario', 'Fecha'];
   dataSource: MatTableDataSource<Entrada>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

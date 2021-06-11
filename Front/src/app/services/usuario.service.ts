@@ -35,7 +35,7 @@ export class UsuarioService {
 
   inicioSesion = false;
   desplegarDetalle = false;
-  detalleUsuario;
+  detalleUsuario: Usuario;
   perfilUsuario: Usuario;
 
   listaTiposDoc = [{Tipo: 'Cédula de ciudadania'},
@@ -369,7 +369,7 @@ export class UsuarioService {
       .then(res => this.listaUsuarios = res as Usuario[]);
   }
 
-  eliminarUsuario(usuario: Usuario): any {
+  eliminarUsuario(usuario: any): any {
     usuario.Estado = !usuario.Estado;
     return this.http.put(this.configuracion.rootURL + '/Usuarios/ActualizacionDatos', usuario);
   }

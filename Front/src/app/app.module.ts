@@ -48,7 +48,7 @@ import { RegistrarSalidaComponent } from './components/admin/productos/salidas/r
 import { ListarSalidasComponent } from './components/admin/productos/salidas/listar-salidas/listar-salidas.component';
 import {ToastrModule} from 'ngx-toastr';
 import { AyudaEnLineaComponent } from './components/admin/ayuda-en-linea/ayuda-en-linea.component';
-
+import {MatIconModule} from '@angular/material/icon';
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -78,6 +78,7 @@ import { AyudaEnLineaComponent } from './components/admin/ayuda-en-linea/ayuda-e
     AyudaEnLineaComponent
   ],
   imports: [
+    MatIconModule,
     BrowserModule,
     AppRoutingModule,
     UsuariosModule,

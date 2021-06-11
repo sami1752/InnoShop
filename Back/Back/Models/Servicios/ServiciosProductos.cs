@@ -57,19 +57,20 @@ namespace Back.Models.Servicios
 
         }
 
-        public async Task<ActionResult<IEnumerable<Imagen>>> ListarImagenes() {
-           var l=  await _context.Imagenes.ToListAsync();
+        public async Task<ActionResult<IEnumerable<Imagen>>> ListarImagenes()
+        {
+            var l = await _context.Imagenes.ToListAsync();
 
             await using (_context)
             {
-               return l.GroupBy(x => x.IdProducto).Select(x => x.First()).ToList();
+                return l.GroupBy(x => x.IdProducto).Select(x => x.First()).ToList();
             }
 
         }
-            
+
         public async Task<ActionResult<IEnumerable<Imagen>>> ListaImagenesProducto(int id) =>
              await _context.Imagenes.Where(x => x.IdProducto == id).ToListAsync();
-        
+
         public async Task<ActionResult<IEnumerable<Categoria>>> listarCategorias() => await _context.Categorias.ToListAsync();
 
         public async Task<ActionResult<IEnumerable<DetalleProducto>>> ListarProductosPorCategoria(int idCategoria)
@@ -123,7 +124,7 @@ namespace Back.Models.Servicios
                                         }).ToList();
                 return listaPreciosProd;
             }
-                
+
         }
         public async Task<ActionResult<IEnumerable<PrecioProducto>>> ListaTodosPreciosProducto()
         {
@@ -202,6 +203,8 @@ namespace Back.Models.Servicios
                                                                 on productos.IdProducto equals detalleM.IdProducto
                                                                 join material in _context.Materiales
                                                                 on detalleM.IdMaterial equals material.IdMaterial
+                                                                join Usuario in _context.Usuarioidentity
+                                                                on material.IdUsuario equals Usuario.Id
                                                                 where detalleM.IdProducto == idProducto
 
                                                                 select new DetalleMaterialNombres
@@ -211,6 +214,7 @@ namespace Back.Models.Servicios
                                                                     IdProducto = detalleM.IdProducto,
                                                                     NombreMaterial = material.Nombre,
                                                                     IdUsuario = detalleM.IdUsuario,
+                                                                    Usuario = Usuario.Nombres + " " + Usuario.Apellidos,
                                                                     Descripcion = material.Descripcion
                                                                 }).ToList();
                 return listaMateriales;
@@ -232,32 +236,32 @@ namespace Back.Models.Servicios
             await using (_context)
             {
                 DetalleProducto detalleProducto = (from producto in _context.Productos
-                                                         join categoria in _context.Categorias
-                                                         on producto.IdCategoria equals categoria.IdCategoria
-                                                         join precioProducto in _context.PrecioProductos
-                                                         on producto.IdProducto equals precioProducto.IdProducto
-                                                         join usuario in _context.Usuarioidentity
-                                                         on producto.IdUsuario equals usuario.Id
-                                                         where producto.IdProducto == id
-                                                         select new DetalleProducto
-                                                         {
-                                                             IdProducto = producto.IdProducto,
-                                                             Nombre = producto.Nombre,
-                                                             Estado = producto.Estado,
-                                                             Ancho = producto.Ancho,
-                                                             Largo = producto.Largo,
-                                                             Fondo = producto.Fondo,
-                                                             TipoPuerta = producto.TipoPuerta,
-                                                             Descripcion = producto.Descripcion,
-                                                             Ruedas = producto.Ruedas,
-                                                             IdUsuario = producto.IdUsuario,
-                                                             Puntos = producto.Puntos,
-                                                             NombreCategoria = categoria.Nombre,
-                                                             GarantiaMeses = producto.GarantiaMeses,
-                                                             Precio = precioProducto.Precio,
-                                                             Usuario = usuario.Nombres + " " + usuario.Apellidos,
-                                                             CantidadStock = this.ObtenerStockProducto(id)
-            }).First();
+                                                   join categoria in _context.Categorias
+                                                   on producto.IdCategoria equals categoria.IdCategoria
+                                                   join precioProducto in _context.PrecioProductos
+                                                   on producto.IdProducto equals precioProducto.IdProducto
+                                                   join usuario in _context.Usuarioidentity
+                                                   on producto.IdUsuario equals usuario.Id
+                                                   where producto.IdProducto == id && precioProducto.FechaFin == new DateTime()
+                                                   select new DetalleProducto
+                                                   {
+                                                       IdProducto = producto.IdProducto,
+                                                       Nombre = producto.Nombre,
+                                                       Estado = producto.Estado,
+                                                       Ancho = producto.Ancho,
+                                                       Largo = producto.Largo,
+                                                       Fondo = producto.Fondo,
+                                                       TipoPuerta = producto.TipoPuerta,
+                                                       Descripcion = producto.Descripcion,
+                                                       Ruedas = producto.Ruedas,
+                                                       IdUsuario = producto.IdUsuario,
+                                                       Puntos = producto.Puntos,
+                                                       NombreCategoria = categoria.Nombre,
+                                                       GarantiaMeses = producto.GarantiaMeses,
+                                                       Precio = precioProducto.Precio,
+                                                       Usuario = usuario.Nombres + " " + usuario.Apellidos,
+                                                       CantidadStock = this.ObtenerStockProducto(id)
+                                                   }).First();
 
                 return detalleProducto;
             }
@@ -331,26 +335,26 @@ namespace Back.Models.Servicios
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ActionResult<IEnumerable<Material>>> ListaMatriales()  => await _context.Materiales.ToListAsync();
+        public async Task<ActionResult<IEnumerable<Material>>> ListaMatriales() => await _context.Materiales.ToListAsync();
 
         public async Task<ActionResult<IEnumerable<DetalleEntradaProducto>>> ListarEntradasPorProducto(int idProducto)
         {
             await using (_context)
             {
                 var listaEntradasProd = (from ent in _context.Entradas
-                                        join us in _context.Usuarioidentity
-                                        on ent.IdUsuario equals us.Id
-                                        where ent.IdProducto == idProducto
-                                        select new DetalleEntradaProducto
-                                        {
-                                            IdEntrada = ent.IdEntrada,
-                                            Cantidad = ent.Cantidad,
-                                            Fecha = ent.Fecha,
-                                            IdProducto = ent.IdProducto,
-                                            IdUsuario = ent.IdUsuario,
+                                         join us in _context.Usuarioidentity
+                                         on ent.IdUsuario equals us.Id
+                                         where ent.IdProducto == idProducto
+                                         select new DetalleEntradaProducto
+                                         {
+                                             IdEntrada = ent.IdEntrada,
+                                             Cantidad = ent.Cantidad,
+                                             Fecha = ent.Fecha,
+                                             IdProducto = ent.IdProducto,
+                                             IdUsuario = ent.IdUsuario,
 
-                                            NombreUsuario = us.Nombres + " " + us.Apellidos
-                                        }).ToList();
+                                             NombreUsuario = us.Nombres + " " + us.Apellidos
+                                         }).ToList();
                 return listaEntradasProd;
             }
         }
@@ -363,14 +367,51 @@ namespace Back.Models.Servicios
 
         public int ObtenerStockProducto(int idProducto)
         {
-                int entradas = _context.Entradas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
-                int salidas = _context.Salidas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
-                return salidas == 0 ? entradas : entradas - salidas;
+            int entradas = _context.Entradas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
+            int salidas = _context.Salidas.Where(x => x.IdProducto == idProducto).Sum(x => x.Cantidad);
+            return salidas == 0 ? entradas : entradas - salidas;
         }
 
+        public async Task<ActionResult<IEnumerable<DetalleProducto>>> ListarProductos(string Busqueda)
+        {
+
+            await using (_context)
+            {
+
+                List<DetalleProducto> ListaProductos = (from producto in _context.Productos
+                                                        join categoria in _context.Categorias
+                                                        on producto.IdCategoria equals categoria.IdCategoria
+                                                        orderby producto.IdCategoria descending
+                                                        select new DetalleProducto
+                                                        {
+                                                            IdProducto = producto.IdProducto,
+                                                            Nombre = producto.Nombre.ToUpper(),
+                                                            Estado = producto.Estado,
+                                                            Ancho = producto.Ancho,
+                                                            Largo = producto.Largo,
+                                                            Fondo = producto.Fondo,
+                                                            TipoPuerta = producto.TipoPuerta,
+                                                            Descripcion = producto.Descripcion,
+                                                            Ruedas = producto.Ruedas,
+                                                            IdUsuario = producto.IdUsuario,
+                                                            IdCategoria = producto.IdCategoria,
+                                                            Puntos = producto.Puntos,
+                                                            NombreCategoria = categoria.Nombre,
+                                                            GarantiaMeses = producto.GarantiaMeses
+                                                        }).ToList();
+
+
+                if (!String.IsNullOrEmpty(Busqueda))
+                {
+                    ListaProductos = ListaProductos.Where(s => s.Nombre.Contains(Busqueda.ToUpper())).ToList();
+                }
+
+                return ListaProductos;
+            }
 
 
 
+        }
     }
 
 }

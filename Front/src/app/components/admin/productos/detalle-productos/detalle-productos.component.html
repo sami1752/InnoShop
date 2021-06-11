@@ -1,4 +1,4 @@
-<div style="margin-top: -30%">
+<div style="margin-top: -20%">
   <div>
     <section class="col-lg-7 connectedSortable">
       <div class="card">
@@ -6,6 +6,9 @@
           <h2 class="card-title colortxt font-weight-light">
             <i class="bi bi-info-circle"></i> INFORMACIÓN DEL PRODUCTO
           </h2>
+            <mat-icon class="float-right pointer"
+                      (click)="this.productoService.desplegarDetalle = !this.productoService.desplegarDetalle">arrow_back
+            </mat-icon>
         </div>
         <div class="card-body">
           <div class="tab-content p-0">
@@ -27,6 +30,11 @@
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Nombre: </label>
                 <label class="font-weight-light"> {{this.productoService.detalleProducto.Nombre}}</label>
+              </div>
+              <div class="col ">
+                <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
+                <label class="p-1 colortxt"> Cantidad: </label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.CantidadStock}}</label>
               </div>
             </div>
             <div class="row">
@@ -56,8 +64,13 @@
             <div class="row">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
-                <label class="p-1 colortxt"> Descripción: </label>
-                <label class="font-weight-light" style="text-align: justify-all; ">{{this.productoService.detalleProducto.Descripcion}}</label>
+                <label class="p-1 colortxt"> Meses de garantía: </label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.GarantiaMeses}}</label>
+              </div>
+              <div class="col ">
+                <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
+                <label class="p-1 colortxt"> Precio:</label>
+                <label class="font-weight-light">{{this.productoService.detalleProducto.Precio}}</label>
               </div>
             </div>
             <div class="row">
@@ -78,53 +91,50 @@
                 <label class="p-1 colortxt"> Usuario:</label>
                 <label class="font-weight-light">{{this.productoService.detalleProducto.Usuario}}</label>
               </div>
-            </div>
-            <div class="row">
               <div class="col ">
                 <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
                 <label class="p-1 colortxt"> Categoría:
-                </label><label class="font-weight-light">{{this.productoService.detalleProducto.NombreCategoria}}</label>
+                </label><label
+                class="font-weight-light">{{this.productoService.detalleProducto.NombreCategoria}}</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col ">
-                <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
-                <label class="p-1 colortxt"> Meses de garantía: </label>
-                <label class="font-weight-light">{{this.productoService.detalleProducto.GarantiaMeses}}</label>
+            <div>
+              <div class="row bg-gray-light">
+                <div class="col">
+                  <label class="p-1 colortxt ml-3"> Descripción: </label>
+                </div>
               </div>
-              <div class="col ">
-                <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
-                <label class="p-1 colortxt"> Precio:</label>
-                <label class="font-weight-light">{{this.productoService.detalleProducto.Precio}}</label>
-              </div>
-              <div class="col ">
-                <i class="bi bi-arrow-right-short colortxt fw-bold"></i>
-                <label class="p-1 colortxt"> Cantidad: </label>
-                <label class="font-weight-light">{{this.productoService.detalleProducto.CantidadStock}}</label>
+              <div class="row bg-gray-light">
+                <div class="col">
+                  <label class="font-weight-light text-justify ml-4 mr-3" style="text-align: justify-all; ">
+                    {{this.productoService.detalleProducto.Descripcion}}
+                  </label>
+                </div>
               </div>
             </div>
           </div>
-          <div></div>
         </div>
       </div>
     </section>
   </div>
-  <div style="margin-block: 5%;">
-    <app-listar-precio></app-listar-precio>
-  </div>
-  <div>
-    <app-listar-imagen></app-listar-imagen>
-  </div>
-  <div>
-    <app-listar-detalle-material></app-listar-detalle-material>
-  </div>
-  <div>
-    <app-listar-entradas></app-listar-entradas>
-  </div>
-  <div>
-    <app-listar-iva></app-listar-iva>
-  </div>
-  <div>
-    <app-listar-salidas></app-listar-salidas>
-  </div>
+  <ng-container *ngIf="productoService.detalleProducto.NombreCategoria == 'No personalizado'">
+    <div style="margin-block: 5%;">
+      <app-listar-imagen></app-listar-imagen>
+    </div>
+    <div>
+      <app-listar-precio></app-listar-precio>
+    </div>
+    <div>
+      <app-listar-detalle-material></app-listar-detalle-material>
+    </div>
+    <div>
+      <app-listar-entradas></app-listar-entradas>
+    </div>
+    <div>
+      <app-listar-salidas></app-listar-salidas>
+    </div>
+    <div>
+      <app-listar-iva></app-listar-iva>
+    </div>
+  </ng-container>
 </div>

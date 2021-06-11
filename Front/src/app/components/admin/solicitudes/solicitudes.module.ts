@@ -39,6 +39,11 @@ import {MatSortModule} from '@angular/material/sort';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
+import { ListarSalidasProductoSPComponent } from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-producto-detalle/listar-salidas-producto-sp/listar-salidas-producto-sp.component';
+import { AgregarSalidaPSPComponent } from './SolicitudesPersonalizadas/detalle-solicitud-personalizada/detalle-producto-detalle/listar-salidas-producto-sp/agregar-salida-psp/agregar-salida-psp.component';
+import {MatIconModule} from '@angular/material/icon';
+import { ListarSalidasProductoMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-salidas-producto-m/listar-salidas-producto-m.component';
+import { AgregarSalidaPMComponent } from './Montajes/detalle-montaje/detalle-producto-detalle-m/listar-salidas-producto-m/agregar-salida-pm/agregar-salida-pm.component';
 @NgModule({
   declarations: [
     ListarSolicitudesPersonalizadasComponent,
@@ -69,6 +74,10 @@ import {ToastrModule} from 'ngx-toastr';
     AgregarEntradaMComponent,
     AgregarMaterialMComponent,
     AgregarPrecioMComponent,
+    ListarSalidasProductoSPComponent,
+    AgregarSalidaPSPComponent,
+    ListarSalidasProductoMComponent,
+    AgregarSalidaPMComponent,
 
   ],
   imports: [
@@ -90,7 +99,8 @@ import {ToastrModule} from 'ngx-toastr';
       positionClass: 'toast-top-right',
       timeOut: 2000,
       easing: 'swing'
-    })
+    }),
+    MatIconModule
   ],
   exports: [ListarSolicitudesPersonalizadasComponent, GestionSolicitudPersonalizadaComponent]
 })

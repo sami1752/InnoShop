@@ -11,6 +11,7 @@ namespace Back.Clases.Productos
         public int IdProducto { get; set; }
         public int IdMaterial { get; set; }
         public string IdUsuario { get; set; }
+        public string Usuario { get; set; }
         public string NombreMaterial { get; set; }
 
         public string Descripcion { get; set; }

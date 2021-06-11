@@ -1,7 +1,7 @@
 <form class="" [formGroup]="this.productoService.formularioRegistroProductos" (ngSubmit)="onSubmit()">
   <input type="hidden" formControlName="IdProducto">
   <label for="Nombre">Nombre <span class="text-danger">**</span></label>
-  <input formControlName="Nombre" id="Nombre" type="text" placeholder="Ingresa el nombre" class="form-control"/>
+  <input formControlName="Nombre" id="Nombre" type="text" placeholder="Ingresa el nombre del producto" class="form-control"/>
   <div
     *ngIf="this.productoService.Nombre.invalid && (this.productoService.Nombre.touched || this.productoService.Nombre.dirty)"
     class="alertad mb-20" style=" ">
@@ -57,7 +57,7 @@
   <br>
   <label for="TipoPuerta">Tipo de puerta <span class="text-danger">**</span></label>
   <select class="form-control" formControlName="TipoPuerta" id="TipoPuerta">
-    <option value="">Elige tipo de puerta</option>
+    <option value="">Selecciona un tipo de puerta</option>
     <option *ngFor="let doc of listaTiposPuerta" [value]="doc.Tipo">{{doc.Tipo}}</option>
   </select>
   <div
@@ -67,12 +67,12 @@
   </div>
   <br>
   <label for="Descripcion"> Descripción <span class="text-danger">**</span></label>
-  <textarea formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
+  <textarea placeholder="Ingresa la descripción del producto" formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
   <div
     *ngIf="this.productoService.Descripcion.invalid && (this.productoService.Descripcion.touched || this.productoService.Descripcion.dirty)"
     class="alertad mb-20" style=" ">
     <div *ngIf="this.productoService.Descripcion.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
-    <div *ngIf="this.productoService.Descripcion.hasError('maxLength')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo debe contener máximo 500 caracteres
+    <div *ngIf="this.productoService.Descripcion.hasError('maxlength')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo debe contener máximo 500 caracteres
     </div>
   </div>
   <br>
@@ -105,7 +105,7 @@
     </div>
     <div class="col">
       <label for="GarantiaMeses">Garantía en meses <span class="text-danger">**</span></label>
-      <input formControlName="GarantiaMeses" type="number" id="GarantiaMeses" placeholder="Ingresa la garantía en meses"class="form-control "/>
+      <input formControlName="GarantiaMeses" type="number" id="GarantiaMeses" placeholder="Ingresa la garantía" class="form-control "/>
       <div
         *ngIf="this.productoService.GarantiaMeses.invalid && (this.productoService.GarantiaMeses.touched || this.productoService.GarantiaMeses.dirty)"
         class="alertad mb-20" style=" ">
@@ -118,7 +118,7 @@
   <br>
   <div *ngIf="this.productoService.CampoPrecio" >
     <label for="Precio">Precio del producto <span class="text-danger">**</span></label>
-    <input formControlName="Precio" type="number" id="Precio" placeholder="Ingrese precio producto" class="form-control "/>
+    <input formControlName="Precio" type="number" id="Precio" placeholder="Ingresa el precio del producto" class="form-control "/>
     <div
       *ngIf="this.productoService.Precio.invalid && (this.productoService.Precio.touched || this.productoService.Precio.dirty)"
       class="alertad mb-20" style=" ">
@@ -130,7 +130,7 @@
   <br>
   <div *ngIf="this.productoService.CampoPrecio">
     <label for="CantidadStock">Cantidad del producto <span class="text-danger">**</span></label>
-    <input formControlName="CantidadStock" type="number" id="CantidadStock" placeholder="Ingrese cantidad de producto"class="form-control "/>
+    <input formControlName="CantidadStock" type="number" id="CantidadStock" placeholder="Ingrese cantidad inicial del producto"class="form-control "/>
     <div
       *ngIf="this.productoService.CantidadStock.invalid && (this.productoService.CantidadStock.touched || this.productoService.CantidadStock.dirty)"
       class="alertad mb-20" style=" ">

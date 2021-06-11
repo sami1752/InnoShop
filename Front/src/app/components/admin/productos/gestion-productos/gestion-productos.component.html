@@ -4,7 +4,7 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <section class="col-lg-7 connectedSortable">
+          <section class="col-lg-7 connectedSortable" *ngIf="!this.productoService.desplegarDetalle">
             <div class="card">
               <div class="card-header">
                 <h2 class="card-title colortxt font-weight-light">
@@ -13,13 +13,13 @@
                 </h2>
               </div>
               <div class="card-body">
-                <div class="tab-content p-0">
+                <div class="tab-content p-0" >
                   <app-lista-productos></app-lista-productos>
                 </div>
               </div>
             </div>
           </section>
-          <section class="col-lg-5 connectedSortable">
+          <section class="col-lg-5 connectedSortable" *ngIf="!this.productoService.desplegarDetalle">
             <div class="card">
               <div class="card-header">
                 <h2 class="card-title colortxt font-weight-light">
@@ -28,7 +28,7 @@
                 </h2>
               </div>
               <div class="card-body">
-                <div class="tab-content p-0">
+                <div class="tab-content p-0" >
                   <app-registro-editar-productos></app-registro-editar-productos>
                 </div>
               </div>
@@ -36,7 +36,7 @@
           </section>
         </div>
       </div>
-      <div *ngIf="this.productoService.desplegarDetalle" >
+      <div *ngIf="this.productoService.desplegarDetalle" class="mt-200">
         <app-detalle-productos></app-detalle-productos>
       </div>
     </section>

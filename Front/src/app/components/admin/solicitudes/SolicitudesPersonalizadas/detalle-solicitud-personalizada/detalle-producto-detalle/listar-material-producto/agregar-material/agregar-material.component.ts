@@ -10,7 +10,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AgregarMaterialComponent implements OnInit {
 
-  constructor(public productoService: ProductoService, public usuarioService: UsuarioService, public toastr: ToastrService) {
+  constructor(public productoService: ProductoService,
+              public usuarioService: UsuarioService,
+              public toastr: ToastrService) {
   }
 
   ngOnInit(): void {
