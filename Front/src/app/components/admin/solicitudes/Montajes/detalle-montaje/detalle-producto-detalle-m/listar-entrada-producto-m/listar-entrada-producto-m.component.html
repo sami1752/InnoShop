@@ -20,8 +20,7 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Stock</th>
-            <th scope="col">Id producto</th>
-            <th scope="col">Id usuario</th>
+            <th scope="col">Usuario</th>
             <th scope="col">Fecha</th>
           </tr>
           </thead>
@@ -29,8 +28,7 @@
           <tr>
             <td>{{entrada.IdEntrada}}</td>
             <td>{{entrada.Cantidad}}</td>
-            <td>{{entrada.IdProducto}}</td>
-            <td>{{entrada.IdUsuario}}</td>
+            <td>{{entrada.NombreUsuario}}</td>
             <td>{{entrada.Fecha  | date:'dd-MM-yyyy'}}</td>
           </tr>
           </tbody>

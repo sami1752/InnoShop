@@ -8,7 +8,7 @@
     <tbody *ngFor="let producto of solicitudesPersonalizadasService.listaDetallesProductosMontajes">
         <tr>
             <td>{{producto.IdProducto}}</td>
-            <td><i (click)=" detalleProducto(producto.IdProducto); this.productoService.desplegarDetalle =!this.productoService.desplegarDetalle; " class="bi bi-eye" aria-hidden="true"></i></td>
+            <td><i (click)=" detalleProducto(producto.IdProducto); this.productoService.desplegarDetalle =!this.productoService.desplegarDetalle; " class="bi bi-eye pointer" aria-hidden="true"></i></td>
         </tr>
     </tbody>
 </table>

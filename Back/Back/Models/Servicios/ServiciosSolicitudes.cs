@@ -232,6 +232,7 @@ namespace Back.Models.Servicios
                         on montaje.IdUsuario equals usuario.Id
                         join estado in _context.Estados.AsEnumerable()
                         on detalle.IdEstado equals estado.IdEstado
+                        orderby montaje.IdMontaje descending
                         select new MontajeDetalle
                         {
                             Alto = montaje.Alto,
@@ -510,6 +511,7 @@ namespace Back.Models.Servicios
                         on detalle.IdEstado equals estado.IdEstado
                         join usuario in _context.Usuarioidentity
                         on solicitud.IdUsuario equals usuario.Id
+                        orderby solicitud.IdSolicitudPersonalizada descending
                         select new SolicitudPersonalizadaDetalle
                         {
                             Alto = solicitud.Alto,

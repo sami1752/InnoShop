@@ -24,7 +24,6 @@ export class ListarDetalleProductoMComponent implements OnInit {
   detalleProducto(id): void {
     this.productoService.buscarProductoIdDetalle(id);
     this.productoService.listarPrecios(id);
-    alert(id);
     this.productoService.listarImagen(id);
     this.productoService.ListarDetalleMaterial(id);
     this.productoService.listarEntradas(id);

@@ -1,7 +1,7 @@
 <form class="" [formGroup]="this.productoService.formularioRegistroEntrada" (ngSubmit)="registroEntrada()">
   <div>
     <label for="Cantidad"> agregar Stock <span>**</span></label>
-    <input formControlName="Cantidad" type="number" id="Cantidad" placeholder="Cantidad" class="form-control "/>
+    <input formControlName="Cantidad" type="number" id="Cantidad" placeholder="Cantidad" class="form-control"/>
   </div>
 
   <button type="submit" [disabled]="this.productoService.formularioRegistroEntrada.invalid"

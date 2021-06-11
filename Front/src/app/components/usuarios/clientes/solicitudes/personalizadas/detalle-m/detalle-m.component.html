@@ -19,61 +19,75 @@
             <div class="tab-content p-0">
               <div class="row">
                 <div class="col">
-                  <i class="bi bi-arrow-right-short "></i>
-                  <label class="p-1  colortxt"> Id
-                    Montaje: </label> {{this.solicitudesPersonalizadasService.Montajes.IdMontaje}}
+                  <i class="bi bi-arrow-right-short colortxt"></i>
+                  <label class="p-1 colortxt"> Id Montaje: </label>
+                  {{this.solicitudesPersonalizadasService.Montajes.IdMontaje}}
                 </div>
                 <div class="col">
-                  <i class="bi bi-arrow-right-short "></i>
-                  <label class="p-1  colortxt">
-                    Usuario: </label> {{this.solicitudesPersonalizadasService.Montajes.Usuario}}
+                  <i class="bi bi-arrow-right-short colortxt"></i>
+                  <label class="p-1 colortxt"> Usuario: </label>
+                  {{this.solicitudesPersonalizadasService.Montajes.Usuario}}
                 </div>
               </div>
               <div class="row">
                 <div class=" col ">
-                  <i class="bi bi-arrow-right-short "></i>
-                  <label class="p-1  colortxt"> Fecha: </label> {{this.solicitudesPersonalizadasService.Montajes.Fecha | date:'yyyy-MM-dd HH:mm'}}
+                  <i class="bi bi-arrow-right-short colortxt"></i>
+                  <label class="p-1 colortxt"> Fecha: </label>
+                  {{this.solicitudesPersonalizadasService.Montajes.Fecha}}
                 </div>
                 <div class=" col ">
-                  <i class="bi bi-arrow-right-short "></i>
-                  <label class="p-1  colortxt">
-                    Dirección: </label> {{this.solicitudesPersonalizadasService.Montajes.Direccion}}
+                  <i class="bi bi-arrow-right-short colortxt"></i>
+                  <label class="p-1 colortxt"> Dirección: </label>
+                  {{this.solicitudesPersonalizadasService.Montajes.Direccion}}
                 </div>
               </div>
               <div class="row">
                 <div class="col ">
-                  <i class="bi bi-arrow-right-short "></i>
-                  <label class="p-1  colortxt">Alto: </label> {{this.solicitudesPersonalizadasService.Montajes.Alto}}
+                  <i class="bi bi-arrow-right-short colortxt"></i>
+                  <label class="p-1 colortxt">Alto: </label>
+                  {{this.solicitudesPersonalizadasService.Montajes.Alto}}
                 </div>
                 <div class="col ">
-                  <i class="bi bi-arrow-right-short "></i>
-                  <label class="p-1  colortxt"> Ancho: </label> {{this.solicitudesPersonalizadasService.Montajes.Ancho}}
+                  <i class="bi bi-arrow-right-short colortxt"></i>
+                  <label class="p-1 colortxt"> Ancho: </label>
+                  {{this.solicitudesPersonalizadasService.Montajes.Ancho}}
                 </div>
               </div>
               <div class="row ">
                 <div class="col">
-                  <i class="bi bi-arrow-right-short "></i>
-                  <label class="p-1  colortxt"> Fondo: </label> {{this.solicitudesPersonalizadasService.Montajes.Fondo}}
+                  <i class="bi bi-arrow-right-short colortxt"></i>
+                  <label class="p-1 colortxt"> Fondo: </label>
+                  {{this.solicitudesPersonalizadasService.Montajes.Fondo}}
                 </div>
                 <div class="col ">
-                  <i class="bi bi-arrow-right-short "></i>
-                  <label class="p-1  colortxt">
-                    Estado: </label> {{this.solicitudesPersonalizadasService.Montajes.Estado}}
+                  <i class="bi bi-arrow-right-short colortxt"></i>
+                  <label class="p-1 colortxt"> Estado: </label>
+                  {{this.solicitudesPersonalizadasService.Montajes.Estado}}
                 </div>
               </div>
               <div class="row">
                 <div class="col ">
-                  <i class="bi bi-arrow-right-short "></i>
-                  <label class="p-1  colortxt">
-                    Descripción: </label> {{this.solicitudesPersonalizadasService.Montajes.Descripcion}}
+                  <i class="bi bi-arrow-right-short colortxt"></i>
+                  <label class="p-1 colortxt"> Valor total: </label>
+                  {{this.solicitudesPersonalizadasService.Montajes.ValorTotal}}
                 </div>
               </div>
-              <div class="row">
-                <div class="col ">
-                  <i class="bi bi-arrow-right-short "></i>
-                  <label class="p-1  colortxt"> Valor
-                    Total: </label> {{this.solicitudesPersonalizadasService.Montajes.ValorTotal}}
+              <div>
+                <div class="row bg-gray-light">
+                  <div class="col">
+                    <label class="p-1 colortxt ml-3"> Descripción: </label>
+                  </div>
                 </div>
+                <div class="row bg-gray-light">
+                  <div class="col">
+                    <label class="font-weight-light text-justify ml-4 mr-3" style="text-align: justify-all; ">
+                      {{this.solicitudesPersonalizadasService.Montajes.Descripcion}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
                 <div class="col" *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'Cotizada'">
                   <button class="btn btn-sm btn-success" (click)="Aceptar()">Aceptar</button>
                 </div>
