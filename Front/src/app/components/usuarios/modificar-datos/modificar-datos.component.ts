@@ -15,6 +15,7 @@ import {
   UsuarioService
 } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-modificar-datos',
   templateUrl: './modificar-datos.component.html',
@@ -63,7 +64,7 @@ export class ModificarDatosComponent implements OnInit {
     this.usuarioService.actualizacionUsuario().subscribe(
       (respuesta: any) => {
         if (respuesta.Succeeded) {
-          this.router.navigateByUrl('usuarios/login');
+          this.ngOnInit();
           this.toastr.success('Se ha actualizado los datos exitosamente', 'Edición de tu cuenta');
         } else {
           respuesta.Errors.forEach(element => {
@@ -85,20 +86,41 @@ export class ModificarDatosComponent implements OnInit {
     this.usuarioService.obtenerPerfil().subscribe(
       (res: any) => {
         this.usuario = res;
-
-        if (confirm('Esta seguro de desactivar su cuenta')) {
-          this.usuarioService.eliminarUsuario(this.usuario).subscribe(
-            (resp) => {
-              {
-                this.toastr.info('Se ha eliminado con éxito la cuenta');
-                this.configuracionService.cerrarSesion();
+        this.usuarioService.buscarUsuarioId(this.usuario.Id).subscribe(
+          (resp: any) => {
+            Swal.fire({
+              title: '¿Está seguro de eliminar su cuenta?',
+              text: 'Se eliminara su cuenta y no podrá acceder a ella',
+              textClass: 'center',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Eliminar',
+              cancelButtonText: 'Cancelar'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.usuarioService.eliminarUsuario(resp).subscribe(
+                  (respe) => {
+                    {
+                      this.configuracionService.cerrarSesion();
+                    }
+                  },
+                  err => {
+                    this.toastr.error('Ha ocurrido un error');
+                  }
+                );
+                Swal.fire(
+                  'Eliminación de cuenta',
+                  'Se ha eliminado con éxito',
+                  'success'
+                );
               }
-            },
-            err => {
-              this.toastr.error('Ha ocurrido un error');
-            }
-          );
+            });
+          }, err => {
+            alert('Error');
         }
+        );
       },
       err => {
         this.toastr.error('Ha ocurrido un error');

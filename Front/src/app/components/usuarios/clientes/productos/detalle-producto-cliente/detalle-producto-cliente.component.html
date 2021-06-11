@@ -16,7 +16,7 @@
             <h4 style="text-transform: uppercase">{{this.productoService.detalleProducto.Nombre}}</h4>
 
             <div class="product__price-2 mb-25">
-              <span>${{this.productoService.detalleProducto.Precio}}</span>
+              <span>{{this.productoService.detalleProducto.Precio | currency}}</span>
 
             </div>
             <div class="product__modal-des mb-30">
@@ -77,7 +77,7 @@
                         class="p-1 ">  Ruedas:  </label> <label *ngIf="!this.productoService.detalleProducto.Ruedas">No</label>  <label *ngIf="this.productoService.detalleProducto.Ruedas">Si</label> </span>
                       </li>
                       <li><span><label
-                        class="p-1 ">  Precio:  </label>{{this.productoService.detalleProducto.Precio}}</span>
+                        class="p-1 ">  Precio:  </label>{{this.productoService.detalleProducto.Precio | currency}}</span>
                       </li>
                       <li><span><label
                         class="p-1 ">  Puntos:  </label> {{this.productoService.detalleProducto.Puntos}}</span>

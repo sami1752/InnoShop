@@ -13,7 +13,7 @@
                   <input formControlName="IdSolicitudPersonalizada" type="hidden" id="IdSolicitudPersonalizada"/>
                   <input formControlName="Ancho" type="number" step="0.01" id="Ancho" placeholder="Ancho" class="form-control"/>
                   <div
-                    *ngIf="this.solicitudesPersonalizadasService.Ancho.invalid && (this.solicitudesPersonalizadasService.Fondo.touched || this.solicitudesPersonalizadasService.Fondo.dirty)"
+                    *ngIf="this.solicitudesPersonalizadasService.Ancho.invalid && (this.solicitudesPersonalizadasService.Ancho.touched || this.solicitudesPersonalizadasService.Ancho.dirty)"
                     class="alertad mb-20" style=" ">
                     <div *ngIf="this.solicitudesPersonalizadasService.Ancho.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
                     <div *ngIf="this.solicitudesPersonalizadasService.Ancho.hasError('max')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Inserte una medida válida

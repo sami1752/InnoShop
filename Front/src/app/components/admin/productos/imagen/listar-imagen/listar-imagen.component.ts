@@ -3,6 +3,7 @@ import {Imagen} from 'src/app/models/imagen';
 import {ProductoService} from 'src/app/services/producto.service';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {OwlModule} from 'ngx-owl-carousel';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-listar-imagen',
@@ -44,15 +45,33 @@ export class ListarImagenComponent implements OnInit {
   }
 
   eliminarImagen(imagen: Imagen): void {
-    if (confirm('¿Estás seguro de eliminar la imagen?')) {
-      this.productoService.EliminarImagen(imagen.IdImagen).subscribe(
-        res => {
-          this.productoService.listarImagen(imagen.IdProducto);
-        },
-        err => {
-          console.log(err);
-        }
-      );
-    }
+
+    Swal.fire({
+      title: '¿Está seguro de eliminar la imagen del producto?',
+      text: 'Se eliminará la imagen del producto',
+      textClass: 'center',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productoService.EliminarImagen(imagen.IdImagen).subscribe(
+          res => {
+            Swal.fire(
+              'Eliminación de imagen',
+              'Se ha eliminado con éxito',
+              'success'
+            );
+            this.productoService.listarImagen(imagen.IdProducto);
+          },
+          err => {
+            alert('Ha ocurrido un error');
+          }
+        );
+      }
+    });
   }
 }

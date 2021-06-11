@@ -1,4 +1,4 @@
-<div *ngIf="this.descuentosService.listaCuponesClientes !== undefined; else noCupones">
+<div *ngIf="this.descuentosService.listaCuponesClientes !== undefined || this.descuentosService.listaCuponesClientes.length !=0; else noCupones">
   <h2 class="text-center">Cupones disponibles</h2>
   <table class="table table-hover cupones" style="text-transform: capitalize !important;">
     <thead>
@@ -16,7 +16,7 @@
         </div>
       </td>
       <td>{{descuento.PorcentajeDescuento}} %</td>
-      <td>{{descuento.FechaVencimiento}}</td>
+      <td>{{descuento.FechaVencimiento | date:'dd-MM-yyyy'}}</td>
     </tr>
     </tbody>
   </table>

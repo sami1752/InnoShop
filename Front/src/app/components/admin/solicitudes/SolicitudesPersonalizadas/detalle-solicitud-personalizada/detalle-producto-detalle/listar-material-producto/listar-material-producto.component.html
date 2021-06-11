@@ -25,7 +25,7 @@
             <td>{{mate.IdDetalleMaterial}}</td>
             <td>{{mate.NombreMaterial}}</td>
             <td>{{mate.Usuario}}</td>
-            <td><i (click)="eliminarMaterial(mate)" class="fa fa-trash fa-lg - text-danger pointer"></i></td>
+            <td><i *ngIf="this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado == 'En proceso de cotizacion'" (click)="eliminarMaterial(mate)" class="fa fa-trash fa-lg - text-danger pointer"></i></td>
           </tr>
           </tbody>
         </table>

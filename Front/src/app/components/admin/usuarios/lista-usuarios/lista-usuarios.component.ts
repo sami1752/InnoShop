@@ -10,6 +10,7 @@ import {ProductoTabla} from '../../../../models/producto-tabla';
 import {UsuariosTabla} from '../../../../models/usuarios-tabla';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import {ToastrService} from 'ngx-toastr';
 
 export interface UserData {
   id: string;
@@ -34,7 +35,8 @@ export class ListaUsuariosComponent implements AfterViewInit {
   constructor(private router: Router,
               public usuarioService: UsuarioService,
               private http: HttpClient,
-              private configuracion: ConfiguracionService) {
+              private configuracion: ConfiguracionService,
+              public toastr: ToastrService) {
           this.http.get(this.configuracion.rootURL + '/Usuarios/ListaUsuarios').toPromise().then(
             (res) => {
               this.dataSource = new MatTableDataSource(res as UsuariosTabla[]);
@@ -62,17 +64,19 @@ export class ListaUsuariosComponent implements AfterViewInit {
   }
 
   eliminarUsuario(usuario: Usuario): void  {
-    if (confirm('¿Estás seguro de desactivar el usuario?')) {
-      this.usuarioService.eliminarUsuario(usuario).subscribe(
+    this.usuarioService.eliminarUsuario(usuario).subscribe(
         res => {
+          if (usuario.Estado){
+            this.toastr.success('Se ha activado con éxito', 'Activación usuario');
+          }else{
+            this.toastr.info('Se ha desactivado con éxito', 'Desactivación usuario');
+          }
           this.usuarioService.listarUsuarios();
-          console.log(res);
         },
         err => {
           alert(err.code);
         }
       );
-    }
   }
 
   detalleUsuario(id): void  {
