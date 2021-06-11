@@ -193,11 +193,10 @@
           <div class="precio" *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==producto.IdProducto" > $ {{precio.Precio}} </div>
           </ng-container>
         </div>
-          <ng-container *ngFor="let item of carritoDeComprasService.listaDetalleCarritoCompras">
-            <button class="agregarcarrito"  *ngIf="item.IdProducto==producto.IdProducto" (click)="agregarCarrito(producto.IdProducto)"> <i class="bi bi-cart-plus-fill "></i> Agregar al carrito({{item.Cantidad}})
+
+            <button class="agregarcarrito"    (click)="agregarCarrito(producto.IdProducto)"> <i class="bi bi-cart-plus-fill "></i> Agregar al carrito
             </button>
 
-          </ng-container>
 
 
       </div>
