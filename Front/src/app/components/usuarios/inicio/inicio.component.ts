@@ -15,6 +15,7 @@ import {
 import {
   UsuarioService
 } from 'src/app/services/usuario.service';
+import {ProductoService} from '../../../services/producto.service';
 
 @Component({
   selector: 'app-inicio',
@@ -22,11 +23,14 @@ import {
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-  constructor(public configuracionService: ConfiguracionService, private router: Router, public usuarioService: UsuarioService) {
+  constructor(public configuracionService: ConfiguracionService,
+              private router: Router, public usuarioService: UsuarioService,
+              public productoService: ProductoService) {
   }
 
   perfilUsuario: PerfilUsuario;
   Micuenta = false;
+  buscar: string;
 
   ngOnInit(): void {
     if (localStorage.getItem('token') != null) {
@@ -38,5 +42,14 @@ export class InicioComponent implements OnInit {
 
   CambioMicuenta(): void {
     this.Micuenta = !this.Micuenta;
+  }
+  Buscar(): void{
+    console.log(this.buscar);
+    if (this.buscar.length != 0){
+      this.productoService.BuscarProdutoBuscadorUSuario(this.buscar);
+    }else{
+      this.productoService.listarProducto();
+    }
+
   }
 }

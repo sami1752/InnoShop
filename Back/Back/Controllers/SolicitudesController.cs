@@ -257,7 +257,7 @@ namespace Back.Controllers
 
         [HttpGet]
         [Route("DetallesProductosMontajes/{DetallesProductosMontajes}")]
-        public async Task<ActionResult<IEnumerable<DetallesProductosMontajes>>>
+        public async Task<ActionResult<IEnumerable<DetallesProductosMontajesDetalle>>>
             ListaDetallesProductosMontajes(int DetallesProductosMontajes) =>
             await _context.ListaDetallesProductosMontajes(DetallesProductosMontajes);
 

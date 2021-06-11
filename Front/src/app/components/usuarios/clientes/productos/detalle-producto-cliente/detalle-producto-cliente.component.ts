@@ -8,6 +8,7 @@ import {CarritoDeCompras} from 'src/app/models/carrito-de-compras';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {OwlModule} from 'ngx-owl-carousel';
 import {Imagen} from 'src/app/models/imagen';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-detalle-producto-cliente',
@@ -17,7 +18,10 @@ import {Imagen} from 'src/app/models/imagen';
 export class DetalleProductoClienteComponent implements OnInit {
 
   constructor(public carritoDeComprasService: CarritoDeComprasService, public usuarioService: UsuarioService,
-              public productoService: ProductoService, private router: Router, private rutaActiva: ActivatedRoute) {
+              public productoService: ProductoService,
+              private router: Router,
+              private rutaActiva: ActivatedRoute,
+              public toast: ToastrService) {
   }
 
   id: number = this.rutaActiva.snapshot.params.IdProducto;
@@ -64,12 +68,12 @@ export class DetalleProductoClienteComponent implements OnInit {
   }
 
 
-
   agregarCarrito(idProducto): void {
     if (localStorage.getItem('token') != null) {
       this.usuarioService.obtenerPerfil().subscribe(
         res => {
           this.perfilUsuario = (res as Usuario);
+          this.carritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id);
           this.carritoDeComprasService.carritoDeCompras.IdUsuario = this.perfilUsuario.Id;
           this.carritoDeComprasService.detalleCarritoDeCompras.IdUsuario = this.perfilUsuario.Id;
           this.carritoDeComprasService.existeCarritoUsuario(this.perfilUsuario.Id).subscribe(
@@ -83,57 +87,42 @@ export class DetalleProductoClienteComponent implements OnInit {
                     this.carritoDeComprasService.detalleCarritoDeCompras.IdCarritoDeCompras = this.carritoRespuesta.IdCarritoDeCompras;
                     this.carritoDeComprasService.agregarDetalleCarrito(idProducto).subscribe(
                       respu => {
-                        alert('Se agrego producto con exito');
+                        this.productoService.listarProducto();
+                        this.carritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id);
+                        this.toast.success('Se agregó producto  al carrito  exitosamente');
                       },
                       err => {
-                        alert('error');
+                        this.toast.error('error');
                       }
                     );
                   }, error => {
-                    alert('error al buscar carrito de usuario');
-                    console.log(error);
+                    this.toast.error('error al buscar carrito de usuario');
                   });
 
               } else {
-                this.carritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id);
                 this.carritoDeComprasService.listaDetalleCarritoCompras.forEach(element => {
                   if (element.IdProducto === idProducto) {
                     this.detalleExiste = true;
-                    this.carritoDeComprasService.CantidadDetalleAnterior(element.IdDetalleCarritoDeCompras).subscribe(
-                      respu => {
-                        element.Cantidad++;
-                        this.carritoDeComprasService.editarDetalleCarrito(element, res).subscribe(
-                          resput => {
-                            this.carritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id);
-                            alert('Se sumo producto al carrito con exito');
-                          }, err => {
-                          }
-                        );
-                      },
-                      err => {
-                        alert('error al buscar cantidad anterior');
-                      }
-                    );
+                    this.toast.info('El producto ya se encuentra agregado en el carrito');
                   }
                 });
-                if (!this.detalleExiste) {
-                  this.carritoDeComprasService.detalleCarritoDeCompras.IdCarritoDeCompras = this.CarritoExiste;
-                  this.carritoDeComprasService.agregarDetalleCarrito(idProducto).subscribe(
-                    respu => {
-
-                      alert('Se agrego producto a carrito existente');
-                    },
-                    err => {
-                      alert('error detalle solito');
-                      console.log(err);
-                    }
-                  );
-                }
               }
-
-
+              if (!this.detalleExiste && this.CarritoExiste !== 0) {
+                this.carritoDeComprasService.detalleCarritoDeCompras.IdCarritoDeCompras = this.CarritoExiste;
+                this.carritoDeComprasService.agregarDetalleCarrito(idProducto).subscribe(
+                  respu => {
+                    this.productoService.listarProducto();
+                    this.carritoDeComprasService.listarDetalleCarrito(this.perfilUsuario.Id);
+                    this.toast.success('Se agrego producto  al carrito  exitosamente');
+                  },
+                  err => {
+                    this.toast.error('error detalle solito');
+                  }
+                );
+              }
+              this.detalleExiste = false;
             }, err => {
-              alert('error en carro existe');
+              this.toast.error('error en carro existe');
             }
           );
         },
@@ -142,11 +131,10 @@ export class DetalleProductoClienteComponent implements OnInit {
         }
       );
     } else {
-      alert('Antes de realizar tu pedido inicia sesión');
-      this.router.navigate(['usuarios/login']);
+      this.toast.info('Antes de realizar tu pedido inicia sesión');
+      // this.router.navigate(['usuarios/login']);
     }
   }
-
-
-
 }
+
+

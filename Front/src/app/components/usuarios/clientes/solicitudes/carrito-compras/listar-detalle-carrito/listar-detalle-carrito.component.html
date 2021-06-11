@@ -22,14 +22,14 @@
                     <a [routerLink]="['/productos/detalleProducto',detalle.IdProducto]" class="text-dark">{{detalle.NombreProducto}}</a>
                   </td>
                   <ng-container *ngFor="let precio of productoService.listaPrecios">
-                    <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio}}</td>
+                    <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio | currency}}</td>
                   </ng-container>
 
                   <td class="product-quantity">
                     <div class="cart-plus-minus"><input (change)="editarDetalleCarrito(detalle)" [(ngModel)]="detalle.Cantidad" type="number" min="1" /></div>
                   </td>
                   <ng-container *ngFor="let precio of productoService.listaPrecios">
-                    <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio * detalle.Cantidad}}</td>
+                    <td *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==detalle.IdProducto">{{precio.Precio * detalle.Cantidad | currency}}</td>
                   </ng-container>
                   <td><a (click)="eliminarDetalle(detalle)" class="btn"><i class="bi bi-x text-danger" style="font-size: 19px;"></i></a></td>
 
@@ -46,16 +46,16 @@
                 <h1 style="color: #2C4F61;"><i class="fas fa-cash-register"></i> Total</h1>
                 <ul class="mb-20">
                   <li>Subtotal
-                    <span>${{
+                    <span>{{
                       this.carritoDeComprasService.carritoDeCompras.Valor -
-                      ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}
+                      ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)| currency}}
                                 </span>
                   </li>
                   <li>Valor iva
-                    <span>${{((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}</span>
+                    <span>{{((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100) | currency}}</span>
                   </li>
                   <li>Total
-                    <span>${{this.carritoDeComprasService.carritoDeCompras.Valor}}</span>
+                    <span>{{this.carritoDeComprasService.carritoDeCompras.Valor | currency}}</span>
                   </li>
                 </ul>
                 <div class="pro-cart-btn">

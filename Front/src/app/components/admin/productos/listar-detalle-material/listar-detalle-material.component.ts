@@ -2,12 +2,11 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {DetalleMaterialProducto} from 'src/app/models/detalle-material-producto';
 import {ProductoService} from 'src/app/services/producto.service';
 import {MatTableDataSource} from '@angular/material/table';
-import {Precio} from '../../../../models/precio';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {HttpClient} from '@angular/common/http';
 import {ConfiguracionService} from '../../../../services/configuracion.service';
-import {Material} from '../../../../models/material';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 export interface UserData {
   id: string;
@@ -59,17 +58,33 @@ export class ListarDetalleMaterialComponent implements AfterViewInit {
   }
 
   eliminarMaterial(idDetalle): void {
-    if (confirm('¿Estás seguro de eliminar el material?')) {
-      this.productoService.EliminarDetalleMaterial(idDetalle).subscribe(
-        res => {
-          alert('Se eliminó con exito');
-          this.listarMateriales(this.productoService.detalleProducto.IdProducto);
-        },
-        err => {
-          console.log(err);
-        }
-      );
-    }
+    Swal.fire({
+      title: '¿Está seguro de eliminar el material?',
+      text: 'Se eliminara el material del producto',
+      textClass: 'center',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Eliminación material',
+          'Se ha eliminado con éxito',
+          'success'
+        );
+        this.productoService.EliminarDetalleMaterial(idDetalle).subscribe(
+          res => {
+            this.listarMateriales(this.productoService.detalleProducto.IdProducto);
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      }
+    });
   }
 
 }

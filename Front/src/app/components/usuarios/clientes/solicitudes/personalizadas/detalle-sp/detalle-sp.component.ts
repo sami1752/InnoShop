@@ -17,7 +17,8 @@ import {VentasService} from '../../../../../../services/ventas.service';
 import {Venta} from '../../../../../../models/Ventas/venta';
 import {Producto} from '../../../../../../models/producto';
 import {ConfiguracionService} from '../../../../../../services/configuracion.service';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-detalle-sp',
   templateUrl: './detalle-sp.component.html',
@@ -40,7 +41,8 @@ export class DetalleSPComponent implements OnInit {
               public ventasService: VentasService,
               private http: HttpClient,
               private router: Router,
-              private configuracion: ConfiguracionService) {
+              private configuracion: ConfiguracionService,
+              public toastr: ToastrService) {
   }
 
   id: number = this.rutaActiva.snapshot.params.IdSolicitud;
@@ -203,48 +205,85 @@ export class DetalleSPComponent implements OnInit {
   }
 
   Rechazar(): void {
-    this.usuarioService.obtenerPerfil().subscribe(
-      res => {
-        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada =
-          this.solicitudesPersonalizadasService.formularioDetalleEstadoSolicitudPerzonalizada.value;
-        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdUsuario = (res as Usuario).Id;
-        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdEstado = 5;
-        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada = this.id;
-        this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
-          (respuesta: any) => {
-            this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
-          }, error => {
-            alert(error);
-            console.log(error);
-          });
-      },
-      err => {
-        console.log(err);
+    Swal.fire({
+      title: '¿Está seguro de rechazar la cotización?',
+      text: 'Se rechazara la cotización',
+      textClass: 'center',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.obtenerPerfil().subscribe(
+          res => {
+            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada =
+              this.solicitudesPersonalizadasService.formularioDetalleEstadoSolicitudPerzonalizada.value;
+            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdUsuario = (res as Usuario).Id;
+            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdEstado = 5;
+            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada = this.id;
+            this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
+              (respuesta: any) => {
+                Swal.fire(
+                  'rechazo de solicitud',
+                  'Se ha rechazado con éxito',
+                  'success'
+                );
+                this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
+              }, error => {
+                alert(error);
+                console.log(error);
+              });
+          },
+          err => {
+            console.log(err);
+          }
+        );
       }
-    );
+    });
   }
 
   Cancelar(): void {
-    this.usuarioService.obtenerPerfil().subscribe(
-      res => {
-        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada =
-          this.solicitudesPersonalizadasService.formularioDetalleEstadoSolicitudPerzonalizada.value;
-        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdUsuario = (res as Usuario).Id;
-        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdEstado = 11;
-        this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada = this.id;
-        this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
-          (respuesta: any) => {
-
-            this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
-          }, error => {
-            alert(error);
-            console.log(error);
-          });
-      },
-      err => {
-        console.log(err);
+    Swal.fire({
+      title: '¿Está seguro de cancelar la solicitud?',
+      text: 'Se cancelará la solicitud',
+      textClass: 'center',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.obtenerPerfil().subscribe(
+          res => {
+            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada =
+              this.solicitudesPersonalizadasService.formularioDetalleEstadoSolicitudPerzonalizada.value;
+            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdUsuario = (res as Usuario).Id;
+            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdEstado = 11;
+            this.solicitudesPersonalizadasService.DetalleEstadosSolicitudPersonalizada.IdSolicitudPersonalizada = this.id;
+            this.solicitudesPersonalizadasService.AgregarDetalleEstadosSolicitudPersonalizada().subscribe(
+              (respuesta: any) => {
+                Swal.fire(
+                  'Cancelación de solicitud',
+                  'Se ha cancelado con éxito',
+                  'success'
+                );
+                this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
+              }, error => {
+                alert(error);
+                console.log(error);
+              });
+          },
+          err => {
+            console.log(err);
+          }
+        );
       }
-    );
+    });
   }
 
   Devoler(): void {

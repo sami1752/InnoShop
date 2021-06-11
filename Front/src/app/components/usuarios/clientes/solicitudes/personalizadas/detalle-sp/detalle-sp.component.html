@@ -21,58 +21,63 @@
               <div class="row">
                 <div class="col">
                   <i class="bi bi-arrow-right-short colortxt"></i>
-                  <label class="p-1 colortxt"> Id
-                    Solicitud: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}
+                  <label class="p-1 colortxt "> Id Solicitud: </label>
+                  {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.IdSolicitudPersonalizada}}
                 </div>
                 <div class="col">
                   <i class="bi bi-arrow-right-short colortxt"></i>
-                  <label class="p-1 colortxt">
-                    Usuario: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Usuario}}
+                  <label class="p-1 colortxt "> Usuario: </label>
+                  {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Usuario}}
                 </div>
               </div>
               <div class="row">
                 <div class=" col ">
                   <i class="bi bi-arrow-right-short colortxt"></i>
-                  <label class="p-1 colortxt">
-                    Fecha: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fecha | date:'yyyy-MM-dd HH:mm'}}
+                  <label class="p-1 colortxt "> Fecha: </label>
+                  {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fecha | date:'dd-MM-yyyy'}}
+                </div>
+                <div class="col ">
+                  <i class="bi bi-arrow-right-short colortxt"></i>
+                  <label class="p-1 colortxt "> Valor total: </label>
+                  {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
                 </div>
               </div>
               <div class="row">
                 <div class="col ">
                   <i class="bi bi-arrow-right-short colortxt"></i>
-                  <label
-                    class="p-1 colortxt">Alto: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Alto}}
+                  <label class="p-1 colortxt ">Alto: </label>
+                  {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Alto}}
                 </div>
                 <div class="col ">
                   <i class="bi bi-arrow-right-short colortxt"></i>
-                  <label class="p-1 colortxt">
-                    Ancho: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Ancho}}
+                  <label class="p-1 colortxt "> Ancho: </label>
+                  {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Ancho}}
                 </div>
               </div>
               <div class="row ">
                 <div class="col">
                   <i class="bi bi-arrow-right-short colortxt"></i>
-                  <label class="p-1 colortxt">
-                    Fondo: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fondo}}
+                  <label class="p-1 colortxt "> Fondo: </label>
+                  {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Fondo}}
                 </div>
                 <div class="col ">
                   <i class="bi bi-arrow-right-short colortxt"></i>
-                  <label class="p-1 colortxt">
-                    Estado: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado}}
+                  <label class="p-1 colortxt "> Estado: </label>
+                  {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Estado}}
                 </div>
               </div>
-              <div class="row">
-                <div class="col">
-                  <i class="bi bi-arrow-right-short colortxt"></i>
-                  <label class="p-1 colortxt">
-                    Descripción: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Descripcion}}
+              <div>
+                <div class="row bg-gray-light">
+                  <div class="col">
+                    <label class="p-1 colortxt ml-3"> Descripción: </label>
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col ">
-                  <i class="bi bi-arrow-right-short colortxt"></i>
-                  <label class="p-1 colortxt"> Valor
-                    Total: </label> {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.ValorTotal}}
+                <div class="row bg-gray-light">
+                  <div class="col">
+                    <label class="font-weight-light text-justify ml-4 mr-3" style="text-align: justify-all; ">
+                      {{this.solicitudesPersonalizadasService.SolicitudPersonalizada.Descripcion}}
+                    </label>
+                  </div>
                 </div>
               </div>
               <div class="row" align="center" style="margin-top: 5px;">

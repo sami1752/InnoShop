@@ -21,8 +21,8 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Precio</th>
-            <th scope="col">Fecha inicio</th>
-            <th scope="col">Fecha fin</th>
+            <th scope="col">Fecha inicial</th>
+            <th scope="col">Fecha final</th>
             <th scope="col">Usuario</th>
           </tr>
           </thead>
@@ -31,7 +31,14 @@
             <td>{{precio.IdPrecioProducto}}</td>
             <td>{{precio.Precio}}</td>
             <td>{{precio.FechaInicio  | date:'dd-MM-yyyy'}}</td>
-            <td>{{precio.FechaFin  | date:'dd-MM-yyyy'}}</td>
+            <td>
+              <ng-container *ngIf="(precio.FechaFin  | date:'dd-MM-yyyy') == '01-01-0001'; else venc">
+                Presente
+              </ng-container>
+              <ng-template #venc>
+                {{precio.FechaFin  | date:'dd-MM-yyyy'}}
+              </ng-template>
+            </td>
             <td>{{precio.NombreUsuario}}</td>
           </tr>
           </tbody>

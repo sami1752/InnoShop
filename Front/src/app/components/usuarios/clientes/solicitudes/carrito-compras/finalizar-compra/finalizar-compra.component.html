@@ -13,20 +13,20 @@
                   </div>
               <div class="cart-page-total" style="text-align: left;">
                 <ul class="mb-20">
-                <li>Subtotal <span>${{
+                <li>Subtotal <span>{{
                   this.carritoDeComprasService.carritoDeCompras.Valor -
-                  ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}</span></li>
+                  ((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)| currency}}</span></li>
                 <li>Valor iva
-                  <span>${{((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)}}</span>
+                  <span>{{((this.carritoDeComprasService.carritoDeCompras.Valor * this.ventasService.iva.Porcentaje) / 100)| currency}}</span>
                 </li>
                 <li>Descuento
-                  <span id="Descuento">${{(this.descuentosService.descuentoEnVenta.PorcentajeDescuento
-                    * this.carritoDeComprasService.carritoDeCompras.Valor /100)}}</span>
+                  <span id="Descuento">{{(this.descuentosService.descuentoEnVenta.PorcentajeDescuento
+                    * this.carritoDeComprasService.carritoDeCompras.Valor /100)| currency}}</span>
                 </li>
                 <li>Total
-                  <span>${{this.carritoDeComprasService.carritoDeCompras.Valor
+                  <span>{{this.carritoDeComprasService.carritoDeCompras.Valor
                   - (this.descuentosService.descuentoEnVenta.PorcentajeDescuento
-                    * this.carritoDeComprasService.carritoDeCompras.Valor /100)}}</span>
+                    * this.carritoDeComprasService.carritoDeCompras.Valor /100)| currency}}</span>
                 </li>
               </ul>
 

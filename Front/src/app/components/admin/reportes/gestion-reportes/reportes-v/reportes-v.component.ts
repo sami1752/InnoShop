@@ -7,6 +7,7 @@ import html2canvas from 'html2canvas';
 import {DATA_ADVANCE_CHAR, DATA_PIE_CHAR, DATA_PIE_GRID_CHAR, ReporteVentas} from '../../../../../models/Reportes/reporte-ventas';
 import {FormControl, FormGroup} from '@angular/forms';
 import {IAdvanceChart} from '../../../../../models/Reportes/charts.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reportes-v',
@@ -19,14 +20,14 @@ export class ReportesVComponent implements OnInit {
   Total: IAdvanceChart[] = [];
   view: [number, number] = [500, 300];
   view2: [number, number] = [400, 300];
-  view3: [number, number ] = [700, 300];
+  view3: [number, number ] = [400, 300];
   // options
 
   showLegend = true;
   showLabels = true;
-  isDoughnut = false;
+  isDoughnut = true;
   label = 'TOTAL MONTO VENTAS';
-  legendPosition = 'right';
+  legendPosition = 'below';
   legendTitle = '';
   labels = true;
 
@@ -45,17 +46,18 @@ export class ReportesVComponent implements OnInit {
   });
 
   constructor(private http: HttpClient,
-              private configuracion: ConfiguracionService) {
+              private configuracion: ConfiguracionService,
+              private toastr: ToastrService) {
     Object.assign(this, { DATA_ADVANCE_CHAR });
   }
 
   ReporteV: ReporteVentas;
 
   downloadPDF(): void {
-    alert('Generando Reporte');
+    this.toastr.success('Generando Reporte', 'Reporte');
     // Extraemos el
     const DATA = document.getElementById('htmlData');
-    const doc = new jsPDF('p', 'pt', 'a5');
+    const doc = new jsPDF('p', 'pt', 'a4');
     const options = {
       background: 'white',
       scale: 3
@@ -65,8 +67,8 @@ export class ReportesVComponent implements OnInit {
       const img = canvas.toDataURL('image/PNG');
 
       // Add image Canvas to PDF
-      const bufferX = 15;
-      const bufferY = 15;
+      const bufferX = 60;
+      const bufferY = 20;
       const imgProps = (doc as any).getImageProperties(img);
       const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;

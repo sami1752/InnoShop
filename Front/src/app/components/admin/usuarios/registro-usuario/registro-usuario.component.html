@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col">
       <label for="name">Nombres <span class="text-danger">**</span></label>
-      <input formControlName="Nombres" id="name" type="text" placeholder="Ingresa nombres" class="form-control "/>
+      <input formControlName="Nombres" id="name" type="text" placeholder="Ingresa los nombres" class="form-control "/>
       <div
         *ngIf="this.usuarioService.nombresAdmin.invalid && (this.usuarioService.nombresAdmin.touched || this.usuarioService.nombresAdmin.dirty)"
         class="alertad mb-20" style=" ">
@@ -17,7 +17,7 @@
     </div>
     <div class="col">
       <label for="Apellidos">Apellidos <span class="text-danger">**</span></label>
-      <input id="Apellidos"  formControlName="Apellidos" type="text" placeholder="Ingrese apellidos" class="form-control "/>
+      <input id="Apellidos"  formControlName="Apellidos" type="text" placeholder="Ingresa los apellidos" class="form-control "/>
       <!--Validaciones Apellidos-->
       <div
         *ngIf="this.usuarioService.apellidosAdmin.invalid && (this.usuarioService.apellidosAdmin.touched || this.usuarioService.apellidosAdmin.dirty)"
@@ -37,7 +37,7 @@
   <br>
 
   <label for="Email">Correo <span class="text-danger">**</span></label>
-  <input id="Email" formControlName="Email" type="email" placeholder="Email" class="form-control "/>
+  <input id="Email" formControlName="Email" type="email" placeholder="Ingresa el email" class="form-control "/>
   <!--Validaciones Correo-->
   <div
     *ngIf="this.usuarioService.emailAdmin.invalid && (this.usuarioService.emailAdmin.touched || this.usuarioService.emailAdmin.dirty)"
@@ -53,7 +53,7 @@
     <div class="col">
       <label for="name">Tipo documento <span class="text-danger">**</span></label>
       <select class="form-control" formControlName="TipoDocumento">
-        <option value="">Seleccione</option>
+        <option value="">Selecciona un tipo de documento</option>
         <option *ngFor="let doc of listaTiposDoc" [value]="doc.Tipo">{{doc.Tipo}}</option>
       </select>
       <!--Validaciones Tipo documento-->
@@ -67,7 +67,7 @@
     <div class="col">
       <label for="NumDocumento">N°documento <span class="text-danger">**</span></label>
       <input id="NumDocumento" formControlName="NumDocumento" type="text" class="form-control "
-             placeholder="Ingrese número de documento"/>
+             placeholder="Ingresa el número de documento"/>
       <!--Validaciones Numero documento-->
       <div
         *ngIf="this.usuarioService.documentoAdmin.invalid && (this.usuarioService.documentoAdmin.touched || this.usuarioService.documentoAdmin.dirty)"
@@ -86,7 +86,7 @@
 
 
   <label for="name">Teléfono <span class="text-danger">**</span></label>
-  <input formControlName="Telefono" type="text" placeholder="Ingrese teléfono" class="form-control "/>
+  <input formControlName="Telefono" type="text" placeholder="Ingresa el teléfono" class="form-control "/>
 
   <!--Validaciones Numero telefono-->
   <div
@@ -103,7 +103,7 @@
   <br>
   <label for="name">Sexo <span class="text-danger">**</span></label>
   <select class="form-control " formControlName="Sexo">
-    <option value="">Elige Sexo</option>
+    <option value="">Selecciona un sexo</option>
     <option *ngFor="let tipo of listaSexo" [value]="tipo.Sexo">{{tipo.Sexo}}</option>
   </select>
   <!--Validaciones Sexo-->
@@ -116,7 +116,7 @@
   <br>
   <label for="IdRol">Rol <span class="text-danger">**</span></label>
   <select class="form-control " formControlName="IdRol" id="IdRol">
-    <option value="">Elige Rol</option>
+    <option value="">Selecciona un Rol</option>
     <option value=1>Administrador</option>
     <option value=2>Cliente</option>
   </select>
@@ -127,7 +127,7 @@
   </div>
   <br>
   <label for="Direccion">Dirección <span class="text-danger">**</span></label>
-  <input id="Direccion" formControlName="Direccion" type="text" class="form-control " placeholder="Ingrese dirección"/>
+  <input id="Direccion" formControlName="Direccion" type="text" class="form-control " placeholder="Ingresa la dirección"/>
   <div
     *ngIf="this.usuarioService.direccionAdmin.invalid && (this.usuarioService.direccionAdmin.touched || this.usuarioService.direccionAdmin.dirty)"
     class="alertad mb-20">

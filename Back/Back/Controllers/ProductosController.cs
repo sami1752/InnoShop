@@ -22,6 +22,10 @@ namespace Back.Controllers
         [HttpGet]
         [Route("Buscar/{Producto}")]
         public async Task<ActionResult<Producto>> BuscarMontajes(int Producto) => await _context.BuscarProducto(Producto);
+        [HttpGet]
+        [Route("BuscarProducto/{busqueda}")]
+        public async Task<ActionResult<IEnumerable<DetalleProducto>>> BuscarProductoUsuario(string busqueda) =>
+            await _context.ListarProductos(busqueda);
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DetalleProducto>>> GetProductos() => await _context.listarProductos();
@@ -300,6 +304,8 @@ namespace Back.Controllers
             return  _context.ObtenerStockProducto(idProducto);
         }
 
-
+        [HttpGet]
+        [Route("FiltroProducto/{decision}")]
+        public async Task<ActionResult<IEnumerable<DetalleProducto>>> buscarProductoPrecio(bool decision) => await _context.listarProductosPorPreciosFiltro(decision);
     }
 }

@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {SolicitudesPersonalizadasService} from '../../../../../../services/solicitudes-personalizadas.service';
 import {ProductoService} from '../../../../../../services/producto.service';
 import {Producto} from '../../../../../../models/producto';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import {VentasService} from '../../../../../../services/ventas.service';
 
 @Component({
   selector: 'app-listar-detalle-producto-m',
@@ -13,7 +15,9 @@ export class ListarDetalleProductoMComponent implements OnInit {
 
   constructor(private rutaActiva: ActivatedRoute,
               public solicitudesPersonalizadasService: SolicitudesPersonalizadasService,
-              private router: Router, public productoService: ProductoService) {
+              private router: Router,
+              public productoService: ProductoService,
+              public ventasService: VentasService) {
   }
 
   id: number = this.rutaActiva.snapshot.params.IdMontaje;
@@ -36,6 +40,23 @@ export class ListarDetalleProductoMComponent implements OnInit {
 
 
   eliminarProducto(id): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        );
+      }
+    });
     if (confirm('¿Estás seguro de eliminar el Producto?')) {
       this.solicitudesPersonalizadasService.EliminarDetallesProductosMontajes(id).subscribe(
         res => {
@@ -51,10 +72,10 @@ export class ListarDetalleProductoMComponent implements OnInit {
   detalleProducto(id): void {
     this.productoService.buscarProductoIdDetalle(id);
     this.productoService.listarPrecios(id);
-    alert(id);
     this.productoService.listarImagen(id);
     this.productoService.ListarDetalleMaterial(id);
     this.productoService.listarEntradas(id);
+    this.ventasService.ListarSalidasProducto(id);
   }
 
 }

@@ -11,7 +11,7 @@ import {VentasTabla} from '../../../../../models/Ventas/ventas-tabla';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {DescuentosTabla} from '../../../../../models/Descuentos/descuentos-tabla';
-
+import { ToastrService } from 'ngx-toastr';
 export interface UserData {
   id: string;
   name: string;
@@ -35,7 +35,8 @@ export class RuletaDescuentosComponent implements AfterViewInit {
   constructor(public descuentosService: DescuentosService,
               public usuariosService: UsuarioService,
               private http: HttpClient,
-              private configuracion: ConfiguracionService) {
+              private configuracion: ConfiguracionService,
+              public toastr: ToastrService) {
     if (localStorage.getItem('token') != null) {
       this.usuariosService.obtenerPerfil().subscribe(
         (res: any) => {
@@ -99,7 +100,6 @@ export class RuletaDescuentosComponent implements AfterViewInit {
                       this.descuentosService.RegistrarCuponDescuento().subscribe(
                         // tslint:disable-next-line:no-shadowed-variable
                         (res: any) => {
-                          alert(res.mensaje);
                           document.getElementById('texto').style.fontWeight = 'light';
                           document.getElementById('textoicon').style.fontWeight = 'light';
                           this.descuentosService.ListarCuponesDeCliente(this.perfilUsuario.Id);
@@ -112,6 +112,7 @@ export class RuletaDescuentosComponent implements AfterViewInit {
                             'Obtuviste un cupón de' + ' ' + document.getElementById('porcentaje').textContent + '%';
                           this.perfilUsuario.Puntos -= this.descuentosService.valorRuleta.ValorDeRuleta;
                           window.location.reload();
+                          this.toastr.success('¡Felicidades! has obtenido un cupón de descuento', 'Cupones');
                         }, err => {
                           alert('error al registrar cupon');
                         }
@@ -123,12 +124,12 @@ export class RuletaDescuentosComponent implements AfterViewInit {
                   });
               });
           } else {
-            alert('No tiene los puntos necesarios para jugar');
+            this.toastr.info('¡Ups!, no tienes los puntos necesarios para jugar', 'Cupones');
           }
         }
       );
     } else {
-      alert('Inicie Sesión para poder adquirir descuento');
+      this.toastr.info('Inicia sesión para obtener descuentos', 'Cupones');
     }
 
   }

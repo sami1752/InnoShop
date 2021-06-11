@@ -38,6 +38,7 @@ export class AgregarSalidaPSPComponent implements OnInit {
             this.toast.success('Se registró la salida exitosamente', 'Salidas producto');
             this.ventasSerive.ListarSalidasProducto(this.productoService.detalleProducto.IdProducto);
             this.solicitudesPersonalizadasService.BuscarSolicitudPersonalizada(this.id);
+            this.productoService.buscarProductoIdDetalle(this.productoService.detalleProducto.IdProducto);
             this.productoService.formularioRegistroEntrada.reset();
             this.productoService.formularioSalida = false;
           }, error => {

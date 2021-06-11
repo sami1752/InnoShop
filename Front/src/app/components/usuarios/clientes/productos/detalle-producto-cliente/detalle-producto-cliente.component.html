@@ -16,10 +16,10 @@
             <h4 style="text-transform: uppercase">{{this.productoService.detalleProducto.Nombre}}</h4>
 
             <div class="product__price-2 mb-25">
-              <span>${{this.productoService.detalleProducto.Precio}}</span>
+              <span>{{this.productoService.detalleProducto.Precio | currency}}</span>
 
             </div>
-            <div class="product__modal-des mb-30">
+            <div class="product__modal-des mb-30 text-justify">
               <p>{{this.productoService.detalleProducto.Descripcion}}</p>
             </div>
             <div class="product__modal-form mb-30">
@@ -33,7 +33,7 @@
                 </div>
                 <ng-container *ngFor="let item of carritoDeComprasService.listaDetalleCarritoCompras">
                   <div class="pro-cart-btn" *ngIf="item.IdProducto==this.productoService.detalleProducto.IdProducto">
-                    <a class="add-cart-btn mb-20" [routerLink]="['/solicitudes/carrito']">Ir a carrito({{item.Cantidad}})</a>
+                    <a class="add-cart-btn mb-20" [routerLink]="['/solicitudes/carrito']">Ir a carrito</a>
                   </div>
                 </ng-container>
 
@@ -65,7 +65,7 @@
             <div class="tab-content" id="pro-detailsContent">
               <div class="tab-pane fade show active" id="des" role="tabpanel">
                 <div class="product__details-des">
-                  <p>{{this.productoService.detalleProducto.Descripcion}}</p>
+                  <p class="text-justify">{{this.productoService.detalleProducto.Descripcion}}</p>
 
                   <div class="product__details-des-list mb-20">
                     <ul>
@@ -76,7 +76,7 @@
                         class="p-1 ">  Ruedas:  </label> <label *ngIf="!this.productoService.detalleProducto.Ruedas">No</label>  <label *ngIf="this.productoService.detalleProducto.Ruedas">Si</label> </span>
                       </li>
                       <li><span><label
-                        class="p-1 ">  Precio:  </label>{{this.productoService.detalleProducto.Precio}}</span>
+                        class="p-1 ">  Precio:  </label>{{this.productoService.detalleProducto.Precio | currency}}</span>
                       </li>
                       <li><span><label
                         class="p-1 ">  Puntos:  </label> {{this.productoService.detalleProducto.Puntos}}</span>

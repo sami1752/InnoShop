@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {DATA_BAR_HORIZONTAL_CHAR, ReporteSPM} from '../../../../../models/Reportes/reporte-spm';
 import {HttpClient} from '@angular/common/http';
@@ -7,6 +7,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import {IBarChart} from '../../../../../models/Reportes/charts.interface';
 import {DATA_ADVANCE_CHAR} from '../../../../../models/Reportes/reporte-ventas';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reportes-m',
@@ -41,11 +42,12 @@ export class ReportesMComponent implements OnInit {
   };
 
   constructor(private http: HttpClient,
-              private configuracion: ConfiguracionService) {
+              private configuracion: ConfiguracionService,
+              private toastr: ToastrService) {
   }
 
   downloadPDF(): void {
-    alert('Generando Reporte');
+    this.toastr.success('Generando Reporte', 'Reporte');
     // Extraemos el
     const DATA = document.getElementById('htmlData');
     const doc = new jsPDF('p', 'pt', 'a4');

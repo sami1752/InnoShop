@@ -12,7 +12,7 @@ import {environment} from 'src/environments/environment';
 import {Route, Router} from '@angular/router';
 import {DescuentosService} from '../../../../../../services/descuentos.service';
 import {Descuento} from '../../../../../../models/Descuentos/descuento';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-finalizar-compra',
   templateUrl: './finalizar-compra.component.html',
@@ -25,7 +25,8 @@ export class FinalizarCompraComponent implements OnInit {
               public usuarioService: UsuarioService,
               public ventasService: VentasService,
               private router: Router,
-              public descuentosService: DescuentosService) {
+              public descuentosService: DescuentosService,
+              public toastr: ToastrService) {
   }
 
   public payPalConfig ?: IPayPalConfig;
@@ -89,13 +90,13 @@ export class FinalizarCompraComponent implements OnInit {
         if (this.descuentosService.usoCupones){
           this.descuentosService.EditarCupon(this.descuentosService.descuentoEnVenta).subscribe(
             res => {
-            }, err => {alert('Error'); }
+            }, err => {this.toastr.error('Ha ocurrido un error'); }
           );
         }
         },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
-        alert('Pago cancelado');
+        this.toastr.warning('Pago cancelado');
       },
       onError: err => {
         console.log('OnError', err);
@@ -136,14 +137,13 @@ export class FinalizarCompraComponent implements OnInit {
               this.detalleVentaProducto.IdVenta = resV.IdVenta;
               this.detalleVentaProducto.SubTotal = 0;
               this.detalleVentaProducto.IdDetalleVentaProducto = 0;
-              console.log(this.detalleVentaProducto);
               // tslint:disable-next-line:no-shadowed-variable
               this.ventasService.agregarDetalleVenta(this.detalleVentaProducto).subscribe((res: any) => {} );
               this.carritoDeComprasService.CarritoDeComprasUsuario(res.Id);
               this.carritoDeComprasService.editarCarrito().subscribe();
             });
-            alert('Compra realizada con exito');
             this.router.navigateByUrl('solicitudes/historialCompras');
+            this.toastr.success('Su compra se ha realizado exitosamente', 'Compras');
           }, err => {alert('Error'); console.log(err); }
         );
       }, err => {}

@@ -45,8 +45,8 @@ export class RegistrarVentaComponent implements OnInit {
     this.camposDetalle = false;
     this.ventasService.desplegarDetalleVentaEnRegistro = false;
     this.ventasService.ListarVentas();
-    this.toastr.success('Registro exitoso');
     window.location.reload();
+    this.toastr.success('Se registró la venta  exitosamente', 'Registro venta');
   }
 
 
@@ -74,7 +74,6 @@ export class RegistrarVentaComponent implements OnInit {
           this.detalleVentaProducto.SubTotal = this.detalleVentaProducto.Cantidad * this.productosService.detalleProducto.Precio;
           this.ventasService.agregarDetalleVenta(this.detalleVentaProducto).subscribe(
             (res: any) => {
-              this.toastr.success('Se registró la venta  exitosamente', 'Registro venta');
               this.camposDetalle = false;
               this.ventasService.desplegarDetalleVentaEnRegistro = true;
               this.ventasService.ListarDetalleVentasProductos(resp.IdVenta);

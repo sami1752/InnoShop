@@ -7,6 +7,7 @@ import {DATA_BAR_CHAR, ReporteSPM} from '../../../../../models/Reportes/reporte-
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import {IBarChart} from '../../../../../models/Reportes/charts.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reportes-sp',
@@ -46,7 +47,8 @@ export class ReportesSPComponent implements OnInit {
 
 
   constructor(private http: HttpClient,
-              private configuracion: ConfiguracionService) {
+              private configuracion: ConfiguracionService,
+              private toastr: ToastrService) {
     this.http.get(this.configuracion.rootURL +
       '/Reportes/Solicitudes/0001-01-01 00:00:00.0000000/0001-01-01 00:00:00.0000000').toPromise().then(res => {
       this.ReporteE = res as ReporteSPM;
@@ -55,7 +57,7 @@ export class ReportesSPComponent implements OnInit {
 
 
   downloadPDF(): void {
-    alert('Generando Reporte');
+    this.toastr.success('Generando Reporte', 'Reporte');
     // Extraemos el
     const DATA = document.getElementById('htmlData');
     const doc = new jsPDF('p', 'pt', 'a4');
@@ -68,7 +70,7 @@ export class ReportesSPComponent implements OnInit {
       const img = canvas.toDataURL('image/PNG');
 
       // Add image Canvas to PDF
-      const bufferX = 15;
+      const bufferX = 20;
       const bufferY = 15;
       const imgProps = (doc as any).getImageProperties(img);
       const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;

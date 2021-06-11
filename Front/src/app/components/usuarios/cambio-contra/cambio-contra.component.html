@@ -2,43 +2,50 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
-        <div class="basic-login">
-          <h3 class="text-center mb-60">Cambio De Contraseña</h3>
+        <div class="card basic-login">
+          <h3 class="text-center mb-60 colortxt font-weight-bold">Cambio de contraseña</h3>
           <form class="" [formGroup]="this.usuarioService.formularioCambioContrasena" (ngSubmit)="cambio()">
-            <label for="ContrasenaAntigua">Contraseña Actual<span>**</span></label>
-            <input id="ContrasenaAntigua" formControlName="ContrasenaAntigua" type="password" placeholder="Ingrese Contraseña actual"/>
+            <label for="ContrasenaAntigua">Contraseña actual<span>**</span></label>
+            <input id="ContrasenaAntigua" formControlName="ContrasenaAntigua" type="password" placeholder="Ingrese contraseña actual"/>
             <!--Validaciones Contraseña-->
             <div
               *ngIf="this.usuarioService.contrasenaActual.invalid && (this.usuarioService.contrasenaActual.touched || this.usuarioService.contrasenaActual.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.contrasenaActual.hasError('required')">La contraseña es obligatoria</div>
+              class="alertad ">
+              <div *ngIf="this.usuarioService.contrasenaActual.hasError('required')"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
             </div>
-            <label for="Contrasena">Contraseña Nueva<span>**</span></label>
+            <br>
+            <br>
+
+
+            <label for="Contrasena" class="">Contraseña nueva<span>**</span></label>
             <input id="Contrasena" formControlName="Contrasena" type="password" placeholder="Ingrese Contraseña"/>
             <!--Validaciones Contraseña-->
             <div
               *ngIf="this.usuarioService.contrasenaNueva.invalid && (this.usuarioService.contrasenaNueva.touched || this.usuarioService.contrasenaNueva.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.contrasenaNueva.hasError('required')">La contraseña es obligatoria</div>
+              class="alertad mb-20 text-center">
+              <div *ngIf="this.usuarioService.contrasenaNueva.hasError('required')"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
             </div>
-            <label for="ConfirmarContrasena">Confirmar Contraseña<span>**</span></label>
+            <br>
+            <br>
+            <label for="ConfirmarContrasena">Confirmar contraseña<span>**</span></label>
             <input id="ConfirmarContrasena" formControlName="ConfirmarContrasena" type="password" placeholder="Ingrese contraseña"/>
             <!--Validaciones confirmar Contraseña-->
             <div
               *ngIf="this.usuarioService.ConfirmarcontrasenaNueva.invalid && (this.usuarioService.ConfirmarcontrasenaNueva.touched || this.usuarioService.ConfirmarcontrasenaNueva.dirty)"
-              class="text-danger mb-20 text-center">
-              <div *ngIf="this.usuarioService.ConfirmarcontrasenaNueva.hasError('required')">La contraseña de confirmación es
-                obligatoria
+              class="alertad mb-20 text-center">
+              <div *ngIf="this.usuarioService.ConfirmarcontrasenaNueva.hasError('required')"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio
               </div>
-              <div *ngIf="this.usuarioService.ConfirmarcontrasenaNueva.hasError('ContrasenasDiferentes')">Las contraseñas
+              <div *ngIf="this.usuarioService.ConfirmarcontrasenaNueva.hasError('ContrasenasDiferentes')"><i class="bi bi-exclamation-triangle-fill"></i> Las contraseñas
                 deben coincidir
               </div>
             </div>
+            <br>
+            <br>
+
             <div class="mt-10"></div>
             <button type="submit" [disabled]="this.usuarioService.formularioCambioContrasena.invalid"
                     class="os-btn w-100">Cambiar Contraseña
             </button>
-            <div class="or-divide"><span></span></div>
           </form>
         </div>
       </div>

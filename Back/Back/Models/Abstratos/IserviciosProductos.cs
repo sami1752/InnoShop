@@ -10,6 +10,7 @@ namespace Back.Models.Abstratos
 {
     public interface IserviciosProductos
     {
+        Task<ActionResult<IEnumerable<DetalleProducto>>> ListarProductos(string Busqueda);
         Task<Producto> BuscarProducto(int id);
         Task<ActionResult<IEnumerable<DetalleProducto>>> listarProductos();
         Task<ActionResult<IEnumerable<Categoria>>> listarCategorias();
@@ -37,6 +38,7 @@ namespace Back.Models.Abstratos
         Task AgregarEntrada(Entrada entrada);
         Task<ActionResult<IEnumerable<PrecioProducto>>> ListaTodosPreciosProducto();
         public int ObtenerStockProducto(int idProducto);
+        Task<ActionResult<IEnumerable<DetalleProducto>>> listarProductosPorPreciosFiltro(bool decision);
 
 
     }

@@ -17,15 +17,11 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario</th>
         <td mat-cell *matCellDef="let row"> {{row.NombreUsuario}} </td>
       </ng-container>
-      <ng-container matColumnDef="TotalIva">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Iva</th>
-        <td mat-cell *matCellDef="let row"> {{row.TotalIva}} </td>
-      </ng-container>
       <ng-container matColumnDef="Total">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Total</th>
-        <td mat-cell *matCellDef="let row"> {{row.Total}}
+        <td mat-cell *matCellDef="let row"> {{row.Total | currency}}
           <i (click)="detalleVenta(row.IdVenta)"
-             class="bi bi-eye float-right text-info" aria-hidden="true"></i>
+             class="bi bi-eye float-right text-info pointer" aria-hidden="true"></i>
         </td>
 
       </ng-container>

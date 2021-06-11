@@ -10,19 +10,23 @@
         <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">Id Producto</th>
-          <th></th>
+          <th scope="col">Producto</th>
           <th></th>
         </tr>
         </thead>
         <tbody *ngFor="let producto of solicitudesPersonalizadasService.listaDetallesProductosMontajes">
         <tr>
           <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.IdDetallesProductosMontajes}}</td>
-          <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.IdProducto}}</td>
-          <td><i (click)="eliminarProducto(producto.IdDetallesProductosMontajes)" class="bi bi-trash text-danger"></i></td>
-          <td><i
-            (click)=" detalleProducto(producto.IdProducto); this.productoService.desplegarDetalle =!this.productoService.desplegarDetalle; "
-            class="bi bi-eye" aria-hidden="true"></i></td>
+          <td (click)="llenarFormularioProducto(producto.IdProducto)">{{producto.Producto}}</td>
+          <td>
+            <i *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'En proceso de cotizacion'"
+               (click)="eliminarProducto(producto.IdDetallesProductosMontajes)"
+               class="bi bi-trash text-danger pointer"></i>
+            <i
+              (click)=" detalleProducto(producto.IdProducto); this.productoService.desplegarDetalle =!this.productoService.desplegarDetalle; "
+              class="bi bi-eye ml-2 pointer" aria-hidden="true"></i>
+          </td>
+
         </tr>
         </tbody>
       </table>

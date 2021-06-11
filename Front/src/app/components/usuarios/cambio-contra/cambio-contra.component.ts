@@ -12,6 +12,7 @@ import {
   Router
 } from '@angular/router';
 import {Usuario} from 'src/app/models/usuario';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-cambio-contra',
@@ -19,7 +20,10 @@ import {Usuario} from 'src/app/models/usuario';
   styleUrls: ['./cambio-contra.component.css']
 })
 export class CambioContraComponent implements OnInit {
-  constructor(public usuarioService: UsuarioService, public configuracion: ConfiguracionService, private router: Router) {
+  constructor(public usuarioService: UsuarioService,
+              public configuracion: ConfiguracionService,
+              private router: Router,
+              public  toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -33,8 +37,7 @@ export class CambioContraComponent implements OnInit {
         this.usuarioService.cambioContra().subscribe(
           (resp) => {
             console.log(res);
-            alert('Cambio Exitoso');
-            this.configuracion.cerrarSesion();
+            this.toastr.success('Cambio exitoso', 'Cambio de contraseña');
           },
           error => {
             alert('Error');

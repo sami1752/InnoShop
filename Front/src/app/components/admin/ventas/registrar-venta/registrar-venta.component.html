@@ -2,24 +2,26 @@
   <div class="row">
     <div class="col-9">
 
-      <label for="IdProducto">Seleccione para agregar a venta <span class="text-danger">**</span></label>
-<div class="input-group">
-        <select class="form-control font-weight-light" formControlName="IdProducto" (change)="llenarCamposVenta($event.target.value)"
+      <label for="IdProducto">Selecciona para agregar a venta <span class="text-danger">**</span></label>
+      <div class="input-group">
+        <select class="form-control font-weight-light" formControlName="IdProducto"
+                (change)="llenarCamposVenta($event.target.value)"
                 id="IdProducto">
-          <option value=0>Elige Producto</option>
+          <option value="" selected>Selecciona un producto</option>
           <ng-container *ngFor="let pro of this.productosService.listaProductos">
-            <option *ngIf="pro.IdCategoria ==2"  [value]=pro.IdProducto>{{pro.Nombre}} </option>
+            <option *ngIf="pro.IdCategoria ==2 && pro.Estado" [value]=pro.IdProducto>{{pro.IdProducto+" - "+pro.Nombre}} </option>
           </ng-container>
 
         </select>
         <button type="submit" [disabled]="!this.camposDetalle || this.ventasService.formularioRegistroVenta.invalid"
                 class=" ml-2 btn btn-sm btn-info">Agregar
         </button>
-  <button type="button" *ngIf="this.ventasService.IdVenta && !this.ventasService.desplegarDetalle"  (click)="finalizarVenta()"
-          class="ml-3 btn btn-sm btn-success">Finalizar
-  </button>
+        <button type="button" *ngIf="this.ventasService.IdVenta && !this.ventasService.desplegarDetalle"
+                (click)="finalizarVenta()"
+                class="ml-3 btn btn-sm btn-success">Finalizar
+        </button>
 
-    </div>
+      </div>
     </div>
   </div>
   <input type="hidden" formControlName="IdVenta">
@@ -27,14 +29,19 @@
   <div *ngIf="camposDetalle" class="row">
     <div class="col">
       <label for="Cantidad">Cantidad <span class="text-danger">**</span></label>
-      <input formControlName="Cantidad" type="number" id="Cantidad" placeholder="Cantidad" class="form-control "/>
+      <input formControlName="Cantidad" type="number" id="Cantidad" placeholder="Ingresa la cantidad"
+             class="form-control "/>
       <div
         *ngIf="this.ventasService.Cantidad.invalid && (this.ventasService.Cantidad.touched || this.ventasService.Cantidad.dirty)"
         class="alertad-l mb-20" style=" ">
-        <div *ngIf="this.ventasService.Cantidad.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
-        <div *ngIf="this.ventasService.Cantidad.hasError('pattern')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Solo se permiten números válidos
+        <div *ngIf="this.ventasService.Cantidad.hasError('required')" class="val"><i
+          class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio
         </div>
-        <div *ngIf="this.ventasService.Cantidad.hasError('validarStock')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> La cantidad no debe superar el stock
+        <div *ngIf="this.ventasService.Cantidad.hasError('pattern')" class="val"><i
+          class="bi bi-exclamation-triangle-fill"></i> Solo se permiten números válidos
+        </div>
+        <div *ngIf="this.ventasService.Cantidad.hasError('validarStock')" class="val"><i
+          class="bi bi-exclamation-triangle-fill"></i> La cantidad no debe superar el stock
         </div>
       </div>
     </div>
@@ -44,7 +51,7 @@
       <h3>{{this.productosService.detalleProducto.Precio}} </h3>
     </div>
     <div class="col">
-      <label>Stock</label>
+      <label>Stock diponible</label>
       <h3>{{this.productosService.detalleProducto.CantidadStock}} </h3>
     </div>
     <div class="col">

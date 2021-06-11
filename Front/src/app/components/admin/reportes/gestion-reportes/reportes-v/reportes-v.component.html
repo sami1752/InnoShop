@@ -61,15 +61,15 @@
                     <tr>
                       <td colspan="2" class="bg-secondary"> Ventas productos</td>
                     </tr>
-                    <tr>
+                    <tr class="bg-gray-light">
                       <td>Total global :  </td>
                       <td align="center">{{ReporteV.TotalGlobal}}</td>
                     </tr>
-                    <tr>
+                    <tr class="bg-gray-light">
                       <td>Total  descuentos :</td>
                       <td align="center">{{ReporteV.TotalDescuentos}}</td>
                     </tr>
-                    <tr>
+                    <tr class="bg-gray-light">
                       <td>Total  ingresos : </td>
                       <td align="center"> {{ReporteV.TotalIngresos}}</td>
                     </tr>
@@ -104,7 +104,6 @@
 
               </div>
               <div >
-
                 <h2 class="font-weight-light colortxt" >TOTAL EN VENTAS</h2>
                 <ngx-charts-pie-chart
                   [view]="view3"
@@ -115,11 +114,10 @@
                   [legendPosition]="legendPosition"
                   [labels]="showLabels"
                   [doughnut]="isDoughnut"
-                >
+                  [maxLabelLength]="100">
                 </ngx-charts-pie-chart>
               </div>
-              <br>
-              <br>
+
             </div>
           </section>
         </div>

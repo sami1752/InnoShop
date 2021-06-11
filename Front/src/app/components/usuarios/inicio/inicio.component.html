@@ -26,13 +26,12 @@
                         <div class="input-group ">
                           <input type="text " class="form-control "
                                  aria-label="Text input with segmented dropdown button "
-                                 placeholder="Buscador en construcción... ">
-                          <button type="button " class="btn btn-sm btn-outline-secondary "><i class="bi bi-search "></i>
-                          </button>
+                                 placeholder="Buscador" [(ngModel)]="buscar" (input)="Buscar()">
+
                         </div>
                       </li>
                       <li class="has-dropdown " *ngIf="usuarioService.inicioSesion ">
-                        <a><i class="bi bi-receipt-cutoff "></i> Pedidos</a>
+                        <a class="pointer"><i class="bi bi-receipt-cutoff "></i> Pedidos</a>
                         <ul class="submenu transition-3 ">
                           <li><a href="/solicitudes/Solicitud/0 ">Solicitud</a></li>
                           <li><a href="/solicitudes/MisSolicitudes ">Mis solicitudes</a></li>
@@ -40,7 +39,7 @@
                         </ul>
                       </li>
                       <li class="has-dropdown " *ngIf="usuarioService.inicioSesion ">
-                        <a><i class="bi bi-screwdriver "></i> Servicios</a>
+                        <a class="pointer"><i class="bi bi-screwdriver "></i> Servicios</a>
                         <ul class="submenu transition-3 ">
                           <li><a href="/solicitudes/Montajes/0 ">Montajes</a></li>
                           <li><a href="/solicitudes/MisMontajes ">Mis montajes</a></li>
@@ -49,7 +48,7 @@
 
                       <li *ngIf="usuarioService.inicioSesion "><a href="descuentos/ruleta"><i
                         class="bi bi-shuffle "></i> Ruleta</a></li>
-                      <li><a href="contact.html "><i class="bi bi-telephone "></i> Contacto</a></li>
+                      <li><a href="https://www.instagram.com/innovartevitrinas.cali/ "><i class="bi bi-telephone "></i> Contacto</a></li>
                       <li>
                         <a *ngIf="!usuarioService.inicioSesion " href="usuarios/login "> <i
                           class="bi bi-person-circle "></i> Iniciar sesion</a>

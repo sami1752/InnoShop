@@ -9,7 +9,7 @@
       <div class="tab-content p-0">
         <form class="" [formGroup]="this.productoService.formularioRegistroProductos" (ngSubmit)="onSubmit()">
           <input type="hidden" formControlName="IdProducto">
-          <label for="Nombre">Nombre <span class="text-danger">**</span></label>
+          <label for="Nombre">Nombre del producto<span class="text-danger">**</span></label>
           <input formControlName="Nombre" id="Nombre" type="text" placeholder="Ingresa el nombre" class="form-control"/>
           <div
             *ngIf="this.productoService.Nombre.invalid && (this.productoService.Nombre.touched || this.productoService.Nombre.dirty)"
@@ -73,7 +73,7 @@
           <br>
           <label for="TipoPuerta">Tipo de puerta <span class="text-danger">**</span></label>
           <select class="form-control" formControlName="TipoPuerta" id="TipoPuerta">
-            <option value="">Elige Tipo de Puerta</option>
+            <option value="">Selecciona un tipo de puerta</option>
             <option *ngFor="let doc of listaTiposPuerta" [value]="doc.Tipo">{{doc.Tipo}}</option>
           </select>
           <div
@@ -83,7 +83,7 @@
           </div>
           <br>
           <label for="Descripcion"> Descripción <span class="text-danger">**</span></label>
-          <textarea formControlName="Descripcion" id="Descripcion" class="form-control "></textarea>
+          <textarea formControlName="Descripcion" id="Descripcion" class="form-control" placeholder="Ingresa la descripción del producto"></textarea>
           <div
             *ngIf="this.productoService.Descripcion.invalid && (this.productoService.Descripcion.touched || this.productoService.Descripcion.dirty)"
             class="alertad mb-20" style=" ">
@@ -107,7 +107,7 @@
           <div class="row">
             <div class="col">
               <label for="Puntos">Puntos <span class="text-danger">**</span></label>
-              <input formControlName="Puntos" type="number" id="Puntos" placeholder="Ingresa los Puntos"
+              <input formControlName="Puntos" type="number" id="Puntos" placeholder="Ingresa los puntos"
                      class="form-control "/>
               <div
                 *ngIf="this.productoService.Puntos.invalid && (this.productoService.Puntos.touched || this.productoService.Puntos.dirty)"
@@ -122,7 +122,7 @@
             <div class="col">
               <label for="GarantiaMeses">Garantía en meses <span class="text-danger">**</span></label>
               <input formControlName="GarantiaMeses" type="number" id="GarantiaMeses"
-                     placeholder="Ingresa la garantia en meses"
+                     placeholder="Ingresa la garantía"
                      class="form-control "/>
               <div
                 *ngIf="this.productoService.GarantiaMeses.invalid && (this.productoService.GarantiaMeses.touched || this.productoService.GarantiaMeses.dirty)"
@@ -133,8 +133,9 @@
               </div>
             </div>
           </div>
+          <br>
           <div *ngIf="this.productoService.CampoPrecio">
-            <label for="Precio">Precio producto<span class="text-danger">**</span></label>
+            <label for="Precio">Precio inicial del producto<span class="text-danger">**</span></label>
             <input formControlName="Precio" type="number" id="Precio" placeholder="Ingrese precio producto"
                    class="form-control "/>
             <div
@@ -147,9 +148,9 @@
             <div class="mt-10"></div>
           </div>
           <div *ngIf="this.productoService.CampoPrecio">
-            <label for="CantidadStock">Cantidad producto<span class="text-danger">**</span></label>
+            <label for="CantidadStock">Cantidad inicial del producto<span class="text-danger">**</span></label>
             <input formControlName="CantidadStock" type="number" id="CantidadStock"
-                   placeholder="Ingrese cantidad de producto"
+                   placeholder="Ingresa la cantidad inicial del producto"
                    class="form-control "/>
             <div
               *ngIf="this.productoService.CantidadStock.invalid && (this.productoService.CantidadStock.touched || this.productoService.CantidadStock.dirty)"

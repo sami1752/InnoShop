@@ -23,7 +23,7 @@ export interface UserData {
 export class ListarVentasComponent implements AfterViewInit {
 
 
-  displayedColumns: string[] = ['IdVenta', 'NombreUsuario',   'TotalIva', 'Total'];
+  displayedColumns: string[] = ['IdVenta', 'NombreUsuario', 'Total'];
   dataSource: MatTableDataSource<VentasTabla>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

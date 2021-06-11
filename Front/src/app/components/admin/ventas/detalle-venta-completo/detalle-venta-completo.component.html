@@ -1,14 +1,14 @@
 <div class="card">
- <h1 class="card-title colortxt font-weight-light" >
+  <h1 class="card-title colortxt font-weight-light">
 
 
-</h1>
+  </h1>
   <div class="card-body">
-    <div class="tab-content p-0" >
+    <div class="tab-content p-0">
       <table class="table  table-striped">
         <thead>
-        <tr >
-          <th >Producto</th>
+        <tr>
+          <th>Producto</th>
           <th class="text-center">Cantidad</th>
           <th class="text-center">Subtotal</th>
         </tr>
@@ -17,34 +17,36 @@
         <tr class="bg-light">
 
           <td><i class="bi bi-dot"></i> {{venta.NombreProducto}}</td>
-          <td class="text-center" >{{venta.Cantidad}}</td>
-          <td class="text-center" >{{venta.SubTotal}}</td>
+          <td class="text-center">{{venta.Cantidad}}</td>
+          <td class="text-center">{{venta.SubTotal | currency}}</td>
         </tr>
         </tbody>
         <tr *ngIf="ventasService.listaDetalleVentaProductos.length == 0">
           <td>Venta Solicitud</td>
           <td>1</td>
-          <td>{{this.ventasService.detalleVenta.Total - this.ventasService.detalleVenta.TotalIva}}</td>
+          <td>{{this.ventasService.detalleVenta.Total - this.ventasService.detalleVenta.TotalIva | currency}}</td>
         </tr>
       </table>
       <hr>
       <table class="table border">
         <tr>
-          <td class="bg-light font-weight-bold">Cliente :</td>
+          <td class="bg-light font-weight-bold">Cliente:</td>
           <td class="bg-light font-weight-light">{{this.ventasService.detalleVenta.NombreUsuario}}</td>
         </tr>
         <tr>
-          <td class="bg-light font-weight-bold">Descuento ({{this.ventasService.detalleVenta.PorcentajeDescuento}}%):</td>
-          <td class=" bg-light font-weight-light">{{this.ventasService.detalleVenta.ValorDescuento}}</td>
+          <td class="bg-light font-weight-bold">Descuento ({{this.ventasService.detalleVenta.PorcentajeDescuento}}%):
+          </td>
+          <td class=" bg-light font-weight-light">{{this.ventasService.detalleVenta.ValorDescuento | currency}}</td>
         </tr>
         <tr>
           <td class="bg-light font-weight-bold">Iva ({{this.ventasService.detalleVenta.ValorIva}}%):</td>
-          <td class="bg-light font-weight-light"> {{this.ventasService.detalleVenta.TotalIva}}</td>
+          <td class="bg-light font-weight-light"> {{this.ventasService.detalleVenta.TotalIva | currency}}</td>
         </tr>
         <tr>
-          <td class="bg-success font-weight-bold">Valor total :</td>
-          <td class="bg-success font-weight-light">{{this.ventasService.detalleVenta.Total}}</td>
+          <td class="bg-success font-weight-bold">Valor total:</td>
+          <td class="bg-success font-weight-light">{{this.ventasService.detalleVenta.Total | currency}}</td>
         </tr>
       </table>
+    </div>
   </div>
 </div>

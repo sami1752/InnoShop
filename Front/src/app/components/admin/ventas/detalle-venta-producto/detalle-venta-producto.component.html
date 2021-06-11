@@ -18,15 +18,15 @@
 <table class="table border">
   <tr>
     <td class="bg-light font-weight-bold">Descuento ({{this.ventasService.detalleVenta.PorcentajeDescuento}}%):</td>
-    <td class=" bg-light font-weight-light">{{this.ventasService.detalleVenta.ValorDescuento}}</td>
+    <td class=" bg-light font-weight-light">{{this.ventasService.detalleVenta.ValorDescuento | currency}}</td>
   </tr>
   <tr>
     <td class="bg-light font-weight-bold">Iva ({{this.ventasService.detalleVenta.ValorIva}}%):</td>
-    <td class="bg-light font-weight-light"> {{this.ventasService.detalleVenta.TotalIva}}</td>
+    <td class="bg-light font-weight-light"> {{this.ventasService.detalleVenta.TotalIva | currency}}</td>
   </tr>
   <tr>
     <td class="bg-success font-weight-bold">Valor total :</td>
-    <td class="bg-success font-weight-light">{{this.ventasService.detalleVenta.Total}}</td>
+    <td class="bg-success font-weight-light">{{this.ventasService.detalleVenta.Total | currency}}</td>
   </tr>
 </table>
 

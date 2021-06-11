@@ -39,7 +39,6 @@ export class ListarDetalleCarritoComponent implements OnInit {
   }
 
   eliminarDetalle(detalle): void {
-    if (confirm('¿Está seguro de eliminar producto del carrito?')) {
       this.carritoDeComprasService.eliminarDetalleCarrito(detalle.IdDetalleCarritoDeCompras).subscribe(
         (res: any) => {
           this.carritoDeComprasService.listarDetalleCarrito(detalle.IdUsuario);
@@ -49,7 +48,6 @@ export class ListarDetalleCarritoComponent implements OnInit {
           alert('error');
         }
       );
-    }
   }
 
   editarDetalleCarrito(detalle: DetalleCarritoDeCompras): void {
