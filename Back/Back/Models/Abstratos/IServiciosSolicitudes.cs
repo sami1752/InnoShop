@@ -43,7 +43,7 @@ namespace Back.Models.Abstratos
         Task<DetallesProductosMontajes> AgregarDetallesProductosMontajes
                     (DetallesProductosMontajes DetallesProductosMontajes);
         Task<ActionResult<IEnumerable<DetallesProductosMontajes>>> ListarDetallesProductosMontajes();
-        Task<ActionResult<IEnumerable<DetallesProductosMontajes>>> ListaDetallesProductosMontajes(int id);
+        Task<ActionResult<IEnumerable<DetallesProductosMontajesDetalle>>> ListaDetallesProductosMontajes(int id);
         Task EliminarDetallesProductosMontajes(int id);
         Task<ActionResult<IEnumerable<MontajeDetalle>>> ListarMontajes();
         Task<ActionResult<IEnumerable<MontajeDetalle>>> ListarMisMontajes(string id);

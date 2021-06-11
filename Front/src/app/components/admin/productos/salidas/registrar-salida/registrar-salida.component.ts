@@ -31,6 +31,7 @@ export class RegistrarSalidaComponent implements OnInit {
             this.listaSalidas.listarSalidas(this.productoService.detalleProducto.IdProducto);
             this.productoService.formularioRegistroEntrada.reset();
             this.productoService.formularioSalida = false;
+            this.productoService.buscarProductoIdDetalle(this.productoService.detalleProducto.IdProducto);
           }, error => {
             this.toast.error('Error de registro');
           });

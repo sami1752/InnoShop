@@ -79,7 +79,7 @@
             <div *ngIf="this.productoService.TipoPuerta.hasError('required')" class="val"><i class="bi bi-exclamation-triangle-fill"></i> Este campo es obligatorio</div>
           </div>
           <br>
-          <label for="Descripcion"> Descripcion <span class="text-danger">**</span></label>
+          <label for="Descripcion"> Descripción <span class="text-danger">**</span></label>
           <textarea formControlName="Descripcion" id="Descripcion" class="form-control" placeholder="Ingresa la descripción del producto"></textarea>
           <div
             *ngIf="this.productoService.Descripcion.invalid && (this.productoService.Descripcion.touched || this.productoService.Descripcion.dirty)"
@@ -130,6 +130,7 @@
               </div>
             </div>
           </div>
+          <br>
           <div *ngIf="this.productoService.CampoPrecio">
             <label for="Precio">Precio inicial del producto<span class="text-danger">**</span></label>
             <input formControlName="Precio" type="number" id="Precio" placeholder="Ingresa el precio inicial del producto"
@@ -143,6 +144,7 @@
             </div>
             <div class="mt-10"></div>
           </div>
+          <br>
           <div *ngIf="this.productoService.CampoPrecio">
             <label for="CantidadStock">Cantidad inicial del producto<span class="text-danger">**</span></label>
             <input formControlName="CantidadStock" type="number" id="CantidadStock"

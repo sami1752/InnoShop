@@ -1,14 +1,13 @@
 <form class="" [formGroup]="this.productoService.formularioRegistroEntrada" (ngSubmit)="registroEntrada()">
-  <div>
-    <label for="Cantidad"> agregar Stock <span>**</span></label>
+  <div class="input-group">
     <input formControlName="Cantidad" type="number" id="Cantidad" placeholder="Cantidad" class="form-control"/>
+    <button type="submit" [disabled]="this.productoService.formularioRegistroEntrada.invalid"
+            class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
+    <button type="button"
+            (click)="this.productoService.formularioRegistroEntrada.reset(); this.productoService.formularioEntrada=false"
+            class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button>
   </div>
 
-  <button type="submit" [disabled]="this.productoService.formularioRegistroEntrada.invalid"
-          class="btn btn-outline-secondary" title="Guardar"><i class="far fa-save"></i></button>
-  <button type="button"
-          (click)="this.productoService.formularioRegistroEntrada.reset(); this.productoService.formularioEntrada=false"
-          class="btn btn-outline-secondary" title="Limpiar"><i class="fas fa-broom"></i></button>
   <div
     *ngIf="this.productoService.CantidadEntrada.invalid && (this.productoService.CantidadEntrada.touched || this.productoService.CantidadEntrada.dirty)"
     class="alertad mb-20" style=" ">
@@ -19,3 +18,4 @@
     </div>
   </div>
 </form>
+<br>

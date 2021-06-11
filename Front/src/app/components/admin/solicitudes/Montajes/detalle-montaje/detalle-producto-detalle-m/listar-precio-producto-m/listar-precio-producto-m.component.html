@@ -5,7 +5,7 @@
       </h2>
       <button type="button" style="float: right;" class="btn"
               (click)="this.productoService.FormularioPrecio = !this.productoService.FormularioPrecio "
-              *ngIf="!this.solicitudesPersonalizadasService.SolicitudCortizado && !this.solicitudesPersonalizadasService.SolicitudRechazada">
+              *ngIf="this.solicitudesPersonalizadasService.Montajes.Estado == 'En proceso de cotizacion'" >
         <i
           class="bi bi-folder-plus"></i> Agregar
       </button>

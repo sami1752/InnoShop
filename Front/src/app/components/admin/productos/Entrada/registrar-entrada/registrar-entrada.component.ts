@@ -34,6 +34,7 @@ export class RegistrarEntradaComponent implements OnInit {
             this.productoService.formularioRegistroEntrada.reset();
             this.productoService.formularioEntrada = false;
             this.productoService.listarEntradas(this.productoService.entrada.IdProducto);
+            this.productoService.buscarProductoIdDetalle(this.productoService.entrada.IdProducto);
           }, error => {
             this.toastr.error('Ha ocurrido un error');
           });

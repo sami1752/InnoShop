@@ -35,7 +35,7 @@
                     <div class=" col ">
                       <i class="bi bi-arrow-right-short colortxt"></i>
                       <label class="p-1 colortxt"> Fecha: </label>
-                      {{this.solicitudesPersonalizadasService.Montajes.Fecha}}
+                      {{this.solicitudesPersonalizadasService.Montajes.Fecha| date:'dd-MM-yyyy'}}
                     </div>
                     <div class=" col ">
                       <i class="bi bi-arrow-right-short colortxt"></i>
@@ -93,8 +93,7 @@
                     <div class="col "
                          *ngIf="(this.solicitudesPersonalizadasService.Montajes.Estado != 'Aceptada')&&
                        (this.solicitudesPersonalizadasService.Montajes.Estado == 'Enviada' ||
-                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Modificada'||
-                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Devuelta')">
+                       this.solicitudesPersonalizadasService.Montajes.Estado == 'Modificada')">
                       <button class="btn btn-sm btn-primary" (click)="cotizar()">Cotizar</button>
                     </div>
                     <div class="col "
