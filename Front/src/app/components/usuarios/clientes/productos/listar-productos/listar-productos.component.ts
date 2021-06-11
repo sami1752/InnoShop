@@ -145,4 +145,11 @@ z
     }
   }
 
+  filtrarPreciosMenorAMayor(): void{
+    this.productoService.filtroPorPrecioProductos(false);
+  }
+  filtrarPreciosMayorAMenor(): void{
+    this.productoService.filtroPorPrecioProductos(true);
+  }
+
 }

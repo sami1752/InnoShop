@@ -304,6 +304,8 @@ namespace Back.Controllers
             return  _context.ObtenerStockProducto(idProducto);
         }
 
-
+        [HttpGet]
+        [Route("FiltroProducto/{decision}")]
+        public async Task<ActionResult<IEnumerable<DetalleProducto>>> buscarProductoPrecio(bool decision) => await _context.listarProductosPorPreciosFiltro(decision);
     }
 }

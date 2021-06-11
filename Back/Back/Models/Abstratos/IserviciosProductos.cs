@@ -38,6 +38,7 @@ namespace Back.Models.Abstratos
         Task AgregarEntrada(Entrada entrada);
         Task<ActionResult<IEnumerable<PrecioProducto>>> ListaTodosPreciosProducto();
         public int ObtenerStockProducto(int idProducto);
+        Task<ActionResult<IEnumerable<DetalleProducto>>> listarProductosPorPreciosFiltro(bool decision);
 
 
     }

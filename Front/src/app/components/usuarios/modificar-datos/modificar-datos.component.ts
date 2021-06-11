@@ -64,7 +64,7 @@ export class ModificarDatosComponent implements OnInit {
     this.usuarioService.actualizacionUsuario().subscribe(
       (respuesta: any) => {
         if (respuesta.Succeeded) {
-          this.router.navigateByUrl('usuarios/login');
+          this.ngOnInit();
           this.toastr.success('Se ha actualizado los datos exitosamente', 'Edición de tu cuenta');
         } else {
           respuesta.Errors.forEach(element => {

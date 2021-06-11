@@ -410,5 +410,10 @@ export class ProductoService {
       .toPromise()
       .then(res => this.listaProductos = res as Producto[]);
   }
+  filtroPorPrecioProductos(decision): void{
+    this.http.get(this.configuracion.rootURL + '/Productos/FiltroProducto/' + decision)
+      .toPromise()
+      .then(res => this.listaProductos = res as Producto[]);
+  }
 
 }

@@ -20,15 +20,14 @@
               <h3>
                 <i class="bi bi-dot "></i> Precio</h3>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" disabled>
+                <button (click)="filtrarPreciosMenorAMayor()" class="btn-info" type="button" value="" id="flexCheckDefault">Más bajo a más alto</button>
                 <label class="form-check-label" for="flexCheckDefault">
-                  Más bajo a Más alto
+
                 </label>
               </div>
               <div class="form-check" style="padding-top:50px ;">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" disabled>
+                <button (click)="filtrarPreciosMayorAMenor()" class="btn-info" type="button" value="" id="flexCheckChecked2">Más alto a Más bajo</button>
                 <label class="form-check-label" for="flexCheckChecked2">
-                  Más alto a Más bajo
                 </label>
               </div>
             </div>
@@ -135,7 +134,7 @@
                                 </div>
                                 <div *ngFor="let precio of productoService.listaPrecios" style=" margin:-3.2% 0">
                           <span style=" font-size: 22px; color:rgb(182, 0, 0); margin-left: 5px;"
-                                *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==producto.IdProducto"> $ {{precio.Precio}}
+                                *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==producto.IdProducto"> {{precio.Precio | currency}}
                             COP</span>
                                 </div>
                                 <div class="product__price transition-3 " style="margin-left: 5px; ">
