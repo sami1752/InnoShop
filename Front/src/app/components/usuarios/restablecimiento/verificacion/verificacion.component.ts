@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {UsuarioService} from 'src/app/services/usuario.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-verificacion',
   templateUrl: './verificacion.component.html',
@@ -9,7 +9,8 @@ import {UsuarioService} from 'src/app/services/usuario.service';
 })
 export class VerificacionComponent implements OnInit {
 
-  constructor(public usuarioService: UsuarioService, private route: ActivatedRoute, private router: Router) {
+  constructor(public usuarioService: UsuarioService, private route: ActivatedRoute, private router: Router,
+              public toastr: ToastrService) {
   }
 
   token: string;
@@ -26,11 +27,11 @@ export class VerificacionComponent implements OnInit {
 
     this.usuarioService.verificacionRecuperacionCuenta(this.id, this.token).subscribe(
       (res: any) => {
-        alert(res.mensaje);
-        this.router.navigateByUrl('usuarios/login');
+        this.toastr.success(res.mensaje);
+        // this.router.navigateByUrl('usuarios/login');
       },
       error => {
-        alert(error.error.mensaje);
+        this.toastr.error(error.error.mensaje);
       });
   }
 

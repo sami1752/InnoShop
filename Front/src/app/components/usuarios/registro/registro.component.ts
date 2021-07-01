@@ -26,28 +26,15 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   registro(): void {
     this.sw = 0;
     this.usuarioService.registrarUsuario().subscribe(
       (respuesta: any) => {
-        if (respuesta.Succeeded) {
           this.usuarioService.formularioRegistroUsuario.reset();
-          this.toastr.success('Se ha registrado exitosamente');
+          this.toastr.success(respuesta.mensaje);
           this.sw = 1;
-        } else {
-          respuesta.Errors.forEach(element => {
-            switch (element.Code) {
-              case 'DuplicateUserName':
-                this.toastr.info('El usuario ya se encuentra registrado');
-                this.sw = 1;
-                break;
-              default:
-                this.toastr.error('Ha ocurrido un error');
-                break;
-            }
-          });
-        }
-      });
+      }, err => {
+        this.toastr.info(err.error.mensaje);
+    });
   }
 }

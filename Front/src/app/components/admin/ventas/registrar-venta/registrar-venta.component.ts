@@ -79,7 +79,7 @@ export class RegistrarVentaComponent implements OnInit {
               this.ventasService.ListarDetalleVentasProductos(resp.IdVenta);
               this.ventasService.DetalleVenta(this.ventasService.IdVenta);
             }, err => {
-              this.toastr.error('Ha ocurrido un error');
+              this.toastr.error(err.error.mensaje);
             }
           );
         }

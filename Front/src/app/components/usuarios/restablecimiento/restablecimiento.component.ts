@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ConfiguracionService} from 'src/app/services/configuracion.service';
 import {UsuarioService} from 'src/app/services/usuario.service';
 import {Router} from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-restablecimiento',
@@ -10,7 +11,10 @@ import {Router} from '@angular/router';
 })
 export class RestablecimientoComponent implements OnInit {
 
-  constructor(public usuarioService: UsuarioService, public configuracion: ConfiguracionService, private router: Router) {
+  constructor(public usuarioService: UsuarioService,
+              public configuracion: ConfiguracionService,
+              private router: Router,
+              public toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -20,10 +24,10 @@ export class RestablecimientoComponent implements OnInit {
 
     this.usuarioService.enviarEmailRecuperacion().subscribe(
       (res: any) => {
-        alert(res.mensaje);
+        this.toastr.success(res.mensaje);
       },
       (error: any) => {
-        alert(error.error.mensaje);
+        this.toastr.info(error.error.mensaje);
       }
     );
   }

@@ -8,6 +8,7 @@ import {
 import {
   Router
 } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ import {
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public usuarioService: UsuarioService, private router: Router) {
+  constructor(public usuarioService: UsuarioService, private router: Router,  public toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -30,11 +31,10 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         localStorage.setItem('token', res.token);
         this.router.navigateByUrl('productos/inicio');
-        console.log(res.token);
       },
       (error: any) => {
         if (error.status === 400) {
-          alert(error.error.mensaje);
+          this.toastr.info(error.error.mensaje);
         }
       }
     );

@@ -86,46 +86,68 @@ namespace Back.Controllers
         public async Task<Object> RegistroUsuario(UsuarioModel usuarioModel)
         {
             try
+             {
+                if (usuarioModel!=null)
                 {
-                UsuarioIdentity usuario = new()
-                {
-                    UserName = usuarioModel.Email,
-                    Nombres = usuarioModel.Nombres,
-                    Apellidos = usuarioModel.Apellidos,
-                    Email = usuarioModel.Email,
-                    Sexo = usuarioModel.Sexo,
-                    IdRol = usuarioModel.IdRol,
-                    TipoDocumento = usuarioModel.TipoDocumento,
-                    NumDocumento = usuarioModel.NumDocumento,
-                    Telefono = usuarioModel.Telefono,
-                    PasswordHash = usuarioModel.Contrasena,
-                    Direccion = usuarioModel.Direccion,
-                    Estado = true
-                };
-                IdentityResult resp = await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false);
-                if (resp.Succeeded)
-                {
-                    string token = await _userManager.GenerateEmailConfirmationTokenAsync(usuario);
-                    string confirmationLink = "http://localhost:4200/usuarios/confirmarEmail?id=" + usuario.Id + "&token=" + Base64UrlEncoder.Encode(token);
-                    using MailMessage mail = new();
-                    mail.From = new MailAddress("innoshopcali@gmail.com", "Innova");
-                    mail.To.Add(usuario.Email);
-                    mail.Subject = "Activacion de cuenta";
-                    mail.Body = $"<div style='width:100%; background-color: light; font-family: calibri;font-weight: lighter;' align='center'>" +
-                        $"<header>" +
-                         $"<p style = 'font-weight: light; font-size: 35px;  color: #2C4F61;' > ACTIVACIÓN DE CUENTA</p>" +
-                         $"</header>" + $"<div>" + $"<p>¡Bienvenido! Gracias por registrarte, continua en tu proceso...</p>" +
-                         $"<span>Clic en activar para activar su cuenta</span>" +
-                         $"<p><a   href='{confirmationLink}' style = 'border: none; text-decoration: none;padding: 5px; font-weight: 600; font-size: 15px; color: #ffffff; background-color: #2C4F61;border-radius: 4px;border: 2px solid #2C4F61;'>Activar </a></p>" +
-                         $"</div>" +
-                         $"</div>";
-                    mail.IsBodyHtml = true;
-                    using SmtpClient smtp = new("smtp.gmail.com", 587);
-                    smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "&xDByqBKqWFry88XyiRxQPAI*TI3KsW922ugeh9@RV#Ou^AwF%");
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
+                    UsuarioIdentity usuario = new()
+                    {
+                        UserName = usuarioModel.Email,
+                        Nombres = usuarioModel.Nombres,
+                        Apellidos = usuarioModel.Apellidos,
+                        Email = usuarioModel.Email,
+                        Sexo = usuarioModel.Sexo,
+                        IdRol = usuarioModel.IdRol,
+                        TipoDocumento = usuarioModel.TipoDocumento,
+                        NumDocumento = usuarioModel.NumDocumento,
+                        Telefono = usuarioModel.Telefono,
+                        PasswordHash = usuarioModel.Contrasena,
+                        Direccion = usuarioModel.Direccion,
+                        Estado = true
+                    };
+                    IdentityResult resp = await _userManager.CreateAsync(usuario, usuarioModel.Contrasena).ConfigureAwait(false);
+                    if (resp.Succeeded)
+                    {
+                        string token = await _userManager.GenerateEmailConfirmationTokenAsync(usuario);
+                        string confirmationLink = "http://localhost:4200/usuarios/confirmarEmail?id=" + usuario.Id + "&token=" +
+                            Base64UrlEncoder.Encode(token);
+                        using MailMessage mail = new();
+                        mail.From = new MailAddress("innoshopcali@gmail.com", "Innova");
+                        mail.To.Add(usuario.Email);
+                        mail.Subject = "Activacion de cuenta";
+                        mail.Body = $"<div style='width:100%; background-color: light; font-family: calibri;font-weight: lighter;' align='center'>" +
+                            $"<header>" +
+                             $"<p style = 'font-weight: light; font-size: 35px;  color: #2C4F61;' > ACTIVACIÓN DE CUENTA</p>" +
+                             $"</header>" + $"<div>" + $"<p>¡Bienvenido! Gracias por registrarte, continua en tu proceso...</p>" +
+                             $"<span>Clic en activar para activar su cuenta</span>" +
+                             $"<p><a   href='{confirmationLink}' style = 'border: none; text-decoration: none;padding: 5px; font-weight: 600;" +
+                             $" font-size: 15px; color: #ffffff; background-color: #2C4F61;border-radius: 4px;border: 2px solid #2C4F61;'>" +
+                             $"Activar </a></p>" +
+                             $"</div>" +
+                             $"</div>";
+                        mail.IsBodyHtml = true;
+                        using SmtpClient smtp = new("smtp.gmail.com", 587);
+                        smtp.Credentials = new NetworkCredential("innoshopcali@gmail.com", "&xDByqBKqWFry88XyiRxQPAI*TI3KsW922ugeh9@RV#Ou^AwF%");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                        return Ok(new {mensaje = "Se ha registrado exitosamente" });
+                    }
+                    else if (resp.Errors.Count()>0)
+                    {
+                        if (resp.Errors.ElementAt(0).Code.Equals("DuplicateUserName"))
+                        {
+                            return BadRequest(new { mensaje = "Usuario o correo ya se encuentra registrado" });
+                        }
+                        else
+                        {
+                            return BadRequest(new { mensaje = "Error inesperado" });
+                        }
+                    }
                 }
-                return Ok(resp);
+                else
+                {
+                    return BadRequest(new { mensaje = "Los datos del usuario no son válidos" });
+                }
+                return BadRequest(new { mensaje = "Error inesperado" });
             }
             catch (Exception e)
             {
@@ -199,11 +221,21 @@ namespace Back.Controllers
             try
             {
                 UsuarioIdentity usuario = await _userManager.FindByIdAsync(restableceContra.Id);
-                IdentityResult result = await _userManager.ResetPasswordAsync(usuario, Base64UrlEncoder.Decode(restableceContra.Token), restableceContra.Contrasena);
-                if (result.Succeeded)
-                    return Ok(new { mensaje = "Restablecimiento de contrasena éxitoso" });
+                if (usuario != null)
+                {
+                    IdentityResult result = await _userManager.ResetPasswordAsync(usuario, Base64UrlEncoder.Decode(restableceContra.Token),
+                        restableceContra.Contrasena);
+                    if (result.Succeeded)
+                        return Ok(new { mensaje = "Restablecimiento de contrasena éxitoso" });
+                    else
+                        return BadRequest(new { mensaje = "Error en restablecimiento de contraseña" });
+                }
                 else
-                    return BadRequest(new { mensaje = "Error de restablecimiento de contraseña" });
+                {
+                    return BadRequest(new { mensaje = "Correo o constraseña no válido" });
+                }
+                
+                
             }
             catch (Exception e)
             {
@@ -218,10 +250,18 @@ namespace Back.Controllers
             try
             {
                 UsuarioIdentity usuario = await _userManager.FindByEmailAsync(actuContrasena.Email);
-                IdentityResult result = await _userManager.ChangePasswordAsync(usuario, actuContrasena.ContrasenaAntigua, actuContrasena.Contrasena);
-                if (result.Succeeded)
-                    return Ok(new { mensaje = "Modificación de contraseña éxitosa" });
-                return BadRequest(result);
+                bool confirmContra = await _userManager.CheckPasswordAsync(usuario, actuContrasena.ContrasenaAntigua);
+                if(confirmContra){
+                    IdentityResult result = await _userManager.ChangePasswordAsync(usuario, actuContrasena.ContrasenaAntigua, actuContrasena.Contrasena);
+                    if (result.Succeeded)
+                        return Ok(new { mensaje = "Modificación de contraseña éxitosa" });
+                    else
+                        return BadRequest(new { mensaje = "Ha ocurrido un error inesperado" });
+                }else
+                {
+                    return BadRequest(new { mensaje = "La contraseña anterior es incorrecta" });
+                }
+                
             }
             catch (Exception e)
             {

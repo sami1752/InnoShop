@@ -41,7 +41,15 @@ namespace Back.Controllers
         {
             try
             {
-                return await _context.AgregarVenta(venta);
+                Ventas ventaReciente =  await _context.AgregarVenta(venta);
+                if (ventaReciente != null)
+                {
+                    return Ok(venta);
+                }
+                else
+                {
+                    return BadRequest(new { mensaje = "Error al registrar venta" });
+                }
             }
             catch (Exception e)
             {
