@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\sami1\DesktopAndres</_PublishTargetUrl>
+    <History>True|2021-06-24T21:12:37.1771176Z;True|2021-06-24T16:06:07.9536660-05:00;True|2021-06-24T16:04:46.1969012-05:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DevConnection">
+      <Value>Data Source = EC2AMAZ-RVJR7V3\\SQLEXPRESS%3b Initial Catalog= InnoShop%3b Integrated Security=true%3b MultipleActiveResultSets=true%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="Back.Models.DAL.DBContext">
+      <Value>Data Source = EC2AMAZ-RVJR7V3\\SQLEXPRESS%3b Initial Catalog= InnoShop%3b Integrated Security=true%3b MultipleActiveResultSets=true%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

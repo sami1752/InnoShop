@@ -29,9 +29,9 @@
                 <div class="tab-content p-0">
                   <app-registrar-venta></app-registrar-venta>
                 </div>
-                <div class="card-body" *ngIf="this.ventasService.desplegarDetalle">
-                  <app-detalle-venta-completo></app-detalle-venta-completo>
-                </div>
+                <div *ngIf="this.ventasService.desplegarDetalle">
+                  <app-detalle-venta-completo ></app-detalle-venta-completo>
+                  </div>
               </div>
             </div>
           </section>

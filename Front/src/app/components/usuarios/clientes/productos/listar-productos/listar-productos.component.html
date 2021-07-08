@@ -72,7 +72,7 @@
   }
 
   .agregarcarrito{
-    width: 100%;
+    width: 85%;
     padding: 5px 0;
     margin: 10px 0;
     background: #2C4F61;
@@ -83,6 +83,20 @@
     cursor: pointer;
   }
   .agregarcarrito:hover{
+    background: rgba(42, 86, 95, 0.68);
+  }
+  .agregarcarrito2{
+    width: 10%;
+    padding: 5px 0;
+    margin: 10px 0;
+    background: #2C4F61;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .agregarcarrito2:hover{
     background: rgba(42, 86, 95, 0.68);
   }
 
@@ -138,12 +152,8 @@
                       <div class="precio" *ngIf="precio.FechaFin=='0001-01-01T00:00:00' && precio.IdProducto==producto.IdProducto" >{{precio.Precio | currency}} </div>
                     </ng-container>
                   </div>
-
-                  <button class="agregarcarrito" (click)="agregarCarrito(producto.IdProducto)"> <i class="bi bi-cart-plus-fill "></i> Agregar al carrito
-                  </button>
-
-
-
+                  <button class="agregarcarrito" (click)="agregarCarrito(producto.IdProducto)"> <i class="bi bi-cart-plus-fill "></i> Agregar al carrito</button>
+                  <button class="agregarcarrito2 ml-1" (click)="CompraDirecta(producto.IdProducto)" title="Comprar"> <i class="bi bi-currency-dollar"></i></button>
                 </div>
               </div>
             </ng-container>
